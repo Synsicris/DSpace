@@ -45,7 +45,7 @@
           <dc-element>type</dc-element>
           <label>Patent use</label>
           <input-type value-pairs-name="patent_use">dropdown</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <hint>Select the type(s) of content of the item. To select more than one value in the list, you may have to hold down the "CTRL" or "Shift" key.</hint>
         </field>
@@ -64,8 +64,20 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>impactpathway</dc-qualifier>
+          <label>Impact pathway notes (Why is it relevant to impact pathway?)</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>citation</dc-qualifier>
+          <dc-qualifier>applicationnumber</dc-qualifier>
           <label>Application no.</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -100,25 +112,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         </field>
       </row>
     </form>
-    <form name="events">
+    <form name="patents_result">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title</label>
+          <dc-element>creator</dc-element>
+          <dc-qualifier>inventors</dc-qualifier>
+          <label>Inventor(s) (INID 72)</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>You must enter a main title for this item.</required>
-          <hint>Enter the main title of the item.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Event type</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -127,7 +129,8 @@ it, please enter the types and the actual numbers or codes.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Description for event</label>
+          <dc-qualifier>abstract</dc-qualifier>
+          <label>Abstract (INID 57)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -137,43 +140,9 @@ it, please enter the types and the actual numbers or codes.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>place</dc-qualifier>
-          <label>Place</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>country</dc-qualifier>
-          <label>Country</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Start Date</label>
-          <input-type>date</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>End Date</label>
+          <dc-qualifier>issued</dc-qualifier>
+          <label>Publication date (INID 43)</label>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -183,8 +152,43 @@ it, please enter the types and the actual numbers or codes.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <label>Subject</label>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>patentnumber</dc-qualifier>
+          <label>Patent  number (INID 10)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>language</dc-element>
+          <dc-qualifier>iso</dc-qualifier>
+          <label>Language</label>
+          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Link URL</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher (Escapent or Depatisnet)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -195,10 +199,10 @@ it, please enter the types and the actual numbers or codes.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>keywords</dc-qualifier>
-          <label>Keywords</label>
-          <input-type>tag</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>ipc</dc-qualifier>
+          <label>IPC-class (INID 51)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -206,23 +210,11 @@ it, please enter the types and the actual numbers or codes.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>sponsorship</dc-qualifier>
-          <label>Sponsor</label>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>link-to-plan</dc-qualifier>
+          <label>Link to plan</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>partnership</dc-qualifier>
-          <label>Partner</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -682,6 +674,838 @@ it, please enter the types and the actual numbers or codes.</hint>
         </field>
       </row>
     </form>
+    <form name="spinoffs">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Key information/name</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter a main title for this item.</required>
+          <hint>Enter the main title of the item.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Spin-off type</label>
+          <input-type value-pairs-name="spinoff_types">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Select the type(s) of content of the item.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>abstract</dc-qualifier>
+          <label>Description to Spin-off company</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>impactpathway</dc-qualifier>
+          <label>Impact pathway notes (Why is it relevant to impact pathway?)</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Area of activity</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>issued</dc-qualifier>
+          <label>Date of Founding</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>registertype</dc-qualifier>
+          <label>Register type</label>
+          <input-type value-pairs-name="register_types">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>This field is mandatory</required>
+          <hint>Select type of register of companies, cooperatives, partnerships and associations</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>registercourt</dc-qualifier>
+          <label>Register court</label>
+          <input-type value-pairs-name="register_court">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>This field is mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>registernumber</dc-qualifier>
+          <label>Register number</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>This field is mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="spinoffs_result">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>relation-to-organisation</dc-qualifier>
+          <label>Relation to research organisation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Link URL to company homepage</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>city</dc-qualifier>
+          <label>City/Registered office</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>reference-year</dc-qualifier>
+          <label>Reference Year</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>turnover-amount</dc-qualifier>
+          <label>Turnover amount</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>turnover-currency</dc-qualifier>
+          <label>Turnover currency</label>
+          <input-type value-pairs-name="currency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>number-employees</dc-qualifier>
+          <label>Number of employees</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>link-to-plan</dc-qualifier>
+          <label>Link to plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="events">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>link-to-plan</dc-qualifier>
+          <label>Link to plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title of the event</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter a main title for this item.</required>
+          <hint>Enter the main title of the item.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Event type</label>
+          <input-type value-pairs-name="event_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>purpose</dc-qualifier>
+          <label>Purposes of the activity</label>
+          <input-type value-pairs-name="purpose_activity">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please select one or several purposes of the activity</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description of the Activity</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="events_dates">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>fullday</dc-qualifier>
+          <label>Full day? or</label>
+          <input-type value-pairs-name="fullday">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-1</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration in h</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-1</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>participants</dc-qualifier>
+          <label>Number of participants</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>place</dc-qualifier>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>country</dc-qualifier>
+          <label>Country</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="participation_events">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Key information / name</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>audience</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Involved  group of actors</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Which groups of actors are involved?</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Details to the involved  group of actors</label>
+          <input-type>textarea</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>e.g.  specific subgroups, number of participants</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>intensity-projectdesign</dc-qualifier>
+          <label>Intensity of participation in the phase of project design</label>
+          <input-type value-pairs-name="intensity_participation">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>intensity-knowledgeproduction</dc-qualifier>
+          <label>Intensity of participation for knowledgeproduction</label>
+          <input-type value-pairs-name="intensity_participation">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>intensity-transfer</dc-qualifier>
+          <label>Intensity of participation for transfer and valorisation</label>
+          <input-type value-pairs-name="intensity_participation">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>work</dc-qualifier>
+          <label>Description of the participation process</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="participation_events_frequency">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>fullday</dc-qualifier>
+          <label>Full day? or</label>
+          <input-type value-pairs-name="fullday">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration in h</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>frequency</dc-qualifier>
+          <label>Frequency</label>
+          <input-type value-pairs-name="frequency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Frequency of the selected exchange</hint>
+        </field>
+      </row>
+    </form>
+    <form name="participation_events_dates">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>link-to-participation-process</dc-qualifier>
+          <label>Link to participation process</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title of the participative event</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>fullday</dc-qualifier>
+          <label>Full day? or</label>
+          <input-type value-pairs-name="fullday">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-1</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration in h</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-1</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>participants</dc-qualifier>
+          <label>Number of participants</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>place</dc-qualifier>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>country</dc-qualifier>
+          <label>Country</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_partner">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Key information / name</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>orgunit</dc-qualifier>
+          <label>cooperating organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>audience</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>corresponding target group</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Select the name of a target group you already created or create a new target group with giving the new name here and add details later.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>cooperating-partner</dc-qualifier>
+          <label>Type of cooperation</label>
+          <input-type value-pairs-name="cooperation_type_1">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>cooperating-partner-sub</dc-qualifier>
+          <label>Sub-Type of cooperation</label>
+          <input-type value-pairs-name="cooperation_type_2">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>contribution</dc-qualifier>
+          <label>Main contribution to project / aim of cooperation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>work</dc-qualifier>
+          <label>(Planned) working process</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Startdate</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>Enddate</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_events">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Key information / name</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type of the cooperation activity</label>
+          <input-type value-pairs-name="cooperation_event_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>cooperation-partner</dc-qualifier>
+          <label>Involved cooperation partners</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Which project partners or other cooperation partners are involved in the activity?</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description of the cooperation activity</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please briefly describe the most important topics of the cooperation activity.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_events_frequency">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>fullday</dc-qualifier>
+          <label>Full day? or</label>
+          <input-type value-pairs-name="fullday">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration in h</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>frequency</dc-qualifier>
+          <label>Frequency</label>
+          <input-type value-pairs-name="frequency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Frequency of the selected exchange</hint>
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_events_date">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start Date</label>
+          <input-type>date</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End Date</label>
+          <input-type>date</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>fullday</dc-qualifier>
+          <label>Full day? or</label>
+          <input-type value-pairs-name="fullday">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration in h</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>place</dc-qualifier>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>country</dc-qualifier>
+          <label>Country</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+      </row>
+    </form>
   </form-definitions>
   <form-value-pairs>
     <value-pairs value-pairs-name="patent_use" dc-term="patent_use">
@@ -884,14 +1708,962 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>other</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
-    <value-pairs value-pairs-name="" dc-term="" />
+    <value-pairs value-pairs-name="spinoff_types" dc-term="spinoff_types">
+      <pair>
+        <displayed-value>Competence spin-off</displayed-value>
+        <stored-value>Competence spin-off</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Transfer spin-off</displayed-value>
+        <stored-value>Transfer spin-off</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>other forms of spin-offs (e.g. non-profit assosiation)</displayed-value>
+        <stored-value>other forms of spin-offs (e.g. non-profit assosiation)</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="register_types" dc-term="register_types">
+      <pair>
+        <displayed-value>Handesregister A</displayed-value>
+        <stored-value>Handesregister A</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Handesregister B</displayed-value>
+        <stored-value>Handesregister B</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Genossenschaftsregister</displayed-value>
+        <stored-value>Genossenschaftsregister</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vereinsregister</displayed-value>
+        <stored-value>Vereinsregister</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="register_court" dc-term="register_court">
+      <pair>
+        <displayed-value>Aachen</displayed-value>
+        <stored-value>Aachen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Altenburg</displayed-value>
+        <stored-value>Altenburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Amberg</displayed-value>
+        <stored-value>Amberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Apolda</displayed-value>
+        <stored-value>Apolda</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arnsberg</displayed-value>
+        <stored-value>Arnsberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arnstadt</displayed-value>
+        <stored-value>Arnstadt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arnstadt Zweigstelle Ilmenau</displayed-value>
+        <stored-value>Arnstadt Zweigstelle Ilmenau</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Aschaffenburg</displayed-value>
+        <stored-value>Aschaffenburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ausburg</displayed-value>
+        <stored-value>Ausburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Aurich</displayed-value>
+        <stored-value>Aurich</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bad Hersfeld</displayed-value>
+        <stored-value>Bad Hersfeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bad Homburg v.d.H.</displayed-value>
+        <stored-value>Bad Homburg v.d.H.</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bad Kreuznach</displayed-value>
+        <stored-value>Bad Kreuznach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bad Oeynhausen</displayed-value>
+        <stored-value>Bad Oeynhausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bad Salzungen</displayed-value>
+        <stored-value>Bad Salzungen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bamberg</displayed-value>
+        <stored-value>Bamberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bayreuth</displayed-value>
+        <stored-value>Bayreuth</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Berlin (Charlottenburg)</displayed-value>
+        <stored-value>Berlin (Charlottenburg)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bielefeld</displayed-value>
+        <stored-value>Bielefeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bochum</displayed-value>
+        <stored-value>Bochum</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bonn</displayed-value>
+        <stored-value>Bonn</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Braunschweig</displayed-value>
+        <stored-value>Braunschweig</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bremen</displayed-value>
+        <stored-value>Bremen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Chemnitz</displayed-value>
+        <stored-value>Chemnitz</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Coburg</displayed-value>
+        <stored-value>Coburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Coesfeld</displayed-value>
+        <stored-value>Coesfeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cottbus</displayed-value>
+        <stored-value>Cottbus</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Darmstadt</displayed-value>
+        <stored-value>Darmstadt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Deggendorf</displayed-value>
+        <stored-value>Deggendorf</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Dortmund</displayed-value>
+        <stored-value>Dortmund</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Dresden</displayed-value>
+        <stored-value>Dresden</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Duisburg</displayed-value>
+        <stored-value>Duisburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Düren</displayed-value>
+        <stored-value>Düren</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Düsseldorf</displayed-value>
+        <stored-value>Düsseldorf</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Eisenach</displayed-value>
+        <stored-value>Eisenach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erfurt</displayed-value>
+        <stored-value>Erfurt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Eschwege</displayed-value>
+        <stored-value>Eschwege</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Essen</displayed-value>
+        <stored-value>Essen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Flensburg</displayed-value>
+        <stored-value>Flensburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Frankfurt am Main</displayed-value>
+        <stored-value>Frankfurt am Main</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Frankfurt/Oder</displayed-value>
+        <stored-value>Frankfurt/Oder</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Freiburg</displayed-value>
+        <stored-value>Freiburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Friedberg</displayed-value>
+        <stored-value>Friedberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Fritzlar</displayed-value>
+        <stored-value>Fritzlar</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Fulda</displayed-value>
+        <stored-value>Fulda</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Fürth</displayed-value>
+        <stored-value>Fürth</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gelsenkirchen</displayed-value>
+        <stored-value>Gelsenkirchen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gera</displayed-value>
+        <stored-value>Gera</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gießen</displayed-value>
+        <stored-value>Gießen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gotha</displayed-value>
+        <stored-value>Gotha</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Göttingen</displayed-value>
+        <stored-value>Göttingen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Greiz</displayed-value>
+        <stored-value>Greiz</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gütersloh</displayed-value>
+        <stored-value>Gütersloh</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hagen</displayed-value>
+        <stored-value>Hagen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hamburg</displayed-value>
+        <stored-value>Hamburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hamm</displayed-value>
+        <stored-value>Hamm</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hanau</displayed-value>
+        <stored-value>Hanau</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hannover</displayed-value>
+        <stored-value>Hannover</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Heiligenbad Heiligenstadt</displayed-value>
+        <stored-value>Heiligenbad Heiligenstadt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hildburghausen</displayed-value>
+        <stored-value>Hildburghausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hildesheim</displayed-value>
+        <stored-value>Hildesheim</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hof</displayed-value>
+        <stored-value>Hof</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Homburg</displayed-value>
+        <stored-value>Homburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ingolstadt</displayed-value>
+        <stored-value>Ingolstadt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Iserlohn</displayed-value>
+        <stored-value>Iserlohn</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Jena</displayed-value>
+        <stored-value>Jena</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kaiserslautern</displayed-value>
+        <stored-value>Kaiserslautern</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kassel</displayed-value>
+        <stored-value>Kassel</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kempten (Allgäu)</displayed-value>
+        <stored-value>Kempten (Allgäu)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kiel</displayed-value>
+        <stored-value>Kiel</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kleve</displayed-value>
+        <stored-value>Kleve</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Koblenz</displayed-value>
+        <stored-value>Koblenz</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Köln</displayed-value>
+        <stored-value>Köln</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Königstein</displayed-value>
+        <stored-value>Königstein</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Korbach</displayed-value>
+        <stored-value>Korbach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Krefeld</displayed-value>
+        <stored-value>Krefeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Landau</displayed-value>
+        <stored-value>Landau</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Landshut</displayed-value>
+        <stored-value>Landshut</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Langenfeld</displayed-value>
+        <stored-value>Langenfeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Lebach</displayed-value>
+        <stored-value>Lebach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Leipzig</displayed-value>
+        <stored-value>Leipzig</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Lemgo</displayed-value>
+        <stored-value>Lemgo</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Lübeck</displayed-value>
+        <stored-value>Lübeck</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ludwigshafen</displayed-value>
+        <stored-value>Ludwigshafen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Lüneburg</displayed-value>
+        <stored-value>Lüneburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mainz</displayed-value>
+        <stored-value>Mainz</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mannheim</displayed-value>
+        <stored-value>Mannheim</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Marburg</displayed-value>
+        <stored-value>Marburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Meiningen</displayed-value>
+        <stored-value>Meiningen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Memmingen</displayed-value>
+        <stored-value>Memmingen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Merzig</displayed-value>
+        <stored-value>Merzig</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mönchengladbach</displayed-value>
+        <stored-value>Mönchengladbach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Montabaur</displayed-value>
+        <stored-value>Montabaur</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mühlhausen</displayed-value>
+        <stored-value>Mühlhausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>München</displayed-value>
+        <stored-value>München</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Münster</displayed-value>
+        <stored-value>Münster</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Neubrandenburg</displayed-value>
+        <stored-value>Neubrandenburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Neunkirchen</displayed-value>
+        <stored-value>Neunkirchen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Neuruppin</displayed-value>
+        <stored-value>Neuruppin</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Neuss</displayed-value>
+        <stored-value>Neuss</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Nordhausen</displayed-value>
+        <stored-value>Nordhausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Nürnberg</displayed-value>
+        <stored-value>Nürnberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Offenbach</displayed-value>
+        <stored-value>Offenbach</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Oldenburg</displayed-value>
+        <stored-value>Oldenburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Osnabrück</displayed-value>
+        <stored-value>Osnabrück</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ottweiler</displayed-value>
+        <stored-value>Ottweiler</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Paderborn</displayed-value>
+        <stored-value>Paderborn</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Passau</displayed-value>
+        <stored-value>Passau</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Pinneberg</displayed-value>
+        <stored-value>Pinneberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Pößneck</displayed-value>
+        <stored-value>Pößneck</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Pößneck Zweigstelle Lobenstein</displayed-value>
+        <stored-value>Pößneck Zweigstelle Lobenstein</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Potsdam</displayed-value>
+        <stored-value>Potsdam</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Recklinghausen</displayed-value>
+        <stored-value>Recklinghausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Regensburg</displayed-value>
+        <stored-value>Regensburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rostock</displayed-value>
+        <stored-value>Rostock</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rudolstadt</displayed-value>
+        <stored-value>Rudolstadt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rudolstadt Zweigstelle Saalfeld</displayed-value>
+        <stored-value>Rudolstadt Zweigstelle Saalfeld</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Saarbrücken</displayed-value>
+        <stored-value>Saarbrücken</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Saarlouis</displayed-value>
+        <stored-value>Saarlouis</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Schweinfurth</displayed-value>
+        <stored-value>Schweinfurth</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Schwerin</displayed-value>
+        <stored-value>Schwerin</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Siegburg</displayed-value>
+        <stored-value>Siegburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Siegen</displayed-value>
+        <stored-value>Siegen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sömmerda</displayed-value>
+        <stored-value>Sömmerda</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sondershausen</displayed-value>
+        <stored-value>Sondershausen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sonneberg</displayed-value>
+        <stored-value>Sonneberg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Stadthagen</displayed-value>
+        <stored-value>Stadthagen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Stadtroda</displayed-value>
+        <stored-value>Stadtroda</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Steinfurt</displayed-value>
+        <stored-value>Steinfurt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Stendal</displayed-value>
+        <stored-value>Stendal</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>St. Ingbert</displayed-value>
+        <stored-value>St. Ingbert</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Stralsund</displayed-value>
+        <stored-value>Stralsund</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Straubing</displayed-value>
+        <stored-value>Straubing</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Stuttgart</displayed-value>
+        <stored-value>Stuttgart</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>St. Wendel</displayed-value>
+        <stored-value>St. Wendel</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Suhl</displayed-value>
+        <stored-value>Suhl</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tostedt</displayed-value>
+        <stored-value>Tostedt</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Traunstein</displayed-value>
+        <stored-value>Traunstein</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ulm</displayed-value>
+        <stored-value>Ulm</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Völklingen</displayed-value>
+        <stored-value>Völklingen</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Walsrade</displayed-value>
+        <stored-value>Walsrade</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Weiden i.d. Opflz.</displayed-value>
+        <stored-value>Weiden i.d. Opflz.</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Weimar</displayed-value>
+        <stored-value>Weimar</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wetzlar</displayed-value>
+        <stored-value>Wetzlar</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wiesbaden</displayed-value>
+        <stored-value>Wiesbaden</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wittlich</displayed-value>
+        <stored-value>Wittlich</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wuppertal</displayed-value>
+        <stored-value>Wuppertal</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Würzburg</displayed-value>
+        <stored-value>Würzburg</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Zweibrücken</displayed-value>
+        <stored-value>Zweibrücken</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="currency" dc-term="currency">
+      <pair>
+        <displayed-value>Euro</displayed-value>
+        <stored-value>Euro</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Albanian lek</displayed-value>
+        <stored-value>Albanian lek</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Armenian dram</displayed-value>
+        <stored-value>Armenian dram</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Azerbaijan manat</displayed-value>
+        <stored-value>Azerbaijan manat</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Belarusian ruble</displayed-value>
+        <stored-value>Belarusian ruble</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bosnia and Herzegovina convertible mark</displayed-value>
+        <stored-value>Bosnia and Herzegovina convertible mark</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bulgarian lev</displayed-value>
+        <stored-value>Bulgarian lev</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Croatian kuna</displayed-value>
+        <stored-value>Croatian kuna</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Czech koruna</displayed-value>
+        <stored-value>Czech koruna</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Danish krone</displayed-value>
+        <stored-value>Danish krone</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Faroese krona</displayed-value>
+        <stored-value>Faroese krona</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Georgian lari</displayed-value>
+        <stored-value>Georgian lari</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gibraltar pound</displayed-value>
+        <stored-value>Gibraltar pound</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Guernsey pound</displayed-value>
+        <stored-value>Guernsey pound</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hungarian forint</displayed-value>
+        <stored-value>Hungarian forint</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Icelandic krona</displayed-value>
+        <stored-value>Icelandic krona</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Manx pound</displayed-value>
+        <stored-value>Manx pound</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Jersey pound</displayed-value>
+        <stored-value>Jersey pound</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kazakhstani tenge</displayed-value>
+        <stored-value>Kazakhstani tenge</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Moldovan leu</displayed-value>
+        <stored-value>Moldovan leu</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Macedonian denar</displayed-value>
+        <stored-value>Macedonian denar</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Norwegian krone</displayed-value>
+        <stored-value>Norwegian krone</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Polish zloty</displayed-value>
+        <stored-value>Polish zloty</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Romanian leu</displayed-value>
+        <stored-value>Romanian leu</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Russian ruble</displayed-value>
+        <stored-value>Russian ruble</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Serbian dinar</displayed-value>
+        <stored-value>Serbian dinar</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Swedish krona</displayed-value>
+        <stored-value>Swedish krona</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Swiss franc</displayed-value>
+        <stored-value>Swiss franc</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Turkish lira</displayed-value>
+        <stored-value>Turkish lira</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ukrainian hryvnia</displayed-value>
+        <stored-value>Ukrainian hryvnia</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Pound sterling</displayed-value>
+        <stored-value>Pound sterling</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="fullday" dc-term="fullday">
+      <pair>
+        <displayed-value>no</displayed-value>
+        <stored-value>no</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>yes</displayed-value>
+        <stored-value>yes</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="event_type" dc-term="event_type">
+      <pair>
+        <displayed-value>Workshop</displayed-value>
+        <stored-value>Workshop</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Speech / public presentation (not scientific conference contribution)</displayed-value>
+        <stored-value>Speech / public presentation (not scientific conference contribution)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Speech / public presentation (not scientific conference contribution)</displayed-value>
+        <stored-value>Speech / public presentation (not scientific conference contribution)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>personal Meetings</displayed-value>
+        <stored-value>personal Meetings</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Courses / further education (non-scientific/academic)</displayed-value>
+        <stored-value>Courses / further education (non-scientific/academic)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Courses for students or doctoral (Ph.D.) student</displayed-value>
+        <stored-value>Courses for students or doctoral (Ph.D.) student</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Trials / Practical test</displayed-value>
+        <stored-value>Trials / Practical test</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Interviews</displayed-value>
+        <stored-value>Interviews</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="purpose_activity" dc-term="purpose_activity">
+      <pair>
+        <displayed-value>networking</displayed-value>
+        <stored-value>networking</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>team development</displayed-value>
+        <stored-value>team development</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>project design - work on problem descriptions, targets and questions</displayed-value>
+        <stored-value>project design - work on problem descriptions, targets and questions</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>project design - work on design of the test / experiment / investigation</displayed-value>
+        <stored-value>project design - work on design of the test / experiment / investigation</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>project design - others</displayed-value>
+        <stored-value>project design - others</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - data collection</displayed-value>
+        <stored-value>research process - data collection</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - integrate knowledge from different disciplines</displayed-value>
+        <stored-value>research process - integrate knowledge from different disciplines</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - integrate feedback and knowledge from practice</displayed-value>
+        <stored-value>research process - integrate feedback and knowledge from practice</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - reflection on research processes</displayed-value>
+        <stored-value>research process - reflection on research processes</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - others</displayed-value>
+        <stored-value>research process - others</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>research process - reflection/validation of research results</displayed-value>
+        <stored-value>research process - reflection/validation of research results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>transfer - dissemination of knowledge</displayed-value>
+        <stored-value>transfer - dissemination of knowledge</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>transfer - reflexion on usability and use of results</displayed-value>
+        <stored-value>transfer - reflexion on usability and use of results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>transfer - others</displayed-value>
+        <stored-value>transfer - others</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="frequency" dc-term="frequency">
+      <pair>
+        <displayed-value>weekly</displayed-value>
+        <stored-value>weekly</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>bi-weekly</displayed-value>
+        <stored-value>bi-weekly</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>monthly</displayed-value>
+        <stored-value>monthly</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8-10 times a year</displayed-value>
+        <stored-value>8-10 times a year</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>5-7 times a year</displayed-value>
+        <stored-value>5-7 times a year</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>3-4 times a year</displayed-value>
+        <stored-value>3-4 times a year</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>1-2 times a year</displayed-value>
+        <stored-value>1-2 times a year</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="intensity_participation" dc-term="intensity_participation">
+      <pair>
+        <displayed-value>no interaction</displayed-value>
+        <stored-value>no interaction</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>informed - actors are informed</displayed-value>
+        <stored-value>informed - actors are informed</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>consult - actors are asked for their opinion or consult the project</displayed-value>
+        <stored-value>consult - actors are asked for their opinion or consult the project</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>involved - actors are integrated into mutual exchange processes without participating in decision-making processes</displayed-value>
+        <stored-value>involved - actors are integrated into mutual exchange processes without participating in decision-making processes</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>collaborate - actors are involved in exchange processes and have an influence on decisions</displayed-value>
+        <stored-value>collaborate - actors are involved in exchange processes and have an influence on decisions</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>empowered - acors exclusively shape decision-making processes</displayed-value>
+        <stored-value>empowered - acors exclusively shape decision-making processes</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="cooperation_type_1" dc-term="cooperation_type_1">
+      <pair>
+        <displayed-value>affiliated partner</displayed-value>
+        <stored-value>affiliated partner</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>sub-contractor</displayed-value>
+        <stored-value>sub-contractor</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>other contractor</displayed-value>
+        <stored-value>other contractor</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>informal cooperation partner</displayed-value>
+        <stored-value>informal cooperation partner</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="cooperation_type_2" dc-term="cooperation_type_2">
+      <pair>
+        <displayed-value>sub-list in development</displayed-value>
+        <stored-value>sub-list in development</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="cooperation_event_type" dc-term="cooperation_event_type">
+      <pair>
+        <displayed-value>personal Meetings</displayed-value>
+        <stored-value>personal Meetings</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Web / telephone conferences</displayed-value>
+        <stored-value>Web / telephone conferences</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Trials / Practical tests</displayed-value>
+        <stored-value>Trials / Practical tests</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Other / miscellaneous</displayed-value>
+        <stored-value>Other / miscellaneous</stored-value>
+      </pair>
+    </value-pairs>
   </form-value-pairs>
 </input-forms>
 

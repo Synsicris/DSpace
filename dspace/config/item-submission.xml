@@ -22,9 +22,9 @@
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step>
     <step id="extraction">
-      <heading></heading>
-      <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
-      <type>utils</type>
+	  <heading></heading>
+	  <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
+	  <type>utils</type>
 	  <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step>
     <step id="patents" mandatory="true">
@@ -48,18 +48,33 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
+    <step id="patent" mandatory="true">
+      <heading>submit.progressbar.describe.patent</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="patent_indexing" mandatory="true">
+      <heading>submit.progressbar.describe.patent_indexing</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="patent_references" mandatory="true">
+      <heading>submit.progressbar.describe.patent_references</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
     <step id="project" mandatory="true">
       <heading>submit.progressbar.describe.project</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="journals" mandatory="true">
-      <heading>submit.progressbar.describe.journals</heading>
+    <step id="journal" mandatory="true">
+      <heading>submit.progressbar.describe.journal</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="publications" mandatory="true">
-      <heading>submit.progressbar.describe.publications</heading>
+    <step id="publication" mandatory="true">
+      <heading>submit.progressbar.describe.publication</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -144,16 +159,19 @@
       <step id="upload" />
       <step id="license" />
     </submission-process>
-    <submission-process name="journals">
+    <submission-process name="journal">
       <step id="collection" />
-      <step id="journals" />
+      <step id="journal" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
-    <submission-process name="publications">
+    <submission-process name="publication">
       <step id="collection" />
       <step id="extraction" />
-      <step id="publications" />
+      <step id="publication" />
+      <step id="publication_indexing" />
+      <step id="publication_bibliographic_details" />
+      <step id="publication_references" />
       <step id="upload" />
       <step id="license" />
     </submission-process>

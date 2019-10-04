@@ -5,27 +5,17 @@
   <submission-map>
     <name-map collection-handle="default" submission-name="patents" />
     <name-map collection-handle="123456789/3" submission-name="events" />
+    <name-map collection-handle="123456789/6" submission-name="journals" />
     <name-map collection-handle="123456789/4" submission-name="orgunit" />
     <name-map collection-handle="123456789/5" submission-name="project" />
-    <name-map collection-handle="123456789/6" submission-name="journals" />
     <name-map collection-handle="123456789/11" submission-name="publications" />
-    <name-map collection-handle="123456789/12" submission-name="spinoffs" />
-    <name-map collection-handle="123456789/15" submission-name="cooperation_partner" />
-    <name-map collection-handle="123456789/16" submission-name="cooperation_events" />
-    <name-map collection-handle="123456789/17" submission-name="participation_events" />
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">
-      <heading>submit.progressbar.describe.collection</heading>
+      <heading>submit.progressbar.collection</heading>
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>
       <type>collection</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
-    </step>
-    <step id="extraction">
-      <heading></heading>
-      <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
-      <type>utils</type>
-	  <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step>
     <step id="patents" mandatory="true">
       <heading>submit.progressbar.describe.patents</heading>
@@ -118,8 +108,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="cooperation_events_date" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_events_date</heading>
+    <step id="cooperation_events_dates" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_events_dates</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -152,7 +142,6 @@
     </submission-process>
     <submission-process name="publications">
       <step id="collection" />
-      <step id="extraction" />
       <step id="publications" />
       <step id="upload" />
       <step id="license" />
@@ -184,7 +173,7 @@
       <step id="collection" />
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
-      <step id="cooperation_events_date" />
+      <step id="cooperation_events_dates" />
       <step id="upload" />
     </submission-process>
   </submission-definitions>

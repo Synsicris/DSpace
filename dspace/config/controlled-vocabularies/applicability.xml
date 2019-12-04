@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY 2019-11-08">
+  <isComposedBy>
+    <node id="ID1" label="contribution to a solution / improvement (effektivity)">
+    <hasNote>How effectively can the innovation/development contribute to solving the problem or improving the situation? How large are the effects? How robust is the state of knowledge regarding the occurrence of the effects? What influence have different conditions and influences on the effect strength and the certainty of their occurrence? </hasNote>
+    </node>
+    <node id="ID2" label="competitiveness / attractiveness of the solution (efficiency)">
+    <hasNote>What is the relation between effort and benefit for the application of the innovation/solution? How does the relation between cost and benefit compare with previous practices/solution approaches? What's new about the solution? </hasNote>
+    </node>
+    <node id="ID3" label="feasibility / connectivity / practicability">
+    <hasNote>To what extent is the innovation/solution compatible with existing practices? To what extent do existing practices need to be changed in order to implement the innovation/solution? To what extent can the innovation/solution be adapted to different conditions and requirements? To what extent can the innovation/solution be tested by users?  </hasNote>
+    </node>
+    <node id="ID4" label="preconditions for implementation">
+    <hasNote>Which specific skills, knowledge, resources of the users are required for the application of the innovation/solution? What structures and framework conditions must be in place for users? Does the innovation/solution touch conflicting interests?</hasNote>
+    </node>
+  </isComposedBy>
+</node>

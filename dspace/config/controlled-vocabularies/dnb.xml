@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="DNB 2019-11-07">
+  <isComposedBy>
+    <node id="ID001" label="Allgemeines, Informationswissenschaft">
+    <hasNote>Generalities, Information science</hasNote>
+      <isComposedBy>
+        <node id="ID002" label="000 Allgemeines, Wissenschaft">
+        <hasNote>000 Generalities, Science</hasNote>
+        </node>
+        <node id="ID003" label="004 Informatik">
+        <hasNote>004 Data processing, Comuter science</hasNote>
+        </node>
+        <node id="ID004" label="010 Bibliographien">
+        <hasNote>010  Bibliography</hasNote>
+        </node>
+        <node id="ID005" label="020 Bibliotheks- und Informationswissenschaft">
+        <hasNote>020 Library and Information science</hasNote>
+        </node>
+        <node id="ID006" label="030 Enzyklopädien">
+        <hasNote>030 General encyclopedic work</hasNote>
+        </node>
+        <node id="ID007" label="050 Zeitschriften, forlaufende Sammelwerke">
+        <hasNote>050 General serials and thier indexes</hasNote>
+        </node>
+        <node id="ID008" label="060 Organisation, Museumswirtschaft">
+        <hasNote>060 General organisation and museology</hasNote>
+        </node>
+        <node id="ID009" label="070 Nachrichtenmedien, Journalismus, Verlagswesen">
+        <hasNote>070 News media, journalism, publishing</hasNote>
+        </node>
+        <node id="ID010" label="080 Allgemein Sammelwerke">
+        <hasNote>080 General collections</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID011" label="Philosophie und Psychologie">
+    <hasNote>Philosophy and psychology</hasNote>
+      <isComposedBy>
+        <node id="ID012" label="100 Philosophie">
+        <hasNote>100 Philosophy</hasNote>
+        </node>
+        <node id="ID013" label="130 Parapsychologie, Okkultismus">
+        <hasNote>130 Paranormal phenoma</hasNote>
+        </node>
+        <node id="ID014" label="150 Psychologie">
+        <hasNote>150 Psychology</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID015" label="Religion">
+    <hasNote>Religion</hasNote>
+      <isComposedBy>
+        <node id="ID016" label="200 Religion, Religionsphilosophie">
+        <hasNote>200 Religion</hasNote>
+        </node>
+        <node id="ID017" label="220 Bibel">
+        <hasNote>220 Bible</hasNote>
+        </node>
+        <node id="ID018" label="230 Theologie, Christentum">
+        <hasNote>230 Christian theology</hasNote>
+        </node>
+        <node id="ID019" label="290 Andere Religionen">
+        <hasNote>290 Other and comarative religions</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID020" label="Sozialwissenschaften">
+    <hasNote>Social science</hasNote>
+      <isComposedBy>
+        <node id="ID021" label="300 Sozialwissenschaften, Soziologie, Anthropologie">
+        <hasNote>300 Social science</hasNote>
+        </node>
+        <node id="ID022" label="310 Statistik">
+        <hasNote>310 General statistics</hasNote>
+        </node>
+        <node id="ID023" label="320 Politik">
+        <hasNote>320 Political science</hasNote>
+        </node>
+        <node id="ID024" label="330 Wirtschaft">
+        <hasNote>330 Economics</hasNote>
+        </node>
+        <node id="ID025" label="333.7 Natürliche Ressourcen, Energie, Umwelt">
+        <hasNote>333.7 Natural resources, energy and environment</hasNote>
+        </node>
+        <node id="ID026" label="340 Recht">
+        <hasNote>340 Law</hasNote>
+        </node>
+        <node id="ID027" label="350 Öffentliche Verwaltung">
+        <hasNote>350 Public administration</hasNote>
+        </node>
+        <node id="ID028" label="360 Soziale Probleme, Sozialdienste, Versicherungen">
+        <hasNote>360 Social services, association</hasNote>
+        </node>
+        <node id="ID029" label="370 Erziehung, Schul- und Bildungswesen">
+        <hasNote>370 Education</hasNote>
+        </node>
+        <node id="ID030" label="380 Handel, Kommunikation, Verkehr">
+        <hasNote>380 Commerce, communications, transport</hasNote>
+        </node>
+        <node id="ID031" label="390 Bräuche, Etikette, Folklore">
+        <hasNote>390 Customs, etiquette, folklore</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID032" label="Sprache">
+    <hasNote>Language</hasNote>
+      <isComposedBy>
+        <node id="ID033" label="400 Sprache, Linguistik">
+        <hasNote>400 Language, Linguistics</hasNote>
+        </node>
+        <node id="ID034" label="420 Englisch">
+        <hasNote>420 English</hasNote>
+        </node>
+        <node id="ID035" label="430 Deutsch">
+        <hasNote>430 Germanic</hasNote>
+        </node>
+        <node id="ID036" label="439 Andere germanische Sprachen">
+        <hasNote>439 Other Germanic languages</hasNote>
+        </node>
+        <node id="ID037" label="440 Französisch, romanische Sprachen allgemein">
+        <hasNote>440 French, Roman languages</hasNote>
+        </node>
+        <node id="ID038" label="450 Italienisch, Rumänisch, Rätoromanisch">
+        <hasNote>450 Italian, Romanian, Rhaeto-Romanic</hasNote>
+        </node>
+        <node id="ID039" label="460 Spanisch, Portugiesisch">
+        <hasNote>460 Spanish and Portugese languages</hasNote>
+        </node>
+        <node id="ID040" label="470 Latein">
+        <hasNote>470 Italic, Latin</hasNote>
+        </node>
+        <node id="ID041" label="480 Griechisch">
+        <hasNote>480 Hellenic languages, Classical greek</hasNote>
+        </node>
+        <node id="ID042" label="490 Andere Sprachen">
+        <hasNote>490 Other languages</hasNote>
+        </node>
+        <node id="ID043" label="491.8 Slawische Sprachen">
+        <hasNote>491.8 Slawic languages</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID044" label="Naturwissenschaften und Mathematik">
+    <hasNote>Natural science and Mathematics</hasNote>
+      <isComposedBy>
+        <node id="ID045" label="500 Naturwissenschaften">
+        <hasNote>500 Natural science</hasNote>
+        </node>
+        <node id="ID046" label="510 Mathematik">
+        <hasNote>510 Mathematics</hasNote>
+        </node>
+        <node id="ID047" label="520 Astronomie, Kartographie">
+        <hasNote>520 Astronomy and allied science</hasNote>
+        </node>
+        <node id="ID048" label="530 Physik">
+        <hasNote>530 Physics</hasNote>
+        </node>
+        <node id="ID049" label="540 Chemie">
+        <hasNote>540 Chemistry and allied science</hasNote>
+        </node>
+        <node id="ID050" label="550 Geowissenschaften">
+        <hasNote>550 Earth science</hasNote>
+        </node>
+        <node id="ID051" label="560 Paläontologie">
+        <hasNote>560 Paleontology</hasNote>
+        </node>
+        <node id="ID052" label="570 Biowissenschaften, Biologie">
+        <hasNote>570 Life science</hasNote>
+        </node>
+        <node id="ID053" label="580 Pflanzen (Botanik)">
+        <hasNote>580 Botanical science</hasNote>
+        </node>
+        <node id="ID054" label="590 Tiere (Zoologie)">
+        <hasNote>590 Zoological science</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID055" label="Technik, Medizin, angewandte Wissenschaft">
+    <hasNote>Technology, Medical science and Applied science</hasNote>
+      <isComposedBy>
+        <node id="ID056" label="600 Technik">
+        <hasNote>600 Technology (Applied science)</hasNote>
+        </node>
+        <node id="ID057" label="610 Medizin, Gesundheit, Ernährung">
+        <hasNote>610 Medical science, Medicine, Nutrition</hasNote>
+        </node>
+        <node id="ID058" label="620 Ingenieurwissenschaften und Maschinenbau">
+        <hasNote>620 Engineering and allied operations</hasNote>
+        </node>
+        <node id="ID059" label="621.3 Elektrotechnik, Elektronik">
+        <hasNote>621.3 Electrical engineering, Electronics</hasNote>
+        </node>
+        <node id="ID060" label="624 Ingenieurbau und Umwelttechnik">
+        <hasNote>624 Structural ans Environmental Engineering</hasNote>
+        </node>
+        <node id="ID061" label="630 Landwirtschaft, Veterinärmedizin">
+        <hasNote>630 Agriculture</hasNote>
+        </node>
+        <node id="ID062" label="631 Hauswirtschaft und Familienleben">
+        <hasNote>640 Home economics and family living</hasNote>
+        </node>
+        <node id="ID063" label="650 Management">
+        <hasNote>650 Management and auxialary services</hasNote>
+        </node>
+        <node id="ID064" label="660 Technische Chemie">
+        <hasNote>660 Chemical engineering</hasNote>
+        </node>
+        <node id="ID065" label="670 Industrielle und handwerkliche Fertigung">
+        <hasNote>670 Manufacturing</hasNote>
+        </node>
+        <node id="ID066" label="690 Hausbau, Bauhandwerk">
+        <hasNote>690 Buildings</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID067" label="Künste und Unterhaltung">
+    <hasNote>Arts and Entertainment</hasNote>
+      <isComposedBy>
+        <node id="ID068" label="700 Künste, Bildende Künste allgemein">
+        <hasNote>700 The arts</hasNote>
+        </node>
+        <node id="ID069" label="710 Landschaftsgestaltung, Raumplanung">
+        <hasNote>710 Civic and landscape art</hasNote>
+        </node>
+        <node id="ID070" label="720 Architektur">
+        <hasNote>720 Architecture</hasNote>
+        </node>
+        <node id="ID071" label="730 Plastik, Numismatik, Keramik, Metallkunst">
+        <hasNote>730 Plastics, Numismatics, Ceramics, Metal arts</hasNote>
+        </node>
+        <node id="ID072" label="740 Grafik, angewandte Kunst">
+        <hasNote>740 Graphic arts, Applied arts</hasNote>
+        </node>
+        <node id="ID073" label="740.1 Comics, Cartoons, Karikaturen">
+        <hasNote>740.1 Comics, Cartoons, Caricatures</hasNote>
+        </node>
+        <node id="ID074" label="750 Malerei">
+        <hasNote>750 Painting</hasNote>
+        </node>
+        <node id="ID075" label="760 Druckgrafik, Drucke">
+        <hasNote>760 Graphic reproduction, Prints</hasNote>
+        </node>
+        <node id="ID076" label="770 Fotografie, Video, Computerkunst">
+        <hasNote>770 Photography, Video, Computer art</hasNote>
+        </node>
+        <node id="ID077" label="780 Musik">
+        <hasNote>780 Music</hasNote>
+        </node>
+        <node id="ID078" label="790 Freizeitgestaltung, Darstellende Kunst">
+        <hasNote>790 Leisure Activities, Performing art</hasNote>
+        </node>
+        <node id="ID079" label="791 Öffentliche Darbietungen, Film, Rundfunk">
+        <hasNote>791 Public shows, Film, Broadcasting</hasNote>
+        </node>
+        <node id="ID080" label="792 Theater, Tanz">
+        <hasNote>792 Theater, Dance</hasNote>
+        </node>
+        <node id="ID081" label="793 Spiel">
+        <hasNote>793 Play</hasNote>
+        </node>
+        <node id="ID082" label="796 Sport">
+        <hasNote>796 Sports</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID083" label="Literatur">
+    <hasNote>Literary Studies</hasNote>
+      <isComposedBy>
+        <node id="ID084" label="800 Literatur, Rhetorik, Literaturwissenschaft">
+        <hasNote>800 Literature, Rhetorics, Literary Studies</hasNote>
+        </node>
+        <node id="ID085" label="810 Englische Literatur Amerikas">
+        <hasNote>810 Linguistics</hasNote>
+        </node>
+        <node id="ID086" label="820 Englische Literatur">
+        <hasNote>820 History and geography</hasNote>
+        </node>
+        <node id="ID087" label="830 Deutsche Literatur">
+        <hasNote>830 Fiction books</hasNote>
+        </node>
+        <node id="ID088" label="840 Literatur in anderen germanischen Sprachen">
+        <hasNote>840 Children's and yough literature</hasNote>
+        </node>
+        <node id="ID089" label="850 Italienische, rumänische, rätoromanische Literatur">
+        <hasNote>850 School books</hasNote>
+        </node>
+        <node id="ID090" label="860 Spanische und portugiesische Literatur">
+        <hasNote>860 Spanish and portuegese literature</hasNote>
+        </node>
+        <node id="ID091" label="870 Lateinische Literatur">
+        <hasNote>870 Latin literature</hasNote>
+        </node>
+        <node id="ID092" label="880 Griechische Literatur">
+        <hasNote>880 Greek literature</hasNote>
+        </node>
+        <node id="ID093" label="890 Literatur in anderen Sprachen">
+        <hasNote>890 literature in other languages</hasNote>
+        </node>
+        <node id="ID094" label="891.8 Slawische Literatur">
+        <hasNote>891.8 Slavonic literature</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID095" label="Geschichte und Geografie">
+    <hasNote>History and geography</hasNote>
+      <isComposedBy>
+        <node id="ID096" label="900 Geschichte">
+        <hasNote>900 History</hasNote>
+        </node>
+        <node id="ID097" label="910 Geografie, Reisen">
+        <hasNote>910 Geography, Travels</hasNote>
+        </node>
+        <node id="ID098" label="914.3 Geografie, Reisen (Deutschland)">
+        <hasNote>914.3 Geography, Travels (Germany)</hasNote>
+        </node>
+        <node id="ID099" label="920 Biografie, Genealgie, Heraldik">
+        <hasNote>920 Biography, Genealogy, Heraldry</hasNote>
+        </node>
+        <node id="ID100" label="930 Alte Geschivhte, Archäologie">
+        <hasNote>930 Ancient History, Archaeology</hasNote>
+        </node>
+        <node id="ID101" label="940 Geschichte Europas">
+        <hasNote>940 History of Europe</hasNote>
+        </node>
+        <node id="ID102" label="943 Geschichte Deutschlands">
+        <hasNote>943 History of Germany</hasNote>
+        </node>
+        <node id="ID103" label="950 Geschichte Asiens">
+        <hasNote>950 History of Asia</hasNote>
+        </node>
+        <node id="ID104" label="960 Geschichte Afrikas">
+        <hasNote>960 History of Africa</hasNote>
+        </node>
+        <node id="ID105" label="970 Geschichte Nordamerikas">
+        <hasNote>970 Historfy of North America</hasNote>
+        </node>
+        <node id="ID106" label="980 Geschichte Südamerikas">
+        <hasNote>980 History of South America</hasNote>
+        </node>
+        <node id="ID107" label="990 Geschichte der übrigen Welt">
+        <hasNote>990 History of other countries</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID108" label="Belletristik">
+    <hasNote>Fiction books</hasNote>
+    </node>
+    <node id="ID109" label="Kinder- und Jugendliteratur">
+    <hasNote>Children's and yough literature</hasNote>
+    </node>
+    <node id="ID110" label="Schulbücher">
+    <hasNote>School books</hasNote>
+    </node>
+    <node id="ID111" label="Abgeschlossene Veröffentlichungen">
+    <hasNote>Completed publications</hasNote>
+    </node>
+    <node id="ID112" label="Berichtigungen">
+    <hasNote>Corrections</hasNote>
+    </node>
+  </isComposedBy>
+</node>

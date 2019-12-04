@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="SRL 2019-11-08">
+  <isComposedBy>
+    <node id="ID1" label="SRL 1 - wissenschaftliche Forschungsergebnisse zeigen die grundlegenden Funktionsprinzipien, das Anwendungspotenzial ist unbekannt">
+    <hasNote>Beispiele:
+- Grundlagenforschung
+- Ergebnisse wurden in laboratorisch/kontrollierter Umgebung gewonnen
+- anwendungsorientierte Forschung mit anderem Kontext </hasNote>
+    </node>
+    <node id="ID2" label="SRL 2 - Problem- und Anwendungsbezug ist theoretisch / wissenschaftsintern hergestellt (Konzept): ">
+    <hasNote>Beispiele: 
+- Ein Bezug zwischen Forschungsergebnissen und einer Anwendungsmöglichkeit wird stichhaltig dargestellt. 
+- Ergebnisse aus verschiedenen Disziplinen wurden für eine Problemlösung identifiziert 
+- Anforderungen, Entwicklungsbedarf, Restriktionen etc. für eine Anwendung wurden spezifiziert  
+- Relevante Stakeholder für eine weitere Arbeit an der Problemlösung wurden identifiziert</hasNote>
+    </node>
+    <node id="ID3" label="SRL 3 - Problem- und Anwendungsbezug wurde in kleine Experimenten/Studien nachgewiesen und/oder in partizipativen Prozessen sozial robust konzipiert">
+    <hasNote>Beispiele:
+- Erste Bezüge zur realen Anwendungsumgebung wurden in Tests/Forschung hergestellt. 
+- Die Ergebnisse belegen einen ‚Proof of concept‘ 
+- Verbundprojekt mit Praxisbeteiligung 
+- Reflexion mit Akteuren, z.B. Problembeschreibung, Lösungsansatz, Anforderungen der Anwendungsumgebung 
+- Erfahrungswissen aus der Praxis wird integriert 
+- Akteure schätzen die Anwendungsmöglichkeit als realistisch ein.</hasNote>
+    </node>
+    <node id="ID4" label="SRL 4 -realitätsnahe Tests  weisen die Anwendbarkeit und und Lösungspotenzial nach, Hindernisse/Defizite in der Anwendbarkeit können beschrieben werden, eine Weiterentwicklung erscheint erfolgversprechend ">
+    <hasNote>Beispiele: 
+- Feldversuch
+- transdisziplinäre Forschung
+- Erfahrungswissen aus der Praxis wird integriert </hasNote>
+    </node>
+    <node id="ID5" label="SRL 5 - eine  Weiterentwicklung konnte identifizierte Hindernisse/Defizite in der Anwendbarkeit beheben ggf. kann dies durch einen Re-test nachgewiesen werden ">
+    <hasNote>Beispiele: 
+- Optimierung einzelner Lösungskomponenten 
+- Beheben von im Test aufgetretenen Problemen und Bearbeitung von Anwendungshindernissen 
+- Integration spezifischer Anforderungen aus dem Anwendungsfeld
+- Weiterentwicklung des Lösungsansatzes mit Einbeziehung div. Akteursgruppen/kontroverser Sichtweisen
+- Interesse von Akteuren an einer Anwendung ist vorhanden.</hasNote>
+    </node>
+    <node id="ID6" label="SRL 6 -spezifische modellhafte Anwendung/Erprobung in einem spezifischen, Anwendungsfeld innerhalb des Projektes oder durch projektexterne Akteure">
+    <hasNote>Beispiele:
+- Demonstratoren/Prototypen in einer bestimmten Anwendungsumgebung (z.B. Klima, Boden, ...) 
+- Modellvorhaben in einer Region 
+- vorkommerzielle Stufe eines Produktionsprozesses (Pilotbetrieb)
+- Kombination verschiedener Lösungskomponenten zu einer Gesamtlösung 
+- Integration des Lösungsansatzes in einem spezifischen Anwendungsfeld, in Alltagspraktiken einer spezifischen Akteursgruppe
+- modellhafte Anwendung, Erprobung, Weiterentwicklung durch projektexterne Akteure (modelhaft= realitätsnahe aber noch idealisierte Bedingungen = keine vollständige Wirtschaftlichkeit etc. erforderlich, mit Förderung, mit besonderer ehrenamtlicher/ideeller/materieller Unterstützung)</hasNote>
+    </node>
+    <node id="ID7" label="SRL 7 - vielfältige modellhafte Anwendung/Erprobung in verschiedenen Anwendungsfeldern/unter unterschiedlichen/variablen Bedingungen durch projektexterne Akteure">
+    <hasNote>Beispiele:
+wie 6, jedoch in verschiedenen Regionen
+unter verschiedenen ökologischen, ökonomischen, sozialen/kulturellen Rahmenbedingungen
+durch unterschiedliche Akteursgruppen (weiterhin modelhaft)</hasNote>
+    </node>
+    <node id="ID8" label="SRL 8 - erste/vorläufige Anwendung/Pilotbetrieb unter vollständig realistischen Bedingungen">
+    <hasNote>Beispiele:
+kommerziell tragfähig, integriert in Alltagspraktiken unter vollständigen anwendungsspezifischen Restriktionen
+Projektexterne Akteure wenden die Lösung an, entwickeln sie weiter 
+Übertragung auf andere Kontexte, ohne eine spezifische Unterstützung durch modellhaftes Vorgehen</hasNote>
+    </node>
+    <node id="ID9" label="SRL 9 - bewährte Anwendungsfälle / Eignung für Breitenanwendung">
+    <hasNote>Beispiele:
+Etablierung/ Institutionalisierung von Lösungen, Marktverfügbarkeit, Marktdiversifizierung
+horizontale Ausbreitung (Anzahl Anwender / Kunden / nutzender Akteure in einem Anwendungsbereich erhöht sich), 
+vertikale Übertragung / scaling up findet statt: Lösung/Entwicklung führt zu Interesse und Maßnahmen in übergeordneten Handlungsfeldern, z.B. in Standards, Politiken, Bildung, …)</hasNote>
+    </node>
+  </isComposedBy>
+</node>

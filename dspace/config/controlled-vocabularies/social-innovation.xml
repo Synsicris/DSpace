@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="SOCIAL-INNOVATION 2019-11-08">
+  <isComposedBy>
+    <node id="ID1" label="Changed knowlege, attitutes, skills, aspirations">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID2" label="Changed behaviour, practices">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID3" label="Networks: Continued utilisation of established structures, continued existence of networks">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID4" label="changed situations, conditions, structural changes">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID5" label="Standards / norms / guidelines">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID6" label="Development of laws or regulations">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID7" label="Other political processes (e.g. opinion-forming)">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID8" label="Others (in the area of social innovation/ change processes)">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

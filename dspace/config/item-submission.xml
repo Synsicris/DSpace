@@ -3,12 +3,38 @@
 
 <item-submission>
   <submission-map>
-    <name-map collection-handle="default" submission-name="patents" />
+
+	<name-map collection-handle="123456789/74" submission-name="applications_social" />	
+	<name-map collection-handle="123456789/71" submission-name="awards" />	    
+	<name-map collection-handle="123456789/16" submission-name="cooperation_events" />
+	<name-map collection-handle="123456789/64" submission-name="plan_cooperation_events" />  <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/26" submission-name="cooperation_partners" />
     <name-map collection-handle="123456789/3" submission-name="events" />
-    <name-map collection-handle="123456789/6" submission-name="journals" />
-    <name-map collection-handle="123456789/4" submission-name="orgunit" />
-    <name-map collection-handle="123456789/5" submission-name="project" />
-    <name-map collection-handle="123456789/11" submission-name="publications" />
+    <name-map collection-handle="123456789/65" submission-name="plan_events" />	
+    <name-map collection-handle="123456789/68" submission-name="innovationpotentials_econtech" />	
+    <name-map collection-handle="123456789/80" submission-name="innovationideas" />	 
+	<name-map collection-handle="123456789/69" submission-name="plan_innovationpotentials_econtech" />   <!-- ausgeblendet  --> 	
+    <name-map collection-handle="123456789/67" submission-name="innovationpotentials_social" />	
+    <name-map collection-handle="123456789/77" submission-name="library_awards" />   <!-- library  --> 		
+    <name-map collection-handle="123456789/73" submission-name="library_patents" />   <!-- library  --> 		
+    <name-map collection-handle="123456789/76" submission-name="library_physical_objects" />   <!-- library  --> 		    	    
+    <name-map collection-handle="123456789/75" submission-name="library_publications" />   <!-- library  --> 		
+    <name-map collection-handle="123456789/78" submission-name="library_spinoffs" />   <!-- library  --> 		    	
+    <name-map collection-handle="123456789/49" submission-name="orgunits" />
+    <name-map collection-handle="123456789/17" submission-name="participation_events" />
+    <name-map collection-handle="123456789/55" submission-name="plan_participation_events" />   <!-- ausgeblendet  --> 
+    <name-map collection-handle="default" submission-name="patents" />
+    <name-map collection-handle="123456789/54" submission-name="plan_patents" />	  <!-- ausgeblendet  --> 
+	<name-map collection-handle="123456789/24" submission-name="persons" /> 
+	<name-map collection-handle="123456789/25" submission-name="physical_objects" />
+    <name-map collection-handle="123456789/53" submission-name="plan_physical_objects" />   <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/5" submission-name="projects" />   
+    <name-map collection-handle="123456789/11" submission-name="publications" />   
+    <name-map collection-handle="123456789/27" submission-name="spinoffs" />
+    <name-map collection-handle="123456789/57" submission-name="plan_spinoffs" />	  <!-- ausgeblendet  --> 
+	<name-map collection-handle="123456789/48" submission-name="subprojects" />
+	<name-map collection-handle="123456789/83" submission-name="steps" />	
+    <name-map collection-handle="123456789/52" submission-name="tests" /> 
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">
@@ -16,11 +42,6 @@
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>
       <type>collection</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
-    </step>
-    <step id="patents" mandatory="true">
-      <heading>submit.progressbar.describe.patents</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
     </step>
     <step id="upload" mandatory="true">
       <heading>submit.progressbar.upload</heading>
@@ -33,28 +54,13 @@
       <type>license</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step>
-    <step id="orgunit" mandatory="true">
-      <heading>submit.progressbar.describe.orgunit</heading>
+    <step id="link_to_plan" mandatory="true">
+      <heading>submit.progressbar.describe.link_to_plan</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="project" mandatory="true">
-      <heading>submit.progressbar.describe.project</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="journals" mandatory="true">
-      <heading>submit.progressbar.describe.journals</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="publications" mandatory="true">
-      <heading>submit.progressbar.describe.publications</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="spinoffs" mandatory="true">
-      <heading>submit.progressbar.describe.spinoffs</heading>
+    <step id="patents" mandatory="true">
+      <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -63,8 +69,39 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="spinoffs_result" mandatory="true">
-      <heading>submit.progressbar.describe.spinoffs_result</heading>
+    <step id="orgunits" mandatory="true">
+      <heading>submit.progressbar.describe.orgunits</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="orgunits_companies" mandatory="true">
+      <heading>submit.progressbar.describe.orgunits_companies</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="projects" mandatory="true">
+      <heading>submit.progressbar.describe.projects</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="projects_finance" mandatory="true">
+      <heading>submit.progressbar.describe.projects_finance</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibilityOutside="read-only">submission</scope>
+    </step>
+    <step id="subprojects" mandatory="true">
+      <heading>submit.progressbar.describe.subprojects</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="subprojects_staff" mandatory="true">
+      <heading>submit.progressbar.describe.subprojects_staff</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="relation_targetgroup" mandatory="true">
+      <heading>submit.progressbar.describe.relation_targetgroup</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -73,8 +110,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="events_dates" mandatory="true">
-      <heading>submit.progressbar.describe.events_dates</heading>
+    <step id="events_result" mandatory="true">
+      <heading>submit.progressbar.describe.events_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -88,13 +125,28 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="participation_events_dates" mandatory="true">
-      <heading>submit.progressbar.describe.participation_events_dates</heading>
+    <step id="participation_events_date" mandatory="true">
+      <heading>submit.progressbar.describe.participation_events_date</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="cooperation_partner" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_partner</heading>
+    <step id="cooperation_partners" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="cooperation_partners_orgunits" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners_orgunits</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="cooperation_partners_orgunits_companies" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners_orgunits_companies</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="cooperation_partners_contribution" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners_contribution</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -108,8 +160,173 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="cooperation_events_dates" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_events_dates</heading>
+    <step id="cooperation_events_date" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_events_date</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="persons" mandatory="true">
+      <heading>submit.progressbar.describe.persons</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="physical_objects" mandatory="true">
+      <heading>submit.progressbar.describe.physical_objects</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="physical_objects_result" mandatory="true">
+      <heading>submit.progressbar.describe.physical_objects_result</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="physical_objects_result_further_information" mandatory="true">
+      <heading>submit.progressbar.describe.physical_objects_result_further_information</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="spinoffs" mandatory="true">
+      <heading>submit.progressbar.describe.spinoffs</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="spinoffs_result" mandatory="true">
+      <heading>submit.progressbar.describe.spinoffs_result</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="spinoffs_result_funding" mandatory="true">
+      <heading>submit.progressbar.describe.spinoffs_result_funding</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="spinoffs_result_performance_development" mandatory="true">
+      <heading>submit.progressbar.describe.spinoffs_result_performance_development</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_econtech" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_econtech</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_econtech_userbenefit" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_econtech_userbenefit</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_econtech_applicability" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_econtech_applicability</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_econtech_trl" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_econtech_trl</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_econtech_steps" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_econtech_steps</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_social" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_social</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_social_userbenefit" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_social_userbenefit</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_social_applicability" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_social_applicability</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_social_srl" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_social_srl</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationpotentials_social_steps" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_social_steps</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="applications_social" mandatory="true">
+      <heading>submit.progressbar.describe.applications_social</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="applications_social_quant" mandatory="true">
+      <heading>submit.progressbar.describe.applications_social_quant</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="agrovoc_keywords" mandatory="true">
+      <heading>submit.progressbar.describe.agrovoc_keywords</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="regional_scope" mandatory="true">
+      <heading>submit.progressbar.describe.regional_scope</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="publications" mandatory="true">
+      <heading>submit.progressbar.describe.publications</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="publications_result" mandatory="true">
+      <heading>submit.progressbar.describe.publications_result</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="publications_result_related" mandatory="true">
+      <heading>submit.progressbar.describe.publications_result_related</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="awards" mandatory="true">
+      <heading>submit.progressbar.describe.awards</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="steps" mandatory="true">
+      <heading>submit.progressbar.describe.steps</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="innovationideas" mandatory="true">
+      <heading>submit.progressbar.describe.innovationideas</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="workpackages" mandatory="true">
+      <heading>submit.progressbar.describe.workpackages</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="workpackages_result" mandatory="true">
+      <heading>submit.progressbar.describe.workpackages_result</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="tasks" mandatory="true">
+      <heading>submit.progressbar.describe.tasks</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="milestones" mandatory="true">
+      <heading>submit.progressbar.describe.milestones</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="StateOfArt" mandatory="true">
+      <heading>submit.progressbar.describe.StateOfArt</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -117,74 +334,243 @@
       <heading>submit.progressbar.describe.entity_type_selection</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>    
+    </step>
   </step-definitions>
   <submission-definitions>
     <submission-process name="patents">
       <step id="collection" />
       <step id="entity_type_selection" />
+      <step id="link_to_plan" />
       <step id="patents" />
       <step id="patents_result" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
-    <submission-process name="orgunit">
+    <submission-process name="plan_patents">
+      <step id="collection" />
+      <step id="patents" />
+    </submission-process>
+    <submission-process name="orgunits">
       <step id="collection" />
       <step id="entity_type_selection" />
-      <step id="orgunit" />
+      <step id="orgunits" />
+      <step id="orgunits_companies" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
-    <submission-process name="project">
+    <submission-process name="projects">
       <step id="collection" />
       <step id="entity_type_selection" />
-      <step id="project" />
+      <step id="projects" />
+      <step id="projects_finance" />
       <step id="upload" />
       <step id="license" />
-    </submission-process>
-    <submission-process name="journals">
-      <step id="collection" />
-      <step id="entity_type_selection" />
-      <step id="journals" />
-      <step id="upload" />
-      <step id="license" />
-    </submission-process>
-    <submission-process name="publications">
-      <step id="collection" />
-      <step id="entity_type_selection" />
-      <step id="publications" />
-      <step id="upload" />
-      <step id="license" />
-    </submission-process>
-    <submission-process name="spinoffs">
-      <step id="collection" />
-      <step id="spinoffs" />
-      <step id="spinoffs_result" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="events">
       <step id="collection" />
       <step id="entity_type_selection" />
+      <step id="link_to_plan" />
       <step id="events" />
-      <step id="events_dates" />
+      <step id="relation_targetgroup" />
+      <step id="events_result" />
       <step id="upload" />
+    </submission-process>
+    <submission-process name="plan_events">
+      <step id="collection" />
+      <step id="events" />
+      <step id="relation_targetgroup" />
     </submission-process>
     <submission-process name="participation_events">
       <step id="collection" />
+      <step id="link_to_plan" />
       <step id="participation_events" />
+      <step id="relation_targetgroup" />
       <step id="participation_events_frequency" />
-      <step id="participation_events_dates" />
+      <step id="events_result" />
+      <step id="upload" />
     </submission-process>
-    <submission-process name="cooperation_partner">
+    <submission-process name="plan_participation_events">
       <step id="collection" />
-      <step id="cooperation_partner" />
+      <step id="participation_events" />
+      <step id="relation_targetgroup" />
+      <step id="participation_events_frequency" />
+    </submission-process>
+    <submission-process name="cooperation_partners">
+      <step id="collection" />
+      <step id="cooperation_partners" />
       <step id="upload" />
     </submission-process>
     <submission-process name="cooperation_events">
       <step id="collection" />
+      <step id="link_to_plan" />
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
-      <step id="cooperation_events_dates" />
+      <step id="cooperation_events_date" />
+      <step id="upload" />
+    </submission-process>
+    <submission-process name="plan_cooperation_events">
+      <step id="collection" />
+      <step id="cooperation_events" />
+      <step id="cooperation_events_frequency" />
+    </submission-process>
+    <submission-process name="subprojects">
+      <step id="collection" />
+      <step id="subprojects" />
+      <step id="subprojects_staff" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="persons">
+      <step id="collection" />
+      <step id="entity_type_selection" />
+      <step id="persons" />
+    </submission-process>
+    <submission-process name="physical_objects">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="physical_objects" />
+      <step id="physical_objects_result" />
+      <step id="physical_objects_result_further_information" />
+      <step id="upload" />
+    </submission-process>
+    <submission-process name="plan_physical_objects">
+      <step id="collection" />
+      <step id="physical_objects" />
+    </submission-process>
+    <submission-process name="spinoffs">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="spinoffs" />
+      <step id="spinoffs_result" />
+      <step id="spinoffs_result_funding" />
+      <step id="spinoffs_result_performance_development" />
+      <step id="upload" />
+    </submission-process>
+    <submission-process name="plan_spinoffs">
+      <step id="collection" />
+      <step id="spinoffs" />
+    </submission-process>
+    <submission-process name="innovationpotentials_econtech">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="innovationpotentials_econtech" />
+      <step id="agrovoc_keywords" />
+      <step id="regional_scope" />
+      <step id="innovationpotentials_econtech_userbenefit" />
+      <step id="innovationpotentials_econtech_applicability" />
+      <step id="innovationpotentials_econtech_trl" />
+      <step id="innovationpotentials_econtech_steps" />
+    </submission-process>
+    <submission-process name="plan_innovationpotentials_econtech">
+      <step id="collection" />
+      <step id="innovationpotentials_econtech" />
+      <step id="agrovoc_keywords" />
+      <step id="regional_scope" />
+      <step id="innovationpotentials_econtech_userbenefit" />
+      <step id="innovationpotentials_econtech_applicability" />
+      <step id="innovationpotentials_econtech_trl" />
+    </submission-process>
+    <submission-process name="innovationpotentials_social">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="innovationpotentials_social" />
+      <step id="agrovoc_keywords" />
+      <step id="regional_scope" />
+      <step id="innovationpotentials_social_userbenefit" />
+      <step id="innovationpotentials_social_applicability" />
+      <step id="innovationpotentials_social_srl" />
+      <step id="innovationpotentials_social_steps" />
+    </submission-process>
+    <submission-process name="applications_social">
+      <step id="collection" />
+      <step id="applications_social" />
+      <step id="applications_social_quant" />
+    </submission-process>
+    <submission-process name="publications">
+      <step id="collection" />
+      <step id="entity_type_selection" />
+      <step id="link_to_plan" />
+      <step id="publications" />
+      <step id="publications_result" />
+      <step id="publications_result_related" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="library_publications">
+      <step id="collection" />
+      <step id="publications_result" />
+      <step id="publications_result_related" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="library_patents">
+      <step id="collection" />
+      <step id="patents" />
+      <step id="patents_result" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="library_physical_objects">
+      <step id="collection" />
+      <step id="physical_objects" />
+      <step id="physical_objects_result" />
+      <step id="physical_objects_result_further_information" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="library_spinoffs">
+      <step id="collection" />
+      <step id="spinoffs" />
+      <step id="spinoffs_result" />
+      <step id="spinoffs_result_funding" />
+      <step id="spinoffs_result_performance_development" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="library_awards">
+      <step id="collection" />
+      <step id="awards" />
+      <step id="upload" />
+      <step id="license" />
+    </submission-process>
+    <submission-process name="steps">
+      <step id="collection" />
+      <step id="steps" />
+    </submission-process>
+    <submission-process name="innovationideas">
+      <step id="collection" />
+      <step id="innovationideas" />
+    </submission-process>
+    <submission-process name="workpackages">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="workpackages" />
+      <step id="workpackages_result" />
+    </submission-process>
+    <submission-process name="plan_workpackages">
+      <step id="collection" />
+      <step id="workpackages" />
+    </submission-process>
+    <submission-process name="tasks">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="tasks" />
+    </submission-process>
+    <submission-process name="plan_tasks">
+      <step id="collection" />
+      <step id="tasks" />
+    </submission-process>
+    <submission-process name="milestones">
+      <step id="collection" />
+      <step id="link_to_plan" />
+      <step id="milestones" />
+    </submission-process>
+    <submission-process name="plan_milestones">
+      <step id="collection" />
+      <step id="milestones" />
+    </submission-process>
+    <submission-process name="StateOfArt">
+      <step id="collection" />
+      <step id="StateOfArt" />
       <step id="upload" />
     </submission-process>
   </submission-definitions>

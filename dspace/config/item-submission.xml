@@ -113,10 +113,16 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
+    <step id="entity_type_selection" mandatory="true">
+      <heading>submit.progressbar.describe.entity_type_selection</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>    
   </step-definitions>
   <submission-definitions>
     <submission-process name="patents">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="patents" />
       <step id="patents_result" />
       <step id="upload" />
@@ -124,24 +130,28 @@
     </submission-process>
     <submission-process name="orgunit">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="orgunit" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="project">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="project" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="journals">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="journals" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="publications">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="publications" />
       <step id="upload" />
       <step id="license" />
@@ -154,6 +164,7 @@
     </submission-process>
     <submission-process name="events">
       <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="events" />
       <step id="events_dates" />
       <step id="upload" />

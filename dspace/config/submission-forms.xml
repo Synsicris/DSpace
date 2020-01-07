@@ -3,6 +3,19 @@
 
 <input-forms>
   <form-definitions>
+    <form name="entity_type_selection">
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Select the entity type</label>
+          <input-type value-pairs-name="entity_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select the entity type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="bitstream-metadata">
       <row>
         <field>
@@ -2679,6 +2692,36 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Other / miscellaneous</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="entity_type" dc-term="entity_type">
+      <pair>
+        <displayed-value>Person</displayed-value>
+        <stored-value>person</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Dataset</displayed-value>
+        <stored-value>dataset</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Journal</displayed-value>
+        <stored-value>journal</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Orgunit</displayed-value>
+        <stored-value>orgunit</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Project</displayed-value>
+        <stored-value>project</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Event</displayed-value>
+        <stored-value>event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patent</displayed-value>
+        <stored-value>patent</stored-value>
+      </pair>
+    </value-pairs>    
   </form-value-pairs>
 </input-forms>
 

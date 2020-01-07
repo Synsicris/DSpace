@@ -42,7 +42,7 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
 
     @Test
     public void findAllRelationshipTypesTest() throws SQLException {
-        assertEquals(10, relationshipTypeService.findAll(context).size());
+        assertEquals(11, relationshipTypeService.findAll(context).size());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
     private void checkRelationshipType(String leftType, String rightType, String leftwardType, String rightwardType)
         throws SQLException {
         RelationshipType relationshipType = relationshipTypeService
-            .findbyTypesAndLabels(context, entityTypeService.findByEntityType(context, leftType),
+            .findbyTypesAndTypeName(context, entityTypeService.findByEntityType(context, leftType),
                                   entityTypeService.findByEntityType(context, rightType),
                                   leftwardType, rightwardType);
         assertNotNull(relationshipType);
@@ -142,7 +142,7 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
                    //We expect a 200 OK status
                    .andExpect(status().isOk())
                    //The type has to be 'discover'
-                   .andExpect(jsonPath("$.page.totalElements", is(10)))
+                   .andExpect(jsonPath("$.page.totalElements", is(11)))
                    //There needs to be a self link to this endpoint
                    .andExpect(jsonPath("$._links.self.href", containsString("api/core/relationshiptypes")))
                    //We have 4 facets in the default configuration, they need to all be present in the embedded section
@@ -156,7 +156,8 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
                        RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(6)),
                        RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(7)),
                        RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(8)),
-                       RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(9)))
+                       RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(9)),
+                       RelationshipTypeMatcher.matchRelationshipTypeEntry(relationshipTypes.get(10)))
                    ));
     }
 
@@ -189,7 +190,7 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
     @Test
     public void cardinalityOnAuthorPublicationRelationshipTypesTest() throws Exception {
         RelationshipType relationshipType = relationshipTypeService
-            .findbyTypesAndLabels(context, entityTypeService.findByEntityType(context, "Publication"),
+            .findbyTypesAndTypeName(context, entityTypeService.findByEntityType(context, "Publication"),
                                   entityTypeService.findByEntityType(context, "Person"), "isAuthorOfPublication",
                                   "isPublicationOfAuthor");
         assertEquals(((Integer) 0), relationshipType.getLeftMinCardinality());
@@ -234,7 +235,7 @@ public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationT
     @Test
     public void cardinalityOnIssueJournalJournalVolumeRelationshipTypesTest() throws Exception {
         RelationshipType relationshipType = relationshipTypeService
-            .findbyTypesAndLabels(context, entityTypeService.findByEntityType(context, "JournalVolume"),
+            .findbyTypesAndTypeName(context, entityTypeService.findByEntityType(context, "JournalVolume"),
                                   entityTypeService.findByEntityType(context, "JournalIssue"), "isIssueOfJournalVolume",
                                   "isJournalVolumeOfIssue");
         assertEquals(((Integer) 0), relationshipType.getLeftMinCardinality());

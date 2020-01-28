@@ -70,7 +70,8 @@ public class AuthorityEntryLinkRepository extends AbstractDSpaceRestRepository
         if (StringUtils.isNotBlank(metadata)) {
             String[] tokens = org.dspace.core.Utils.tokenize(metadata);
             String fieldKey = org.dspace.core.Utils.standardize(tokens[0], tokens[1], tokens[2], "_");
-            Choices choices = cas.getMatches(fieldKey, query, collection, pageable.getOffset(), pageable.getPageSize(),
+            Choices choices = cas.getMatches(fieldKey, query, collection, Math.toIntExact(pageable.getOffset()),
+                    pageable.getPageSize(),
                                              context.getCurrentLocale().toString());
             for (Choice value : choices.values) {
                 results.add(authorityUtils.convertEntry(value, name, projection));
@@ -95,7 +96,7 @@ public class AuthorityEntryLinkRepository extends AbstractDSpaceRestRepository
 
         List<AuthorityEntryRest> results = new ArrayList<AuthorityEntryRest>();
         if (StringUtils.isNotBlank(id) && authorityUtils.isHierarchical(name)) {
-            Choices choices = cas.getChoicesByParent(name, id, pageable.getOffset(), pageable.getPageSize(),
+            Choices choices = cas.getChoicesByParent(name, id, (int) pageable.getOffset(), pageable.getPageSize(),
                     context.getCurrentLocale().toString());
 
             for (Choice value : choices.values) {
@@ -118,7 +119,7 @@ public class AuthorityEntryLinkRepository extends AbstractDSpaceRestRepository
         Context context = obtainContext();
         List<AuthorityEntryRest> results = new ArrayList<AuthorityEntryRest>();
         if (authorityUtils.isHierarchical(name)) {
-            Choices choices = cas.getTopChoices(name, pageable.getOffset(), pageable.getPageSize(),
+            Choices choices = cas.getTopChoices(name, (int) pageable.getOffset(), pageable.getPageSize(),
                     context.getCurrentLocale().toString());
 
             for (Choice value : choices.values) {

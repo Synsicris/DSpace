@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="TRL 2020-01-16">
+  <isComposedBy>
+    <node id="ID1" label="TRL 1 – basic principles observed ">
+    <hasNote>Basic principles have been qualitatively observed and scientific research has been completed. The outlines of the process are emerging, but no experimental evidence or analysis has yet been produced.</hasNote>
+    </node>
+    <node id="ID2" label="TRL 2 – technology concept formulated">
+    <hasNote>Technological concept, application and implementation criteria were formulated. Small experiments and studies confirm the 'proof of concept' of the technical design.</hasNote>
+    </node>
+    <node id="ID3" label="TRL 3 – experimental proof of concept">
+    <hasNote>Experimental proof of the concept. The first experiments were conducted in the laboratory. Concept and implementation have proven successful in the laboratory tests.</hasNote>
+    </node>
+    <node id="ID4" label="TRL 4 – technology validated in lab">
+    <hasNote>Technology and relevant components were identified. Demonstration project was set up in a laboratory and controlled environment. Implementations promise chances of success. Measurements have not disproved analytical predictions and economic evaluation models have been established.</hasNote>
+    </node>
+    <node id="ID5" label="TRL 5 – technology validated in relevant environment (industrially relevant environment in the case of key enabling technologies)">
+    <hasNote>technology has proven itself in the relevant environment (in the case of key anabling technologies: in the relevant industrial environment). Furthermore, the technical concept has been sufficiently tested for quality and durability. For further implementation, the project will be extended to relevant fields such as health and safety, environment and available resources.</hasNote>
+    </node>
+    <node id="ID6" label="TRL 6 – technology demonstrated in relevant environment (industrially relevantenvironment in the case of key enabling technologies)">
+    <hasNote>The component and the process have proven that the industrial potential allows the integration into the production chain. Existing hardware has been modified and extended. Most of the problems in the previous phases were solved. Risk classification and economic assessments have been adjusted.</hasNote>
+    </node>
+    <node id="ID7" label="TRL 7 – system prototype demonstration in operational environment">
+    <hasNote>The component and the process have proven that the industrial potential allows the integration into the production chain. Existing hardware has been modified and extended. Most of the problems in the previous phases were solved. Risk classification and economic assessments have been adjusted.</hasNote>
+    </node>
+    <node id="ID8" label="TRL 8 – system complete and qualified">
+    <hasNote>The system is complete, the technology can be applied without any problems on a commercial level. All technical difficulties have been solved.</hasNote>
+    </node>
+    <node id="ID9" label="TRL  9 – actual  system  proven  in  operational  environment  (competitive  manufacturing  in  the case of key enabling technologies; or in space)">
+    <hasNote>The entire system has proven itself in the appropriate environment (competitive production for key enabling technologies), the technology is fully developed and the product is commercially available
+</hasNote>
+    </node>
+  </isComposedBy>
+</node>

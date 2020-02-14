@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NUTS2 2019-11-29">
+<node id="ResourceTypeGenres" label="NUTS2 2019-12-05">
   <isComposedBy>
-    <node id="WW" label="weltweit/kein regionaler Bezug">
+    <node id="WW" label="weltweit / kein regionaler Bezug">
     <hasNote></hasNote>
     </node>
     <node id="KONTI" label="Kontinente">
@@ -25,6 +25,9 @@
         <node id="AUSTRALIEN" label="Australien und Ozeanien">
         <hasNote></hasNote>
         </node>
+        <node id="ANTARKT" label="Antarktika">
+        <hasNote></hasNote>
+        </node>
       </isComposedBy>
     </node>
     <node id="KLIMA" label="Klimazonen">
@@ -38,6 +41,14 @@
         </node>
         <node id="GEMAES" label="Gemäßigte Zone">
         <hasNote></hasNote>
+          <isComposedBy>
+            <node id="KALT" label="kaltgemäßigte Zone">
+            <hasNote></hasNote>
+            </node>
+            <node id="KÜHL" label="kühlgemäßigte Zone">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
         </node>
         <node id="SUBPOLAR" label="Subpolare Zone">
         <hasNote></hasNote>
@@ -47,780 +58,7 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="LAND" label="Länder">
-    <hasNote></hasNote>
-      <isComposedBy>
-        <node id="AFG" label="Afghanistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="EGY" label="Ägypten">
-        <hasNote></hasNote>
-        </node>
-        <node id="ALA" label="Åland">
-        <hasNote></hasNote>
-        </node>
-        <node id="ALB" label="Albanien">
-        <hasNote></hasNote>
-        </node>
-        <node id="DZA" label="Algerien">
-        <hasNote></hasNote>
-        </node>
-        <node id="VIR" label="Amerikanische Jungferninseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="ASM" label="Amerikanisch-Samoa">
-        <hasNote></hasNote>
-        </node>
-        <node id="AND" label="Andorra">
-        <hasNote></hasNote>
-        </node>
-        <node id="AGO" label="Angola">
-        <hasNote></hasNote>
-        </node>
-        <node id="AIA" label="Anguilla">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATA" label="Antarktika">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATG" label="Antigua und Barbuda">
-        <hasNote></hasNote>
-        </node>
-        <node id="GNQ" label="Äquatorialguinea">
-        <hasNote></hasNote>
-        </node>
-        <node id="ARG" label="Argentinien">
-        <hasNote></hasNote>
-        </node>
-        <node id="ARM" label="Armenien">
-        <hasNote></hasNote>
-        </node>
-        <node id="ABW" label="Aruba">
-        <hasNote></hasNote>
-        </node>
-        <node id="AZE" label="Aserbaidschan">
-        <hasNote></hasNote>
-        </node>
-        <node id="ETH" label="Äthiopien">
-        <hasNote></hasNote>
-        </node>
-        <node id="AUS" label="Australien">
-        <hasNote></hasNote>
-        </node>
-        <node id="BHS" label="Bahamas">
-        <hasNote></hasNote>
-        </node>
-        <node id="BHR" label="Bahrain">
-        <hasNote></hasNote>
-        </node>
-        <node id="BGD" label="Bangladesch">
-        <hasNote></hasNote>
-        </node>
-        <node id="BRB" label="Barbados">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Bassas da India">
-        <hasNote></hasNote>
-        </node>
-        <node id="BLR" label="Belarus">
-        <hasNote></hasNote>
-        </node>
-        <node id="BEL" label="Belgien">
-        <hasNote></hasNote>
-        </node>
-        <node id="BLZ" label="Belize">
-        <hasNote></hasNote>
-        </node>
-        <node id="BEN" label="Benin">
-        <hasNote></hasNote>
-        </node>
-        <node id="BMU" label="Bermuda">
-        <hasNote></hasNote>
-        </node>
-        <node id="BTN" label="Bhutan">
-        <hasNote></hasNote>
-        </node>
-        <node id="BOL" label="Bolivien">
-        <hasNote></hasNote>
-        </node>
-        <node id="BIH" label="Bosnien und Herzegowina">
-        <hasNote></hasNote>
-        </node>
-        <node id="BWA" label="Botsuana">
-        <hasNote></hasNote>
-        </node>
-        <node id="BVT" label="Bouvetinsel">
-        <hasNote></hasNote>
-        </node>
-        <node id="BRA" label="Brasilien">
-        <hasNote></hasNote>
-        </node>
-        <node id="VGB" label="Britische Jungferninseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="IOT" label="Britisches Territorium im Indischen Ozean">
-        <hasNote></hasNote>
-        </node>
-        <node id="BRN" label="Brunei Darussalam">
-        <hasNote></hasNote>
-        </node>
-        <node id="BGR" label="Bulgarien">
-        <hasNote></hasNote>
-        </node>
-        <node id="BFA" label="Burkina Faso">
-        <hasNote></hasNote>
-        </node>
-        <node id="BDI" label="Burundi">
-        <hasNote></hasNote>
-        </node>
-        <node id="CPV" label="Cabo Verde">
-        <hasNote></hasNote>
-        </node>
-        <node id="CHL" label="Chile">
-        <hasNote></hasNote>
-        </node>
-        <node id="CHN" label="China">
-        <hasNote></hasNote>
-        </node>
-        <node id="Frau" label="Clipperton">
-        <hasNote></hasNote>
-        </node>
-        <node id="COK" label="Cookinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="CRI" label="Costa Rica">
-        <hasNote></hasNote>
-        </node>
-        <node id="CIV" label="Côte d'Ivoire">
-        <hasNote></hasNote>
-        </node>
-        <node id="DNK" label="Dänemark">
-        <hasNote></hasNote>
-        </node>
-        <node id="DEU" label="Deutschland">
-        <hasNote></hasNote>
-        </node>
-        <node id="DMA" label="Dominica">
-        <hasNote></hasNote>
-        </node>
-        <node id="DOM" label="Dominikanische Republik">
-        <hasNote></hasNote>
-        </node>
-        <node id="DJI" label="Dschibuti">
-        <hasNote></hasNote>
-        </node>
-        <node id="ECU" label="Ecuador">
-        <hasNote></hasNote>
-        </node>
-        <node id="SLV" label="El Salvador">
-        <hasNote></hasNote>
-        </node>
-        <node id="ERI" label="Eritrea">
-        <hasNote></hasNote>
-        </node>
-        <node id="EST" label="Estland">
-        <hasNote></hasNote>
-        </node>
-        <node id="SWZ" label="Eswatini">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Europa">
-        <hasNote></hasNote>
-        </node>
-        <node id="FLK" label="Falklandinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="FRO" label="Färöer">
-        <hasNote></hasNote>
-        </node>
-        <node id="FJI" label="Fidschi">
-        <hasNote></hasNote>
-        </node>
-        <node id="FIN" label="Finnland">
-        <hasNote></hasNote>
-        </node>
-        <node id="FRA" label="Frankreich">
-        <hasNote></hasNote>
-        </node>
-        <node id="FXX" label="Frankreich (metropolitanes)">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Französische Süd- und Antarktisgebiete">
-        <hasNote></hasNote>
-        </node>
-        <node id="GUF" label="Französisch-Guayana">
-        <hasNote></hasNote>
-        </node>
-        <node id="PYF" label="Französisch-Polynesien">
-        <hasNote></hasNote>
-        </node>
-        <node id="GAB" label="Gabun">
-        <hasNote></hasNote>
-        </node>
-        <node id="GMB" label="Gambia">
-        <hasNote></hasNote>
-        </node>
-        <node id="PSE" label="Gazastreifen">
-        <hasNote></hasNote>
-        </node>
-        <node id="GEO" label="Georgien">
-        <hasNote></hasNote>
-        </node>
-        <node id="GHA" label="Ghana">
-        <hasNote></hasNote>
-        </node>
-        <node id="GIB" label="Gibraltar">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Glorieuses">
-        <hasNote></hasNote>
-        </node>
-        <node id="GRD" label="Grenada">
-        <hasNote></hasNote>
-        </node>
-        <node id="GRC" label="Griechenland">
-        <hasNote></hasNote>
-        </node>
-        <node id="GRL" label="Grönland">
-        <hasNote></hasNote>
-        </node>
-        <node id="GBR" label="Großbritannien">
-        <hasNote></hasNote>
-        </node>
-        <node id="GLP" label="Guadeloupe">
-        <hasNote></hasNote>
-        </node>
-        <node id="GUM" label="Guam">
-        <hasNote></hasNote>
-        </node>
-        <node id="GTM" label="Guatemala">
-        <hasNote></hasNote>
-        </node>
-        <node id="GGY" label="Guernsey">
-        <hasNote></hasNote>
-        </node>
-        <node id="GIN" label="Guinea">
-        <hasNote></hasNote>
-        </node>
-        <node id="GNB" label="Guinea-Bissau">
-        <hasNote></hasNote>
-        </node>
-        <node id="GUY" label="Guyana">
-        <hasNote></hasNote>
-        </node>
-        <node id="HTI" label="Haiti">
-        <hasNote></hasNote>
-        </node>
-        <node id="HMD" label="Heard und McDonaldinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="HND" label="Honduras">
-        <hasNote></hasNote>
-        </node>
-        <node id="HKG" label="Hongkong">
-        <hasNote></hasNote>
-        </node>
-        <node id="IND" label="Indien">
-        <hasNote></hasNote>
-        </node>
-        <node id="IDN" label="Indonesien">
-        <hasNote></hasNote>
-        </node>
-        <node id="IMN" label="Insel Man">
-        <hasNote></hasNote>
-        </node>
-        <node id="IRQ" label="Irak">
-        <hasNote></hasNote>
-        </node>
-        <node id="IRN" label="Iran">
-        <hasNote></hasNote>
-        </node>
-        <node id="IRL" label="Irland">
-        <hasNote></hasNote>
-        </node>
-        <node id="ISL" label="Island">
-        <hasNote></hasNote>
-        </node>
-        <node id="ISR" label="Israel">
-        <hasNote></hasNote>
-        </node>
-        <node id="ITA" label="Italien">
-        <hasNote></hasNote>
-        </node>
-        <node id="JAM" label="Jamaika">
-        <hasNote></hasNote>
-        </node>
-        <node id="JPN" label="Japan">
-        <hasNote></hasNote>
-        </node>
-        <node id="YEM" label="Jemen">
-        <hasNote></hasNote>
-        </node>
-        <node id="JEY" label="Jersey">
-        <hasNote></hasNote>
-        </node>
-        <node id="JOR" label="Jordanien">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Juan de Nova">
-        <hasNote></hasNote>
-        </node>
-        <node id="CYM" label="Kaimaninseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="KHM" label="Kambodscha">
-        <hasNote></hasNote>
-        </node>
-        <node id="CMR" label="Kamerun">
-        <hasNote></hasNote>
-        </node>
-        <node id="CAN" label="Kanada">
-        <hasNote></hasNote>
-        </node>
-        <node id="KAZ" label="Kasachstan">
-        <hasNote></hasNote>
-        </node>
-        <node id="QAT" label="Katar">
-        <hasNote></hasNote>
-        </node>
-        <node id="KEN" label="Kenia">
-        <hasNote></hasNote>
-        </node>
-        <node id="KGZ" label="Kirgisistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="KIR" label="Kiribati">
-        <hasNote></hasNote>
-        </node>
-        <node id="UMI" label="Kleinere Amerikanische Überseeinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="CCK" label="Kokosinseln (Keelinginseln)">
-        <hasNote></hasNote>
-        </node>
-        <node id="COL" label="Kolumbien">
-        <hasNote></hasNote>
-        </node>
-        <node id="COM" label="Komoren">
-        <hasNote></hasNote>
-        </node>
-        <node id="COG" label="Kongo">
-        <hasNote></hasNote>
-        </node>
-        <node id="COD" label="Kongo, Demokratische Republik">
-        <hasNote></hasNote>
-        </node>
-        <node id="PRK" label="Korea, Demokratische Volksrepublik">
-        <hasNote></hasNote>
-        </node>
-        <node id="KOR" label="Korea, Republik">
-        <hasNote></hasNote>
-        </node>
-        <node id="HRV" label="Kroatien">
-        <hasNote></hasNote>
-        </node>
-        <node id="CUB" label="Kuba">
-        <hasNote></hasNote>
-        </node>
-        <node id="KWT" label="Kuwait">
-        <hasNote></hasNote>
-        </node>
-        <node id="LAO" label="Laos">
-        <hasNote></hasNote>
-        </node>
-        <node id="LSO" label="Lesotho">
-        <hasNote></hasNote>
-        </node>
-        <node id="LVA" label="Lettland">
-        <hasNote></hasNote>
-        </node>
-        <node id="LBN" label="Libanon">
-        <hasNote></hasNote>
-        </node>
-        <node id="LBR" label="Liberia">
-        <hasNote></hasNote>
-        </node>
-        <node id="LBY" label="Libyen">
-        <hasNote></hasNote>
-        </node>
-        <node id="LIE" label="Liechtenstein">
-        <hasNote></hasNote>
-        </node>
-        <node id="LTU" label="Litauen">
-        <hasNote></hasNote>
-        </node>
-        <node id="LUX" label="Luxemburg">
-        <hasNote></hasNote>
-        </node>
-        <node id="MAC" label="Macau">
-        <hasNote></hasNote>
-        </node>
-        <node id="MDG" label="Madagaskar">
-        <hasNote></hasNote>
-        </node>
-        <node id="MWI" label="Malawi">
-        <hasNote></hasNote>
-        </node>
-        <node id="MYS" label="Malaysia">
-        <hasNote></hasNote>
-        </node>
-        <node id="MDV" label="Malediven">
-        <hasNote></hasNote>
-        </node>
-        <node id="MLI" label="Mali">
-        <hasNote></hasNote>
-        </node>
-        <node id="MLT" label="Malta">
-        <hasNote></hasNote>
-        </node>
-        <node id="MAR" label="Marokko">
-        <hasNote></hasNote>
-        </node>
-        <node id="MHL" label="Marshallinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="MTQ" label="Martinique">
-        <hasNote></hasNote>
-        </node>
-        <node id="MRT" label="Mauretanien">
-        <hasNote></hasNote>
-        </node>
-        <node id="MUS" label="Mauritius">
-        <hasNote></hasNote>
-        </node>
-        <node id="MYT" label="Mayotte">
-        <hasNote></hasNote>
-        </node>
-        <node id="MEX" label="Mexiko">
-        <hasNote></hasNote>
-        </node>
-        <node id="FSM" label="Mikronesien">
-        <hasNote></hasNote>
-        </node>
-        <node id="MDA" label="Moldau">
-        <hasNote></hasNote>
-        </node>
-        <node id="MCO" label="Monaco">
-        <hasNote></hasNote>
-        </node>
-        <node id="MNG" label="Mongolei">
-        <hasNote></hasNote>
-        </node>
-        <node id="MNE" label="Montenegro">
-        <hasNote></hasNote>
-        </node>
-        <node id="MSR" label="Montserrat">
-        <hasNote></hasNote>
-        </node>
-        <node id="MOZ" label="Mosambik">
-        <hasNote></hasNote>
-        </node>
-        <node id="MMR" label="Myanmar">
-        <hasNote></hasNote>
-        </node>
-        <node id="NAM" label="Namibia">
-        <hasNote></hasNote>
-        </node>
-        <node id="NRU" label="Nauru">
-        <hasNote></hasNote>
-        </node>
-        <node id="NPL" label="Nepal">
-        <hasNote></hasNote>
-        </node>
-        <node id="NCL" label="Neukaledonien">
-        <hasNote></hasNote>
-        </node>
-        <node id="NZL" label="Neuseeland">
-        <hasNote></hasNote>
-        </node>
-        <node id="NIC" label="Nicaragua">
-        <hasNote></hasNote>
-        </node>
-        <node id="NLD" label="Niederlande">
-        <hasNote></hasNote>
-        </node>
-        <node id="ANT" label="Niederländische Antillen">
-        <hasNote></hasNote>
-        </node>
-        <node id="NER" label="Niger">
-        <hasNote></hasNote>
-        </node>
-        <node id="NGA" label="Nigeria">
-        <hasNote></hasNote>
-        </node>
-        <node id="NIU" label="Niue">
-        <hasNote></hasNote>
-        </node>
-        <node id="MNP" label="Nördliche Marianen">
-        <hasNote></hasNote>
-        </node>
-        <node id="MKD" label="Nordmazedonien">
-        <hasNote></hasNote>
-        </node>
-        <node id="NFK" label="Norfolkinsel">
-        <hasNote></hasNote>
-        </node>
-        <node id="NOR" label="Norwegen">
-        <hasNote></hasNote>
-        </node>
-        <node id="OMN" label="Oman">
-        <hasNote></hasNote>
-        </node>
-        <node id="AUT" label="Österreich">
-        <hasNote></hasNote>
-        </node>
-        <node id="PAK" label="Pakistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="PLW" label="Palau">
-        <hasNote></hasNote>
-        </node>
-        <node id="PAN" label="Panama">
-        <hasNote></hasNote>
-        </node>
-        <node id="PNG" label="Papua-Neuguinea">
-        <hasNote></hasNote>
-        </node>
-        <node id="PRY" label="Paraguay">
-        <hasNote></hasNote>
-        </node>
-        <node id="PER" label="Peru">
-        <hasNote></hasNote>
-        </node>
-        <node id="PHL" label="Philippinen">
-        <hasNote></hasNote>
-        </node>
-        <node id="PCN" label="Pitcairninseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="POL" label="Polen">
-        <hasNote></hasNote>
-        </node>
-        <node id="PRT" label="Portugal">
-        <hasNote></hasNote>
-        </node>
-        <node id="PRI" label="Puerto Rico">
-        <hasNote></hasNote>
-        </node>
-        <node id="REU" label="Réunion">
-        <hasNote></hasNote>
-        </node>
-        <node id="RWA" label="Ruanda">
-        <hasNote></hasNote>
-        </node>
-        <node id="ROU" label="Rumänien">
-        <hasNote></hasNote>
-        </node>
-        <node id="RUS" label="Russische Föderation">
-        <hasNote></hasNote>
-        </node>
-        <node id="MAF" label="Saint-Martin">
-        <hasNote></hasNote>
-        </node>
-        <node id="SLB" label="Salomonen">
-        <hasNote></hasNote>
-        </node>
-        <node id="ZMB" label="Sambia">
-        <hasNote></hasNote>
-        </node>
-        <node id="WSM" label="Samoa">
-        <hasNote></hasNote>
-        </node>
-        <node id="SMR" label="San Marino">
-        <hasNote></hasNote>
-        </node>
-        <node id="STP" label="São Tomé und Príncipe">
-        <hasNote></hasNote>
-        </node>
-        <node id="SAU" label="Saudi-Arabien">
-        <hasNote></hasNote>
-        </node>
-        <node id="SWE" label="Schweden">
-        <hasNote></hasNote>
-        </node>
-        <node id="CHE" label="Schweiz">
-        <hasNote></hasNote>
-        </node>
-        <node id="SEN" label="Senegal">
-        <hasNote></hasNote>
-        </node>
-        <node id="SRB" label="Serbien">
-        <hasNote></hasNote>
-        </node>
-        <node id="SCG" label="Serbien und Montenegro">
-        <hasNote></hasNote>
-        </node>
-        <node id="SYC" label="Seychellen">
-        <hasNote></hasNote>
-        </node>
-        <node id="SLE" label="Sierra Leone">
-        <hasNote></hasNote>
-        </node>
-        <node id="ZWE" label="Simbabwe">
-        <hasNote></hasNote>
-        </node>
-        <node id="SGP" label="Singapur">
-        <hasNote></hasNote>
-        </node>
-        <node id="SVK" label="Slowakei">
-        <hasNote></hasNote>
-        </node>
-        <node id="SVN" label="Slowenien">
-        <hasNote></hasNote>
-        </node>
-        <node id="SOM" label="Somalia">
-        <hasNote></hasNote>
-        </node>
-        <node id="ESP" label="Spanien">
-        <hasNote></hasNote>
-        </node>
-        <node id="SJM" label="Spitzbergen">
-        <hasNote></hasNote>
-        </node>
-        <node id="LKA" label="Sri Lanka">
-        <hasNote></hasNote>
-        </node>
-        <node id="BLM" label="St. Barthélemy">
-        <hasNote></hasNote>
-        </node>
-        <node id="SHN" label="St. Helena, Ascension und Tristan da Cunha">
-        <hasNote></hasNote>
-        </node>
-        <node id="KNA" label="St. Kitts und Nevis">
-        <hasNote></hasNote>
-        </node>
-        <node id="LCA" label="St. Lucia">
-        <hasNote></hasNote>
-        </node>
-        <node id="SPM" label="St. Pierre und Miquelon">
-        <hasNote></hasNote>
-        </node>
-        <node id="VCT" label="St. Vincent und die Grenadinen">
-        <hasNote></hasNote>
-        </node>
-        <node id="ZAF" label="Südafrika">
-        <hasNote></hasNote>
-        </node>
-        <node id="SDN" label="Sudan">
-        <hasNote></hasNote>
-        </node>
-        <node id="SGS" label="Südgeorgien und die Südlichen Sandwichinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="SSD" label="Südsudan">
-        <hasNote></hasNote>
-        </node>
-        <node id="SUR" label="Suriname">
-        <hasNote></hasNote>
-        </node>
-        <node id="SYR" label="Syrien">
-        <hasNote></hasNote>
-        </node>
-        <node id="TJK" label="Tadschikistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="TWN" label="Taiwan">
-        <hasNote></hasNote>
-        </node>
-        <node id="TZA" label="Tansania">
-        <hasNote></hasNote>
-        </node>
-        <node id="THA" label="Thailand">
-        <hasNote></hasNote>
-        </node>
-        <node id="TLS" label="Timor-Leste">
-        <hasNote></hasNote>
-        </node>
-        <node id="TGO" label="Togo">
-        <hasNote></hasNote>
-        </node>
-        <node id="TKL" label="Tokelau">
-        <hasNote></hasNote>
-        </node>
-        <node id="TON" label="Tonga">
-        <hasNote></hasNote>
-        </node>
-        <node id="TTO" label="Trinidad und Tobago">
-        <hasNote></hasNote>
-        </node>
-        <node id="ATF" label="Tromelin">
-        <hasNote></hasNote>
-        </node>
-        <node id="TCD" label="Tschad">
-        <hasNote></hasNote>
-        </node>
-        <node id="CZE" label="Tschechische Republik">
-        <hasNote></hasNote>
-        </node>
-        <node id="TUN" label="Tunesien">
-        <hasNote></hasNote>
-        </node>
-        <node id="TUR" label="Türkei">
-        <hasNote></hasNote>
-        </node>
-        <node id="TKM" label="Turkmenistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="TCA" label="Turks- und Caicosinseln">
-        <hasNote></hasNote>
-        </node>
-        <node id="TUV" label="Tuvalu">
-        <hasNote></hasNote>
-        </node>
-        <node id="UGA" label="Uganda">
-        <hasNote></hasNote>
-        </node>
-        <node id="UKR" label="Ukraine">
-        <hasNote></hasNote>
-        </node>
-        <node id="HUN" label="Ungarn">
-        <hasNote></hasNote>
-        </node>
-        <node id="URY" label="Uruguay">
-        <hasNote></hasNote>
-        </node>
-        <node id="UZB" label="Usbekistan">
-        <hasNote></hasNote>
-        </node>
-        <node id="VUT" label="Vanuatu">
-        <hasNote></hasNote>
-        </node>
-        <node id="VAT" label="Vatikanstadt">
-        <hasNote></hasNote>
-        </node>
-        <node id="VEN" label="Venezuela">
-        <hasNote></hasNote>
-        </node>
-        <node id="ARE" label="Vereinigte Arabische Emirate">
-        <hasNote></hasNote>
-        </node>
-        <node id="USA" label="Vereinigte Staaten">
-        <hasNote></hasNote>
-        </node>
-        <node id="VNM" label="Vietnam">
-        <hasNote></hasNote>
-        </node>
-        <node id="WLF" label="Wallis und Futuna">
-        <hasNote></hasNote>
-        </node>
-        <node id="CXR" label="Weihnachtsinsel">
-        <hasNote></hasNote>
-        </node>
-        <node id="PSE" label="Westjordanland">
-        <hasNote></hasNote>
-        </node>
-        <node id="ESH" label="Westsahara">
-        <hasNote></hasNote>
-        </node>
-        <node id="CAF" label="Zentralafrikanische Republik">
-        <hasNote></hasNote>
-        </node>
-        <node id="CYP" label="Zypern">
-        <hasNote></hasNote>
-        </node>
-      </isComposedBy>
-    </node>
-    <node id="DE" label="Deutschland">
+    <node id="DE" label="Deutschland mit Regionen">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="DE1" label="Baden-Württemberg">
@@ -2237,6 +1475,894 @@
             <hasNote></hasNote>
             </node>
             <node id="DEG0P" label="Wartburgkreis">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="LAND" label="andere Länder">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="A" label="A">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="AFG" label="Afghanistan">
+            <hasNote></hasNote>
+            </node>
+            <node id="EGY" label="Ägypten">
+            <hasNote></hasNote>
+            </node>
+            <node id="ALA" label="Åland">
+            <hasNote></hasNote>
+            </node>
+            <node id="ALB" label="Albanien">
+            <hasNote></hasNote>
+            </node>
+            <node id="DZA" label="Algerien">
+            <hasNote></hasNote>
+            </node>
+            <node id="VIR" label="Amerikanische Jungferninseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="ASM" label="Amerikanisch-Samoa">
+            <hasNote></hasNote>
+            </node>
+            <node id="AND" label="Andorra">
+            <hasNote></hasNote>
+            </node>
+            <node id="AGO" label="Angola">
+            <hasNote></hasNote>
+            </node>
+            <node id="AIA" label="Anguilla">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATA" label="Antarktika">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATG" label="Antigua und Barbuda">
+            <hasNote></hasNote>
+            </node>
+            <node id="GNQ" label="Äquatorialguinea">
+            <hasNote></hasNote>
+            </node>
+            <node id="ARG" label="Argentinien">
+            <hasNote></hasNote>
+            </node>
+            <node id="ARM" label="Armenien">
+            <hasNote></hasNote>
+            </node>
+            <node id="ABW" label="Aruba">
+            <hasNote></hasNote>
+            </node>
+            <node id="AZE" label="Aserbaidschan">
+            <hasNote></hasNote>
+            </node>
+            <node id="ETH" label="Äthiopien">
+            <hasNote></hasNote>
+            </node>
+            <node id="AUS" label="Australien">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="B" label="B">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="BHS" label="Bahamas">
+            <hasNote></hasNote>
+            </node>
+            <node id="BHR" label="Bahrain">
+            <hasNote></hasNote>
+            </node>
+            <node id="BGD" label="Bangladesch">
+            <hasNote></hasNote>
+            </node>
+            <node id="BRB" label="Barbados">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Bassas da India">
+            <hasNote></hasNote>
+            </node>
+            <node id="BLR" label="Belarus">
+            <hasNote></hasNote>
+            </node>
+            <node id="BEL" label="Belgien">
+            <hasNote></hasNote>
+            </node>
+            <node id="BLZ" label="Belize">
+            <hasNote></hasNote>
+            </node>
+            <node id="BEN" label="Benin">
+            <hasNote></hasNote>
+            </node>
+            <node id="BMU" label="Bermuda">
+            <hasNote></hasNote>
+            </node>
+            <node id="BTN" label="Bhutan">
+            <hasNote></hasNote>
+            </node>
+            <node id="BOL" label="Bolivien">
+            <hasNote></hasNote>
+            </node>
+            <node id="BIH" label="Bosnien und Herzegowina">
+            <hasNote></hasNote>
+            </node>
+            <node id="BWA" label="Botsuana">
+            <hasNote></hasNote>
+            </node>
+            <node id="BVT" label="Bouvetinsel">
+            <hasNote></hasNote>
+            </node>
+            <node id="BRA" label="Brasilien">
+            <hasNote></hasNote>
+            </node>
+            <node id="VGB" label="Britische Jungferninseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="IOT" label="Britisches Territorium im Indischen Ozean">
+            <hasNote></hasNote>
+            </node>
+            <node id="BRN" label="Brunei Darussalam">
+            <hasNote></hasNote>
+            </node>
+            <node id="BGR" label="Bulgarien">
+            <hasNote></hasNote>
+            </node>
+            <node id="BFA" label="Burkina Faso">
+            <hasNote></hasNote>
+            </node>
+            <node id="BDI" label="Burundi">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="C" label="C">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="CPV" label="Cabo Verde">
+            <hasNote></hasNote>
+            </node>
+            <node id="CHL" label="Chile">
+            <hasNote></hasNote>
+            </node>
+            <node id="CHN" label="China">
+            <hasNote></hasNote>
+            </node>
+            <node id="Frau" label="Clipperton">
+            <hasNote></hasNote>
+            </node>
+            <node id="COK" label="Cookinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="CRI" label="Costa Rica">
+            <hasNote></hasNote>
+            </node>
+            <node id="CIV" label="Côte d'Ivoire">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="D" label="D">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="DNK" label="Dänemark">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEU" label="Deutschland">
+            <hasNote></hasNote>
+            </node>
+            <node id="DMA" label="Dominica">
+            <hasNote></hasNote>
+            </node>
+            <node id="DOM" label="Dominikanische Republik">
+            <hasNote></hasNote>
+            </node>
+            <node id="DJI" label="Dschibuti">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="E" label="E">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ECU" label="Ecuador">
+            <hasNote></hasNote>
+            </node>
+            <node id="SLV" label="El Salvador">
+            <hasNote></hasNote>
+            </node>
+            <node id="ERI" label="Eritrea">
+            <hasNote></hasNote>
+            </node>
+            <node id="EST" label="Estland">
+            <hasNote></hasNote>
+            </node>
+            <node id="SWZ" label="Eswatini">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Europa">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="F" label="F">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="FLK" label="Falklandinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="FRO" label="Färöer">
+            <hasNote></hasNote>
+            </node>
+            <node id="FJI" label="Fidschi">
+            <hasNote></hasNote>
+            </node>
+            <node id="FIN" label="Finnland">
+            <hasNote></hasNote>
+            </node>
+            <node id="FRA" label="Frankreich">
+            <hasNote></hasNote>
+            </node>
+            <node id="FXX" label="Frankreich (metropolitanes)">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Französische Süd- und Antarktisgebiete">
+            <hasNote></hasNote>
+            </node>
+            <node id="GUF" label="Französisch-Guayana">
+            <hasNote></hasNote>
+            </node>
+            <node id="PYF" label="Französisch-Polynesien">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="G" label="G">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="GAB" label="Gabun">
+            <hasNote></hasNote>
+            </node>
+            <node id="GMB" label="Gambia">
+            <hasNote></hasNote>
+            </node>
+            <node id="PSE" label="Gazastreifen">
+            <hasNote></hasNote>
+            </node>
+            <node id="GEO" label="Georgien">
+            <hasNote></hasNote>
+            </node>
+            <node id="GHA" label="Ghana">
+            <hasNote></hasNote>
+            </node>
+            <node id="GIB" label="Gibraltar">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Glorieuses">
+            <hasNote></hasNote>
+            </node>
+            <node id="GRD" label="Grenada">
+            <hasNote></hasNote>
+            </node>
+            <node id="GRC" label="Griechenland">
+            <hasNote></hasNote>
+            </node>
+            <node id="GRL" label="Grönland">
+            <hasNote></hasNote>
+            </node>
+            <node id="GBR" label="Großbritannien">
+            <hasNote></hasNote>
+            </node>
+            <node id="GLP" label="Guadeloupe">
+            <hasNote></hasNote>
+            </node>
+            <node id="GUM" label="Guam">
+            <hasNote></hasNote>
+            </node>
+            <node id="GTM" label="Guatemala">
+            <hasNote></hasNote>
+            </node>
+            <node id="GGY" label="Guernsey">
+            <hasNote></hasNote>
+            </node>
+            <node id="GIN" label="Guinea">
+            <hasNote></hasNote>
+            </node>
+            <node id="GNB" label="Guinea-Bissau">
+            <hasNote></hasNote>
+            </node>
+            <node id="GUY" label="Guyana">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="H" label="H">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="HTI" label="Haiti">
+            <hasNote></hasNote>
+            </node>
+            <node id="HMD" label="Heard und McDonaldinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="HND" label="Honduras">
+            <hasNote></hasNote>
+            </node>
+            <node id="HKG" label="Hongkong">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="I" label="I">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="IND" label="Indien">
+            <hasNote></hasNote>
+            </node>
+            <node id="IDN" label="Indonesien">
+            <hasNote></hasNote>
+            </node>
+            <node id="IMN" label="Insel Man">
+            <hasNote></hasNote>
+            </node>
+            <node id="IRQ" label="Irak">
+            <hasNote></hasNote>
+            </node>
+            <node id="IRN" label="Iran">
+            <hasNote></hasNote>
+            </node>
+            <node id="IRL" label="Irland">
+            <hasNote></hasNote>
+            </node>
+            <node id="ISL" label="Island">
+            <hasNote></hasNote>
+            </node>
+            <node id="ISR" label="Israel">
+            <hasNote></hasNote>
+            </node>
+            <node id="ITA" label="Italien">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="J" label="J">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="JAM" label="Jamaika">
+            <hasNote></hasNote>
+            </node>
+            <node id="JPN" label="Japan">
+            <hasNote></hasNote>
+            </node>
+            <node id="YEM" label="Jemen">
+            <hasNote></hasNote>
+            </node>
+            <node id="JEY" label="Jersey">
+            <hasNote></hasNote>
+            </node>
+            <node id="JOR" label="Jordanien">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Juan de Nova">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="K" label="K">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="CYM" label="Kaimaninseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="KHM" label="Kambodscha">
+            <hasNote></hasNote>
+            </node>
+            <node id="CMR" label="Kamerun">
+            <hasNote></hasNote>
+            </node>
+            <node id="CAN" label="Kanada">
+            <hasNote></hasNote>
+            </node>
+            <node id="KAZ" label="Kasachstan">
+            <hasNote></hasNote>
+            </node>
+            <node id="QAT" label="Katar">
+            <hasNote></hasNote>
+            </node>
+            <node id="KEN" label="Kenia">
+            <hasNote></hasNote>
+            </node>
+            <node id="KGZ" label="Kirgisistan">
+            <hasNote></hasNote>
+            </node>
+            <node id="KIR" label="Kiribati">
+            <hasNote></hasNote>
+            </node>
+            <node id="UMI" label="Kleinere Amerikanische Überseeinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="CCK" label="Kokosinseln (Keelinginseln)">
+            <hasNote></hasNote>
+            </node>
+            <node id="COL" label="Kolumbien">
+            <hasNote></hasNote>
+            </node>
+            <node id="COM" label="Komoren">
+            <hasNote></hasNote>
+            </node>
+            <node id="COG" label="Kongo">
+            <hasNote></hasNote>
+            </node>
+            <node id="COD" label="Kongo, Demokratische Republik">
+            <hasNote></hasNote>
+            </node>
+            <node id="PRK" label="Korea, Demokratische Volksrepublik">
+            <hasNote></hasNote>
+            </node>
+            <node id="KOR" label="Korea, Republik">
+            <hasNote></hasNote>
+            </node>
+            <node id="HRV" label="Kroatien">
+            <hasNote></hasNote>
+            </node>
+            <node id="CUB" label="Kuba">
+            <hasNote></hasNote>
+            </node>
+            <node id="KWT" label="Kuwait">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="L" label="L">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="LAO" label="Laos">
+            <hasNote></hasNote>
+            </node>
+            <node id="LSO" label="Lesotho">
+            <hasNote></hasNote>
+            </node>
+            <node id="LVA" label="Lettland">
+            <hasNote></hasNote>
+            </node>
+            <node id="LBN" label="Libanon">
+            <hasNote></hasNote>
+            </node>
+            <node id="LBR" label="Liberia">
+            <hasNote></hasNote>
+            </node>
+            <node id="LBY" label="Libyen">
+            <hasNote></hasNote>
+            </node>
+            <node id="LIE" label="Liechtenstein">
+            <hasNote></hasNote>
+            </node>
+            <node id="LTU" label="Litauen">
+            <hasNote></hasNote>
+            </node>
+            <node id="LUX" label="Luxemburg">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="M" label="M">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="MAC" label="Macau">
+            <hasNote></hasNote>
+            </node>
+            <node id="MDG" label="Madagaskar">
+            <hasNote></hasNote>
+            </node>
+            <node id="MWI" label="Malawi">
+            <hasNote></hasNote>
+            </node>
+            <node id="MYS" label="Malaysia">
+            <hasNote></hasNote>
+            </node>
+            <node id="MDV" label="Malediven">
+            <hasNote></hasNote>
+            </node>
+            <node id="MLI" label="Mali">
+            <hasNote></hasNote>
+            </node>
+            <node id="MLT" label="Malta">
+            <hasNote></hasNote>
+            </node>
+            <node id="MAR" label="Marokko">
+            <hasNote></hasNote>
+            </node>
+            <node id="MHL" label="Marshallinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="MTQ" label="Martinique">
+            <hasNote></hasNote>
+            </node>
+            <node id="MRT" label="Mauretanien">
+            <hasNote></hasNote>
+            </node>
+            <node id="MUS" label="Mauritius">
+            <hasNote></hasNote>
+            </node>
+            <node id="MYT" label="Mayotte">
+            <hasNote></hasNote>
+            </node>
+            <node id="MEX" label="Mexiko">
+            <hasNote></hasNote>
+            </node>
+            <node id="FSM" label="Mikronesien">
+            <hasNote></hasNote>
+            </node>
+            <node id="MDA" label="Moldau">
+            <hasNote></hasNote>
+            </node>
+            <node id="MCO" label="Monaco">
+            <hasNote></hasNote>
+            </node>
+            <node id="MNG" label="Mongolei">
+            <hasNote></hasNote>
+            </node>
+            <node id="MNE" label="Montenegro">
+            <hasNote></hasNote>
+            </node>
+            <node id="MSR" label="Montserrat">
+            <hasNote></hasNote>
+            </node>
+            <node id="MOZ" label="Mosambik">
+            <hasNote></hasNote>
+            </node>
+            <node id="MMR" label="Myanmar">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="N" label="N">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="NAM" label="Namibia">
+            <hasNote></hasNote>
+            </node>
+            <node id="NRU" label="Nauru">
+            <hasNote></hasNote>
+            </node>
+            <node id="NPL" label="Nepal">
+            <hasNote></hasNote>
+            </node>
+            <node id="NCL" label="Neukaledonien">
+            <hasNote></hasNote>
+            </node>
+            <node id="NZL" label="Neuseeland">
+            <hasNote></hasNote>
+            </node>
+            <node id="NIC" label="Nicaragua">
+            <hasNote></hasNote>
+            </node>
+            <node id="NLD" label="Niederlande">
+            <hasNote></hasNote>
+            </node>
+            <node id="ANT" label="Niederländische Antillen">
+            <hasNote></hasNote>
+            </node>
+            <node id="NER" label="Niger">
+            <hasNote></hasNote>
+            </node>
+            <node id="NGA" label="Nigeria">
+            <hasNote></hasNote>
+            </node>
+            <node id="NIU" label="Niue">
+            <hasNote></hasNote>
+            </node>
+            <node id="MNP" label="Nördliche Marianen">
+            <hasNote></hasNote>
+            </node>
+            <node id="MKD" label="Nordmazedonien">
+            <hasNote></hasNote>
+            </node>
+            <node id="NFK" label="Norfolkinsel">
+            <hasNote></hasNote>
+            </node>
+            <node id="NOR" label="Norwegen">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="O " label="O">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="OMN" label="Oman">
+            <hasNote></hasNote>
+            </node>
+            <node id="AUT" label="Österreich">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="P" label="P">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="PAK" label="Pakistan">
+            <hasNote></hasNote>
+            </node>
+            <node id="PLW" label="Palau">
+            <hasNote></hasNote>
+            </node>
+            <node id="PAN" label="Panama">
+            <hasNote></hasNote>
+            </node>
+            <node id="PNG" label="Papua-Neuguinea">
+            <hasNote></hasNote>
+            </node>
+            <node id="PRY" label="Paraguay">
+            <hasNote></hasNote>
+            </node>
+            <node id="PER" label="Peru">
+            <hasNote></hasNote>
+            </node>
+            <node id="PHL" label="Philippinen">
+            <hasNote></hasNote>
+            </node>
+            <node id="PCN" label="Pitcairninseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="POL" label="Polen">
+            <hasNote></hasNote>
+            </node>
+            <node id="PRT" label="Portugal">
+            <hasNote></hasNote>
+            </node>
+            <node id="PRI" label="Puerto Rico">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="R" label="R">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="REU" label="Réunion">
+            <hasNote></hasNote>
+            </node>
+            <node id="RWA" label="Ruanda">
+            <hasNote></hasNote>
+            </node>
+            <node id="ROU" label="Rumänien">
+            <hasNote></hasNote>
+            </node>
+            <node id="RUS" label="Russische Föderation">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="S" label="S">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="MAF" label="Saint-Martin">
+            <hasNote></hasNote>
+            </node>
+            <node id="SLB" label="Salomonen">
+            <hasNote></hasNote>
+            </node>
+            <node id="ZMB" label="Sambia">
+            <hasNote></hasNote>
+            </node>
+            <node id="WSM" label="Samoa">
+            <hasNote></hasNote>
+            </node>
+            <node id="SMR" label="San Marino">
+            <hasNote></hasNote>
+            </node>
+            <node id="STP" label="São Tomé und Príncipe">
+            <hasNote></hasNote>
+            </node>
+            <node id="SAU" label="Saudi-Arabien">
+            <hasNote></hasNote>
+            </node>
+            <node id="SWE" label="Schweden">
+            <hasNote></hasNote>
+            </node>
+            <node id="CHE" label="Schweiz">
+            <hasNote></hasNote>
+            </node>
+            <node id="SEN" label="Senegal">
+            <hasNote></hasNote>
+            </node>
+            <node id="SRB" label="Serbien">
+            <hasNote></hasNote>
+            </node>
+            <node id="SCG" label="Serbien und Montenegro">
+            <hasNote></hasNote>
+            </node>
+            <node id="SYC" label="Seychellen">
+            <hasNote></hasNote>
+            </node>
+            <node id="SLE" label="Sierra Leone">
+            <hasNote></hasNote>
+            </node>
+            <node id="ZWE" label="Simbabwe">
+            <hasNote></hasNote>
+            </node>
+            <node id="SGP" label="Singapur">
+            <hasNote></hasNote>
+            </node>
+            <node id="SVK" label="Slowakei">
+            <hasNote></hasNote>
+            </node>
+            <node id="SVN" label="Slowenien">
+            <hasNote></hasNote>
+            </node>
+            <node id="SOM" label="Somalia">
+            <hasNote></hasNote>
+            </node>
+            <node id="ESP" label="Spanien">
+            <hasNote></hasNote>
+            </node>
+            <node id="SJM" label="Spitzbergen">
+            <hasNote></hasNote>
+            </node>
+            <node id="LKA" label="Sri Lanka">
+            <hasNote></hasNote>
+            </node>
+            <node id="BLM" label="St. Barthélemy">
+            <hasNote></hasNote>
+            </node>
+            <node id="SHN" label="St. Helena, Ascension und Tristan da Cunha">
+            <hasNote></hasNote>
+            </node>
+            <node id="KNA" label="St. Kitts und Nevis">
+            <hasNote></hasNote>
+            </node>
+            <node id="LCA" label="St. Lucia">
+            <hasNote></hasNote>
+            </node>
+            <node id="SPM" label="St. Pierre und Miquelon">
+            <hasNote></hasNote>
+            </node>
+            <node id="VCT" label="St. Vincent und die Grenadinen">
+            <hasNote></hasNote>
+            </node>
+            <node id="ZAF" label="Südafrika">
+            <hasNote></hasNote>
+            </node>
+            <node id="SDN" label="Sudan">
+            <hasNote></hasNote>
+            </node>
+            <node id="SGS" label="Südgeorgien und die Südlichen Sandwichinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="SSD" label="Südsudan">
+            <hasNote></hasNote>
+            </node>
+            <node id="SUR" label="Suriname">
+            <hasNote></hasNote>
+            </node>
+            <node id="SYR" label="Syrien">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="T" label="T">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="TJK" label="Tadschikistan">
+            <hasNote></hasNote>
+            </node>
+            <node id="TWN" label="Taiwan">
+            <hasNote></hasNote>
+            </node>
+            <node id="TZA" label="Tansania">
+            <hasNote></hasNote>
+            </node>
+            <node id="THA" label="Thailand">
+            <hasNote></hasNote>
+            </node>
+            <node id="TLS" label="Timor-Leste">
+            <hasNote></hasNote>
+            </node>
+            <node id="TGO" label="Togo">
+            <hasNote></hasNote>
+            </node>
+            <node id="TKL" label="Tokelau">
+            <hasNote></hasNote>
+            </node>
+            <node id="TON" label="Tonga">
+            <hasNote></hasNote>
+            </node>
+            <node id="TTO" label="Trinidad und Tobago">
+            <hasNote></hasNote>
+            </node>
+            <node id="ATF" label="Tromelin">
+            <hasNote></hasNote>
+            </node>
+            <node id="TCD" label="Tschad">
+            <hasNote></hasNote>
+            </node>
+            <node id="CZE" label="Tschechische Republik">
+            <hasNote></hasNote>
+            </node>
+            <node id="TUN" label="Tunesien">
+            <hasNote></hasNote>
+            </node>
+            <node id="TUR" label="Türkei">
+            <hasNote></hasNote>
+            </node>
+            <node id="TKM" label="Turkmenistan">
+            <hasNote></hasNote>
+            </node>
+            <node id="TCA" label="Turks- und Caicosinseln">
+            <hasNote></hasNote>
+            </node>
+            <node id="TUV" label="Tuvalu">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="U" label="U">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="UGA" label="Uganda">
+            <hasNote></hasNote>
+            </node>
+            <node id="UKR" label="Ukraine">
+            <hasNote></hasNote>
+            </node>
+            <node id="HUN" label="Ungarn">
+            <hasNote></hasNote>
+            </node>
+            <node id="URY" label="Uruguay">
+            <hasNote></hasNote>
+            </node>
+            <node id="UZB" label="Usbekistan">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="V" label="V">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="VUT" label="Vanuatu">
+            <hasNote></hasNote>
+            </node>
+            <node id="VAT" label="Vatikanstadt">
+            <hasNote></hasNote>
+            </node>
+            <node id="VEN" label="Venezuela">
+            <hasNote></hasNote>
+            </node>
+            <node id="ARE" label="Vereinigte Arabische Emirate">
+            <hasNote></hasNote>
+            </node>
+            <node id="USA" label="Vereinigte Staaten">
+            <hasNote></hasNote>
+            </node>
+            <node id="VNM" label="Vietnam">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="W " label="W">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="WLF" label="Wallis und Futuna">
+            <hasNote></hasNote>
+            </node>
+            <node id="CXR" label="Weihnachtsinsel">
+            <hasNote></hasNote>
+            </node>
+            <node id="PSE" label="Westjordanland">
+            <hasNote></hasNote>
+            </node>
+            <node id="ESH" label="Westsahara">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="Z " label="Z">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="CAF" label="Zentralafrikanische Republik">
+            <hasNote></hasNote>
+            </node>
+            <node id="CYP" label="Zypern">
             <hasNote></hasNote>
             </node>
           </isComposedBy>

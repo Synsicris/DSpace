@@ -1,59 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COAR 2019-11-08">
+<node id="ResourceTypeGenres" label="COAR 2019-12-02">
   <isComposedBy>
-    <node id="ID01" label="Artikel / Aufsatz">
+    <node id="ID01" label="Artikel">
     <hasNote>An article on a particular topic and published in a journal issue</hasNote>
       <isComposedBy>
-        <node id="ID02" label="Abstract / Zusammenfassung">
-        <hasNote></hasNote>
+        <node id="ID02" label="Softwareartikel">
+        <hasNote>A software paper should include the rationale for the development of the tool and details of the code used for its construction. (Adapted from f1000)</hasNote>
         </node>
         <node id="ID03" label="Übersichtsartikel">
         <hasNote>A review article is a secondary source, that is, it is written about other articles, and does not report original research of its own.</hasNote>
         </node>
-        <node id="ID04" label="Forschungsartikel">
+        <node id="ID04" label="Data Paper">
+        <hasNote>A data paper is a scholarly publication describing a particular dataset or group of dataset, published in the form of a peer-reviewed article in a scholarly journal. The main purpose of a data paper is to describe data, the circumstances of their collection, and information related to data features, access and potential reuse. Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/publishing-data/data-papers</hasNote>
+        </node>
+        <node id="ID05" label="Forschungsartikel">
         <hasNote>A research article is a primary source, that is, it reports the methods and results of an original study performed by the authors.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID05" label="Konferenzbeitrag ">
+    <node id="ID06" label="Konferenzbeitrag ">
     <hasNote>A conference paper that is submitted to a conference and presented to the audience. The conference paper is published in proceedings.</hasNote>
     </node>
-    <node id="ID06" label="Buch">
-    <hasNote></hasNote>
-      <isComposedBy>
-        <node id="ID07" label="Buchkapitel">
-        <hasNote>A defined chapter or section of a book, usually with a separate title or number.</hasNote>
-        </node>
-      </isComposedBy>
+    <node id="ID07" label="Forschungsdaten / Datensatz">
+    <hasNote>A collection of related facts and data encoded in a defined structure.</hasNote>
     </node>
-    <node id="ID08" label="Report / Bericht">
+    <node id="ID08" label="Buchkapitel / Teil einer Monographie">
+    <hasNote>A defined chapter or section of a book, usually with a separate title or number.</hasNote>
+    </node>
+    <node id="ID09" label="Report / Bericht">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID09" label="Abschlussbericht">
+        <node id="ID10" label="Abschlussbericht">
         <hasNote>Final report to a funding agency, written by beneficiaries of project grants. The report documents the scientific and technical work of a project</hasNote>
         </node>
-        <node id="ID10" label="Policy report">
+        <node id="ID11" label="Policy report">
         <hasNote>Provides an in-depth look at major policy developments and events</hasNote>
         </node>
-        <node id="ID11" label="Projektkarte">
-        <hasNote></hasNote>
+        <node id="ID12" label="Projektkarte">
+        <hasNote>BLE-interner Typ</hasNote>
         </node>
-        <node id="ID12" label="Praxismerkblatt">
-        <hasNote></hasNote>
+        <node id="ID13" label="Praxismerkblatt">
+        <hasNote>BLE-interner Typ</hasNote>
         </node>
-        <node id="ID13" label="Forschungsbericht ">
+        <node id="ID14" label="Forschungsbericht ">
         <hasNote>Provide an in-depth study of a particular topic or describe the results of a research project</hasNote>
         </node>
-        <node id="ID14" label="Technischer Bericht">
+        <node id="ID15" label="Technischer Bericht">
         <hasNote>Records the procedure adopted and results obtained from a scientific or technical activity or investigation</hasNote>
         </node>
-        <node id="ID15" label="sonstiger Bericht">
-        <hasNote></hasNote>
+        <node id="ID16" label="sonstiger Bericht">
+        <hasNote>Other types of report may include Business Plans Technical Specifications, data management plans, recommendation reports, white papers, annual reports, auditor's reports, workplace reports, census reports, trip reports, progress reports, investigative reports, budget reports, policy reports, demographic reports, credit reports, appraisal reports, inspection reports, military reports, bound reports, etc.</hasNote>
         </node>
       </isComposedBy>
-    </node>
-    <node id="ID16" label="Arbeitspapier / Working paper">
-    <hasNote></hasNote>
     </node>
     <node id="ID17" label="Software">
     <hasNote></hasNote>
@@ -61,100 +59,103 @@
     <node id="ID18" label="Webseite">
     <hasNote></hasNote>
     </node>
-    <node id="ID19" label="Forschungsdaten / Datensatz">
-    <hasNote>A collection of related facts and data encoded in a defined structure.</hasNote>
-    </node>
-    <node id="ID20" label="Interview">
+    <node id="ID19" label="Tondokument">
     <hasNote></hasNote>
     </node>
-    <node id="ID21" label="Tondokument">
+    <node id="ID20" label="Film / Video">
     <hasNote></hasNote>
     </node>
-    <node id="ID22" label="Film / Video">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID23" label="Technische Dokumentation / Manual">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID24" label="Poster">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID25" label="Blogbeitrag">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID26" label="Hochschulschriften">
+    <node id="ID21" label="Abschlussarbeit">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID27" label="Dissertation">
+        <node id="ID22" label="Dissertation">
         <hasNote></hasNote>
         </node>
-        <node id="ID28" label="Habilitation">
+        <node id="ID23" label="Habilitation">
         <hasNote></hasNote>
         </node>
-        <node id="ID29" label="Abschlussarbeit (Master)">
+        <node id="ID24" label="Abschlussarbeit (Master)">
         <hasNote></hasNote>
         </node>
-        <node id="ID30" label="Abschlussarbeit (Bachelor)">
+        <node id="ID25" label="Abschlussarbeit (Bachelor)">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID31" label="Sammelwerk ">
+    <node id="ID26" label="Sonstiges">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID32" label="Festschrift">
+        <node id="ID27" label="Technische Dokumentation / Manual">
         <hasNote></hasNote>
         </node>
-        <node id="ID33" label="Tagungsband">
-        <hasNote>All kind of digital resources contributed to a conference, like conference presentation (slides), conference report, conference lecture, abstracts, demonstrations. </hasNote>
-        </node>
-      </isComposedBy>
-    </node>
-    <node id="ID34" label="Zeitschrift ">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID35" label="Zeitung (Newspaper, Magazine)">
-    <hasNote></hasNote>
-      <isComposedBy>
-        <node id="ID36" label="Zeitungsartikel">
+        <node id="ID28" label="Poster">
         <hasNote></hasNote>
         </node>
-      </isComposedBy>
-    </node>
-    <node id="ID37" label="Sonstiges">
-    <hasNote></hasNote>
-      <isComposedBy>
-        <node id="ID38" label="Vorlesung (Vortrag)">
+        <node id="ID29" label="Blogbeitrag">
         <hasNote></hasNote>
         </node>
-        <node id="ID39" label="Bild">
+        <node id="ID30" label="Interview">
         <hasNote></hasNote>
         </node>
-        <node id="ID40" label="Workflow">
+        <node id="ID31" label="Arbeitspapier / Working paper">
+        <hasNote>An unpublished paper, usually circulated privately among a small group of peers, to provide information or with a request for comments or editorial improvement. (source: fabio)</hasNote>
+        </node>
+        <node id="ID32" label="Buch / Monographie">
+        <hasNote>A non-serial publication that is complete in one volume or a designated finite number of volumes. (adapted from CiTO; EPrint Type vocabulary)</hasNote>
+        </node>
+        <node id="ID33" label="Vorlesung / Vortrag">
         <hasNote></hasNote>
         </node>
-        <node id="ID41" label="kartografisches Material ">
+        <node id="ID34" label="Sammelwerk ">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID35" label="Festschrift">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID36" label="Konferenzveröffentlichung (Tagungsband)">
+            <hasNote>Conference proceedings is the official record of a conference meeting. It is a collection of documents which corresponds to the presentations given at the conference. It may include additional content.</hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID37" label="Zeitschrift ">
+        <hasNote>A journal is a serial publication devoted to disseminating original research and current developments on a subject. (Adapted from ODLIS)</hasNote>
+        </node>
+        <node id="ID38" label="Zeitung (Newspaper, Magazine)">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID39" label="Zeitungsartikel">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID40" label="Bild">
         <hasNote></hasNote>
         </node>
-        <node id="ID42" label="klinischer Versuch">
+        <node id="ID41" label="Workflow">
         <hasNote></hasNote>
         </node>
-        <node id="ID43" label="klinische Studie">
+        <node id="ID42" label="kartografisches Material ">
         <hasNote></hasNote>
         </node>
-        <node id="ID44" label="Lernobjekt">
+        <node id="ID43" label="klinischer Versuch">
         <hasNote></hasNote>
         </node>
-        <node id="ID45" label="Manuskript">
+        <node id="ID44" label="klinische Studie">
         <hasNote></hasNote>
         </node>
-        <node id="ID46" label="Flyer">
+        <node id="ID45" label="Lernobjekt">
         <hasNote></hasNote>
         </node>
-        <node id="ID47" label="Editorial (Vorwort/Nachwort)">
+        <node id="ID46" label="Manuskript">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID47" label="Flyer">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID48" label="Editorial (Vorwort/Nachwort)">
         <hasNote>A brief essay expressing the opinion or position of the chief editor(s) of a (academic) journal with respect to a current political, social, cultural, or professional issue.</hasNote>
         </node>
-        <node id="ID48" label="Rezension">
+        <node id="ID49" label="Rezension">
         <hasNote>A review of others' published work.</hasNote>
         </node>
       </isComposedBy>

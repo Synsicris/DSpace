@@ -35,10 +35,10 @@
     <name-map collection-handle="123456789/48" submission-name="subprojects" />
     <name-map collection-handle="123456789/83" submission-name="steps" />	
     <name-map collection-handle="123456789/52" submission-name="tests" /> 
-    <name-map collection-handle="123456789/132" submission-name="impact_pathway" /> 
-    <name-map collection-handle="123456789/133" submission-name="impact_pathway_step" /> 
-    <name-map collection-handle="123456789/75" submission-name="impact_pathway_step_type_6_task_form" />
-    <name-map collection-handle="123456789/280" submission-name="funder_objectives" />  
+    <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
+    <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" /> 
+    <name-map collection-handle="123456789/52" submission-name="impact_pathway_step_type_6_task_form" />
+    <name-map collection-handle="123456789/145" submission-name="funder_objectives" />  
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="SOCIAL-INNOVATION 2019-11-08">
+<node id="SocialResourceTypeGenres" label="SOCIAL-INNOVATION 2019-11-08">
   <isComposedBy>
     <node id="ID1" label="Changed knowlege, attitutes, skills, aspirations">
     <hasNote></hasNote>

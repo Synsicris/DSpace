@@ -681,6 +681,13 @@
     <qualifier>equipment</qualifier>
     <scope_note></scope_note>
   </dc-type>
+  
+  <dc-type>
+	<schema>dc</schema>
+    <element>relation</element>
+    <qualifier>funder</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
 
   <dc-type>
 	<schema>dc</schema>

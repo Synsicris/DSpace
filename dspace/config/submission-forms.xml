@@ -3,6 +3,408 @@
 
 <input-forms>
   <form-definitions>
+    <form name="impact_pathway_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the impact pathway title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select the impact pathway title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required></required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Link to impact pathway step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <!-- <required>You must link at least one step.</required> -->
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Select the entity type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select the entity type.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>map</dc-qualifier>
+          <label>Select the entity type</label>
+          <input-type value-pairs-name="impactpathway_entity_to_collection_map">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required></required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the impact pathway title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select the impact pathway title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>step</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>The impact pathway step type</label>
+          <input-type value-pairs-name="impactpathway_step_type">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required>You must add the impact pathway step type.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Select the entity type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select the entity type.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parent</dc-qualifier>
+          <label>Link to impact pathway step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <!-- <required>You must link at least one step.</required> -->
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Link to impact pathway step task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_1_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_1_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_2_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_2_task_objective_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_3_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_3_task_objective_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_4_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_4_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_5_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_5_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_6_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>funder</dc-qualifier>
+          <label>Select funder</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must select a funder.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the description.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>relationship</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type</label>
+          <input-type value-pairs-name="impactpathway_step_type_6_task_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must add the type.</required>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="entity_type_selection">
       <row>
         <field>
@@ -1615,7 +2017,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary>cooperationtype</vocabulary>
+          <vocabulary>cooperation-type</vocabulary>
         </field>
       </row>
       <row>
@@ -2291,642 +2693,6 @@
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_econtech">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title / Key information</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type of innovation / Use of results</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <vocabulary>business-innovation</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Short description - suitable for target groups</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_userbenefit-dc-relation-targetgroup">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>related-targetgroup</dc-qualifier>
-          <label>Customer / Usergroup</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Select which groups of actors  are potential customers or users?</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>userbenefit</dc-qualifier>
-          <label>Benefit</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Which benefit is expected for the customer / user?</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>size</dc-qualifier>
-          <label>Size of Market / Usergroup</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Which size of the possible market / usergroup is expected?</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_userbenefit">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Market potential and user benefit</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_applicability-dc-type-applicability">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Content of applicability description</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <vocabulary>applicability</vocabulary>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Applicability description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_applicability">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Description of applicability based on prescribed types</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_trl-dc-type-status-trl">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>status-trl</dc-qualifier>
-          <label>Status of technology readiness level</label>
-          <input-type value-pairs-name="status_rl">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>trl</dc-qualifier>
-          <label>Technology readiness level</label>
-          <input-type value-pairs-name="trl">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>trl</dc-qualifier>
-          <label>Notes for TRL</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_trl">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>status-trl</dc-qualifier>
-          <label>Information about TRL</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please describe which Technology readiness level is given at project start, intended at the project end and actually reached at the end of the project.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_steps-dc-date-referenceyear">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Reference year</label>
-          <input-type>date</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Please give an approximate reference year for the orientation in the timeline of the intended innovation process.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>innovation-development</dc-qualifier>
-          <label>Innovation actors</label>
-          <input-type value-pairs-name="innovation_development">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Who is espected to make further steps towards the innovation?</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovationsteps</dc-qualifier>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_econtech_steps">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Next steps in the research and innovation value chain</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please describe the next steps in the research and innovation value chain after the end of the project.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title / Key information</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type of use of results</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <vocabulary>social-innovation</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Short description - suitable for target groups</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_userbenefit-dc-relation-targetgroup">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>related-targetgroup</dc-qualifier>
-          <label>Relevant group of actors</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Which actors groups are involved or targeted by the social innovation/ use of results?</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>userbenefit</dc-qualifier>
-          <label>Benefit for and engagement of group of actors</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Which benefit is expected for the group of actors? How is their intention to engage in the change process?</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>size</dc-qualifier>
-          <label>Outreach of the change process</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Which scope and propagation of the social innovation/ use of results is expected?</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_userbenefit">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Benefit for actors group and outreach of change</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_applicability-dc-type-applicability">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Content of applicability description</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <vocabulary>applicability</vocabulary>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Applicability description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_applicability">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>applicability</dc-qualifier>
-          <label>Description of applicability based on prescribed types</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please give an description of the applicability of the results, based on all prescribed types</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_srl-dc-type-status-srl">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>status-srl</dc-qualifier>
-          <label>Status of solution readiness level</label>
-          <input-type value-pairs-name="status_rl">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>srl</dc-qualifier>
-          <label>Solution readiness level</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <vocabulary>srl</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>srl</dc-qualifier>
-          <label>Notes for SRL</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_srl">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>status-srl</dc-qualifier>
-          <label>Information about Solution readiness level</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please describe which Technology readiness level is given at project start, intended at the project end and actually reached at the end of the project.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_steps-dc-date-referenceyear">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Reference year</label>
-          <input-type>date</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint>Please provide an approximate reference year to give orientation about the timeline of the possible swcenarios.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovationsteps</dc-qualifier>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-10</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_social_steps">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Steps/ scenarios of further development</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please describe possible scenarios for the further development of the social innovation/ use of results or further demand for research and development with help of the solution readiness level.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="applications_social">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>related-innovationpotential-social</dc-qualifier>
-          <label>Choose the related innovation potential</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>related-person</dc-qualifier>
-          <label>Automatic relation to the person, that document the application success</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>The system will give others (e.g. staff of the funding bodies or evaluating experts) the opportunity to add application success they know about.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>application</dc-qualifier>
-          <label>Description of the application success</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>contact</dc-qualifier>
-          <label>Links to build contacts</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Only add information, that is public available and take care on personality rights.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="applications_social_quant-dc-date-referenceyear">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Reference year</label>
-          <input-type>date</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col.md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>quantifier</dc-qualifier>
-          <label>Unit</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col.md-3</style>
-          <hint>Please choose a suitable unit or enter a new one.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>quantity</dc-qualifier>
-          <label>Quantity</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col.md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>geographical</dc-qualifier>
-          <label>Regional outreach</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col.md-3</style>
-          <hint />
-          <vocabulary>nuts2</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>description</dc-qualifier>
-          <label>Description of the development of the application success</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="applications_social_quant">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Quantification and development of the outreach</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please provide details about the scope and development of the application success, if possible.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="agrovoc_keywords">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Agrovoc keywords</label>
-          <input-type>tag</input-type>
-          <repeatable>true</repeatable>
-          <required>Characterisation of the potential innovation or solution approach with key-words</required>
-          <hint />
-          <vocabulary>agrovoc</vocabulary>
-        </field>
-      </row>
-    </form>
-    <form name="regional_scope-dc-coverage-regional">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Possible regional outreach/ scope</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary>nuts2</vocabulary>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Notes for possible outreach/ scope</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="regional_scope">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Regional outreach/scope</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="publications">
       <row>
         <field>
@@ -2973,11 +2739,10 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-12</style>
           <hint>Enter the name of the journal</hint>
-          <type-bind>Artikel, Forschungsartikel, Übersichtsartikel, Data Paper, Softwareartikel, Berichtigung</type-bind>
+          <!-- <type-bind>Artikel, Forschungsartikel, Übersichtsartikel, Data Paper, Softwareartikel, Berichtigung</type-bind> -->
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
@@ -2986,8 +2751,9 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-12</style>
           <hint>Enter the ISSN of this item (Zeitschrift oder Schriftenreihe),</hint>
-          <type-bind>Zeitschrift, Zeitung (Newspaper, Magazine)</type-bind>
+          <!-- <type-bind>Zeitschrift, Zeitung (Newspaper, Magazine)</type-bind> -->
         </field>
       </row>
     </form>
@@ -3014,8 +2780,8 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Enter the ISBN of the item (Buch / Mongraphie)</hint>
-          <type-bind>Buch / Monogrphie</type-bind>
+          <hint>Enter the ISBN of the item (Buch / Monographie)</hint>
+          <type-bind>Buch / Monographie</type-bind>
         </field>
       </row>
     </form>
@@ -3278,6 +3044,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <type-bind>Interview, Tondokument, Film / Video, Abschlussarbeit, Dissertation, Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
         </field>
       </row>
       <row>
@@ -3709,7 +3476,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         </field>
       </row>
     </form>
-    <form name="StateOfArt">
+    <form name="stateofart">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3730,6 +3497,903 @@ it, please enter the types and the actual numbers or codes.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Short description of the State of the art and the problem the project is working on</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title / Key information</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>business-innovation</dc-qualifier>
+          <label>Type of innovation / Use of results</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary>business-innovation</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>innovation</dc-qualifier>
+          <label>Short description - suitable for target groups</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>problem-contribution</dc-qualifier>
+          <label>Problem description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>To the solution of which problem should the innovation/development make a contribution</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_userbenefit-dc-relation-targetgroup">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-targetgroup</dc-qualifier>
+          <label>Customer / Usergroup</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Select which groups of actors  are potential customers or users?</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>userbenefit</dc-qualifier>
+          <label>Benefit</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Which benefit is expected for the customer / user?</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>size</dc-qualifier>
+          <label>Size of Market / Usergroup</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Which size of the possible market / usergroup is expected?</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_userbenefit">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Market potential and user benefit</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_applicability-dc-type-applicability">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Content of applicability description</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary>applicability</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Applicability description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_applicability">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Description of applicability based on prescribed types</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_trl-dc-type-status-trl">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status-trl</dc-qualifier>
+          <label>Status of technology readiness level</label>
+          <input-type value-pairs-name="status_rl">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>trl</dc-qualifier>
+          <label>Technology readiness level</label>
+          <input-type value-pairs-name="trl">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>trl</dc-qualifier>
+          <label>Notes for TRL</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_econtech_trl">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status-trl</dc-qualifier>
+          <label>Information about TRL</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please describe which technology readiness level is given at project start, intended at the project end and actually reached at the end of the project.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title / Key information</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>innovation</dc-qualifier>
+          <label>Short description - suitable for target groups</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>problem</dc-qualifier>
+          <label>Problem Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please describe shortly the problem to which the solution should contribute.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-innovationpotentials-econtech</dc-qualifier>
+          <label>Relation to economic-technical innovation</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>If economic-technical innovation is related to the social innovation, you can link them here.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_types-dc-type-social-innovation">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>social-innovation</dc-qualifier>
+          <label>Type/Area of change</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <vocabulary>social-innovation</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-targetgroup</dc-qualifier>
+          <label>Involved or addressed groups of actors</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Which actors groups are involved or addressed by the social innovation/ use of results?</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>Description of the solutionstrategy/ intended change</dc-qualifier>
+          <label>Description of the solutionstrategy/ intended change</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>What concrete change is intendend? How is this to be achieved?</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_types">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>social-innovation</dc-qualifier>
+          <label>Description of the areas and solutionsstrategies the social innovation/change address</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>You can choose as much areas as required.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_applicability-dc-type-applicability">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Attributes of applicability</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary>applicability-social</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Applicability description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_applicability">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Essential attributes for the applicability</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please give an overview which attributes are essential, to implement the social innovation. Describe, which applicability of the social innovation/ change process the project reached.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_applicability_plan-dc-type-applicability">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Attributes of applicability</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary>applicability-social-plan</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Essential attributes and intended improvement of applicability</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_applicability_plan">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>applicability</dc-qualifier>
+          <label>Description of essential attributes and intended improvements in the  applicability</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please describe essential attributes for applicability and name deficits in applicability whose improvement are addressed in the project.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_srl-dc-type-status-srl">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status-srl</dc-qualifier>
+          <label>Status (actual/intended/reached)</label>
+          <input-type value-pairs-name="status_rl">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint>Choose the status of your description.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>srl</dc-qualifier>
+          <label>Solution readiness level</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary>srl</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>srl</dc-qualifier>
+          <label>Notes for SRL</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Please indicate here (if necessary), specific aspects, interdependences or uncertainities, regarding the SRL-level of the solution.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="innovationpotentials_social_srl">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status-srl</dc-qualifier>
+          <label>Information about Solution readiness level</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please describe the actual, the intended and at the end of the project the reached Solution-Readiness-Level.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_social">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-innovationpotential-social</dc-qualifier>
+          <label>Related innovation potential</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please choose the related innovation potential. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-person</dc-qualifier>
+          <label>Automatic relation to the person, that document the application success</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The system will give others (e.g. staff of the funding bodies or evaluating experts) the opportunity to add application success they know about.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>application</dc-qualifier>
+          <label>Description of the application success</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>contact</dc-qualifier>
+          <label>Links to build contacts</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Only add information, that is public available and take care on personality rights.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_social_dc-type-social-innovation">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>social-innovation</dc-qualifier>
+          <label>Type/Area of change</label>
+          <input-type value-pairs-name="social-innovation">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="applications_social_types-dc-type-social-innovation">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-targetgroup</dc-qualifier>
+          <label>Related group of actors</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>To which actors groups belongs the users?</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_social_types">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>social-innovation</dc-qualifier>
+          <label>Areas and involved actors groups of the the social innovation/change</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>You can choose as much areas as required.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_social_quant">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>referenceyear</dc-qualifier>
+          <label>Reference year</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantifier</dc-qualifier>
+          <label>Pre-defined unit or</label>
+          <input-type value-pairs-name="unit-social">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint>Please choose a suitable unit or enter a new one.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantifier-own</dc-qualifier>
+          <label>Free-defined unit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint>Please enter a unit, if predefined ones does not fit.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantity</dc-qualifier>
+          <label>Quantity</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Regional localisation/ outreach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-3</style>
+          <hint />
+          <vocabulary>nuts2</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>description</dc-qualifier>
+          <label>Notes for the development of the application success</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="applications_econtech">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-innovationpotential-social</dc-qualifier>
+          <label>Related innovation potential</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please choose the related innovation potential. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-person</dc-qualifier>
+          <label>Automatic relation to the person, that document the application success</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The system will give others (e.g. staff of the funding bodies or evaluating experts) the opportunity to add application success they know about.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>application</dc-qualifier>
+          <label>Description of the application success</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>contact</dc-qualifier>
+          <label>Links to build contacts</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Only add information, that is public available and take care on personality rights.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_econtech_types-dc-type-business-innovation">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>business-innovation</dc-qualifier>
+          <label>Type of innovation / Use of results</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary>business-innovation</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>related-targetgroup</dc-qualifier>
+          <label>Customer / Usergroup</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Select which groups of actors  are potential customers or users?</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_econtech_types">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>business-innovation</dc-qualifier>
+          <label>Type of innovation and customer/ user group</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>You can choose as much areas as required.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="applications_econtech_quant">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>referenceyear</dc-qualifier>
+          <label>Reference year</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantifier</dc-qualifier>
+          <label>Pre-defined unit or</label>
+          <input-type value-pairs-name="unit-business">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint>Please choose a suitable unit or enter a new one.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantifier-own</dc-qualifier>
+          <label>Free-defined unit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-2</style>
+          <hint>Please enter a unit, if predefined ones does not fit.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>quantity</dc-qualifier>
+          <label>Quantity</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Regional localisation/ outreach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col.md-3</style>
+          <hint />
+          <vocabulary>nuts2</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>description</dc-qualifier>
+          <label>Notes for the development of the application success</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="unexpected_results">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title / Key information</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>description-results</dc-qualifier>
+          <label>Description of results</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>description-recommendations</dc-qualifier>
+          <label>Recommendations</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>What recommendations arise from the results? (e.g. questioning the state of research, in-depth investigations, indications for a change in the test procedure)</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>pub-info</dc-qualifier>
+          <label>Information about publication</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Is a publication planned (and where)? If the results have already been published, please document this in the publications and refer to this publication below.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>publication</dc-qualifier>
+          <label>Link to publication</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="agrovoc_keywords">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>innovation</dc-qualifier>
+          <label>Agrovoc keywords</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required>Characterisation of the potential innovation or solution approach with key-words</required>
+          <hint />
+          <vocabulary>agrovoc</vocabulary>
+        </field>
+      </row>
+    </form>
+    <form name="regional_scope-dc-coverage-regional">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>regional-status</dc-qualifier>
+          <label>Reginal status</label>
+          <input-type value-pairs-name="status_regional">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>regional outreach/ scope</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary>nuts2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Notes for outreach/ scope</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="regional_scope">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Regional outreach/scope</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="funder_objectives">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Funder title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Enter the funder title</required>
+          <hint />
         </field>
       </row>
     </form>
@@ -5365,34 +6029,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Vereinsregister</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="innovation_development" dc-term="innovation_development">
-      <pair>
-        <displayed-value>By project partners</displayed-value>
-        <stored-value>By project partners</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>By third parties</displayed-value>
-        <stored-value>By third parties</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="status_rl" dc-term="status_rl">
-      <pair>
-        <displayed-value>at project start</displayed-value>
-        <stored-value>at project start</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>intended to reach at the end of the project</displayed-value>
-        <stored-value>intended to reach at the end of the project</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>actually reached at the end of the project</displayed-value>
-        <stored-value>actually reached at the end of the project</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL intended to reach with further innovative steps</displayed-value>
-        <stored-value>TRL intended to reach with further innovative steps</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="trl" dc-term="trl">
       <pair>
         <displayed-value>TRL 1 –basic principles observed</displayed-value>
@@ -5447,32 +6083,512 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="entity_type" dc-term="entity_type">
       <pair>
-        <displayed-value>Person</displayed-value>
-        <stored-value>person</stored-value>
+        <displayed-value>person</displayed-value>
+        <stored-value>Person</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dataset</displayed-value>
-        <stored-value>dataset</stored-value>
+        <displayed-value>dataset</displayed-value>
+        <stored-value>Dataset</stored-value>
       </pair>
       <pair>
-        <displayed-value>Journal</displayed-value>
-        <stored-value>journal</stored-value>
+        <displayed-value>journal</displayed-value>
+        <stored-value>Journal</stored-value>
       </pair>
       <pair>
-        <displayed-value>Orgunit</displayed-value>
-        <stored-value>orgunit</stored-value>
+        <displayed-value>orgunit</displayed-value>
+        <stored-value>Orgunit</stored-value>
       </pair>
       <pair>
-        <displayed-value>Project</displayed-value>
-        <stored-value>project</stored-value>
+        <displayed-value>project</displayed-value>
+        <stored-value>Project</stored-value>
       </pair>
       <pair>
-        <displayed-value>Event</displayed-value>
-        <stored-value>event</stored-value>
+        <displayed-value>event</displayed-value>
+        <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Patent</displayed-value>
-        <stored-value>patent</stored-value>
+        <displayed-value>patent</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>funder_objective</displayed-value>
+        <stored-value>funder_objective</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="innovation_development" dc-term="innovation_development">
+      <pair>
+        <displayed-value>By project partners</displayed-value>
+        <stored-value>By project partners</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>By third parties</displayed-value>
+        <stored-value>By third parties</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="status_rl" dc-term="status_rl">
+      <pair>
+        <displayed-value>at project start</displayed-value>
+        <stored-value>at project start</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>intended to reach at the end of the project</displayed-value>
+        <stored-value>intended to reach at the end of the project</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>actually reached at the end of the project</displayed-value>
+        <stored-value>actually reached at the end of the project</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
+      <pair>
+        <displayed-value>development</displayed-value>
+        <stored-value>Region in which the development takes place</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>application</displayed-value>
+        <stored-value>Region in which the application is envisaged</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>transmission and diffusion</displayed-value>
+        <stored-value>Possible region for transmission and dissemination</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="social-innovation" dc-term="social-innovation">
+      <pair>
+        <displayed-value>Capacity building and learning</displayed-value>
+        <stored-value>Capacity building and learning: changed knowlege, attitutes, skills, aspirations</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Changed behaviour, practices</displayed-value>
+        <stored-value>Changed behaviour, practices</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Networks</displayed-value>
+        <stored-value>Networks: Development and establishment of new or changes in formal or informal networks, forms of cooperation, regional clusters etc.</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Changes in or of Organisations and Institutions</displayed-value>
+        <stored-value>Changes in or of Organisations and Institutions</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Changed conditions and structures</displayed-value>
+        <stored-value>Changed conditions and structures</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Development of standards, norms or  guidelines (not in legislation)</displayed-value>
+        <stored-value>Development of standards, norms or  guidelines (not in legislation)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Development of laws or regulations</displayed-value>
+        <stored-value>Development of laws or regulations</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Other political processes</displayed-value>
+        <stored-value>Other political processes</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Others</displayed-value>
+        <stored-value>Others</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="unit-social" dc-term="unit-social">
+      <pair>
+        <displayed-value>individuals</displayed-value>
+        <stored-value>individuals</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>households</displayed-value>
+        <stored-value>households</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>companies</displayed-value>
+        <stored-value>companies</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>non-profit organisations</displayed-value>
+        <stored-value>non-profit organisations</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>municipalities</displayed-value>
+        <stored-value>municipalities</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Model and demonstration projects</displayed-value>
+        <stored-value>Model and demonstration projects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research and development projects</displayed-value>
+        <stored-value>Research and development projects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>other Projects</displayed-value>
+        <stored-value>other Projects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>political decision making processes</displayed-value>
+        <stored-value>Invitation or Contribution to political decision making processes</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="unit-business" dc-term="unit-business">
+      <pair>
+        <displayed-value>License income from the exploitation of intellectual property rights or copyrights</displayed-value>
+        <stored-value>License income</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>practice-oriented testing</displayed-value>
+        <stored-value>practice-oriented testing</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Company internal use/introduction of innovations</displayed-value>
+        <stored-value>Company internal use/introduction of innovations</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Market launch</displayed-value>
+        <stored-value>Market launch</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sales numbers (product units)</displayed-value>
+        <stored-value>Sales numbers (product units)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sales increase</displayed-value>
+        <stored-value>Sales increase</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Increase in productivity</displayed-value>
+        <stored-value>Increase in productivity</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Number of new customers/ clients</displayed-value>
+        <stored-value>Number of new customers/ clients</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Market share gained</displayed-value>
+        <stored-value>Market share gained</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Increase in the number of jobs</displayed-value>
+        <stored-value>Increase in the number of jobs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Preservation of jobs at risk</displayed-value>
+        <stored-value>Preservation of jobs at risk</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type" dc-term="impactpathway_step_type">
+      <pair>
+        <displayed-value>Background</displayed-value>
+        <stored-value>step_type_1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research and development objectives</displayed-value>
+        <stored-value>step_type_2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Interactions with partners and stakeholders. Outputs for dissemination.</displayed-value>
+        <stored-value>step_type_3</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Application (opportunities)</displayed-value>
+        <stored-value>step_type_4</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Potential Societal Impact</displayed-value>
+        <stored-value>step_type_5</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Contribution to funding programme objectives</displayed-value>
+        <stored-value>step_type_6</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_1_task_type" dc-term="impactpathway_step_type_1_task_type">
+      <pair>
+        <displayed-value>External conditions/constraints</displayed-value>
+        <stored-value>conditions</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>State of knowledge</displayed-value>
+        <stored-value>stateofart</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_2_task_type" dc-term="impactpathway_step_type_2_task_type">
+      <pair>
+        <displayed-value>Project objectives</displayed-value>
+        <stored-value>proj_objectives</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Workpackages (planned)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks (planned)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones (planned)</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research question</displayed-value>
+        <stored-value>plan_research_quest</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_2_task_objective_type" dc-term="impactpathway_step_type_2_task_objective_type">
+      <pair>
+        <displayed-value>Workpackages (planned)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks (planned)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones (planned)</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research question</displayed-value>
+        <stored-value>plan_research_quest</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
+      <pair>
+        <displayed-value>Project objectives</displayed-value>
+        <stored-value>proj_objectives</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Workpackages (planned)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks (planned)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones (planned)</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Events (planned)</displayed-value>
+        <stored-value>plan_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Participative processes (planned)</displayed-value>
+        <stored-value>plan_participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation processes (planned)</displayed-value>
+        <stored-value>plan_cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publications (planned)</displayed-value>
+        <stored-value>plan_publications</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Objects, materials (planned)</displayed-value>
+        <stored-value>plan_physical_objects</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
+      <pair>
+        <displayed-value>Workpackages (planned)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks (planned)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones (planned)</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Events (planned)</displayed-value>
+        <stored-value>plan_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Participative processes (planned)</displayed-value>
+        <stored-value>plan_participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation processes (planned)</displayed-value>
+        <stored-value>plan_cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publications (planned)</displayed-value>
+        <stored-value>plan_publications</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Objects, materials (planned)</displayed-value>
+        <stored-value>plan_physical_objects</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_5_task_type">
+      <pair>
+        <displayed-value>Tasks (planned)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones (planned)</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Spin-offs (incl. associations) (planned)</displayed-value>
+        <stored-value>plan_spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents and utility patents (planned)</displayed-value>
+        <stored-value>plan_patents</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ideas for innovation and change</displayed-value>
+        <stored-value>innovationideas</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Intended business innovations (planned)</displayed-value>
+        <stored-value>plan_innovationpotentials_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Intended social innovations/ changeprocesses (planned)</displayed-value>
+        <stored-value>plan_innovationpotentials_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Application success in social innovations/ changeprocesses</displayed-value>
+        <stored-value>applications_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Application success for business innovations</displayed-value>
+        <stored-value>applications_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Unexpected results and problems</displayed-value>
+        <stored-value>unexpected_results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Next steps and cooperation</displayed-value>
+        <stored-value>steps</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Awards and prizes</displayed-value>
+        <stored-value>awards</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
+      <pair>
+        <displayed-value>Potential societal impact (planned)</displayed-value>
+        <stored-value>plan_pot_societalimpact</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
+      <pair>
+        <displayed-value>Contribution to funding programme objectives</displayed-value>
+        <stored-value>plan_contribution_fundingprogramme</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impactpathway_entity_to_collection_map" dc-term="impactpathway_entity_to_collection_map">
+      <pair>
+        <displayed-value>c334f6db-71bc-4ee2-9a57-9ea2d575b162</displayed-value>
+        <stored-value>impactpathway</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>38403351-26e7-4c17-b296-0c23d843a286</displayed-value>
+        <stored-value>impactpathwaystep</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>a6cfb36f-cad0-4aff-8b4a-01326cdaa445</displayed-value>
+        <stored-value>conditions</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>82331b12-9f23-42c3-a32f-7b3214e5005c</displayed-value>
+        <stored-value>stateofart</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>1aeb8bf1-931e-4715-b1fe-afe96f80f571</displayed-value>
+        <stored-value>proj_objectives</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>705ba438-99cc-4a8d-beb3-f245170208f7</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>d40817c8-92af-4732-afa4-e30e19f53ef4</displayed-value>
+        <stored-value>plan_tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>f3209331-a091-4206-af33-551386254520</displayed-value>
+        <stored-value>plan_milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>0177ebec-7ca8-4546-a153-ec7e4bf98993</displayed-value>
+        <stored-value>plan_research_quest</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>744a00f9-163e-4cd2-b303-2c0b9cf04118</displayed-value>
+        <stored-value>plan_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>a4f6cb4d-7f62-42f7-bac7-eb36755a0271</displayed-value>
+        <stored-value>plan_participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>83f6bdad-b069-4cd2-8fce-6c57dccf240d</displayed-value>
+        <stored-value>plan_cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>d8c6bb1b-db22-4fc8-a358-03e47822ed18</displayed-value>
+        <stored-value>plan_publications</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>0a849eed-c519-49a6-8b9a-b3c95d887a5f</displayed-value>
+        <stored-value>plan_physical_objects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>f1c481e4-e24f-44b3-b0f6-659f03457f3c</displayed-value>
+        <stored-value>plan_spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8972eecb-98ce-475f-baea-32cadba4514f</displayed-value>
+        <stored-value>plan_patents</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>e338d775-ad8e-4a9b-aeed-51e63410f48b</displayed-value>
+        <stored-value>innovationideas</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>2fd3ab11-6f49-44d0-9340-ca8c1f6f8ef5</displayed-value>
+        <stored-value>plan_innovationpotentials_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>626a0428-f34d-4631-af4f-a4b9bf10a3c2</displayed-value>
+        <stored-value>plan_innovationpotentials_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>048d6beb-41bd-489b-9442-e14cb1d793cc</displayed-value>
+        <stored-value>applications_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>9f4e7b92-c492-4bf9-90da-25a86490bbd4</displayed-value>
+        <stored-value>applications_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>e9309c83-e759-4c78-9283-e3a377aa677e</displayed-value>
+        <stored-value>unexpected_results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>b85f06f4-54fc-4bca-8f0f-4fa39f164b2d</displayed-value>
+        <stored-value>steps</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>46effa5e-4d2a-42e9-bad5-b295634776af</displayed-value>
+        <stored-value>awards</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>1832179d-7754-4a29-86e1-9068b13c587f</displayed-value>
+        <stored-value>plan_pot_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>12552f2e-ef8d-4932-9f3d-c0183b0dc720</displayed-value>
+        <stored-value>plan_contribution_fundingprogramme</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

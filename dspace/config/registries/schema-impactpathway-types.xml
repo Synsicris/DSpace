@@ -1,0 +1,54 @@
+<dspace-dc-types>
+
+    <dspace-header>
+        <title>Impact pathway Types</title>
+    </dspace-header>
+
+    <dc-schema>
+        <name>impactpathway</name>
+        <namespace>https://schema.org/impactpathway</namespace>
+    </dc-schema>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>type</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>step</element>
+        <qualifier>type</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>relation</element>
+        <qualifier>parent</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>relation</element>
+        <qualifier>step</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>task</element>
+        <qualifier>type</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>relation</element>
+        <qualifier>task</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+</dspace-dc-types>

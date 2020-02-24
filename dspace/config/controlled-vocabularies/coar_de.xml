@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="COAR 2020-02-02">
+  <isComposedBy>
+    <node id="c_6501" label="Artikel">
+    <hasNote>Ein Artikel zu einem bestimmten Thema, der in einer Zeitschriftenausgabe veröffentlicht wurde.</hasNote>
+      <isComposedBy>
+        <node id="c_7bab" label="Softwareartikel">
+        <hasNote>Ein Software-Papier sollte die Begründung für die Entwicklung des Werkzeugs und Einzelheiten des für seine Konstruktion verwendeten Codes enthalten. </hasNote>
+        </node>
+        <node id="c_dcae04bc" label="Übersichtsartikel">
+        <hasNote>Ein Übersichtsartikel ist eine Sekundärquelle, d.h. er wird über andere Artikel geschrieben und berichtet nicht über eigene Originalforschung.</hasNote>
+        </node>
+        <node id="c_beb9" label="Data Paper">
+        <hasNote>Ein Data paper ist eine wissenschaftliche Publikation, die einen bestimmten Datensatz oder eine Gruppe von Datensätzen beschreibt und in Form eines begutachteten Artikels in einer wissenschaftlichen Zeitschrift veröffentlicht wird. Der Hauptzweck eines Data papers ist die Beschreibung von Daten, der Umstände ihrer Erfassung sowie von Informationen zu Datenmerkmalen, zum Zugang und zur potenziellen Wiederverwendung.
+Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/publishing-data/data-papers</hasNote>
+        </node>
+        <node id="c_2df8fbb1" label="Forschungsartikel">
+        <hasNote>Ein Forschungsartikel ist eine Primärquelle, d.h. er berichtet über die Methoden und Ergebnisse einer von den Autoren durchgeführten Originalstudie.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="c_5794" label="Konferenzbeitrag ">
+    <hasNote>Ein Beitrag, der für eine Konferenz eingereicht und dem Publikum präsentiert wird. Der Beitrag wird in einem Tagungsband veröffentlicht.</hasNote>
+    </node>
+    <node id="c_ddb1" label="Forschungsdaten / Datensatz">
+    <hasNote>Eine Sammlung von zusammenhängenden Daten, die in einer definierten Struktur kodiert sind.</hasNote>
+    </node>
+    <node id="c_3248" label="Buchkapitel / Teil einer Monographie">
+    <hasNote>Ein Teil eines Buches oder einer Monographie, i.d.R. mit eigenem Titel oder Nummer</hasNote>
+    </node>
+    <node id="c_93fc" label="Report / Bericht">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="c_18hj" label="Bericht an Förderorganisation">
+        <hasNote>Schlussbericht an eine Förderorganisation, verfasst von den Empfängern von Projektzuschüssen. Der Bericht dokumentiert die wissenschaftliche und technische Arbeit eines Projekts.</hasNote>
+        </node>
+        <node id="c_186u" label="Policy report">
+        <hasNote>Liefert einen vertieften Einblick in wichtige politische Entwicklungen und Ereignisse</hasNote>
+        </node>
+        <node id="ID12" label="Projektkarte">
+        <hasNote>BLE-interner Typ</hasNote>
+        </node>
+        <node id="ID13" label="Praxismerkblatt">
+        <hasNote>BLE-interner Typ</hasNote>
+        </node>
+        <node id="c_18ws" label="Forschungsbericht ">
+        <hasNote>enthält eine vertiefte Studie zu einem bestimmten Thema oder beschreibt die Ergebnisse eines Forschungsprojekts</hasNote>
+        </node>
+        <node id="c_18gh" label="Technischer Bericht">
+        <hasNote>Zeichnet das angewandte Verfahren und die Ergebnisse einer wissenschaftlichen oder technischen Tätigkeit oder </hasNote>
+        </node>
+        <node id="c_18ww" label="interner Bericht">
+        <hasNote>protokolliert das angewandte Verfahren und die Ergebnisse einer wissenschaftlichen oder technischen Tätigkeit oder die Ergebnisse eines Forschungsprojektes</hasNote>
+        </node>
+        <node id="c_18wz" label="Memorandum">
+        <hasNote>Eine Notiz, ein Dokument oder eine andere Mitteilung, als Gedächtnisstütze durch Aufzeichnung von Ereignissen oder Beobachtungen zu einem Thema. Ein Memorandum kann nur eine bestimmte Anzahl von Formaten haben; es kann institutionsspezifisches Format haben. </hasNote>
+        </node>
+        <node id="c_18op" label="Ergebnis im Projekt">
+        <hasNote>Ein " Outcome " als Ergebnis eines Projekts, das an einen Kunden (z.B. Geldgeber) geliefert werden soll. Beispiele für ein Ergebnis sind ein Bericht, ein Dokument, ein Arbeitspaket oder jeder andere Baustein eines Gesamtprojekts.</hasNote>
+        </node>
+        <node id="c_18wq" label="sonstiger Bericht">
+        <hasNote>Other types of report may include Business Plans Technical Specifications, data management plans, recommendation reports, white papers, annual reports, auditor's reports, workplace reports, census reports, trip reports, progress reports, investigative reports, budget reports, policy reports, demographic reports, credit reports, appraisal reports, inspection reports, military reports, bound reports, etc.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="c_5ce6" label="Software">
+    <hasNote>Ein Computerprogramm in Quellcode (Text) oder kompilierter Form.</hasNote>
+    </node>
+    <node id="c_7ad9" label="Webseite">
+    <hasNote></hasNote>
+    </node>
+    <node id="c_18cc" label="Tondokument">
+    <hasNote>Eine Ressource, die in erster Linie dazu gedacht ist, gehört zu werden. Beispiele sind ein Musikwiedergabe-Dateiformat, eine Audio-Compact-Disc und aufgezeichnete Sprache oder Töne.</hasNote>
+    </node>
+    <node id="c_8a7e" label="Film / Video">
+    <hasNote>Eine bewegte Anzeige, die entweder von einem Computerprogramm dynamisch generiert oder aus einer Reihe von voraufgezeichneten Standbildern gebildet wird, die einen Eindruck von Bewegung vermitteln, wenn sie nacheinander gezeigt werden. (adapted from fabio)</hasNote>
+    </node>
+    <node id="c_46ec" label="schriftliche Abschlussarbeit">
+    <hasNote>Eine Abschlussarbeit ist ein Dokument, das zur Unterstützung der Kandidatur für einen akademischen Grad oder eine berufliche Qualifikation eingereicht wird und die Forschung und die Ergebnisse des Autors präsentiert.</hasNote>
+      <isComposedBy>
+        <node id="c_db06" label="Dissertation oder Habilitation">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_bdcc" label="Abschlussarbeit (Master)">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_7a1f" label="Abschlussarbeit (Bachelor)">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID28" label="Sonstiges">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="c_71bd" label="Technische Dokumentation / Manual">
+        <hasNote>Eine technische Dokumentation bezieht sich auf jede Art von Dokumentation, die die Handhabung, Funktionalität und Architektur eines technischen Produkts oder eines in der Entwicklung oder Verwendung befindlichen Produkts beschreibt.</hasNote>
+        </node>
+        <node id="ID30" label="Poster">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_6947" label="Blogbeitrag">
+        <hasNote>Ein Text oder anderer Inhalt, der in einem Blog veröffentlicht wird. (Adapted from oxforddictionaries)</hasNote>
+        </node>
+        <node id="c_26e4" label="Interview">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_8042" label="Arbeitspapier / Working paper">
+        <hasNote>Ein unveröffentlichtes Papier, das in der Regel privat in einer kleinen Gruppe von Peers verteilt wird, um Informationen zu sammeln oder um Kommentare oder redaktionelle Verbesserungen zu erbitten. (source: fabio)</hasNote>
+        </node>
+        <node id="c_2f33" label="Buch / Monographie">
+        <hasNote>Eine nicht-serielle Publikation, die in einem Band oder einer bestimmten begrenzten Anzahl von Bänden vollständig ist. (adapted from CiTO; EPrint Type vocabulary)</hasNote>
+        </node>
+        <node id="c_8544" label="Vorlesung">
+        <hasNote>Eine Niederschrift eines Vortrags, der während einer akademischen Veranstaltung gehalten wurde.</hasNote>
+        </node>
+        <node id="c_e059" label="Lernobjekt, Kursmaterial">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_816b" label="Preprint, Vorabdruck">
+        <hasNote>Der erste Entwurf eines Artikels - vor dem Peer-Review, sogar vor jedem Kontakt mit einem Verleger. Dieser Gebrauch ist unter Akademikern üblich, für die die wichtigste Modifikation eines Artikels das Peer-Review-Verfahren ist. Eine andere Verwendung des Begriffs Vorabdruck ist für den fertigen Artikel, der überprüft und geändert, fertig und zur Veröffentlichung akzeptiert wird - jedoch getrennt von der Version, die vom Verlag gesetzt oder formatiert wird. Diese Verwendung ist unter Verlegern häufiger anzutreffen, für die die letzte und wichtige Phase der Änderung eines Artikels die Anordnung des Materials für die Drucklegung ist.</hasNote>
+        </node>
+        <node id="c_86bc" label="Bibliografie / Sammelwerk ">
+        <hasNote>Eine systematische Liste oder Aufzählung von schriftlichen Werken eines bestimmten Autors oder zu einem bestimmten Thema.</hasNote>
+        </node>
+        <node id="c_f744" label="Tagungsband">
+        <hasNote>Der Tagunsband ist die offizielle Aufzeichnung einer Konferenz. Er ist eine Sammlung von Dokumenten, die den auf der Konferenz gehaltenen Präsentationen entsprechen. Er kann zusätzliche Inhalte enthalten.</hasNote>
+        </node>
+        <node id="c_998f" label="Zeitungsartikel">
+        <hasNote>Ein Werk, das aus einer Nachricht besteht, die in einer allgemeinen Zeitung oder einer anderen allgemeinen Nachrichtenzeitschrift erscheint und Informationen von aktuellem Interesse auf einem Gebiet enthält. (Adapted from http://www.reference.md/files/D018/mD018431.html )</hasNote>
+        </node>
+        <node id="c_2fe3" label="Zeitung">
+        <hasNote>Eine Zeitung ist eine gedruckte Publikation (in der Regel täglich oder wöchentlich), die aus gefalteten, ungehefteten Blättern besteht und Nachrichten, Artikel, Werbung und Korrespondenz enthält. (Adapted from oxforddictionaries)</hasNote>
+        </node>
+        <node id="c_0640" label="Zeitschrift ">
+        <hasNote>Eine Zeitschrift ist eine serielle Publikation, die sich der Verbreitung von Originalforschung und aktuellen Entwicklungen zu einem Thema widmet. (Adapted from ODLIS)</hasNote>
+        </node>
+        <node id="c_2cd9" label="Informationszeitschrift (Fachzeitschrift?)">
+        <hasNote>Eine Publikumszeitschrift, die in der Regel Artikel zu einer Vielzahl von Themen enthält, die von verschiedenen Autoren in einem nicht-wissenschaftlichen Stil verfasst wurden, oder eine Fachpublikation, die im Gegensatz zu einer Verbraucherpublikation ein bestimmtes Thema für Personen abdeckt, die in diesem speziellen Bereich oder dieser Branche arbeiten. </hasNote>
+        </node>
+        <node id="c_c513" label="Bild">
+        <hasNote>Eine andere visuelle Darstellung als Text, einschließlich aller Arten von Bewegtbildern und Standbildern.</hasNote>
+        </node>
+        <node id="c_393c" label="Workflow">
+        <hasNote>Eine protokollierte Abfolge zusammenhängender Schritte, die automatisiert werden kann und eine zuverlässig wiederholbare Abfolge von Operationen angibt, die bei der Ausführung einer bestimmten Arbeit auszuführen sind, z.B. eine in-silico-Untersuchung, die Informationen aus einer Reihe von Bioinformatik-Datenbanken extrahiert und verarbeitet. (adapted from http://purl.org/spar/fabio/Workflow)</hasNote>
+        </node>
+        <node id="c_baaf" label="Exposee">
+        <hasNote>Ein Exposee ist ein Dokument, das ein Forschungsprojekt im akademischen Bereich skizziert und stellt einen Antrag auf Förderung dieser Forschung zum Ziel hat.</hasNote>
+        </node>
+        <node id="c_12cc" label="kartografisches Material ">
+        <hasNote>Jegliches Material, das die Erde oder einen Teil der Erde oder einen Himmelskörper in jedem Maßstab darstellt. Zu den kartographischen Materialien gehören zwei- und dreidimensionale Karten und Pläne (einschließlich Karten von imaginären Orten); Luft-, See- und Himmelskarten; Atlanten; Globen; Blockdiagramme; Schnitte; Luftbilder mit kartographischem Zweck; Vogelperspektiven (Kartenansichten) usw.</hasNote>
+        </node>
+        <node id="c_cb28" label="klinischer Versuch">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_7877" label="klinische Studie">
+        <hasNote></hasNote>
+        </node>
+        <node id="c_b239" label="Editorial (Vorwort/Nachwort)">
+        <hasNote>Ein kurzer Aufsatz, der die Meinung oder Position des/der Chefredakteurs/en einer (akademischen) Zeitschrift in Bezug auf ein aktuelles politisches, soziales, kulturelles oder berufliches Thema zum Ausdruck bringt.</hasNote>
+        </node>
+        <node id="c_efa0" label="Rezension">
+        <hasNote>Ein Überblick zu veröffentlichten Arbeiten anderer.</hasNote>
+        </node>
+        <node id="c_0040" label="Manuskript">
+        <hasNote>Ein Manuskript ist ein Werk jeglicher Art (Text, Inschrift, Partitur, Karte usw.), das vollständig von Hand geschrieben ist. (Adapted from ODLIS)</hasNote>
+        </node>
+        <node id="ID53" label="Flyer">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

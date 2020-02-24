@@ -47,6 +47,16 @@
       <type>collection</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step>
+    <step id="impact_pathway_form" mandatory="true">
+      <heading>submit.progressbar.describe.impact_pathway_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="impact_pathway_step_form" mandatory="true">
+      <heading>submit.progressbar.describe.impact_pathway_step_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
     <step id="upload" mandatory="true">
       <heading>submit.progressbar.upload</heading>
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
@@ -189,11 +199,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="physical_objects_result_further_information" mandatory="true">
-      <heading>submit.progressbar.describe.physical_objects_result_further_information</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
     <step id="spinoffs" mandatory="true">
       <heading>submit.progressbar.describe.spinoffs</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -329,11 +334,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="applications_econtech_types" mandatory="true">
-      <heading>submit.progressbar.describe.applications_econtech_types</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
     <step id="applications_econtech_quant" mandatory="true">
       <heading>submit.progressbar.describe.applications_econtech_quant</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -354,33 +354,26 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="funder_objectives" mandatory="true">
-      <heading>submit.progressbar.describe.funder_objectives</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>    
-    <step id="impact_pathway_form" mandatory="true">
-      <heading>submit.progressbar.describe.impact_pathway_form</heading>
+    <step id="contribution_fundingprogramme" mandatory="true">
+      <heading>submit.progressbar.describe.contribution_fundingprogramme</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="impact_pathway_step_form" mandatory="true">
-      <heading>submit.progressbar.describe.impact_pathway_step_form</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="impact_pathway_task_form" mandatory="true">
-      <heading>submit.progressbar.describe.impact_pathway_task_form</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="impact_pathway_step_type_6_task_form" mandatory="true">
-      <heading>submit.progressbar.describe.impact_pathway_step_type_6_task_form</heading>
+    <step id="tests" mandatory="true">
+      <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
   </step-definitions>
   <submission-definitions>
+    <submission-process name="impact_pathway">
+      <step id="collection" />
+      <step id="impact_pathway_form" />
+    </submission-process>
+    <submission-process name="impact_pathway_step">
+      <step id="collection" />
+      <step id="impact_pathway_step_form" />
+    </submission-process>
     <submission-process name="patents">
       <step id="collection" />
       <step id="entity_type_selection" />
@@ -429,8 +422,7 @@
       <step id="link_to_plan" />
       <step id="participation_events" />
       <step id="relation_targetgroup" />
-      <step id="participation_events_frequency" />
-      <step id="events_result" />
+      <step id="participation_events_date" />
       <step id="upload" />
     </submission-process>
     <submission-process name="plan_participation_events">
@@ -438,11 +430,6 @@
       <step id="participation_events" />
       <step id="relation_targetgroup" />
       <step id="participation_events_frequency" />
-    </submission-process>
-    <submission-process name="cooperation_partners">
-      <step id="collection" />
-      <step id="cooperation_partners" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="cooperation_events">
       <step id="collection" />
@@ -473,7 +460,6 @@
       <step id="link_to_plan" />
       <step id="physical_objects" />
       <step id="physical_objects_result" />
-      <step id="physical_objects_result_further_information" />
       <step id="upload" />
     </submission-process>
     <submission-process name="plan_physical_objects">
@@ -503,48 +489,25 @@
       <step id="upload" />
       <step id="license" />
     </submission-process>
-    <submission-process name="library_publications">
+    <submission-process name="plan_publications">
       <step id="collection" />
-      <step id="publications_result" />
-      <step id="publications_result_related" />
-      <step id="upload" />
-      <step id="license" />
+      <step id="publications" />
     </submission-process>
-    <submission-process name="library_patents">
+    <submission-process name="awards">
       <step id="collection" />
-      <step id="patents" />
-      <step id="patents_result" />
-      <step id="upload" />
-      <step id="license" />
-    </submission-process>
-    <submission-process name="library_physical_objects">
-      <step id="collection" />
-      <step id="physical_objects" />
-      <step id="physical_objects_result" />
-      <step id="physical_objects_result_further_information" />
-      <step id="upload" />
-      <step id="license" />
-    </submission-process>
-    <submission-process name="library_spinoffs">
-      <step id="collection" />
-      <step id="spinoffs" />
-      <step id="spinoffs_result" />
-      <step id="spinoffs_result_funding" />
-      <step id="spinoffs_result_performance_development" />
-      <step id="upload" />
-      <step id="license" />
-    </submission-process>
-    <submission-process name="library_awards">
-      <step id="collection" />
+      <step id="entity_type_selection" />
       <step id="awards" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="steps">
       <step id="collection" />
       <step id="steps" />
     </submission-process>
     <submission-process name="innovationideas">
+      <step id="collection" />
+      <step id="innovationideas" />
+    </submission-process>
+    <submission-process name="plan_innovationideas">
       <step id="collection" />
       <step id="innovationideas" />
     </submission-process>
@@ -622,33 +585,30 @@
     <submission-process name="applications_econtech">
       <step id="collection" />
       <step id="applications_econtech" />
-      <step id="applications_econtech_types" />
       <step id="applications_econtech_quant" />
     </submission-process>
     <submission-process name="unexpected_results">
       <step id="collection" />
       <step id="unexpected_results" />
     </submission-process>
-    <submission-process name="funder_objectives">
+    <submission-process name="contribution_fundingprogramme">
       <step id="collection" />
-      <step id="entity_type_selection" />
-      <step id="funder_objectives" />
+      <step id="contribution_fundingprogramme" />
     </submission-process>
-    <submission-process name="impact_pathway">
+    <submission-process name="plan_contribution_fundingprogramme">
       <step id="collection" />
-      <step id="impact_pathway_form" />
+      <step id="contribution_fundingprogramme" />
     </submission-process>
-    <submission-process name="impact_pathway_step">
-      <step id="collection" /> 
-      <step id="impact_pathway_step_form" />
-    </submission-process>
-    <submission-process name="impact_pathway_task">
+    <submission-process name="tests">
       <step id="collection" />
-      <step id="impact_pathway_task_form" />
+      <step id="tests" />
     </submission-process>
-    <submission-process name="impact_pathway_step_type_6_task_form">
+    <submission-process name="cooperation_partners">
       <step id="collection" />
-      <step id="impact_pathway_step_type_6_task_form" />
+      <step id="cooperation_partners" />
+      <step id="cooperation_partners_orgunits" />
+      <step id="cooperation_partners_orgunits_companies" />
+      <step id="cooperation_partners_contribution" />
     </submission-process>
   </submission-definitions>
 </item-submission>

@@ -11,6 +11,13 @@
 
     <dc-type>
         <schema>impactpathway</schema>
+        <element>entity</element>
+        <qualifier>map</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
         <element>type</element>
         <qualifier></qualifier>
         <scope_note></scope_note>
@@ -39,15 +46,22 @@
 
     <dc-type>
         <schema>impactpathway</schema>
-        <element>task</element>
-        <qualifier>type</qualifier>
+        <element>relation</element>
+        <qualifier>task</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
     <dc-type>
         <schema>impactpathway</schema>
-        <element>relation</element>
-        <qualifier>task</qualifier>
+        <element>outcome</element>
+        <qualifier>link</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>impactpathway</schema>
+        <element>bidirectional</element>
+        <qualifier>link</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

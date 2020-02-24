@@ -1,162 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COAR 2019-12-02">
+<node id="ResourceTypeGenres" label="COAR 2020-02-02">
   <isComposedBy>
-    <node id="ID01" label="Artikel">
+    <node id="c_6501" label="journal article">
     <hasNote>An article on a particular topic and published in a journal issue</hasNote>
       <isComposedBy>
-        <node id="ID02" label="Softwareartikel">
+        <node id="c_7bab" label="software paper">
         <hasNote>A software paper should include the rationale for the development of the tool and details of the code used for its construction. (Adapted from f1000)</hasNote>
         </node>
-        <node id="ID03" label="Übersichtsartikel">
+        <node id="c_dcae04bc" label="review article">
         <hasNote>A review article is a secondary source, that is, it is written about other articles, and does not report original research of its own.</hasNote>
         </node>
-        <node id="ID04" label="Data Paper">
+        <node id="c_beb9" label="data paper">
         <hasNote>A data paper is a scholarly publication describing a particular dataset or group of dataset, published in the form of a peer-reviewed article in a scholarly journal. The main purpose of a data paper is to describe data, the circumstances of their collection, and information related to data features, access and potential reuse. Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/publishing-data/data-papers</hasNote>
         </node>
-        <node id="ID05" label="Forschungsartikel">
+        <node id="c_2df8fbb1" label="research article">
         <hasNote>A research article is a primary source, that is, it reports the methods and results of an original study performed by the authors.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID06" label="Konferenzbeitrag ">
+    <node id="c_5794" label="conference paper">
     <hasNote>A conference paper that is submitted to a conference and presented to the audience. The conference paper is published in proceedings.</hasNote>
     </node>
-    <node id="ID07" label="Forschungsdaten / Datensatz">
+    <node id="c_ddb1" label="dataset">
     <hasNote>A collection of related facts and data encoded in a defined structure.</hasNote>
     </node>
-    <node id="ID08" label="Buchkapitel / Teil einer Monographie">
+    <node id="c_3248" label="book part / part of monographic series">
     <hasNote>A defined chapter or section of a book, usually with a separate title or number.</hasNote>
     </node>
-    <node id="ID09" label="Report / Bericht">
+    <node id="c_93fc" label="report">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID10" label="Abschlussbericht">
+        <node id="c_18hj" label="report to funding agency">
         <hasNote>Final report to a funding agency, written by beneficiaries of project grants. The report documents the scientific and technical work of a project</hasNote>
         </node>
-        <node id="ID11" label="Policy report">
+        <node id="c_186u" label="policy report">
         <hasNote>Provides an in-depth look at major policy developments and events</hasNote>
         </node>
-        <node id="ID12" label="Projektkarte">
-        <hasNote>BLE-interner Typ</hasNote>
+        <node id="ID12" label="project chart">
+        <hasNote>internal type (BLE funder)</hasNote>
         </node>
-        <node id="ID13" label="Praxismerkblatt">
-        <hasNote>BLE-interner Typ</hasNote>
+        <node id="ID13" label="practice leaflet">
+        <hasNote>internal type (BLE funder)</hasNote>
         </node>
-        <node id="ID14" label="Forschungsbericht ">
+        <node id="c_18ws" label="research report">
         <hasNote>Provide an in-depth study of a particular topic or describe the results of a research project</hasNote>
         </node>
-        <node id="ID15" label="Technischer Bericht">
+        <node id="c_18gh" label="technical report">
         <hasNote>Records the procedure adopted and results obtained from a scientific or technical activity or investigation</hasNote>
         </node>
-        <node id="ID16" label="sonstiger Bericht">
+        <node id="c_18ww" label="internal report">
+        <hasNote>Record of findings collected for internal use. It is not designed to be made public and may include confidential or proprietary information.</hasNote>
+        </node>
+        <node id="c_18wz" label="memorandum">
+        <hasNote>A note, document or other communication that helps the memory by recording events or observations on a topic. A memorandum can have only a certain number of formats; it may have a format specific to an office or institution. </hasNote>
+        </node>
+        <node id="c_18op" label="project deliverable">
+        <hasNote>An “outcome” as a result of a project that is intended to be delivered to a customer (e.g. funder). Examples of deliverable are report, document, work package or any other building block of an overall project.</hasNote>
+        </node>
+        <node id="c_18wq" label="other type of report">
         <hasNote>Other types of report may include Business Plans Technical Specifications, data management plans, recommendation reports, white papers, annual reports, auditor's reports, workplace reports, census reports, trip reports, progress reports, investigative reports, budget reports, policy reports, demographic reports, credit reports, appraisal reports, inspection reports, military reports, bound reports, etc.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID17" label="Software">
+    <node id="c_5ce6" label="software">
+    <hasNote>A computer program in source code (text) or compiled form.</hasNote>
+    </node>
+    <node id="c_7ad9" label="website">
     <hasNote></hasNote>
     </node>
-    <node id="ID18" label="Webseite">
-    <hasNote></hasNote>
+    <node id="c_18cc" label="sound">
+    <hasNote>A resource primarily intended to be heard. Examples include a music playback file format, an audio compact disc, and recorded speech or sounds.</hasNote>
     </node>
-    <node id="ID19" label="Tondokument">
-    <hasNote></hasNote>
+    <node id="c_8a7e" label="moving image">
+    <hasNote>A moving display, either generated dynamically by a computer program or formed from a series of pre-recorded still images imparting an impression of motion when shown in succession. (adapted from fabio)</hasNote>
     </node>
-    <node id="ID20" label="Film / Video">
-    <hasNote></hasNote>
-    </node>
-    <node id="ID21" label="Abschlussarbeit">
-    <hasNote></hasNote>
+    <node id="c_46ec" label="thesis">
+    <hasNote>A thesis or disseration is a  document submitted in support of candidature for an academic degree or professional qualification presenting the author's research and findings.</hasNote>
       <isComposedBy>
-        <node id="ID22" label="Dissertation">
-        <hasNote></hasNote>
+        <node id="c_db06" label="doctoral thesis">
+        <hasNote>A thesis reporting the research undertaken during a period of graduate study leading to a doctoral degree.</hasNote>
         </node>
-        <node id="ID23" label="Habilitation">
-        <hasNote></hasNote>
+        <node id="c_bdcc" label="master thesis">
+        <hasNote>A thesis reporting a research project undertaken as part of a graduate course of education leading to a master's degree.</hasNote>
         </node>
-        <node id="ID24" label="Abschlussarbeit (Master)">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID25" label="Abschlussarbeit (Bachelor)">
-        <hasNote></hasNote>
+        <node id="c_7a1f" label="bachelor thesis">
+        <hasNote>A thesis reporting a research project undertaken as part of an undergraduate course of education leading to a bachelor's degree. (adapted from fabio)</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID26" label="Sonstiges">
+    <node id="ID28" label="other">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID27" label="Technische Dokumentation / Manual">
+        <node id="c_71bd" label="technical documentation">
+        <hasNote>A Technical documentation refers to any type of documentation that describes handling, functionality and architecture of a technical product or a product under development or use.</hasNote>
+        </node>
+        <node id="ID30" label="poster">
         <hasNote></hasNote>
         </node>
-        <node id="ID28" label="Poster">
+        <node id="c_6947" label="blog post">
+        <hasNote>A piece of writing or other item of content published on a blog. (Adapted from oxforddictionaries)</hasNote>
+        </node>
+        <node id="c_26e4" label="interview">
         <hasNote></hasNote>
         </node>
-        <node id="ID29" label="Blogbeitrag">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID30" label="Interview">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID31" label="Arbeitspapier / Working paper">
+        <node id="c_8042" label="working paper">
         <hasNote>An unpublished paper, usually circulated privately among a small group of peers, to provide information or with a request for comments or editorial improvement. (source: fabio)</hasNote>
         </node>
-        <node id="ID32" label="Buch / Monographie">
+        <node id="c_2f33" label="book / monographic series">
         <hasNote>A non-serial publication that is complete in one volume or a designated finite number of volumes. (adapted from CiTO; EPrint Type vocabulary)</hasNote>
         </node>
-        <node id="ID33" label="Vorlesung / Vortrag">
+        <node id="c_8544" label="lecture">
+        <hasNote>A transcription of a talk delivered during an academic event.</hasNote>
+        </node>
+        <node id="c_e059" label="learning object">
         <hasNote></hasNote>
         </node>
-        <node id="ID34" label="Sammelwerk ">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="ID35" label="Festschrift">
-            <hasNote></hasNote>
-            </node>
-            <node id="ID36" label="Konferenzveröffentlichung (Tagungsband)">
-            <hasNote>Conference proceedings is the official record of a conference meeting. It is a collection of documents which corresponds to the presentations given at the conference. It may include additional content.</hasNote>
-            </node>
-          </isComposedBy>
+        <node id="c_816b" label="preprint">
+        <hasNote>The first draft of an article - before peer-review, even before any contact with a publisher. This use is common amongst academics for whom the key modification of an article is the peer-review process. Another use of the term pre-print is for the finished article, reviewed and amended, ready and accepted for publication - but separate from the version that is type-set or formatted by the publisher. This use is more common amongst publishers, for whom the final and significant stage of modification to an article is the arrangement of the material for putting to print.</hasNote>
         </node>
-        <node id="ID37" label="Zeitschrift ">
+        <node id="c_86bc" label="bibliography">
+        <hasNote>A systematic list or enumeration of written works by a specific author or on a given subject.</hasNote>
+        </node>
+        <node id="c_f744" label="conference proceedings">
+        <hasNote>Conference proceedings is the official record of a conference meeting. It is a collection of documents which corresponds to the presentations given at the conference. It may include additional content.</hasNote>
+        </node>
+        <node id="c_998f" label="newspaper article">
+        <hasNote>Work consisting of a news item appearing in a general-interest newspaper or other general news periodical, containing information of current and timely interest in a field. (Adapted from http://www.reference.md/files/D018/mD018431.html )</hasNote>
+        </node>
+        <node id="c_2fe3" label="newspaper">
+        <hasNote>A newspaper is a printed publication (usually issued daily or weekly) consisting of folded unstapled sheets and containing news, articles, advertisements, and correspondence. (Adapted from oxforddictionaries)</hasNote>
+        </node>
+        <node id="c_0640" label="journal">
         <hasNote>A journal is a serial publication devoted to disseminating original research and current developments on a subject. (Adapted from ODLIS)</hasNote>
         </node>
-        <node id="ID38" label="Zeitung (Newspaper, Magazine)">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="ID39" label="Zeitungsartikel">
-            <hasNote></hasNote>
-            </node>
-          </isComposedBy>
+        <node id="c_2cd9" label="magazine">
+        <hasNote>A popular interest periodical usually containing articles on a variety of topics, written by various authors in a nonscholarly style or a trade publication, unlike a consumer publication, covers a specific topic for people who work in that particular field or industry. </hasNote>
         </node>
-        <node id="ID40" label="Bild">
-        <hasNote></hasNote>
+        <node id="c_c513" label="image">
+        <hasNote>A visual representation other than text, including all types of moving image and still image.</hasNote>
         </node>
-        <node id="ID41" label="Workflow">
-        <hasNote></hasNote>
+        <node id="c_393c" label="workflow">
+        <hasNote>A recorded sequence of connected steps, which may be automated, specifying a reliably repeatable sequence of operations to be undertaken when conducting a particular job, for example an in silico investigation that extracts and processes information from a number of bioinformatics databases. (adapted from http://purl.org/spar/fabio/Workflow)</hasNote>
         </node>
-        <node id="ID42" label="kartografisches Material ">
-        <hasNote></hasNote>
+        <node id="c_baaf" label="research proposal">
+        <hasNote>A research proposal is a document proposing a research project, generally in the sciences or academia, and generally constitutes a request for sponsorship of that research</hasNote>
         </node>
-        <node id="ID43" label="klinischer Versuch">
+        <node id="c_12cc" label="cartographic material">
+        <hasNote>Any material representing the whole or part of the earth or any celestial body at any scale. Cartographic materials include two- and three-dimensional maps and plans (including maps of imaginary places); aeronautical, navigational, and celestial charts; atlases; globes; block diagrams; sections; aerial photographs with a cartographic purpose; bird's-eye views (map views), etc.</hasNote>
+        </node>
+        <node id="c_cb28" label="clinical trial">
         <hasNote></hasNote>
         </node>
-        <node id="ID44" label="klinische Studie">
+        <node id="c_7877" label="clinical study">
         <hasNote></hasNote>
         </node>
-        <node id="ID45" label="Lernobjekt">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID46" label="Manuskript">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID47" label="Flyer">
-        <hasNote></hasNote>
-        </node>
-        <node id="ID48" label="Editorial (Vorwort/Nachwort)">
+        <node id="c_b239" label="editorial">
         <hasNote>A brief essay expressing the opinion or position of the chief editor(s) of a (academic) journal with respect to a current political, social, cultural, or professional issue.</hasNote>
         </node>
-        <node id="ID49" label="Rezension">
+        <node id="c_efa0" label="review">
         <hasNote>A review of others' published work.</hasNote>
+        </node>
+        <node id="c_0040" label="manuscript">
+        <hasNote>A manuscript is a work of any kind (text, inscription, music score, map, etc.) written entirely by hand. (Adapted from ODLIS)</hasNote>
+        </node>
+        <node id="ID53" label="flyer">
+        <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>

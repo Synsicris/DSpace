@@ -1,0 +1,40 @@
+<dspace-dc-types>
+
+    <dspace-header>
+        <title>Working plan Types</title>
+    </dspace-header>
+
+    <dc-schema>
+        <name>workingplan</name>
+        <namespace>https://schema.org/workingplan</namespace>
+    </dc-schema>
+
+    <dc-type>
+        <schema>workingplan</schema>
+        <element>relation</element>
+        <qualifier>parent</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>workingplan</schema>
+        <element>relation</element>
+        <qualifier>step</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>workingplan</schema>
+        <element>responsible</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>workingplan</schema>
+        <element>step</element>
+        <qualifier>status</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+</dspace-dc-types>

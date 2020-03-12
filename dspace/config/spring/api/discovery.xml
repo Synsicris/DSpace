@@ -75,6 +75,7 @@
                 <entry key="impactpathway_step_type_5_task_type" value-ref="impactpathwayStepType5TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_6_task_type" value-ref="impactpathwayStepType6TaskTypeConfiguration"/>
                 <entry key="allWorkpackages" value-ref="allWorkpackagesConfiguration"/>
+                <entry key="workpackageSteps" value-ref="workpackageStepsConfiguration"/>
             </map>
         </property>
         <property name="toIgnoreMetadataFields">
@@ -1695,7 +1696,7 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="searchFilterTaskType"/>
-                <ref bean="searchFilterStepId"/>
+                <ref bean="searchFilterWorkpackageId"/>
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -1703,7 +1704,7 @@
             <list>
                 <ref bean="searchFilterTaskType"/>
                 <ref bean="searchFilterTitle"/>
-                <ref bean="searchFilterStepId"/>
+                <ref bean="searchFilterWorkpackageId"/>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1726,6 +1727,63 @@
         <property name="defaultFilterQueries">
             <list>
                 <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages)</value>
+            </list>
+        </property>
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned"/>
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10"/>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+
+    <bean id="workpackageStepsConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+          scope="prototype">
+        <property name="id" value="workpackageSteps"/>
+        <property name="indexAlways" value="true"/>
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterTaskType"/>
+                <ref bean="searchFilterWorkpackageId"/>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterTaskType"/>
+                <ref bean="searchFilterTitle"/>
+                <ref bean="searchFilterWorkpackageId"/>
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortEntityType"/>
+                        <ref bean="sortTitle"/>
+                        <ref bean="sortDateAccessioned"/>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:conditions OR entityType_keyword:reflexion OR entityType_keyword:stateofart OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_research_quest OR entityType_keyword:plan_events OR entityType_keyword:plan_participation_events OR entityType_keyword:plan_cooperation_events OR entityType_keyword:plan_publications OR entityType_keyword:plan_physical_objects OR entityType_keyword:plan_spinoffs OR entityType_keyword:plan_patents OR entityType_keyword:innovationideas OR entityType_keyword:plan_innovationpotentials_econtech OR entityType_keyword:plan_innovationpotentials_social OR entityType_keyword:applications_social OR entityType_keyword:applications_econtech OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:awards OR entityType_keyword:plan_pot_societalimpact OR entityType_keyword:plan_contribution_fundingprogramme)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2467,6 +2525,15 @@
         <property name="metadataFields">
             <list>
                 <value>impactpathway.relation.parent</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterWorkpackageId" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="parentWorkpackageId" />
+        <property name="metadataFields">
+            <list>
+                <value>workingplan.relation.parent</value>
             </list>
         </property>
     </bean>

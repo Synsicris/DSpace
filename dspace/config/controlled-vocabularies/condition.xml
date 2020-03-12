@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="CONDITION 2020-02-13">
+  <isComposedBy>
+    <node id="COND01" label="Property rights of others ">
+    <hasNote>Property rights of others which hamper exploitation by the applicant</hasNote>
+    </node>
+    <node id="COND02" label="Legal conditions ">
+    <hasNote>(e.g. laws, regulations)</hasNote>
+    </node>
+    <node id="COND03" label="Ethical Issues ">
+    <hasNote>Does your project touch on ethical issues? (e.g. in relation to methods and data used, persons (not) included or (not) addressed, risks of misinterpretation of results or the risk of negative effects of an application). Please record possible negative effects of an application as potential impact. </hasNote>
+    </node>
+    <node id="COND04" label="Social and cultural conditions">
+    <hasNote>(e.g. attitudes, living conditions, practices, traditions, norms, customs, religions)</hasNote>
+    </node>
+    <node id="COND05" label="Ecological conditions">
+    <hasNote> (e.g. climate changes, appearance of new pests, water availability )</hasNote>
+    </node>
+    <node id="COND06" label="Technical and infrastructural conditions or requirements">
+    <hasNote>(e.g. established technical standards, existing basic technologies, required infrastructures)</hasNote>
+    </node>
+    <node id="COND07" label="Market conditions ">
+    <hasNote>(e.g. price rates, purchasing power, competitive conditions etc.)</hasNote>
+    </node>
+    <node id="COND08" label="Others">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

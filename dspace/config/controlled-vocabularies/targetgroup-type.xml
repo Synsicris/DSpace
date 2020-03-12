@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="TARGETGROUP-TYPE 2020-02-14">
+  <isComposedBy>
+    <node id="TARGET010" label="Science and Research">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET011" label="Individual Researchers">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET012" label="Research Institutions">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET020" label="Economy">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET021" label="Mainly SMEs">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET022" label="Mainly large companies/ large enterprises">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET030" label="Advisory service / Consulting">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET040" label="Education">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET050" label="Media">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET060" label="Political and administrative arena">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET061" label="Political decision-makers ">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET062" label="Public institutions, organisations or authorities">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET070" label="Civil Society">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET071" label="Private individuals (e.g. consumers, citizens)">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET072" label="Civil society organisations and associations">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

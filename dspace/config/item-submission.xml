@@ -3,37 +3,39 @@
 
 <item-submission>
   <submission-map>
-    <name-map collection-handle="123456789/74" submission-name="applications_social" />	
-    <name-map collection-handle="123456789/71" submission-name="awards" />	    
-    <name-map collection-handle="123456789/16" submission-name="cooperation_events" />
-    <name-map collection-handle="123456789/64" submission-name="plan_cooperation_events" />  <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/106" submission-name="applications_social" />	
+    <name-map collection-handle="123456789/107" submission-name="awards" />	    
+    <name-map collection-handle="123456789/108" submission-name="cooperation_events" />
+    <name-map collection-handle="123456789/120" submission-name="plan_cooperation_events" />  <!-- ausgeblendet  --> 
     <name-map collection-handle="123456789/26" submission-name="cooperation_partners" />
     <name-map collection-handle="123456789/3"  submission-name="events" />
-    <name-map collection-handle="123456789/65" submission-name="plan_events" />	
-    <name-map collection-handle="123456789/68" submission-name="innovationpotentials_econtech" />	
-    <name-map collection-handle="123456789/80" submission-name="innovationideas" />	 
-    <name-map collection-handle="123456789/69" submission-name="plan_innovationpotentials_econtech" />   <!-- ausgeblendet  --> 	
-    <name-map collection-handle="123456789/67" submission-name="innovationpotentials_social" />	
-    <!-- <name-map collection-handle="123456789/77" submission-name="library_awards" /> -->   <!-- library  --> 		
+    <name-map collection-handle="123456789/121" submission-name="plan_events" />	
+    <name-map collection-handle="123456789/111" submission-name="innovationpotentials_econtech" />	
+    <name-map collection-handle="123456789/109" submission-name="innovationideas" />	 
+    <name-map collection-handle="123456789/123" submission-name="plan_innovationpotentials_econtech" />   <!-- ausgeblendet  --> 	
+    <name-map collection-handle="123456789/110" submission-name="innovationpotentials_social" />		
     <name-map collection-handle="123456789/66" submission-name="library_awards" />   <!-- library  --> 		
     <name-map collection-handle="123456789/73" submission-name="library_patents" />   <!-- library  --> 		
     <name-map collection-handle="123456789/76" submission-name="library_physical_objects" />   <!-- library  --> 		    	    
     <name-map collection-handle="123456789/75" submission-name="library_publications" />   <!-- library  --> 		
     <name-map collection-handle="123456789/78" submission-name="library_spinoffs" />   <!-- library  --> 		    	
     <name-map collection-handle="123456789/49" submission-name="orgunits" />
-    <name-map collection-handle="123456789/17" submission-name="participation_events" />
-    <name-map collection-handle="123456789/55" submission-name="plan_participation_events" />   <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/112" submission-name="participation_events" />
+    <name-map collection-handle="123456789/126" submission-name="plan_participation_events" />   <!-- ausgeblendet  --> 
     <name-map collection-handle="default"      submission-name="publications" />
-    <name-map collection-handle="123456789/54" submission-name="plan_patents" />	  <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/127" submission-name="plan_patents" />	  <!-- ausgeblendet  --> 
     <name-map collection-handle="123456789/24" submission-name="persons" /> 
-    <name-map collection-handle="123456789/25" submission-name="physical_objects" />
-    <name-map collection-handle="123456789/53" submission-name="plan_physical_objects" />   <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/114" submission-name="physical_objects" />
+    <name-map collection-handle="123456789/128" submission-name="plan_physical_objects" />   <!-- ausgeblendet  --> 
     <name-map collection-handle="123456789/5"  submission-name="projects" />   
     <name-map collection-handle="123456789/11" submission-name="publications" />   
-    <name-map collection-handle="123456789/27" submission-name="spinoffs" />
-    <name-map collection-handle="123456789/57" submission-name="plan_spinoffs" />	  <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/115" submission-name="spinoffs" />
+    <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />	  <!-- ausgeblendet  --> 
     <name-map collection-handle="123456789/48" submission-name="subprojects" />
-    <name-map collection-handle="123456789/83" submission-name="steps" />	
+    <name-map collection-handle="123456789/117" submission-name="steps" />
+    <name-map collection-handle="123456789/88" submission-name="unexpected_results" />
+    <name-map collection-handle="123456789/141" submission-name="pot_societalimpact" />
+    <name-map collection-handle="123456789/267" submission-name="gender" />
     <name-map collection-handle="123456789/52" submission-name="tests" /> 
     <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
     <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" /> 

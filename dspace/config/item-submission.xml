@@ -3,6 +3,7 @@
 
 <item-submission>
   <submission-map>
+    <name-map collection-handle="default"      submission-name="publications" />
     <name-map collection-handle="123456789/106" submission-name="applications_social" />	
     <name-map collection-handle="123456789/107" submission-name="awards" />	    
     <name-map collection-handle="123456789/108" submission-name="cooperation_events" />
@@ -22,7 +23,6 @@
     <name-map collection-handle="123456789/49" submission-name="orgunits" />
     <name-map collection-handle="123456789/112" submission-name="participation_events" />
     <name-map collection-handle="123456789/126" submission-name="plan_participation_events" />   <!-- ausgeblendet  --> 
-    <name-map collection-handle="default"      submission-name="publications" />
     <name-map collection-handle="123456789/127" submission-name="plan_patents" />	  <!-- ausgeblendet  --> 
     <name-map collection-handle="123456789/24" submission-name="persons" /> 
     <name-map collection-handle="123456789/114" submission-name="physical_objects" />
@@ -36,6 +36,7 @@
     <name-map collection-handle="123456789/88" submission-name="unexpected_results" />
     <name-map collection-handle="123456789/141" submission-name="pot_societalimpact" />
     <name-map collection-handle="123456789/267" submission-name="gender" />
+    <name-map collection-handle="123456789/275" submission-name="ethics" />
     <name-map collection-handle="123456789/52" submission-name="tests" /> 
     <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
     <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" /> 

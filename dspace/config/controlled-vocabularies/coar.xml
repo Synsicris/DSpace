@@ -36,10 +36,10 @@
         <node id="c_186u" label="policy report">
         <hasNote>Provides an in-depth look at major policy developments and events</hasNote>
         </node>
-        <node id="ID12" label="project chart">
+        <node id="ID01" label="project chart">
         <hasNote>internal type (BLE funder)</hasNote>
         </node>
-        <node id="ID13" label="practice leaflet">
+        <node id="ID02" label="practice leaflet">
         <hasNote>internal type (BLE funder)</hasNote>
         </node>
         <node id="c_18ws" label="research report">
@@ -88,13 +88,13 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="ID28" label="other">
+    <node id="ID03" label="other">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="c_71bd" label="technical documentation">
         <hasNote>A Technical documentation refers to any type of documentation that describes handling, functionality and architecture of a technical product or a product under development or use.</hasNote>
         </node>
-        <node id="ID30" label="poster">
+        <node id="ID04" label="poster">
         <hasNote></hasNote>
         </node>
         <node id="c_6947" label="blog post">
@@ -163,7 +163,7 @@
         <node id="c_0040" label="manuscript">
         <hasNote>A manuscript is a work of any kind (text, inscription, music score, map, etc.) written entirely by hand. (Adapted from ODLIS)</hasNote>
         </node>
-        <node id="ID53" label="flyer">
+        <node id="ID05" label="flyer">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

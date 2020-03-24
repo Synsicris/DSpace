@@ -19,7 +19,7 @@
         <node id="S-AMERIKA" label="Südamerika">
         <hasNote></hasNote>
         </node>
-        <node id="EURO" label="Europa">
+        <node id="EUROPA" label="Europa">
         <hasNote></hasNote>
         </node>
         <node id="AUSTRALIEN" label="Australien und Ozeanien">
@@ -45,7 +45,7 @@
             <node id="KALT" label="kaltgemäßigte Zone">
             <hasNote></hasNote>
             </node>
-            <node id="KÜHL" label="kühlgemäßigte Zone">
+            <node id="KUEHL" label="kühlgemäßigte Zone">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
@@ -1561,7 +1561,7 @@
             <node id="BRB" label="Barbados">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Bassas da India">
+            <node id="ATF1" label="Bassas da India">
             <hasNote></hasNote>
             </node>
             <node id="BLR" label="Belarus">
@@ -1681,7 +1681,7 @@
             <node id="SWZ" label="Eswatini">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Europa">
+            <node id="EURO" label="Europa">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
@@ -1727,7 +1727,7 @@
             <node id="GMB" label="Gambia">
             <hasNote></hasNote>
             </node>
-            <node id="PSE" label="Gazastreifen">
+            <node id="PSE1" label="Gazastreifen">
             <hasNote></hasNote>
             </node>
             <node id="GEO" label="Georgien">
@@ -1739,7 +1739,7 @@
             <node id="GIB" label="Gibraltar">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Glorieuses">
+            <node id="ATF2" label="Glorieuses">
             <hasNote></hasNote>
             </node>
             <node id="GRD" label="Grenada">
@@ -1844,7 +1844,7 @@
             <node id="JOR" label="Jordanien">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Juan de Nova">
+            <node id="ATF3" label="Juan de Nova">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
@@ -2270,7 +2270,7 @@
             <node id="TTO" label="Trinidad und Tobago">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Tromelin">
+            <node id="ATF4" label="Tromelin">
             <hasNote></hasNote>
             </node>
             <node id="TCD" label="Tschad">
@@ -2348,7 +2348,7 @@
             <node id="CXR" label="Weihnachtsinsel">
             <hasNote></hasNote>
             </node>
-            <node id="PSE" label="Westjordanland">
+            <node id="PSE2" label="Westjordanland">
             <hasNote></hasNote>
             </node>
             <node id="ESH" label="Westsahara">

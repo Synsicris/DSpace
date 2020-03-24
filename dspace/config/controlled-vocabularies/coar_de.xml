@@ -37,10 +37,10 @@ Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/pu
         <node id="c_186u" label="Policy report">
         <hasNote>Liefert einen vertieften Einblick in wichtige politische Entwicklungen und Ereignisse</hasNote>
         </node>
-        <node id="ID12" label="Projektkarte">
+        <node id="ID01" label="Projektkarte">
         <hasNote>BLE-interner Typ</hasNote>
         </node>
-        <node id="ID13" label="Praxismerkblatt">
+        <node id="ID02" label="Praxismerkblatt">
         <hasNote>BLE-interner Typ</hasNote>
         </node>
         <node id="c_18ws" label="Forschungsbericht ">
@@ -89,13 +89,13 @@ Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/pu
         </node>
       </isComposedBy>
     </node>
-    <node id="ID28" label="Sonstiges">
+    <node id="ID03" label="Sonstiges">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="c_71bd" label="Technische Dokumentation / Manual">
         <hasNote>Eine technische Dokumentation bezieht sich auf jede Art von Dokumentation, die die Handhabung, Funktionalität und Architektur eines technischen Produkts oder eines in der Entwicklung oder Verwendung befindlichen Produkts beschreibt.</hasNote>
         </node>
-        <node id="ID30" label="Poster">
+        <node id="ID04" label="Poster">
         <hasNote></hasNote>
         </node>
         <node id="c_6947" label="Blogbeitrag">
@@ -164,7 +164,7 @@ Adapted from https://en.wikipedia.org/wiki/Data_paper and http://www.gbif.org/pu
         <node id="c_0040" label="Manuskript">
         <hasNote>Ein Manuskript ist ein Werk jeglicher Art (Text, Inschrift, Partitur, Karte usw.), das vollständig von Hand geschrieben ist. (Adapted from ODLIS)</hasNote>
         </node>
-        <node id="ID53" label="Flyer">
+        <node id="ID05" label="Flyer">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

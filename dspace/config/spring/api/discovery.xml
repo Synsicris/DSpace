@@ -1415,7 +1415,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:stateofart OR entityType_keyword:conditions)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:stateofart OR entityType_keyword:conditions OR entityType_keyword:gender OR entityType_keyword:ethics)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -1529,7 +1529,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_research_quest)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -1700,7 +1700,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_spinoffs OR entityType_keyword:plan_patents OR entityType_keyword:innovationideas OR entityType_keyword:plan_innovationpotentials_econtech OR entityType_keyword:plan_innovationpotentials_social OR entityType_keyword:applications_social OR entityType_keyword:applications_econtech OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:awards)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_spinoffs OR entityType_keyword:plan_patents OR entityType_keyword:plan_innovationideas OR entityType_keyword:plan_innovationpotentials_econtech OR entityType_keyword:plan_innovationpotentials_social OR entityType_keyword:applications_social OR entityType_keyword:applications_econtech OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:awards)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

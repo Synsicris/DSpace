@@ -640,7 +640,7 @@
           <label>Agrovoc keywords</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required>Characterisation of the potential innovation or solution approach with key-words</required>
+          <required>Characterisation of the research theme and the potential innovation or solution approach with key-words</required>
           <hint />
           <vocabulary>agrovoc</vocabulary>
         </field>
@@ -1360,12 +1360,12 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>organisationID</dc-qualifier>
-          <label>Organization identifier (e.g. ISNI, crossRefID)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <label>Identifiers</label>
+          <input-type value-pairs-name="institution_identifiers">qualdrop_value</input-type>
+          <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>If the item has any identification numbers or codes associated with
+it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1520,6 +1520,45 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>description</dc-element>
           <dc-qualifier>fon</dc-qualifier>
           <label>Fon</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>publicfunded</dc-qualifier>
+          <label>The organisation is mainly financed by public funding.</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="orgunits_research">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>destatis</dc-qualifier>
+          <label>Subject classification (according to destatis)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary>destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>researchinstitution</dc-qualifier>
+          <label>Type of research institution (according to DFG-classification)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1586,6 +1625,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>only for companies</hint>
+          <vocabulary>nace</vocabulary>
         </field>
       </row>
       <row>
@@ -1600,24 +1640,35 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>only for companies</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>sme</dc-qualifier>
+          <label>The organisation meets the EU definition of an SME</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>According to EU state aid law: The category of micro, small and medium-sized enterprises (SMEs) is made up of companies that employ fewer than 250 people and either have an annual turnover not exceeding EUR 50 million or an annual balance sheet total not exceeding EUR 43 million.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>mediumsized</dc-qualifier>
+          <label>The organisation corresponds to the German definition of an Medium-sized businesses (but  not the EU-Definition of an KMU)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>German definition of medium-sized companies: Up to 1,000 employees and an annual turnover of € 100 million. Please select only "Yes" if you do not fall under the EU definition of an SME.</hint>
+        </field>
+      </row>
     </form>
     <form name="projects-dc-title-projectpartner">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>subprojectID</dc-qualifier>
-          <label>Subproject ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
+          <dc-qualifier>projectpartner</dc-qualifier>
           <label>Project partner</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -1636,33 +1687,21 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
         </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>partnerID</dc-qualifier>
+          <label>partnerID</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
       </row>
     </form>
     <form name="projects">
       <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>fundingprogramm</dc-qualifier>
-          <label>Funding programm</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>acronym</dc-qualifier>
-          <label>Acronym</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -1671,9 +1710,69 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>You must enter a main title.</required>
           <style>col-md-9</style>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>acronym</dc-qualifier>
+          <label>Acronym</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter an acronym.</required>
+          <style>col-md-3</style>
+          <hint>Please enter the correct acronym.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>projectpartner</dc-qualifier>
+          <label>Name project partners to give them access to the project</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration (Month)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Calculated from the start and end date of the project</hint>
+        </field>
+      </row>
+    </form>
+    <form name="projects_overview">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1683,7 +1782,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>is imported from the information of the subprojects</hint>
         </field>
       </row>
       <row>
@@ -1696,51 +1795,37 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Expected completion</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
+          <hint>is imported from the information of the subprojects</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>projectpartner</dc-qualifier>
-          <label>Project partner</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>fundingprogramm</dc-qualifier>
+          <label>Funding programm</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>is imported from the information of the subprojects</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Call / funding area</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>is imported from the information of the subprojects</hint>
         </field>
       </row>
-    </form>
-    <form name="projects_finance">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>geszuwendung</dc-qualifier>
-          <label>Zuwendung Gesamt (EUR)</label>
+          <dc-qualifier>grant</dc-qualifier>
+          <label>Grant total (EUR)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1750,8 +1835,8 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>personalzuwendung</dc-qualifier>
-          <label>Zuwendung Personal (EUR)</label>
+          <dc-qualifier>grantpersonel</dc-qualifier>
+          <label>Grant for personnel (EUR)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1761,8 +1846,8 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>gesamtsummevorhaben</dc-qualifier>
-          <label>Gesamtsumme des Vorhabens (EUR)</label>
+          <dc-qualifier>budget</dc-qualifier>
+          <label>Overall budget of the project (grant and own contribution) (EUR)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1776,14 +1861,24 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>cooperating-partner</dc-qualifier>
           <label>Type of cooperation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary>cooperation-type</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>subproject</dc-qualifier>
+          <label>Related sub-project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Only use for the type</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1793,23 +1888,75 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <label>Identifiers</label>
+          <input-type value-pairs-name="institution_identifiers">qualdrop_value</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>If the item has any identification numbers or codes associated with
+it, please select a type and enter the actual number or code.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_partners_contribution">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Corresponding target group</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Select the name of a target group you already created or create a new target group with giving the new name here and add details later.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>contribution</dc-qualifier>
+          <label>Main contribution to project / Aim of cooperation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
     </form>
     <form name="cooperation_partners_orgunits">
       <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>organisationID</dc-qualifier>
-          <label>Organization identifier (e.g. ISNI, crossRefID)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -1839,17 +1986,6 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>legalform</dc-qualifier>
           <label>Legal form</label>
           <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>orgform</dc-qualifier>
-          <label>Organisationform</label>
-          <input-type value-pairs-name="organisationform">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -1969,6 +2105,45 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>publicfunded</dc-qualifier>
+          <label>The organisation is mainly financed by public funding.</label>
+          <input-type value-pairs-name="yes_no">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_partners_orgunits_research">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>destatis</dc-qualifier>
+          <label>Subject classification (according to destatis)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary>destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>researchinstitution</dc-qualifier>
+          <label>Type of research institution (according to DFG-classification)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="cooperation_partners_orgunits_companies">
       <row>
@@ -2022,7 +2197,7 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
+          <dc-element>type</dc-element>
           <dc-qualifier>sector</dc-qualifier>
           <label>Sector-classification</label>
           <input-type>onebox</input-type>
@@ -2043,167 +2218,42 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>only for companies</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>sme</dc-qualifier>
+          <label>The organisation meets the EU definition of an SME</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>According to EU state aid law: The category of micro, small and medium-sized enterprises (SMEs) is made up of companies that employ fewer than 250 people and either have an annual turnover not exceeding EUR 50 million or an annual balance sheet total not exceeding EUR 43 million.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>mediumsized</dc-qualifier>
+          <label>The organisation corresponds to the German definition of an Medium-sized businesses (but  not the EU-Definition of an KMU)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>German definition of medium-sized companies: Up to 1,000 employees and an annual turnover of € 100 million. Please select only "Yes" if you do not fall under the EU definition of an SME.</hint>
+        </field>
+      </row>
     </form>
-    <form name="cooperation_partners_contribution">
+    <form name="cooperation_partners_staff-dc-description-staff">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Corresponding target group</label>
+          <dc-qualifier>person</dc-qualifier>
+          <label>Search for the person in the system</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Select the name of a target group you already created or create a new target group with giving the new name here and add details later.</hint>
+          <style>col-md-3</style>
+          <hint>If the person is not in the system, please ask to register in the system. Type in the name as proxy.</hint>
         </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>contribution</dc-qualifier>
-          <label>Main contribution to project / Aim of cooperation</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="subprojects">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>subprojectID</dc-qualifier>
-          <label>Subproject ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>status</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="project_status">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Expected completion</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>geszuwendung</dc-qualifier>
-          <label>Zuwendung Gesamt (EUR)</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>personalzuwendung</dc-qualifier>
-          <label>Zuwendung Personal (EUR)</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>gesamtsummevorhaben</dc-qualifier>
-          <label>Gesamtsumme des Vorhabens (EUR)</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>vorhabensbeschreibung</dc-qualifier>
-          <label>Vorhabensbeschreibung aus easy-online</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>arbeitsplan</dc-qualifier>
-          <label>Arbeitsplan aus easy-online</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>ergebnisverwertung</dc-qualifier>
-          <label>Ergebnisverwertung aus easy-online</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="subprojects_staff-dc-description-staff">
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -2215,17 +2265,20 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-3</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>person</dc-qualifier>
-          <label>im System vorhandene Personendaten</label>
-          <input-type>onebox</input-type>
+          <dc-element>description</dc-element>
+          <dc-qualifier>qualification</dc-qualifier>
+          <label>Intentions for qualification</label>
+          <input-type value-pairs-name="project_staff_qualification">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -2280,6 +2333,8 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-3</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -2304,7 +2359,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="subprojects_staff">
+    <form name="cooperation_partners_staff">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2313,6 +2368,186 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Project staff</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="subprojects">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>status</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>subprojectID</dc-qualifier>
+          <label>Subproject ID</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>parentprojectID</dc-qualifier>
+          <label>Parentproject ID</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration (Month)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Calculated from the start and end date of the subprojects</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>grant</dc-qualifier>
+          <label>Grant total sub-project (EUR)</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>grantpersonel</dc-qualifier>
+          <label>Grant for personnel sub-project (EUR)</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>budget</dc-qualifier>
+          <label>Overall budget of the sub-project (grant and own contribution) (EUR)</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>fundingprogramm</dc-qualifier>
+          <label>Funding programm</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>is imported from the information of the subprojects</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Call / funding area</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>is imported from the information of the subprojects</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>formtype</dc-qualifier>
+          <label>Type of form</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>projectdescription</dc-qualifier>
+          <label>Project description from easy-online</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>workplan</dc-qualifier>
+          <label>Work plan from easy-online</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>exploitation</dc-qualifier>
+          <label>Exploitation of results from easy-online</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -2388,22 +2623,24 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>workingfield1</dc-qualifier>
-          <label>Main workingfield</label>
+          <dc-qualifier>destatis1</dc-qualifier>
+          <label>Main subject classification (according to destatis)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary>destatis</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>workingfield2</dc-qualifier>
-          <label>Secondary workingfield</label>
+          <dc-qualifier>destatis2</dc-qualifier>
+          <label>Facultative secondary subject classification (according to destatis)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary>destatis</vocabulary>
         </field>
       </row>
     </form>
@@ -2710,13 +2947,12 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>nextsteps</dc-qualifier>
           <label>Next steps</label>
           <input-type value-pairs-name="nextsteps">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>For steps marked with (*), documentation is also desired if they were already started during the project.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2965,7 +3201,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>business-innovation</dc-qualifier>
           <label>Type of innovation / Use of results</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3930,7 +4165,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>event-type</dc-qualifier>
           <label>Type of the event or interaction</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4239,7 +4473,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="cooperation_events_frequency">
+    <form name="cooperation_events_frequency-dc-type">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -4282,6 +4516,19 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="cooperation_events_frequency">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type and requency of the cooperation activities</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -4548,7 +4795,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Type of objcet</label>
+          <label>Type of object</label>
           <input-type value-pairs-name="physicalobjects_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4819,7 +5066,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>condition</dc-qualifier>
           <label>Type of condition/requirement</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4951,7 +5197,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>menschl-teilnehmende</dc-qualifier>
+          <dc-qualifier>human-involvement</dc-qualifier>
           <label>Beteiligt Ihre Forschung menschliche Teilnehmende? 
 (Bezieht sich auf jede Forschung, die die Arbeit mit Menschen als Forschungs- oder Studienteilnehmende beinhaltet, unabhängig von ihrer Art oder ihrem Thema.
 Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eingriffe, Interviews, Beobachtungen, Nachverfolgung oder sekundäre Nutzung von Informationen, die für andere Zwecke bereitgestellt werden, z.B. andere Forschungsprojekte, offiziell gesammelte Informationen, Social-Media-Seiten.)</label>
@@ -4965,7 +5211,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>pers-Daten</dc-qualifier>
+          <dc-qualifier>pers-data</dc-qualifier>
           <label>Beinhaltet Ihre Forschung die Verarbeitung von persönlichen Daten?
 (Bezieht sich auf Forschung, die eine Verarbeitung personenbezogener Daten beinhaltet, unabhängig von der verwendeten Methode (z.B. Interviews, Fragebögen, direkte Online-Abfrage usw.).
 „Personenbezogene Daten“ sind Informationen, die sich auf eine bestimmte oder bestimmbare natürliche Person beziehen.)</label>
@@ -4979,7 +5225,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>schaden</dc-qualifier>
+          <dc-qualifier>harmful-pers</dc-qualifier>
           <label>Beinhaltet Ihre Forschung die Verwendung von Materialien oder Stoffen, die dem Menschen, einschließlich des Forschungspersonals, Schaden zufügen können? 
 (Die Gesundheit und der Lebensschutz aller menschlichen Teilnehmenden an der Forschung - als Versuchspersonen, Forschende oder unbeteiligte Dritte - muss bei allen Forschungsstudien eine Priorität sein.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -4992,7 +5238,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>tierversuche</dc-qualifier>
+          <dc-qualifier>animal-testing</dc-qualifier>
           <label>Umfasst Ihre Forschung Tierversuche?
 (Bezieht sich explizit auf die Tierverwendung in der Forschung in den verschiedensten Formen von Experimenten, Verfahren oder Techniken.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -5005,7 +5251,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>schaden2</dc-qualifier>
+          <dc-qualifier>harmful-env</dc-qualifier>
           <label>Umfasst Ihre Forschung die Verwendung von Materialien oder Stoffen, die der Umwelt, den Tieren oder Pflanzen schaden können? Beschäftigt sich Ihre Forschung mit gefährdeter Fauna und/oder Flora/Schutzgebieten?
 (Bezieht sich auf Forschung mit Materialien oder Stoffen, die einen Einfluss auf die biologische Vielfalt und/oder die Resilienz der Umwelt haben.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -5018,7 +5264,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>ethisch</dc-qualifier>
+          <dc-qualifier>others</dc-qualifier>
           <label>Andere ethische Bedingungen? (Da mit einer Forschungsförderung auch neue Wege eingeschlagen werden (sollen), können neue ethische Themen und Bedenken auftreten, die oben nicht aufgelistet sind.</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
@@ -5030,7 +5276,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>maßnahmen</dc-qualifier>
+          <dc-qualifier>measures1</dc-qualifier>
           <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Besimmungen) im Projekt zu gewährleisten.</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5044,7 +5290,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>ethisch2</dc-qualifier>
+          <dc-qualifier>aceptance</dc-qualifier>
           <label>Berühren Ihre F&amp;E-Ergebnisse Grenzbereiche der ethischen Akzeptanz? (Z.B. Gibt es zu Ihrer Forschung und den Ergebnissen gesellschaftlichen Kontroverse, die ethischen Aspekte zu Mensch, Tier oder Umwelt einbeziehen?
 Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung beschäftigen, einer (kontinuierlichen) kritischen Begleitung von Akteuren aus der Gesellschaft ausgesetzt?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -5070,7 +5316,7 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>missbrauch</dc-qualifier>
+          <dc-qualifier>misuse-results</dc-qualifier>
           <label>Hat Ihre Forschung ein Potenzial für den Missbrauch von Forschungsergebnissen?
 (Z.B. Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen Menschen, Tieren oder der Umwelt schaden, wenn sie modifiziert oder verbessert werden? Was würde passieren, wenn die betreffenden oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen in die falschen Hände gelangen würden? Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. das generierte Wissen anderen als den vorgesehenen Zwecken dienen? Wenn ja, wäre eine solche Verwendung unethisch?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -5083,7 +5329,7 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>missbrauch2</dc-qualifier>
+          <dc-qualifier>measures1</dc-qualifier>
           <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Besimmungen) im Projekt zu gewährleisten.</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5102,6 +5348,7 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary>funding-policy</vocabulary>
         </field>
       </row>
       <row>
@@ -5117,12 +5364,12 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         </field>
       </row>
     </form>
-    <form name="import_orgunits">
+    <form name="import_orgunits_ST">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Organization name</label>
+          <label>Organization name of ausführende Stelle</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>You must enter the name.</required>
@@ -5223,7 +5470,7 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         </field>
       </row>
     </form>
-    <form name="import_orgunits_companies">
+    <form name="import_orgunits_companies_ST">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5250,7 +5497,140 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         </field>
       </row>
     </form>
-    <form name="import_projects">
+    <form name="import_orgunits_ZK">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Organization name of Antragssteller</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the name.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>legalform</dc-qualifier>
+          <label>Legal form</label>
+          <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>streetnamenumber</dc-qualifier>
+          <label>Steetname and building number</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>postcode</dc-qualifier>
+          <label>Postcode</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>city</dc-qualifier>
+          <label>City / Town / Locality</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>place</dc-qualifier>
+          <label>Country</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Web address</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>mailto</dc-qualifier>
+          <label>Mail address</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>fon</dc-qualifier>
+          <label>Fon</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="import_orgunits_companies_ZK">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>registercourt</dc-qualifier>
+          <label>Register court</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>only for companies</hint>
+          <vocabulary>register-court</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>registernumer</dc-qualifier>
+          <label>Register number</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>only for companies</hint>
+        </field>
+      </row>
+    </form>
+    <form name="import_subprojects">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5552,6 +5932,45 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <repeatable>false</repeatable>
           <required />
           <hint />
+        </field>
+      </row>
+    </form>
+    <form name="tests">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Test type</label>
+          <input-type value-pairs-name="register_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>one</dc-qualifier>
+          <label>One</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Handelsregister A</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>two</dc-qualifier>
+          <label>Two</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Handelsregister B</type-bind>
         </field>
       </row>
     </form>
@@ -5883,24 +6302,38 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
     </value-pairs>
     <value-pairs value-pairs-name="project_staff_role" dc-term="project_staff_role">
       <pair>
-        <displayed-value>project manager</displayed-value>
+        <displayed-value>Project manager*in according to the submitted proposal</displayed-value>
         <stored-value>project manager</stored-value>
       </pair>
       <pair>
-        <displayed-value>administrative contact</displayed-value>
-        <stored-value>administrative contact</stored-value>
+        <displayed-value>Employees with leading and decision-making positions in the project (including coordinator* or speaker positions in consortia)</displayed-value>
+        <stored-value>leading and decision-making position</stored-value>
       </pair>
       <pair>
-        <displayed-value>authorised signatory</displayed-value>
-        <stored-value>authorised signatory</stored-value>
+        <displayed-value>Research associate (usually TVöD/TV-L E12-E15)</displayed-value>
+        <stored-value>research associate</stored-value>
       </pair>
       <pair>
-        <displayed-value>Applicants</displayed-value>
-        <stored-value>Applicants</stored-value>
+        <displayed-value>Technical-administrative personnel (usually TVöD/TV-L E1-E11)</displayed-value>
+        <stored-value>technical-administrative personnel</stored-value>
       </pair>
       <pair>
-        <displayed-value>Agent</displayed-value>
-        <stored-value>Agent</stored-value>
+        <displayed-value>Other employees with a significant volume of employment (no student assistants)</displayed-value>
+        <stored-value>others</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="project_staff_qualification" dc-term="project_staff_qualification">
+      <pair>
+        <displayed-value>PhD applicants</displayed-value>
+        <stored-value>PhD applicants</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Post-doc phase</displayed-value>
+        <stored-value>Post-doc phase</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>currently none</displayed-value>
+        <stored-value>currently none</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="person_form" dc-term="person_form">
@@ -5911,10 +6344,6 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
       <pair>
         <displayed-value>Mrs.</displayed-value>
         <stored-value>Mrs.</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Hello</displayed-value>
-        <stored-value>Hello</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="person_degree" dc-term="person_degree">
@@ -6445,20 +6874,28 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         <stored-value>Cooperation via contract research</stored-value>
       </pair>
       <pair>
-        <displayed-value>Exchange of students / supervision of final theses</displayed-value>
-        <stored-value>Exchange of students / supervision of final theses</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cooperation in teaching</displayed-value>
-        <stored-value>Cooperation in teaching</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Exchange of knowledge and ideas (e.g. think tanks, open labs, creative formats)</displayed-value>
         <stored-value>Exchange of knowledge and ideas (e.g. think tanks, open labs, creative formats)</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants, personal)</displayed-value>
-        <stored-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants, personal)</stored-value>
+        <displayed-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants)</displayed-value>
+        <stored-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Transfer of employees from research institutions to companies (possibly also vice versa) (*)</displayed-value>
+        <stored-value>Transfer of employees from research institutions to companies (possibly also vice versa) (*)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Exchange of students (internships, trainees) (*)</displayed-value>
+        <stored-value>Exchange of students (internships, trainees) (*)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Shared supervision of final theses (*) (Theses related to the project theme shall be documented in publications.)</displayed-value>
+        <stored-value>Shared supervision of final theses (*) (Theses related to the project theme shall be documented in publications.)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation in teaching (*)</displayed-value>
+        <stored-value>Cooperation in teaching (*)</stored-value>
       </pair>
       <pair>
         <displayed-value>Others</displayed-value>
@@ -7163,7 +7600,7 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
         <stored-value>awards</stored-value>
       </pair>
       <pair>
-        <displayed-value>72f23c5a-10ad-4d5f-8cfb-149e1d0e076a</displayed-value>
+        <displayed-value>20728a67-6fa5-45d0-ad04-5ce9d5d7703f</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
       <pair>
@@ -7345,6 +7782,20 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
       <pair>
         <displayed-value>no</displayed-value>
         <stored-value>no</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="institution_identifiers" dc-term="institution_identifiers">
+      <pair>
+        <displayed-value>identifier 1</displayed-value>
+        <stored-value>identifier 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>identifier 2</displayed-value>
+        <stored-value>identifier 2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>identifier 3</displayed-value>
+        <stored-value>identifier 3</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="working_plan_workpackage_type" dc-term="working_plan_workpackage_type">

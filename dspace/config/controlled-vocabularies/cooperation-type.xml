@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COOPERATION-TYPE 2020-01-16">
+<node id="ResourceTypeGenres" label="COOPERATION-TYPE 2020-03-25">
   <isComposedBy>
-    <node id="ID01" label="informal cooperation partners">
+    <node id="COTYPE10" label="informal cooperation partners">
     <hasNote></hasNote>
     </node>
-    <node id="ID02" label="sub-contractors">
+    <node id="COTYPE20" label="sub-contractors">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID03" label="Subcontractor (contract value greater than € 100.000 €)">
+        <node id="COTYPE21" label="Subcontractor (contract value greater than € 100.000 €)">
         <hasNote></hasNote>
         </node>
-        <node id="ID04" label="Subcontractors (contract value smaller than € 100.000 €)">
+        <node id="COTYPE22" label="Subcontractors (contract value smaller than € 100.000 €)">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID05" label="other contractors">
+    <node id="COTYPE30" label="other contractors">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID06" label="other contractors: Enterprise agreement">
+        <node id="COTYPE31" label="other contractors: Enterprise agreement">
         <hasNote></hasNote>
         </node>
-        <node id="ID07" label="other contractors: Project specific contract">
+        <node id="COTYPE32" label="other contractors: Project specific contract">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID08" label="affiliated partners">
+    <node id="COTYPE40" label="affiliated partners">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID09" label="affiliated partners (type 1)">
+        <node id="COTYPE41" label="affiliated partners (cooperation without corporate association)">
         <hasNote></hasNote>
         </node>
-        <node id="ID10" label="affiliated partners (type 2)">
+        <node id="COTYPE42" label="affiliated partners (Management / leadership of the consortium)">
         <hasNote></hasNote>
         </node>
-        <node id="ID11" label="affiliated partners (type 3)">
+        <node id="COTYPE43" label="affiliated partners (Member of the consortium)">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

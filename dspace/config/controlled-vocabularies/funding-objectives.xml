@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+<node id="ResourceTypeGenres" label="FUNDING-OBJECTIVES 2020-04-03">
   <isComposedBy>
-    <node id="ID1" label="Cascade dropdown #1">
-    <hasNote>This cascade dropdown is still under construction.</hasNote>
-      <isComposedBy>
-        <node id="ID2" label="Item #1">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
-        </node>
-        <node id="ID3" label="Item #2">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
-        </node>
-      </isComposedBy>
+    <node id="FO01" label="Sustainable and animal-friendly agriculture and food economy">
+    <hasNote></hasNote>
     </node>
-    <node id="ID4" label="Cascade dropdown #2">
-    <hasNote>This cascade dropdown is still under construction.</hasNote>
-      <isComposedBy>
-        <node id="ID5" label="Item #1">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
-        </node>
-        <node id="ID6" label="Item #2">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
-        </node>
-      </isComposedBy>
+    <node id="FO02" label="Conservation of natural resources">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO03" label="Improving competitiveness">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO04" label="Strengthening economic innovation">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO05" label="Improving consumer information">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO06" label="Creating and securing jobs">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO07" label="improvement of working conditions">
+    <hasNote></hasNote>
     </node>
   </isComposedBy>
 </node>

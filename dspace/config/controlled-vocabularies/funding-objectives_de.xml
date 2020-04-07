@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+<node id="ResourceTypeGenres" label="FUNDING-OBJECTIVES 2020-04-03">
   <isComposedBy>
-    <node id="ID1" label="Kaskadiertes Dropdown #1">
-    <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-      <isComposedBy>
-        <node id="ID2" label="Eintrag #1">
-        <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-        </node>
-        <node id="ID3" label="Eintrag #2">
-        <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-        </node>
-      </isComposedBy>
+    <node id="FO01" label="nachhaltige und tiergerechte Agrar- und Ernährungswirtschaft">
+    <hasNote></hasNote>
     </node>
-    <node id="ID4" label="Kaskadiertes Dropdown #2">
-    <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-      <isComposedBy>
-        <node id="ID5" label="Eintrag #1">
-        <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-        </node>
-        <node id="ID6" label="Eintrag #2">
-        <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>
-        </node>
-      </isComposedBy>
+    <node id="FO02" label="Schonung natürlicher Ressourcen">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO03" label="Verbesserung der Wettbewerbsfähigkeit">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO04" label="Stärkung der wirtschaftlichen Innovationskraft">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO05" label="Verbesserung der Verbraucherinformation">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO06" label="Schaffung und Sicherung von Arbeitsplätzen">
+    <hasNote></hasNote>
+    </node>
+    <node id="FO07" label="Verbesserung der Arbeitsbedingungen">
+    <hasNote></hasNote>
     </node>
   </isComposedBy>
 </node>

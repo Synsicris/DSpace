@@ -3,45 +3,59 @@
 
 <item-submission>
   <submission-map>
-    <name-map collection-handle="default"      submission-name="publications" />
-    <name-map collection-handle="123456789/106" submission-name="applications_social" />	
-    <name-map collection-handle="123456789/107" submission-name="awards" />	    
-    <name-map collection-handle="123456789/108" submission-name="cooperation_events" />
-    <name-map collection-handle="123456789/120" submission-name="plan_cooperation_events" />  <!-- ausgeblendet  --> 
+    <name-map collection-handle="123456789/90" submission-name="applications_econtech" />  
+	  <name-map collection-handle="123456789/106" submission-name="applications_social" />	
+	  <name-map collection-handle="123456789/107" submission-name="awards" />
+    <name-map collection-handle="123456789/190" submission-name="conditions" />	
+	  <name-map collection-handle="123456789/108" submission-name="cooperation_events" />
+	  <name-map collection-handle="123456789/64" submission-name="plan_cooperation_events" /> 
+	  <name-map collection-handle="123456789/140" submission-name="contribution_fundingprogramme" />     
     <name-map collection-handle="123456789/26" submission-name="cooperation_partners" />
-    <name-map collection-handle="123456789/3"  submission-name="events" />
-    <name-map collection-handle="123456789/121" submission-name="plan_events" />	
-    <name-map collection-handle="123456789/111" submission-name="innovationpotentials_econtech" />	
-    <name-map collection-handle="123456789/109" submission-name="innovationideas" />	 
-    <name-map collection-handle="123456789/123" submission-name="plan_innovationpotentials_econtech" />   <!-- ausgeblendet  --> 	
-    <name-map collection-handle="123456789/110" submission-name="innovationpotentials_social" />		
-    <name-map collection-handle="123456789/66" submission-name="library_awards" />   <!-- library  --> 		
-    <name-map collection-handle="123456789/73" submission-name="library_patents" />   <!-- library  --> 		
-    <name-map collection-handle="123456789/76" submission-name="library_physical_objects" />   <!-- library  --> 		    	    
-    <name-map collection-handle="123456789/75" submission-name="library_publications" />   <!-- library  --> 		
-    <name-map collection-handle="123456789/78" submission-name="library_spinoffs" />   <!-- library  --> 		    	
+    <name-map collection-handle="123456789/276" submission-name="easy-import" />		    
+    <name-map collection-handle="123456789/275" submission-name="ethics" />	
+    <name-map collection-handle="123456789/3" submission-name="events" />
+    <name-map collection-handle="123456789/145" submission-name="funder_objectives" />
+    <name-map collection-handle="123456789/267" submission-name="gender" />	          
+    <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
+    <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" />
+    <name-map collection-handle="123456789/52" submission-name="impact_pathway_step_type_6_task_form" />     
+    <name-map collection-handle="123456789/68" submission-name="innovationpotentials_econtech" />	
+    <name-map collection-handle="123456789/109" submission-name="innovationideas" />
+	  <name-map collection-handle="123456789/111" submission-name="innovationpotentials_econtech" />
+    <name-map collection-handle="123456789/110" submission-name="innovationpotentials_social" />	
+    <name-map collection-handle="123456789/86" submission-name="milestones" />
     <name-map collection-handle="123456789/49" submission-name="orgunits" />
     <name-map collection-handle="123456789/112" submission-name="participation_events" />
-    <name-map collection-handle="123456789/126" submission-name="plan_participation_events" />   <!-- ausgeblendet  --> 
-    <name-map collection-handle="123456789/127" submission-name="plan_patents" />	  <!-- ausgeblendet  --> 
-    <name-map collection-handle="123456789/24" submission-name="persons" /> 
-    <name-map collection-handle="123456789/114" submission-name="physical_objects" />
-    <name-map collection-handle="123456789/128" submission-name="plan_physical_objects" />   <!-- ausgeblendet  --> 
-    <name-map collection-handle="123456789/5"  submission-name="projects" />   
-    <name-map collection-handle="123456789/11" submission-name="publications" />   
+    <name-map collection-handle="default" submission-name="patents" />
+	  <name-map collection-handle="123456789/24" submission-name="persons" />     
+	  <name-map collection-handle="123456789/114" submission-name="physical_objects" />
+    <name-map collection-handle="123456789/191" submission-name="pot_societalimpact" />	
+    <name-map collection-handle="123456789/5" submission-name="projects" />
+    <name-map collection-handle="123456789/143" submission-name="proj_objectives" />	
+    <name-map collection-handle="123456789/11" submission-name="publications" />
     <name-map collection-handle="123456789/115" submission-name="spinoffs" />
-    <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />	  <!-- ausgeblendet  --> 
-    <name-map collection-handle="123456789/48" submission-name="subprojects" />
+    <name-map collection-handle="123456789/116" submission-name="stateofart" />    
     <name-map collection-handle="123456789/117" submission-name="steps" />
+	  <name-map collection-handle="123456789/48" submission-name="subprojects" />
+    <name-map collection-handle="123456789/188" submission-name="targetgroups" />    
+	  <name-map collection-handle="123456789/85" submission-name="tasks" />
+    <name-map collection-handle="123456789/52" submission-name="tests" />
     <name-map collection-handle="123456789/88" submission-name="unexpected_results" />
-    <name-map collection-handle="123456789/141" submission-name="pot_societalimpact" />
-    <name-map collection-handle="123456789/267" submission-name="gender" />
-    <name-map collection-handle="123456789/275" submission-name="ethics" />
-    <name-map collection-handle="123456789/52" submission-name="tests" /> 
-    <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
-    <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" /> 
-    <name-map collection-handle="123456789/52" submission-name="impact_pathway_step_type_6_task_form" />
-    <name-map collection-handle="123456789/145" submission-name="funder_objectives" />  
+    <name-map collection-handle="123456789/118" submission-name="workpackages" /> 
+
+    <name-map collection-handle="123456789/120" submission-name="plan_cooperation_events" />
+	  <name-map collection-handle="123456789/121" submission-name="plan_events" />
+    <name-map collection-handle="123456789/122" submission-name="plan_innovationideas" />
+    <name-map collection-handle="123456789/123" submission-name="plan_innovationpotentials_econtech" />	 
+	  <name-map collection-handle="123456789/124" submission-name="plan_innovationpotentials_social" />	 
+    <name-map collection-handle="123456789/125" submission-name="plan_milestones" />	 
+    <name-map collection-handle="123456789/126" submission-name="plan_participation_events" />   
+    <name-map collection-handle="123456789/127" submission-name="plan_patents" />
+    <name-map collection-handle="123456789/128" submission-name="plan_physical_objects" />   
+    <name-map collection-handle="123456789/129" submission-name="plan_publications" />     	
+    <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />
+	  <name-map collection-handle="123456789/131" submission-name="plan_tasks" />	
+    <name-map collection-handle="123456789/132" submission-name="plan_workpackages" />	
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">
@@ -96,6 +110,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
+    <step id="orgunits_research" mandatory="true">
+      <heading>submit.progressbar.describe.orgunits_research</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
     <step id="orgunits_companies" mandatory="true">
       <heading>submit.progressbar.describe.orgunits_companies</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -106,19 +125,14 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="projects_finance" mandatory="true">
-      <heading>submit.progressbar.describe.projects_finance</heading>
+    <step id="projects_overview" mandatory="true">
+      <heading>submit.progressbar.describe.projects_overview</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step>
     <step id="subprojects" mandatory="true">
       <heading>submit.progressbar.describe.subprojects</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step>
-    <step id="subprojects_staff" mandatory="true">
-      <heading>submit.progressbar.describe.subprojects_staff</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -292,6 +306,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
+    <step id="cooperation_partners_orgunits_research" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners_orgunits_research</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
     <step id="cooperation_partners_orgunits_companies" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_orgunits_companies</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -299,6 +318,11 @@
     </step>
     <step id="cooperation_partners_contribution" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_contribution</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
+    <step id="cooperation_partners_staff" mandatory="true">
+      <heading>submit.progressbar.describe.cooperation_partners_staff</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
@@ -412,20 +436,37 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
-    <step id="import_orgunits" mandatory="true">
-      <heading>submit.progressbar.describe.import_orgunits</heading>
+    <step id="easy_upload" mandatory="true">
+      <heading>submit.progressbar.easy_upload</heading>
+      <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
+      <type>upload</type>
+    </step>
+    <step id="import_orgunits_ST" mandatory="true">
+      <heading>submit.progressbar.describe.import_orgunits_ST</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step>
-    <step id="import_orgunits_companies" mandatory="true">
-      <heading>submit.progressbar.describe.import_orgunits_companies</heading>
+    <step id="import_orgunits_companies_ST" mandatory="true">
+      <heading>submit.progressbar.describe.import_orgunits_companies_ST</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step>
-    <step id="import_projects" mandatory="true">
-      <heading>submit.progressbar.describe.import_projects</heading>
+    <step id="import_orgunits_ZK" mandatory="true">
+      <heading>submit.progressbar.describe.import_orgunits_ZK</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibilityOutside="read-only">submission</scope>
+    </step>
+    <step id="import_orgunits_companies_ZK" mandatory="true">
+      <heading>submit.progressbar.describe.import_orgunits_companies_ZK</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibilityOutside="read-only">submission</scope>
+    </step>
+    <step id="import_subprojects" mandatory="true">
+      <heading>submit.progressbar.describe.import_subprojects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
@@ -454,6 +495,11 @@
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step>
+    <step id="tests" mandatory="true">
+      <heading>submit.progressbar.describe.tests</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -481,6 +527,7 @@
       <step id="collection" />
       <step id="entity_type_selection" />
       <step id="orgunits" />
+      <step id="orgunits_research" />
       <step id="orgunits_companies" />
       <step id="upload" />
       <step id="license" />
@@ -490,14 +537,13 @@
       <step id="entity_type_selection" />
       <step id="projects" />
       <step id="agrovoc_keywords" />
-      <step id="projects_finance" />
       <step id="upload" />
+      <step id="projects_overview" />
     </submission-process>
     <submission-process name="subprojects">
       <step id="collection" />
       <step id="entity_type_selection" />
       <step id="subprojects" />
-      <step id="subprojects_staff" />
     </submission-process>
     <submission-process name="persons">
       <step id="collection" />
@@ -603,10 +649,12 @@
       <step id="collection" />
       <step id="entity_type_selection" />
       <step id="cooperation_partners" />
-      <step id="cooperation_partners_orgunits" />
-      <step id="cooperation_partners_orgunits_companies" />
       <step id="cooperation_partners_contribution" />
+      <step id="cooperation_partners_orgunits" />
+      <step id="cooperation_partners_orgunits_research" />
+      <step id="cooperation_partners_orgunits_companies" />
       <step id="upload" />
+      <step id="cooperation_partners_staff" />
     </submission-process>
     <submission-process name="innovationpotentials_econtech">
       <step id="collection" />
@@ -757,14 +805,20 @@
     </submission-process>
     <submission-process name="easy-import">
       <step id="collection" />
-      <step id="upload" />
-      <step id="import_orgunits" />
-      <step id="import_orgunits_companies" />
-      <step id="import_projects" />
+      <step id="easy_upload" />
+      <step id="import_orgunits_ST" />
+      <step id="import_orgunits_companies_ST" />
+      <step id="import_orgunits_ZK" />
+      <step id="import_orgunits_companies_ZK" />
+      <step id="import_subprojects" />
       <step id="import_person_PL" />
       <step id="import_person_PA" />
       <step id="import_person_UZ" />
       <step id="import_person_A2" />
+    </submission-process>
+    <submission-process name="tests">
+      <step id="collection" />
+      <step id="tests" />
     </submission-process>
   </submission-definitions>
 </item-submission>

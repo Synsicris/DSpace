@@ -1,67 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="BUSINESS-INNOVATION 2020-01-16">
+<node id="ResourceTypeGenres" label="BUSINESS-INNOVATION 2020-04-03">
   <isComposedBy>
-    <node id="ID01" label="Produktinnovation">
-    <hasNote>Product  innovations  must  provide  significant  improvements  to  one  or  more characteristics or performance specifications. This includes the addition of new functions,or improvements to  existing  functions  or  user  utility.  Relevant  functional  characteristics include quality, technical specifications, reliability, durability, economic efficiency during use, affordability, convenience, usability, and user friendliness. Goods and services include knowledge-capturing products, and combinations thereof. Includes the design characteristics of goods and services. (OECD 2018 - Oslo Manual)</hasNote>
+    <node id="BI01" label="Produktinnovation">
+    <hasNote>Produktinnovationen müssen wesentliche Verbesserungen einer oder mehrerer Eigenschaften oder Leistungsspezifikationen bieten. Dies schließt die Erweiterung um neue Funktionen oder die Verbesserung bestehender Funktionen oder des Anwendernutzens ein.  Zu den relevanten Funktionsmerkmalen gehören Qualität, technische Spezifikationen, Zuverlässigkeit, Langlebigkeit, Wirtschaftlichkeit bei der Nutzung, Erschwinglichkeit, Gebrauchstauglichkeit und Benutzerfreundlichkeit. Zu den Gütern und Dienstleistungen gehören wissensbasierte Produkte und deren Kombinationen. Dazu gehören die Designmerkmale von Waren und Dienstleistungen. (OECD 2018 - Oslo Manual)</hasNote>
       <isComposedBy>
-        <node id="ID02" label="Waren">
-        <hasNote>Goods include  tangible  objects  and  some  knowledge-capturing  products over which ownership rights can be established and whose ownership can be transferred through market transactions. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI02" label="Waren">
+        <hasNote>Zu den Gütern gehören greifbare Objekte und einige wissensbasierte Produkte, an denen Eigentumsrechte begründet werden können und deren Eigentum durch Markttransaktionen übertragen werden kann. (OECD 2018 - Oslo Manual)</hasNote>
           <isComposedBy>
-            <node id="ID03" label="Wissensspeichernde Produkte">
-            <hasNote>Knowledge-capturing products concern the provision,
-storage, communication and dissemination of information,
-advice and entertainment in such a way that the consuming
-unit can access the knowledge repeatedly. (SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
+            <node id="BI03" label="Wissensspeichernde Produkte">
+            <hasNote>Produkte zur Wissenserfassung betreffen die Bereitstellung, Speicherung, Kommunikation und Verbreitung von Informationen,
+Beratung und Unterhaltung derart, dass die konsumierende Einheit wiederholt auf das Wissen zugreifen kann. (SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="ID04" label="Dienstleistungen">
-        <hasNote>Services are intangible activities that are produced and consumed simultaneously and  that  change  the  conditions  (e.g.physical,  psychological,  etc.)  of  users. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI04" label="Dienstleistungen">
+        <hasNote>Dienstleistungen sind immaterielle Aktivitäten, die gleichzeitig produziert und konsumiert werden und die die Gegebenheiten (z.B. physische, psychische usw.) der Nutzer verändern. (OECD 2018 - Oslo Manual)</hasNote>
           <isComposedBy>
-            <node id="ID05" label="Wissensspeichernde Produkte">
-            <hasNote>Knowledge-capturing products concern the provision,
-storage, communication and dissemination of information,
-advice and entertainment in such a way that the consuming
-unit can access the knowledge repeatedly. (SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
+            <node id="BI05" label="Wissensspeichernde Produkte">
+            <hasNote>Produkte zur Wissensgewinnung betreffen die Bereitstellung, Speicherung, Kommunikation und Verbreitung von Informationen, Empfehlungen und Unterhaltung in der Weise, dass die konsumierende Einheit wiederholt auf das Wissen zugreifen kann. (SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="ID06" label="Kombination von Waren und Dienstleistungen">
-        <hasNote>The dividing line between goods and services can sometimes
-be difficult to establish and some products can have characteristics of both. A company can
-sell goods to its customers or rent their use as a service, as is often the case for durable
-consumer goods and for assets for business production. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI06" label="Kombination von Waren und Dienstleistungen">
+        <hasNote>Die Grenze zwischen Waren und Dienstleistungen ist manchmal schwer zu ziehen, und einige Produkte können Merkmale von beiden aufweisen. Ein Unternehmen kann Waren an seine Kunden verkaufen oder ihre Nutzung als Dienstleistung vermieten, wie dies häufig bei langlebigen Konsumgütern und bei Vermögenswerten der gewerblichen Produktion der Fall ist. (OECD 2018 - Oslo Manual)</hasNote>
           <isComposedBy>
-            <node id="ID07" label="Wissensspeichernde Produkte">
-            <hasNote>Knowledge-capturing products concern the provision,
-storage, communication and dissemination of information,
-advice and entertainment in such a way that the consuming
-unit can access the knowledge repeatedly. (SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
+            <node id="BI07" label="Wissensspeichernde Produkte">
+            <hasNote>Produkte zur Wissensgewinnung betreffen die Bereitstellung, Speicherung, Kommunikation und Verbreitung von Informationen, Empfehlungen und Unterhaltung in der Weise, dass die konsumierende Einheit wiederholt auf das Wissen zugreifen kann. SNE 2008 refered to in OECD 2018 - Oslo Manual)</hasNote>
             </node>
           </isComposedBy>
         </node>
       </isComposedBy>
         </node>
-    <node id="ID08" label="Innovation in Geschäftsprozessen">
-    <hasNote>A business process innovationis a new or improved business process for one or more business functions that differs significantly from the firm’s previous business processes and that has been brought into use in the firm. (OECD 2018 - Oslo Manual)</hasNote>
+    <node id="BI08" label="Innovation in Geschäftsprozessen">
+    <hasNote>Eine Geschäftsprozessinnovation ist ein neuer oder verbesserter Geschäftsprozess für eine oder mehrere Geschäftsfunktionen, der sich wesentlich von den bisherigen Geschäftsprozessen des Unternehmens unterscheidet und der in das Unternehmen eingeführt wurde. (OECD 2018 - Oslo Manual)</hasNote>
       <isComposedBy>
-        <node id="ID09" label="Produktion von Waren oder Dienstleistungen">
-        <hasNote>Activities that transform inputs into goods or services, including engineering and related technical testing, analysis and certification activities to support production. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI09" label="Produktion von Waren oder Dienstleistungen">
+        <hasNote>Aktivitäten, die Inputs in Waren oder Dienstleistungen umwandeln, einschließlich technischer Tests, Analysen und Zertifizierungsaktivitäten zur Unterstützung der Produktion. (OECD 2018 - Oslo Manual)</hasNote>
         </node>
-        <node id="ID10" label="Vertrieb und Logistik">
-        <hasNote>This function includes: a) transportationand service delivery b) warehousing c) order processing. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI10" label="Vertrieb und Logistik">
+        <hasNote>Diese Funktion umfasst: a) Transport und Servicelieferung b) Lagerhaltung c) Auftragsabwicklung. 
+(OECD 2018 - Oslo Manual)</hasNote>
         </node>
-        <node id="ID11" label="Marketing und Verkauf">
-        <hasNote>This function includes: a) marketingmethods including advertising (product promotion and placement, packaging of products), direct marketing (telemarketing), exhibitions and fairs, market research and other activities to develop new markets b) pricing strategies and methods c) sales and after-sales activities, including helpdesks other customer support and customer relationship activities. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI11" label="Marketing und Verkauf">
+        <hasNote>Diese Funktion umfasst: a) Marketingmethoden einschließlich Werbung (Produktförderung und -platzierung, Produktverpackungen), Direktmarketing (Telemarketing), Ausstellungen und Messen, Marktforschung und andere Aktivitäten zur Erschließung neuer Märkte b) Preisstrategien und Methoden c) Verkaufs- und Kundendienstaktivitäten, einschließlich Helpdesks, andere Kundensupport- und Kundenbeziehungsaktivitäten. (OECD 2018 - Oslo Manual)</hasNote>
         </node>
-        <node id="ID12" label="Informations- und Kommunikationssysteme">
-        <hasNote>The maintenance and provision of information and communication systems, including:a) hardwareand software b) data processing and database c) maintenance and repair d) web-hosting and other computer-related information activities. These functions can be provided in a separate division or in divisions responsible for other functions. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI12" label="Informations- und Kommunikationssysteme">
+        <hasNote>Die Wartung und Bereitstellung von Informations- und Kommunikationssystemen, einschließlich  a) Hardware und Software b) Datenverarbeitung und Datenbank c) Wartung und Reparatur 
+d) Web-Hosting und andere computerbezogene Informationsaktivitäten. Diese Funktionen können in einer separaten Abteilung oder in Abteilungen, die für andere Funktionen zuständig sind, erbracht werden.. (OECD 2018 - Oslo Manual)</hasNote>
         </node>
-        <node id="ID13" label="Verwaltung und Management">
-        <hasNote>This function includes: a) strategicand general business management (cross-functional decision-making), including organising work responsibilitiesb) corporate governance (legal, planning and public relations)c) accounting, bookkeeping, auditing, payments and other financial or insurance activities d) human resources management (training and education, staff recruitment, workplace organisation, provision of temporary personnel, payroll management, health and medical support)e) procurement f) managing external relationships with suppliers, alliances, etc. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI13" label="Verwaltung und Management">
+        <hasNote>Diese Funktion umfasst: a) strategische und allgemeine Unternehmensführung (funktionsübergreifende Entscheidungsfindung), einschließlich der Organisation von Arbeitsverantwortlichkeiten b) Unternehmensführung (Recht, Planung und Öffentlichkeitsarbeit)
+c) Buchhaltung, Rechnungswesen, Rechnungsprüfung, Zahlungen und andere Finanz- oder Versicherungsaktivitäten d) Personalmanagement (Aus- und Weiterbildung, Personalgewinnung, Arbeitsplatzorganisation, Bereitstellung von Zeitarbeitskräften, Lohnverwaltung, gesundheitliche und medizinische Unterstützung e) Beschaffung f) Verwaltung der externen Beziehungen zu Lieferanten, Verbänden usw. (OECD 2018 - Oslo Manual)</hasNote>
         </node>
-        <node id="ID14" label="Produkt- und Geschäftsprozess-Entwicklung">
-        <hasNote>Activities to scope, identify, develop, or adapt products or a firm's business processes. This function can be undertaken in a systematic fashion or on an adhoc basis, and be conducted within the firm or obtained from external sources. Responsibility for these activities can lie within a separate division or in divisions responsible for other functions, e.g.production of goods or services. Examples  of innovations in this function include the use of new gene editing technologies  to develop either existing or new plant varieties or pharmaceuticals and the application of data mining analysis to large databases to identify potential market development opportunities. Other examples  for  an  innovation in  this  category include  the  adoption  of  new  methodologiessuch as design thinking, co-creation, rapid prototyping or high-throughput screening. (OECD 2018 - Oslo Manual)</hasNote>
+        <node id="BI14" label="Produkt- und Geschäftsprozess-Entwicklung">
+        <hasNote>Aktivitäten zur Erfassung, Identifizierung, Entwicklung oder Anpassung von Produkten oder Geschäftsprozessen eines Unternehmens. Diese Funktion kann systematisch oder ad hoc durchgeführt werden, und zwar sowohl innerhalb des Unternehmens als auch aus externen Quellen. Die Verantwortung für diese Aktivitäten kann innerhalb einer separaten Abteilung oder in Abteilungen liegen, die für andere Funktionen, z.B. die Produktion von Waren oder Dienstleistungen, verantwortlich sind. Beispiele für Innovationen in dieser Funktion sind der Einsatz neuer Technologien des Geneditings, um entweder bestehende oder neue Pflanzensorten oder Arzneimittel zu entwickeln, sowie die Anwendung von Data-Mining-Analysen, um potenzielle Marktentwicklungsmöglichkeiten zu ermitteln. Weitere Beispiele für eine Innovation in dieser Kategorie sind die Anwendung neuer Methoden wie Design Thinking, Co-Creation, Rapid Prototyping oder Hochdurchsatz-Screening. (OECD 2018 - Oslo Manual)</hasNote>
         </node>
       </isComposedBy>
     </node>

@@ -5348,7 +5348,6 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <vocabulary>funding-policy</vocabulary>
         </field>
       </row>
       <row>

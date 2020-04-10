@@ -13,6 +13,7 @@
                 <!-- dc.identifier.patentnumber is used instead of dc.identifier.patentno -->
                 <entry key="dc.identifier.patentnumber" value="publicationnumber"/>
                 <entry key="dc.identifier.applicationnumber" value="applicationnumber"/>
+                <entry key="dc.date.filled" value="applicationdate"/>
                 
 	        </map>            
         </property>

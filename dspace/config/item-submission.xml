@@ -421,6 +421,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step>
+    <step id="ethics" mandatory="true">
+      <heading>submit.progressbar.describe.ethics</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step>
     <step id="ethics_process" mandatory="true">
       <heading>submit.progressbar.describe.ethics_process</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -795,6 +800,7 @@
     </submission-process>
     <submission-process name="ethics">
       <step id="collection" />
+      <step id="ethics" />
       <step id="ethics_process" />
       <step id="ethics_use" />
     </submission-process>

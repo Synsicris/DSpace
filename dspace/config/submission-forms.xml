@@ -834,7 +834,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>communication</dc-element>
           <dc-qualifier>communication</dc-qualifier>
-          <label>Contributer(s) from the project</label>
+          <label>Contributor(s) from the project</label>
           <input-type>name</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3616,7 +3616,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>related-innovationpotential-social</dc-qualifier>
+          <dc-qualifier>related-innovationpotentials-social</dc-qualifier>
           <label>Related innovation potential</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3800,7 +3800,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>related-innovationpotential-social</dc-qualifier>
+          <dc-qualifier>related-innovationpotentials-social</dc-qualifier>
           <label>Related innovation potential</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4663,11 +4663,10 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>sdg</dc-qualifier>
           <label>Contribution of the project to a certain SDG target</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col.md-4</style>
           <hint>Please select as precisely as possible, ideally at sub-target level.</hint>
-          <vocabulary>sdg</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -4733,7 +4732,7 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>contributer</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>awardwinner</dc-qualifier>
           <label>Awardee(s)</label>
           <input-type>onebox</input-type>
@@ -4757,7 +4756,7 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>contributer</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
           <label>Donor(s)</label>
           <input-type>onebox</input-type>
@@ -4854,7 +4853,7 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>contributer</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>contactperson</dc-qualifier>
           <label>Contact person</label>
           <input-type>onebox</input-type>
@@ -5198,9 +5197,9 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>human-involvement</dc-qualifier>
-          <label>Beteiligt Ihre Forschung menschliche Teilnehmende? 
-(Bezieht sich auf jede Forschung, die die Arbeit mit Menschen als Forschungs- oder Studienteilnehmende beinhaltet, unabhängig von ihrer Art oder ihrem Thema.
-Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eingriffe, Interviews, Beobachtungen, Nachverfolgung oder sekundäre Nutzung von Informationen, die für andere Zwecke bereitgestellt werden, z.B. andere Forschungsprojekte, offiziell gesammelte Informationen, Social-Media-Seiten.)</label>
+          <label>1) Does your research involve human participants?
+(This refers to any research involving work with human beings as research or study participants, regardless of its nature or topic.
+Examples: collection of biological samples, personal data, medical interventions, interviews, observations, tracking or the secondary use of information provided for other purposes, e.g. other research projects, officially collected information, social media sites.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5212,9 +5211,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>pers-data</dc-qualifier>
-          <label>Beinhaltet Ihre Forschung die Verarbeitung von persönlichen Daten?
-(Bezieht sich auf Forschung, die eine Verarbeitung personenbezogener Daten beinhaltet, unabhängig von der verwendeten Methode (z.B. Interviews, Fragebögen, direkte Online-Abfrage usw.).
-„Personenbezogene Daten“ sind Informationen, die sich auf eine bestimmte oder bestimmbare natürliche Person beziehen.)</label>
+          <label>2) Does your research involve processes of personal data?
+(This refers to any which involves processing of personal data, regardless of the method used (e.g. interviews, questionnaires, direct online retrieval). Personal data means information relating to an identified or identifiable natural person).</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5226,8 +5224,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>harmful-pers</dc-qualifier>
-          <label>Beinhaltet Ihre Forschung die Verwendung von Materialien oder Stoffen, die dem Menschen, einschließlich des Forschungspersonals, Schaden zufügen können? 
-(Die Gesundheit und der Lebensschutz aller menschlichen Teilnehmenden an der Forschung - als Versuchspersonen, Forschende oder unbeteiligte Dritte - muss bei allen Forschungsstudien eine Priorität sein.)</label>
+          <label>3) Does your research involve the use of elements that may cause harm to humans, including research staff?
+(The health and safety of all human participants in research - as subjects, investigators or uninvolved third parties - must be a priority in all research studies).</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5239,8 +5237,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>animal-testing</dc-qualifier>
-          <label>Umfasst Ihre Forschung Tierversuche?
-(Bezieht sich explizit auf die Tierverwendung in der Forschung in den verschiedensten Formen von Experimenten, Verfahren oder Techniken.)</label>
+          <label>4) Does your research involve animal experiments?
+(This refers to the use of animals in research in various forms of experiments, procedures or techniques).</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5252,8 +5250,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>harmful-env</dc-qualifier>
-          <label>Umfasst Ihre Forschung die Verwendung von Materialien oder Stoffen, die der Umwelt, den Tieren oder Pflanzen schaden können? Beschäftigt sich Ihre Forschung mit gefährdeter Fauna und/oder Flora/Schutzgebieten?
-(Bezieht sich auf Forschung mit Materialien oder Stoffen, die einen Einfluss auf die biologische Vielfalt und/oder die Resilienz der Umwelt haben.)</label>
+          <label>5) Does your research involve the use of elements that may cause harm to the environment, to animals or plants? Does your research deal with endangered fauna and/or flora /protected areas?
+(This section concerns research with materials or elements that may adversely affect the biological diversity and/or the resilience of the environment.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5265,7 +5263,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>others</dc-qualifier>
-          <label>Andere ethische Bedingungen? (Da mit einer Forschungsförderung auch neue Wege eingeschlagen werden (sollen), können neue ethische Themen und Bedenken auftreten, die oben nicht aufgelistet sind.</label>
+          <label>6) Are there any other ethics issues that should be taken into consideration?
+(Since research funding intends to support new paths in research, it may be that your research raises new ethical issues and concerns that are currently not (fully) covered by the issues aboved mentioned.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5277,7 +5276,8 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>measures1</dc-qualifier>
-          <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Besimmungen) im Projekt zu gewährleisten.</label>
+          <label>If the answer to any aspect is "Yes", please specify what measures you will take to ensure the integrity of the research and the compliance with ethical standards (ethical principles and legal requirements) in the project. 
+(Please pay attention to the information in the attached document.)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5291,8 +5291,7 @@ Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eing
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>aceptance</dc-qualifier>
-          <label>Berühren Ihre F&amp;E-Ergebnisse Grenzbereiche der ethischen Akzeptanz? (Z.B. Gibt es zu Ihrer Forschung und den Ergebnissen gesellschaftlichen Kontroverse, die ethischen Aspekte zu Mensch, Tier oder Umwelt einbeziehen?
-Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung beschäftigen, einer (kontinuierlichen) kritischen Begleitung von Akteuren aus der Gesellschaft ausgesetzt?)</label>
+          <label>7) Do your R&amp;D results cross frontiers of ethical acceptance? (e.g.: Is there societal controversy about your research and its results that includes ethical aspects of humans, animals or the environment? Are you or other research institutions engaged in similar research subject to (continuous) critical obversation by societal actors?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5304,8 +5303,8 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>dualuse</dc-qualifier>
-          <label>Betrifft Ihre Forschung Dual-Use-Güter (Güter mit doppeltem Verwendungszweck) oder andere Güter, für die eine Genehmigung erforderlich ist?
-(Güter mit doppeltem Verwendungszweck werden normalerweise für zivile Zwecke verwendet, können aber auch militärisch genutzt werden oder zur Verbreitung von Massenvernichtungswaffen beitragen.)</label>
+          <label>8) Does your research concern dual-use goods or other goods requiring authorisation?
+(Dual-use items are normally used for civilian purposes, but may have military applications or may contribute to the proliferation of weapons of mass destruction.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5317,8 +5316,8 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>misuse-results</dc-qualifier>
-          <label>Hat Ihre Forschung ein Potenzial für den Missbrauch von Forschungsergebnissen?
-(Z.B. Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen Menschen, Tieren oder der Umwelt schaden, wenn sie modifiziert oder verbessert werden? Was würde passieren, wenn die betreffenden oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen in die falschen Hände gelangen würden? Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. das generierte Wissen anderen als den vorgesehenen Zwecken dienen? Wenn ja, wäre eine solche Verwendung unethisch?)</label>
+          <label>9) Does your research have a potential for misuse of research results? 
+(e.g.: Could the materials/methods/technologies and knowledge involved or generated harm humans, animals or the environment if they were modified or enhanced? What would happen if the materials/methods/technologies and knowledge involved or generated ended up in the wrong hands? Could the materials/methods/technologies and knowledge involved or generated serve purposes other than those intended? If so, would such use be unethical?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5330,7 +5329,8 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>measures1</dc-qualifier>
-          <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Besimmungen) im Projekt zu gewährleisten.</label>
+          <label>If the answer to any aspect is "Yes", please specify what measures you will take to ensure the integrity of the research and the compliance with ethical standards (ethical principles and legal requirements) in the project. 
+(Please pay attention to the information in the attached document.)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5686,6 +5686,30 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Start date</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>End date</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -7073,6 +7097,10 @@ Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung 
       <pair>
         <displayed-value>Gender reflexivity</displayed-value>
         <stored-value>gender</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ethical reflection</displayed-value>
+        <stored-value>ethics</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="innovation_development" dc-term="innovation_development">

@@ -674,6 +674,7 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="searchFilterObjectNamedType" />
+                <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterType" />
                 <ref bean="searchFilterIssued" />
             </list>
@@ -682,6 +683,7 @@
         <property name="searchFilters">
             <list>
                 <ref bean="searchFilterObjectNamedType" />
+                <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterType" />
                 <ref bean="searchFilterIssued" />
             </list>

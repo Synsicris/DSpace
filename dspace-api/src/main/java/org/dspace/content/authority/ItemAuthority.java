@@ -17,18 +17,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.dspace.content.Collection;
 import org.dspace.content.DSpaceObject;
+import org.dspace.content.InProgressSubmission;
 import org.dspace.content.Item;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.factory.ItemAuthorityServiceFactory;
 import org.dspace.content.authority.service.ItemAuthorityService;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
-import org.dspace.discovery.DiscoverQuery;
-import org.dspace.discovery.DiscoverResult;
+import org.dspace.core.ReloadableEntity;
 import org.dspace.discovery.IndexableObject;
 import org.dspace.discovery.SearchService;
-import org.dspace.discovery.SearchServiceException;
 import org.dspace.util.UUIDUtils;
 import org.dspace.utils.DSpace;
 
@@ -72,44 +72,45 @@ public class ItemAuthority implements ChoiceAuthority {
 
         ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(field);
         String luceneQuery = itemAuthorityService.getSolrQuery(text);
-
-        DiscoverQuery discoverQuery = new DiscoverQuery();
-        discoverQuery.setDSpaceObjectFilter(Item.class.getSimpleName());
+        List<String> filterQueries = new ArrayList<String>();
+        
+        String dspaceObjectFilterQueries = "search.resourcetype:" + Item.class.getSimpleName() +
+          " OR search.resourcetype:" + WorkspaceItem.class.getSimpleName();
+        
+        filterQueries.add(dspaceObjectFilterQueries);
 
         String relationshipType = ConfigurationManager.getProperty("cris", "ItemAuthority."
                 + field + ".relationshipType");
         if (StringUtils.isNotBlank(relationshipType)) {
             String filter = "relationship.type:" + relationshipType;
-            discoverQuery.addFilterQueries(filter);
+            filterQueries.add(filter);
         }
 
-        discoverQuery
-            .setQuery(luceneQuery);
-        discoverQuery.setStart(start);
-        discoverQuery.setMaxResults(limit);
+        List<IndexableObject> resultSearch;
+        
+        context = new Context();
+        resultSearch = searchService.search(context, luceneQuery, null, true, start, limit,
+                filterQueries.toArray(new String[0]));
+        List<Choice> choiceList = new ArrayList<Choice>();
 
-        DiscoverResult resultSearch;
-        try {
-            context = new Context();
-            resultSearch = searchService.search(context, discoverQuery);
-            List<Choice> choiceList = new ArrayList<Choice>();
-
-            // Process results of query
-            Iterator<IndexableObject> dsoIterator = resultSearch.getIndexableObjects().iterator();
-            while (dsoIterator.hasNext()) {
-                DSpaceObject dso = (DSpaceObject) dsoIterator.next().getIndexedObject();
-                choiceList.add(new Choice(dso.getID().toString(), dso.getName(), dso.getName()));
+        // Process results of query
+        Iterator<IndexableObject> dsoIterator = resultSearch.listIterator();
+        while (dsoIterator.hasNext()) {
+            ReloadableEntity resultObject = dsoIterator.next().getIndexedObject();
+            DSpaceObject dso;
+            if (resultObject instanceof InProgressSubmission) {
+                dso = ((InProgressSubmission) resultObject).getItem();
+            } else {
+                dso = (DSpaceObject) resultObject;
             }
-
-            Choice[] results = new Choice[choiceList.size()];
-            results = choiceList.toArray(results);
-            return new Choices(results, 0, (int) resultSearch.getTotalSearchResults(), Choices.CF_AMBIGUOUS,
-                               resultSearch.getTotalSearchResults() > (start + limit), 0);
-
-        } catch (SearchServiceException e) {
-            log.error(e.getMessage(), e);
-            return new Choices(Choices.CF_UNSET);
+            choiceList.add(new Choice(dso.getID().toString(), dso.getName(), dso.getName()));
         }
+
+        Choice[] results = new Choice[choiceList.size()];
+        results = choiceList.toArray(results);
+        return new Choices(results, 0, (int) resultSearch.size(), Choices.CF_AMBIGUOUS,
+                           resultSearch.size() > (start + limit), 0);
+
     }
 
     @Override

@@ -14,12 +14,16 @@
                 <entry key="dc.identifier.patentnumber" value="publicationnumber"/>
                 <entry key="dc.identifier.applicationnumber" value="applicationnumber"/>
                 <entry key="dc.date.filled" value="applicationdate"/>
-                
-	        </map>            
+                <entry key="dc.identifier.pmid" value="pubmed"/>
+                <entry key="dc.identifier.adsbibcode" value="adsbibcode"/>
+                <entry key="dc.identifier.arxiv" value="arxiv"/>
+            </map>
         </property>
         <property name="dataloadersMap">
 	        <map>
+                <entry key="pubmedEurope" value-ref="pubmedEuropeOnlineDataLoader"/>
                 <entry key="pubmed" value-ref="pubmedOnlineDataLoader"/>
+                <entry key="adsbibcode" value-ref="adsOnlineDataLoader"/>
 	            <entry key="crossref" value-ref="crossRefOnlineDataLoader"/>
 	            <entry key="arxiv" value-ref="arXivOnlineDataLoader"/>
 	            <entry key="cinii" value-ref="ciniiOnlineDataLoader"/>

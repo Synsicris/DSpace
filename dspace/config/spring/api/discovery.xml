@@ -1864,6 +1864,7 @@
                 <property name="sortFields">
                     <list>
                         <ref bean="sortEntityType"/>
+                        <ref bean="sortWorkingplanPlace"/>
                         <ref bean="sortTitle"/>
                         <ref bean="sortDateAccessioned"/>
                     </list>
@@ -2767,6 +2768,10 @@
 
     <bean id="sortEntityType" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="relationship.type"/>
+    </bean>
+
+    <bean id="sortWorkingplanPlace" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="workingplan.place"/>
     </bean>
 
 </beans>

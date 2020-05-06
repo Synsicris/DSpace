@@ -6031,6 +6031,10 @@ Examples: collection of biological samples, personal data, medical interventions
         <stored-value>isi</stored-value>
       </pair>
       <pair>
+        <displayed-value>Ads Code</displayed-value>
+        <stored-value>adsbibcode</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Pubmed ID</displayed-value>
         <stored-value>pmid</stored-value>
       </pair>

@@ -3,6 +3,7 @@
 
 <item-submission>
   <submission-map>
+
     <name-map collection-handle="123456789/90" submission-name="applications_econtech" />  
 	  <name-map collection-handle="123456789/106" submission-name="applications_social" />	
 	  <name-map collection-handle="123456789/107" submission-name="awards" />
@@ -19,7 +20,6 @@
     <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
     <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" />
     <name-map collection-handle="123456789/52" submission-name="impact_pathway_step_type_6_task_form" />     
-    <name-map collection-handle="123456789/68" submission-name="innovationpotentials_econtech" />	
     <name-map collection-handle="123456789/109" submission-name="innovationideas" />
 	  <name-map collection-handle="123456789/111" submission-name="innovationpotentials_econtech" />
     <name-map collection-handle="123456789/110" submission-name="innovationpotentials_social" />	
@@ -39,7 +39,7 @@
 	  <name-map collection-handle="123456789/48" submission-name="subprojects" />
     <name-map collection-handle="123456789/188" submission-name="targetgroups" />    
 	  <name-map collection-handle="123456789/85" submission-name="tasks" />
-    <name-map collection-handle="123456789/52" submission-name="tests" />
+    <name-map collection-handle="123456789/279" submission-name="tests" />
     <name-map collection-handle="123456789/88" submission-name="unexpected_results" />
     <name-map collection-handle="123456789/118" submission-name="workpackages" /> 
 
@@ -55,7 +55,8 @@
     <name-map collection-handle="123456789/129" submission-name="plan_publications" />     	
     <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />
 	  <name-map collection-handle="123456789/131" submission-name="plan_tasks" />	
-    <name-map collection-handle="123456789/132" submission-name="plan_workpackages" />	
+    <name-map collection-handle="123456789/132" submission-name="plan_workpackages" />
+    	
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">

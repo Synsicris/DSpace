@@ -382,8 +382,7 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>funder</dc-qualifier>
+          <dc-element>title</dc-element>
           <label>Select funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -1209,7 +1208,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>You must enter a main title..</required>
+          <required>You must enter a main title.</required>
           <hint />
         </field>
       </row>
@@ -1606,7 +1605,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>registernumer</dc-qualifier>
+          <dc-qualifier>registernumber</dc-qualifier>
           <label>Register number</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -1777,6 +1776,17 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>is imported from the information of the subprojects</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
           <dc-qualifier>titleotherlanguage</dc-qualifier>
           <label>Title in other language</label>
           <input-type>onebox</input-type>
@@ -1835,7 +1845,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>grantpersonel</dc-qualifier>
+          <dc-qualifier>grantpersonnel</dc-qualifier>
           <label>Grant for personnel (EUR)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
@@ -2377,6 +2387,41 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the name.</required>
+          <style>col-md-9</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>acronym</dc-qualifier>
+          <label>Acronym</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>titleotherlanguage</dc-qualifier>
+          <label>Title in other language</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>status</dc-element>
           <dc-qualifier>status</dc-qualifier>
           <label>Status</label>
@@ -2570,7 +2615,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>formadress</dc-qualifier>
+          <dc-qualifier>formaddress</dc-qualifier>
           <label>Form of address</label>
           <input-type value-pairs-name="person_form">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5962,9 +6007,9 @@ Examples: collection of biological samples, personal data, medical interventions
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Test type</label>
-          <input-type value-pairs-name="register_type">dropdown</input-type>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -5973,27 +6018,37 @@ Examples: collection of biological samples, personal data, medical interventions
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>one</dc-qualifier>
-          <label>One</label>
+          <dc-element>description</dc-element>
+          <dc-qualifier>streetnamenumber</dc-qualifier>
+          <label>Street</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>Handelsregister A</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>two</dc-qualifier>
-          <label>Two</label>
+          <dc-element>description</dc-element>
+          <dc-qualifier>postcode</dc-qualifier>
+          <label>Postcode</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>Handelsregister B</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>city</dc-qualifier>
+          <label>City</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -6029,10 +6084,6 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>WOS ID</displayed-value>
         <stored-value>isi</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ads Code</displayed-value>
-        <stored-value>adsbibcode</stored-value>
       </pair>
       <pair>
         <displayed-value>Pubmed ID</displayed-value>
@@ -6249,52 +6300,6 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Other / miscellaneous</displayed-value>
         <stored-value>Other / miscellaneous</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="common_iso_languages" dc-term="common_iso_languages">
-      <pair>
-        <displayed-value>N/A</displayed-value>
-        <stored-value />
-      </pair>
-      <pair>
-        <displayed-value>English (United States)</displayed-value>
-        <stored-value>en_US</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>English</displayed-value>
-        <stored-value>en</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Spanish</displayed-value>
-        <stored-value>es</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>German</displayed-value>
-        <stored-value>de</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>French</displayed-value>
-        <stored-value>fr</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Italian</displayed-value>
-        <stored-value>it</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Japanese</displayed-value>
-        <stored-value>ja</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Chinese</displayed-value>
-        <stored-value>zh</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Turkish</displayed-value>
-        <stored-value>tr</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(Other)</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
@@ -6715,23 +6720,23 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="organisationform" dc-term="organisationform">
       <pair>
-        <displayed-value>Hochschulen/Universitäten</displayed-value>
+        <displayed-value>University</displayed-value>
         <stored-value>Hochschulen/Universitäten</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungseinrichtung</displayed-value>
+        <displayed-value>Research institution</displayed-value>
         <stored-value>Forschungseinrichtung</stored-value>
       </pair>
       <pair>
-        <displayed-value>KMU</displayed-value>
+        <displayed-value>SME</displayed-value>
         <stored-value>KMU</stored-value>
       </pair>
       <pair>
-        <displayed-value>GU</displayed-value>
+        <displayed-value>LE</displayed-value>
         <stored-value>GU</stored-value>
       </pair>
       <pair>
-        <displayed-value>andere</displayed-value>
+        <displayed-value>other</displayed-value>
         <stored-value>andere</stored-value>
       </pair>
     </value-pairs>
@@ -6803,20 +6808,6 @@ Examples: collection of biological samples, personal data, medical interventions
         <stored-value>General public</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="contributor" dc-term="contributor">
-      <pair>
-        <displayed-value>Supervisor</displayed-value>
-        <stored-value>Supervisor</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Interviewer</displayed-value>
-        <stored-value>Interviewer</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Interviewee</displayed-value>
-        <stored-value>Interviewee</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="spinoff_type" dc-term="spinoff_type">
       <pair>
         <displayed-value>Competence spin-off</displayed-value>
@@ -6829,20 +6820,24 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="register_type" dc-term="register_type">
       <pair>
-        <displayed-value>Handelsregister A</displayed-value>
-        <stored-value>Handelsregister A</stored-value>
+        <displayed-value>Section A (HRA)</displayed-value>
+        <stored-value>Section A (HRA)</stored-value>
       </pair>
       <pair>
-        <displayed-value>Handelsregister B</displayed-value>
-        <stored-value>Handelsregister B</stored-value>
+        <displayed-value>Section B (HRB)</displayed-value>
+        <stored-value>Section B (HRB)</stored-value>
       </pair>
       <pair>
-        <displayed-value>Genossenschaftsregister</displayed-value>
-        <stored-value>Genossenschaftsregister</stored-value>
+        <displayed-value>Cooperative Registry</displayed-value>
+        <stored-value>Cooperative Registry</stored-value>
       </pair>
       <pair>
-        <displayed-value>Vereinsregister</displayed-value>
-        <stored-value>Vereinsregister</stored-value>
+        <displayed-value>Partnership Registry</displayed-value>
+        <stored-value>Partnership Registry</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Registry of Assosiations</displayed-value>
+        <stored-value>Registry of Assosiations</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="trl" dc-term="trl">
@@ -7185,23 +7180,23 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="unit-social" dc-term="unit-social">
       <pair>
-        <displayed-value>individuals</displayed-value>
+        <displayed-value>Individuals</displayed-value>
         <stored-value>individuals</stored-value>
       </pair>
       <pair>
-        <displayed-value>households</displayed-value>
+        <displayed-value>Households</displayed-value>
         <stored-value>households</stored-value>
       </pair>
       <pair>
-        <displayed-value>companies</displayed-value>
+        <displayed-value>Companies</displayed-value>
         <stored-value>companies</stored-value>
       </pair>
       <pair>
-        <displayed-value>non-profit organisations</displayed-value>
+        <displayed-value>Non-profit organisations</displayed-value>
         <stored-value>non-profit organisations</stored-value>
       </pair>
       <pair>
-        <displayed-value>municipalities</displayed-value>
+        <displayed-value>Municipalities</displayed-value>
         <stored-value>municipalities</stored-value>
       </pair>
       <pair>
@@ -7385,7 +7380,7 @@ Examples: collection of biological samples, personal data, medical interventions
         <stored-value>step_type_4</stored-value>
       </pair>
       <pair>
-        <displayed-value>Potential Societal Impact</displayed-value>
+        <displayed-value>Expected Societal Impact</displayed-value>
         <stored-value>step_type_5</stored-value>
       </pair>
       <pair>
@@ -7430,6 +7425,18 @@ Examples: collection of biological samples, personal data, medical interventions
         <displayed-value>Milestones (plan)</displayed-value>
         <stored-value>plan_milestones</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Workpackages</displayed-value>
+        <stored-value>workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks</displayed-value>
+        <stored-value>tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones</displayed-value>
+        <stored-value>milestones</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
@@ -7470,6 +7477,38 @@ Examples: collection of biological samples, personal data, medical interventions
         <displayed-value>Objects, materials (plan)</displayed-value>
         <stored-value>plan_physical_objects</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Workpackages</displayed-value>
+        <stored-value>workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Tasks</displayed-value>
+        <stored-value>tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestones</displayed-value>
+        <stored-value>milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Events</displayed-value>
+        <stored-value>events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Participative processes</displayed-value>
+        <stored-value>participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation processes</displayed-value>
+        <stored-value>cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publications</displayed-value>
+        <stored-value>publications</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Objects, materials</displayed-value>
+        <stored-value>physical_objects</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
@@ -7497,6 +7536,30 @@ Examples: collection of biological samples, personal data, medical interventions
         <stored-value>plan_innovationpotentials_social</stored-value>
       </pair>
       <pair>
+        <displayed-value>Milestones</displayed-value>
+        <stored-value>milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Spin-offs (incl. associations)</displayed-value>
+        <stored-value>spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents and utility patents</displayed-value>
+        <stored-value>patents</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ideas for innovation and change</displayed-value>
+        <stored-value>innovationideas</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Intended business innovations</displayed-value>
+        <stored-value>innovationpotentials_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Intended social innovations/ changeprocesses</displayed-value>
+        <stored-value>innovationpotentials_social</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Application success in social innovations/change processes</displayed-value>
         <stored-value>applications_social</stored-value>
       </pair>
@@ -7515,10 +7578,6 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Awards and prizes</displayed-value>
         <stored-value>awards</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Tasks (plan)</displayed-value>
-        <stored-value>plan_tasks</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
@@ -7645,6 +7704,58 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>9b772935-35aa-4115-b52f-9b588b12a4a7</displayed-value>
         <stored-value>ethics</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>a532a255-0dac-4786-90c2-94d1a6239f27</displayed-value>
+        <stored-value>workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>0b9add4d-6f22-4873-8263-b2ea323c4a8a</displayed-value>
+        <stored-value>tasks</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>941a7dda-e79f-4eaa-82e8-c6e61e37d783</displayed-value>
+        <stored-value>milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>357d3f9b-46c4-48de-a701-7d7d7d05152c</displayed-value>
+        <stored-value>events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>17b56df3-cca9-4177-9b89-ac49030dce9e</displayed-value>
+        <stored-value>participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>79f4feab-a6c9-4e53-961b-89082e3099bf</displayed-value>
+        <stored-value>cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8e5cb266-51fe-4dd8-9abe-0d374c9edeeb</displayed-value>
+        <stored-value>publications</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>17e29d60-fbd8-43b8-bc81-4edfbdcdfc98</displayed-value>
+        <stored-value>physical_objects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>ecbcbb2f-8fea-4cfe-b216-ab5a6587c697</displayed-value>
+        <stored-value>spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>3611c293-4919-4b2d-a623-74e951047802</displayed-value>
+        <stored-value>patents</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>9a9a67bf-647f-4a5a-9f69-e28944f11d98</displayed-value>
+        <stored-value>innovationideas</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>ed2d22ee-8356-4260-bc57-db04e5bd73a7</displayed-value>
+        <stored-value>innovationpotentials_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>ca349da3-c9b4-4c31-87db-a7b7c7e976b2</displayed-value>
+        <stored-value>innovationpotentials_social</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="direct_indirect" dc-term="direct_indirect">

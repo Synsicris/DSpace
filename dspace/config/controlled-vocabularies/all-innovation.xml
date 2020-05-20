@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="ALL-INNOVATION 2020-01-16">
+<node id="ResourceTypeGenres" label="ALL-INNOVATION 2020-05-14">
   <isComposedBy>
     <node id="ID01" label="Product innovation">
     <hasNote></hasNote>
@@ -41,33 +41,32 @@
     <node id="ID12" label="Social innovation / change processes">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID13" label="Capacity building und Lernen: Veränderung von Kenntnissen. Einstellungen, Fähigkeiten, Präferenzen">
+        <node id="ID13" label="Capacity building and learning">
         <hasNote></hasNote>
         </node>
-        <node id="ID14" label="Veränderung von Handlungen, Verhalten, Praktiken ">
+        <node id="ID14" label="Changed behaviour, practices">
         <hasNote></hasNote>
         </node>
-        <node id="ID15" label="Netzwerke: Aufbau und Etablierung von neuen formellen oder informellen Netzwerken,  Kooperationsformen, regionalen Clustern etc.">
+        <node id="ID15" label="Networks">
         <hasNote></hasNote>
         </node>
-        <node id="ID16" label="Veränderungen in oder von Organisationen und Institutionen">
+        <node id="ID16" label="
+Changes in or of Organisations and Institutions">
         <hasNote></hasNote>
         </node>
-        <node id="ID17" label="Veränderung von Verhältnissen oder Strukturen
-">
+        <node id="ID17" label="Changed conditions and structures ">
         <hasNote></hasNote>
         </node>
-        <node id="ID18" label="Entwicklung von Standards, Normen oder Regelwerken (außerhalb der Gesetzgebung)
-">
+        <node id="ID18" label="Development of standards, norms or  guidelines (not in legislation)">
         <hasNote></hasNote>
         </node>
-        <node id="ID19" label="Entwicklung von Gesetzen oder Verordnungen">
+        <node id="ID19" label="Development of laws or regulations">
         <hasNote></hasNote>
         </node>
-        <node id="ID20" label="Berücksichtigung in sonstigen politischen Prozessen">
+        <node id="ID20" label="Other political processes ">
         <hasNote></hasNote>
         </node>
-        <node id="ID21" label="Sonstiges">
+        <node id="ID21" label="Others ">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

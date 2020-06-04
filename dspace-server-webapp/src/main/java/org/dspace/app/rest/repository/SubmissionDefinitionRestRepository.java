@@ -18,6 +18,7 @@ import org.dspace.app.util.SubmissionConfig;
 import org.dspace.app.util.SubmissionConfigReader;
 import org.dspace.app.util.SubmissionConfigReaderException;
 import org.dspace.content.Collection;
+import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.core.Context;
@@ -68,10 +69,23 @@ public class SubmissionDefinitionRestRepository extends DSpaceRestRepository<Sub
         if (col == null) {
             return null;
         }
-        SubmissionDefinitionRest def = converter
-            .toRest(submissionConfigReader.getSubmissionConfigByCollection(col.getHandle()),
-                    utils.obtainProjection());
-        return def;
+        SubmissionConfig subConfig = null;
+        List<MetadataValue> submissionName = collectionService
+                                                  .getMetadata(col, "cris", "submission", "definition", null);
+        if (submissionName != null && submissionName.size() > 0) {
+            subConfig = submissionConfigReader.getSubmissionConfigByName(submissionName.get(0).getValue());
+            if (subConfig != null) {
+                return converter.toRest(subConfig, utils.obtainProjection());
+            }
+        }
+        submissionName = collectionService.getMetadata(col, "relationship", "type", null, null);
+        if (submissionName != null && submissionName.size() > 0) {
+            subConfig = submissionConfigReader.getSubmissionConfigByName(submissionName.get(0).getValue());
+            if (subConfig != null) {
+                return converter.toRest(subConfig, utils.obtainProjection());
+            }
+        }
+        return converter.toRest(submissionConfigReader.getDefaultSubmissionConfigName(), utils.obtainProjection());
     }
 
     @Override

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dspace-dc-types>
+
+	<dc-schema>
+		<name>cris</name>
+		<namespace>https://dspacecris.4science.cloud/schema/cris</namespace>
+	</dc-schema>
+
+	<dc-type>
+		<schema>cris</schema>
+		<element>submission</element>
+		<qualifier>definition</qualifier>
+	</dc-type>
+
+</dspace-dc-types>

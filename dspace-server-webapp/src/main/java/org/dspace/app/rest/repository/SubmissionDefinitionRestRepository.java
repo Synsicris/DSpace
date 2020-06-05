@@ -18,7 +18,6 @@ import org.dspace.app.util.SubmissionConfig;
 import org.dspace.app.util.SubmissionConfigReader;
 import org.dspace.app.util.SubmissionConfigReaderException;
 import org.dspace.content.Collection;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.core.Context;
@@ -70,22 +69,23 @@ public class SubmissionDefinitionRestRepository extends DSpaceRestRepository<Sub
             return null;
         }
         SubmissionConfig subConfig = null;
-        List<MetadataValue> submissionName = collectionService
-                                                  .getMetadata(col, "cris", "submission", "definition", null);
-        if (submissionName != null && submissionName.size() > 0) {
-            subConfig = submissionConfigReader.getSubmissionConfigByName(submissionName.get(0).getValue());
+        String submissionName = collectionService.getMetadataFirstValue(col, "cris", "submission", "definition", null);
+        if (submissionName != null) {
+            subConfig = submissionConfigReader.getSubmissionConfigByName(submissionName);
             if (subConfig != null) {
                 return converter.toRest(subConfig, utils.obtainProjection());
             }
         }
-        submissionName = collectionService.getMetadata(col, "relationship", "type", null, null);
-        if (submissionName != null && submissionName.size() > 0) {
-            subConfig = submissionConfigReader.getSubmissionConfigByName(submissionName.get(0).getValue());
+        submissionName = collectionService.getMetadataFirstValue(col, "relationship", "type", null, null);
+        if (submissionName != null) {
+            subConfig = submissionConfigReader.getSubmissionConfigByCollection(submissionName);
             if (subConfig != null) {
                 return converter.toRest(subConfig, utils.obtainProjection());
             }
         }
-        return converter.toRest(submissionConfigReader.getDefaultSubmissionConfigName(), utils.obtainProjection());
+        subConfig = submissionConfigReader.getSubmissionConfigByName(
+                                           submissionConfigReader.getDefaultSubmissionConfigName());
+        return converter.toRest(subConfig, utils.obtainProjection());
     }
 
     @Override

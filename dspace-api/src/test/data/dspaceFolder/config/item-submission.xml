@@ -21,6 +21,7 @@
         <name-map collection-handle="123456789/2001" submission-name="patent"/>
         <name-map collection-handle="123456789/publication-1" submission-name="publication"/>
         <name-map collection-handle="123456789/language-test-1" submission-name="languagetestprocess"/>
+        <name-map collection-handle="entityType" submission-name="patent"/>
     </submission-map>
 
 

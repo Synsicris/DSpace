@@ -248,4 +248,30 @@ public class SubmissionDefinitionsControllerIT extends AbstractControllerIntegra
                         .andExpect(jsonPath("$", SubmissionDefinitionsMatcher
                                   .matchSubmissionDefinition(true, "traditional", "traditional")));
     }
+
+    @Test
+    public void findByCollectionWithRelationTypeTest() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Community")
+                                          .build();
+
+        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Collection 1")
+                                           .withRelationshipType("entityType")
+                                           .build();
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(get("/api/config/submissiondefinitions/search/findByCollection")
+                        .param("uuid", col1.getID().toString()))
+                        .andExpect(status().isOk())
+                        .andExpect(content().contentType(contentType))
+                        .andExpect(jsonPath("$", SubmissionDefinitionsMatcher
+                                  .matchProperties(false, "patent", "patent")));
+    }
 }

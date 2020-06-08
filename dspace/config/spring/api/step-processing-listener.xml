@@ -17,7 +17,11 @@
                 <entry key="dc.identifier.pmid" value="pubmed"/>
                 <entry key="dc.identifier.adsbibcode" value="adsbibcode"/>
                 <entry key="dc.identifier.arxiv" value="arxiv"/>
-            </map>
+                <entry key="dc.identifier.patentno" value="publicationnumber"/>
+                <entry key="dc.identifier.patentnumber" value="publicationnumber"/>
+                <entry key="dc.identifier.applicationnumber" value="applicationnumber"/>
+                <entry key="dc.date.filled" value="applicationdate"/>
+	        </map>            
         </property>
         <property name="dataloadersMap">
 	        <map>

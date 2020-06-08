@@ -21,6 +21,7 @@
         <name-map collection-handle="123456789/2001" submission-name="patent"/>
         <name-map collection-handle="123456789/publication-1" submission-name="publication"/>
         <name-map collection-handle="123456789/language-test-1" submission-name="languagetestprocess"/>
+        <name-map collection-handle="123456789/patent-test" submission-name="patent"/>
     </submission-map>
 
 
@@ -231,6 +232,16 @@
             <step id="collection"/>
             <step id="languagetest"/>
         </submission-process>
+        <!-- patent, used by some collection like 123456789/1001 -->
+        <submission-process name="patent">
+            <step id="collection" />
+            <step id="patent" />
+            <step id="patent_indexing" />
+            <step id="patent_references" />
+            <step id="upload" />
+            <step id="license" />
+        </submission-process>
+
     </submission-definitions>
 
 </item-submission>

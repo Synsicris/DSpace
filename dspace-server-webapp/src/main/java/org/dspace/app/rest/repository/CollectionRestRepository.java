@@ -235,7 +235,7 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
 
                 }
             }).collect(Collectors.toList());
-            return converter.toRestPage(utils.getPage(collections, pageable), utils.obtainProjection());
+            return converter.toRest(utils.getPage(collections, pageable), utils.obtainProjection());
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
         }

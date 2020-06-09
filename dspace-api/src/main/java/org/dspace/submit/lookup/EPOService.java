@@ -65,24 +65,24 @@ public class EPOService {
                 int start = START;
                 int end = SIZE;
                 List<EPODocumentId> epoDocIds = new ArrayList<EPODocumentId>();
-    
+
                 for (int i = 0; i < MAX; i++) {
                     List<EPODocumentId> ids = searchDocumentIds(bearer, query, start, end);
-    
+
                     start = end + 1;
                     end = end + SIZE;
                     if (ids.size() > 0) {
                         epoDocIds.addAll(ids);
                     }
-    
+
                     if (ids.size() < SIZE) {
                         break;
                     }
                 }
-    
+
                 for (EPODocumentId epoDocId : epoDocIds) {
                     List<Record> recordfounds = searchDocument(bearer, epoDocId);
-    
+
                     if (recordfounds.size() > 1) {
                         log.warn("More record are returned with epocID " + epoDocId.toString());
                     }
@@ -105,6 +105,7 @@ public class EPOService {
      */
     private String login(String consumerKey, String consumerSecretKey) throws IOException, HttpException {
         HttpPost method = null;
+        String accessToken = null;
         try {
             // open session
             HttpClient client = HttpClientBuilder.create().build();
@@ -132,14 +133,18 @@ public class EPOService {
             // find "access_token"
             ObjectMapper mapper = new ObjectMapper(factory);
             JsonNode rootNode = mapper.readTree(json);
-            JsonNode accessToken = rootNode.get("access_token");
+            JsonNode accessTokenNode = rootNode.get("access_token");
 
-            return accessToken.asText();
+            accessToken = accessTokenNode.asText();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         } finally {
             if (method != null) {
                 method.releaseConnection();
             }
         }
+
+        return accessToken;
     }
 
     private void logout(String sid) {

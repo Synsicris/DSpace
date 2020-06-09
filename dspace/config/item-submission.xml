@@ -3,7 +3,6 @@
 
 <item-submission>
   <submission-map>
-
     <name-map collection-handle="123456789/90" submission-name="applications_econtech" />  
 	  <name-map collection-handle="123456789/106" submission-name="applications_social" />	
 	  <name-map collection-handle="123456789/107" submission-name="awards" />
@@ -56,7 +55,6 @@
     <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />
 	  <name-map collection-handle="123456789/131" submission-name="plan_tasks" />	
     <name-map collection-handle="123456789/132" submission-name="plan_workpackages" />
-    	
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">

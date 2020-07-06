@@ -1614,7 +1614,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:milestones)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:milestones OR entityType_keyword:research_results)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2014,7 +2014,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_events OR entityType_keyword:plan_participation_events OR entityType_keyword:plan_cooperation_events OR entityType_keyword:plan_publications OR entityType_keyword:plan_physical_objects)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_events OR entityType_keyword:plan_participation_events OR entityType_keyword:plan_cooperation_events OR entityType_keyword:plan_patents OR entityType_keyword:plan_publications OR entityType_keyword:plan_physical_objects)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

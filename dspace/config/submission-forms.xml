@@ -383,7 +383,19 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Select funding programme objective</label>
+          <label>Enter the title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the item title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>funder</dc-qualifier>
+          <label>Enter funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>You must select a funder.</required>
@@ -713,7 +725,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
+          <dc-qualifier>issn-partofjournal</dc-qualifier>
           <label>ISSN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -754,7 +766,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
+          <dc-qualifier>isbn-partofbook</dc-qualifier>
           <label>ISBN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -780,7 +792,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
+          <dc-qualifier>issn-partofconferenceproceeding</dc-qualifier>
           <label>ISSN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -831,7 +843,7 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>communication</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>communication</dc-qualifier>
           <label>Contributor(s) from the project</label>
           <input-type>name</input-type>
@@ -853,11 +865,11 @@
         </field>
       </row>
     </form>
-    <form name="publications_result-dc-creator-author">
+    <form name="publications_result-dc-contributor-author">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>creator</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Author(s)</label>
           <input-type>name</input-type>
@@ -954,7 +966,7 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>creator</dc-element>
+          <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Author(s)</label>
           <input-type>inline-group</input-type>
@@ -1163,19 +1175,66 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="patents_result-dc-identifier-patentnumber">
+    <form name="patents_result-dc-description-patent">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>patentnumber</dc-qualifier>
           <label>Patent number</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>issued</dc-qualifier>
+          <label>Publication date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>INID code 43 for this item</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>ipc</dc-qualifier>
+          <label>IPC-class</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
+          <hint>INID code 51 for this item</hint>
         </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>abstract</dc-qualifier>
+          <label>Abstract</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>INID code 57 for this item</hint>
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>language</dc-element>
@@ -1298,59 +1357,13 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>issued</dc-qualifier>
-          <label>Publication date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 43 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>ipc</dc-qualifier>
-          <label>IPC-class</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 51 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Publisher</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>abstract</dc-qualifier>
-          <label>Abstract</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>INID code 57 for this item</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
+          <dc-qualifier>patent</dc-qualifier>
           <label>Patent numbers and patent documents</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>INID code 10 for this item</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -3087,7 +3100,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
           <label>Short description of the idea</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3258,7 +3270,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
           <label>Short description - suitable for target groups</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3279,7 +3290,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_econtech_userbenefit-dc-relation-targetgroup">
+    <form name="innovationpotentials_econtech_userbenefit-dc-relation-related-targetgroup">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3321,7 +3332,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
+          <dc-qualifier>related-targetgroup</dc-qualifier>
           <label>Market potential and user benefit</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -3389,11 +3400,12 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>type</dc-element>
           <dc-qualifier>trl</dc-qualifier>
           <label>TRL</label>
-          <input-type value-pairs-name="trl">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
           <hint />
+          <vocabulary>trl</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3438,7 +3450,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
           <label>Short description - suitable for target groups</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3694,7 +3705,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>application</dc-qualifier>
           <label>Description of the application success</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3878,7 +3888,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>application</dc-qualifier>
           <label>Description of the application success</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -4041,7 +4050,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>description-results</dc-qualifier>
           <label>Description of results</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -4113,7 +4121,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>days</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4294,7 +4302,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>work</dc-qualifier>
           <label>Description of the participation process</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -4330,7 +4337,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>fulldays</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4414,7 +4421,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>day</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4616,7 +4623,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>Fullday-two</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4677,21 +4684,30 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>funding-objective</dc-qualifier>
+          <dc-element>title</dc-element>
+          <label>Title of the contribution</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the item title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>funder</dc-qualifier>
           <label>Funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Please select the relevant (or possibly mandatory) funding programme objectives.</hint>
-          <vocabulary>funding-objectives</vocabulary>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>description-contribution</dc-qualifier>
           <label>Contribution of the project</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -4742,7 +4758,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>award</dc-qualifier>
           <label>Explanatory notes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4850,7 +4865,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>product</dc-qualifier>
           <label>Description of the object</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5085,7 +5099,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>societalimpact</dc-qualifier>
           <label>Description and, where appropriate, quantification of the expected impact</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5122,7 +5135,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>condition</dc-qualifier>
           <label>Description and Reflection</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5140,6 +5152,30 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Please indicate, if an external condition or requirement turns out to have an significant hampering influence on the project success and application of results.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="gender">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title / Key information</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter a title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description of gender aspects</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -5232,7 +5268,18 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>You must enter a title.</required>
-          <hint>Bitte wählen Sie eine aussagekräftige Bezeichnung für die relevanten ethischen Aspekte</hint>
+          <hint>Please select a meaningful title for the relevant ethical aspects.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description of ethical aspects</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -6052,6 +6099,30 @@ Examples: collection of biological samples, personal data, medical interventions
         </field>
       </row>
     </form>
+    <form name="research_results">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title of research findings</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the name.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Summary</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please give a brief summary of the main findings.</hint>
+        </field>
+      </row>
+    </form>
   </form-definitions>
   <form-value-pairs>
     <value-pairs value-pairs-name="patent_use" dc-term="patent_use">
@@ -6840,44 +6911,6 @@ Examples: collection of biological samples, personal data, medical interventions
         <stored-value>Registry of Assosiations</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="trl" dc-term="trl">
-      <pair>
-        <displayed-value>TRL 1 – basic principles observed</displayed-value>
-        <stored-value>TRL 1</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 2 – technology concept formulated</displayed-value>
-        <stored-value>TRL 2</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 3 – experimental proof of concept</displayed-value>
-        <stored-value>TRL 3</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 4 – technology validated in lab</displayed-value>
-        <stored-value>TRL 4</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 5 – technology validated in relevant environment (industrially relevant environment in the case of key enabling technologies)</displayed-value>
-        <stored-value>TRL 5</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 6 – technology demonstrated in relevant environment (industrially relevantenvironment in the case of key enabling technologies)</displayed-value>
-        <stored-value>TRL 6</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 7 – system prototype demonstration in operational environment</displayed-value>
-        <stored-value>TRL 7</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL 8 – system complete and qualified</displayed-value>
-        <stored-value>TRL 8</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>TRL  9 – actual  system  proven  in  operational  environment  (competitive  manufacturing  in  the case of key enabling technologies; or in space)</displayed-value>
-        <stored-value>TRL 9</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="nextsteps" dc-term="nextsteps">
       <pair>
         <displayed-value>Further steps to develop the innovation (obligatory description)</displayed-value>
@@ -7101,6 +7134,10 @@ Examples: collection of biological samples, personal data, medical interventions
         <displayed-value>Ethical reflection</displayed-value>
         <stored-value>ethics</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Research findings</displayed-value>
+        <stored-value>research_results</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="innovation_development" dc-term="innovation_development">
       <pair>
@@ -7128,15 +7165,15 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
       <pair>
-        <displayed-value>development</displayed-value>
+        <displayed-value>Region in which the development takes place</displayed-value>
         <stored-value>Region in which the development takes place</stored-value>
       </pair>
       <pair>
-        <displayed-value>application</displayed-value>
+        <displayed-value>Region in which the application is envisaged</displayed-value>
         <stored-value>Region in which the application is envisaged</stored-value>
       </pair>
       <pair>
-        <displayed-value>transmission and diffusion</displayed-value>
+        <displayed-value>Possible region for transmission and dissemination</displayed-value>
         <stored-value>Possible region for transmission and dissemination</stored-value>
       </pair>
     </value-pairs>
@@ -7364,33 +7401,33 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type" dc-term="impactpathway_step_type">
       <pair>
-        <displayed-value>Background</displayed-value>
+        <displayed-value>step_type_1</displayed-value>
         <stored-value>step_type_1</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research and development objectives</displayed-value>
+        <displayed-value>step_type_2</displayed-value>
         <stored-value>step_type_2</stored-value>
       </pair>
       <pair>
-        <displayed-value>Interactions with partners and stakeholders. Outputs for dissemination</displayed-value>
+        <displayed-value>step_type_3</displayed-value>
         <stored-value>step_type_3</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application (opportunities)</displayed-value>
+        <displayed-value>step_type_4</displayed-value>
         <stored-value>step_type_4</stored-value>
       </pair>
       <pair>
-        <displayed-value>Expected Societal Impact</displayed-value>
+        <displayed-value>step_type_5</displayed-value>
         <stored-value>step_type_5</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contribution to funding programme objectives</displayed-value>
+        <displayed-value>step_type_6</displayed-value>
         <stored-value>step_type_6</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_1_task_type" dc-term="impactpathway_step_type_1_task_type">
       <pair>
-        <displayed-value>External conditions/constraints</displayed-value>
+        <displayed-value>External conditions and requirements</displayed-value>
         <stored-value>conditions</stored-value>
       </pair>
       <pair>
@@ -7436,6 +7473,10 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Milestones</displayed-value>
         <stored-value>milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research findings</displayed-value>
+        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
@@ -7757,6 +7798,10 @@ Examples: collection of biological samples, personal data, medical interventions
         <displayed-value>ca349da3-c9b4-4c31-87db-a7b7c7e976b2</displayed-value>
         <stored-value>innovationpotentials_social</stored-value>
       </pair>
+      <pair>
+        <displayed-value>3d4d7d38-e4b3-4ba8-92ae-c74821d07a98</displayed-value>
+        <stored-value>research_results</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="direct_indirect" dc-term="direct_indirect">
       <pair>
@@ -7966,6 +8011,10 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Cooperation processes (plan)</displayed-value>
         <stored-value>plan_cooperation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents and utility patents (plan)</displayed-value>
+        <stored-value>plan_patents</stored-value>
       </pair>
       <pair>
         <displayed-value>Publications (plan)</displayed-value>

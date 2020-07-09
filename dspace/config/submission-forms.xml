@@ -1175,19 +1175,66 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="patents_result-dc-identifier-patentnumber">
+    <form name="patents_result-dc-description-patent">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>patentnumber</dc-qualifier>
           <label>Patent number</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>issued</dc-qualifier>
+          <label>Publication date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>INID code 43 for this item</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>ipc</dc-qualifier>
+          <label>IPC-class</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
+          <hint>INID code 51 for this item</hint>
         </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>abstract</dc-qualifier>
+          <label>Abstract</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>INID code 57 for this item</hint>
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>language</dc-element>
@@ -1310,59 +1357,13 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>issued</dc-qualifier>
-          <label>Publication date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 43 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>ipc</dc-qualifier>
-          <label>IPC-class</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 51 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Publisher</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>abstract</dc-qualifier>
-          <label>Abstract</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>INID code 57 for this item</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
+          <dc-qualifier>patent</dc-qualifier>
           <label>Patent numbers and patent documents</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>INID code 10 for this item</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4120,7 +4121,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>days</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4336,7 +4337,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>fulldays</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4420,7 +4421,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>day</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -4622,7 +4623,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>fullday</dc-qualifier>
+          <dc-qualifier>Fullday-two</dc-qualifier>
           <label>Full day?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
@@ -7400,27 +7401,27 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type" dc-term="impactpathway_step_type">
       <pair>
-        <displayed-value>Background</displayed-value>
+        <displayed-value>step_type_1</displayed-value>
         <stored-value>step_type_1</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research and development objectives</displayed-value>
+        <displayed-value>step_type_2</displayed-value>
         <stored-value>step_type_2</stored-value>
       </pair>
       <pair>
-        <displayed-value>Interactions with partners and stakeholders. Outputs for dissemination</displayed-value>
+        <displayed-value>step_type_3</displayed-value>
         <stored-value>step_type_3</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application (opportunities)</displayed-value>
+        <displayed-value>step_type_4</displayed-value>
         <stored-value>step_type_4</stored-value>
       </pair>
       <pair>
-        <displayed-value>Expected Societal Impact</displayed-value>
+        <displayed-value>step_type_5</displayed-value>
         <stored-value>step_type_5</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contribution to funding programme objectives</displayed-value>
+        <displayed-value>step_type_6</displayed-value>
         <stored-value>step_type_6</stored-value>
       </pair>
     </value-pairs>
@@ -7472,6 +7473,10 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Milestones</displayed-value>
         <stored-value>milestones</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research findings</displayed-value>
+        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
@@ -7792,6 +7797,10 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>ca349da3-c9b4-4c31-87db-a7b7c7e976b2</displayed-value>
         <stored-value>innovationpotentials_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>3d4d7d38-e4b3-4ba8-92ae-c74821d07a98</displayed-value>
+        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="direct_indirect" dc-term="direct_indirect">

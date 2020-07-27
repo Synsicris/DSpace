@@ -26,6 +26,8 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.core.ReloadableEntity;
+import org.dspace.discovery.DiscoverQuery;
+import org.dspace.discovery.DiscoverResult;
 import org.dspace.discovery.IndexableObject;
 import org.dspace.discovery.SearchService;
 import org.dspace.discovery.SearchServiceException;
@@ -81,23 +83,27 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         String relationshipType = getLinkedEntityType();
         ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(relationshipType);
         String luceneQuery = itemAuthorityService.getSolrQuery(text);
-        List<String> filterQueries = new ArrayList<String>();
 
+        DiscoverQuery discoverQuery = new DiscoverQuery();
         String dspaceObjectFilterQueries = "search.resourcetype:" + Item.class.getSimpleName() +
           " OR search.resourcetype:" + WorkspaceItem.class.getSimpleName();
 
-        filterQueries.add(dspaceObjectFilterQueries);
+        discoverQuery.addFilterQueries(dspaceObjectFilterQueries);
 
         if (StringUtils.isNotBlank(relationshipType)) {
             String filter = "relationship.type:" + relationshipType;
-            filterQueries.add(filter);
+            discoverQuery.addFilterQueries(filter);
         }
+
+        discoverQuery
+            .setQuery(luceneQuery);
+        discoverQuery.setStart(start);
+        discoverQuery.setMaxResults(limit);
 
         DiscoverResult resultSearch;
         try {
             context = new Context();
-            resultSearch = searchService.search(context, luceneQuery, null, true, start, limit,
-                    filterQueries.toArray(new String[0]));
+            resultSearch = searchService.search(context, discoverQuery);
             List<Choice> choiceList = new ArrayList<Choice>();
 
             // Process results of query

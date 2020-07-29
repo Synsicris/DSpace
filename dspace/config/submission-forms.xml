@@ -7512,7 +7512,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Publications (plan)</displayed-value>
-        <stored-value>plan_publications</stored-value>
+        <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Objects, materials (plan)</displayed-value>
@@ -7532,7 +7532,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Events</displayed-value>
-        <stored-value>events</stored-value>
+        <stored-value>Event</stored-value>
       </pair>
       <pair>
         <displayed-value>Participative processes</displayed-value>
@@ -7544,7 +7544,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Publications</displayed-value>
-        <stored-value>publications</stored-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Objects, materials</displayed-value>
@@ -7562,7 +7562,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Patents and utility patents (plan)</displayed-value>
-        <stored-value>plan_patents</stored-value>
+        <stored-value>plan_patent</stored-value>
       </pair>
       <pair>
         <displayed-value>Ideas for innovation and change (plan)</displayed-value>
@@ -7570,11 +7570,11 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Intended business innovations (plan)</displayed-value>
-        <stored-value>plan_innovationpotentials_econtech</stored-value>
+        <stored-value>plan_inn_pot_econtech</stored-value>
       </pair>
       <pair>
         <displayed-value>Intended social innovations/ changeprocesses (plan)</displayed-value>
-        <stored-value>plan_innovationpotentials_social</stored-value>
+        <stored-value>plan_inn_pot_social</stored-value>
       </pair>
       <pair>
         <displayed-value>Milestones</displayed-value>
@@ -7586,7 +7586,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Patents and utility patents</displayed-value>
-        <stored-value>patents</stored-value>
+        <stored-value>Patent</stored-value>
       </pair>
       <pair>
         <displayed-value>Ideas for innovation and change</displayed-value>
@@ -7594,11 +7594,11 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Intended business innovations</displayed-value>
-        <stored-value>innovationpotentials_econtech</stored-value>
+        <stored-value>inn_pot_econtech</stored-value>
       </pair>
       <pair>
         <displayed-value>Intended social innovations/ changeprocesses</displayed-value>
-        <stored-value>innovationpotentials_social</stored-value>
+        <stored-value>inn_pot_social</stored-value>
       </pair>
       <pair>
         <displayed-value>Application success in social innovations/change processes</displayed-value>

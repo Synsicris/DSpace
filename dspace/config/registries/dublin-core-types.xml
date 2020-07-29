@@ -814,4 +814,87 @@
     <scope_note></scope_note>
   </dc-type>
 
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>call</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>cooperation-partner</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>fundingprogramm</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>ispartoforgunit</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>parentorg</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-innovationpotentials-econtech</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-innovationpotentials-social</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-orgunit</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-person</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-targetgroup</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>subproject</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>targetgroup</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
 </dspace-dc-types>

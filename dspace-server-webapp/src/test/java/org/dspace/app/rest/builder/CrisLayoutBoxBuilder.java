@@ -19,6 +19,7 @@ import org.dspace.content.MetadataField;
 import org.dspace.core.Context;
 import org.dspace.discovery.SearchServiceException;
 import org.dspace.layout.CrisLayoutBox;
+import org.dspace.layout.CrisLayoutBoxTypes;
 import org.dspace.layout.CrisLayoutField;
 import org.dspace.layout.LayoutSecurity;
 import org.dspace.layout.service.CrisLayoutBoxService;
@@ -38,17 +39,22 @@ public class CrisLayoutBoxBuilder extends AbstractBuilder<CrisLayoutBox, CrisLay
         delete(box);
     }
 
-    public static CrisLayoutBoxBuilder createBuilder(Context context, EntityType eType, boolean collapsed, int priority,
+    public static CrisLayoutBoxBuilder createBuilder(Context context, EntityType eType, boolean collapsed,
             boolean minor) {
-        CrisLayoutBoxBuilder builder = new CrisLayoutBoxBuilder(context);
-        return builder.create(context, eType, collapsed, priority, minor);
+        return createBuilder(context, eType, CrisLayoutBoxTypes.METADATA.name(), collapsed, minor);
     }
 
-    private CrisLayoutBoxBuilder create(Context context, EntityType eType, boolean collapsed, int priority,
+    public static CrisLayoutBoxBuilder createBuilder(Context context, EntityType eType, String boxType,
+            boolean collapsed, boolean minor) {
+        CrisLayoutBoxBuilder builder = new CrisLayoutBoxBuilder(context);
+        return builder.create(context, eType, boxType, collapsed, minor);
+    }
+
+    private CrisLayoutBoxBuilder create(Context context, EntityType eType, String boxType, boolean collapsed,
             boolean minor) {
         try {
             this.context = context;
-            this.box = getService().create(context, eType, collapsed, priority, minor);
+            this.box = getService().create(context, eType, boxType, collapsed, minor);
         } catch (Exception e) {
             log.error("Error in CrisLayoutTabBuilder.create(..), error: ", e);
         }
@@ -130,16 +136,8 @@ public class CrisLayoutBoxBuilder extends AbstractBuilder<CrisLayoutBox, CrisLay
         return this;
     }
 
-    public CrisLayoutBoxBuilder withFields(Set<CrisLayoutField> fields) {
-        this.box.setLayoutFields(fields);
-        return this;
-    }
-
     public CrisLayoutBoxBuilder addField(CrisLayoutField field) {
-        if (this.box.getLayoutFields() == null) {
-            this.box.setLayoutFields(new HashSet<>());
-        }
-        this.box.getLayoutFields().add(field);
+        this.box.addLayoutField(field);
         return this;
     }
 
@@ -153,11 +151,6 @@ public class CrisLayoutBoxBuilder extends AbstractBuilder<CrisLayoutBox, CrisLay
             this.box.setMetadataSecurityFields(new HashSet<>());
         }
         this.box.getMetadataSecurityFields().add(field);
-        return this;
-    }
-
-    public CrisLayoutBoxBuilder withPriority(int priority) {
-        this.box.setPriority(priority);
         return this;
     }
 }

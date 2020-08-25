@@ -258,7 +258,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>If the funding is not found in the system please enter the funding identifier / grant no</hint>
         </field>
       </row>
     </form>
@@ -410,7 +410,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>If the funding is not found in the system please enter the funding identifier / grant no</hint>
         </field>
       </row>
     </form>
@@ -4584,6 +4584,18 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>policy</dc-element>
+          <dc-qualifier>group</dc-qualifier>
+          <label>Group Policy</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="cooperation_events_date-dc-type-cooperation-event">
       <row>
@@ -4930,6 +4942,15 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Country</label>
+          <input-type value-pairs-name="orgunit_types">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the city name.</required>
           <hint />
         </field>
       </row>
@@ -5281,6 +5302,16 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <hint />
         </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>oamandate</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>OA Policy URL</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>The Open Access policy that applies to the project</required>
+          <hint />
+        </field>
       </row>
     </form>
     <form name="ethics_process">
@@ -5372,6 +5403,26 @@ Examples: collection of biological samples, personal data, medical interventions
 (Please pay attention to the information in the attached document.)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
+          <required>You must enter the equipment name.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Acronym</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>Institution Unique Identifier</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -5386,6 +5437,26 @@ Examples: collection of biological samples, personal data, medical interventions
           <label>7) Do your R&amp;D results cross frontiers of ethical acceptance? (e.g.: Is there societal controversy about your research and its results that includes ethical aspects of humans, animals or the environment? Are you or other research institutions engaged in similar research subject to (continuous) critical obversation by societal actors?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
+          <required>The project that receive the funding</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funder</dc-element>
+          <label>Owner (Organisations)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingProgram</dc-element>
+          <label>Owner (Persons)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -5399,6 +5470,27 @@ Examples: collection of biological samples, personal data, medical interventions
 (Dual-use items are normally used for civilian purposes, but may have military applications or may contribute to the proliferation of weapons of mass destruction.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
+          <required>The Open Access policy that applies to the project</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>currency</dc-qualifier>
+          <label>Currency</label>
+          <input-type value-pairs-name="currency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <label>Amount</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -5411,6 +5503,16 @@ Examples: collection of biological samples, personal data, medical interventions
           <label>9) Does your research have a potential for misuse of research results? 
 (e.g.: Could the materials/methods/technologies and knowledge involved or generated harm humans, animals or the environment if they were modified or enhanced? What would happen if the materials/methods/technologies and knowledge involved or generated ended up in the wrong hands? Could the materials/methods/technologies and knowledge involved or generated serve purposes other than those intended? If so, would such use be unethical?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funding</dc-element>
+          <dc-qualifier>duration</dc-qualifier>
+          <label>Duration</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -6187,6 +6289,10 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>ISBN</displayed-value>
         <stored-value>isbn</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ads Code</displayed-value>
+        <stored-value>adsbibcode</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="common_iso_languages" dc-term="common_iso_languages">

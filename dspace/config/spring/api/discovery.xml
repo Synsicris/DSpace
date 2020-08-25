@@ -76,9 +76,9 @@
                 <!-- OpenAIRE4 guidelines - search for an OrgUnit that have a specific dc.type=FundingOrganization -->
                 <entry key="openAIREFundingAgency" value-ref="openAIREFundingAgency"/>
                 <!-- Related items -->
-                <entry key="relation.Person.researchoutputs" value-ref="relationAuthorPublicationsConfiguration"/>
-                <entry key="relation.OrgUnit.people" value-ref="relationOrgunitPersonsConfiguration"/>
-                <entry key="relation.Person.projects" value-ref="relationInvestigatorProjectsConfiguration"/>
+                <entry key="RELATION.Person.researchoutputs" value-ref="relationAuthorPublicationsConfiguration"/>
+                <entry key="RELATION.OrgUnit.people" value-ref="relationOrgunitPersonsConfiguration"/>
+                <entry key="RELATION.Person.projects" value-ref="relationInvestigatorProjectsConfiguration"/>
                 <!-- Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_task_type" value-ref="impactpathwayStepType2TaskTypeConfiguration"/>

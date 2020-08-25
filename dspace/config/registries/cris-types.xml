@@ -31,10 +31,17 @@
     </dc-type>
     
     <dc-type>
+		<schema>cris</schema>
+		<element>submission</element>
+		<qualifier>definition</qualifier>
+        <scope_note>Metadata to link a collection with a submission type</scope_note>
+	</dc-type>
+
+    <dc-type>
         <schema>cris</schema>
-        <element>submission</element>
-        <qualifier>definition</qualifier>
-        <scope_note>Default metadata for collection submission definition</scope_note>
+        <element>owner</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
     </dc-type>
 
 </dspace-dc-types>

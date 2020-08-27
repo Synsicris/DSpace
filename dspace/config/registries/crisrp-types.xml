@@ -106,4 +106,18 @@
         <qualifier></qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>crisrp</schema>
+        <element>email</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>crisrp</schema>
+        <element>dept</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 </dspace-dc-types>

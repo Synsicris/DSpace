@@ -1,505 +1,505 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <import_structure>
-	<community>
-		<name>project-template</name>
-		<description />
-		<intro />
-		<copyright />
-		<sidebar />
-		<community>
-			<name>Impactpathway objects</name>
-			<description />
-			<intro />
-			<copyright />
-			<sidebar />
-			<collection>
-				<name>Impactpathway steps</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>impactpathway</entity-type>
-			</collection>
-			<collection>
-				<name>Impactpathways</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>impactpathwaystep</entity-type>
-			</collection>
-		</community>
-		<community>
-			<name>Repository</name>
-			<description />
-			<intro />
-			<copyright />
-			<sidebar />
-			<collection>
-				<name>Application success for business innovations</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>applications_econtech</entity-type>
-			</collection>
-			<collection>
-				<name>Application success in social innovations/change processes</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>applications_social</entity-type>
-			</collection>
-			<collection>
-				<name>Awards and prizes</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>awards</entity-type>
-			</collection>
-			<collection>
-				<name>Contribution to funding programme objectives</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>contribution_fundingprogramme</entity-type>
-			</collection>
-			<collection>
-				<name>Cooperation partners</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>cooperation_partners</entity-type>
-			</collection>
-			<collection>
-				<name>Cooperation processes</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>cooperation_events</entity-type>
-			</collection>
-			<collection>
-				<name>Cooperation processes (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_cooperation_events</entity-type>
-			</collection>
-			<collection>
-				<name>Ethical reflection</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>ethics</entity-type>
-			</collection>
-			<collection>
-				<name>Events</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Event</entity-type>
-			</collection>
-			<collection>
-				<name>Events (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_events</entity-type>
-			</collection>
-			<collection>
-				<name>Expected societal impact</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>pot_societalimpact</entity-type>
-			</collection>
-			<collection>
-				<name>External conditions and requirements</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>conditions</entity-type>
-			</collection>
-			<collection>
-				<name>Gender reflection</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>gender</entity-type>
-			</collection>
-			<collection>
-				<name>Ideas for innovation and change</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>innovationideas</entity-type>
-			</collection>
-			<collection>
-				<name>Ideas for innovation and change (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_innovationideas</entity-type>
-			</collection>
-			<collection>
-				<name>Import easy-Online xml-file</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Publication</entity-type>
-			</collection>
-			<collection>
-				<name>Intended business innovations</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>inn_pot_econtech</entity-type>
-			</collection>
-			<collection>
-				<name>Intended business innovations (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_inn_pot_econtech</entity-type>
-			</collection>
-			<collection>
-				<name>Intended social innovations/change processes</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>inn_pot_social</entity-type>
-			</collection>
-			<collection>
-				<name>Intended social innovations/change processes (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_inn_pot_social</entity-type>
-			</collection>
-			<collection>
-				<name>Milestones</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>milestones</entity-type>
-			</collection>
-			<collection>
-				<name>Milestones (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_milestones</entity-type>
-			</collection>
-			<collection>
-				<name>Next steps and cooperation</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>steps</entity-type>
-			</collection>
-			<collection>
-				<name>Objects, materials</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>physical_objects</entity-type>
-			</collection>
-			<collection>
-				<name>Objects, materials (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_physical_objects</entity-type>
-			</collection>
-			<collection>
-				<name>Organisation units</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>OrgUnit</entity-type>
-			</collection>
-			<collection>
-				<name>Participative processes</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>participation_events</entity-type>
-			</collection>
-			<collection>
-			  <name>Participative processes (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_participation_events</entity-type>
-			</collection>
-			<collection>
-				<name>Patents and utility patents</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Patent</entity-type>
-			</collection>
-			<collection>
-				<name>Patents and utility patents (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_patent</entity-type>
-			</collection>
-			<collection>
-				<name>Persons</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Person</entity-type>
-			</collection>
-			<collection>
-				<name>Project objectives</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>proj_objectives</entity-type>
-			</collection>
-			<collection>
-				<name>Projects</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Project</entity-type>
-			</collection>
-			<collection>
-				<name>Publications</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>Publication</entity-type>
-			</collection>
-			<collection>
-				<name>Publications (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_publication</entity-type>
-			</collection>
-			<collection>
-				<name>Research question (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_research_quest</entity-type>
-			</collection>
-			<collection>
-				<name>Spin-offs (incl. associations)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>spinoffs</entity-type>
-			</collection>
-			<collection>
-				<name>Spin-offs (incl. associations) (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_spinoffs</entity-type>
-			</collection>
-			<collection>
-				<name>State of knowledge</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>stateofart</entity-type>
-			</collection>
-			<collection>
-				<name>Subprojects</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>subproject</entity-type>
-			</collection>
-			<collection>
-				<name>Target groups</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>targetgroups</entity-type>
-			</collection>
-			<collection>
-				<name>Tasks</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>tasks</entity-type>
-			</collection>
-			<collection>
-				<name>Tasks (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_tasks</entity-type>
-			</collection>
-			<collection>
-				<name>Unexpected results and problems</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>unexpected_results</entity-type>
-			</collection>
-			<collection>
-				<name>Work packages</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>workpackages</entity-type>
-			</collection>
-			<collection>
-				<name>Work packages (plan)</name>
-				<description />
-				<intro />
-				<copyright />
-				<sidebar />
-				<license />
-				<provenance />
-				<entity-type>plan_workpackages</entity-type>
-			</collection>
-		</community>
-	</community>
+  <community>
+    <name>project-template</name>
+    <description />
+    <intro />
+    <copyright />
+    <sidebar />
+    <community>
+      <name>Impactpathway objects</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <collection>
+        <name>Impactpathway steps</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>impactpathwaystep</entity-type>
+        <submission-type>impact_pathway_step</submission-type>
+      </collection>
+      <collection>
+        <name>Impactpathways</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>impactpathway</entity-type>
+        <submission-type>impact_pathway</submission-type>
+      </collection>
+    </community>
+    <collection>
+      <name>Application success for business innovations</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>applications_econtech</entity-type>
+      <submission-type>applications_econtech</submission-type>
+    </collection>
+    <collection>
+      <name>Application success in social innovations/change processes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>applications_social</entity-type>
+      <submission-type>applications_social</submission-type>
+    </collection>
+    <collection>
+      <name>Awards and prizes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>awards</entity-type>
+      <submission-type>awards</submission-type>
+    </collection>
+    <collection>
+      <name>Contribution to funding programme objectives</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>contribution_fundingprogramme</entity-type>
+      <submission-type>contribution_fundingprogramme</submission-type>
+    </collection>
+    <collection>
+      <name>Cooperation partners</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>cooperation_partners</entity-type>
+      <submission-type>cooperation_partners</submission-type>
+    </collection>
+    <collection>
+      <name>Cooperation processes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>cooperation_events</entity-type>
+      <submission-type>cooperation_events</submission-type>
+    </collection>
+    <collection>
+      <name>Cooperation processes (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_cooperation_events</entity-type>
+      <submission-type>plan_cooperation_events</submission-type>
+    </collection>
+    <collection>
+      <name>Ethical reflection</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>ethics</entity-type>
+      <submission-type>ethics</submission-type>
+    </collection>
+    <collection>
+      <name>Events</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Event</entity-type>
+      <submission-type>events</submission-type>
+    </collection>
+    <collection>
+      <name>Events (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_events</entity-type>
+      <submission-type>plan_events</submission-type>
+    </collection>
+    <collection>
+      <name>Expected societal impact</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>pot_societalimpact</entity-type>
+      <submission-type>pot_societalimpact</submission-type>
+    </collection>
+    <collection>
+      <name>External conditions and requirements</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>conditions</entity-type>
+      <submission-type>conditions</submission-type>
+    </collection>
+    <collection>
+      <name>Gender reflection</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>gender</entity-type>
+      <submission-type>gender</submission-type>
+    </collection>
+    <collection>
+      <name>Ideas for innovation and change</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>innovationideas</entity-type>
+      <submission-type>innovationideas</submission-type>
+    </collection>
+    <collection>
+      <name>Ideas for innovation and change (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_innovationideas</entity-type>
+      <submission-type>plan_innovationideas</submission-type>
+    </collection>
+    <collection>
+      <name>Import easy-Online xml-file</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Publication</entity-type>
+      <submission-type>easy-import</submission-type>
+    </collection>
+    <collection>
+      <name>Intended business innovations</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>inn_pot_econtech</entity-type>
+      <submission-type>innovationpotentials_econtech</submission-type>
+    </collection>
+    <collection>
+      <name>Intended business innovations (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_inn_pot_econtech</entity-type>
+      <submission-type>plan_innovationpotentials_econtech</submission-type>
+    </collection>
+    <collection>
+      <name>Intended social innovations/change processes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>inn_pot_social</entity-type>
+      <submission-type>innovationpotentials_social</submission-type>
+    </collection>
+    <collection>
+      <name>Intended social innovations/change processes (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_inn_pot_social</entity-type>
+      <submission-type>plan_innovationpotentials_social</submission-type>
+    </collection>
+    <collection>
+      <name>Milestones</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>milestones</entity-type>
+      <submission-type>milestones</submission-type>
+    </collection>
+    <collection>
+      <name>Milestones (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_milestones</entity-type>
+      <submission-type>plan_milestones</submission-type>
+    </collection>
+    <collection>
+      <name>Next steps and cooperation</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>steps</entity-type>
+      <submission-type>steps</submission-type>
+    </collection>
+    <collection>
+      <name>Objects, materials</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>physical_objects</entity-type>
+      <submission-type>physical_objects</submission-type>
+    </collection>
+    <collection>
+      <name>Objects, materials (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_physical_objects</entity-type>
+      <submission-type>plan_physical_objects</submission-type>
+    </collection>
+    <collection>
+      <name>Organisation units</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>OrgUnit</entity-type>
+      <submission-type>orgunits</submission-type>
+    </collection>
+    <collection>
+      <name>Participative processes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>participation_events</entity-type>
+      <submission-type>participation_events</submission-type>
+    </collection>
+    <collection>
+      <name>Participative processes (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_participation_events</entity-type>
+      <submission-type>plan_participation_events</submission-type>
+    </collection>
+    <collection>
+      <name>Patents and utility patents</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Patent</entity-type>
+      <submission-type>patents</submission-type>
+    </collection>
+    <collection>
+      <name>Patents and utility patents (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_patent</entity-type>
+      <submission-type>plan_patents</submission-type>
+    </collection>
+    <collection>
+      <name>Persons</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Person</entity-type>
+      <submission-type>persons</submission-type>
+    </collection>
+    <collection>
+      <name>Project objectives</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>proj_objectives</entity-type>
+      <submission-type>proj_objectives</submission-type>
+    </collection>
+    <collection>
+      <name>Projects</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Project</entity-type>
+      <submission-type>projects</submission-type>
+    </collection>
+    <collection>
+      <name>Publications</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Publication</entity-type>
+      <submission-type>publications</submission-type>
+    </collection>
+    <collection>
+      <name>Publications (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_publication</entity-type>
+      <submission-type>plan_publications</submission-type>
+    </collection>
+    <collection>
+      <name>Research question (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_research_quest</entity-type>
+      <submission-type>research_results</submission-type>
+    </collection>
+    <collection>
+      <name>Spin-offs (incl. associations)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>spinoffs</entity-type>
+      <submission-type>spinoffs</submission-type>
+    </collection>
+    <collection>
+      <name>Spin-offs (incl. associations) (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_spinoffs</entity-type>
+      <submission-type>plan_spinoffs</submission-type>
+    </collection>
+    <collection>
+      <name>State of knowledge</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>stateofart</entity-type>
+      <submission-type>stateofart</submission-type>
+    </collection>
+    <collection>
+      <name>Subprojects</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>subproject</entity-type>
+      <submission-type>subprojects</submission-type>
+    </collection>
+    <collection>
+      <name>Target groups</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>targetgroups</entity-type>
+      <submission-type>targetgroups</submission-type>
+    </collection>
+    <collection>
+      <name>Tasks</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>tasks</entity-type>
+      <submission-type>tasks</submission-type>
+    </collection>
+    <collection>
+      <name>Tasks (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_tasks</entity-type>
+      <submission-type>plan_tasks</submission-type>
+    </collection>
+    <collection>
+      <name>Unexpected results and problems</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>unexpected_results</entity-type>
+      <submission-type>unexpected_results</submission-type>
+    </collection>
+    <collection>
+      <name>Work packages</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>workpackages</entity-type>
+      <submission-type>workpackages</submission-type>
+    </collection>
+    <collection>
+      <name>Work packages (plan)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>plan_workpackages</entity-type>
+      <submission-type>plan_workpackages</submission-type>
+    </collection>
+  </community>
+  <community>
+    <name>projects</name>
+    <description />
+    <intro />
+    <copyright />
+    <sidebar />
+  </community>
 </import_structure>
 

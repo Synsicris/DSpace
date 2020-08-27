@@ -3775,7 +3775,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -3786,7 +3786,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="unit-social">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint>Please choose a suitable unit or enter a new one.</hint>
         </field>
         <field>
@@ -3797,7 +3797,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint>Please enter a unit, if predefined ones does not fit.</hint>
         </field>
         <field>
@@ -3808,7 +3808,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -3819,7 +3819,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-4</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary>nuts2</vocabulary>
         </field>
@@ -3831,7 +3831,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-12</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -3959,7 +3959,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -3970,7 +3970,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="unit-business">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint>Please choose a suitable unit or enter a new one.</hint>
         </field>
         <field>
@@ -3981,7 +3981,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-2</style>
+          <style>col-md-2</style>
           <hint>Please enter a unit, if predefined ones does not fit.</hint>
         </field>
         <field>
@@ -3992,7 +3992,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-3</style>
+          <style>col-md-3</style>
           <hint />
         </field>
         <field>
@@ -4003,7 +4003,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-3</style>
+          <style>col-md-3</style>
           <hint />
           <vocabulary>nuts2</vocabulary>
         </field>
@@ -4015,7 +4015,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-12</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -4738,7 +4738,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col.md-4</style>
+          <style>col-md-4</style>
           <hint>Please select as precisely as possible, ideally at sub-target level.</hint>
         </field>
         <field>
@@ -4749,7 +4749,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-8</style>
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -5075,7 +5075,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="societalimpact">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-4</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -5086,7 +5086,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="societalimpact_direction">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col.md-4</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>

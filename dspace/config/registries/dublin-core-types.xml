@@ -196,6 +196,21 @@
     <scope_note>Recommend for theses/dissertations.</scope_note>
   </dc-type>
 
+  <!-- Used by system: do not remove -->
+  <dc-type>
+	<schema>dc</schema>
+    <element>date</element>
+    <qualifier>start</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>date</element>
+    <qualifier>end</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
   <dc-type>
 	<schema>dc</schema>
     <element>identifier</element>
@@ -537,10 +552,24 @@
   <dc-type>
 	<schema>dc</schema>
     <element>relation</element>
+    <qualifier>relatedorgunit</qualifier>
+    <scope_note>References orgunit for related item.</scope_note>
+  </dc-type>
+
+  <dc-type>
+	<schema>dc</schema>
+    <element>relation</element>
     <qualifier>project</qualifier>
     <scope_note>References project for related item.</scope_note>
   </dc-type>
-  
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>conference</qualifier>
+    <scope_note>References conference for related item.</scope_note>
+  </dc-type>
+
   <dc-type>
 	<schema>dc</schema>
     <element>rights</element>
@@ -814,4 +843,87 @@
     <scope_note></scope_note>
   </dc-type>
 
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>call</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>cooperation-partner</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>fundingprogramm</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>ispartoforgunit</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>parentorg</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-innovationpotentials-econtech</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-innovationpotentials-social</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-orgunit</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-person</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+  
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>related-targetgroup</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>subproject</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
+
+  <dc-type>
+    <schema>dc</schema>
+    <element>relation</element>
+    <qualifier>targetgroup</qualifier>
+    <scope_note></scope_note>
+  </dc-type>
 </dspace-dc-types>

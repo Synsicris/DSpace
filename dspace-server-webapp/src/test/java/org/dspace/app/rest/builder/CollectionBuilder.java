@@ -78,8 +78,17 @@ public class CollectionBuilder extends AbstractDSpaceObjectBuilder<Collection> {
         return setMetadataSingleValue(collection, MetadataSchemaEnum.DC.getName(), "title", null, name);
     }
 
+
+    public CollectionBuilder withRelationshipType(final String name) {
+        return setMetadataSingleValue(collection, MetadataSchemaEnum.RELATIONSHIP.getName(), "type", null, name);
+    }
+
     public CollectionBuilder withNameForLanguage(final String name, final String language) {
         return addMetadataValue(collection, MetadataSchemaEnum.DC.getName(), "title", null, language, name);
+    }
+
+    public CollectionBuilder withSubmissionDefinition(final String name) {
+        return addMetadataValue(collection, "cris", "submission", "definition", null, name);
     }
 
     public CollectionBuilder withLogo(final String content) throws AuthorizeException, IOException, SQLException {

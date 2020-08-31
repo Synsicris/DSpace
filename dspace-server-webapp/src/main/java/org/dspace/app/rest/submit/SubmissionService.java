@@ -25,6 +25,7 @@ import org.dspace.app.rest.model.CheckSumRest;
 import org.dspace.app.rest.model.MetadataValueRest;
 import org.dspace.app.rest.model.UploadBitstreamAccessConditionDTO;
 import org.dspace.app.rest.model.WorkspaceItemRest;
+import org.dspace.app.rest.model.step.DataCCLicense;
 import org.dspace.app.rest.model.step.DataUpload;
 import org.dspace.app.rest.model.step.UploadBitstreamRest;
 import org.dspace.app.rest.projection.Projection;
@@ -33,14 +34,19 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.content.Bitstream;
 import org.dspace.content.Collection;
+import org.dspace.content.EntityType;
+import org.dspace.content.InProgressSubmission;
+import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.CollectionService;
+import org.dspace.content.service.EntityTypeService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.Utils;
+import org.dspace.license.service.CreativeCommonsService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
@@ -75,12 +81,15 @@ public class SubmissionService {
     @Autowired
     protected WorkflowService<XmlWorkflowItem> workflowService;
     @Autowired
+    protected CreativeCommonsService creativeCommonsService;
+    @Autowired
     private RequestService requestService;
     @Autowired
     private ConverterService converter;
     @Autowired
     private org.dspace.app.rest.utils.Utils utils;
-
+    @Autowired
+    private EntityTypeService entityTypeService;
     /**
      * Create a workspaceitem using the information in the request
      *
@@ -96,27 +105,36 @@ public class SubmissionService {
         WorkspaceItem wsi = null;
         Collection collection = null;
         String collectionUUID = request.getHttpServletRequest().getParameter("owningCollection");
+        String entityType = request.getHttpServletRequest().getParameter("entityType");
 
         if (StringUtils.isBlank(collectionUUID)) {
             collectionUUID = configurationService.getProperty("submission.default.collection");
         }
-
+        if (StringUtils.isBlank(entityType) && !StringUtils.isNotBlank(collectionUUID)) {
+            entityType = configurationService.getProperty("submission.default.entitytype");
+        }
+        if (StringUtils.isNotBlank(entityType) && getEntityType(context, entityType) == null) {
+            throw new UnprocessableEntityException("Entity type is not valid");
+        }
         try {
             if (StringUtils.isNotBlank(collectionUUID)) {
                 collection = collectionService.find(context, UUID.fromString(collectionUUID));
-            } else {
-                final List<Collection> findAuthorizedOptimized = collectionService.findAuthorizedOptimized(context,
-                        Constants.ADD);
-                if (findAuthorizedOptimized != null && findAuthorizedOptimized.size() > 0) {
-                    collection = findAuthorizedOptimized.get(0);
-                } else {
-                    throw new RESTAuthorizationException("No collection suitable for submission for the current user");
-                }
+            } else if (StringUtils.isNotBlank(entityType))  {
+                final String type = entityType;
+                collection = collectionService.findAuthorizedOptimized(context,Constants.ADD).stream()
+                        .filter(coll ->
+                                StringUtils.isBlank(type) ? true : type.equalsIgnoreCase(coll.getRelationshipType()))
+                        .findFirst().orElse(null);
             }
 
             if (collection == null) {
-                throw new RESTAuthorizationException("collectionUUID=" + collectionUUID + " not found");
+                throw new RESTAuthorizationException("No collection suitable for submission for the current user");
             }
+
+            if (StringUtils.isNotEmpty(entityType) && !collection.getRelationshipType().equalsIgnoreCase(entityType)) {
+                throw new UnprocessableEntityException("Collection relationship type does not match with entity type");
+            }
+
             wsi = workspaceItemService.create(context, collection, true);
         } catch (SQLException e) {
             // wrap in a runtime exception as we cannot change the method signature
@@ -128,6 +146,11 @@ public class SubmissionService {
         return wsi;
     }
 
+    private EntityType getEntityType(Context context, String entityType) throws SQLException {
+        return entityTypeService.findByEntityType(context, entityType);
+
+    }
+
     public void saveWorkspaceItem(Context context, WorkspaceItem wsi) {
         try {
             workspaceItemService.update(context, wsi);
@@ -136,19 +159,19 @@ public class SubmissionService {
         }
     }
 
-/**
- * Build the rest representation of a bitstream as used in the upload section
- * ({@link DataUpload}. It contains all its metadata and the list of applied
- * access conditions (@link {@link UploadBitstreamAccessConditionDTO}
- *
- * @param configurationService the DSpace ConfigurationService
- * @param source               the bitstream to translate in its rest submission
- *                             representation
- * @return
- * @throws SQLException
- */
+    /**
+     * Build the rest representation of a bitstream as used in the upload section
+     * ({@link DataUpload}. It contains all its metadata and the list of applied
+     * access conditions (@link {@link UploadBitstreamAccessConditionDTO}
+     *
+     * @param configurationService the DSpace ConfigurationService
+     * @param source               the bitstream to translate in its rest submission
+     *                             representation
+     * @return
+     * @throws SQLException
+     */
     public UploadBitstreamRest buildUploadBitstream(ConfigurationService configurationService, Bitstream source)
-        throws SQLException {
+            throws SQLException {
         UploadBitstreamRest data = new UploadBitstreamRest();
 
         for (MetadataValue md : source.getMetadata()) {
@@ -242,7 +265,7 @@ public class SubmissionService {
             wi = workflowService.start(context, wsi);
         } catch (IOException e) {
             throw new RuntimeException("The workflow could not be started for workspaceItem with" +
-                                           "id:  " + id);
+                                               "id:  " + id);
         }
 
         return wi;
@@ -267,5 +290,28 @@ public class SubmissionService {
 
     public void saveWorkflowItem(Context context, XmlWorkflowItem source) throws SQLException, AuthorizeException {
         workflowItemService.update(context, source);
+    }
+
+    /**
+     * Builds the CC License data of an inprogress submission based on the cc license info present in the metadata
+     *
+     * @param obj   - the in progress submission
+     * @return an object representing the CC License data
+     * @throws SQLException
+     * @throws IOException
+     * @throws AuthorizeException
+     */
+    public DataCCLicense getDataCCLicense(InProgressSubmission obj)
+            throws SQLException, IOException, AuthorizeException {
+        DataCCLicense result = new DataCCLicense();
+        Item item = obj.getItem();
+
+        result.setUri(creativeCommonsService.getLicenseURI(item));
+        result.setRights(creativeCommonsService.getLicenseName(item));
+
+        Bitstream licenseRdfBitstream = creativeCommonsService.getLicenseRdfBitstream(item);
+        result.setFile(converter.toRest(licenseRdfBitstream, Projection.DEFAULT));
+
+        return result;
     }
 }

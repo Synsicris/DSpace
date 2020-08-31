@@ -30,6 +30,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.xpath.XPathAPI;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Collection;
@@ -268,6 +269,8 @@ public class StructBuilder {
         communityMap.put("sidebar", "side_bar_text");
 
         collectionMap.put("name", "name");
+        collectionMap.put("entity-type", "entity-type");
+        collectionMap.put("submission-type", "submission-type");
         collectionMap.put("description", "short_description");
         collectionMap.put("intro", "introductory_text");
         collectionMap.put("copyright", "copyright_text");
@@ -376,6 +379,17 @@ public class StructBuilder {
                 MetadataSchemaEnum.DC.getName(), "provenance", null, Item.ANY)) {
             element.addContent(new Element("provenance")
                     .setText(value.getValue()));
+        }
+        String entityType = collectionService.getMetadataFirstValue(collection,
+                MetadataSchemaEnum.RELATIONSHIP.getName(), "type", null, Item.ANY);
+        if (StringUtils.isNotBlank(entityType)) {
+            element.addContent(new Element("entity-type").setText(entityType));
+        }
+
+        String submissionDefinition = collectionService.getMetadataFirstValue(collection,
+            MetadataSchemaEnum.CRIS.getName(), "submission", "definition", Item.ANY);
+        if (StringUtils.isNotBlank(entityType)) {
+            element.addContent(new Element("submission-type").setText(submissionDefinition));
         }
 
         return element;
@@ -770,6 +784,19 @@ public class StructBuilder {
                 Element sidebarElement = new Element("provenance");
                 sidebarElement.setText(collectionService.getMetadata(collection, "provenance_description"));
                 element.addContent(sidebarElement);
+            }
+
+            String entityType = collectionService.getMetadataFirstValue(collection,
+                    MetadataSchemaEnum.RELATIONSHIP.getName(),
+                    "type", null, Item.ANY);
+            if (StringUtils.isNotBlank(entityType)) {
+                element.addContent(new Element("entity-type").setText(entityType));
+            }
+
+            String submissionDefinition = collectionService.getMetadataFirstValue(collection,
+                MetadataSchemaEnum.CRIS.getName(), "submission", "definition", Item.ANY);
+            if (StringUtils.isNotBlank(entityType)) {
+                element.addContent(new Element("submission-type").setText(submissionDefinition));
             }
 
             elements[i] = element;

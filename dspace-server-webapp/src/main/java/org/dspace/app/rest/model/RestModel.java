@@ -22,6 +22,7 @@ public interface RestModel extends Serializable {
 
     public static final String ROOT = "root";
     public static final String CORE = "core";
+    public static final String CRIS = "cris";
     public static final String EPERSON = "eperson";
     public static final String DISCOVER = "discover";
     public static final String CONFIGURATION = "config";
@@ -32,6 +33,8 @@ public interface RestModel extends Serializable {
     public static final String WORKFLOW = "workflow";
     public static final String AUTHORIZATION = "authz";
     public static final String VERSIONING = "versioning";
+    public static final String LAYOUT = "layout";
+    public static final String AUTHENTICATION = "authn";
 
     public String getType();
 

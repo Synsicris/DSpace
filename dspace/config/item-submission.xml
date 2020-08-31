@@ -3,60 +3,7 @@
 
 <item-submission>
   <submission-map>
-   <name-map collection-handle="123456789/90" submission-name="applications_econtech" />  
-	  <name-map collection-handle="123456789/106" submission-name="applications_social" />	
-	  <name-map collection-handle="123456789/107" submission-name="awards" />
-    <name-map collection-handle="123456789/190" submission-name="conditions" />	
-	  <name-map collection-handle="123456789/108" submission-name="cooperation_events" />
-	  <name-map collection-handle="123456789/64" submission-name="plan_cooperation_events" /> 
-	  <name-map collection-handle="123456789/140" submission-name="contribution_fundingprogramme" />     
-    <name-map collection-handle="123456789/26" submission-name="cooperation_partners" />
-    <name-map collection-handle="123456789/276" submission-name="easy-import" />		    
-    <name-map collection-handle="123456789/275" submission-name="ethics" />	
-    <name-map collection-handle="123456789/3" submission-name="events" />
-    <name-map collection-handle="123456789/145" submission-name="funder_objectives" />
-    <name-map collection-handle="123456789/267" submission-name="gender" />	          
-    <name-map collection-handle="123456789/139" submission-name="impact_pathway" /> 
-    <name-map collection-handle="123456789/138" submission-name="impact_pathway_step" />
-    <name-map collection-handle="123456789/52" submission-name="impact_pathway_step_type_6_task_form" />     
-    <name-map collection-handle="123456789/109" submission-name="innovationideas" />
-	  <name-map collection-handle="123456789/111" submission-name="innovationpotentials_econtech" />
-    <name-map collection-handle="123456789/110" submission-name="innovationpotentials_social" />	
-    <name-map collection-handle="123456789/86" submission-name="milestones" />
-    <name-map collection-handle="123456789/49" submission-name="orgunits" />
-    <name-map collection-handle="123456789/112" submission-name="participation_events" />
-    <name-map collection-handle="default" submission-name="patents" />
-	  <name-map collection-handle="123456789/24" submission-name="persons" />     
-	  <name-map collection-handle="123456789/114" submission-name="physical_objects" />
-    <name-map collection-handle="123456789/191" submission-name="pot_societalimpact" />	
-    <name-map collection-handle="123456789/5" submission-name="projects" />
-    <name-map collection-handle="123456789/143" submission-name="proj_objectives" />	
-    <name-map collection-handle="123456789/11" submission-name="publications" />
-    <name-map collection-handle="123456789/339" submission-name="research_results" />    
-    <name-map collection-handle="123456789/115" submission-name="spinoffs" />
-    <name-map collection-handle="123456789/116" submission-name="stateofart" />    
-    <name-map collection-handle="123456789/117" submission-name="steps" />
-	  <name-map collection-handle="123456789/48" submission-name="subprojects" />
-    <name-map collection-handle="123456789/188" submission-name="targetgroups" />    
-	  <name-map collection-handle="123456789/85" submission-name="tasks" />
-    <name-map collection-handle="123456789/279" submission-name="tests" />
-    <name-map collection-handle="123456789/88" submission-name="unexpected_results" />
-    <name-map collection-handle="123456789/118" submission-name="workpackages" /> 
-
-    <name-map collection-handle="123456789/120" submission-name="plan_cooperation_events" />
-	  <name-map collection-handle="123456789/121" submission-name="plan_events" />
-    <name-map collection-handle="123456789/122" submission-name="plan_innovationideas" />
-    <name-map collection-handle="123456789/123" submission-name="plan_innovationpotentials_econtech" />	 
-	  <name-map collection-handle="123456789/124" submission-name="plan_innovationpotentials_social" />	 
-    <name-map collection-handle="123456789/125" submission-name="plan_milestones" />	 
-    <name-map collection-handle="123456789/126" submission-name="plan_participation_events" />   
-    <name-map collection-handle="123456789/127" submission-name="plan_patents" />
-    <name-map collection-handle="123456789/128" submission-name="plan_physical_objects" />   
-    <name-map collection-handle="123456789/129" submission-name="plan_publications" />     	
-    <name-map collection-handle="123456789/130" submission-name="plan_spinoffs" />
-	  <name-map collection-handle="123456789/131" submission-name="plan_tasks" />	
-    <name-map collection-handle="123456789/132" submission-name="plan_workpackages" />
-    <name-map collection-handle="123456789/278" submission-name="pot_societalimpact" />
+    <name-map collection-handle="default" submission-name="impact_pathway" />
   </submission-map>
   <step-definitions>
     <step id="collection" mandatory="true">
@@ -85,11 +32,6 @@
       <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
       <type>license</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="entity_type_selection" mandatory="true">
-      <heading>submit.progressbar.describe.entity_type_selection</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
     </step>
     <step id="link_to_plan" mandatory="true">
       <heading>submit.progressbar.describe.link_to_plan</heading>
@@ -528,7 +470,6 @@
     </submission-process>
     <submission-process name="patents">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="patents" />
       <step id="patents_result" />
@@ -536,21 +477,17 @@
     </submission-process>
     <submission-process name="plan_patents">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="patents" />
     </submission-process>
     <submission-process name="orgunits">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="orgunits" />
       <step id="orgunits_research" />
       <step id="orgunits_companies" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="projects">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="projects" />
       <step id="agrovoc_keywords" />
       <step id="upload" />
@@ -558,17 +495,14 @@
     </submission-process>
     <submission-process name="subprojects">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="subprojects" />
     </submission-process>
     <submission-process name="persons">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="persons" />
     </submission-process>
     <submission-process name="spinoffs">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="spinoffs" />
       <step id="spinoffs_result" />
@@ -578,12 +512,10 @@
     </submission-process>
     <submission-process name="plan_spinoffs">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="spinoffs" />
     </submission-process>
     <submission-process name="publications">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="publications_result" />
       <step id="upload" />
@@ -591,79 +523,65 @@
     </submission-process>
     <submission-process name="plan_publications">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="publications" />
     </submission-process>
     <submission-process name="awards">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="awards" />
       <step id="upload" />
     </submission-process>
     <submission-process name="steps">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="steps" />
     </submission-process>
     <submission-process name="innovationideas">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="innovationideas" />
     </submission-process>
     <submission-process name="plan_innovationideas">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="innovationideas" />
     </submission-process>
     <submission-process name="workpackages">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="workpackages" />
       <step id="workpackages_result" />
     </submission-process>
     <submission-process name="plan_workpackages">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="workpackages" />
     </submission-process>
     <submission-process name="tasks">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="tasks" />
     </submission-process>
     <submission-process name="plan_tasks">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="tasks" />
     </submission-process>
     <submission-process name="milestones">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="milestones" />
     </submission-process>
     <submission-process name="plan_milestones">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="milestones" />
     </submission-process>
     <submission-process name="stateofart">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="stateofart" />
       <step id="upload" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="contribution_fundingprogramme" />
       <step id="contribution_fundingprogramme_sdg" />
     </submission-process>
     <submission-process name="cooperation_partners">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="cooperation_partners" />
       <step id="cooperation_partners_contribution" />
       <step id="cooperation_partners_orgunits" />
@@ -674,7 +592,6 @@
     </submission-process>
     <submission-process name="innovationpotentials_econtech">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="innovationpotentials_econtech" />
       <step id="innovationpotentials_econtech_userbenefit" />
@@ -684,7 +601,6 @@
     </submission-process>
     <submission-process name="plan_innovationpotentials_econtech">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="innovationpotentials_econtech" />
       <step id="innovationpotentials_econtech_userbenefit" />
       <step id="innovationpotentials_econtech_applicability" />
@@ -693,7 +609,6 @@
     </submission-process>
     <submission-process name="innovationpotentials_social">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="innovationpotentials_social" />
       <step id="innovationpotentials_social_types" />
@@ -703,7 +618,6 @@
     </submission-process>
     <submission-process name="plan_innovationpotentials_social">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="innovationpotentials_social" />
       <step id="innovationpotentials_social_types" />
       <step id="innovationpotentials_social_applicability_plan" />
@@ -712,7 +626,6 @@
     </submission-process>
     <submission-process name="applications_social">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="applications_social" />
       <step id="applications_social_types" />
       <step id="applications_social_quant" />
@@ -725,12 +638,10 @@
     </submission-process>
     <submission-process name="unexpected_results">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="unexpected_results" />
     </submission-process>
     <submission-process name="events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="events" />
       <step id="relation_targetgroup" />
@@ -739,13 +650,11 @@
     </submission-process>
     <submission-process name="plan_events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="events" />
       <step id="relation_targetgroup" />
     </submission-process>
     <submission-process name="participation_events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="participation_events" />
       <step id="relation_targetgroup" />
@@ -754,14 +663,12 @@
     </submission-process>
     <submission-process name="plan_participation_events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="participation_events" />
       <step id="relation_targetgroup" />
       <step id="participation_events_frequency" />
     </submission-process>
     <submission-process name="cooperation_events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
@@ -770,13 +677,11 @@
     </submission-process>
     <submission-process name="plan_cooperation_events">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
     </submission-process>
     <submission-process name="physical_objects">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="link_to_plan" />
       <step id="physical_objects" />
       <step id="physical_objects_result" />
@@ -784,28 +689,22 @@
     </submission-process>
     <submission-process name="plan_physical_objects">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="physical_objects" />
     </submission-process>
     <submission-process name="targetgroups">
       <step id="collection" />
-      <step id="entity_type_selection" />
-      <step id="entity_type_selection" />
       <step id="targetgroups" />
     </submission-process>
     <submission-process name="pot_societalimpact">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="pot_societalimpact" />
     </submission-process>
     <submission-process name="conditions">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="conditions" />
     </submission-process>
     <submission-process name="gender">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="gender" />
       <step id="gender_personal" />
       <step id="gender_project" />
@@ -818,7 +717,6 @@
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="proj_objectives" />
     </submission-process>
     <submission-process name="easy-import">
@@ -840,7 +738,6 @@
     </submission-process>
     <submission-process name="research_results">
       <step id="collection" />
-      <step id="entity_type_selection" />
       <step id="research_results" />
     </submission-process>
   </submission-definitions>

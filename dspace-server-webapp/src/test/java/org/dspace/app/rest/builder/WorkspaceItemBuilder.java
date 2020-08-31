@@ -128,7 +128,8 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
     protected WorkspaceItemBuilder addMetadataValue(final String schema,
             final String element, final String qualifier, final String value) {
         try {
-            itemService.addMetadata(context, workspaceItem.getItem(), schema, element, qualifier, Item.ANY, value);
+            itemService.addMetadata(context, workspaceItem.getItem(), schema, element, qualifier, Item.ANY,
+                    value, null, -1);
         } catch (Exception e) {
             return handleException(e);
         }
@@ -159,14 +160,25 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return addMetadataValue(MetadataSchemaEnum.DC.getName(), "contributor", "author", authorName);
     }
 
+    public WorkspaceItemBuilder withAuthorAffilitation(final String affilation) {
+        return addMetadataValue(MetadataSchemaEnum.OAIRECERIF.getName(), "author", "affiliation", affilation);
+    }
+
+    public WorkspaceItemBuilder withEditor(final String editorName) {
+        return addMetadataValue(MetadataSchemaEnum.DC.getName(), "contributor", "editor", editorName);
+    }
+
+    public WorkspaceItemBuilder withProject(final String projectName) {
+        return addMetadataValue(MetadataSchemaEnum.DC.getName(), "relation", "project", projectName);
+    }
+
     public WorkspaceItemBuilder withSubject(final String subject) {
         return addMetadataValue(MetadataSchemaEnum.DC.getName(), "subject", null, subject);
     }
 
-    public WorkspaceItemBuilder withAbstract(final String descriptionAbstract) {
-        return addMetadataValue(MetadataSchemaEnum.DC.getName(), "description", "abstract", descriptionAbstract);
+    public WorkspaceItemBuilder withAbstract(final String subject) {
+        return addMetadataValue(MetadataSchemaEnum.DC.getName(),"description", "abstract", subject);
     }
-
     public WorkspaceItemBuilder grantLicense() {
         Item item = workspaceItem.getItem();
         String license;

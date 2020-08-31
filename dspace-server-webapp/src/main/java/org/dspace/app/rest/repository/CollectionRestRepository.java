@@ -42,10 +42,13 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataField;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.MetadataFieldService;
+import org.dspace.content.service.MetadataValueService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.discovery.DiscoverQuery;
@@ -115,6 +118,15 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
     @Autowired
     SearchService searchService;
 
+    @Autowired
+    MetadataFieldService metadataFieldService;
+
+    @Autowired
+    MetadataValueService metadataValueService;
+
+    @Autowired
+    CollectionService collectionService;
+
     public CollectionRestRepository(CollectionService dsoService) {
         super(dsoService);
     }
@@ -163,9 +175,10 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
         }
     }
 
-    @SearchRestMethod(name = "findAuthorizedByCommunity")
-    public Page<CollectionRest> findAuthorizedByCommunity(
-        @Parameter(value = "uuid", required = true) UUID communityUuid, Pageable pageable) {
+    @SearchRestMethod(name = "findSubmitAuthorizedByCommunity")
+    public Page<CollectionRest> findSubmitAuthorizedByCommunity(
+        @Parameter(value = "uuid", required = true) UUID communityUuid, Pageable pageable,
+        @Parameter(value = "query") String q) {
         try {
             Context context = obtainContext();
             Community com = communityService.find(context, communityUuid);
@@ -174,20 +187,76 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
                     CommunityRest.CATEGORY + "." + CommunityRest.NAME + " with id: " + communityUuid
                         + " not found");
             }
-            List<Collection> collections = cs.findAuthorized(context, com, Constants.ADD);
-            return converter.toRestPage(collections, pageable, utils.obtainProjection());
+            List<Collection> collections = cs.findCollectionsWithSubmit(q, context, com, null, null,
+                                              Math.toIntExact(pageable.getOffset()),
+                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
+            int tot = cs.countCollectionsWithSubmit(q, context, com, null, null);
+            return converter.toRestPage(collections, pageable, tot , utils.obtainProjection());
+        } catch (SQLException | SearchServiceException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    @SearchRestMethod(name = "findSubmitAuthorized")
+    public Page<CollectionRest> findSubmitAuthorized(@Parameter(value = "query") String q,
+                                                Pageable pageable) throws SearchServiceException {
+        try {
+            Context context = obtainContext();
+            List<Collection> collections = cs.findCollectionsWithSubmit(q, context, null, null, null,
+                                              Math.toIntExact(pageable.getOffset()),
+                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
+            int tot = cs.countCollectionsWithSubmit(q, context, null, null, null);
+            return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
 
-    @SearchRestMethod(name = "findAuthorized")
-    public Page<CollectionRest> findAuthorized(Pageable pageable) {
+    @SearchRestMethod(name = "findSubmitAuthorizedAndMetadata")
+    public Page<CollectionRest> findSubmitAuthorizedAndMetadata(@Parameter(value = "query") String q,
+          @Parameter(value = "metadata", required = true) String metadata,
+          @Parameter(value = "metadatavalue") String metadataValue,
+           Pageable pageable)
+           throws SearchServiceException {
         try {
             Context context = obtainContext();
-            List<Collection> collections = cs.findAuthorizedOptimized(context, Constants.ADD);
-            return converter.toRestPage(collections, pageable, utils.obtainProjection());
+            MetadataField metadataField = this.metadataFieldService.findByString(context, metadata, '.');
+            if (metadataField == null) {
+                throw new ResourceNotFoundException("MetadataField " + metadata + " does not found");
+            }
+            List<Collection> collections = cs.findCollectionsWithSubmit(q, context, null, metadata, metadataValue,
+                                              Math.toIntExact(pageable.getOffset()),
+                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
+            int tot = cs.countCollectionsWithSubmit(q, context, null, metadata, metadataValue);
+            return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
         } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    @SearchRestMethod(name = "findSubmitAuthorizedByCommunityAndMetadata")
+    public Page<CollectionRest> findSubmitAuthorizedByCommunityAndMetadata(
+        @Parameter(value = "uuid", required = true) UUID communityUuid,
+        @Parameter(value = "metadata", required = true) String metadata,
+        @Parameter(value = "metadatavalue") String metadataValue,
+        @Parameter(value = "query") String q,
+        Pageable pageable) {
+        try {
+            Context context = obtainContext();
+            MetadataField metadataField = this.metadataFieldService.findByString(context, metadata, '.');
+            if (metadataField == null) {
+                throw new ResourceNotFoundException( "MetadataField " + metadata + " does not found");
+            }
+            Community com = communityService.find(context, communityUuid);
+            if (com == null) {
+                throw new ResourceNotFoundException(
+                    CommunityRest.CATEGORY + "." + CommunityRest.NAME + " with id: " + communityUuid + " not found");
+            }
+            List<Collection> collections = cs.findCollectionsWithSubmit(q, context, com, metadata, metadataValue,
+                                              Math.toIntExact(pageable.getOffset()),
+                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
+            return converter.toRestPage(collections, pageable, utils.obtainProjection());
+        } catch (SQLException | SearchServiceException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
@@ -295,7 +364,9 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * @param context
      * @param collection The collection on which to install the logo
      * @param uploadfile The new logo
+     *
      * @return The created bitstream containing the new logo
+     *
      * @throws IOException
      * @throws AuthorizeException
      * @throws SQLException
@@ -319,7 +390,9 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * @param context
      * @param collection    The collection for which to make the item
      * @param inputItemRest The new item
+     *
      * @return The created TemplateItem
+     *
      * @throws SQLException
      * @throws AuthorizeException
      */
@@ -344,7 +417,9 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * This method looks up the template Item associated with a Collection
      *
      * @param collection The Collection for which to find the template
+     *
      * @return The template Item from the Collection
+     *
      * @throws SQLException
      */
     public TemplateItemRest getTemplateItem(Collection collection) throws SQLException {

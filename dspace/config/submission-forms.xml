@@ -552,19 +552,6 @@
         </field>
       </row>
     </form>
-    <form name="entity_type_selection">
-      <row>
-        <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Select the entity type</label>
-          <input-type value-pairs-name="entity_type">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required>You must select the entity type.</required>
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="bitstream-metadata">
       <row>
         <field>
@@ -625,7 +612,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
-          <hint>e.g.  specific subgroups, number of participants</hint>
+          <hint>e.g. specific subgroups, number of participants</hint>
         </field>
       </row>
     </form>
@@ -651,7 +638,7 @@
           <label>Agrovoc keywords</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required>Characterisation of the research theme and the potential innovation or solution approach with key-words</required>
+          <required>Characterisation of the research theme and the intended innovation or solution approach with keywords</required>
           <hint />
           <vocabulary>agrovoc</vocabulary>
         </field>
@@ -907,11 +894,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Type</label>
+          <label>Type of publication</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Select the type of ressource.</hint>
+          <hint>Select the type.</hint>
           <vocabulary>coar</vocabulary>
         </field>
       </row>
@@ -1027,11 +1014,11 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>dnb</dc-qualifier>
-          <label>Keywords (DNB)</label>
+          <label>DDC Subject Category at DNB</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Enter appropriate subject keywords or phrases.</hint>
+          <hint>Assign the publication to a subject group.</hint>
           <vocabulary>dnb</vocabulary>
         </field>
       </row>
@@ -1044,7 +1031,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Enter appropriate subject keywords or phrases.</hint>
+          <hint>Classify the contents of the publication by assigning keywords.</hint>
           <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
@@ -1057,7 +1044,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Enter appropriate subject keywords or phrases.</hint>
+          <hint>Classify the contents of the publication by assigning keywords.</hint>
           <vocabulary>umthes</vocabulary>
         </field>
       </row>
@@ -1114,7 +1101,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>communication</dc-qualifier>
-          <label>Contributor(s)</label>
+          <label>Contributor(s) from the project</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1175,66 +1162,19 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="patents_result-dc-description-patent">
+    <form name="patents_result-dc-identifier-patentnumber">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>patentnumber</dc-qualifier>
           <label>Patent number</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>issued</dc-qualifier>
-          <label>Publication date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 43 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>ipc</dc-qualifier>
-          <label>IPC-class</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>INID code 51 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Publisher</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>abstract</dc-qualifier>
-          <label>Abstract</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>INID code 57 for this item</hint>
-        </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>language</dc-element>
@@ -1291,14 +1231,14 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Enter any other description or comments for patetent use in this box.</hint>
+          <hint>Enter any other description or comments for patetent use.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Explanatory notes</label>
+          <label>Description of the scope</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1313,7 +1253,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>identifier</dc-element>
           <dc-qualifier>applicationnumber</dc-qualifier>
           <label>Application number</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>This field is mandatory for later import of the patent grant</required>
           <style>col-md-3</style>
@@ -1357,13 +1297,59 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>issued</dc-qualifier>
+          <label>Publication date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>INID code 43 for this item</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>ipc</dc-qualifier>
+          <label>IPC-class</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>INID code 51 for this item</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>patent</dc-qualifier>
+          <dc-qualifier>abstract</dc-qualifier>
+          <label>Abstract</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>INID code 57 for this item</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>patentnumber</dc-qualifier>
           <label>Patent numbers and patent documents</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>INID code 10 for this item</hint>
         </field>
       </row>
     </form>
@@ -3005,7 +2991,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Next steps</label>
+          <label>Type of next steps</label>
           <input-type value-pairs-name="nextsteps">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3286,7 +3272,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>To the solution of which problem should the innovation/development make a contribution.</hint>
+          <hint>To the solution of which problem should the innovation/development make a contribution?</hint>
         </field>
       </row>
     </form>
@@ -3301,7 +3287,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Select which groups of actors  are potential customers or users?</hint>
+          <hint>Select which groups of actors  are potential customers or users.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3673,11 +3659,11 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>related-innovationpotentials-social</dc-qualifier>
-          <label>Related innovation potential</label>
+          <label>Related indended social innovation / change process</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Please choose the related innovation potential. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
+          <hint>Please choose an intended social innovation/change processl. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
         </field>
       </row>
       <row>
@@ -3856,11 +3842,11 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>related-innovationpotentials-social</dc-qualifier>
-          <label>Related innovation potential</label>
+          <label>Related intended business innovation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Please choose the related innovation potential. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
+          <hint>Please choose an intended business innovationl. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
         </field>
       </row>
       <row>
@@ -4367,8 +4353,8 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Planned events of the participation process</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
-          <required>If different types of events are used for the participation process, you can enter several lines.</required>
-          <hint />
+          <required />
+          <hint>If different types of events are used for the participation process, you can make several entries.</hint>
         </field>
       </row>
     </form>
@@ -4577,7 +4563,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Type and requency of the cooperation activities</label>
+          <label>Type and frequency of the cooperation activities</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4919,7 +4905,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Add a contact person of the organisation.</hint>
+          <hint>Add a contact person.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -7445,7 +7431,7 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_type" dc-term="impactpathway_step_type_2_task_type">
       <pair>
-        <displayed-value>Project objectives</displayed-value>
+        <displayed-value>Project objective of research and development</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
@@ -7481,7 +7467,7 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Project objectives</displayed-value>
+        <displayed-value>Project objective of interactions and outputs</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
@@ -7629,7 +7615,7 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
       <pair>
-        <displayed-value>Contribution to funding programme objectives</displayed-value>
+        <displayed-value>Contribution to funding programme objective</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
     </value-pairs>

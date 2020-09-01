@@ -33,9 +33,6 @@ import java.util.stream.StreamSupport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.dspace.app.rest.builder.CollectionBuilder;
-import org.dspace.app.rest.builder.CommunityBuilder;
-import org.dspace.app.rest.builder.EPersonBuilder;
 import org.dspace.app.rest.converter.CommunityConverter;
 import org.dspace.app.rest.matcher.CollectionMatcher;
 import org.dspace.app.rest.matcher.CommunityMatcher;
@@ -50,6 +47,9 @@ import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.app.rest.test.MetadataPatchSuite;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.authorize.service.ResourcePolicyService;
+import org.dspace.builder.CollectionBuilder;
+import org.dspace.builder.CommunityBuilder;
+import org.dspace.builder.EPersonBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.service.CommunityService;
@@ -118,8 +118,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         String authToken = getAuthToken(admin.getEmail(), password);
 
         // Capture the UUID of the created Community (see andDo() below)
-        AtomicReference<UUID> idRef = new AtomicReference<UUID>();
-        AtomicReference<UUID> idRefNoEmbeds = new AtomicReference<UUID>();
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+        AtomicReference<UUID> idRefNoEmbeds = new AtomicReference<>();
         try {
             getClient(authToken).perform(post("/api/core/communities")
                                         .content(mapper.writeValueAsBytes(comm))
@@ -237,7 +237,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                 new MetadataValueRest("Title Text")));
 
         // Capture the UUID of the created Community (see andDo() below)
-        AtomicReference<UUID> idRef = new AtomicReference<UUID>();
+        AtomicReference<UUID> idRef = new AtomicReference<>();
         try {
             getClient(authToken).perform(post("/api/core/communities")
                 .content(mapper.writeValueAsBytes(comm))

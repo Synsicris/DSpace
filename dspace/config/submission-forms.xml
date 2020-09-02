@@ -7498,7 +7498,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Publications (plan)</displayed-value>
-        <stored-value>plan_publications</stored-value>
+        <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Objects, materials (plan)</displayed-value>
@@ -7518,7 +7518,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Events</displayed-value>
-        <stored-value>events</stored-value>
+        <stored-value>Event</stored-value>
       </pair>
       <pair>
         <displayed-value>Participative processes</displayed-value>
@@ -7530,7 +7530,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Publications</displayed-value>
-        <stored-value>publications</stored-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Objects, materials</displayed-value>
@@ -7548,7 +7548,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Patents and utility patents (plan)</displayed-value>
-        <stored-value>plan_patents</stored-value>
+        <stored-value>plan_patent</stored-value>
       </pair>
       <pair>
         <displayed-value>Ideas for innovation and change (plan)</displayed-value>
@@ -7556,11 +7556,11 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Intended business innovations (plan)</displayed-value>
-        <stored-value>plan_innovationpotentials_econtech</stored-value>
+        <stored-value>plan_inn_pot_econtech</stored-value>
       </pair>
       <pair>
         <displayed-value>Intended social innovations/ changeprocesses (plan)</displayed-value>
-        <stored-value>plan_innovationpotentials_social</stored-value>
+        <stored-value>plan_inn_pot_social</stored-value>
       </pair>
       <pair>
         <displayed-value>Milestones</displayed-value>
@@ -7572,7 +7572,7 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Patents and utility patents</displayed-value>
-        <stored-value>patents</stored-value>
+        <stored-value>Patent</stored-value>
       </pair>
       <pair>
         <displayed-value>Ideas for innovation and change</displayed-value>
@@ -7580,11 +7580,11 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Intended business innovations</displayed-value>
-        <stored-value>innovationpotentials_econtech</stored-value>
+        <stored-value>inn_pot_econtech</stored-value>
       </pair>
       <pair>
         <displayed-value>Intended social innovations/ changeprocesses</displayed-value>
-        <stored-value>innovationpotentials_social</stored-value>
+        <stored-value>inn_pot_social</stored-value>
       </pair>
       <pair>
         <displayed-value>Application success in social innovations/change processes</displayed-value>
@@ -7617,176 +7617,6 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Contribution to funding programme objective</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_entity_to_collection_map" dc-term="impactpathway_entity_to_collection_map">
-      <pair>
-        <displayed-value>5e0c7b6e-7dcd-4846-8c44-dbbf51a0e817</displayed-value>
-        <stored-value>impactpathway</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>c0cf6a01-20c0-488e-92d2-1cbb601ece75</displayed-value>
-        <stored-value>impactpathwaystep</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>44ca74ab-ca77-46c6-b8e1-c6a2a4bd0716</displayed-value>
-        <stored-value>conditions</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>dbf0f84c-e4b5-4985-bd08-e1130419f1e1</displayed-value>
-        <stored-value>stateofart</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e952ccf0-b1aa-40e9-aa76-ea91d359fb52</displayed-value>
-        <stored-value>proj_objectives</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e63e9e1e-f115-4649-b8a1-baca76c62a19</displayed-value>
-        <stored-value>plan_workpackages</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>dd7441eb-eccc-4c58-882f-88cad21b1afd</displayed-value>
-        <stored-value>plan_tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>b3588b3a-68ce-4e98-8b53-b348153666b1</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>c2eac0bd-a7f8-42c3-98e1-28b4e1a9d3c9</displayed-value>
-        <stored-value>plan_research_quest</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>6f9f2036-79ab-467e-983c-acf8b8797f99</displayed-value>
-        <stored-value>plan_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>6394518e-7175-4535-82c1-31460bea43df</displayed-value>
-        <stored-value>plan_participation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>24561515-5a5a-4f16-975a-5e389ba1d911</displayed-value>
-        <stored-value>plan_cooperation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>0dbd20e7-df52-40ed-bf44-90738ecd5269</displayed-value>
-        <stored-value>plan_publications</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>cc8e3de4-025c-4415-90c9-6b8acb63db97</displayed-value>
-        <stored-value>plan_physical_objects</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>3fdeec1d-6bc9-4223-a0ed-1963ae4a1cfd</displayed-value>
-        <stored-value>plan_spinoffs</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>89bda1be-120e-44eb-bd25-bf8b8ed3b56d</displayed-value>
-        <stored-value>plan_patents</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>d7272848-ae79-43b0-a5dc-2508b7341f0d</displayed-value>
-        <stored-value>plan_innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>104a5dfa-a710-4e0b-ab53-8855785ca88c</displayed-value>
-        <stored-value>plan_innovationpotentials_econtech</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>7ebd9725-8342-4f9b-8d1a-591856abb448</displayed-value>
-        <stored-value>plan_innovationpotentials_social</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>59134522-6af8-4575-be20-a7594bd1793f</displayed-value>
-        <stored-value>applications_social</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>9b93b10d-652a-400d-9751-9f7fcc35d808</displayed-value>
-        <stored-value>applications_econtech</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>4693546f-dcd4-4994-95ff-a50617bee81c</displayed-value>
-        <stored-value>unexpected_results</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>ea636fc2-01cf-4086-bcfe-90ac8d39d6a6</displayed-value>
-        <stored-value>steps</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>d63e2921-b00f-4cd2-b759-75ede3ab8c6e</displayed-value>
-        <stored-value>awards</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>21bba215-c463-4915-8e99-e99e7202acd5</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>f3be0572-f650-425d-91c9-96db6e44b987</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>608580ea-cbf6-46f4-9b23-9edff803fc52</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>9b772935-35aa-4115-b52f-9b588b12a4a7</displayed-value>
-        <stored-value>ethics</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>a532a255-0dac-4786-90c2-94d1a6239f27</displayed-value>
-        <stored-value>workpackages</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>0b9add4d-6f22-4873-8263-b2ea323c4a8a</displayed-value>
-        <stored-value>tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>941a7dda-e79f-4eaa-82e8-c6e61e37d783</displayed-value>
-        <stored-value>milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>357d3f9b-46c4-48de-a701-7d7d7d05152c</displayed-value>
-        <stored-value>events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>17b56df3-cca9-4177-9b89-ac49030dce9e</displayed-value>
-        <stored-value>participation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>79f4feab-a6c9-4e53-961b-89082e3099bf</displayed-value>
-        <stored-value>cooperation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>8e5cb266-51fe-4dd8-9abe-0d374c9edeeb</displayed-value>
-        <stored-value>publications</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>17e29d60-fbd8-43b8-bc81-4edfbdcdfc98</displayed-value>
-        <stored-value>physical_objects</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>ecbcbb2f-8fea-4cfe-b216-ab5a6587c697</displayed-value>
-        <stored-value>spinoffs</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>3611c293-4919-4b2d-a623-74e951047802</displayed-value>
-        <stored-value>patents</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>9a9a67bf-647f-4a5a-9f69-e28944f11d98</displayed-value>
-        <stored-value>innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>ed2d22ee-8356-4260-bc57-db04e5bd73a7</displayed-value>
-        <stored-value>innovationpotentials_econtech</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>ca349da3-c9b4-4c31-87db-a7b7c7e976b2</displayed-value>
-        <stored-value>innovationpotentials_social</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>3d4d7d38-e4b3-4ba8-92ae-c74821d07a98</displayed-value>
-        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="direct_indirect" dc-term="direct_indirect">
@@ -8000,11 +7830,11 @@ Examples: collection of biological samples, personal data, medical interventions
       </pair>
       <pair>
         <displayed-value>Patents and utility patents (plan)</displayed-value>
-        <stored-value>plan_patents</stored-value>
+        <stored-value>plan_patent</stored-value>
       </pair>
       <pair>
         <displayed-value>Publications (plan)</displayed-value>
-        <stored-value>plan_publications</stored-value>
+        <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Objects, materials (plan)</displayed-value>

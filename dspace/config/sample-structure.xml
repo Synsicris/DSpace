@@ -384,6 +384,16 @@
       <submission-type>plan_publications</submission-type>
     </collection>
     <collection>
+      <name>Research findings</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>research_results</entity-type>
+      <submission-type>research_results</submission-type>
+    </collection>
+    <collection>
       <name>Research question (plan)</name>
       <description />
       <intro />

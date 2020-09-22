@@ -512,19 +512,21 @@ public class Packager {
                     if (choiceString.equalsIgnoreCase("y")) {
                         System.out.println("\n\n");
                         for (String result : hdlResults) {
-                            DSpaceObject dso = HandleServiceFactory.getInstance().getHandleService()
-                                                                   .resolveToObject(context, result);
-
-                            if (dso != null) {
-
-                                if (pkgParams.restoreModeEnabled()) {
-                                    System.out.println("RESTORED DSpace " + Constants.typeText[dso.getType()] +
-                                                           " [ hdl=" + dso.getHandle() + ", dbID=" + dso
-                                        .getID() + " ] ");
-                                } else {
-                                    System.out.println("CREATED new DSpace " + Constants.typeText[dso.getType()] +
-                                                           " [ hdl=" + dso.getHandle() + ", dbID=" + dso
-                                        .getID() + " ] ");
+                            if (result != null) {
+                                DSpaceObject dso = HandleServiceFactory.getInstance().getHandleService()
+                                                                       .resolveToObject(context, result);
+    
+                                if (dso != null) {
+    
+                                    if (pkgParams.restoreModeEnabled()) {
+                                        System.out.println("RESTORED DSpace " + Constants.typeText[dso.getType()] +
+                                                               " [ hdl=" + dso.getHandle() + ", dbID=" + dso
+                                            .getID() + " ] ");
+                                    } else {
+                                        System.out.println("CREATED new DSpace " + Constants.typeText[dso.getType()] +
+                                                               " [ hdl=" + dso.getHandle() + ", dbID=" + dso
+                                            .getID() + " ] ");
+                                    }
                                 }
                             }
                         }

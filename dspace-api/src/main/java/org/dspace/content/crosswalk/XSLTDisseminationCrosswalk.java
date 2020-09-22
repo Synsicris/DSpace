@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,8 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.handle.factory.HandleServiceFactory;
+import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
@@ -392,11 +395,17 @@ public class XSLTDisseminationCrosswalk
     }
 
     protected static List<MetadataValueDTO> item2Metadata(Item item) {
+        ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        List<String> metadataToExclude = Arrays.asList(configurationService
+                .getArrayProperty("mets.dspaceAIP.dissemination.exclude.metadata.schema", new String[]{}));
+
         List<MetadataValue> dcvs = itemService.getMetadata(item, Item.ANY, Item.ANY, Item.ANY,
                                                            Item.ANY);
         List<MetadataValueDTO> result = new ArrayList<>();
         for (MetadataValue metadataValue : dcvs) {
-            result.add(new MetadataValueDTO(metadataValue));
+            if (!metadataToExclude.contains(metadataValue.getSchema())) {
+                result.add(new MetadataValueDTO(metadataValue));                
+            }
         }
 
         return result;

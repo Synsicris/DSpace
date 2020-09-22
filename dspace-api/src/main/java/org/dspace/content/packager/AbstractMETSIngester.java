@@ -292,6 +292,87 @@ public abstract class AbstractMETSIngester extends AbstractPackageIngester {
     }
 
     /**
+     * Create a new DSpace object out of a METS content package. All contents
+     * are dictated by the METS manifest. Package is a ZIP archive (or
+     * optionally bare manifest XML document). In a Zip, all files relative to
+     * top level and the manifest (as per spec) in mets.xml.
+     *
+     * @param context DSpace context.
+     * @param parent  parent under which to create new object (may be null -- in
+     *                which case ingester must determine parent from package or
+     *                throw an error).
+     * @param pkgFile The package file to ingest
+     * @param params  Properties-style list of options (interpreted by each
+     *                packager).
+     * @param license may be null, which takes default license.
+     * @return DSpaceObject created by ingest.
+     * @throws PackageValidationException if package validation error
+     *                                    if package is unacceptable or there is a fatal error turning
+     *                                    it into a DSpaceObject.
+     * @throws CrosswalkException         if crosswalk error
+     * @throws AuthorizeException         if authorization error
+     * @throws SQLException               if database error
+     * @throws IOException                if IO error
+     * @throws WorkflowException          if workflow error
+     */
+    public void searchPackageReference(Context context, DSpaceObject parent,
+                               File pkgFile, PackageParameters params)
+        throws PackageValidationException, CrosswalkException,
+        AuthorizeException, SQLException, IOException {
+        // parsed out METS Manifest from the file.
+        METSManifest manifest = null;
+
+        // new DSpace object created
+        DSpaceObject dso = null;
+
+        try {
+            log.info(LogManager.getHeader(context, "package_parse",
+                                          "Parsing package for ingest, file=" + pkgFile.getName()));
+
+            // Parse our ingest package, extracting out the METS manifest in the
+            // package
+            manifest = parsePackage(context, pkgFile, params);
+
+            // must have a METS Manifest to ingest anything
+            if (manifest == null) {
+                throw new PackageValidationException(
+                    "No METS Manifest found (filename="
+                        + METSManifest.MANIFEST_FILE
+                        + ").  Package is unacceptable!");
+            }
+
+            // validate our manifest
+            checkManifest(manifest);
+
+            // Check if the Packager is currently running recursively.
+            // If so, this means the Packager will attempt to recursively
+            // ingest all referenced child packages.
+            if (params.recursiveModeEnabled()) {
+                // Retrieve list of all Child object METS file paths from the
+                // current METS manifest.
+                // This is our list of known child packages
+                String[] childFilePaths = manifest.getChildMetsFilePaths();
+
+                // Save this list to our AbstractPackageIngester (and note which
+                // DSpaceObject the pkgs relate to).
+                // NOTE: The AbstractPackageIngester itself will perform the
+                // recursive ingest call, based on these child pkg references
+                for (int i = 0; i < childFilePaths.length; i++) {
+                    addPackageReference(parent, childFilePaths[i]);
+                }
+            }
+
+        } catch (SQLException se) {
+            // no need to really clean anything up,
+            // transaction rollback will get rid of it anyway.
+            dso = null;
+
+            // Pass this exception on to the next handler.
+            throw se;
+        }
+    }
+
+    /**
      * Parse a given input package, ultimately returning the METS manifest out
      * of the package. METS manifest is assumed to be a file named 'mets.xml'
      *
@@ -449,7 +530,13 @@ public abstract class AbstractMETSIngester extends AbstractPackageIngester {
 
         // For Items, also sanity-check the metadata for minimum requirements.
         if (type == Constants.ITEM) {
-            PackageUtils.checkItemMetadata((Item) dso);
+            if (((Item) dso).isArchived()) {
+                PackageUtils.checkItemMetadata((Item) dso);
+            }
+            
+            if (parent != null && parent.getType() == Constants.COLLECTION) {
+                PackageUtils.addRelationshipMetadata(context, (Collection) parent, (Item) dso);    
+            }   
         }
 
         // -- Step 5 --
@@ -488,7 +575,7 @@ public abstract class AbstractMETSIngester extends AbstractPackageIngester {
 
             // Finally, if item is still in the workspace, then we actually need
             // to install it into the archive & assign its handle.
-            if (wsi != null) {
+            if (((Item) dso).isArchived() && wsi != null) {
                 // Finish creating the item. This actually assigns the handle,
                 // and will either install item immediately or start a workflow, based on params
                 PackageUtils.finishCreateItem(context, wsi, handle, params);
@@ -653,7 +740,9 @@ public abstract class AbstractMETSIngester extends AbstractPackageIngester {
 
         // For Items, also sanity-check the metadata for minimum requirements.
         if (dso.getType() == Constants.ITEM) {
-            PackageUtils.checkItemMetadata((Item) dso);
+            if (((Item) dso).isArchived()) {
+                PackageUtils.checkItemMetadata((Item) dso);
+            }
         }
 
         // -- Step 6 --

@@ -2910,7 +2910,6 @@
 
     <bean id="searchFilterTaskType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="entityTaskType"/>
-        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>relationship.type</value>

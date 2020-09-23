@@ -822,6 +822,30 @@
         <decimal/>
         <group/>
       </field>
+      <field>
+        <name>STYLE_LABEL</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>STYLE_VALUE</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
     </fields>
     <sheets>
       <sheet>
@@ -1470,6 +1494,77 @@ var postURL = getVariable("host", "") + "/api/layout/boxmetadataconfigurations/"
     </GUI>
   </step>
   <step>
+    <name>build-json-bitstream</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+var out = new Array();
+var op = new Object();
+op.value = JSON.parse(outputValue).value[0];
+if (LABEL != null) {
+	op.value.label = LABEL;
+}
+if (STYLE != null) {
+	op.value.style = STYLE;
+}
+if (RENDERING != null) {
+	op.value.rendering = RENDERING;
+}
+if (STYLE_LABEL != null) {
+	op.value.styleLabel = STYLE_LABEL;
+}
+if (STYLE_VALUE != null) {
+	op.value.styleValue = STYLE_VALUE;
+}
+op.value.bitstream = new Object();
+op.value.bitstream.bundle = BUNDLE;
+op.value.bitstream.metadataField = METADATA;
+op.value.bitstream.metadataValue = VALUE;
+op.op = "add";
+op.path = "/rows/" + ROW + "/fields/-";
+out[0] = op;
+jsonpatch = JSON.stringify(out);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>jsonpatch</name>
+        <rename>jsonpatch</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>build-jsonpatch</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -1490,6 +1585,21 @@ var postURL = getVariable("host", "") + "/api/layout/boxmetadataconfigurations/"
 var out = new Array();
 var op = new Object();
 op.value = JSON.parse(outputValue).value[0];
+if (LABEL != null) {
+	op.value.label = LABEL;
+}
+if (STYLE != null) {
+	op.value.style = STYLE;
+}
+if (RENDERING != null) {
+	op.value.rendering = RENDERING;
+}
+if (STYLE_LABEL != null) {
+	op.value.styleLabel = STYLE_LABEL;
+}
+if (STYLE_VALUE != null) {
+	op.value.styleValue = STYLE_VALUE;
+}
 op.op = "add";
 op.path = "/rows/" + ROW + "/fields/-";
 out[0] = op;
@@ -1557,18 +1667,6 @@ jsonpatch = JSON.stringify(out);
         <element>metadata</element>
       </field>
       <field>
-        <name>STYLE</name>
-        <element>style</element>
-      </field>
-      <field>
-        <name>RENDERING</name>
-        <element>rendering</element>
-      </field>
-      <field>
-        <name>LABEL</name>
-        <element>label</element>
-      </field>
-      <field>
         <name>FIELDTYPE</name>
         <element>fieldType</element>
       </field>
@@ -1618,18 +1716,6 @@ jsonpatch = JSON.stringify(out);
       <servlet_output>N</servlet_output>
     </file>
     <fields>
-      <field>
-        <name>STYLE</name>
-        <element>style</element>
-      </field>
-      <field>
-        <name>RENDERING</name>
-        <element>rendering</element>
-      </field>
-      <field>
-        <name>LABEL</name>
-        <element>label</element>
-      </field>
       <field>
         <name>FIELDTYPE</name>
         <element>fieldType</element>
@@ -1734,62 +1820,6 @@ jsonpatch = JSON.stringify(out);
     <GUI>
       <xloc>848</xloc>
       <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>build-json-bitstream</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-var out = new Array();
-var op = new Object();
-op.value = JSON.parse(outputValue).value[0];
-op.value.bitstream = new Object();
-op.value.bitstream.bundle = BUNDLE;
-op.value.bitstream.metadataField = METADATA;
-op.value.bitstream.metadataValue = VALUE;
-op.op = "add";
-op.path = "/rows/" + ROW + "/fields/-";
-out[0] = op;
-jsonpatch = JSON.stringify(out);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>jsonpatch</name>
-        <rename>jsonpatch</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -63,6 +63,7 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.crosswalk.AbstractPackagerWrappingCrosswalk;
 import org.dspace.content.crosswalk.CrosswalkException;
 import org.dspace.content.crosswalk.CrosswalkObjectNotSupported;
@@ -957,6 +958,18 @@ public abstract class AbstractMETSDisseminator
             while (ii.hasNext()) {
                 //add a child <div> for each item in collection
                 Item item = ii.next();
+                Div childDiv = makeChildDiv(getObjectTypeString(item), item, params);
+                if (childDiv != null) {
+                    div0.getContent().add(childDiv);
+                }
+            }
+
+            Iterator<WorkspaceItem> wsiIterator = workspaceItemService
+                    .findByCollection(context, collection).iterator();
+            while (wsiIterator.hasNext()) {
+                //add a child <div> for each workspaceitem in collection
+                WorkspaceItem wsi = wsiIterator.next();
+                Item item = wsi.getItem();
                 Div childDiv = makeChildDiv(getObjectTypeString(item), item, params);
                 if (childDiv != null) {
                     div0.getContent().add(childDiv);

@@ -165,6 +165,23 @@ public class PackageUtils {
     }
 
     /**
+     * Test that item has adequate metadata.
+     * Check item for the minimal DC metadata required to ingest a
+     * new item, and throw a PackageValidationException if test fails.
+     * Used by all SIP processors as a common sanity test.
+     *
+     * @param item - item to test.
+     * @throws SQLException
+     */
+    public static void addRelationshipMetadata(Context context, Collection parent, Item item) throws SQLException {
+        String r = collectionService.getMetadata(parent, MetadataSchemaEnum.RELATIONSHIP.getName());
+        if (r != null) {
+            itemService.setMetadataSingleValue(context, item, MetadataSchemaEnum.RELATIONSHIP.getName(),
+                    "type", null, null, r);
+        }
+    }
+
+    /**
      * Add DSpace Deposit License to an Item.
      * Utility function to add the a user-supplied deposit license or
      * a default one if none was given; creates new bitstream in the
@@ -459,15 +476,25 @@ public class PackageUtils {
 
         switch (type) {
             case Constants.COLLECTION:
-                dso = collectionService.create(context, (Community) parent, handle);
+                if (parent == null || !params.containsKey("skipParentIngest") ||
+                    parent.getType() != Constants.COLLECTION) {
+                   dso = collectionService.create(context, (Community) parent, handle);
+                } else {
+                   dso = parent; 
+                }
                 return dso;
 
             case Constants.COMMUNITY:
-                // top-level community?
-                if (parent == null || parent.getType() == Constants.SITE) {
-                    dso = communityService.create(null, context, handle);
+                if (parent == null || !params.containsKey("skipParentIngest") ||
+                    parent.getType() != Constants.COMMUNITY) {
+                    // top-level community?
+                    if (parent == null || parent.getType() == Constants.SITE) {
+                        dso = communityService.create(null, context, handle);
+                    } else {
+                        dso = communityService.createSubcommunity(context, ((Community) parent), handle);
+                    }
                 } else {
-                    dso = communityService.createSubcommunity(context, ((Community) parent), handle);
+                    dso = parent; 
                 }
                 return dso;
 

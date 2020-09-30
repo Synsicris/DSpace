@@ -170,9 +170,9 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
                     dso = (DSpaceObject) resultObject;
                 }
                 Item item = (Item) dso;
-                                Map<String, String> extras = ItemAuthorityUtils.buildExtra(item);
-                                choiceList.add(new Choice(item.getID().toString(), item.getName(),
-                                                                           dso.getName(), extras));
+                Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), item);
+                choiceList.add(new Choice(item.getID().toString(), item.getName(),
+                                                           dso.getName(), extras));
             }
             Choice[] results = new Choice[choiceList.size()];
             results = choiceList.toArray(results);

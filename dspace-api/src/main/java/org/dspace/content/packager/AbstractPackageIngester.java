@@ -139,8 +139,17 @@ public abstract class AbstractPackageIngester
         // Collection packages (if Item is mapped to multiple Collections)
         if (!getIngestedMap().containsKey(pkgFile)) {
             try {
-                //actually ingest pkg using provided PackageIngester
-                dso = ingest(context, parent, pkgFile, params, license);
+                if (parent == null || !params.getBooleanProperty("skipParentIngest", false) || 
+                        params.getBooleanProperty("parentProcessed", false)) {                                    
+                    //actually ingest pkg using provided PackageIngester
+                    dso = ingest(context, parent, pkgFile, params, license);
+                } else {
+                    searchPackageReference(context, parent, pkgFile, params);
+                    dso = parent;
+                    // set parentProcessed to true to provide ingest on following iteration 
+                    params.addProperty("parentProcessed", "true");
+                }
+                
             } catch (IllegalStateException ie) {
                 // NOTE: if we encounter an IllegalStateException, this means the
                 // handle is already in use and this object already exists.
@@ -162,8 +171,11 @@ public abstract class AbstractPackageIngester
 
         // As long as an object was successfully created from this package
         if (dso != null) {
-            // Add to map of successfully ingested packages/objects (if not already added)
-            addToIngestedMap(pkgFile, dso);
+            if (parent == null || !params.getBooleanProperty("skipParentIngest", false) || 
+                    params.getBooleanProperty("parentProcessed", false)) {
+                // Add to map of successfully ingested packages/objects (if not already added)
+                addToIngestedMap(pkgFile, dso);
+            }
 
             //We can only recursively ingest non-Item packages
             //(NOTE: Items have no children, as Bitstreams/Bundles are created from Item packages)
@@ -183,7 +195,11 @@ public abstract class AbstractPackageIngester
                         // NOTE: we are passing "null" as the Parent object, since we want to restore to the
                         // Parent object specified in the child Package.
                         // (Just in case this child is only *mapped* to the current Collection)
-                        ingestAll(context, null, childPkg, params, license);
+                        if (parent == null || !params.getBooleanProperty("skipParentIngest", false)) {
+                            ingestAll(context, null, childPkg, params, license);
+                        } else {
+                            ingestAll(context, parent, childPkg, params, license);
+                        }
 
                         // A Collection can map to Items that it does not "own".
                         // If a Collection package has an Item as a child, it
@@ -211,6 +227,10 @@ public abstract class AbstractPackageIngester
         return getIngestedList();
     }
 
+
+    protected abstract void searchPackageReference(Context context, DSpaceObject parent,
+                                                   File pkgFile, PackageParameters params)
+        throws PackageValidationException, CrosswalkException, AuthorizeException, SQLException, IOException;
 
     /**
      * Recursively replace one or more DSpace Objects out of the contents

@@ -22,6 +22,7 @@ import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.Site;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.dto.MetadataValueDTO;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.packager.DSpaceAIPIngester;
@@ -31,6 +32,7 @@ import org.dspace.content.service.BitstreamFormatService;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.SiteService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
@@ -81,6 +83,8 @@ public class AIPTechMDCrosswalk implements IngestionCrosswalk, DisseminationCros
     protected final EPersonService ePersonService = EPersonServiceFactory.getInstance().getEPersonService();
     protected final ItemService itemService = ContentServiceFactory.getInstance().getItemService();
     protected final HandleService handleService = HandleServiceFactory.getInstance().getHandleService();
+    protected final WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance()
+            .getWorkspaceItemService();
 
     /**
      * Get XML namespaces of the elements this crosswalk may return.
@@ -203,8 +207,17 @@ public class AIPTechMDCrosswalk implements IngestionCrosswalk, DisseminationCros
             if (is != null) {
                 dc.add(makeDC("creator", null, is.getEmail()));
             }
-            dc.add(makeDC("identifier", "uri", "hdl:" + item.getHandle()));
-            Collection owningColl = item.getOwningCollection();
+            String handle = null;
+            Collection owningColl = null;
+            if (((Item) dso).isArchived()) {
+                handle = item.getHandle();
+                dc.add(makeDC("identifier", "uri", "hdl:" + handle));
+                owningColl = item.getOwningCollection();
+            } else {
+                WorkspaceItem wsi = workspaceItemService.findByItem(context, (Item) dso);
+                owningColl = wsi.getCollection();
+            }
+            
             String owner = owningColl.getHandle();
             if (owner != null) {
                 dc.add(makeDC("relation", "isPartOf", "hdl:" + owner));

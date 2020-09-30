@@ -12,7 +12,6 @@ import org.dspace.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -25,8 +24,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
-import org.springframework.security.web.firewall.HttpFirewall;
-import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -60,16 +57,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationService authenticationService;
 
+    @Autowired
+    private UserAgreementFilter userAgreementFilter;
+
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
         webSecurity
-            .httpFirewall(allowUrlEncodedSlashHttpFirewall())
             .ignoring()
                 .antMatchers(HttpMethod.GET, "/api/authn/login")
                 .antMatchers(HttpMethod.PUT, "/api/authn/login")
                 .antMatchers(HttpMethod.PATCH, "/api/authn/login")
                 .antMatchers(HttpMethod.DELETE, "/api/authn/login");
-
     }
 
 
@@ -129,21 +127,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             // before each URL
             .addFilterBefore(new StatelessAuthenticationFilter(authenticationManager(), restAuthenticationService,
                                                                ePersonRestAuthenticationProvider, requestService),
-                             StatelessLoginFilter.class);
+                             StatelessLoginFilter.class)
+            // Add a filter to verify that the user accepted terms and conditions
+            .addFilterBefore(userAgreementFilter, LogoutFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(ePersonRestAuthenticationProvider);
-    }
-
-
-    @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedSlash(true);
-        firewall.setAllowUrlEncodedPercent(true);
-        return firewall;
     }
 
 }

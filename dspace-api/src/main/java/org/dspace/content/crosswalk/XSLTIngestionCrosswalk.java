@@ -88,7 +88,7 @@ public class XSLTIngestionCrosswalk
 
     // adds the metadata element from one <field>
     private static void applyDimField(Context context, Element field, Item item, boolean createMissingMetadataFields)
-        throws CrosswalkException, SQLException, AuthorizeException {
+        throws SQLException, AuthorizeException {
         String schema = field.getAttributeValue("mdschema");
         String element = field.getAttributeValue("element");
         String qualifier = field.getAttributeValue("qualifier");
@@ -97,22 +97,29 @@ public class XSLTIngestionCrosswalk
         String sconf = field.getAttributeValue("confidence");
 
         CrosswalkMetadataValidator metadataValidator = new CrosswalkMetadataValidator();
-        MetadataField metadataField = metadataValidator
-            .checkMetadata(context, schema, element, qualifier, createMissingMetadataFields);
-        // sanity check: some XSL puts an empty string in qualifier,
-        // change it to null so we match the unqualified DC field:
-        if (qualifier != null && qualifier.equals("")) {
-            qualifier = null;
+        MetadataField metadataField;
+        try {
+            metadataField = metadataValidator
+                .checkMetadata(context, schema, element, qualifier, createMissingMetadataFields);
+            
+            // sanity check: some XSL puts an empty string in qualifier,
+            // change it to null so we match the unqualified DC field:
+            if (qualifier != null && qualifier.equals("")) {
+                qualifier = null;
+            }
+
+            if ((authority != null && authority.length() > 0) ||
+                (sconf != null && sconf.length() > 0)) {
+                int confidence = (sconf != null && sconf.length() > 0) ?
+                    Choices.getConfidenceValue(sconf) : Choices.CF_UNSET;
+                itemService.addMetadata(context, item, metadataField, lang, field.getText(), authority, confidence);
+            } else {
+                itemService.addMetadata(context, item, metadataField, lang, field.getText());
+            }
+        } catch (CrosswalkException e) {
+            log.error(e);
         }
 
-        if ((authority != null && authority.length() > 0) ||
-            (sconf != null && sconf.length() > 0)) {
-            int confidence = (sconf != null && sconf.length() > 0) ?
-                Choices.getConfidenceValue(sconf) : Choices.CF_UNSET;
-            itemService.addMetadata(context, item, metadataField, lang, field.getText(), authority, confidence);
-        } else {
-            itemService.addMetadata(context, item, metadataField, lang, field.getText());
-        }
     }
 
     /**

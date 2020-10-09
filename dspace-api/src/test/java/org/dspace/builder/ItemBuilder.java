@@ -34,6 +34,7 @@ import org.dspace.eperson.Group;
 public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     private boolean withdrawn = false;
+    private String handle = null;
     private WorkspaceItem workspaceItem;
     private Item item;
     private Group readerGroup = null;
@@ -62,6 +63,10 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withTitle(final String title) {
         return setMetadataSingleValue(item, MetadataSchemaEnum.DC.getName(), "title", null, title);
+    }
+
+    public ItemBuilder withTitleForLanguage(final String title, final String language) {
+        return addMetadataValue(item, MetadataSchemaEnum.DC.getName(), "title", null, language, title);
     }
 
     public ItemBuilder withIssueDate(final String issueDate) {
@@ -109,8 +114,33 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, CRIS.getName(), "owner", null, null, value, authority, CF_ACCEPTED);
     }
 
+    public ItemBuilder withDoiIdentifier(String doi) {
+        return addMetadataValue(item, "dc", "identifier", "doi", doi);
+    }
+
+    public ItemBuilder withOrcidIdentifier(String orcid) {
+        return addMetadataValue(item, "person", "identifier", "orcid", orcid);
+    }
+
+    public ItemBuilder withIsniIdentifier(String isni) {
+        return addMetadataValue(item, "person", "identifier", "isni", isni);
+    }
+
+    public ItemBuilder withRidIdentifier(String rid) {
+        return addMetadataValue(item, "person", "identifier", "rid", rid);
+    }
+
+    public ItemBuilder withPatentNo(String patentNo) {
+        return addMetadataValue(item, "dc", "identifier", "patentno", patentNo);
+    }
+
     public ItemBuilder makeUnDiscoverable() {
         item.setDiscoverable(false);
+        return this;
+    }
+
+    public ItemBuilder withHandle(String handle) {
+        this.handle = handle;
         return this;
     }
 
@@ -150,7 +180,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
     @Override
     public Item build() {
         try {
-            installItemService.installItem(context, workspaceItem);
+            installItemService.installItem(context, workspaceItem, this.handle);
             itemService.update(context, item);
 
             //Check if we need to make this item private. This has to be done after item install.

@@ -33,6 +33,8 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.xpath.XPathAPI;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.authorize.factory.AuthorizeServiceFactory;
+import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
@@ -41,9 +43,12 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.eperson.Group;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
+import org.dspace.eperson.service.GroupService;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -102,7 +107,10 @@ public class StructBuilder {
             = ContentServiceFactory.getInstance().getCollectionService();
     protected static EPersonService ePersonService
             = EPersonServiceFactory.getInstance().getEPersonService();
-
+    protected static GroupService groupService
+            = EPersonServiceFactory.getInstance().getGroupService();
+    protected static AuthorizeService authorizeService
+            = AuthorizeServiceFactory.getInstance().getAuthorizeService();
     /**
      * Default constructor
      */
@@ -267,6 +275,7 @@ public class StructBuilder {
         communityMap.put("intro", "introductory_text");
         communityMap.put("copyright", "copyright_text");
         communityMap.put("sidebar", "side_bar_text");
+        communityMap.put("policy-group", "policy-group");
 
         collectionMap.put("name", "name");
         collectionMap.put("entity-type", "entity-type");
@@ -277,6 +286,7 @@ public class StructBuilder {
         collectionMap.put("sidebar", "side_bar_text");
         collectionMap.put("license", "license");
         collectionMap.put("provenance", "provenance_description");
+        collectionMap.put("policy-group", "policy-group");
 
         Element[] elements = new Element[]{};
         try {
@@ -637,10 +647,27 @@ public class StructBuilder {
 
             // now update the metadata
             Node tn = communities.item(i);
+            String policyGroupName = null;
             for (Map.Entry<String, String> entry : communityMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
                 if (nl.getLength() == 1) {
-                    communityService.setMetadata(context, community, entry.getValue(), getStringValue(nl.item(0)));
+                    if (entry.getKey().equals("policy-group")) {
+                        policyGroupName = getStringValue(nl.item(0));
+                    } else { 
+                        communityService.setMetadata(context, community, entry.getValue(), getStringValue(nl.item(0)));
+                    }
+                }
+            }
+
+            if (policyGroupName != null) {
+                Group policyGroup = groupService.findByName(context, policyGroupName);
+                if (policyGroup != null) {
+                    // remove read permission from ANONYMOUS group
+                    authorizeService.removeGroupPolicies(context, community,
+                            groupService.findByName(context, Group.ANONYMOUS));
+    
+                    // add read permission to group
+                    authorizeService.addPolicy(context, community, Constants.READ, policyGroup);
                 }
             }
 
@@ -690,6 +717,10 @@ public class StructBuilder {
                 sidebarElement.setText(communityService.getMetadata(community, "side_bar_text"));
                 element.addContent(sidebarElement);
             }
+            
+            if (StringUtils.isNotBlank(policyGroupName)) {
+                element.addContent(new Element("policy-group").setText(policyGroupName));
+            }
 
             // handle sub communities
             NodeList subCommunities = XPathAPI.selectNodeList(tn, "community");
@@ -735,10 +766,28 @@ public class StructBuilder {
 
             // import the rest of the metadata
             Node tn = collections.item(i);
+            String policyGroupName = null;
             for (Map.Entry<String, String> entry : collectionMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
                 if (nl.getLength() == 1) {
-                    collectionService.setMetadata(context, collection, entry.getValue(), getStringValue(nl.item(0)));
+                    if (entry.getKey().equals("policy-group")) {
+                        policyGroupName = getStringValue(nl.item(0));
+                    } else { 
+                        collectionService.setMetadata(context, collection, entry.getValue(),
+                                getStringValue(nl.item(0)));
+                    }
+                }
+            }
+
+            if (policyGroupName != null) {
+                Group policyGroup = groupService.findByName(context, policyGroupName);
+                if (policyGroup != null) {
+                    // remove read permission from ANONYMOUS group
+                    authorizeService.removeGroupPolicies(context, collection,
+                            groupService.findByName(context, Group.ANONYMOUS));
+    
+                    // add read permission to group
+                    authorizeService.addPolicy(context, collection, Constants.READ, policyGroup);
                 }
             }
 
@@ -797,6 +846,10 @@ public class StructBuilder {
                 MetadataSchemaEnum.CRIS.getName(), "submission", "definition", Item.ANY);
             if (StringUtils.isNotBlank(entityType)) {
                 element.addContent(new Element("submission-type").setText(submissionDefinition));
+            }
+            
+            if (StringUtils.isNotBlank(policyGroupName)) {
+                element.addContent(new Element("policy-group").setText(policyGroupName));
             }
 
             elements[i] = element;

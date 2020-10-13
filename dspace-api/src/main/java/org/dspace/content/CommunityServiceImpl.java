@@ -11,8 +11,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.UUID;
 
@@ -24,10 +26,12 @@ import org.dspace.authorize.AuthorizeConfiguration;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.authorize.service.ResourcePolicyService;
 import org.dspace.content.dao.CommunityDAO;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.SiteService;
 import org.dspace.core.Constants;
@@ -37,7 +41,9 @@ import org.dspace.core.LogManager;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
+import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
 /**
  * Service implementation for the Community object.
@@ -53,22 +59,32 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      */
     private static Logger log = org.apache.logging.log4j.LogManager.getLogger(CommunityServiceImpl.class);
 
-    @Autowired(required = true)
+    @Autowired
     protected CommunityDAO communityDAO;
 
-
-    @Autowired(required = true)
+    @Autowired
     protected CollectionService collectionService;
-    @Autowired(required = true)
+
+    @Autowired
     protected GroupService groupService;
-    @Autowired(required = true)
+
+    @Autowired
     protected AuthorizeService authorizeService;
-    @Autowired(required = true)
+
+    @Autowired
     protected ItemService itemService;
-    @Autowired(required = true)
+
+    @Autowired
     protected BitstreamService bitstreamService;
-    @Autowired(required = true)
+
+    @Autowired
     protected SiteService siteService;
+
+    @Autowired
+    protected ResourcePolicyService resourcePolicyService;
+    
+    @Autowired
+    protected ConfigurationService configurationService;
 
     protected CommunityServiceImpl() {
         super();
@@ -679,5 +695,173 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Override
     public int countTotal(Context context) throws SQLException {
         return communityDAO.countRows(context);
+    }
+
+    @Override
+    public Community cloneCommunity(Context context, Community template, Community parent, String name)
+        throws SQLException, AuthorizeException {
+        Assert.notNull(name, "The name of the new community must be provided");
+
+        Community newCommunity = create(parent, context);
+        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
+        newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles);
+        setCommunityName(context, newCommunity, name);
+
+        return newCommunity;
+    }
+
+    private Community cloneCommunity(Context context, Community communityToClone, Community clone,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+
+        List<Community> subCommunities = communityToClone.getSubcommunities();
+        List<Collection> subCollections = communityToClone.getCollections();
+        cloneMetadata(context, this, clone, communityToClone);
+        cloneCommunityGroups(context, clone, communityToClone, scopedRoles);
+
+        for (Community c : subCommunities) {
+            Community newSubCommunity = create(clone, context);
+            cloneCommunity(context, c, newSubCommunity, scopedRoles);
+        }
+
+        for (Collection collection : subCollections) {
+            Collection newCollection = collectionService.create(context, clone);
+            cloneMetadata(context, collectionService, newCollection, collection);
+            cloneTemplateItem(context, newCollection, collection);
+            cloneCollectionGroups(context, newCollection, collection, scopedRoles);
+        }
+
+        return clone;
+    }
+
+    private void cloneTemplateItem(Context context, Collection col, Collection collection)
+        throws SQLException, AuthorizeException {
+        Item item = collection.getTemplateItem();
+        if (item != null) {
+            collectionService.createTemplateItem(context, col);
+            Item clonecommunityToClone = col.getTemplateItem();
+            cloneMetadata(context, itemService, clonecommunityToClone, item);
+        }
+    }
+
+    private <T extends DSpaceObject> void cloneMetadata(Context context, DSpaceObjectService<T> service,
+        T target, T dsoToClone) throws SQLException {
+
+        List<MetadataValue> metadataValue = dsoToClone.getMetadata();
+        for (MetadataValue metadata : metadataValue) {
+            service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
+                metadata.getQualifier(), null, metadata.getValue());
+        }
+    }
+
+    private Community setCommunityName(Context context, Community community, String name)
+        throws SQLException, AuthorizeException {
+        List<MetadataValue> metadata = getMetadata(community, "dc", "title", null, Item.ANY);
+        if (CollectionUtils.isEmpty(metadata)) {
+            addMetadata(context, community, "dc", "title", null, null, name);
+        } else {
+            MetadataValue dcTitle = metadata.get(0);
+            dcTitle.setValue(name);
+            update(context, community);
+        }
+        return community;
+    }
+
+    private void cloneCommunityGroups(Context context, Community clone, Community communityToClone,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+
+        Group administrators = communityToClone.getAdministrators();
+        if (administrators != null) {
+            Group newAdministrators = createAdministrators(context, clone);
+            addInstitutionalScopedRoleMembers(context, administrators, newAdministrators, scopedRoles);
+        }
+
+        clonePolicies(context, clone, communityToClone, scopedRoles);
+
+    }
+
+    private void cloneCollectionGroups(Context context, Collection newCollection, Collection collection,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+
+        Group administrators = collection.getAdministrators();
+        if (administrators != null) {
+            Group newAdministrators = collectionService.createAdministrators(context, newCollection);
+            addInstitutionalScopedRoleMembers(context, administrators, newAdministrators, scopedRoles);
+        }
+
+        Group submitter = collection.getSubmitters();
+        if (submitter != null) {
+            Group newSubmitter = collectionService.createSubmitters(context, newCollection);
+            addInstitutionalScopedRoleMembers(context, submitter, newSubmitter, scopedRoles);
+        }
+
+        cloneWorkflowGroup(context, collection.getWorkflowStep1(context), newCollection, 1, scopedRoles);
+        cloneWorkflowGroup(context, collection.getWorkflowStep2(context), newCollection, 2, scopedRoles);
+        cloneWorkflowGroup(context, collection.getWorkflowStep3(context), newCollection, 3, scopedRoles);
+
+        clonePolicies(context, newCollection, collection, scopedRoles);
+
+    }
+
+    private void addInstitutionalScopedRoleMembers(Context context, Group group, Group newGroup,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+
+        for (Group subGroup : group.getMemberGroups()) {
+            if (scopedRoles.containsKey(subGroup.getID())) {
+                groupService.addMember(context, newGroup, scopedRoles.get(subGroup.getID()));
+            }
+        }
+
+    }
+
+    private void clonePolicies(Context context, DSpaceObject clone, DSpaceObject objectToClone,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+        for (ResourcePolicy policy : objectToClone.getResourcePolicies()) {
+            Group group = policy.getGroup();
+            if (group != null && scopedRoles.containsKey(group.getID())) {
+                authorizeService.removeGroupPolicies(context, clone,
+                        groupService.findByName(context, Group.ANONYMOUS));
+                authorizeService.addPolicy(context, clone, policy.getAction(), scopedRoles.get(group.getID()));
+            }
+        }
+    }
+
+    private void cloneWorkflowGroup(Context context, Group workflowGroup, Collection newCollection, int step,
+        Map<UUID, Group> scopedRoles) throws SQLException, AuthorizeException {
+
+        if (workflowGroup == null) {
+            return;
+        }
+
+        Group newWorkflowGroup = collectionService.createWorkflowGroup(context, newCollection, step);
+        addInstitutionalScopedRoleMembers(context, workflowGroup, newWorkflowGroup, scopedRoles);
+
+    }
+
+    /**
+     * Create a new Institutional Scoped Role for each existing Institutional Role.
+     * The community will keep a reference to the institutional scoped role via
+     * perucris.community.institutional-scoped-role metadata.
+     * 
+     * @return a map between the institutional roles and the related scopes for the
+     *         institution community
+     */
+    private Map<UUID, Group> createScopedRoles(Context context, Community project)
+        throws SQLException, AuthorizeException {
+
+        Map<UUID, Group> groupsMap = new HashMap<>();
+        String templateGroupName = configurationService.getProperty("project.template.group-name");
+
+        if (StringUtils.isNotBlank(templateGroupName)) {
+            Group templateGroup = groupService.findByName(context, templateGroupName);
+            if (templateGroup != null) {
+                Group scopedRole = groupService.create(context);
+                groupService.addMember(context, scopedRole, context.getCurrentUser()); 
+                String roleName = "project_" + project.getID().toString() + "_group";
+                groupService.setName(scopedRole, roleName);
+                groupsMap.put(templateGroup.getID(), scopedRole);
+            }
+        }
+
+        return groupsMap;
     }
 }

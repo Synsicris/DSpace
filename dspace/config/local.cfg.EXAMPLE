@@ -255,3 +255,8 @@ submission.lookup.ads.apikey =
 # Note that when apikey is configured by default the service is enabled, see bte.xml for further configuration
 submission.lookup.epo.consumerKey=
 submission.lookup.epo.consumerSecretKey=
+
+############## Projects configuration #################
+project.template-id = 
+project.parent-community-id =
+project.template.group-name = project-template-group

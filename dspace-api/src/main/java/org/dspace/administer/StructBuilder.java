@@ -786,8 +786,12 @@ public class StructBuilder {
                     authorizeService.removeGroupPolicies(context, collection,
                             groupService.findByName(context, Group.ANONYMOUS));
     
-                    // add read permission to group
+                    // add "READ" permission to group
                     authorizeService.addPolicy(context, collection, Constants.READ, policyGroup);
+                    // add "DEFAULT_BITSTREAM_READ" permission to group
+                    authorizeService.addPolicy(context, collection, Constants.DEFAULT_BITSTREAM_READ, policyGroup);
+                    // add "DEFAULT_ITEM_READ" permission to group
+                    authorizeService.addPolicy(context, collection, Constants.DEFAULT_ITEM_READ, policyGroup);
                 }
             }
 

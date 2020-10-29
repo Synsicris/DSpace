@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest.repository;
 
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -19,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.Logger;
 import org.dspace.app.rest.SearchRestMethod;
 import org.dspace.app.rest.exception.DSpaceBadRequestException;
 import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
@@ -35,16 +35,9 @@ import org.dspace.app.rest.utils.CommunityRestEqualityUtils;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Bitstream;
-import org.dspace.content.Collection;
 import org.dspace.content.Community;
-import org.dspace.content.DSpaceObject;
-import org.dspace.content.Item;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.service.BitstreamService;
-import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
-import org.dspace.content.service.DSpaceObjectService;
-import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.DiscoverResult;
@@ -71,34 +64,25 @@ import org.springframework.web.multipart.MultipartFile;
 @Component(CommunityRest.CATEGORY + "." + CommunityRest.NAME)
 public class CommunityRestRepository extends DSpaceObjectRestRepository<Community, CommunityRest> {
 
-    private static final Logger log = org.apache.logging.log4j.LogManager
-            .getLogger(CommunityRestRepository.class);
+    @Autowired
+    private BitstreamService bitstreamService;
 
     @Autowired
-    BitstreamService bitstreamService;
-
-    @Autowired
-    CommunityRestEqualityUtils communityRestEqualityUtils;
+    private CommunityRestEqualityUtils communityRestEqualityUtils;
 
     @Autowired
     private GroupService groupService;
 
     @Autowired
-    SearchService searchService;
+    private SearchService searchService;
 
     @Autowired
-    AuthorizeService authorizeService;
+    private AuthorizeService authorizeService;
 
     @Autowired
     private UriListHandlerService uriListHandlerService;
 
     private CommunityService communityService;
-
-    @Autowired
-    private CollectionService collectionService;
-
-    @Autowired
-    private ItemService itemService;
 
     public CommunityRestRepository(CommunityService dsoService) {
         super(dsoService);
@@ -361,13 +345,19 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
     }
 
     @Override
+    @PreAuthorize("hasAuthority('AUTHENTICATED')")
     public CommunityRest createAndReturn(Context context, List<String> stringList)
         throws AuthorizeException, SQLException {
-
+        
         Community parent = null;
-        Community clone = null;
         HttpServletRequest req = getRequestService().getCurrentRequest().getHttpServletRequest();
         String parentUuid = req.getParameter("parent");
+        String name = req.getParameter("name");
+
+        if (StringUtils.isBlank(name)) {
+            throw new UnprocessableEntityException("The community name must be provided");
+        }
+
         if (parentUuid != null) {
             parent = communityService.find(context, UUID.fromString(parentUuid));
             if (parent == null) {
@@ -377,47 +367,12 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
 
         Community community = uriListHandlerService.handle(context, req, stringList, Community.class);
         if (community == null) {
-            throw new UnprocessableEntityException("The parent community doesn't exist");
-        } else {
-            clone = cloneCommunity(context, parent, community);
+            throw new UnprocessableEntityException("The community to clone doesn't exist");
         }
+
+        context.turnOffAuthorisationSystem();
+        Community clone = communityService.cloneCommunity(context, community, parent, name);
+        context.restoreAuthSystemState();
         return converter.toRest(clone, utils.obtainProjection());
-    }
-
-    private Community cloneCommunity(Context context, Community parent, Community communityToClone)
-            throws SQLException, AuthorizeException {
-        Community clone = communityService.create(parent, context);
-        List<Community> subCommunities = communityToClone.getSubcommunities();
-        List<Collection> subCollections = communityToClone.getCollections();
-        copyMetadata(context, communityService, clone, communityToClone);
-        for (Community c : subCommunities) {
-            cloneCommunity(context, clone, c);
-        }
-        for (Collection collection : subCollections) {
-            Collection col = collectionService.create(context, clone);
-            copyMetadata(context, collectionService, col, collection);
-            copyTempalteItem(context, col, collection);
-        }
-        return clone;
-    }
-
-    private void copyTempalteItem(Context context, Collection col, Collection collection)
-            throws SQLException, AuthorizeException {
-        Item item = collection.getTemplateItem();
-        if (item != null) {
-            collectionService.createTemplateItem(context, col);
-            Item cloneTemplate = col.getTemplateItem();
-            copyMetadata(context, itemService, cloneTemplate, item);
-        }
-    }
-
-    private <T extends DSpaceObject> void copyMetadata(Context context, DSpaceObjectService<T> service,
-             T target , T dsoToClone) throws SQLException {
-
-        List<MetadataValue> metadataValue = dsoToClone.getMetadata();
-        for (MetadataValue metadata : metadataValue) {
-            service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                                           metadata.getQualifier(), null, metadata.getValue());
-        }
     }
 }

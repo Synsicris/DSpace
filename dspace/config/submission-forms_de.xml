@@ -127,10 +127,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_1_task_type">dropdown</input-type>
+          <label>Bitte wählen Sie einen Bereich:</label>
+          <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -138,22 +138,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -162,10 +162,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_2_task_type">dropdown</input-type>
+          <label>Bitte bestätigen Sie die Vorauswahl.</label>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -173,22 +173,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -197,10 +197,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">dropdown</input-type>
+          <label>Bitte wählen Sie einen Bereich:</label>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -208,22 +208,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -232,10 +232,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_3_task_type">dropdown</input-type>
+          <label>Bitte bestätigen Sie die Vorauswahl.</label>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -243,22 +243,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage zum Zweck und zur Akteursgruppe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namenl eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte in einer Kernaussage den Zweck und die Akteursgruppe von Interaktionen.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -267,10 +267,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">dropdown</input-type>
+          <label>Bitte wählen Sie einen Bereich:</label>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -278,22 +278,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -302,10 +302,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_4_task_type">dropdown</input-type>
+          <label>Bitte wählen Sie einen Bereich:</label>
+          <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -313,22 +313,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -337,10 +337,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_5_task_type">dropdown</input-type>
+          <label>Bitte bestätigen Sie die Vorauswahl.</label>
+          <input-type value-pairs-name="impactpathway_step_type_5_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -348,10 +348,21 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Kernaussage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Art der erwarteten Wirkung:</label>
+          <input-type value-pairs-name="societalimpact">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -359,11 +370,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -372,10 +383,10 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ</label>
-          <input-type value-pairs-name="impactpathway_step_type_6_task_type">dropdown</input-type>
+          <label>Bitte bestätigen Sie die Vorauswahl.</label>
+          <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required>Es muss ein Typ ausgewählt werden.</required>
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -383,11 +394,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Geben Sie eine Kurzbezeichnung an</label>
+          <label>Btte geben Sie ein Ziel des Förderprogramms an.</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Namen eingeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
         </field>
       </row>
       <row>
@@ -395,22 +406,22 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>funder</dc-qualifier>
-          <label>Geben Sie ein Ziel des Förderprogramms an</label>
+          <label>Kernaussage zum Beitrag des Projektes zum gewählten förderpolitischen Ziel</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen ein Ziel angeben.</required>
-          <hint />
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Wenn Sie später die Detailseite des Eintrags bearbeiten können Sie diese Notizen weiterverwenden.</hint>
         </field>
       </row>
     </form>
@@ -886,7 +897,7 @@
           <label>Arbeitstitel der Veröffentlichung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen einen Arbeitstitel eingeben.</required>
+          <required>Wählen Sie einen aussagekräftigen Arbeitstitel.</required>
           <hint />
         </field>
       </row>
@@ -894,11 +905,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ der Veröffentlichung</label>
+          <label>Art der Veröffentlichung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie einen Typ aus.</hint>
+          <hint />
           <vocabulary>coar</vocabulary>
         </field>
       </row>
@@ -930,11 +941,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Typ der Veröffentlichung</label>
+          <label>Art der Veröffentlichung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie einen Typ aus.</hint>
+          <hint />
           <vocabulary>coar</vocabulary>
         </field>
       </row>
@@ -977,7 +988,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
-          <label>Herausgeber</label>
+          <label>herausgebender Verlag</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1067,7 +1078,7 @@
           <input-type value-pairs-name="target_audience">list</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Kreuzen Sie das Zielpublikum an.</hint>
+          <hint>Bitte wählen Sie das Zielpublikum aus.</hint>
         </field>
       </row>
       <row>
@@ -1218,7 +1229,7 @@
           <input-type value-pairs-name="patent_use">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie einen Typ aus.</hint>
+          <hint>Wählen Sie eine Nutzungsart aus.</hint>
         </field>
       </row>
       <row>
@@ -1361,7 +1372,7 @@
           <input-type value-pairs-name="institution_identifiers">qualdrop_value</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben den aktuelle Nummer ein.</hint>
+          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die aktuelle Nummer ein.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1572,7 +1583,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
       </row>
       <row>
@@ -1585,7 +1596,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1596,7 +1607,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
           <vocabulary>register-court</vocabulary>
         </field>
         <field>
@@ -1608,7 +1619,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
       </row>
       <row>
@@ -1620,7 +1631,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
           <vocabulary>nace</vocabulary>
         </field>
       </row>
@@ -1633,7 +1644,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
       </row>
       <row>
@@ -1645,7 +1656,7 @@
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Gem. EU-Beihilferecht: Die Kategorie der Kleinstunternehmen sowie der kleinen und mittleren Unternehmen (KMU) setzt sich aus Unternehmen zusammen, die weniger als 250 Personen beschäftigen und die entweder einen Jahresumsatz von höchstens 50 Mio. EUR erzielen oder deren Jahresbilanz-summe sich auf höchstens 43 Mio. EUR beläuft.</hint>
+          <hint>Gem. EU-Beihilferecht: Die Kategorie der Kleinstunternehmen sowie der kleinen und mittleren Unternehmen (KMU) setzt sich aus Unternehmen zusammen, die weniger als 250 Personen beschäftigen und die entweder einen Jahresumsatz von höchstens 50 Mio. EUR erzielen oder deren Jahresbilanzsumme sich auf höchstens 43 Mio. EUR beläuft.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1715,7 +1726,7 @@
           <label>Akronym</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Sie müssen ein Akronym eingaben.</required>
+          <required>Sie müssen ein Akronym eingeben.</required>
           <style>col-md-3</style>
           <hint>Bitte geben Sie das korrekte Akronym ein.</hint>
         </field>
@@ -1907,7 +1918,7 @@
           <input-type value-pairs-name="institution_identifiers">qualdrop_value</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben den aktuellen Code ein.</hint>
+          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben die aktuellen Nummer ein.</hint>
         </field>
       </row>
     </form>
@@ -2243,7 +2254,7 @@
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Deutsche Definition Mittelstand: Bis einschließlich 1.000 Mitarbeiter und 100 Mio. € Jahresumsatz. Bitte nur "Ja" auswählen, wenn Sie nicht unter die EU-Definition eines KMU fallen</hint>
+          <hint>Deutsche Definition Mittelstand: Bis einschließlich 1.000 Mitarbeiter und 100 Mio. EUR Jahresumsatz. Bitte nur "Ja" auswählen, wenn Sie nicht unter die EU-Definition eines KMU fallen</hint>
         </field>
       </row>
     </form>
@@ -2999,7 +3010,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>startyear</dc-qualifier>
-          <label>Geschätzes Jahr mit Beginn der Aufgabe</label>
+          <label>Geschätztes Jahr mit Beginn der Aufgabe</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3010,7 +3021,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>endyear</dc-qualifier>
-          <label>Geschätzes Jahr mit Beendigung der Aufgabe</label>
+          <label>Geschätztes Jahr mit Beendigung der Aufgabe</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3123,7 +3134,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie nur zusätzliche Aspekte, die nicht  innerhalb des Arbeitspakets abgedeckt sind.</hint>
+          <hint>Bitte beschreiben Sie nur zusätzliche Aspekte, die nicht innerhalb des Arbeitspakets abgedeckt sind.</hint>
         </field>
       </row>
       <row>
@@ -3230,7 +3241,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name / Kurzbezeichnung der beabsichtigten wirtschaftlich-technische Innovation</label>
+          <label>Name / Kurzbezeichnung der beabsichtigten wirtschaftlich-technischen Innovation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Sie müssen einen Namen eingeben.</required>
@@ -3279,7 +3290,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>related-targetgroup</dc-qualifier>
-          <label>Kunden-/Nutzergruppe</label>
+          <label>Kunden- / Nutzergruppe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3330,7 +3341,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>applicability</dc-qualifier>
-          <label>Merkmal/Typ der Anwendbarkeit</label>
+          <label>Merkmal / Typ der Anwendbarkeit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3357,7 +3368,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>applicability</dc-qualifier>
-          <label>Beschreibung der Anwendbarkeit anhand vorgegebener Merkmale/Typen</label>
+          <label>Beschreibung der Anwendbarkeit anhand vorgegebener Merkmale / Typen</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3413,7 +3424,7 @@
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie, welcher  TRL bei Projektbeginn gegeben, bei Projektende beabsichtigt und bei Projektende tatsächlich erreicht ist.</hint>
+          <hint>Bitte beschreiben Sie, welcher TRL bei Projektbeginn gegeben, bei Projektende beabsichtigt und bei Projektende tatsächlich erreicht ist.</hint>
         </field>
       </row>
     </form>
@@ -3422,7 +3433,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name / Kurzbezeichnung der beabsichtigten sozialen Innovation/des Veränderungsprozesses</label>
+          <label>Name / Kurzbezeichnung der beabsichtigten sozialen Innovation / des Veränderungsprozesses</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Sie müssen einen Namen eingeben.</required>
@@ -3471,7 +3482,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>social-innovation</dc-qualifier>
-          <label>Adressierte Veränderung/Typ</label>
+          <label>Adressierte Veränderung / Typ</label>
           <input-type value-pairs-name="social-innovation">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3493,7 +3504,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>Description of the solutionstrategy/ intended change</dc-qualifier>
-          <label>Beschreibung der Lösungsstrategie/ beabsichtigten Änderung</label>
+          <label>Beschreibung der Lösungsstrategie /  beabsichtigten Änderung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3508,7 +3519,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>social-innovation</dc-qualifier>
-          <label>Beschreibung der Bereiche und Lösungsstrategien der sozialen Innovation/des Veränderungprozesses</label>
+          <label>Beschreibung der Bereiche und Lösungsstrategien der sozialen Innovation / des Veränderungprozesses</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3646,7 +3657,7 @@
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie, welcher  SRL bei Projektbeginn gegeben, bei Projektende beabsichtigt und bei Projektende tatsächlich erreicht ist.</hint>
+          <hint>Bitte beschreiben Sie, welcher SRL bei Projektbeginn gegeben, bei Projektende beabsichtigt und bei Projektende tatsächlich erreicht ist.</hint>
         </field>
       </row>
     </form>
@@ -3656,7 +3667,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>related-innovationpotentials-social</dc-qualifier>
-          <label>Verbindung zu einer beabsichtigten sozialen Innovation / eines Veränderungsprozesses</label>
+          <label>Verbindung zu einer beabsichtigten sozialen Innovation / einem Veränderungsprozess</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3714,7 +3725,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>social-innovation</dc-qualifier>
-          <label>Adressierte Veränderung/Typ</label>
+          <label>Adressierte Veränderung / Typ</label>
           <input-type value-pairs-name="social-innovation">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3740,7 +3751,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>social-innovation</dc-qualifier>
-          <label>Adressierte Veränderung und Akteursgruppe der sozialen Innovation/des Veränderungsprozesses</label>
+          <label>Adressierte Veränderung und Akteursgruppe der sozialen Innovation / des Veränderungsprozesses</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3787,7 +3798,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>quantity</dc-qualifier>
-          <label>Menge/Anzahl</label>
+          <label>Menge / Anzahl</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3909,7 +3920,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>related-targetgroup</dc-qualifier>
-          <label>Kunden-/Nutzergruppe</label>
+          <label>Kunden- / Nutzergruppe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3924,7 +3935,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>business-innovation</dc-qualifier>
-          <label>Innovationstypen und Kunden-/Nutzergruppen</label>
+          <label>Innovationstypen und Kunden- / Nutzergruppen</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3971,7 +3982,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>quantity</dc-qualifier>
-          <label>Menge/Anzahl</label>
+          <label>Menge / Anzahl</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4022,7 +4033,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name / Kurzbezeichnung des unerwarteten Ergebnisses/Problems</label>
+          <label>Name / Kurzbezeichnung des unerwarteten Ergebnisses / Problems</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Sie müssen einen Namen eingeben.</required>
@@ -4033,7 +4044,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung des unerwarteten Ergbnisses/Problems</label>
+          <label>Beschreibung des unerwarteten Ergebnisses / Problems</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4178,7 +4189,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project-contribution</dc-qualifier>
-          <label>Art/Typ der Beteiligung an der Veranstaltung</label>
+          <label>Art / Typ der Beteiligung an der Veranstaltung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4299,7 +4310,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>participation-event</dc-qualifier>
-          <label>Art/Typ der Partizipation</label>
+          <label>Art / Typ der Partizipation</label>
           <input-type value-pairs-name="cooperation_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4347,7 +4358,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>participation-event</dc-qualifier>
-          <label>Geplante Veranstaltungen des Partizipatiosprozesses</label>
+          <label>Geplante Veranstaltungen des Partizipationsprozesses</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4372,7 +4383,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>participation-event</dc-qualifier>
-          <label>Art/Typ der Partizipation</label>
+          <label>Art / Typ der Partizipation</label>
           <input-type value-pairs-name="cooperation_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4477,7 +4488,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name / Kurzbezeichnungl des Kooperationsprozesses</label>
+          <label>Name / Kurzbezeichnung des Kooperationsprozesses</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Sie müssen einen Namen eingeben.</required>
@@ -4513,7 +4524,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art/Typ des Kooperationsprozesses</label>
+          <label>Art / Typ des Kooperationsprozesses</label>
           <input-type value-pairs-name="cooperation_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4560,7 +4571,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art/Typ und Häufigkeit der Kooperationsprozesse</label>
+          <label>Art / Typ und Häufigkeit der Kooperationsprozesse</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4574,7 +4585,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>cooperation-event</dc-qualifier>
-          <label>Art/Typ des Kooperationsprozesses</label>
+          <label>Art / Typ des Kooperationsprozesses</label>
           <input-type value-pairs-name="cooperation_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4668,7 +4679,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Namel / Kurzbezeichnung des Beitrags aus dem Projekt</label>
+          <label>Name / Kurzbezeichnung des Beitrags aus dem Projekt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Sie müssen einen Namen eingeben.</required>
@@ -4812,7 +4823,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Zielgruppe des/der Stifter</label>
+          <label>Entsprechende Zielgruppe des/der Stifter/s</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4837,7 +4848,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie eine Gattung/einen Typ aus</label>
+          <label>Bitte wählen Sie eine Gattung / einen Typ aus</label>
           <input-type value-pairs-name="physicalobjects_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4884,7 +4895,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>collection</dc-qualifier>
-          <label>Ist das Objekt Teil einer Sammung?</label>
+          <label>Ist das Objekt Teil einer Sammlung?</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4988,7 +4999,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte kennzeichnen Sie durch Vergabe von Schlagworten, wenn sich das Projekt an bestimmte Gruppen richtet, z.B. bestimmte Altersgruppen, Geschlechtsbezug, körperliche Handicaps, kulturelle Aspekte,  Herkunft.</hint>
+          <hint>Bitte kennzeichnen Sie durch Vergabe von Schlagworten, wenn sich das Projekt an bestimmte Gruppen richtet, z.B. bestimmte Altersgruppen, Geschlechtsbezug, körperliche Handicaps, kulturelle Aspekte, Herkunft.</hint>
           <type-bind>Civil Society, Private individuals (e.g. consumers, citizens), Civil society organisations and associations</type-bind>
         </field>
       </row>
@@ -5086,7 +5097,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte nehmen Sie zusätzlich zur Beschreibung  eine Quantifizierung des Impacts vor, sofern dies im Förderprogramm vorgeschrieben ist oder dazu in Ihrem Forschungsprojekt Informationen gewonnen wurden.</hint>
+          <hint>Bitte nehmen Sie zusätzlich zur Beschreibung eine Quantifizierung des Impacts vor, sofern dies im Förderprogramm vorgeschrieben ist oder dazu in Ihrem Forschungsprojekt Informationen gewonnen wurden.</hint>
         </field>
       </row>
     </form>
@@ -5168,7 +5179,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>gender-personal</dc-qualifier>
-          <label>Herausforderungen und darauf bezogene spezifische Aktivitäten  für die Berücksichtigung von  Genderaspekte im Projektteam</label>
+          <label>Herausforderungen und darauf bezogene spezifische Aktivitäten für die Berücksichtigung von Genderaspekten im Projektteam</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5206,7 +5217,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>gender-projectdesign</dc-qualifier>
-          <label>Geschlechterbezug im Forschungs- und Projektdesign: z.B. Wird die Kategorie Geschlecht in der Datenerhebung und/oder in den Methoden systematisch berücksichtigt? Werden Geschlechtera-pekte in den Interaktionsprozessen berücksichtigt?</label>
+          <label>Geschlechterbezug im Forschungs- und Projektdesign: z.B. Wird die Kategorie Geschlecht in der Datenerhebung und/oder in den Methoden systematisch berücksichtigt? Werden Geschlechteraspekte in den Interaktionsprozessen berücksichtigt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5268,7 +5279,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>human-involvement</dc-qualifier>
-          <label>1) Beteiligt Ihre Forschung menschliche Teilnehmende? (Bezieht sich auf jede Forschung, die die Arbeit mit Menschen als Forschungs- oder Studienteilnehmende beinhaltet, unabhängig von ihrer Art oder ihrem Thema.Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eingriffe, Interviews, Beobachtungen, Nachverfolgung oder sekundäre Nutzung von Informationen, die für andere Zwecke bereitgestellt werden, z.B. andere Forschungsprojekte, offiziell gesammelte Informationen, Social-Media-Seiten.)</label>
+          <label>1) Beteiligt Ihre Forschung menschliche Teilnehmende? (Bezieht sich auf jede Forschung, die die Arbeit mit Menschen als Forschungs- oder Studienteilnehmende beinhaltet, unabhängig von ihrer Art oder ihrem Thema. Beispiele: Sammlung biologischer Proben, persönlicher Daten, medizinischer Eingriffe, Interviews, Beobachtungen, Nachverfolgung oder sekundäre Nutzung von Informationen, die für andere Zwecke bereitgestellt werden, z.B. andere Forschungsprojekte, offiziell gesammelte Informationen, Social-Media-Seiten.)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5357,7 +5368,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>aceptance</dc-qualifier>
-          <label>7) Berühren Ihre F&amp;E-Ergebnisse Grenzbereiche der ethischen Akzeptanz? (Z.B. Gibt es zu Ihrer Forschung und den Ergebnissen gesellschaftlichen Kontroverse, die ethischen Aspekte zu Mensch, Tier oder Umwelt einbeziehen? Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung beschäftigen, einer (kontinuierlichen) kritischen Begleitung von Akteuren aus der Gesellschaft ausgesetzt?)</label>
+          <label>7) Berühren Ihre F&amp;E-Ergebnisse Grenzbereiche der ethischen Akzeptanz? (z.B. Gibt es zu Ihrer Forschung und den Ergebnissen gesellschaftliche Kontroverse, die ethische Aspekte zu Mensch, Tier oder Umwelt einbeziehen? Sind Sie oder andere Forschungseinrichtungen, die sich mit ähnlicher Forschung beschäftigen, einer (kontinuierlichen) kritischen Begleitung von Akteuren aus der Gesellschaft ausgesetzt?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5382,7 +5393,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>misuse-results</dc-qualifier>
-          <label>9) Hat Ihre Forschung ein Potenzial für den Missbrauch von Forschungsergebnissen? (Z.B. Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen Menschen, Tieren oder der Umwelt schaden, wenn sie modifiziert oder verbessert werden? Was würde passieren, wenn die betreffenden oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen in die falschen Hände gelangen würden? Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. das generierte Wissen anderen als den vorgesehenen Zwecken dienen? Wenn ja, wäre eine solche Verwendung unethisch?)</label>
+          <label>9) Hat Ihre Forschung ein Potenzial für den Missbrauch von Forschungsergebnissen? (z.B. Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen Menschen, Tieren oder der Umwelt schaden, wenn sie modifiziert oder verbessert werden? Was würde passieren, wenn die betreffenden oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. generierte Wissen in die falschen Hände gelangen würden? Könnten die beteiligten oder erzeugten Materialien/Methoden/Technologien und das vorhandene bzw. das generierte Wissen anderen als den vorgesehenen Zwecken dienen? Wenn ja, wäre eine solche Verwendung unethisch?)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5394,7 +5405,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>measures1</dc-qualifier>
-          <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Besimmungen) im Projekt zu gewährleisten. 
+          <label>Wenn ein Aspekt mit „Ja“ beantwortet wird, dann gehen Sie bitte näher darauf ein, welche Maßnahmen Sie ergreifen werden, um die Integrität der Forschung und die Einhaltung ethischer Standards (ethische Prinzipien und rechtliche Bestimmungen) im Projekt zu gewährleisten. 
 (Beachten Sie dabei die Hinweise im beigefügten Dokument.)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5420,7 +5431,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>objective</dc-qualifier>
-          <label>Beschreibung des Proketziels</label>
+          <label>Beschreibung des Projektziels</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5545,7 +5556,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
           <vocabulary>register-court</vocabulary>
         </field>
         <field>
@@ -5557,7 +5568,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
       </row>
     </form>
@@ -5678,7 +5689,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
           <vocabulary>register-court</vocabulary>
         </field>
         <field>
@@ -5690,7 +5701,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Angaben nur für Unternhemen</hint>
+          <hint>Angaben nur für Unternehmen</hint>
         </field>
       </row>
     </form>
@@ -5819,7 +5830,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
+          <label>Qualifikation / akad. Grad</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5874,7 +5885,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
+          <label>Qualifikation / akad. Grad</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5929,7 +5940,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
+          <label>Qualifikation / akad. Grad</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5984,7 +5995,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
+          <label>Qualifikation / akad. Grad</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7396,12 +7407,12 @@
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_1_task_type" dc-term="impactpathway_step_type_1_task_type">
       <pair>
-        <displayed-value>Rahmenbedingungen/Anforderungen</displayed-value>
-        <stored-value>conditions</stored-value>
+        <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
+        <stored-value>stateofart</stored-value>
       </pair>
       <pair>
-        <displayed-value>Stand des Wissens</displayed-value>
-        <stored-value>stateofart</stored-value>
+        <displayed-value>Rahmenbedingung/Anforderung</displayed-value>
+        <stored-value>conditions</stored-value>
       </pair>
       <pair>
         <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
@@ -7414,185 +7425,161 @@
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_type" dc-term="impactpathway_step_type_2_task_type">
       <pair>
-        <displayed-value>Projektziel der Forschung und Entwicklung</displayed-value>
+        <displayed-value>Wissenschaftlich-technisches Arbeitsziel</displayed-value>
         <stored-value>proj_objectives</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_objective_type" dc-term="impactpathway_step_type_2_task_objective_type">
       <pair>
-        <displayed-value>Arbeitspakete (Plan)</displayed-value>
+        <displayed-value>Arbeitspaket (Planung)</displayed-value>
         <stored-value>plan_workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Aufgaben (Plan)</displayed-value>
+        <displayed-value>Aufgabe (Planung)</displayed-value>
         <stored-value>plan_tasks</stored-value>
       </pair>
       <pair>
-        <displayed-value>Meilensteine (Plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeitspakete</displayed-value>
+        <displayed-value>Arbeitspaket (Bericht)</displayed-value>
         <stored-value>workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Aufgaben</displayed-value>
+        <displayed-value>Aufgabe (Bericht)</displayed-value>
         <stored-value>tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilensteine</displayed-value>
-        <stored-value>milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Forschungsergebnisse</displayed-value>
-        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Projektziel der Interaktionen und Outputs</displayed-value>
+        <displayed-value>Kernaussage zu Zweck und Akteursgruppe der Interaktion</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
       <pair>
-        <displayed-value>Arbeitspakete (Plan)</displayed-value>
-        <stored-value>plan_workpackages</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Aufgaben (Plan)</displayed-value>
-        <stored-value>plan_tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilensteine (Plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veranstaltungen (Plan)</displayed-value>
-        <stored-value>plan_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partizipative Prozesse (Plan)</displayed-value>
-        <stored-value>plan_participation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kooperationsprozesse (Plan)</displayed-value>
+        <displayed-value>Kooperationsprozess (Planung)</displayed-value>
         <stored-value>plan_cooperation_events</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veröffentlichungen (Plan)</displayed-value>
+        <displayed-value>Partizipativer Prozess (Planung)</displayed-value>
+        <stored-value>plan_participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veranstaltung (Planung)</displayed-value>
+        <stored-value>plan_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung (Planung)</displayed-value>
         <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Objekte, Materialien (Plan)</displayed-value>
+        <displayed-value>Objekt, Material (Planung)</displayed-value>
         <stored-value>plan_physical_objects</stored-value>
       </pair>
       <pair>
-        <displayed-value>Arbeitspakete</displayed-value>
-        <stored-value>workpackages</stored-value>
+        <displayed-value>Arbeitspaket (Planung)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Aufgaben</displayed-value>
-        <stored-value>tasks</stored-value>
+        <displayed-value>Aufgabe (Planung)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
       </pair>
       <pair>
-        <displayed-value>Meilensteine</displayed-value>
-        <stored-value>milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veranstaltungen</displayed-value>
-        <stored-value>Event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partizipative Prozesse</displayed-value>
-        <stored-value>participation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kooperationsprozesse</displayed-value>
+        <displayed-value>Kooperationsprozess (Bericht)</displayed-value>
         <stored-value>cooperation_events</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veröffentlichungen</displayed-value>
+        <displayed-value>Partizipativer Prozess (Bericht)</displayed-value>
+        <stored-value>participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veranstaltung (Bericht)</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung (Bericht)</displayed-value>
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Objekte, Materialien</displayed-value>
+        <displayed-value>Objekt, Material (Planung)</displayed-value>
         <stored-value>physical_objects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeitspaket (Bericht)</displayed-value>
+        <stored-value>workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Aufgabe (Bericht)</displayed-value>
+        <stored-value>tasks</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
-        <displayed-value>Meilensteine (Plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ausgründungen (inkl. Vereinsgründungen) (Plan)</displayed-value>
-        <stored-value>plan_spinoffs</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Patente und Gebrauchsmuster (Plan)</displayed-value>
-        <stored-value>plan_patent</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ideen für Innovation und Veränderung (Plan)</displayed-value>
-        <stored-value>plan_innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beabsichtigte wirtschaftlich-technische Innovationen (Plan)</displayed-value>
+        <displayed-value>Beabsichtigte wirtschaftlich-technische Innovation (Planung)</displayed-value>
         <stored-value>plan_inn_pot_econtech</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beabsichtigte soziale Innovationen/Veränderungsprozesse (Plan)</displayed-value>
+        <displayed-value>Beabsichtigte soziale Innovation/Veränderungsprozess (Planung)</displayed-value>
         <stored-value>plan_inn_pot_social</stored-value>
       </pair>
       <pair>
-        <displayed-value>Meilensteine</displayed-value>
-        <stored-value>milestones</stored-value>
+        <displayed-value>Idee für Innovation und Veränderung (Planung)</displayed-value>
+        <stored-value>plan_innovationideas</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ausgründungen (inkl. Vereinsgründungen)</displayed-value>
-        <stored-value>spinoffs</stored-value>
+        <displayed-value>Patent oder Gebrauchsmuster (Planung)</displayed-value>
+        <stored-value>plan_patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Patente und Gebrauchsmuster</displayed-value>
-        <stored-value>Patent</stored-value>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung) (Planung)</displayed-value>
+        <stored-value>plan_spinoffs</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ideen für Innovation und Veränderung</displayed-value>
-        <stored-value>innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beabsichtigte wirtschaftlich-technische Innovationen</displayed-value>
+        <displayed-value>Beabsichtigte wirtschaftlich-technische Innovation (Bericht)</displayed-value>
         <stored-value>inn_pot_econtech</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beabsichtigte soziale Innovationen/Veränderungsprozesse</displayed-value>
+        <displayed-value>Beabsichtigte soziale Innovation/Veränderungsprozess (Bericht)</displayed-value>
         <stored-value>inn_pot_social</stored-value>
       </pair>
       <pair>
-        <displayed-value>Anwendungserfolg für soziale Innovationen/Veränderungsprozesse</displayed-value>
-        <stored-value>applications_social</stored-value>
+        <displayed-value>Idee für Innovation und Veränderung (Bericht)</displayed-value>
+        <stored-value>innovationideas</stored-value>
       </pair>
       <pair>
-        <displayed-value>Anwendungserfolg für wirtschaftlich-technische Innovationen</displayed-value>
-        <stored-value>applications_econtech</stored-value>
+        <displayed-value>Patent oder Gebrauchsmuster (Bericht)</displayed-value>
+        <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Unerwartete Ergebnisse und Probleme</displayed-value>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung) (Bericht)</displayed-value>
+        <stored-value>spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Unerwartete Ergebnisse oder Probleme (Bericht)</displayed-value>
         <stored-value>unexpected_results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <displayed-value>Arbeiten und Kooperation nach Projektende (Bericht)</displayed-value>
         <stored-value>steps</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnungen und Preise</displayed-value>
+        <displayed-value>Anwendungserfolg für wirtschaftlich-technische Innovationen (Bericht)</displayed-value>
+        <stored-value>applications_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Anwendungserfolg für soziale Innovationen/Veränderungsprozesse (Bericht)</displayed-value>
+        <stored-value>applications_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Auszeichnungen und Preise (Bericht)</displayed-value>
         <stored-value>awards</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
-        <displayed-value>Erwarteter gesellschaftlicher Impact</displayed-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
     </value-pairs>

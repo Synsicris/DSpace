@@ -209,7 +209,7 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>Publication</entity-type>
+      <entity-type></entity-type>
       <submission-type>easy-import</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>

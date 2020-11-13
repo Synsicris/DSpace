@@ -573,7 +573,6 @@
     <submission-process name="stateofart">
       <step id="collection" />
       <step id="stateofart" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme">
       <step id="collection" />

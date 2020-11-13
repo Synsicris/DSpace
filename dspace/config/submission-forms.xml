@@ -128,7 +128,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_1_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -163,7 +163,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_2_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -198,7 +198,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -233,7 +233,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_3_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -268,7 +268,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -303,7 +303,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_4_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -338,7 +338,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_5_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_5_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -352,6 +352,17 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>You must enter the item title.</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type of expected impact</label>
+          <input-type value-pairs-name="societalimpact">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -373,7 +384,7 @@
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type value-pairs-name="impactpathway_step_type_6_task_type">dropdown</input-type>
+          <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>You must select an item type.</required>
           <hint />
@@ -1214,6 +1225,18 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>patenttype</dc-qualifier>
+          <label>Type of protection</label>
+          <input-type value-pairs-name="patent_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Patent use</label>
           <input-type value-pairs-name="patent_use">dropdown</input-type>
@@ -1226,7 +1249,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>patent use</dc-qualifier>
+          <dc-qualifier>patentuse</dc-qualifier>
           <label>Description of patent use</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -2246,7 +2269,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>German definition of medium-sized companies: Up to 1,000 employees and an annual turnover of € 100 million. Please select only "Yes" if you do not fall under the EU definition of an SME.</hint>
+          <hint>German definition of medium-sized companies: Up to 1,000 employees and an annual turnover of EUR 100 million. Please select only "Yes" if you do not fall under the EU definition of an SME.</hint>
         </field>
       </row>
     </form>
@@ -7413,12 +7436,12 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_1_task_type" dc-term="impactpathway_step_type_1_task_type">
       <pair>
-        <displayed-value>External conditions and requirements</displayed-value>
-        <stored-value>conditions</stored-value>
+        <displayed-value>State of knowledge / Problem description</displayed-value>
+        <stored-value>stateofart</stored-value>
       </pair>
       <pair>
-        <displayed-value>State of knowledge</displayed-value>
-        <stored-value>stateofart</stored-value>
+        <displayed-value>External condition or requirement</displayed-value>
+        <stored-value>conditions</stored-value>
       </pair>
       <pair>
         <displayed-value>Gender reflection</displayed-value>
@@ -7434,176 +7457,152 @@ Examples: collection of biological samples, personal data, medical interventions
         <displayed-value>Project objective of research and development</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Research finding</displayed-value>
+        <stored-value>research_results</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_objective_type" dc-term="impactpathway_step_type_2_task_objective_type">
       <pair>
-        <displayed-value>Workpackages (plan)</displayed-value>
+        <displayed-value>Workpackage (plan)</displayed-value>
         <stored-value>plan_workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tasks (plan)</displayed-value>
+        <displayed-value>Task (plan)</displayed-value>
         <stored-value>plan_tasks</stored-value>
       </pair>
       <pair>
-        <displayed-value>Milestones (plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Workpackages</displayed-value>
+        <displayed-value>Workpackage (report)</displayed-value>
         <stored-value>workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tasks</displayed-value>
+        <displayed-value>Task (report)</displayed-value>
         <stored-value>tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Milestones</displayed-value>
-        <stored-value>milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Research findings</displayed-value>
-        <stored-value>research_results</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Project objective of interactions and outputs</displayed-value>
+        <displayed-value>Activity of exchange and transfer</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
       <pair>
-        <displayed-value>Workpackages (plan)</displayed-value>
-        <stored-value>plan_workpackages</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Tasks (plan)</displayed-value>
-        <stored-value>plan_tasks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Milestones (plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Events (plan)</displayed-value>
-        <stored-value>plan_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Participative processes (plan)</displayed-value>
-        <stored-value>plan_participation_events</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Cooperation processes (plan)</displayed-value>
         <stored-value>plan_cooperation_events</stored-value>
       </pair>
       <pair>
-        <displayed-value>Publications (plan)</displayed-value>
+        <displayed-value>Participative process (plan)</displayed-value>
+        <stored-value>plan_participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Event (plan)</displayed-value>
+        <stored-value>plan_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication (plan)</displayed-value>
         <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Objects, materials (plan)</displayed-value>
+        <displayed-value>Object, material (plan)</displayed-value>
         <stored-value>plan_physical_objects</stored-value>
       </pair>
       <pair>
-        <displayed-value>Workpackages</displayed-value>
-        <stored-value>workpackages</stored-value>
+        <displayed-value>Workpackage (plan)</displayed-value>
+        <stored-value>plan_workpackages</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tasks</displayed-value>
-        <stored-value>tasks</stored-value>
+        <displayed-value>Task (plan)</displayed-value>
+        <stored-value>plan_tasks</stored-value>
       </pair>
       <pair>
-        <displayed-value>Milestones</displayed-value>
-        <stored-value>milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Events</displayed-value>
-        <stored-value>Event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Participative processes</displayed-value>
-        <stored-value>participation_events</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cooperation processes</displayed-value>
+        <displayed-value>Cooperation processe (report)</displayed-value>
         <stored-value>cooperation_events</stored-value>
       </pair>
       <pair>
-        <displayed-value>Publications</displayed-value>
+        <displayed-value>Participative process (report)</displayed-value>
+        <stored-value>participation_events</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Event (report)</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication (report)</displayed-value>
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Objects, materials</displayed-value>
+        <displayed-value>Object, material (report)</displayed-value>
         <stored-value>physical_objects</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Workpackage (report)</displayed-value>
+        <stored-value>workpackages</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Task (report)</displayed-value>
+        <stored-value>tasks</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
-        <displayed-value>Milestones (plan)</displayed-value>
-        <stored-value>plan_milestones</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Spin-offs (incl. associations) (plan)</displayed-value>
-        <stored-value>plan_spinoffs</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Patents and utility patents (plan)</displayed-value>
-        <stored-value>plan_patent</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ideas for innovation and change (plan)</displayed-value>
-        <stored-value>plan_innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Intended business innovations (plan)</displayed-value>
+        <displayed-value>Intended business innovation (plan)</displayed-value>
         <stored-value>plan_inn_pot_econtech</stored-value>
       </pair>
       <pair>
-        <displayed-value>Intended social innovations/ changeprocesses (plan)</displayed-value>
+        <displayed-value>Intended social innovation/ changeprocess (plan)</displayed-value>
         <stored-value>plan_inn_pot_social</stored-value>
       </pair>
       <pair>
-        <displayed-value>Milestones</displayed-value>
-        <stored-value>milestones</stored-value>
+        <displayed-value>Idea for innovation and change (plan)</displayed-value>
+        <stored-value>plan_innovationideas</stored-value>
       </pair>
       <pair>
-        <displayed-value>Spin-offs (incl. associations)</displayed-value>
-        <stored-value>spinoffs</stored-value>
+        <displayed-value>Patent or utility patent (plan)</displayed-value>
+        <stored-value>plan_patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Patents and utility patents</displayed-value>
-        <stored-value>Patent</stored-value>
+        <displayed-value>Spin-off (incl. association) (plan)</displayed-value>
+        <stored-value>plan_spinoffs</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ideas for innovation and change</displayed-value>
-        <stored-value>innovationideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Intended business innovations</displayed-value>
+        <displayed-value>Intended business innovation (report)</displayed-value>
         <stored-value>inn_pot_econtech</stored-value>
       </pair>
       <pair>
-        <displayed-value>Intended social innovations/ changeprocesses</displayed-value>
+        <displayed-value>Intended social innovation/ changeprocess (report)</displayed-value>
         <stored-value>inn_pot_social</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application success in social innovations/change processes</displayed-value>
-        <stored-value>applications_social</stored-value>
+        <displayed-value>Idea for innovation and change (report)</displayed-value>
+        <stored-value>innovationideas</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application success for business innovations</displayed-value>
-        <stored-value>applications_econtech</stored-value>
+        <displayed-value>Patent or utility patent (report)</displayed-value>
+        <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Unexpected results and problems</displayed-value>
+        <displayed-value>Spin-off (incl. association) (report)</displayed-value>
+        <stored-value>spinoffs</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Unexpected result or problem (report)</displayed-value>
         <stored-value>unexpected_results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Next steps and cooperation</displayed-value>
+        <displayed-value>Next step and cooperation (report)</displayed-value>
         <stored-value>steps</stored-value>
       </pair>
       <pair>
-        <displayed-value>Awards and prizes</displayed-value>
+        <displayed-value>Application success for business innovation ((report)</displayed-value>
+        <stored-value>applications_econtech</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Application success in social innovation/change process (report)</displayed-value>
+        <stored-value>applications_social</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Award or prize (report)</displayed-value>
         <stored-value>awards</stored-value>
       </pair>
     </value-pairs>
@@ -7865,6 +7864,16 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Removed</displayed-value>
         <stored-value>removed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="patent_type" dc-term="patent_type">
+      <pair>
+        <displayed-value>Utility patent</displayed-value>
+        <stored-value>utility patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patent</displayed-value>
+        <stored-value>patent</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

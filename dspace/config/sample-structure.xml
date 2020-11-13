@@ -6,12 +6,14 @@
     <intro />
     <copyright />
     <sidebar />
+    <policy-group>project-template-group</policy-group>
     <community>
       <name>Impactpathway objects</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
+      <policy-group>project-template-group</policy-group>
       <collection>
         <name>Impactpathway steps</name>
         <description />
@@ -21,6 +23,7 @@
         <license />
         <entity-type>impactpathwaystep</entity-type>
         <submission-type>impact_pathway_step</submission-type>
+        <policy-group>project-template-group</policy-group>
       </collection>
       <collection>
         <name>Impactpathways</name>
@@ -31,6 +34,7 @@
         <license />
         <entity-type>impactpathway</entity-type>
         <submission-type>impact_pathway</submission-type>
+        <policy-group>project-template-group</policy-group>
       </collection>
     </community>
     <collection>
@@ -42,6 +46,7 @@
       <license />
       <entity-type>applications_econtech</entity-type>
       <submission-type>applications_econtech</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Application success in social innovations/change processes</name>
@@ -52,6 +57,7 @@
       <license />
       <entity-type>applications_social</entity-type>
       <submission-type>applications_social</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Awards and prizes</name>
@@ -62,6 +68,7 @@
       <license />
       <entity-type>awards</entity-type>
       <submission-type>awards</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Contribution to funding programme objectives</name>
@@ -72,6 +79,7 @@
       <license />
       <entity-type>contribution_fundingprogramme</entity-type>
       <submission-type>contribution_fundingprogramme</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Cooperation partners</name>
@@ -82,6 +90,7 @@
       <license />
       <entity-type>cooperation_partners</entity-type>
       <submission-type>cooperation_partners</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Cooperation processes</name>
@@ -92,6 +101,7 @@
       <license />
       <entity-type>cooperation_events</entity-type>
       <submission-type>cooperation_events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Cooperation processes (plan)</name>
@@ -102,6 +112,7 @@
       <license />
       <entity-type>plan_cooperation_events</entity-type>
       <submission-type>plan_cooperation_events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Ethical reflection</name>
@@ -112,6 +123,7 @@
       <license />
       <entity-type>ethics</entity-type>
       <submission-type>ethics</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Events</name>
@@ -122,6 +134,7 @@
       <license />
       <entity-type>Event</entity-type>
       <submission-type>events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Events (plan)</name>
@@ -132,6 +145,7 @@
       <license />
       <entity-type>plan_events</entity-type>
       <submission-type>plan_events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Expected societal impact</name>
@@ -142,6 +156,7 @@
       <license />
       <entity-type>pot_societalimpact</entity-type>
       <submission-type>pot_societalimpact</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>External conditions and requirements</name>
@@ -152,6 +167,7 @@
       <license />
       <entity-type>conditions</entity-type>
       <submission-type>conditions</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Gender reflection</name>
@@ -162,6 +178,7 @@
       <license />
       <entity-type>gender</entity-type>
       <submission-type>gender</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Ideas for innovation and change</name>
@@ -172,6 +189,7 @@
       <license />
       <entity-type>innovationideas</entity-type>
       <submission-type>innovationideas</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Ideas for innovation and change (plan)</name>
@@ -182,6 +200,7 @@
       <license />
       <entity-type>plan_innovationideas</entity-type>
       <submission-type>plan_innovationideas</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Import easy-Online xml-file</name>
@@ -190,8 +209,9 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>Publication</entity-type>
+      <entity-type></entity-type>
       <submission-type>easy-import</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Intended business innovations</name>
@@ -202,6 +222,7 @@
       <license />
       <entity-type>inn_pot_econtech</entity-type>
       <submission-type>innovationpotentials_econtech</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Intended business innovations (plan)</name>
@@ -212,6 +233,7 @@
       <license />
       <entity-type>plan_inn_pot_econtech</entity-type>
       <submission-type>plan_innovationpotentials_econtech</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Intended social innovations/change processes</name>
@@ -222,6 +244,7 @@
       <license />
       <entity-type>inn_pot_social</entity-type>
       <submission-type>innovationpotentials_social</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Intended social innovations/change processes (plan)</name>
@@ -232,6 +255,7 @@
       <license />
       <entity-type>plan_inn_pot_social</entity-type>
       <submission-type>plan_innovationpotentials_social</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Milestones</name>
@@ -242,6 +266,7 @@
       <license />
       <entity-type>milestones</entity-type>
       <submission-type>milestones</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Milestones (plan)</name>
@@ -252,6 +277,7 @@
       <license />
       <entity-type>plan_milestones</entity-type>
       <submission-type>plan_milestones</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Next steps and cooperation</name>
@@ -262,6 +288,7 @@
       <license />
       <entity-type>steps</entity-type>
       <submission-type>steps</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Objects, materials</name>
@@ -272,6 +299,7 @@
       <license />
       <entity-type>physical_objects</entity-type>
       <submission-type>physical_objects</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Objects, materials (plan)</name>
@@ -282,6 +310,7 @@
       <license />
       <entity-type>plan_physical_objects</entity-type>
       <submission-type>plan_physical_objects</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Organisation units</name>
@@ -292,6 +321,7 @@
       <license />
       <entity-type>OrgUnit</entity-type>
       <submission-type>orgunits</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Participative processes</name>
@@ -302,6 +332,7 @@
       <license />
       <entity-type>participation_events</entity-type>
       <submission-type>participation_events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Participative processes (plan)</name>
@@ -312,6 +343,7 @@
       <license />
       <entity-type>plan_participation_events</entity-type>
       <submission-type>plan_participation_events</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Patents and utility patents</name>
@@ -322,6 +354,7 @@
       <license />
       <entity-type>Patent</entity-type>
       <submission-type>patents</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Patents and utility patents (plan)</name>
@@ -332,6 +365,7 @@
       <license />
       <entity-type>plan_patent</entity-type>
       <submission-type>plan_patents</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Persons</name>
@@ -342,6 +376,7 @@
       <license />
       <entity-type>Person</entity-type>
       <submission-type>persons</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Project objectives</name>
@@ -352,6 +387,7 @@
       <license />
       <entity-type>proj_objectives</entity-type>
       <submission-type>proj_objectives</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Projects</name>
@@ -362,6 +398,7 @@
       <license />
       <entity-type>Project</entity-type>
       <submission-type>projects</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Publications</name>
@@ -372,6 +409,7 @@
       <license />
       <entity-type>Publication</entity-type>
       <submission-type>publications</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Publications (plan)</name>
@@ -382,6 +420,7 @@
       <license />
       <entity-type>plan_publication</entity-type>
       <submission-type>plan_publications</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Research findings</name>
@@ -392,6 +431,7 @@
       <license />
       <entity-type>research_results</entity-type>
       <submission-type>research_results</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Research question (plan)</name>
@@ -402,6 +442,7 @@
       <license />
       <entity-type>plan_research_quest</entity-type>
       <submission-type>research_results</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Spin-offs (incl. associations)</name>
@@ -412,6 +453,7 @@
       <license />
       <entity-type>spinoffs</entity-type>
       <submission-type>spinoffs</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Spin-offs (incl. associations) (plan)</name>
@@ -422,6 +464,7 @@
       <license />
       <entity-type>plan_spinoffs</entity-type>
       <submission-type>plan_spinoffs</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>State of knowledge</name>
@@ -432,6 +475,7 @@
       <license />
       <entity-type>stateofart</entity-type>
       <submission-type>stateofart</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Subprojects</name>
@@ -442,6 +486,7 @@
       <license />
       <entity-type>subproject</entity-type>
       <submission-type>subprojects</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Target groups</name>
@@ -452,6 +497,7 @@
       <license />
       <entity-type>targetgroups</entity-type>
       <submission-type>targetgroups</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Tasks</name>
@@ -462,6 +508,7 @@
       <license />
       <entity-type>tasks</entity-type>
       <submission-type>tasks</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Tasks (plan)</name>
@@ -472,6 +519,7 @@
       <license />
       <entity-type>plan_tasks</entity-type>
       <submission-type>plan_tasks</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Unexpected results and problems</name>
@@ -482,6 +530,7 @@
       <license />
       <entity-type>unexpected_results</entity-type>
       <submission-type>unexpected_results</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Work packages</name>
@@ -492,6 +541,7 @@
       <license />
       <entity-type>workpackages</entity-type>
       <submission-type>workpackages</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
       <name>Work packages (plan)</name>
@@ -502,6 +552,7 @@
       <license />
       <entity-type>plan_workpackages</entity-type>
       <submission-type>plan_workpackages</submission-type>
+      <policy-group>project-template-group</policy-group>
     </collection>
   </community>
   <community>

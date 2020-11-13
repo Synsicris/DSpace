@@ -1912,7 +1912,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:proj_objectives)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:proj_objectives OR entityType_keyword:research_results)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -1969,7 +1969,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:milestones OR entityType_keyword:research_results)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:workpackages OR entityType_keyword:tasks)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2083,7 +2083,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:plan_milestones OR entityType_keyword:plan_events OR entityType_keyword:plan_participation_events OR entityType_keyword:plan_cooperation_events OR entityType_keyword:plan_publication OR entityType_keyword:plan_physical_objects OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:milestones OR entityType_keyword:Event OR entityType_keyword:participation_events OR entityType_keyword:cooperation_events OR entityType_keyword:Publication OR entityType_keyword:physical_objects)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_cooperation_events OR entityType_keyword:plan_participation_events OR entityType_keyword:plan_events OR entityType_keyword:plan_publication OR entityType_keyword:plan_physical_objects OR entityType_keyword:plan_workpackages OR entityType_keyword:plan_tasks OR entityType_keyword:cooperation_events OR entityType_keyword:participation_events OR entityType_keyword:Event OR entityType_keyword:Publication OR entityType_keyword:physical_objects OR entityType_keyword:workpackages OR entityType_keyword:tasks)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2140,7 +2140,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_milestones OR entityType_keyword:plan_spinoffs OR entityType_keyword:plan_patent OR entityType_keyword:plan_innovationideas OR entityType_keyword:plan_innovationpotentials_econtech OR entityType_keyword:plan_innovationpotentials_social OR entityType_keyword:milestones OR entityType_keyword:spinoffs OR entityType_keyword:Patent OR entityType_keyword:innovationideas OR entityType_keyword:innovationpotentials_econtech OR entityType_keyword:innovationpotentials_social OR entityType_keyword:applications_social OR entityType_keyword:applications_econtech OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:awards)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:plan_inn_pot_econtech OR entityType_keyword:plan_inn_pot_social OR entityType_keyword:plan_innovationideas OR entityType_keyword:plan_patent OR entityType_keyword:plan_spinoffs OR entityType_keyword:inn_pot_econtech OR entityType_keyword:inn_pot_social OR entityType_keyword:innovationideas OR entityType_keyword:Patent OR entityType_keyword:spinoffs OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:applications_econtech OR entityType_keyword:applications_social OR entityType_keyword:awards)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

@@ -127,7 +127,7 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie einen Bereich:</label>
+          <label>Bitte wählen Sie einen Bereich aus:</label>
           <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -142,7 +142,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -162,7 +162,7 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte bestätigen Sie die Vorauswahl.</label>
+          <label>Bitte wählen Sie einen Bereich aus:</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -177,7 +177,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -197,7 +197,7 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie einen Bereich:</label>
+          <label>Bitte wählen Sie einen Bereich aus:</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -212,7 +212,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -267,7 +267,7 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie einen Bereich:</label>
+          <label>Bitte wählen Sie einen Bereich aus:</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -282,7 +282,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -302,7 +302,7 @@
         <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie einen Bereich:</label>
+          <label>Bitte wählen Sie einen Bereich aus:</label>
           <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -317,7 +317,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -352,7 +352,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -394,11 +394,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Btte geben Sie ein Ziel des Förderprogramms an.</label>
+          <label>Kernaussage zum Beitrag des Projektes zum gewählten förderpolitischen Ziel</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
+          <hint>Formulieren Sie bitte eine kurze inhaltliche Aussage.</hint>
         </field>
       </row>
       <row>
@@ -406,11 +406,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>funder</dc-qualifier>
-          <label>Kernaussage zum Beitrag des Projektes zum gewählten förderpolitischen Ziel</label>
+          <label>Bitte geben Sie ein Ziel des Förderprogramms an.</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine Kernaussage.</hint>
+          <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
         </field>
       </row>
       <row>
@@ -1224,6 +1224,18 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>patenttype</dc-qualifier>
+          <label>Art des Schutzrechts</label>
+          <input-type value-pairs-name="patent_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Nutzung des Patents</label>
           <input-type value-pairs-name="patent_use">dropdown</input-type>
@@ -1236,7 +1248,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>patent use</dc-qualifier>
+          <dc-qualifier>patentuse</dc-qualifier>
           <label>Erläuterung zur Nutzung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -1248,7 +1260,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibnung des Anwendungsbereichs</label>
+          <label>Beschreibung des Anwendungsbereichs</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7453,7 +7465,7 @@
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Kernaussage zu Zweck und Akteursgruppe der Interaktion</displayed-value>
+        <displayed-value>Austausch- und Transferaktivität</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
@@ -7503,7 +7515,7 @@
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Objekt, Material (Planung)</displayed-value>
+        <displayed-value>Objekt, Material (Bericht)</displayed-value>
         <stored-value>physical_objects</stored-value>
       </pair>
       <pair>
@@ -7835,6 +7847,16 @@
       <pair>
         <displayed-value>Entfernt</displayed-value>
         <stored-value>removed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="patent_type" dc-term="patent_type">
+      <pair>
+        <displayed-value>Gebrauchsmuster</displayed-value>
+        <stored-value>utility patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patent</displayed-value>
+        <stored-value>patent</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

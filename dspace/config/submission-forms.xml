@@ -394,10 +394,10 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Enter funding programme objective</label>
+          <label>Enter the title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>You must select a funder.</required>
+          <required>You must enter the item title.</required>
           <hint />
         </field>
       </row>
@@ -406,10 +406,10 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>funder</dc-qualifier>
-          <label>Enter the title</label>
+          <label>Enter funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>You must enter the item title.</required>
+          <required>You must select a funder.</required>
           <hint />
         </field>
       </row>
@@ -1225,6 +1225,18 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>patenttype</dc-qualifier>
+          <label>Type of protection</label>
+          <input-type value-pairs-name="patent_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Patent use</label>
           <input-type value-pairs-name="patent_use">dropdown</input-type>
@@ -1237,7 +1249,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>patent use</dc-qualifier>
+          <dc-qualifier>patentuse</dc-qualifier>
           <label>Description of patent use</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -7470,7 +7482,7 @@ Examples: collection of biological samples, personal data, medical interventions
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Key message on the purpose and stakeholder group of the interaction</displayed-value>
+        <displayed-value>Activity of exchange and transfer</displayed-value>
         <stored-value>proj_objectives</stored-value>
       </pair>
     </value-pairs>
@@ -7852,6 +7864,16 @@ Examples: collection of biological samples, personal data, medical interventions
       <pair>
         <displayed-value>Removed</displayed-value>
         <stored-value>removed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="patent_type" dc-term="patent_type">
+      <pair>
+        <displayed-value>Utility patent</displayed-value>
+        <stored-value>utility patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patent</displayed-value>
+        <stored-value>patent</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

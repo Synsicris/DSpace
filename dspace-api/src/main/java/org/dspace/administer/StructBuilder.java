@@ -668,6 +668,8 @@ public class StructBuilder {
     
                     // add read permission to group
                     authorizeService.addPolicy(context, community, Constants.READ, policyGroup);
+                    // add add permission to group
+                    authorizeService.addPolicy(context, community, Constants.ADD, policyGroup);
                 }
             }
 
@@ -788,6 +790,8 @@ public class StructBuilder {
     
                     // add "READ" permission to group
                     authorizeService.addPolicy(context, collection, Constants.READ, policyGroup);
+                    // add add permission to group
+                    authorizeService.addPolicy(context, collection, Constants.ADD, policyGroup);
                     // add "DEFAULT_BITSTREAM_READ" permission to group
                     authorizeService.addPolicy(context, collection, Constants.DEFAULT_BITSTREAM_READ, policyGroup);
                     // add "DEFAULT_ITEM_READ" permission to group

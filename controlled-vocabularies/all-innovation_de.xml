@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="ALL-INNOVATION 2020-01-16">
+  <isComposedBy>
+    <node id="ID01" label="Produktinnovation">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID02" label="Waren">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID03" label="Dienstleistungen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID04" label="Kombination von Waren und Dienstleistungen">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID05" label="Innovation in Geschäftsprozessen">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID06" label="Produktion von Waren oder Dienstleistungen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID07" label="Vertrieb und Logistik">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID08" label="Marketing und Verkauf">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID09" label="Informations- und Kommunikationssysteme">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID10" label="Verwaltung und Management">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID11" label="Produkt- und Geschäftsprozess-Entwicklung">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID12" label="Soziale Innovationen / Veränderungsprozesse">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID13" label="Capacity building und Lernen: Veränderung von Kenntnissen. Einstellungen, Fähigkeiten, Präferenzen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID14" label="Veränderung von Handlungen, Verhalten, Praktiken ">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID15" label="Netzwerke: Aufbau und Etablierung von neuen formellen oder informellen Netzwerken,  Kooperationsformen, regionalen Clustern etc.">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID16" label="Veränderungen in oder von Organisationen und Institutionen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID17" label="Veränderung von Verhältnissen oder Strukturen
+">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID18" label="Entwicklung von Standards, Normen oder Regelwerken (außerhalb der Gesetzgebung)
+">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID19" label="Entwicklung von Gesetzen oder Verordnungen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID20" label="Berücksichtigung in sonstigen politischen Prozessen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID21" label="Sonstiges">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

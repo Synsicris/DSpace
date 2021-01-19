@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY-SOCIAL-PLAN 2020-01-16">
+  <isComposedBy>
+    <node id="APLS1" label="Requirements for application at stakeholder level">
+    <hasNote>Which key stakeholders should definitely be involved? Which elementary conflicting goals between stakeholders should be taken into account? What specific skills and knowledge are required by the involved actors to apply the solution? Does the innovation rely on voluntary commitment or is personnel needed?</hasNote>
+    </node>
+    <node id="APLS2" label="Requirements for application regarding (infra)structures and Ressoucen">
+    <hasNote>What infrastructure, equipment, materials etc. are required to implement the solution? What effort is involved in implementing the solution? Which institutional links, organisational structures and agreements have proved to be helpful? </hasNote>
+    </node>
+  </isComposedBy>
+</node>

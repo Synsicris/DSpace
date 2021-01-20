@@ -110,7 +110,7 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
 
         Community parent;
         try {
-            parent = cs.find(context, id);
+            parent = communityService.find(context, id);
             if (parent == null) {
                 throw new UnprocessableEntityException("Parent community for id: "
                         + id + " not found");
@@ -139,8 +139,8 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         Community community;
 
         try {
-            community = cs.create(parent, context);
-            cs.update(context, community);
+            community = communityService.create(parent, context);
+            communityService.update(context, community);
             metadataConverter.mergeMetadata(context, community, communityRest.getMetadata());
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);

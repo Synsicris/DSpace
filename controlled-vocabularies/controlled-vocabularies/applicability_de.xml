@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY 2020-06-04">
+  <isComposedBy>
+    <node id="APL1" label="Grad der Neuheit/Veränderung">
+    <hasNote>Was ist neu an der Entwicklung/Lösung? Wie groß ist die Veränderung im Vergleich zu bisher bekannten Lösungen? </hasNote>
+    </node>
+    <node id="APL2" label="Beitrag zur Problemlösung / Verbesserung  (Effektivität)">
+    <hasNote>Wie viel Verbesserung gibt es? Wie umfangreich kann die Anwendungsmöglichkeit zur Lösung eines Problems / zur Verbesserung einer Situation beitragen?</hasNote>
+    </node>
+    <node id="APL3" label="Effizienz der Lösung">
+    <hasNote>Wie ist das Verhältnis zwischen Aufwand und Nutzen für die Anwendung der beabsichtigten Innovation/Lösung? Wie verhält sich das Verhältnis zwischen Kosten und Nutzen im Vergleich zu früheren Praktiken/Lösungsansätzen?</hasNote>
+    </node>
+    <node id="APL4" label="Durchführbarkeit / Anschlussfähigkeit / Praktikabilität">
+    <hasNote>Inwieweit ist die Innovation/Lösung mit bestehenden Praktiken kompatibel? Inwieweit müssen bestehende Praktiken geändert werden, um die Innovation/Entwicklung umzusetzen? Kann die Innovation von den Nutzern getestet und die Auswirkungen beobachtet werden? Welche Kosten und Risiken sind mit einem Test verbunden? Inwieweit kann die Innovation/Entwicklung von den Nutzern flexibel an ihre Bedürfnisse angepasst oder in ihren Nutzungskontext eingebettet werden? </hasNote>
+    </node>
+    <node id="APL5" label="Voraussetzungen für die Anwendung">
+    <hasNote>Welche spezifischen Fähigkeiten und Kenntnisse der angesprochenen Nutzer sind für die Anwendung erforderlich? Müssen die Nutzer über eine bestimmte Infrastruktur, Ausrüstung, Materialien usw. verfügen, um die Innovation/Entwicklung anwenden zu können?</hasNote>
+    </node>
+    <node id="APL6" label="Aussichten für Übertragung/Verbreitung/Bereitstellung">
+    <hasNote>Inwieweit ist die Innovation/Entwicklung übertragbar (auf andere Sektoren, Regionen, Nutzergruppen etc.)?  Ob und wie müssen Strukturen und Rahmenbedingungen verändert werden, um eine Diffusion der Innovation/Entwicklung zu ermöglichen? Welche unterstützenden Strukturen und Rahmenbedingungen bestehen bereits, die die Etablierung/den Transfer/die Verbreitung der Innovation/Entwicklung fördern?  Gibt es Finanzierungsmöglichkeiten zur Unterstützung einer breiteren Etablierung? Berührt die Innovation/Entwicklung widersprüchliche Interessen, die ihre Etablierung bedrohen?</hasNote>
+    </node>
+  </isComposedBy>
+</node>

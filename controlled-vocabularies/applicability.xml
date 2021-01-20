@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY 2020-01-16">
+  <isComposedBy>
+    <node id="APL1" label="Degree of novelty/ change">
+    <hasNote>What is new about the development/ solution? What is the degree of change compared to previously known solutions? </hasNote>
+    </node>
+    <node id="APL2" label="Contribution to a solution / improvement (effectivity)">
+    <hasNote>How effectively can the expected novel solution contribute to adress the problem or to improve the situation? How large are the effects? How well is the occurrence of the effects scientifically proven? What influence have different conditions and influences on the effect strength and the certainty of their occurrence? </hasNote>
+    </node>
+    <node id="APL3" label="Efficiency of the solution">
+    <hasNote>What is the relation between effort and benefit for the application of the intended innovation/solution? How does the relation between cost and benefit compare with previous practices/solution approaches?</hasNote>
+    </node>
+    <node id="APL4" label="Feasibility / connectivity / practicability">
+    <hasNote>To what extent is the innovation/solution compatible with existing practices? To what extent do existing practices need to be changed in order to implement the innovation/development? Can the innovation be tested by users and effects observed? What costs and risks are associated with a test? To what extent can the innovation/development be flexibly adapted by users to their requirements or embedded in their context of use? </hasNote>
+    </node>
+    <node id="APL5" label="Preconditions for implementation">
+    <hasNote>What specific skills and knowledge of the users adressed are required for the application? Do users need to have certain infrastructure, equipment, materials, etc. to apply the innovation/development?</hasNote>
+    </node>
+    <node id="APL6" label="Prospects for transmission/ diffusion/ deployment">
+    <hasNote>
+To what extent is the innovation/ development transferable (to other sectors, regions, user groups etc.)?  Whether and how must structures and framework conditions be changed to allow a diffusion of the innovation/development? Which supporting structures and framework conditions already exist that promote the establishment / transfer / spread of the innovation/ development?  Are there financing possibilities to support a broader establishment? Does the innovation/development touch on conflicting interests that threaten its establishment?</hasNote>
+    </node>
+  </isComposedBy>
+</node>

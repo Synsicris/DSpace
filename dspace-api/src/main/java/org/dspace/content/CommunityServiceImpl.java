@@ -41,6 +41,8 @@ import org.dspace.core.LogManager;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
+import org.dspace.identifier.IdentifierException;
+import org.dspace.identifier.service.IdentifierService;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -79,10 +81,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
     @Autowired
     protected SiteService siteService;
+    @Autowired(required = true)
+    protected IdentifierService identifierService;
 
     @Autowired
     protected ResourcePolicyService resourcePolicyService;
-    
+
     @Autowired
     protected ConfigurationService configurationService;
 
@@ -106,17 +110,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         Community newCommunity = communityDAO.create(context, new Community());
 
-        try {
-            if (handle == null) {
-                handleService.createHandle(context, newCommunity);
-            } else {
-                handleService.createHandle(context, newCommunity, handle);
-            }
-        } catch (IllegalStateException ie) {
-            //If an IllegalStateException is thrown, then an existing object is already using this handle
-            throw ie;
-        }
-
         if (parent != null) {
             parent.addSubCommunity(newCommunity);
             newCommunity.addParentCommunity(parent);
@@ -131,14 +124,24 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         communityDAO.save(context, newCommunity);
 
+        try {
+            if (handle == null) {
+                identifierService.register(context, newCommunity);
+            } else {
+                identifierService.register(context, newCommunity, handle);
+            }
+        }  catch (IllegalStateException | IdentifierException ex) {
+            throw new IllegalStateException(ex);
+        }
+
         context.addEvent(new Event(Event.CREATE, Constants.COMMUNITY, newCommunity.getID(), newCommunity.getHandle(),
-                                   getIdentifiers(context, newCommunity)));
+                getIdentifiers(context, newCommunity)));
 
         // if creating a top-level Community, simulate an ADD event at the Site.
         if (parent == null) {
             context.addEvent(new Event(Event.ADD, Constants.SITE, siteService.findSite(context).getID(),
-                                       Constants.COMMUNITY, newCommunity.getID(), newCommunity.getHandle(),
-                                       getIdentifiers(context, newCommunity)));
+                    Constants.COMMUNITY, newCommunity.getID(), newCommunity.getHandle(),
+                    getIdentifiers(context, newCommunity)));
         }
 
         log.info(LogManager.getHeader(context, "create_community",
@@ -645,6 +648,10 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             case Constants.DELETE:
                 if (AuthorizeConfiguration.canCommunityAdminPerformSubelementDeletion()) {
                     adminObject = getParentObject(context, community);
+                    if (adminObject == null) {
+                        //top-level community, has to be admin of the current community
+                        adminObject = community;
+                    }
                 }
                 break;
             case Constants.ADD:
@@ -841,7 +848,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      * Create a new Institutional Scoped Role for each existing Institutional Role.
      * The community will keep a reference to the institutional scoped role via
      * perucris.community.institutional-scoped-role metadata.
-     * 
+     *
      * @return a map between the institutional roles and the related scopes for the
      *         institution community
      */
@@ -855,7 +862,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             Group templateGroup = groupService.findByName(context, templateGroupName);
             if (templateGroup != null) {
                 Group scopedRole = groupService.create(context);
-                groupService.addMember(context, scopedRole, context.getCurrentUser()); 
+                groupService.addMember(context, scopedRole, context.getCurrentUser());
                 String roleName = "project_" + project.getID().toString() + "_group";
                 groupService.setName(scopedRole, roleName);
                 groupsMap.put(templateGroup.getID(), scopedRole);

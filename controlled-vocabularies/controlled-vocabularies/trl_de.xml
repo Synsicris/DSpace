@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="TRL 2020-01-16">
+  <isComposedBy>
+    <node id="ID1" label="TRL 1 - Grundprinzipien beobachtet">
+    <hasNote>Grundlegende Prinzipien wurden qualitativ festgestellt und die wissenschaftliche Forschung ist abgeschlossen. Die Umrisse des Prozesses zeichnen sich ab, es wurde aber noch kein experimenteller Beleg oder eine Analyse angefertigt.</hasNote>
+    </node>
+    <node id="ID2" label="TRL 2 - Technologiekonzept formuliert">
+    <hasNote>Technologisches Konzept, die Anwendung und Durchführungskriterien wurden formuliert. Kleine Experimente und Studien belegen den ‚Proof of concept‘ des technischen Entwurfs.</hasNote>
+    </node>
+    <node id="ID3" label="TRL 3 - Experimenteller Nachweis des Konzepts">
+    <hasNote>Experimenteller Beleg des Konzeptes. Die ersten Experimente wurden im Labor durchgeführt. Konzept und Durchführung haben sich im Rahmen der Laborversuche als erfolgreich erwiesen.</hasNote>
+    </node>
+    <node id="ID4" label="TRL 4 - Technologie im Labor überprüft">
+    <hasNote>Technologie und relevante Komponenten wurden identifiziert. Demonstrationsprojekt wurde in einer laboratorischen und kontrollierten Umgebung aufgebaut. Durchführungen versprechen Erfolgschancen. Messungen haben die analytischen Vorhersagen nicht wiederlegt und ökonomische Evaluierungsmodelle wurden aufgestellt.</hasNote>
+    </node>
+    <node id="ID5" label="TRL 5 - Technologie in relevanter Umgebung überprüft (bei Schlüsseltechnologien im industrieorientierten Umfeld)">
+    <hasNote>Technologie hat sich in der relevanten Umgebung bewiesen (im Fall von KETs: in der entsprechenden industriellen Umgebung). Des Weiteren wurde das technische Konzept ausreichend auf Qualität und Beständigkeit getestet. Für die weitere Umsetzung wird das Projekt auf relevante Felder ausgeweitet, wie z.B. Gesundheit und Sicherheit, Umwelt und verfügbare Ressourcen.</hasNote>
+    </node>
+    <node id="ID6" label="TRL 6 - Technologie in relevanter Umgebung getestet (bei Schlüsseltechnologien im industrieorientierten Umfeld)">
+    <hasNote>Die Komponente und der Prozess haben bewiesen, dass das industrielle Potential die Integrierung in die Produktionskette erlaubt. Vorliegende Hardware wurde modifiziert und ausgebaut. Die meisten Probleme in den vorherigen Phasen wurden behoben. Risikoeinstufung und ökonomische Beurteilungen wurden angepasst.</hasNote>
+    </node>
+    <node id="ID7" label="TRL 7 - Test eines System-Prototyps im realen Einsatz">
+    <hasNote>Die Prototypdemonstration hat bewiesen, dass das Projekt auf einer vor-kommerziellen Stufe einwandfrei läuft. Finale Herstellungs- und Realisierbarkeitshürden wurden identifiziert. Geringfügige technologische Schwierigkeiten wurden behoben. Risiko Einstufung und ökonomische Beurteilungen wurden angepasst und durchgeführt.</hasNote>
+    </node>
+    <node id="ID8" label="TRL 8 - System ist komplett und qualifiziert">
+    <hasNote>Das System ist vollständig, die Technologie kann einwandfrei auf kommerzieller Ebene angewendet werden. Alle technischen Schwierigkeiten wurden gelöst.</hasNote>
+    </node>
+    <node id="ID9" label="TRL 9 - System funktioniert in operationeller Umgebung (bei Schlüsseltechnologien oder Raumfahrt wettbewerbsfähige Fertigung)">
+    <hasNote>Das gesamte System hat sich in der entsprechenden Umgebung bewiesen (wettbewerbsfähige Produktion bei key enabling technologies), die Technologie ist komplett entwickelt und das Produkt ist kommerziell zugänglich.</hasNote>
+    </node>
+  </isComposedBy>
+</node>

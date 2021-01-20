@@ -20,7 +20,6 @@ import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Item;
-import org.dspace.content.authority.Choices;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.service.PluginService;
@@ -52,44 +51,41 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
 
     @Test
     public void singleItemAuthorityTest() throws Exception {
-       context.turnOffAuthorisationSystem();
+        context.turnOffAuthorisationSystem();
 
-       parentCommunity = CommunityBuilder.createCommunity(context).build();
-       Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Test collection")
-                                          .build();
+        parentCommunity = CommunityBuilder.createCommunity(context).build();
+        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("Test collection")
+                .build();
 
-       Item author_1 = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Author 1")
-                                  .withRelationshipType("person")
-                                  .build();
+        Item orgUnit_1 = ItemBuilder.createItem(context, col1)
+                .withTitle("OrgUnit_1")
+                .withRelationshipType("orgunit")
+                .build();
 
-       Item author_2 = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Author 2")
-                                  .withRelationshipType("person")
-                                  .build();
+        Item orgUnit_2 = ItemBuilder.createItem(context, col1)
+                .withTitle("OrgUnit_2")
+                .withRelationshipType("orgunit")
+                .build();
 
-       Item author_3 = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Author 3")
-                                  .withRelationshipType("person")
-                                  .build();
+        Item author_1 = ItemBuilder.createItem(context, col1)
+                .withTitle("Author 1")
+                .withRelationshipType("person")
+                .withPersonMainAffiliation(orgUnit_1.getName(), orgUnit_1.getID().toString())
+                .build();
 
-       Item orgUnit_1 = ItemBuilder.createItem(context, col1)
-                                   .withTitle("OrgUnit_1")
-                                   .withRelationshipType("orgunit")
-                                   .build();
+        Item author_2 = ItemBuilder.createItem(context, col1)
+                .withTitle("Author 2")
+                .withPersonMainAffiliation(orgUnit_1.getName(), orgUnit_1.getID().toString())
+                .withRelationshipType("person")
+                .build();
 
-       Item orgUnit_2 = ItemBuilder.createItem(context, col1)
-                                   .withTitle("OrgUnit_2")
-                                   .withRelationshipType("orgunit")
-                                   .build();
+        Item author_3 = ItemBuilder.createItem(context, col1)
+                .withTitle("Author 3")
+                .withPersonMainAffiliation(orgUnit_2.getName(), orgUnit_2.getID().toString())
+                .withRelationshipType("person")
+                .build();
 
-       itemService.addMetadata(context, author_1, "person", "affiliation", "name", null, "OrgUnit_1",
-                                                   orgUnit_1.getID().toString(), Choices.CF_ACCEPTED);
-       itemService.addMetadata(context, author_2, "person", "affiliation", "name", null, "OrgUnit_1",
-                                                   orgUnit_1.getID().toString(), Choices.CF_ACCEPTED);
-       itemService.addMetadata(context, author_3, "person", "affiliation", "name", null, "OrgUnit_2",
-                                                   orgUnit_2.getID().toString(), Choices.CF_ACCEPTED);
         context.restoreAuthSystemState();
 
         String token = getAuthToken(eperson.getEmail(), password);
@@ -99,16 +95,19 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
                         .param("filter", "author"))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                             ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
-                    "Author 1", "Author 1", "vocabularyEntry", "oairecerif_author_affiliation", "OrgUnit_1::"
-                        + orgUnit_1.getID()),
-                             ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_2.getID().toString(),
-                    "Author 2", "Author 2", "vocabularyEntry", "oairecerif_author_affiliation", "OrgUnit_1::"
-                        + orgUnit_1.getID()),
-                             ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_3.getID().toString(),
-                    "Author 3", "Author 3", "vocabularyEntry", "oairecerif_author_affiliation", "OrgUnit_2::"
-                        + orgUnit_2.getID())
-                             )))
+                            ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
+                                "Author 1", "Author 1", "vocabularyEntry",
+                                "oairecerif_author_affiliation", "OrgUnit_1::"
+                                    + orgUnit_1.getID()),
+                            ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_2.getID().toString(),
+                                "Author 2", "Author 2", "vocabularyEntry",
+                                "oairecerif_author_affiliation", "OrgUnit_1::"
+                                    + orgUnit_1.getID()),
+                            ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_3.getID().toString(),
+                                "Author 3", "Author 3", "vocabularyEntry",
+                                "oairecerif_author_affiliation", "OrgUnit_2::"
+                                    + orgUnit_2.getID())
+                        )))
                         .andExpect(jsonPath("$.page.totalElements", Matchers.is(3)));
     }
 
@@ -117,12 +116,19 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
        context.turnOffAuthorisationSystem();
 
        configurationService.setProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority",
-                "org.dspace.content.authority.ItemMultiAuthority = AuthorAuthority");
+                new String[] {
+                        "org.dspace.content.authority.ItemMultiAuthority = AuthorAuthority",
+                        "org.dspace.content.authority.ItemAuthority = OrgUnitAuthority"
+                });
 
        configurationService.setProperty("solr.authority.server", "${solr.server}/authority");
        configurationService.setProperty("choices.plugin.dc.contributor.author", "AuthorAuthority");
        configurationService.setProperty("choices.presentation.dc.contributor.author", "authorLookup");
        configurationService.setProperty("authority.controlled.dc.contributor.author", "true");
+
+       configurationService.setProperty("choices.plugin.person.affiliation.name", "OrgUnitAuthority");
+       configurationService.setProperty("choices.presentation.person.affiliation.name", "authorLookup");
+       configurationService.setProperty("authority.controlled.person.affiliation.name", "true");
 
        // These clears have to happen so that the config is actually reloaded in those classes. This is needed for
        // the properties that we're altering above and this is only used within the tests
@@ -131,16 +137,6 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
 
        parentCommunity = CommunityBuilder.createCommunity(context).build();
        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity).build();
-
-       Item author_1 = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Author 1")
-                                  .withRelationshipType("person")
-                                  .build();
-
-       Item author_2 = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Author 2")
-                                  .withRelationshipType("person")
-                                  .build();
 
        Item orgUnit_1 = ItemBuilder.createItem(context, col1)
                                    .withTitle("OrgUnit_1")
@@ -152,12 +148,19 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
                                    .withRelationshipType("orgunit")
                                    .build();
 
-       itemService.addMetadata(context, author_1, "person", "affiliation", "name", null, "OrgUnit_1",
-                                                   orgUnit_1.getID().toString(), Choices.CF_ACCEPTED);
-       itemService.addMetadata(context, author_1, "person", "affiliation", "name", null, "OrgUnit_2",
-                                                   orgUnit_2.getID().toString(), Choices.CF_ACCEPTED);
-       itemService.addMetadata(context, author_2, "person", "affiliation", "name", null, "OrgUnit_2",
-                                                   orgUnit_2.getID().toString(), Choices.CF_ACCEPTED);
+       Item author_1 = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Author 1")
+                                  .withPersonMainAffiliation(orgUnit_1.getName(), orgUnit_1.getID().toString())
+                                  .withPersonMainAffiliation(orgUnit_2.getName(), orgUnit_2.getID().toString())
+                                  .withRelationshipType("person")
+                                  .build();
+
+       Item author_2 = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Author 2")
+                                  .withPersonMainAffiliation(orgUnit_2.getName(), orgUnit_2.getID().toString())
+                                  .withRelationshipType("person")
+                                  .build();
+
        context.restoreAuthSystemState();
 
        String token = getAuthToken(eperson.getEmail(), password);
@@ -209,9 +212,9 @@ public class ItemAuthorityTest extends AbstractControllerIntegrationTest {
                        .param("filter", "author"))
                        .andExpect(status().isOk())
                        .andExpect(jsonPath("$._embedded.entries", Matchers.contains(
-                              ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
-                    "Author 1", "Author 1", "vocabularyEntry", "oairecerif_author_affiliation", "")
-                              )))
+                           ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
+                               "Author 1", "Author 1", "vocabularyEntry", "oairecerif_author_affiliation", "")
+                       )))
                        .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
     }
 

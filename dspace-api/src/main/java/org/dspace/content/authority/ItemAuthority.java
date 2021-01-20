@@ -10,36 +10,26 @@ package org.dspace.content.authority;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.dspace.content.Collection;
-import org.dspace.content.Community;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.dspace.content.DSpaceObject;
-import org.dspace.content.InProgressSubmission;
 import org.dspace.content.Item;
-import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.factory.ItemAuthorityServiceFactory;
 import org.dspace.content.authority.service.ItemAuthorityService;
 import org.dspace.content.factory.ContentServiceFactory;
-import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
-import org.dspace.core.ReloadableEntity;
-import org.dspace.discovery.DiscoverQuery;
-import org.dspace.discovery.DiscoverResult;
-import org.dspace.discovery.IndexableObject;
 import org.dspace.discovery.SearchService;
-import org.dspace.discovery.SearchServiceException;
-import org.dspace.servicemanager.DSpaceKernelImpl;
-import org.dspace.servicemanager.DSpaceKernelInit;
 import org.dspace.services.ConfigurationService;
-import org.dspace.services.RequestService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.dspace.services.model.Request;
 import org.dspace.util.ItemAuthorityUtils;
 import org.dspace.util.UUIDUtils;
 import org.dspace.utils.DSpace;
@@ -61,8 +51,6 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     private DSpace dspace = new DSpace();
 
     private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
-    
-    private CollectionService collectionService = ContentServiceFactory.getInstance().getCollectionService();
 
     private SearchService searchService = dspace.getServiceManager().getServiceByName(
         "org.dspace.discovery.SearchService", SearchService.class);
@@ -72,10 +60,8 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
 
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
-    /**
-     * The service manager kernel
-     */
-    private static transient DSpaceKernelImpl kernelImpl = DSpaceKernelInit.getKernel(null);;
+    private List<CustomAuthorityFilter> customAuthorityFilters = dspace.getServiceManager()
+        .getServicesByType(CustomAuthorityFilter.class);
 
     // punt!  this is a poor implementation..
     @Override
@@ -89,97 +75,55 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
      */
     @Override
     public Choices getMatches(String text, int start, int limit, String locale) {
-        Context context = new Context();
         if (limit <= 0) {
             limit = 20;
+        }
+
+        SolrClient solr = searchService.getSolrSearchCore().getSolr();
+        if (Objects.isNull(solr)) {
+            log.error("unable to find solr instance");
+            return new Choices(Choices.CF_UNSET);
         }
 
         String relationshipType = getLinkedEntityType();
         ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(relationshipType);
         String luceneQuery = itemAuthorityService.getSolrQuery(text);
 
-        DiscoverQuery discoverQuery = new DiscoverQuery();
-        String dspaceObjectFilterQueries = "search.resourcetype:" + Item.class.getSimpleName() +
-          " OR search.resourcetype:" + WorkspaceItem.class.getSimpleName();
 
-        discoverQuery.addFilterQueries(dspaceObjectFilterQueries);
+        SolrQuery solrQuery = new SolrQuery();
+        solrQuery.setQuery(luceneQuery);
+        solrQuery.setStart(start);
+        solrQuery.setRows(limit);
+        solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
 
         if (StringUtils.isNotBlank(relationshipType)) {
-            String filter = "relationship.type:" + relationshipType;
-            discoverQuery.addFilterQueries(filter);
+            solrQuery.addFilterQuery("relationship.type:" + relationshipType);
         }
 
-        // Add filter to limit search within the community which the given collection, if any, belongs
-        if (kernelImpl != null) {
-            RequestService requestService = kernelImpl.getServiceManager().getServiceByName(
-                    RequestService.class.getName(), RequestService.class);
-    
-            if (requestService != null && requestService.getCurrentRequest() != null) {
-            	Request request = requestService.getCurrentRequest();
-            	if (request.getHttpServletRequest() != null) {
-            		String collectionUUID = request.getHttpServletRequest().getParameter("collection");
-            		if (collectionUUID != null) {
-            		    Collection collection;
-            		    try {
-            		        collection = collectionService.find(context, UUIDUtils.fromString(collectionUUID));
-            		    } catch (Exception e) {
-            		        collection = null;
-            		    }
-            		    if (collection != null) {
-            		        List<Community> list;
-            		        try {
-            		            list = collection.getCommunities();
-            		        } catch (SQLException e) {
-            		            list = new ArrayList<Community>();
-            		        }
-            		        String communityFilters  = "";
-            		        for (int i = 0; i < list.size(); i++) {
-            		            Community community = list.get(i);
-            		            communityFilters += "location.comm:" + community.getID().toString();
-            		            if (i < (list.size() - 1)) {
-            		                communityFilters += " OR "; 
-            		            }
-            		            
-            		        }
-            		        discoverQuery.addFilterQueries(communityFilters);
-            		    }
-            		}
-            	}
-            }
-        }
+        customAuthorityFilters.stream()
+            .flatMap(caf -> caf.getFilterQueries(relationshipType).stream())
+            .forEach(solrQuery::addFilterQuery);
 
-        discoverQuery
-            .setQuery(luceneQuery);
-        discoverQuery.setStart(start);
-        discoverQuery.setMaxResults(limit);
-
-        DiscoverResult resultSearch;
         try {
-            context = new Context();
-            resultSearch = searchService.search(context, discoverQuery);
-            List<Choice> choiceList = new ArrayList<Choice>();
+            QueryResponse queryResponse = solr.query(solrQuery);
+            List<Choice> choiceList = queryResponse.getResults()
+                .stream()
+                .map(doc ->  {
+                    String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
+                    Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
+                    return new Choice((String) doc.getFieldValue("search.resourceid"),
+                        title,
+                        title, extras);
+                }).collect(Collectors.toList());
 
-            // Process results of query
-            Iterator<IndexableObject> dsoIterator = resultSearch.getIndexableObjects().iterator();
-            while (dsoIterator.hasNext()) {
-                ReloadableEntity resultObject = dsoIterator.next().getIndexedObject();
-                DSpaceObject dso;
-                if (resultObject instanceof InProgressSubmission) {
-                    dso = ((InProgressSubmission) resultObject).getItem();
-                } else {
-                    dso = (DSpaceObject) resultObject;
-                }
-                Item item = (Item) dso;
-                Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), item);
-                choiceList.add(new Choice(item.getID().toString(), item.getName(),
-                                                           dso.getName(), extras));
-            }
             Choice[] results = new Choice[choiceList.size()];
             results = choiceList.toArray(results);
-                return new Choices(results, start, (int) resultSearch.getTotalSearchResults(), Choices.CF_AMBIGUOUS,
-                                   resultSearch.getTotalSearchResults() > (start + limit), 0);
+            long numFound = queryResponse.getResults().getNumFound();
 
-        } catch (SearchServiceException e) {
+            return new Choices(results, start, (int) numFound, Choices.CF_AMBIGUOUS,
+                               numFound > (start + limit), 0);
+
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new Choices(Choices.CF_UNSET);
         }

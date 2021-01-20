@@ -302,7 +302,7 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
             }
             collection = cs.create(context, parent);
             cs.update(context, collection);
-            metadataConverter.setMetadata(context, collection, collectionRest.getMetadata());
+            metadataConverter.mergeMetadata(context, collection, collectionRest.getMetadata());
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create new Collection under parent Community " + id, e);
         }
@@ -360,9 +360,7 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * @param context
      * @param collection The collection on which to install the logo
      * @param uploadfile The new logo
-     *
      * @return The created bitstream containing the new logo
-     *
      * @throws IOException
      * @throws AuthorizeException
      * @throws SQLException
@@ -386,9 +384,7 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * @param context
      * @param collection    The collection for which to make the item
      * @param inputItemRest The new item
-     *
      * @return The created TemplateItem
-     *
      * @throws SQLException
      * @throws AuthorizeException
      */
@@ -413,9 +409,7 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
      * This method looks up the template Item associated with a Collection
      *
      * @param collection The Collection for which to find the template
-     *
      * @return The template Item from the Collection
-     *
      * @throws SQLException
      */
     public TemplateItemRest getTemplateItem(Collection collection) throws SQLException {

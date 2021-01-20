@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Collection;
 import org.dspace.content.EntityType;
@@ -30,6 +32,7 @@ import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.metrics.wos.UpdateWOSPersonMetrics;
 import org.dspace.services.ConfigurationService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Luca Giamminonni (luca.giamminonni at 4science.it)
  */
 public class ItemCorrectionService {
+
+    private static final Logger log = LogManager.getLogger(ItemCorrectionService.class);
 
     @Autowired
     protected ConfigurationService configurationService;
@@ -156,11 +161,17 @@ public class ItemCorrectionService {
     }
 
     public boolean checkIfIsCorrectionItem(Context context, Item item, String relationshipName) throws SQLException {
-        RelationshipType relationshipType = findRelationshipType(context, item, relationshipName);
-        if (relationshipType == null) {
+        try {
+            RelationshipType relationshipType = findRelationshipType(context, item, relationshipName);
+            if (relationshipType == null) {
+                return false;
+            }
+
+            return isNotEmpty(relationshipService.findByItemAndRelationshipType(context, item, relationshipType, true));
+        } catch (IllegalArgumentException e) {
+            log.warn(e.getMessage());
             return false;
         }
-        return isNotEmpty(relationshipService.findByItemAndRelationshipType(context, item, relationshipType, true));
     }
 
     public Relationship getCorrectionItemRelationship(Context context, Item item) throws SQLException {
@@ -185,7 +196,7 @@ public class ItemCorrectionService {
 
     }
 
-    private RelationshipType findRelationshipType(Context context, Item item, String relationship) throws SQLException {
+    private RelationshipType findRelationshipType(Context context, Item item, String relationship) throws SQLException, IllegalArgumentException {
 
         EntityType type = entityTypeService.findByItem(context, item);
         if (type == null) {

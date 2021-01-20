@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The contents of this file are subject to the license and copyright
+  ~ detailed in the LICENSE and NOTICE files at the root of the source
+  ~ tree and available online at
+  ~
+  ~  http://www.dspace.org/license/
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="projectAuthorityFilter" class="org.dspace.content.authority.ProjectAuthorityFilter">
+        <property name="supportedEntities">
+            <list>
+				<value>Person</value>
+				<value>Project</value>
+				<value>Funding</value>
+				<value>OrgUnit</value>
+				<value>Journal</value>
+				<value>Publication</value>
+				<value>Dataset</value>
+				<value>Patent</value>
+				<value>Event</value>
+				<value>Equipment</value>
+				<value>impactpathway</value>
+				<value>impactpathwaystep</value>
+				<value>applications_econtech</value>
+				<value>applications_social</value>
+				<value>awards</value>
+				<value>contribution_fundingprogramme</value>
+				<value>cooperation_partners</value>
+				<value>cooperation_events</value>
+				<value>plan_cooperation_events</value>
+				<value>ethics</value>
+				<value>plan_events</value>
+				<value>pot_societalimpact</value>
+				<value>conditions</value>
+				<value>gender</value>
+				<value>innovationideas</value>
+				<value>plan_innovationideas</value>
+				<value>inn_pot_econtech</value>
+				<value>plan_inn_pot_econtech</value>
+				<value>inn_pot_social</value>
+				<value>plan_inn_pot_social</value>
+				<value>milestones</value>
+				<value>plan_milestones</value>
+				<value>steps</value>
+				<value>physical_objects</value>
+				<value>plan_physical_objects</value>
+				<value>participation_events</value>
+				<value>plan_participation_events</value>
+				<value>plan_patent</value>
+				<value>proj_objectives</value>
+				<value>plan_publication</value>
+				<value>plan_research_quest</value>
+				<value>research_results</value>
+				<value>spinoffs</value>
+				<value>plan_spinoffs</value>
+				<value>stateofart</value>
+				<value>subproject</value>
+				<value>targetgroups</value>
+				<value>tasks</value>
+				<value>plan_tasks</value>
+				<value>unexpected_results</value>
+				<value>workpackages</value>
+				<value>plan_workpackages</value>
+            </list>
+        </property>
+    </bean>
+</beans>

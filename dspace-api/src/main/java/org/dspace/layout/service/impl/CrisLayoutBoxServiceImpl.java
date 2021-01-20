@@ -11,10 +11,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.dspace.app.util.service.MetadataExposureService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.EntityType;
@@ -28,14 +33,15 @@ import org.dspace.layout.CrisLayoutBox;
 import org.dspace.layout.CrisLayoutBoxConfiguration;
 import org.dspace.layout.CrisLayoutField;
 import org.dspace.layout.dao.CrisLayoutBoxDAO;
+import org.dspace.layout.service.CrisLayoutBoxAccessService;
 import org.dspace.layout.service.CrisLayoutBoxService;
+import org.dspace.metrics.CrisItemMetricsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implementation of service to manage Boxes component of layout
  *
  * @author Danilo Di Nuzzo (danilo.dinuzzo at 4science.it)
- *
  */
 public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
@@ -50,6 +56,31 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Autowired
     private EntityTypeService entityTypeService;
+
+    @Autowired
+    private MetadataExposureService metadataExposureService;
+
+    @Autowired
+    private CrisLayoutBoxAccessService crisLayoutBoxAccessService;
+
+    @Autowired
+    private CrisItemMetricsService crisMetricService;
+
+    //constructor with all fields injected, used for test purposes (mock injection)
+    CrisLayoutBoxServiceImpl(CrisLayoutBoxDAO dao, ItemService itemService, AuthorizeService authorizeService,
+                             EntityTypeService entityTypeService,
+                             CrisLayoutBoxAccessService crisLayoutBoxAccessService,
+                             CrisItemMetricsService crisMetricService) {
+        this.dao = dao;
+        this.itemService = itemService;
+        this.authorizeService = authorizeService;
+        this.entityTypeService = entityTypeService;
+        this.crisLayoutBoxAccessService = crisLayoutBoxAccessService;
+        this.crisMetricService = crisMetricService;
+    }
+
+    public CrisLayoutBoxServiceImpl() {
+    }
 
     @Override
     public CrisLayoutBox create(Context context) throws SQLException, AuthorizeException {
@@ -67,7 +98,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Override
     public void update(Context context, CrisLayoutBox boxList) throws SQLException, AuthorizeException {
-        update(context,Collections.singletonList(boxList));
+        update(context, Collections.singletonList(boxList));
     }
 
     @Override
@@ -77,7 +108,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 "You must be an admin to update a Box");
         }
         if (CollectionUtils.isNotEmpty(boxList)) {
-            for (CrisLayoutBox box: boxList) {
+            for (CrisLayoutBox box : boxList) {
                 dao.save(context, box);
             }
         }
@@ -103,7 +134,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Override
     public CrisLayoutBox create(Context context, EntityType eType, String boxType, boolean collapsed,
-            boolean minor) throws SQLException, AuthorizeException {
+                                boolean minor) throws SQLException, AuthorizeException {
         if (!authorizeService.isAdmin(context)) {
             throw new AuthorizeException(
                 "You must be an admin to create a Box");
@@ -130,7 +161,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
      */
     @Override
     public List<CrisLayoutBox> findByTabId(Context context, Integer tabId, Integer limit, Integer offset)
-            throws SQLException {
+        throws SQLException {
         return dao.findByTabId(context, tabId, limit, offset);
     }
 
@@ -150,13 +181,13 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Override
     public List<CrisLayoutBox> findEntityBoxes(Context context, String entityType, Integer limit, Integer offset)
-            throws SQLException {
+        throws SQLException {
         return dao.findByEntityType(context, entityType, null, limit, offset);
     }
 
     @Override
     public List<MetadataField> getMetadataField(Context context, Integer boxId, Integer limit, Integer offset)
-            throws SQLException {
+        throws SQLException {
         return dao.getMetadataField(context, boxId, limit, offset);
     }
 
@@ -167,26 +198,24 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Override
     public List<CrisLayoutBox> findByItem(
-            Context context, UUID itemUuid, Integer tabId) throws SQLException {
-        Item item = itemService.find(context, itemUuid);
-        String entityType = "";
-        if ( item != null ) {
-            entityType = itemService.getMetadata(item, "relationship.type");
-        }
+        Context context, UUID itemUuid, Integer tabId) throws SQLException {
+        Item item = Objects.requireNonNull(itemService.find(context, itemUuid),
+                                           "The item uuid entered does not match with any item");
+
+        String entityType = itemService.getMetadata(item, "relationship.type");
+
         List<CrisLayoutBox> boxes = dao.findByEntityType(context, entityType, tabId, null, null);
-        // resBoxes contains only the box with available data for the associated item
-        List<CrisLayoutBox> resBoxes = new ArrayList<>();
-        if (boxes != null && !boxes.isEmpty()) {
-            List<MetadataValue> itemMetadata = item.getMetadata();
-            if (itemMetadata != null && !itemMetadata.isEmpty()) {
-                for (CrisLayoutBox box: boxes) {
-                    if (hasContent(context, box, itemMetadata)) {
-                        resBoxes.add(box);
-                    }
-                }
-            }
+        if (CollectionUtils.isEmpty(boxes)) {
+            return new ArrayList<>();
         }
-        return resBoxes;
+        return Optional.ofNullable(item.getMetadata())
+                       .filter(im -> !im.isEmpty())
+                       .map(itemMetadata -> boxes
+                           .stream()
+                           .filter(b -> hasContent(context, b, item, itemMetadata))
+                           .filter(b -> accessGranted(context, item, b))
+                           .collect(Collectors.toList()))
+                       .orElse(new ArrayList<>());
     }
 
     /* (non-Javadoc)
@@ -202,7 +231,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
      * @see org.dspace.layout.service.CrisLayoutBoxService#hasContent()
      */
     @Override
-    public boolean hasContent(Context context, CrisLayoutBox box, List<MetadataValue> values) {
+    public boolean hasContent(Context context, CrisLayoutBox box, Item item, List<MetadataValue> values) {
         String boxType = box.getType();
         if (StringUtils.isEmpty(boxType)) {
             return hasMetadataBoxContent(box, values);
@@ -211,6 +240,8 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         switch (boxType.toUpperCase()) {
             case "RELATION":
                 return hasRelationBoxContent(box, values);
+            case "METRICS":
+                return hasMetricsBoxContent(context, box, item.getID());
             case "ORCID_SYNC_SETTINGS":
             case "ORCID_SYNC_QUEUE":
                 return hasOrcidSyncBoxContent(context, box, values);
@@ -250,10 +281,26 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         return true;
     }
 
+    protected boolean hasMetricsBoxContent(Context context, CrisLayoutBox box, UUID itemUuid) {
+        if (box.getMetric2box().isEmpty()) {
+            return false;
+        }
+        final Set<String> boxTypes = box.getMetric2box().stream().map(mb -> mb.getType()).collect(Collectors.toSet());
+        if (this.crisMetricService.getEmbeddableMetrics(context, itemUuid).stream()
+            .filter(m -> boxTypes.contains(m.getMetricType())).count() > 0) {
+            return true;
+        }
+        if (this.crisMetricService.getStoredMetrics(context, itemUuid).stream()
+            .filter(m -> boxTypes.contains(m.getMetricType())).count() > 0) {
+            return true;
+        }
+        return false;
+    }
+
     private boolean hasOrcidSyncBoxContent(Context context, CrisLayoutBox box, List<MetadataValue> values) {
         return isOwnProfile(context, values) && values.stream()
-            .map(metadata -> metadata.getMetadataField().toString('.'))
-            .anyMatch(metadata -> metadata.equals("person.identifier.orcid"));
+                                                      .map(metadata -> metadata.getMetadataField().toString('.'))
+                                                      .anyMatch(metadata -> metadata.equals("person.identifier.orcid"));
     }
 
     private boolean hasOrcidAuthorizationsBoxContent(Context context, CrisLayoutBox box, List<MetadataValue> values) {
@@ -262,14 +309,25 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     private boolean isOwnProfile(Context context, List<MetadataValue> values) {
         MetadataValue crisOwner = values.stream()
-            .filter(metadata -> metadata.getMetadataField().toString('.').equals("cris.owner"))
-            .findFirst()
-            .orElse(null);
+                                        .filter(
+                                            metadata -> metadata.getMetadataField().toString('.').equals("cris.owner"))
+                                        .findFirst()
+                                        .orElse(null);
 
         if (crisOwner == null || crisOwner.getAuthority() == null || context.getCurrentUser() == null) {
             return false;
         }
 
         return crisOwner.getAuthority().equals(context.getCurrentUser().getID().toString());
+    }
+
+    // in private method so that exception can be handled and method can be invoked within a lambda
+    private boolean accessGranted(final Context context, final Item item, final CrisLayoutBox box) {
+
+        try {
+            return crisLayoutBoxAccessService.hasAccess(context, context.getCurrentUser(), box, item);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
     }
 }

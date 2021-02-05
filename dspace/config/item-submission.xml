@@ -6,7 +6,7 @@
     <name-map collection-handle="default" submission-name="impact_pathway" />
   </submission-map>
   <step-definitions>
-    <step id="collection" mandatory="true">
+    <step-definition id="collection" mandatory="true">
       <heading>submit.progressbar.collection</heading>
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>
       <type>collection</type>

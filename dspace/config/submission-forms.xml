@@ -5226,7 +5226,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Link this funding with its upper level if applicable</hint>
         </field>
       </row>
       <row>

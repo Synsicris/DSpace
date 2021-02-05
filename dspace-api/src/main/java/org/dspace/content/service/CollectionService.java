@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
 
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Bitstream;
@@ -23,11 +22,10 @@ import org.dspace.core.Context;
 import org.dspace.discovery.SearchServiceException;
 import org.dspace.eperson.Group;
 
-
 /**
  * Service interface class for the Collection object.
- * The implementation of this class is responsible for all business logic calls for the Collection object and is
- * autowired by spring
+ * The implementation of this class is responsible for all business logic calls
+ * for the Collection object and is autowired by Spring.
  *
  * @author kevinvandevelde at atmire.com
  */
@@ -94,20 +92,6 @@ public interface CollectionService
     public List<Collection> findGroupMapped(Context context, int actionID) throws java.sql.SQLException;
 
     /**
-     * Set a metadata value
-     *
-     * @param context    DSpace Context
-     * @param collection Collection
-     * @param field      the name of the metadata field to get
-     * @param value      value to set the field to
-     * @throws MissingResourceException if resource missing
-     * @throws SQLException             if database error
-     */
-    @Deprecated
-    public void setMetadata(Context context, Collection collection, String field, String value)
-        throws MissingResourceException, SQLException;
-
-    /**
      * Give the collection a logo. Passing in <code>null</code> removes any
      * existing logo. You will need to set the format of the new logo bitstream
      * before it will work, for example to "JPEG". Note that
@@ -149,9 +133,12 @@ public interface CollectionService
      * <code>null</code> can be passed in if there should be no associated
      * group for that workflow step; any existing group is NOT deleted.
      *
+     * @param context    current DSpace session.
      * @param collection Collection
      * @param step       the workflow step (1-3)
      * @param group      the new workflow group, or <code>null</code>
+     * @throws SQLException passed through.
+     * @throws AuthorizeException passed through.
      */
     public void setWorkflowGroup(Context context, Collection collection, int step, Group group)
         throws SQLException, AuthorizeException;
@@ -407,4 +394,33 @@ public interface CollectionService
      *                    otherwise
      */
     boolean isSharedWorkspace(Context context, Collection collection);
+
+
+    /**
+     * Retrieve the first collection in the community or its descending that support
+     * the provided relationshipType
+     *
+     * @param context    the DSpace context
+     * @param community        the root from where the search start
+     * @param relationshipType the requested entity type
+     * @return the first collection in the community or its descending that support
+     *         the provided relationshipType
+     */
+    public Collection retriveCollectionByRelationshipType(Context context, Community community,
+            String relationshipType);
+
+    /**
+     * Retrieve the close collection to the item that support the provided
+     * relationshipType. Close mean the collection that can be reach with the
+     * minimum steps starting from the item (owningCollection, brothers collections,
+     * etc)
+     * 
+     * @param context    the DSpace context
+     * @param item        the item from where the search start
+     * @param relationshipType the requested entity type
+     * @return the first collection in the community or its descending that support
+     *         the provided relationshipType
+     */
+    public Collection retrieveCollectionByRelationshipType(Context context, Item item, String relationshipType)
+            throws SQLException;
 }

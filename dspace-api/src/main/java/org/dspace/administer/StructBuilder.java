@@ -286,7 +286,7 @@ public class StructBuilder {
         communityMap.put("intro", MD_INTRODUCTORY_TEXT);
         communityMap.put("copyright", MD_COPYRIGHT_TEXT);
         communityMap.put("sidebar", MD_SIDEBAR_TEXT);
-        communityMap.put("policy-group", "policy-group");
+        communityMap.put("policy-group", null);
 
         collectionMap.put("name", MD_NAME);
         collectionMap.put("entity-type", CrisConstants.MD_ENTITY_TYPE);
@@ -299,7 +299,7 @@ public class StructBuilder {
         collectionMap.put("sidebar", MD_SIDEBAR_TEXT);
         collectionMap.put("license", MD_LICENSE);
         collectionMap.put("provenance", MD_PROVENANCE_DESCRIPTION);
-        collectionMap.put("policy-group", "policy-group");
+        collectionMap.put("policy-group", null);
 
         Element[] elements = new Element[]{};
         try {

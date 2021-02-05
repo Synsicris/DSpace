@@ -32,6 +32,7 @@ import org.dspace.content.service.BitstreamFormatService;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.SiteService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
@@ -90,6 +91,8 @@ public class AIPTechMDCrosswalk implements IngestionCrosswalk, DisseminationCros
     protected final HandleService handleService = HandleServiceFactory.getInstance().getHandleService();
     protected final ConfigurationService configurationService
             = DSpaceServicesFactory.getInstance().getConfigurationService();
+    protected final WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance()
+            .getWorkspaceItemService();
 
     /**
      * Get XML namespaces of the elements this crosswalk may return.

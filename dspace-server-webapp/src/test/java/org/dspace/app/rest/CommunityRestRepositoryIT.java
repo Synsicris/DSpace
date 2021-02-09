@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -57,11 +58,15 @@ import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
 import org.dspace.builder.GroupBuilder;
+import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.DSpaceObjectService;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -89,6 +94,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
     @Autowired
     private ResourcePolicyService resoucePolicyService;
+
+    @Autowired
+    private ItemService itemService;
 
     @Test
     public void createTest() throws Exception {
@@ -2055,5 +2063,100 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                                   parentCommunity.getHandle())
              )))
              .andExpect(jsonPath("$.page.totalElements", is(1)));
+    }
+
+    @Test
+    public void cloneCommunityWIthItemTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Community cloneTarget = CommunityBuilder.createCommunity(context)
+                                                .withName("Community to hold cloned communities").build();
+
+        Community parentCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Parent Community").build();
+
+        Community child1 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 1").build();
+
+        Community child2 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 2").build();
+
+        Collection col = CollectionBuilder.createCollection(context, child1)
+                                          .withName("Projects").build();
+
+        Item publicItem1 = ItemBuilder.createItem(context, col)
+                                      .withTitle("project_" + parentCommunity.getID().toString() + "_name")
+                                      .build();
+
+        StringBuilder placeholder = new StringBuilder();
+        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
+
+        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project",
+                                     null, placeholder.toString());
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        try {
+            getClient(tokenAdmin).perform(post("/api/core/communities")
+                     .param("projection", "full")
+                     .param("name", "My new Community")
+                     .param("parent", cloneTarget.getID().toString())
+                     .contentType(MediaType.parseMediaType(org.springframework.data.rest.webmvc.RestMediaTypes
+                     .TEXT_URI_LIST_VALUE))
+                     .content("https://localhost:8080/server//api/core/communities/" + parentCommunity.getID()))
+                     .andExpect(status()
+                     .isCreated())
+                     .andDo(result -> idRef
+                             .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
+                     .andExpect(jsonPath("$", Matchers.allOf(
+                             hasJsonPath("$.name", is("My new Community")),
+                             hasJsonPath("$.id", is(idRef.get().toString())),
+                             hasJsonPath("$.id", not(parentCommunity.getID().toString()))
+                             )));
+
+            cloneTarget = context.reloadEntity(cloneTarget);
+            Community subCommunityOfCloneTarget = cloneTarget.getSubcommunities().get(0);
+            assertEquals(subCommunityOfCloneTarget.getID().toString(), idRef.toString());
+            assertEquals("My new Community", subCommunityOfCloneTarget.getName());
+            assertNotEquals(parentCommunity.getID(), idRef.toString());
+            List<Community> communities = subCommunityOfCloneTarget.getSubcommunities();
+            List<Collection> collections = subCommunityOfCloneTarget.getCollections();
+
+            assertEquals(2, communities.size());
+            assertEquals(0, collections.size());
+            Community firstChild = communities.get(0);
+            Community secondChild = communities.get(1);
+            boolean child1Found = StringUtils.equals(firstChild.getName(), child1.getName())
+                                                     || StringUtils.equals(secondChild.getName(), child1.getName());
+            boolean child2Found = StringUtils.equals(firstChild.getName(), child2.getName())
+                                                     || StringUtils.equals(secondChild.getName(), child2.getName());
+            assertTrue(child1Found);
+            assertTrue(child2Found);
+            assertNotEquals(firstChild.getID(), child1.getID());
+            assertNotEquals(firstChild.getID(), child2.getID());
+            assertEquals(1, firstChild.getCollections().size());
+            assertEquals(0, secondChild.getCollections().size());
+            Collection colProject = firstChild.getCollections().get(0);
+            Iterator<Item> items = itemService.findAllByCollection(context, colProject);
+            assertTrue(items.hasNext());
+            Item item = items.next();
+            assertTrue(containeMetadata(itemService, item, "dc", "title", null,
+                       "project_" + subCommunityOfCloneTarget.getID().toString() + "_name"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
+                       "project_" + item.getID().toString() + "_item"));
+        } finally {
+            CommunityBuilder.deleteCommunity(idRef.get());
+        }
+    }
+
+    private <T extends DSpaceObject> boolean containeMetadata(DSpaceObjectService<T> service, T target, String schema,
+            String element, String qualifier, String valueToCheck) {
+        String value = service.getMetadataFirstValue(target, schema, element, qualifier, null);
+        if (StringUtils.equals(value, valueToCheck)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -910,22 +910,38 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      *         institution community
      */
     private Map<UUID, Group> createScopedRoles(Context context, Community project)
-        throws SQLException, AuthorizeException {
+            throws SQLException, AuthorizeException {
 
         Map<UUID, Group> groupsMap = new HashMap<>();
-        String templateGroupName = configurationService.getProperty("project.template.group-name");
-
-        if (StringUtils.isNotBlank(templateGroupName)) {
-            Group templateGroup = groupService.findByName(context, templateGroupName);
-            if (templateGroup != null) {
-                Group scopedRole = groupService.create(context);
-                groupService.addMember(context, scopedRole, context.getCurrentUser());
-                String roleName = "project_" + project.getID().toString() + "_group";
-                groupService.setName(scopedRole, roleName);
-                groupsMap.put(templateGroup.getID(), scopedRole);
+        String[] templateGroupsName = configurationService.getArrayProperty("project.template.groups-name");
+        if (templateGroupsName.length > 0) {
+            for (int i = 0; i < templateGroupsName.length; i++) {
+                Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
+                if (templateGroup != null && StringUtils.isNotBlank(templateGroup.getName())) {
+                    String name = extractName(templateGroup.getName());
+                    if (StringUtils.isNotBlank(name)) {
+                        Group scopedRole = groupService.create(context);
+                        groupService.addMember(context, scopedRole, context.getCurrentUser());
+                        String roleName = "project_" + project.getID().toString() + name + "_group";
+                        groupService.setName(scopedRole, roleName);
+                        groupsMap.put(templateGroup.getID(), scopedRole);
+                    } else {
+                        throw new RuntimeException("The group name : " + templateGroup.getName()
+                              + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
+                    }
+                }
             }
         }
-
         return groupsMap;
+    }
+
+    private String extractName(String groupName) {
+        Pattern pattern = Pattern.compile("^(project_.*)(_.*)(_group)$");
+        Matcher matcher = pattern.matcher(groupName);
+        if (matcher.matches()) {
+            return matcher.group(2);
+        } else {
+            return null;
+        }
     }
 }

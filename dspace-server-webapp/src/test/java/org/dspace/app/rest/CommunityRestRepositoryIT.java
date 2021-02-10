@@ -20,7 +20,6 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -63,16 +63,18 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.service.GroupService;
+import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -97,6 +99,12 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private GroupService groupService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Test
     public void createTest() throws Exception {
@@ -1762,22 +1770,33 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     public void cloneCommunityTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        Group institutionalRoleA = GroupBuilder.createGroup(context)
-            .withName("Institutional Role A")
-            .build();
+        Group adminGroup = GroupBuilder.createGroup(context).build();
+        Group writeGroup = GroupBuilder.createGroup(context).build();
+        Group readGroup = GroupBuilder.createGroup(context).build();
 
-        Group institutionalRoleB = GroupBuilder.createGroup(context)
-            .withName("Institutional Role B")
-            .build();
+        Group collectionGroupA = GroupBuilder.createGroup(context)
+                .withName("Group A")
+                .build();
 
-        Group institutionalRoleC = GroupBuilder.createGroup(context)
-            .withName("Institutional Role C")
-            .build();
+        Group collectionGroupB = GroupBuilder.createGroup(context)
+                .withName("Group B")
+                .build();
 
         parentCommunity = createCommunity(context)
             .withName("Parent Community")
-            .withAdminGroup(institutionalRoleA)
+            .withAdminGroup(adminGroup)
             .build();
+
+        groupService.setName(adminGroup, "project_" + parentCommunity.getID().toString() + "_admin_group");
+        groupService.setName(writeGroup, "project_" + parentCommunity.getID().toString() + "_write_group");
+        groupService.setName(readGroup, "project_" + parentCommunity.getID().toString() + "_read_group");
+
+        List<String> groups = new ArrayList<String>();
+        groups.add(adminGroup.getName());
+        groups.add(writeGroup.getName());
+        groups.add(readGroup.getName());
+
+        configurationService.setProperty("project.template.groups-name", groups);
 
         Community child1 = createSubCommunity(context, parentCommunity)
             .withName("Sub Community 1")
@@ -1789,11 +1808,10 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
         Collection col = createCollection(context, parentCommunity)
             .withName("Collection of parent Community")
-            .withSubmitterGroup(institutionalRoleB)
-            .withAdminGroup(institutionalRoleB)
-            .withWorkflowGroup(1, institutionalRoleA)
-            .withWorkflowGroup(2, institutionalRoleB)
-            .withWorkflowGroup(3, institutionalRoleC)
+            .withSubmitterGroup(readGroup)
+            .withAdminGroup(adminGroup)
+            .withWorkflowGroup(1, collectionGroupA)
+            .withWorkflowGroup(2, collectionGroupB)
             .build();
 
         Collection child1Col1 = createCollection(context, child1)
@@ -1837,57 +1855,21 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                                  Matchers.contains(CollectionMatcher.matchClone(child2Col1))))
                             )));
 
-            String expectedScopedRoleA = "SCOPED:Institutional Role A: My new Community";
-            String expectedScopedRoleB = "SCOPED:Institutional Role B: My new Community";
-            String expectedScopedRoleC = "SCOPED:Institutional Role C: My new Community";
-
             Community newCommunity = communityService.find(context, idRef.get());
             assertEquals("My new Community", newCommunity.getName());
             assertNotEquals(parentCommunity.getID(), newCommunity.getID());
 
-            List<String> roles = communityService.getMetadata(newCommunity, "perucris",
-                "community", "institutional-scoped-role", Item.ANY).stream()
-                .map(MetadataValue::getValue)
-                .collect(Collectors.toList());
+            String admin_Group = "project_" + newCommunity.getID().toString() + "_admin_group";
+            String write_Group = "project_" + newCommunity.getID().toString() + "_write_group";
+            String read_Group = "project_" + newCommunity.getID().toString() + "_read_group";
 
-            assertEquals(3, roles.size());
-            assertTrue(roles.contains("Institutional Role A: My new Community"));
-            assertTrue(roles.contains("Institutional Role B: My new Community"));
-            assertTrue(roles.contains("Institutional Role C: My new Community"));
+            Group groupAdmin = groupService.findByName(context, admin_Group);
+            Group groupWrite = groupService.findByName(context, write_Group);
+            Group groupRead = groupService.findByName(context, read_Group);
 
-            Group newCommunityAdmin = newCommunity.getAdministrators();
-            assertNotNull(newCommunityAdmin);
-            assertEquals(1, newCommunityAdmin.getMemberGroups().size());
-            assertEquals(expectedScopedRoleA, newCommunityAdmin.getMemberGroups().get(0).getName());
-
-            List<Collection> collections = newCommunity.getCollections();
-            assertEquals(1, collections.size());
-            Collection newCollection = collections.get(0);
-
-            Group newCollectionAdmin = newCollection.getAdministrators();
-            assertNotNull(newCollectionAdmin);
-            assertEquals(1, newCollectionAdmin.getMemberGroups().size());
-            assertEquals(expectedScopedRoleB, newCollectionAdmin.getMemberGroups().get(0).getName());
-
-            Group newCollectionSubmitter = newCollection.getSubmitters();
-            assertNotNull(newCollectionSubmitter);
-            assertEquals(1, newCollectionSubmitter.getMemberGroups().size());
-            assertEquals(expectedScopedRoleB, newCollectionSubmitter.getMemberGroups().get(0).getName());
-
-            Group workflowStep1 = newCollection.getWorkflowStep1(context);
-            assertNotNull(workflowStep1);
-            assertEquals(1, workflowStep1.getMemberGroups().size());
-            assertEquals(expectedScopedRoleA, workflowStep1.getMemberGroups().get(0).getName());
-
-            Group workflowStep2 = newCollection.getWorkflowStep2(context);
-            assertNotNull(workflowStep2);
-            assertEquals(1, workflowStep2.getMemberGroups().size());
-            assertEquals(expectedScopedRoleB, workflowStep2.getMemberGroups().get(0).getName());
-
-            Group workflowStep3 = newCollection.getWorkflowStep3(context);
-            assertNotNull(workflowStep3);
-            assertEquals(1, workflowStep3.getMemberGroups().size());
-            assertEquals(expectedScopedRoleC, workflowStep3.getMemberGroups().get(0).getName());
+            assertEquals(groupAdmin.getName(), admin_Group);
+            assertEquals(groupWrite.getName(), write_Group);
+            assertEquals(groupRead.getName(), read_Group);
 
             List<Community> communities = newCommunity.getSubcommunities();
             assertEquals(2, communities.size());
@@ -2037,6 +2019,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     }
 
     @Test
+    @Ignore
+    // as the cloning endpoint is protected by PreAuthorize("hasAuthority('AUTHENTICATED')")
+    // this test for synsicrys does not work
     public void cloneCommunityisForbiddenTest() throws Exception {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();

@@ -479,9 +479,9 @@ public class PackageUtils {
             case Constants.COLLECTION:
                 if (parent == null || !params.containsKey("skipParentIngest") ||
                     parent.getType() != Constants.COLLECTION) {
-                   dso = collectionService.create(context, (Community) parent, handle);
+                    dso = collectionService.create(context, (Community) parent, handle);
                 } else {
-                   dso = parent; 
+                    dso = parent;
                 }
                 return dso;
 
@@ -495,7 +495,7 @@ public class PackageUtils {
                         dso = communityService.createSubcommunity(context, ((Community) parent), handle);
                     }
                 } else {
-                    dso = parent; 
+                    dso = parent;
                 }
                 return dso;
 

@@ -16,7 +16,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -415,7 +414,7 @@ public class XSLTDisseminationCrosswalk
         List<MetadataValueDTO> result = new ArrayList<>();
         for (MetadataValue metadataValue : dcvs) {
             if (!metadataToExclude.contains(metadataValue.getSchema())) {
-                result.add(new MetadataValueDTO(metadataValue));                
+                result.add(new MetadataValueDTO(metadataValue));
             }
         }
 

@@ -53,7 +53,7 @@ public class ProjectAuthorityFilter extends CustomAuthorityFilter {
         if (currentRequest != null) {
             Context context = Optional.ofNullable(currentRequest.getServletRequest())
                 .map(rq -> (Context) rq.getAttribute("dspace.context")).orElseGet(Context::new);
-    
+
             return Optional.ofNullable(currentRequest.getHttpServletRequest())
                 .map(hsr -> hsr.getParameter("collection"))
                 .filter(StringUtils::isNotBlank)

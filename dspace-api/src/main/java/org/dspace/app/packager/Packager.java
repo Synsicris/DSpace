@@ -515,9 +515,9 @@ public class Packager {
                             if (result != null) {
                                 DSpaceObject dso = HandleServiceFactory.getInstance().getHandleService()
                                                                        .resolveToObject(context, result);
-    
+
                                 if (dso != null) {
-    
+
                                     if (pkgParams.restoreModeEnabled()) {
                                         System.out.println("RESTORED DSpace " + Constants.typeText[dso.getType()] +
                                                                " [ hdl=" + dso.getHandle() + ", dbID=" + dso

@@ -139,17 +139,17 @@ public abstract class AbstractPackageIngester
         // Collection packages (if Item is mapped to multiple Collections)
         if (!getIngestedMap().containsKey(pkgFile)) {
             try {
-                if (parent == null || !params.getBooleanProperty("skipParentIngest", false) || 
-                        params.getBooleanProperty("parentProcessed", false)) {                                    
+                if (parent == null || !params.getBooleanProperty("skipParentIngest", false) ||
+                        params.getBooleanProperty("parentProcessed", false)) {
                     //actually ingest pkg using provided PackageIngester
                     dso = ingest(context, parent, pkgFile, params, license);
                 } else {
                     searchPackageReference(context, parent, pkgFile, params);
                     dso = parent;
-                    // set parentProcessed to true to provide ingest on following iteration 
+                    // set parentProcessed to true to provide ingest on following iteration
                     params.addProperty("parentProcessed", "true");
                 }
-                
+
             } catch (IllegalStateException ie) {
                 // NOTE: if we encounter an IllegalStateException, this means the
                 // handle is already in use and this object already exists.
@@ -171,7 +171,7 @@ public abstract class AbstractPackageIngester
 
         // As long as an object was successfully created from this package
         if (dso != null) {
-            if (parent == null || !params.getBooleanProperty("skipParentIngest", false) || 
+            if (parent == null || !params.getBooleanProperty("skipParentIngest", false) ||
                     params.getBooleanProperty("parentProcessed", false)) {
                 // Add to map of successfully ingested packages/objects (if not already added)
                 addToIngestedMap(pkgFile, dso);

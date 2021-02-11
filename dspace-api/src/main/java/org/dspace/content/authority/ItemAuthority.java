@@ -10,12 +10,17 @@ package org.dspace.content.authority;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
@@ -94,19 +99,21 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             limit = 20;
         }
 
+        SolrClient solr = searchService.getSolrSearchCore().getSolr();
         String relationshipType = getLinkedEntityType();
         ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(relationshipType);
         String luceneQuery = itemAuthorityService.getSolrQuery(text);
 
-        DiscoverQuery discoverQuery = new DiscoverQuery();
+//        DiscoverQuery discoverQuery = new DiscoverQuery();
+        SolrQuery discoverQuery = new SolrQuery();
         String dspaceObjectFilterQueries = "search.resourcetype:" + Item.class.getSimpleName() +
           " OR search.resourcetype:" + WorkspaceItem.class.getSimpleName();
 
-        discoverQuery.addFilterQueries(dspaceObjectFilterQueries);
+        discoverQuery.addFilterQuery(dspaceObjectFilterQueries);
 
         if (StringUtils.isNotBlank(relationshipType)) {
             String filter = "relationship.type:" + relationshipType;
-            discoverQuery.addFilterQueries(filter);
+            discoverQuery.addFilterQuery(filter);
         }
 
         // Add filter to limit search within the community which the given collection, if any, belongs
@@ -141,7 +148,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             		            }
             		            
             		        }
-            		        discoverQuery.addFilterQueries(communityFilters);
+            		        discoverQuery.addFilterQuery(communityFilters);
             		    }
             		}
             	}
@@ -151,35 +158,29 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         discoverQuery
             .setQuery(luceneQuery);
         discoverQuery.setStart(start);
-        discoverQuery.setMaxResults(limit);
+        discoverQuery.setRows(limit);
 
-        DiscoverResult resultSearch;
         try {
-            context = new Context();
-            resultSearch = searchService.search(context, discoverQuery);
-            List<Choice> choiceList = new ArrayList<Choice>();
+            QueryResponse queryResponse = solr.query(discoverQuery);
+            List<Choice> choiceList = queryResponse.getResults()
+                .stream()
+                .map(doc ->  {
+                    String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
+//                    Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
+                    Map<String, String> extras = new HashMap<String, String>();
+                    return new Choice((String) doc.getFieldValue("search.resourceid"),
+                        title,
+                        title, extras);
+                }).collect(Collectors.toList());
 
-            // Process results of query
-            Iterator<IndexableObject> dsoIterator = resultSearch.getIndexableObjects().iterator();
-            while (dsoIterator.hasNext()) {
-                ReloadableEntity resultObject = dsoIterator.next().getIndexedObject();
-                DSpaceObject dso;
-                if (resultObject instanceof InProgressSubmission) {
-                    dso = ((InProgressSubmission) resultObject).getItem();
-                } else {
-                    dso = (DSpaceObject) resultObject;
-                }
-                Item item = (Item) dso;
-                Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), item);
-                choiceList.add(new Choice(item.getID().toString(), item.getName(),
-                                                           dso.getName(), extras));
-            }
             Choice[] results = new Choice[choiceList.size()];
             results = choiceList.toArray(results);
-                return new Choices(results, start, (int) resultSearch.getTotalSearchResults(), Choices.CF_AMBIGUOUS,
-                                   resultSearch.getTotalSearchResults() > (start + limit), 0);
+            long numFound = queryResponse.getResults().getNumFound();
 
-        } catch (SearchServiceException e) {
+            return new Choices(results, start, (int) numFound, Choices.CF_AMBIGUOUS,
+                               numFound > (start + limit), 0);
+
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new Choices(Choices.CF_UNSET);
         }

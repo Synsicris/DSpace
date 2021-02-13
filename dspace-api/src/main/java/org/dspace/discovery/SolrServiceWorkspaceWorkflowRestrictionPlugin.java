@@ -68,18 +68,30 @@ public class SolrServiceWorkspaceWorkflowRestrictionPlugin implements SolrServic
             throw new IllegalStateException(
                     "An anonymous user cannot perform a workspace or workflow search");
         }
+        // Retrieve all the groups the current user is a member of !
+        Set<Group> groups;
+        try {
+            groups = groupService.allMemberGroupsSet(context, currentUser);
+        } catch (SQLException e) {
+            throw new SearchServiceException(e.getMessage(), e);
+        }
         if (isWorkspace) {
+            StringBuilder controllerQuery = new StringBuilder();
             // insert filter by submitter
-            solrQuery.addFilterQuery("submitter_authority:(" + currentUser.getID() + ")");
-        } else if (isWorkflow && !isWorkflowAdmin) {
-            // Retrieve all the groups the current user is a member of !
-            Set<Group> groups;
-            try {
-                groups = groupService.allMemberGroupsSet(context, currentUser);
-            } catch (SQLException e) {
-                throw new SearchServiceException(e.getMessage(), e);
+            controllerQuery.append("(submitter_authority:(").append(currentUser.getID()+ ")");
+            
+            controllerQuery.append(" OR read:(");
+            // insert filter by all user groups
+            for (Integer i = 0; i< groups.size(); i++) {
+                Group group = (Group) groups.toArray()[i];
+                if (i != 0) {
+                    controllerQuery.append(" OR ");
+                }
+                controllerQuery.append("g").append(group.getID());
             }
-
+            controllerQuery.append("))");
+            solrQuery.addFilterQuery(controllerQuery.toString());
+        } else if (isWorkflow && !isWorkflowAdmin) {
             // insert filter by controllers
             StringBuilder controllerQuery = new StringBuilder();
             controllerQuery.append("taskfor:(e").append(currentUser.getID());

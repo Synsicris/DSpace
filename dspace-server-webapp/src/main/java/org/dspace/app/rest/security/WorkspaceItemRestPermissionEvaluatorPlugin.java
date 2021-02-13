@@ -9,6 +9,7 @@ package org.dspace.app.rest.security;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.model.WorkspaceItemRest;
@@ -17,6 +18,8 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.eperson.Group;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
 import org.slf4j.Logger;
@@ -37,6 +40,9 @@ public class WorkspaceItemRestPermissionEvaluatorPlugin extends RestObjectPermis
 
     @Autowired
     private RequestService requestService;
+    
+    @Autowired
+    private GroupService groupService;
 
     @Autowired
     WorkspaceItemService wis;
@@ -82,6 +88,17 @@ public class WorkspaceItemRestPermissionEvaluatorPlugin extends RestObjectPermis
                     return true;
                 }
             }
+
+            // temporary fix to allow project users to edit workspaceitems
+            List<Group> submitterGroups = witem.getSubmitter().getGroups();
+            if (submitterGroups != null && !submitterGroups.isEmpty()) {
+                for (Group group: submitterGroups) {
+                    if (groupService.isMember(context, ePerson, group.getName())) {
+                        return true;
+                    }
+                }
+            }
+            
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }

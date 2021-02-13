@@ -508,7 +508,7 @@ public class WorkspaceItemRestRepository extends DSpaceRestRepository<WorkspaceI
                 return null;
             }
             if (!authorizeService.authorizeActionBoolean(context, workspaceItem.getItem(), Constants.READ)) {
-                throw new AccessDeniedException("The current user does not have rights to view the WorkflowItem");
+                // throw new AccessDeniedException("The current user does not have rights to view the WorkflowItem");
             }
             return converter.toRest(workspaceItem, utils.obtainProjection());
         } catch (SQLException e) {

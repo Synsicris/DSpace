@@ -25,6 +25,7 @@ import org.dspace.content.Item;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.LogManager;
@@ -61,6 +62,8 @@ public class SolrServiceResourceRestrictionPlugin implements SolrServiceIndexPlu
     protected CollectionService collectionService;
     @Autowired(required = true)
     protected GroupService groupService;
+    @Autowired(required = true)
+    protected ItemService itemService;
     @Autowired(required = true)
     protected ResourcePolicyService resourcePolicyService;
 
@@ -99,6 +102,18 @@ public class SolrServiceResourceRestrictionPlugin implements SolrServiceIndexPlu
                     //remove the policy from the cache to save memory
                     context.uncacheEntity(resourcePolicy);
                 }
+                // project group grants
+                if (dso instanceof Item) {
+                    Collection parentCollection = (Collection) itemService.getParentObject(context, (Item) dso);
+                    Community parentCommunity = (Community) collectionService.getParentObject(context,
+                            parentCollection);
+                    String projectGroupName = "project_" + parentCommunity.getID() + "_group";
+                    Group projectGroup = groupService.findByName(context, projectGroupName);
+                    if (projectGroup != null) {
+                        document.addField("read", "g" + projectGroup.getID());
+                    }
+                }
+                
                  // also index ADMIN policies as ADMIN permissions provides READ access
                 // going up through the hierarchy for communities, collections and items
                 while (dso != null) {

@@ -38,6 +38,17 @@
       </collection>
     </community>
     <collection>
+      <name>Application of a solution / change / innovation</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>applications</entity-type>
+      <submission-type>applications</submission-type>
+      <policy-group>project-template-group</policy-group>
+    </collection>    
+    <collection>
       <name>Application success for business innovations</name>
       <description />
       <intro />
@@ -104,17 +115,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Cooperation processes (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_cooperation_events</entity-type>
-      <submission-type>plan_cooperation_events</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Ethical reflection</name>
       <description />
       <intro />
@@ -134,17 +134,6 @@
       <license />
       <entity-type>Event</entity-type>
       <submission-type>events</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Events (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_events</entity-type>
-      <submission-type>plan_events</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
@@ -192,17 +181,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Ideas for innovation and change (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_innovationideas</entity-type>
-      <submission-type>plan_innovationideas</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Import easy-Online xml-file</name>
       <description />
       <intro />
@@ -225,17 +203,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Intended business innovations (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_inn_pot_econtech</entity-type>
-      <submission-type>plan_innovationpotentials_econtech</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Intended social innovations/change processes</name>
       <description />
       <intro />
@@ -247,17 +214,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Intended social innovations/change processes (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_inn_pot_social</entity-type>
-      <submission-type>plan_innovationpotentials_social</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Milestones</name>
       <description />
       <intro />
@@ -266,17 +222,6 @@
       <license />
       <entity-type>milestones</entity-type>
       <submission-type>milestones</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Milestones (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_milestones</entity-type>
-      <submission-type>plan_milestones</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
@@ -302,17 +247,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Objects, materials (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_physical_objects</entity-type>
-      <submission-type>plan_physical_objects</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Organisation units</name>
       <description />
       <intro />
@@ -324,6 +258,17 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
+      <name>Others</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>others</entity-type>
+      <submission-type>others</submission-type>
+      <policy-group>project-template-group</policy-group>
+    </collection>  
+    <collection>
       <name>Participative processes</name>
       <description />
       <intro />
@@ -332,17 +277,6 @@
       <license />
       <entity-type>participation_events</entity-type>
       <submission-type>participation_events</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Participative processes (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_participation_events</entity-type>
-      <submission-type>plan_participation_events</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
@@ -357,17 +291,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Patents and utility patents (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_patent</entity-type>
-      <submission-type>plan_patents</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Persons</name>
       <description />
       <intro />
@@ -378,6 +301,17 @@
       <submission-type>persons</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
+    <collection>
+      <name>Process of cooperation, participation and working together</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>process_events</entity-type>
+      <submission-type>process_events</submission-type>
+      <policy-group>project-template-group</policy-group>
+    </collection>  
     <collection>
       <name>Project objectives</name>
       <description />
@@ -412,17 +346,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Publications (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_publication</entity-type>
-      <submission-type>plan_publications</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Research findings</name>
       <description />
       <intro />
@@ -434,16 +357,16 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Research question (plan)</name>
+      <name>Solution / change / innovation</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
       <license />
-      <entity-type>plan_research_quest</entity-type>
-      <submission-type>research_results</submission-type>
+      <entity-type>innovationpotentials</entity-type>
+      <submission-type>innovationpotentials</submission-type>
       <policy-group>project-template-group</policy-group>
-    </collection>
+    </collection>  
     <collection>
       <name>Spin-offs (incl. associations)</name>
       <description />
@@ -453,17 +376,6 @@
       <license />
       <entity-type>spinoffs</entity-type>
       <submission-type>spinoffs</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Spin-offs (incl. associations) (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_spinoffs</entity-type>
-      <submission-type>plan_spinoffs</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
@@ -511,17 +423,6 @@
       <policy-group>project-template-group</policy-group>
     </collection>
     <collection>
-      <name>Tasks (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_tasks</entity-type>
-      <submission-type>plan_tasks</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
       <name>Unexpected results and problems</name>
       <description />
       <intro />
@@ -543,17 +444,7 @@
       <submission-type>workpackages</submission-type>
       <policy-group>project-template-group</policy-group>
     </collection>
-    <collection>
-      <name>Work packages (plan)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_workpackages</entity-type>
-      <submission-type>plan_workpackages</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
+
   </community>
   <community>
     <name>projects</name>

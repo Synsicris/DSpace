@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="ALL-INNOVATION 2020-01-16">
+<node id="ResourceTypeGenres" label="ALL-INNOVATION 2021-02-01">
   <isComposedBy>
-    <node id="ID01" label="Produktinnovation">
+    <node id="BI01" label="Produkte und Dienstleistungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID02" label="Waren">
+        <node id="BI02" label="Waren/ Produkte" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID03" label="Dienstleistungen">
+        <node id="BI04" label="Dienstleistungen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID04" label="Kombination von Waren und Dienstleistungen">
+        <node id="BI06" label="Kombination von Waren und Dienstleistungen" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID05" label="Innovation in Geschäftsprozessen">
+    <node id="BI08" label="Geschäfts- und Produktionsprozesse" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID06" label="Produktion von Waren oder Dienstleistungen">
+        <node id="BI09" label="Produktionsprozesse von Waren oder Dienstleistungen (inkl. technischer Tests, Analysen, Zertifizierung)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID07" label="Vertrieb und Logistik">
+        <node id="BI10" label="Vertrieb und Logistik (Transport und Servicelieferung, Lagerhaltung Auftragsabwicklung)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID08" label="Marketing und Verkauf">
+        <node id="BI11" label="Marketing und Verkauf (u.a. Marketingmethoden, Werbung, Marktforschung, Preisstrategien, Verkaufs- und Kundendienstaktivitäten)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID09" label="Informations- und Kommunikationssysteme">
+        <node id="BI12" label="Informations- und Kommunikationssysteme (Wartung und Bereitstellung von Informations- und Kommunikationssystemen)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID10" label="Verwaltung und Management">
+        <node id="BI13" label="Verwaltung und Management" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID11" label="Produkt- und Geschäftsprozess-Entwicklung">
+        <node id="BI14" label="Produkt- und Geschäftsprozess-Entwicklung (Aktivitäten zur Erfassung, Identifizierung, Entwicklung oder Anpassung von Produkten oder Geschäftsprozessen eines Unternehmens.)" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID12" label="Soziale Innovationen / Veränderungsprozesse">
+    <node id="BI20" label="Soziale Innovationen / Veränderungsprozesse" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID13" label="Capacity building und Lernen: Veränderung von Kenntnissen. Einstellungen, Fähigkeiten, Präferenzen">
+        <node id="BI21" label="Capacity building und Lernen: Veränderung von Kenntnissen. Einstellungen, Fähigkeiten, Präferenzen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID14" label="Veränderung von Handlungen, Verhalten, Praktiken ">
+        <node id="BI22" label="Veränderung von Handlungen, Verhalten, Praktiken" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID15" label="Netzwerke: Aufbau und Etablierung von neuen formellen oder informellen Netzwerken,  Kooperationsformen, regionalen Clustern etc.">
+        <node id="BI23" label="Netzwerke: Aufbau und Etablierung von neuen formellen oder informellen Netzwerken,  Kooperationsformen, regionalen Clustern etc." selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID16" label="Veränderungen in oder von Organisationen und Institutionen">
+        <node id="BI24" label="Veränderungen in oder von Organisationen und Institutionen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID17" label="Veränderung von Verhältnissen oder Strukturen
-">
+        <node id="BI25" label="Veränderung von Verhältnissen oder Strukturen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID18" label="Entwicklung von Standards, Normen oder Regelwerken (außerhalb der Gesetzgebung)
-">
+        <node id="BI26" label="Entwicklung von Standards, Normen oder Regelwerken (außerhalb der Gesetzgebung)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID19" label="Entwicklung von Gesetzen oder Verordnungen">
+        <node id="BI27" label="Entwicklung von Gesetzen oder Verordnungen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID20" label="Berücksichtigung in sonstigen politischen Prozessen">
+        <node id="BI28" label="Berücksichtigung in sonstigen politischen Prozessen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID21" label="Sonstiges">
+        <node id="BI29" label="Sonstiges" selectable="false">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

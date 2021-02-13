@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="ALL-INNOVATION 2020-05-14">
+<node id="ResourceTypeGenres" label="ALL-INNOVATION 2021-02-02">
   <isComposedBy>
-    <node id="ID01" label="Product innovation">
+    <node id="BI01" label="Product innovation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID02" label="Goods">
+        <node id="BI02" label="Goods" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID03" label="Service ">
+        <node id="BI04" label="Service" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID04" label="Combination of goods and service">
+        <node id="BI06" label="Combination of goods and service" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID05" label="Business process innovation">
+    <node id="BI08" label="Business process innovation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID06" label="Production of goods or services">
+        <node id="BI09" label="Production of goods or services" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID07" label="Distribution and logistics">
+        <node id="BI10" label="Distribution and logistics" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID08" label="Marketing and sales">
+        <node id="BI11" label="Marketing and sales" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID09" label="Information and communication systems">
+        <node id="BI12" label="Information and communication systems" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID10" label="Administration and management">
+        <node id="BI13" label="Administration and management" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID11" label="Product and business process development">
+        <node id="BI14" label="Product and business process development" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="ID12" label="Social innovation / change processes">
+    <node id="BI20" label="Social innovation / change processes" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID13" label="Capacity building and learning">
+        <node id="BI21" label="Capacity building and learning" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID14" label="Changed behaviour, practices">
+        <node id="BI22" label="Changed behaviour, practices" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID15" label="Networks">
+        <node id="BI23" label="Networks" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID16" label="
-Changes in or of Organisations and Institutions">
+        <node id="BI24" label="Changes in or of Organisations and Institutions" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID17" label="Changed conditions and structures ">
+        <node id="BI25" label="Changed conditions and structures" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID18" label="Development of standards, norms or  guidelines (not in legislation)">
+        <node id="BI26" label="Development of standards, norms or  guidelines (not in legislation)" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID19" label="Development of laws or regulations">
+        <node id="BI27" label="Development of laws or regulations" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID20" label="Other political processes ">
+        <node id="BI28" label="Other political processes" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID21" label="Others ">
+        <node id="BI29" label="Others" selectable="false">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

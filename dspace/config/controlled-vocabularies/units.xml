@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="units 2021-02-15">
+  <isComposedBy>
+    <node id="UI10" label="Number of users/use-cases of the solution / change / innovation ..." selectable="false">
+    	<hasNote></hasNote>
+    	<isComposedBy>
+	        <node id="UI11" label="Individuals">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI12" label="Households">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI13" label="Companies - SMEs">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI14" label="Companies - large">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI15" label="public institutions">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI16" label="Non-profit organisations">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI17" label="Municipalities">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI18" label="Political decision making processes / Invitation or Contribution to political decision making processes">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+    <node id="UI20" label="Number of other projects, that uptake and further use the solution / change / innovation" selectable="false">
+    	<hasNote>Anzahl anderer Projekte, die die Lösung / Änderung / Innovation aufgreifen und weiter nutzen</hasNote>
+    	<isComposedBy>
+	        <node id="UI21" label="Modell- und Demonstrationsvorhaben">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI22" label="Forschungs- und Enwicklungsprojekte">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI23" label="andere Projekte">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+    <node id="UI30" label="Erfolgsindikatoren in einem Unternehmen, die die Nutzung der Lösung / Veränderung / Innovation zeigen" selectable="false">
+    	<hasNote></hasNote>
+    	<isComposedBy>
+	        <node id="UI31" label="Lizenzeinnahmen aus der Verwertung von Patenten, Gebrauchsmustern oder Urheberrechten">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI32" label="praxisorientierte Erprobung">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI33" label="Unternehmensinterner Einsatz/ Einführung von Innovationen">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI34" label="Markteinführung">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI35" label="Verkaufszahlen (Produkteinheiten)">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI36" label="Anzahl Neukunden">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI37" label="Umsatzsteigerung">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI38" label="Produktivitätssteigerung">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI39" label="Erzielter Marktanteil">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="units 2021-02-15">
+  <isComposedBy>
+    <node id="UI10" label="Anzahl der Nutzer/Anwendungsfälle der Lösung / Änderung / Innovation ..." selectable="false">
+    	<hasNote></hasNote>
+    	<isComposedBy>
+	        <node id="UI11" label="Einzelpersonen">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI12" label="Haushalte">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI13" label="Betriebe/Unternehmen - KMU">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI14" label="Betriebe/Unternehmen - large">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI15" label="öffentliche Einrichtungen">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI16" label="gemeinnützige Organisationen">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI17" label="Städte/Kommunen">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI18" label="Einladung oder Beitrag zu politischen Entscheidungsprozessen">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+    <node id="UI20" label="Anzahl anderer Projekte, die die Lösung / Änderung / Innovation aufgreifen und weiter nutzen" selectable="false">
+    	<hasNote>Anzahl anderer Projekte, die die Lösung / Änderung / Innovation aufgreifen und weiter nutzen</hasNote>
+    	<isComposedBy>
+	        <node id="UI21" label="Model and demonstration projects">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI22" label="Research and development projects">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI23" label="Other types of projects">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+    <node id="UI30" label="Number of users/use-cases of the solution / change / innovation ..." selectable="false">
+    	<hasNote></hasNote>
+    	<isComposedBy>
+	        <node id="UI31" label="Licensing income from the exploitation of patents, utility models or copyrights ">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI32" label="practice-oriented testing">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI33" label="Company internal use/introduction of innovations">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI34" label="Market launch">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI35" label="Sales numbers (product units)">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI36" label="Number of new customers/ clients">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI37" label="Increase in turnover">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI38" label="Increase in productivity">
+	        	<hasNote></hasNote>
+	        </node>
+	        <node id="UI39" label="Market share gain">
+	        	<hasNote></hasNote>
+	        </node>
+	    </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

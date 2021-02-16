@@ -84,18 +84,23 @@ public class DownloadReportFromJasper implements DownloadReportService {
         for (int i = 0; i < exports.length(); i++) {
             ReportDetailDTO reportDetail = new ReportDetailDTO();
             String status = exports.getJSONObject(i).get("status").toString();
+            String contentType = exports.getJSONObject(i).getJSONObject("outputResource").get("contentType").toString();
+            if (exports.getJSONObject(i).getJSONObject("outputResource").has("fileName")) {
+                reportDetail.setFileName(exports.getJSONObject(i)
+                            .getJSONObject("outputResource").get("fileName").toString());
+            }
+            reportDetail.setContentType(contentType);
+            reportDetail.setRequestId(requestId);
             switch (status) {
                 case READY_STATUS :
-                    reportDetail.setStatus(status);
+                    reportDetail.setExportStatus(status);
                     reportDetail.setReady(true);
                     String id = exports.getJSONObject(i).get("id").toString();
-                    reportDetail.setRequestId(requestId);
                     reportDetail.setId(id);
                     reports.add(reportDetail);
                     continue;
                 case EXECUTION_STATUS :
-                    reportDetail.setStatus(status);
-                    reportDetail.setRequestId(requestId);
+                    reportDetail.setExportStatus(status);
                     reports.add(reportDetail);
                     continue;
                 default:
@@ -137,7 +142,7 @@ public class DownloadReportFromJasper implements DownloadReportService {
                     String status = json.get("status").toString();
                     if (StringUtils.isNotBlank(status)) {
                         if (status.equals("ready")) {
-                            reportDetail.setStatus(status);
+                            reportDetail.setExportStatus(status);
                             reportDetail.setReady(true);
                             String requestId = json.get("requestId").toString();
                             if (StringUtils.isNotBlank(requestId)) {

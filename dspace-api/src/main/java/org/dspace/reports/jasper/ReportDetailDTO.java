@@ -14,7 +14,7 @@ public class ReportDetailDTO {
 
     private String headerStatus;
 
-    private String status;
+    private String exportStatus;
 
     private String requestId;
 
@@ -22,20 +22,24 @@ public class ReportDetailDTO {
 
     private boolean isReady;
 
+    private String contentType;
+
+    private String fileName;
+
+    public String getExportStatus() {
+        return exportStatus;
+    }
+
+    public void setExportStatus(String exportStatus) {
+        this.exportStatus = exportStatus;
+    }
+
     public String getHeaderStatus() {
         return headerStatus;
     }
 
     public void setHeaderStatus(String headerStatus) {
         this.headerStatus = headerStatus;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getRequestId() {
@@ -60,6 +64,22 @@ public class ReportDetailDTO {
 
     public void setReady(boolean isReady) {
         this.isReady = isReady;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
 }

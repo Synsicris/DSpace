@@ -134,7 +134,11 @@ public class DownloadReportFromExternalSource extends
             StringBuilder path = new StringBuilder("/");
             path.append(report.getRequestId()).append("/exports/").append(report.getId()).append("/outputResource");
             InputStream is = externalService.downloadReport(path.toString());
-            handler.writeFilestream(context, report.getId(), is, REPORT_TYPE);
+            String fileName = report.getId();
+            if (StringUtils.isNotBlank(report.getFileName())) {
+                fileName = report.getFileName();
+            }
+            handler.writeFilestream(context, fileName, is, report.getContentType());
             handler.logInfo("Report with id: " + report.getId() + " exported successfully!");
         }
     }

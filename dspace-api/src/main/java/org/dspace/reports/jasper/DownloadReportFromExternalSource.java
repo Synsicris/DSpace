@@ -47,6 +47,12 @@ public class DownloadReportFromExternalSource extends
 
     private String service;
 
+    private String format;
+
+    private String reportType;
+
+    private String resourceId;
+
     private long timeToSleep;
 
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
@@ -57,6 +63,9 @@ public class DownloadReportFromExternalSource extends
         downloadReportServices.put("jasper", serviceManager.getServiceByName(DownloadReportFromJasper.class.getName(),
                                                                              DownloadReportFromJasper.class));
         this.service = commandLine.getOptionValue('s');
+        this.format = commandLine.getOptionValue('f');
+        this.reportType = commandLine.getOptionValue('t');
+        this.resourceId = commandLine.getOptionValue('i');
         this.timeToSleep = Integer.valueOf(configurationService.getProperty("reports.timetosleep"));
     }
 
@@ -66,6 +75,9 @@ public class DownloadReportFromExternalSource extends
         if (service == null) {
             throw new IllegalArgumentException("The name of service must be provided");
         }
+        if (StringUtils.isBlank(this.format)) {
+            this.format = "pdf";
+        }
         DownloadReportService externalService = downloadReportServices.get(this.service.toLowerCase());
         if (externalService == null) {
             throw new IllegalArgumentException("The name of service must be provided");
@@ -73,7 +85,10 @@ public class DownloadReportFromExternalSource extends
         try {
             context.turnOffAuthorisationSystem();
             List<ReportDetailDTO> reportsToDownload = null;
-            ReportDetailDTO reportDetail = externalService.executeExtractingOfReport();
+            ReportDetailDTO reportDetail = externalService.executeExtractingOfReport(
+                                           this.format.toLowerCase(),
+                                           this.reportType,
+                                           this.resourceId);
             if (StringUtils.isNotBlank(reportDetail.getRequestId())) {
                 StringBuilder pathRequestId = new StringBuilder("/");
                 pathRequestId.append(reportDetail.getRequestId());

@@ -37,8 +37,8 @@ public class DownloadReportFromJasper implements DownloadReportService {
     private JasperRestConnector jasperRestConnector;
 
     @Override
-    public ReportDetailDTO executeExtractingOfReport() {
-        InputStream is = jasperRestConnector.sendPostRequest();
+    public ReportDetailDTO executeExtractingOfReport(String format, String reportType, String resourceId) {
+        InputStream is = jasperRestConnector.sendPostRequest(format, reportType, resourceId);
         if (Objects.nonNull(is)) {
             return getHeaderStatus(is);
         }

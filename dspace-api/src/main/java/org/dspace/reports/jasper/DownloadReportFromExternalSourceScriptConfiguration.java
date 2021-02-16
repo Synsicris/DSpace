@@ -48,6 +48,18 @@ public class DownloadReportFromExternalSourceScriptConfiguration<T extends Downl
             options.getOption("s").setType(String.class);
             options.getOption("s").setRequired(true);
 
+            options.addOption("f", "format", true, "the report format");
+            options.getOption("f").setType(String.class);
+            options.getOption("f").setRequired(false);
+
+            options.addOption("t", "type", true, "the report type");
+            options.getOption("t").setType(String.class);
+            options.getOption("t").setRequired(false);
+
+            options.addOption("i", "resourceId", true, "the resourceId");
+            options.getOption("i").setType(String.class);
+            options.getOption("i").setRequired(false);
+
             super.options = options;
         }
         return options;

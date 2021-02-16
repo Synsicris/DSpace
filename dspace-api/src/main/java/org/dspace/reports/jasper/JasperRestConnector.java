@@ -55,8 +55,8 @@ public class JasperRestConnector {
             .build();
     }
 
-    public InputStream sendPostRequest() {
-        return new GetStatusCallable().sendRequestToJasper();
+    public InputStream sendPostRequest(String format, String reportType, String resourceId) {
+        return new GetStatusCallable().sendRequestToJasper(format, reportType, resourceId);
     }
 
     public InputStream sendGetRequest(String path) {
@@ -99,7 +99,7 @@ public class JasperRestConnector {
 
     private class GetStatusCallable {
 
-        private InputStream sendRequestToJasper() {
+        private InputStream sendRequestToJasper(String format, String reportType, String resourceId) {
             try {
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setHeader("Accept", "*/*");
@@ -108,9 +108,11 @@ public class JasperRestConnector {
                 httpPost.setHeader("Content-Type", "application/json");
 
                 JSONObject jsonBody = new JSONObject();
-                jsonBody.put("reportUnitUri", "/Reports/Collection");
-                jsonBody.put("outputFormat", "pdf");
                 jsonBody.put("freshData", true);
+                jsonBody.put("reportUnitUri", "/Reports/Collection");
+                jsonBody.put("outputFormat", format);
+                jsonBody.put("reportType", reportType);
+                jsonBody.put("resourceId", resourceId);
 
                 StringEntity stringEntity = new StringEntity(jsonBody.toString());
 

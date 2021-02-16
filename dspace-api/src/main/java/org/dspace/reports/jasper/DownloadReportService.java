@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface DownloadReportService {
 
-    public ReportDetailDTO executeExtractingOfReport();
+    public ReportDetailDTO executeExtractingOfReport(String format, String reportType, String resourceId);
 
     public List<ReportDetailDTO> getReportStatus(String requestId);
 

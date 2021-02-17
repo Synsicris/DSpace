@@ -164,4 +164,12 @@ public class DownloadReportFromJasper implements DownloadReportService {
         return reportDetail;
     }
 
+    public JasperRestConnector getJasperRestConnector() {
+        return jasperRestConnector;
+    }
+
+    public void setJasperRestConnector(JasperRestConnector jasperRestConnector) {
+        this.jasperRestConnector = jasperRestConnector;
+    }
+
 }

@@ -37,8 +37,6 @@ import org.slf4j.LoggerFactory;
 public class DownloadReportFromExternalSource extends
              DSpaceRunnable<DownloadReportFromExternalSourceScriptConfiguration<DownloadReportFromExternalSource>> {
 
-    private static final String REPORT_TYPE = "report";
-
     private static final Logger log = LoggerFactory.getLogger(DownloadReportFromExternalSource.class);
 
     private Map<String, DownloadReportService> downloadReportServices = new HashMap<>();
@@ -55,6 +53,8 @@ public class DownloadReportFromExternalSource extends
 
     private long timeToSleep;
 
+    private int maxAttempt;
+
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
     @Override
@@ -67,6 +67,7 @@ public class DownloadReportFromExternalSource extends
         this.reportType = commandLine.getOptionValue('t');
         this.resourceId = commandLine.getOptionValue('i');
         this.timeToSleep = Integer.valueOf(configurationService.getProperty("reports.timetosleep"));
+        this.maxAttempt = Integer.valueOf(configurationService.getProperty("reports.max_attempt"));
     }
 
     @Override
@@ -93,6 +94,7 @@ public class DownloadReportFromExternalSource extends
                 StringBuilder pathRequestId = new StringBuilder("/");
                 pathRequestId.append(reportDetail.getRequestId());
                 boolean trigger = true;
+                int attemptCount = 0;
                 while (trigger) {
                     int counrInExecution = 0;
                     List<ReportDetailDTO> reports = externalService.getReportStatus(pathRequestId.toString());
@@ -105,6 +107,13 @@ public class DownloadReportFromExternalSource extends
                         trigger = false;
                         reportsToDownload = reports;
                     } else {
+                        if (attemptCount > this.maxAttempt) {
+                            handler.logInfo("The downloading process was interrupted\n" +
+                                            "as the maximum number of attempts has been reached.\n" +
+                                            " RequestID: " + reportDetail.getRequestId());
+                            break;
+                        }
+                        attemptCount ++;
                         handler.logInfo("Sleep for " + this.timeToSleep / 1000 + " seconds.");
                         Thread.sleep(this.timeToSleep);
                     }
@@ -158,6 +167,22 @@ public class DownloadReportFromExternalSource extends
             EPerson ePerson = EPersonServiceFactory.getInstance().getEPersonService().find(context, uuid);
             context.setCurrentUser(ePerson);
         }
+    }
+
+    public Map<String, DownloadReportService> getDownloadReportServices() {
+        return downloadReportServices;
+    }
+
+    public void setDownloadReportServices(Map<String, DownloadReportService> downloadReportServices) {
+        this.downloadReportServices = downloadReportServices;
+    }
+
+    public int getMaxAttempt() {
+        return maxAttempt;
+    }
+
+    public void setMaxAttempt(int maxAttempt) {
+        this.maxAttempt = maxAttempt;
     }
 
 }

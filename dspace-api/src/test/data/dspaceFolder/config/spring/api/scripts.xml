@@ -81,4 +81,9 @@
         <property name="dspaceRunnableClass" value="org.dspace.scripts.impl.MockDSpaceRunnableScript"/>
     </bean>
 
+    <bean id="download-report" class="org.dspace.reports.jasper.DownloadReportFromExternalSourceCliScriptConfiguration">
+        <property name="description" value="Perform the download of report using external source"/>
+        <property name="dspaceRunnableClass" value="org.dspace.reports.jasper.DownloadReportFromExternalSourceCli"/>
+    </bean>
+
 </beans>

@@ -3976,7 +3976,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Please choose an intended business innovationl. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
-          <type-bind>Die Anwendung gehört zu einer bereits dokumentierten Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>link</type-bind>
         </field>
       </row>
       <row>
@@ -3989,7 +3989,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>You can choose as much areas as required.</hint>
-          <type-bind>Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte (ggf. durch Dritte entwickelte) Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>new</type-bind>
         </field>
       </row>
       <row>
@@ -4002,7 +4002,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte (ggf. durch Dritte entwickelte) Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>new</type-bind>
         </field>
       </row>
     </form>
@@ -5638,7 +5638,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>false</repeatable>
           <required />
           <hint>Please define the economic sector according to the statistical classification of economic activities in the European Community (NACE).</hint>
-          <type-bind>Economy: mainly SMEs, Economy: mainly large companies/ large enterprises, Wirtschaft: vorwiegend KMU, Wirtschaft: vorwiegend Großbetriebe/ Großunternehmen</type-bind>
+          <type-bind>SME, large enterprises</type-bind>
         </field>
       </row>
       <row>
@@ -5651,7 +5651,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Policy makers, Public institutions or authorities, Politische Entscheidungsträger*innen, Behörden/ öffentliche Institutionen und Einrichtungen</type-bind>
+          <type-bind>Policy makers, Public institutions</type-bind>
         </field>
       </row>
       <row>
@@ -5664,7 +5664,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>false</repeatable>
           <required />
           <hint>Please indicate by assigning keywords if the project is aimed at specific groups. (e.g. certain age groups, gender, physical handicaps, cultural aspects, nationality and orgin)</hint>
-          <type-bind>Private individuals (e.g. consumers, citizens), Civil society organisations and associations, Privatpersonen (z.B. Konsument*innen oder Bürger*innnen), Zivilgesellschaftliche Organisationen und Verbände</type-bind>
+          <type-bind>Private individuals, Civil society organisations</type-bind>
         </field>
       </row>
       <row>
@@ -5725,7 +5725,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Economic, Social and cultural, Governance, Ökonomisch, Sozial und kulturell, Governance</type-bind>
+          <type-bind>Economic, Social and cultural, Governance</type-bind>
         </field>
       </row>
       <row>
@@ -5738,7 +5738,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Ecological, Ökologisch</type-bind>
+          <type-bind>Ecological</type-bind>
         </field>
       </row>
       <row>

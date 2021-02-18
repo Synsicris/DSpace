@@ -3973,7 +3973,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Mehrfache Angaben sind über den „+“-Button möglich. Wenn eine Art mehrere Akteursgruppen adressiert, wählen Sie die Art mehrfach aus und ordnen die entsprechenden Akteursgruppen zu.</hint>
-          <type-bind>Die Anwendung gehört zu einer bereits dokumentierten Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>link</type-bind>
         </field>
       </row>
       <row>
@@ -3986,7 +3986,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Sie können so viele Bereiche auswählen, wie Sie benötigen.</hint>
-          <type-bind>Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte (ggf. durch Dritte entwickelte) Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>new</type-bind>
         </field>
       </row>
       <row>
@@ -3999,7 +3999,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Bitte schließen Sie in die Beschreibung ein, welchen Nutzen die adressierten Akteursgruppe(n) haben bzw. welche Verbesserungen / Problemlösungen für sie erzielt werden sollen. Soweit möglich, stellen Sie bitte Informationen über das mögliche Marktpotenzial bzw. Größe der Nutzergruppe bereit.</hint>
-          <type-bind>Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte (ggf. durch Dritte entwickelte) Lösung / Veränderung / Innovation</type-bind>
+          <type-bind>new</type-bind>
         </field>
       </row>
     </form>
@@ -5634,7 +5634,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Bitte ordnen Sie den Wirtschaftszweig ein, gemäß der statistischen Systematik der Wirtschaftszweige in der Europäischen Gemeinschaft (NACE).</hint>
-          <type-bind>Economy: mainly SMEs, Economy: mainly large companies/ large enterprises, Wirtschaft: vorwiegend KMU, Wirtschaft: vorwiegend Großbetriebe/ Großunternehmen</type-bind>
+          <type-bind>SME, large enterprises</type-bind>
         </field>
       </row>
       <row>
@@ -5647,7 +5647,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Policy makers, Public institutions or authorities, Politische Entscheidungsträger*innen, Behörden/ öffentliche Institutionen und Einrichtungen</type-bind>
+          <type-bind>Policy makers, Public institutions</type-bind>
         </field>
       </row>
       <row>
@@ -5660,7 +5660,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Bitte kennzeichnen Sie durch Vergabe von Schlagworten, wenn sich das Projekt an bestimmte Gruppen richtet, z.B. bestimmte Altersgruppen, Geschlechtsbezug, körperliche Handicaps, kulturelle Aspekte, Herkunft.</hint>
-          <type-bind>Private individuals (e.g. consumers, citizens), Civil society organisations and associations, Privatpersonen (z.B. Konsument*innen oder Bürger*innnen), Zivilgesellschaftliche Organisationen und Verbände</type-bind>
+          <type-bind>Private individuals, Civil society organisations</type-bind>
         </field>
       </row>
       <row>
@@ -5721,7 +5721,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Economic, Social and cultural, Governance, Ökonomisch, Sozial und kulturell, Governance</type-bind>
+          <type-bind>Economic, Social and cultural, Governance</type-bind>
         </field>
       </row>
       <row>
@@ -5734,7 +5734,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <type-bind>Ecological, Ökologisch</type-bind>
+          <type-bind>Ecological</type-bind>
         </field>
       </row>
       <row>
@@ -8356,7 +8356,7 @@
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
-        <displayed-value>Solution / change / innovation</displayed-value>
+        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotentials</stored-value>
       </pair>
       <pair>

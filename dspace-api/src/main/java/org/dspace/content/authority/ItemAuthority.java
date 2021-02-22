@@ -165,12 +165,18 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             List<Choice> choiceList = queryResponse.getResults()
                 .stream()
                 .map(doc ->  {
+                    String resourceType = (String) doc.getFieldValue("search.resourcetype");
+                    String resourceId;
+                    if (resourceType.equals(WorkspaceItem.class.getSimpleName())) {
+                        resourceId = ((String) ((ArrayList<String>) doc.getFieldValue("inprogress.item")).get(0))
+                                .replace("Item-", "");
+                    } else {
+                        resourceId = (String) doc.getFieldValue("search.resourceid");
+                    }
                     String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
 //                    Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
                     Map<String, String> extras = new HashMap<String, String>();
-                    return new Choice((String) doc.getFieldValue("search.resourceid"),
-                        title,
-                        title, extras);
+                    return new Choice(resourceId, title, title, extras);
                 }).collect(Collectors.toList());
 
             Choice[] results = new Choice[choiceList.size()];

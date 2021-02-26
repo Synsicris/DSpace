@@ -32,7 +32,6 @@ import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
-import org.dspace.metrics.wos.UpdateWOSPersonMetrics;
 import org.dspace.services.ConfigurationService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -196,7 +195,8 @@ public class ItemCorrectionService {
 
     }
 
-    private RelationshipType findRelationshipType(Context context, Item item, String relationship) throws SQLException, IllegalArgumentException {
+    private RelationshipType findRelationshipType(Context context, Item item, String relationship)
+        throws SQLException, IllegalArgumentException {
 
         EntityType type = entityTypeService.findByItem(context, item);
         if (type == null) {

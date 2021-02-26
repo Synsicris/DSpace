@@ -53,7 +53,8 @@ public abstract class AbstractPackageDisseminator
 
     protected final CommunityService communityService = ContentServiceFactory.getInstance().getCommunityService();
     protected final ItemService itemService = ContentServiceFactory.getInstance().getItemService();
-    protected final WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
+    protected final WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance()
+                                                                         .getWorkspaceItemService();
 
     /**
      * Recursively export one or more DSpace Objects as a series of packages.
@@ -132,14 +133,15 @@ public abstract class AbstractPackageDisseminator
                             String childFileName = pkgDirectory + PackageUtils.getPackageName(item, fileExtension);
                             disseminateAll(context, item, params, new File(childFileName));
                         }
-                        
+
                         Iterator<WorkspaceItem> wsiIterator = workspaceItemService
                                 .findByCollection(context, collection).iterator();
                         while (wsiIterator.hasNext()) {
                             WorkspaceItem wsi = wsiIterator.next();
 
                             //disseminate all items (recursively!)
-                            String childFileName = pkgDirectory + PackageUtils.getPackageName(wsi.getItem(), fileExtension);
+                            String childFileName = pkgDirectory
+                                        + PackageUtils.getPackageName(wsi.getItem(), fileExtension);
                             disseminateAll(context, wsi.getItem(), params, new File(childFileName));
                         }
                         break;

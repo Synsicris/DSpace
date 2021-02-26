@@ -102,7 +102,7 @@ public class XSLTIngestionCrosswalk
         try {
             metadataField = metadataValidator
                 .checkMetadata(context, schema, element, qualifier, createMissingMetadataFields);
-            
+
             // sanity check: some XSL puts an empty string in qualifier,
             // change it to null so we match the unqualified DC field:
             if (qualifier != null && qualifier.equals("")) {

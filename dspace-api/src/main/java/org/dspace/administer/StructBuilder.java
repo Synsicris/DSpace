@@ -679,8 +679,8 @@ public class StructBuilder {
                 if (nl.getLength() == 1) {
                     if (entry.getKey().equals("policy-group")) {
                         policyGroupName = getStringValue(nl.item(0));
-                    } else { 
-                    communityService.setMetadataSingleValue(context, community,
+                    } else {
+                        communityService.setMetadataSingleValue(context, community,
                             entry.getValue(), null, getStringValue(nl.item(0)));
                     }
                 }
@@ -692,7 +692,7 @@ public class StructBuilder {
                     // remove read permission from ANONYMOUS group
                     authorizeService.removeGroupPolicies(context, community,
                             groupService.findByName(context, Group.ANONYMOUS));
-    
+
                     // add read permission to group
                     authorizeService.addPolicy(context, community, Constants.READ, policyGroup);
                     // add add permission to group
@@ -759,7 +759,7 @@ public class StructBuilder {
                 sidebarElement.setText(fieldValue);
                 element.addContent(sidebarElement);
             }
-            
+
             if (StringUtils.isNotBlank(policyGroupName)) {
                 element.addContent(new Element("policy-group").setText(policyGroupName));
             }
@@ -815,8 +815,8 @@ public class StructBuilder {
                 if (nl.getLength() == 1) {
                     if (entry.getKey().equals("policy-group")) {
                         policyGroupName = getStringValue(nl.item(0));
-                    } else { 
-                    collectionService.setMetadataSingleValue(context, collection,
+                    } else {
+                        collectionService.setMetadataSingleValue(context, collection,
                             entry.getValue(), null, getStringValue(nl.item(0)));
                     }
                 }
@@ -828,7 +828,7 @@ public class StructBuilder {
                     // remove read permission from ANONYMOUS group
                     authorizeService.removeGroupPolicies(context, collection,
                             groupService.findByName(context, Group.ANONYMOUS));
-    
+
                     // add "READ" permission to group
                     authorizeService.addPolicy(context, collection, Constants.READ, policyGroup);
                     // add add permission to group
@@ -913,7 +913,7 @@ public class StructBuilder {
             if (StringUtils.isNotBlank(submissionDefinition)) {
                 element.addContent(new Element("submission-type").setText(submissionDefinition));
             }
-            
+
             if (StringUtils.isNotBlank(policyGroupName)) {
                 element.addContent(new Element("policy-group").setText(policyGroupName));
             }

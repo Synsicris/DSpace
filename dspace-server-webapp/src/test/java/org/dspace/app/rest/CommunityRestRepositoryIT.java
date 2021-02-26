@@ -19,6 +19,7 @@ import static org.dspace.builder.CommunityBuilder.createSubCommunity;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -2124,6 +2125,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertEquals(1, firstChild.getCollections().size());
             assertEquals(0, secondChild.getCollections().size());
             Collection colProject = firstChild.getCollections().get(0);
+            // check that the new cloned collelction has a new item project
             Iterator<Item> items = itemService.findAllByCollection(context, colProject);
             assertTrue(items.hasNext());
             Item item = items.next();
@@ -2131,6 +2133,14 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                        "project_" + subCommunityOfCloneTarget.getID().toString() + "_name"));
             assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
                        "project_" + item.getID().toString() + "_item"));
+            assertFalse(items.hasNext());
+
+            // checking the original collection
+            Iterator<Item> itemsOfOriginCollection = itemService.findAllByCollection(context, col);
+            assertTrue(itemsOfOriginCollection.hasNext());
+            Item itemOfOriginCollection = itemsOfOriginCollection.next();
+            assertEquals(itemOfOriginCollection.getID(), publicItem1.getID());
+            assertFalse(itemsOfOriginCollection.hasNext());
         } finally {
             CommunityBuilder.deleteCommunity(idRef.get());
         }

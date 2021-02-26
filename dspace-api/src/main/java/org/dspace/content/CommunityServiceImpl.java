@@ -805,7 +805,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private UUID extractItemUuid(String value) {
         UUID itemUuid = null;
         if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^(project_)(.*)(_.*)$");
+            Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)$");
             Matcher matcher = pattern.matcher(value);
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
@@ -918,11 +918,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             for (int i = 0; i < templateGroupsName.length; i++) {
                 Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
                 if (templateGroup != null && StringUtils.isNotBlank(templateGroup.getName())) {
-                    String name = extractName(templateGroup.getName());
-                    if (StringUtils.isNotBlank(name)) {
+                    String[] name_parts = extractName(templateGroup.getName());
+                    if (name_parts.length == 2) {
                         Group scopedRole = groupService.create(context);
                         groupService.addMember(context, scopedRole, context.getCurrentUser());
-                        String roleName = "project_" + project.getID().toString() + name + "_group";
+                        String roleName = name_parts[0] + project.getID().toString() + name_parts[1] + "_group";
                         groupService.setName(scopedRole, roleName);
                         groupsMap.put(templateGroup.getID(), scopedRole);
                     } else {
@@ -935,11 +935,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         return groupsMap;
     }
 
-    private String extractName(String groupName) {
-        Pattern pattern = Pattern.compile("^(project_.*)(_.*)(_group)$");
+    private String[] extractName(String groupName) {
+        Pattern pattern = Pattern.compile("^((?:project_|subproject_)).*(_.*)(_group)$");
         Matcher matcher = pattern.matcher(groupName);
         if (matcher.matches()) {
-            return matcher.group(2);
+            return new String[] {matcher.group(1),matcher.group(2)};
         } else {
             return null;
         }

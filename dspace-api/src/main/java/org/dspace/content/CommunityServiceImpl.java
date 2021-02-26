@@ -755,7 +755,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         try {
             while (items.hasNext()) {
                 Item item = items.next();
-                WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, false);
+                WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, false);
                 Item newItem = installItemService.installItem(context, workspaceItem);
                 cloneMetadata(context, itemService, newItem, item);
                 collectionService.addItem(context, newCollection, newItem);

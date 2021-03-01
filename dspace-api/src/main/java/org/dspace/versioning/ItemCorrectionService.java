@@ -196,7 +196,7 @@ public class ItemCorrectionService {
     }
 
     private RelationshipType findRelationshipType(Context context, Item item, String relationship)
-        throws SQLException, IllegalArgumentException {
+            throws SQLException, IllegalArgumentException {
 
         EntityType type = entityTypeService.findByItem(context, item);
         if (type == null) {

@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.mail.MessagingException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.DSpaceObject;
+import org.dspace.content.service.CommunityService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -38,6 +42,7 @@ import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.eperson.service.RegistrationDataService;
 import org.dspace.services.RequestService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +75,9 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
 
     @Autowired
     private GroupService groupService;
+
+    @Autowired
+    private CommunityService communityService;
 
     @Override
     public RegistrationRest findOne(Context context, Integer integer) {
@@ -143,6 +151,9 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
             Group group = groupService.find(context, groupUuid);
             if (Objects.nonNull(group)) {
                 DSpaceObject obj = groupService.getParentObject(context, group);
+                if (obj == null) {
+                    obj = getParentObjectByGroupName(context, group);
+                }
                 if (!authorizeService.isAdmin(context, obj)) {
                     return false;
                 }
@@ -151,6 +162,21 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
             }
         }
         return true;
+    }
+
+    private DSpaceObject getParentObjectByGroupName(Context context, Group group) {
+        Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)(_group)$");
+        Matcher matcher = pattern.matcher(group.getName());
+        if (matcher.matches()) {
+            UUID uuid = UUIDUtils.fromString(matcher.group(2));
+            try {
+                return communityService.find(context, uuid);
+            } catch (SQLException e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
     @Override

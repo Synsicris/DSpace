@@ -757,7 +757,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 Item item = items.next();
                 WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, false);
                 Item newItem = installItemService.installItem(context, workspaceItem);
-                cloneMetadata(context, itemService, newItem, item);
                 collectionService.addItem(context, newCollection, newItem);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
@@ -779,7 +778,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         context.reloadEntity(newItem);
         StringBuilder titlePlaceholder = new StringBuilder();
         titlePlaceholder.append("project_").append(rootCommunityUUID.toString()).append("_name");
-        itemService.replaceMetadata(context, newItem, "dc", "title",null,null, titlePlaceholder.toString(),null,400,0);
+        itemService.addMetadata(context, newItem, "dc", "title", null, null, titlePlaceholder.toString());
     }
 
     private void cloneTemplateItem(Context context, Collection col, Collection collection)

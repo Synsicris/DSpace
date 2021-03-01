@@ -13,7 +13,6 @@ import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
@@ -41,8 +40,6 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private GroupService groupService;
     @Autowired
     private ConfigurationService configurationService;
-    @Autowired
-    private AuthorizeService authorizeService;
 
     @Override
     public void processItem(Context context, EPerson currentUser, Item item) {
@@ -64,9 +61,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                         }
                         List<Community> subCommunities = subProject.getSubcommunities();
                         for (Community community : subCommunities) {
-                            if (!setPolicyGroup(context, item, currentUser, community)) {
-                                log.error("something went wrong, the item:" + item.getID().toString()
-                                        + " could not register the policy 'cris.policy.group'.");
+                            if (setPolicyGroup(context, item, currentUser, community)) {
+                                return;
                             }
                         }
                         break;
@@ -95,9 +91,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                                                  .append(community.getID().toString())
                                                  .append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
-        if (groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity)
-            || authorizeService.isAdmin(context, community)) {
-
+        boolean isAdmin = groupService.isMember(context, currentUser, community.getAdministrators());
+        boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
+        if (isAdmin || isGroupMember) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
                     memberGrouoOfProjectCommunity.getID().toString(), 400, 0);
             return true;

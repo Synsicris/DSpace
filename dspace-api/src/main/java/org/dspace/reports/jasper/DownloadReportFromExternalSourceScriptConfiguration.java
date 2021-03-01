@@ -6,15 +6,12 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.reports.jasper;
-import java.sql.SQLException;
-
 import org.apache.commons.cli.Options;
-import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Context;
+import org.dspace.eperson.EPerson;
 import org.dspace.scripts.configuration.ScriptConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
@@ -27,17 +24,11 @@ public class DownloadReportFromExternalSourceScriptConfiguration<T extends Downl
 
     private Class<T> dspaceRunnableClass;
 
-    @Autowired
-    private AuthorizeService authorizeService;
 
     @Override
     public boolean isAllowedToExecute(Context context) {
-        try {
-            return authorizeService.isAdmin(context);
-        } catch (SQLException e) {
-            log.error(e.getMessage(), e);
-        }
-        return false;
+        EPerson currentUser = context.getCurrentUser();
+        return currentUser != null;
     }
 
     @Override

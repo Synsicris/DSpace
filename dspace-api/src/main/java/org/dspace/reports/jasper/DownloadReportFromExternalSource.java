@@ -66,8 +66,8 @@ public class DownloadReportFromExternalSource extends
         this.format = commandLine.getOptionValue('f');
         this.reportType = commandLine.getOptionValue('t');
         this.resourceId = commandLine.getOptionValue('i');
-        this.timeToSleep = Integer.valueOf(configurationService.getProperty("reports.timetosleep"));
-        this.maxAttempt = Integer.valueOf(configurationService.getProperty("reports.max_attempt"));
+        this.timeToSleep = Integer.valueOf(configurationService.getProperty("reports.timetosleep", "5000"));
+        this.maxAttempt = Integer.valueOf(configurationService.getProperty("reports.max_attempt", "50"));
     }
 
     @Override

@@ -225,7 +225,7 @@ public class AIPTechMDCrosswalk implements IngestionCrosswalk, DisseminationCros
                 WorkspaceItem wsi = workspaceItemService.findByItem(context, (Item) dso);
                 owningColl = wsi.getCollection();
             }
-            
+
             String owner = owningColl.getHandle();
             if (owner != null) {
                 dc.add(makeDC("relation", "isPartOf", "hdl:" + owner));

@@ -2402,7 +2402,7 @@ public class CollectionRestRepositoryIT extends AbstractControllerIntegrationTes
                         .param("uuid", parentCommunity.getID().toString())
                         .param("entityType", entityType2)
                         .param("query", "publication"))
-		        .andExpect(status().isOk()).andExpect(content().contentType(contentType))
+                .andExpect(status().isOk()).andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.page.totalElements", equalTo(1)))
                 .andExpect(jsonPath("$._embedded.collections", contains(CollectionMatcher.matchCollection(col3))))
                 .andExpect(jsonPath("$._embedded.collections",

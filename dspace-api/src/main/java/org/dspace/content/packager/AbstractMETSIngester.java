@@ -535,10 +535,10 @@ public abstract class AbstractMETSIngester extends AbstractPackageIngester {
             if (((Item) dso).isArchived()) {
                 PackageUtils.checkItemMetadata((Item) dso);
             }
-            
+
             if (parent != null && parent.getType() == Constants.COLLECTION) {
-                PackageUtils.addRelationshipMetadata(context, (Collection) parent, (Item) dso);    
-            }   
+                PackageUtils.addRelationshipMetadata(context, (Collection) parent, (Item) dso);
+            }
         }
 
         // -- Step 5 --

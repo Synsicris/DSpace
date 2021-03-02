@@ -13,9 +13,12 @@ import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -40,13 +43,17 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private GroupService groupService;
     @Autowired
     private ConfigurationService configurationService;
+    @Autowired
+    private WorkspaceItemService workspaceItemService;
+    @Autowired
+    private AuthorizeService authorizeService;
 
     @Override
     public void processItem(Context context, EPerson currentUser, Item item) {
         try {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
                 String shared = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
-                Community projectCommunity = item.getCollections().get(0).getCommunities().get(0);
+                Community projectCommunity = getProjectCommunity(context, item);
                 switch (shared) {
                     case PROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
@@ -74,6 +81,14 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
+    private Community getProjectCommunity(Context context, Item item) throws SQLException {
+        WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
+        if (Objects.nonNull(workspaceItem)) {
+            return workspaceItem.getCollection().getCommunities().get(0);
+        }
+        return item.getCollections().get(0).getCommunities().get(0);
+    }
+
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
         List<Community> subCommunities = projectCommunity.getSubcommunities();
@@ -91,9 +106,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                                                  .append(community.getID().toString())
                                                  .append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
-        boolean isAdmin = groupService.isMember(context, currentUser, community.getAdministrators());
+        boolean isAdmin = authorizeService.isAdmin(context);
+        boolean isCommunityAdmin = authorizeService.isAdmin(context, community);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
-        if (isAdmin || isGroupMember) {
+        if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
                     memberGrouoOfProjectCommunity.getID().toString(), 400, 0);
             return true;

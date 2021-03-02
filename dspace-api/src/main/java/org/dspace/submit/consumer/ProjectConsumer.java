@@ -11,7 +11,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.dspace.content.Item;
-import org.dspace.content.WorkspaceItem;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
@@ -52,14 +51,6 @@ public class ProjectConsumer implements Consumer {
             }
             this.projectConsumerService.processItem(context, currentUser, item);
             itemsAlreadyProcessed.add(item);
-        }
-        if ((dso instanceof WorkspaceItem)) {
-            WorkspaceItem workspaceItem = (WorkspaceItem) dso;
-            if (itemsAlreadyProcessed.contains(workspaceItem.getItem())) {
-                return;
-            }
-            this.projectConsumerService.processItem(context, currentUser, workspaceItem.getItem());
-            itemsAlreadyProcessed.add(workspaceItem.getItem());
         }
     }
 

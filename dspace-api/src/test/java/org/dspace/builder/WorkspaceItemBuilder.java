@@ -237,6 +237,14 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return addMetadataValue("dc", "identifier", "patentno", patentNo);
     }
 
+    public WorkspaceItemBuilder withSharedProject(String shared) {
+        return addMetadataValue("cris", "workspace", "shared", shared);
+    }
+
+    public WorkspaceItemBuilder withPolicyGroup(String value) {
+        return addMetadataValue("cris", "policy", "group", value);
+    }
+
     public WorkspaceItemBuilder grantLicense() {
         Item item = workspaceItem.getItem();
         String license;

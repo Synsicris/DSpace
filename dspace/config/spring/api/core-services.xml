@@ -160,6 +160,7 @@
     <bean class="org.dspace.content.security.CrisSecurityServiceImpl" />
 
     <bean class="org.dspace.app.metrics.service.CrisMetricsServiceImpl" />
+    <bean class="org.dspace.submit.consumer.service.ProjectConsumerServiceImpl" />
 
 </beans>
 

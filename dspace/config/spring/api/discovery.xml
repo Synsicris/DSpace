@@ -1987,7 +1987,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:stateofart OR entityType_keyword:conditions OR entityType_keyword:gender OR entityType_keyword:ethics OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:conditions OR entityType_keyword:gender OR entityType_keyword:ethics OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2044,7 +2044,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:proj_objectives OR entityType_keyword:research_results OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objectives OR entityType_keyword:research_results OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2101,7 +2101,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2158,7 +2158,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:proj_objectives OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objectives OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2215,7 +2215,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:process_events OR entityType_keyword:Event OR entityType_keyword:Publication OR entityType_keyword:physical_objects OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:process_events OR entityType_keyword:Event OR entityType_keyword:Publication OR entityType_keyword:physical_objects OR entityType_keyword:workpackages OR entityType_keyword:tasks OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2272,7 +2272,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:innovationpotentials OR entityType_keyword:innovationideas OR entityType_keyword:innovationideas OR entityType_keyword:Patent OR entityType_keyword:unexpected_results OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:spinoffs OR entityType_keyword:applications OR entityType_keyword:awards OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotentials OR entityType_keyword:innovationideas OR entityType_keyword:innovationideas OR entityType_keyword:Patent OR entityType_keyword:unexpected_results OR entityType_keyword:unexpected_results OR entityType_keyword:steps OR entityType_keyword:spinoffs OR entityType_keyword:applications OR entityType_keyword:awards OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2329,7 +2329,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:pot_societalimpact OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2386,7 +2386,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:contribution_fundingprogramme OR entityType_keyword:others)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme OR entityType_keyword:others)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2444,7 +2444,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:workpackages)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackages)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -2501,7 +2501,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem) AND (entityType_keyword:tasks OR entityType_keyword:milestones OR entityType_keyword:events OR entityType_keyword:process_events OR entityType_keyword:Patent OR entityType_keyword:Publication OR entityType_keyword:physical_objects)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:tasks OR entityType_keyword:milestones OR entityType_keyword:events OR entityType_keyword:process_events OR entityType_keyword:Patent OR entityType_keyword:Publication OR entityType_keyword:physical_objects)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

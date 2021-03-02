@@ -771,14 +771,13 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
     private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem)
             throws SQLException {
+        Community rootCommunity = this.find(context, rootCommunityUUID);
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, this.find(context, rootCommunityUUID), "dc", "relation", "project", null,
-                             relationPlaceholder.toString(), null, 400, 0);
+        this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
+                             relationPlaceholder.toString(), newItem.getID().toString(), 400, 0);
         context.reloadEntity(newItem);
-        StringBuilder titlePlaceholder = new StringBuilder();
-        titlePlaceholder.append("project_").append(rootCommunityUUID.toString()).append("_name");
-        itemService.addMetadata(context, newItem, "dc", "title", null, null, titlePlaceholder.toString());
+        itemService.addMetadata(context, newItem, "dc", "title", null, null, rootCommunity.getName());
     }
 
     private void cloneTemplateItem(Context context, Collection col, Collection collection)

@@ -46,6 +46,7 @@ import org.dspace.authorize.factory.AuthorizeServiceFactory;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataSchemaEnum;
@@ -643,6 +644,86 @@ public class StructBuilder {
     }
 
     /**
+     * Return the String value of a Node's attribute
+     *
+     * @param node          the node from which we want to extract the attribute value
+     * @param attributeName the attribute name to extract
+     * @return the string value of the node's attribute
+     */
+    private static String getAttributeValue(Node node, String attributeName) {
+        String value = null;
+        Node attributeNode = node.getAttributes().getNamedItem(attributeName);
+
+        if (attributeNode != null) {
+            value = attributeNode.getNodeValue();
+        }
+
+        return value;
+    }
+
+    /**
+     * Take a policy name and type and create a policy to the target DSpaceObject
+     *
+     * @param context         the context of the request
+     * @param policyGroupName the policy group name to which associate the policy
+     * @param policyType      the policy type to create
+     * @param targetDSO       the DSpaceObject to which associate the policy
+     * @param deleteAnonymous representing if to delete anonymous read policy from given targetDSO
+     */
+    private static void handleResourcePolicyGroup(Context context, String policyGroupName, String policyType,
+            DSpaceObject targetDSO, boolean deleteAnonymous) throws SQLException, AuthorizeException {
+        if (policyGroupName != null && policyType != null) {
+            Group policyGroup = groupService.findByName(context, policyGroupName);
+            if (policyGroup != null) {
+                if (deleteAnonymous) {
+                    // remove read permission from ANONYMOUS group
+                    authorizeService.removeGroupPolicies(context, targetDSO,
+                            groupService.findByName(context, Group.ANONYMOUS));
+                }
+                
+                Integer rpType = getResourcePolicyTypeByName(policyType);
+                if (rpType != null) {
+                    // add given permission to group
+                    authorizeService.addPolicy(context, targetDSO, rpType, policyGroup); 
+                }
+            }
+        }
+    }
+
+    /**
+     * Return the int value for the resource policy by string value
+     *
+     * @param policyType the string value to convert
+     * @return the int value for the resource policy
+     */
+    private static Integer getResourcePolicyTypeByName(String policyType) {
+        Integer rpType = null;
+
+        switch (policyType) {
+            case "admin": 
+                rpType = Constants.ADMIN;
+                break;
+            case "read": 
+                rpType = Constants.READ;
+                break;
+            case "remove": 
+                rpType = Constants.REMOVE;
+                break;
+            case "item_read": 
+                rpType = Constants.DEFAULT_ITEM_READ;
+                break;
+            case "bitstream_read": 
+                rpType = Constants.DEFAULT_BITSTREAM_READ;
+                break;
+            case "add": 
+                rpType = Constants.ADD;
+                break;
+        }
+        
+        return rpType;
+    }
+
+    /**
      * Take a node list of communities and build the structure from them, delegating
      * to the relevant methods in this class for sub-communities and collections
      *
@@ -674,31 +755,22 @@ public class StructBuilder {
             // now update the metadata
             Node tn = communities.item(i);
             String policyGroupName = null;
+            String policyType = null;
+            boolean toDelete = true;
             for (Map.Entry<String, MetadataFieldName> entry : communityMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
-                if (nl.getLength() == 1) {
-                    if (entry.getKey().equals("policy-group")) {
-                        policyGroupName = getStringValue(nl.item(0));
-                    } else {
-                        communityService.setMetadataSingleValue(context, community,
-                            entry.getValue(), null, getStringValue(nl.item(0)));
+                if (nl.getLength() > 0) {
+                    for (int j = 0; j < nl.getLength(); j++) {
+                        if (entry.getKey().equals("policy-group")) {
+                            policyType = getAttributeValue(nl.item(j), "rpType");
+                            policyGroupName = getStringValue(nl.item(j));
+                            handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
+                            toDelete = false;
+                        } else {
+                            communityService.setMetadataSingleValue(context, community,
+                                entry.getValue(), null, getStringValue(nl.item(j)));
+                        }
                     }
-                }
-            }
-
-            if (policyGroupName != null) {
-                Group policyGroup = groupService.findByName(context, policyGroupName);
-                if (policyGroup != null) {
-                    // remove read permission from ANONYMOUS group
-                    authorizeService.removeGroupPolicies(context, community,
-                            groupService.findByName(context, Group.ANONYMOUS));
-
-                    // add read permission to group
-                    authorizeService.addPolicy(context, community, Constants.READ, policyGroup);
-                    // add add permission to group
-                    authorizeService.addPolicy(context, community, Constants.ADD, policyGroup);
-                    // add remove permission to group
-                    authorizeService.addPolicy(context, community, Constants.REMOVE, policyGroup);
                 }
             }
 
@@ -810,35 +882,22 @@ public class StructBuilder {
             // import the rest of the metadata
             Node tn = collections.item(i);
             String policyGroupName = null;
+            String policyType = null;
+            boolean toDelete = true;
             for (Map.Entry<String, MetadataFieldName> entry : collectionMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
-                if (nl.getLength() == 1) {
-                    if (entry.getKey().equals("policy-group")) {
-                        policyGroupName = getStringValue(nl.item(0));
-                    } else {
-                        collectionService.setMetadataSingleValue(context, collection,
-                            entry.getValue(), null, getStringValue(nl.item(0)));
+                if (nl.getLength() > 0) {
+                    for (int j = 0; j < nl.getLength(); j++) {
+                        if (entry.getKey().equals("policy-group")) {
+                            policyType = getAttributeValue(nl.item(j), "rpType");
+                            policyGroupName = getStringValue(nl.item(j));
+                            handleResourcePolicyGroup(context, policyGroupName, policyType, collection, toDelete);
+                            toDelete = false;
+                        } else {
+                            collectionService.setMetadataSingleValue(context, collection,
+                                entry.getValue(), null, getStringValue(nl.item(j)));
+                        }
                     }
-                }
-            }
-
-            if (policyGroupName != null) {
-                Group policyGroup = groupService.findByName(context, policyGroupName);
-                if (policyGroup != null) {
-                    // remove read permission from ANONYMOUS group
-                    authorizeService.removeGroupPolicies(context, collection,
-                            groupService.findByName(context, Group.ANONYMOUS));
-
-                    // add "READ" permission to group
-                    authorizeService.addPolicy(context, collection, Constants.READ, policyGroup);
-                    // add add permission to group
-                    authorizeService.addPolicy(context, collection, Constants.ADD, policyGroup);
-                    // add remove permission to group
-                    authorizeService.addPolicy(context, collection, Constants.REMOVE, policyGroup);
-                    // add "DEFAULT_BITSTREAM_READ" permission to group
-                    authorizeService.addPolicy(context, collection, Constants.DEFAULT_BITSTREAM_READ, policyGroup);
-                    // add "DEFAULT_ITEM_READ" permission to group
-                    authorizeService.addPolicy(context, collection, Constants.DEFAULT_ITEM_READ, policyGroup);
                 }
             }
 

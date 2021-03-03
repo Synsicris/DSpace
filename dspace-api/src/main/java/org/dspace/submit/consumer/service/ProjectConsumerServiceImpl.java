@@ -54,6 +54,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
                 String shared = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
                 Community projectCommunity = getProjectCommunity(context, item);
+                if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
+                    return;
+                }
                 switch (shared) {
                     case PROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
@@ -74,6 +77,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                         }
                         break;
                     default:
+                        return;
                 }
             }
         } catch (SQLException e) {
@@ -85,6 +89,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
         if (Objects.nonNull(workspaceItem)) {
             return workspaceItem.getCollection().getCommunities().get(0);
+        }
+        if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+            // the item is a template item
+            return null;
         }
         return item.getCollections().get(0).getCommunities().get(0);
     }

@@ -7,6 +7,10 @@
  */
 package org.dspace.app.rest;
 import static com.jayway.jsonpath.JsonPath.read;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
+import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadataDoesNotExist;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -379,6 +383,57 @@ public class ProjectConsumerIT extends AbstractControllerIntegrationTest {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
         }
 
+    }
+
+    @Test
+    public void createWorkspaceItemWithGroupPolicyAndWithoutSharedMetadataTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("Mykhaylo", "Boychuk")
+                .withEmail("mykhaylo.boychuk@email.com")
+                .withPassword(password).build();
+
+        projectsCommunity = CommunityBuilder.createCommunity(context)
+                                            .withName("Projects Community").build();
+
+        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
+                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
+                     .addMember(ePerson1).build();
+
+        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                                                  .withName("Publication Collection")
+                                                  .withSubmitterGroup(projectsCommunityGroup)
+                                                  .withTemplateItem().build();
+
+        Item templateItem = publicationsCollection.getTemplateItem();
+        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
+                                "GROUP_POLICY_PLACEHOLDER");
+
+        context.restoreAuthSystemState();
+
+        AtomicReference<Integer> idRef1 = new AtomicReference<>();
+        try {
+
+        String authToken = getAuthToken(ePerson1.getEmail(), password);
+
+        getClient(authToken).perform(post("/api/submission/workspaceitems")
+                            .param("owningCollection", publicationsCollection.getID().toString())
+                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
+                            .andExpect(status().isCreated())
+                            .andExpect(jsonPath("$._embedded.collection.id",
+                                             is(publicationsCollection.getID().toString())))
+                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
+
+         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
+                  .andExpect(status().isOk())
+                  .andExpect(jsonPath("$", allOf(hasJsonPath("$._embedded.item.metadata", allOf(
+                                   matchMetadataDoesNotExist("cris.workspace.shared"),
+                                               matchMetadata("cris.policy.group", "GROUP_POLICY_PLACEHOLDER")
+                                               )))));
+        } finally {
+            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
+        }
     }
 
 }

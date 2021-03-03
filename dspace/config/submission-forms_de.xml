@@ -125,6 +125,18 @@
     <form name="impact_pathway_step_type_1_task_form">
       <row>
         <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Bitte wählen Sie einen Bereich aus:</label>
@@ -158,6 +170,18 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_2_task_form">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -195,6 +219,18 @@
     <form name="impact_pathway_step_type_2_task_objective_form">
       <row>
         <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Bitte wählen Sie einen Bereich aus:</label>
@@ -228,6 +264,18 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_3_task_form">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -265,6 +313,18 @@
     <form name="impact_pathway_step_type_3_task_objective_form">
       <row>
         <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Bitte wählen Sie einen Bereich aus:</label>
@@ -300,6 +360,18 @@
     <form name="impact_pathway_step_type_4_task_form">
       <row>
         <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Bitte wählen Sie einen Bereich aus:</label>
@@ -333,6 +405,18 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_5_task_form">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -379,6 +463,18 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_6_task_form">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>workspace</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Please select an option</label>
+          <input-type value-pairs-name="item_shared">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -3961,7 +4057,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>related-innovationpotentials</dc-qualifier>
+          <dc-qualifier>0</dc-qualifier>
           <label>Verbindung zur dokumentierten Lösung / Veränderung / Innovation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -8722,6 +8818,16 @@ Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt einge
       <pair>
         <displayed-value>Ja - erfolgt</displayed-value>
         <stored-value>yes done</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
+      <pair>
+        <displayed-value>Editable by all project members</displayed-value>
+        <stored-value>project</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Editable by only sub-project members</displayed-value>
+        <stored-value>subproject</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

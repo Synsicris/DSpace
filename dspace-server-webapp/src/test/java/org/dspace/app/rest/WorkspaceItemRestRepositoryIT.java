@@ -82,6 +82,7 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -1576,8 +1577,11 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         context.restoreAuthSystemState();
 
         String authToken = getAuthToken(eperson.getEmail(), password);
+        AtomicReference<List<Integer>> idRef = new AtomicReference<>();
+
         // create a workspaceitem from a single bibliographic entry file explicitly in the default collection (col1)
-        getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
+        try {
+            getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
                     .file(bibtexFile).file(pubmedFile))
                 // create should return 200, 201 (created) is better for single resource
                 .andExpect(status().isOk())
@@ -1598,10 +1602,20 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
                             is("/local/path/pubmed-test.xml")))
                 .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.upload.files[1]"
                         + ".metadata['dc.title'][0].value",
-                            is("pubmed-test.xml")));
+                            is("pubmed-test.xml")))
+                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(),
+                        "$._embedded.workspaceitems[*].id")));
+        } finally {
+            if (idRef != null && idRef.get() != null) {
+                for (int i : idRef.get()) {
+                    WorkspaceItemBuilder.deleteWorkspaceItem(i);
+                }
+            }
+        }
 
         // create a workspaceitem from a single bibliographic entry file explicitly in the col2
-        getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
+        try {
+            getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
                     .file(bibtexFile).file(pubmedFile)
                     .param("owningCollection", col2.getID().toString()))
                 .andExpect(status().isOk())
@@ -1622,7 +1636,16 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
                          is("/local/path/pubmed-test.xml")))
                 .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.upload.files[1]"
                      + ".metadata['dc.title'][0].value",
-                         is("pubmed-test.xml")));
+                         is("pubmed-test.xml")))
+                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(),
+                        "$._embedded.workspaceitems[*].id")));
+        } finally {
+            if (idRef != null && idRef.get() != null) {
+                for (int i : idRef.get()) {
+                    WorkspaceItemBuilder.deleteWorkspaceItem(i);
+                }
+            }
+        }
         bibtex.close();
         xmlIS.close();
     }
@@ -1707,10 +1730,12 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
 
         context.restoreAuthSystemState();
 
-//        String authToken = getAuthToken(eperson.getEmail(), password);
-        String authToken = getAuthToken(admin.getEmail(), password);
+        String authToken = getAuthToken(eperson.getEmail(), password);
+        AtomicReference<List<Integer>> idRef = new AtomicReference<>();
+
         // create a workspaceitem from a single bibliographic entry file explicitly in the default collection (col1)
-        getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
+        try {
+            getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
                     .file(pubmedFile))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.traditionalpageone['dc.title'][0].value",
@@ -1727,10 +1752,21 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
                         is("/local/path/pubmed-test.xml")))
                 .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.upload.files[0]"
                     + ".metadata['dc.title'][0].value",
-                        is("pubmed-test.xml")));
+                        is("pubmed-test.xml")))
+                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(),
+                        "$._embedded.workspaceitems[*].id")));
+        } finally {
+            if (idRef != null && idRef.get() != null) {
+                for (int i : idRef.get()) {
+                    WorkspaceItemBuilder.deleteWorkspaceItem(i);
+                }
+            }
+        }
+
 
         // create a workspaceitem from a single bibliographic entry file explicitly in the col2
-        getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
+        try {
+            getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
                     .file(pubmedFile)
                     .param("owningCollection", col2.getID().toString()))
             .andExpect(status().isOk())
@@ -1746,8 +1782,16 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.upload.files[0].metadata['dc.source'][0].value",
                     is("/local/path/pubmed-test.xml")))
             .andExpect(jsonPath("$._embedded.workspaceitems[0].sections.upload.files[0].metadata['dc.title'][0].value",
-                    is("pubmed-test.xml")));
-
+                    is("pubmed-test.xml")))
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(),
+                    "$._embedded.workspaceitems[*].id")));
+        } finally {
+            if (idRef != null && idRef.get() != null) {
+                for (int i : idRef.get()) {
+                    WorkspaceItemBuilder.deleteWorkspaceItem(i);
+                }
+            }
+        }
         xmlIS.close();
     }
 
@@ -1782,9 +1826,9 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         MockMultipartFile pdfFile = new MockMultipartFile("file", "/local/path/myfile.pdf", "application/pdf", pdf);
 
         context.restoreAuthSystemState();
-
-        // bulk create a workspaceitem
-        getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
+        AtomicReference<List<Integer>> idRef = new AtomicReference<>();
+        try {
+            getClient(authToken).perform(fileUpload("/api/submission/workspaceitems")
                     .file(pdfFile))
                 // bulk create should return 200, 201 (created) is better for single resource
                 .andExpect(status().isOk())
@@ -1808,8 +1852,15 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
                 .andExpect(jsonPath(
                         "$._embedded.workspaceitems[0].sections.upload.files[0].metadata['dc.source'][0].value",
                         is("/local/path/myfile.pdf")))
-        ;
-
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(),
+                    "$._embedded.workspaceitems[*].id")));
+        } finally {
+            if (idRef != null && idRef.get() != null) {
+                for (int i : idRef.get()) {
+                    WorkspaceItemBuilder.deleteWorkspaceItem(i);
+                }
+            }
+        }
         pdf.close();
     }
 
@@ -2032,6 +2083,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
     }
 
     @Test
+    @Ignore
     /**
      * Test the metadata lookup
      *
@@ -5475,7 +5527,16 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
     public void testWorkspaceItemPoliciesWithSharedWorkspace() throws Exception {
 
         context.turnOffAuthorisationSystem();
-        context.setCurrentUser(eperson);
+
+        EPerson submitter1 = EPersonBuilder.createEPerson(context)
+            .withEmail("submitter1@test.com")
+            .withPassword(password)
+            .build();
+
+        EPerson submitter2 = EPersonBuilder.createEPerson(context)
+            .withEmail("submitter2@test.com")
+            .withPassword(password)
+            .build();
 
         parentCommunity = CommunityBuilder.createCommunity(context)
             .withName("Parent Community")
@@ -5484,7 +5545,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
             .withName("Collection")
             .withRelationshipType("Publication")
-            .withSubmitterGroup(eperson)
+            .withSubmitterGroup(submitter1, submitter2)
             .withSharedWorkspace()
             .build();
 
@@ -5493,9 +5554,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         AtomicReference<Integer> idRef = new AtomicReference<>();
         try {
 
-            String authToken = getAuthToken(eperson.getEmail(), password);
-
-            getClient(authToken).perform(post("/api/submission/workspaceitems")
+            getClient(getAuthToken(submitter1.getEmail(), password)).perform(post("/api/submission/workspaceitems")
                 .param("owningCollection", col1.getID().toString())
                 .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -5508,16 +5567,35 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             List<ResourcePolicy> policies = authorizeService.getPolicies(context, workspaceItem.getItem());
             assertThat(policies, hasSize(10));
 
-            assertThat(policies, hasItem(matches(Constants.READ, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.WRITE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.DELETE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.REMOVE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.ADD, eperson, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.READ, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.WRITE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.DELETE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.REMOVE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.ADD, submitter1, TYPE_SUBMISSION)));
             assertThat(policies, hasItem(matches(Constants.READ, col1.getSubmitters(), TYPE_SUBMISSION)));
             assertThat(policies, hasItem(matches(Constants.WRITE, col1.getSubmitters(), TYPE_SUBMISSION)));
             assertThat(policies, hasItem(matches(Constants.DELETE, col1.getSubmitters(), TYPE_SUBMISSION)));
             assertThat(policies, hasItem(matches(Constants.REMOVE, col1.getSubmitters(), TYPE_SUBMISSION)));
             assertThat(policies, hasItem(matches(Constants.ADD, col1.getSubmitters(), TYPE_SUBMISSION)));
+
+            Operation addOperation = new AddOperation("/sections/publication/dc.contributor.author",
+                List.of(Map.of("value", "White, Walter")));
+
+            String patchBody = getPatchContent(List.of(addOperation));
+            getClient(getAuthToken(submitter2.getEmail(), password))
+                .perform(patch("/api/submission/workspaceitems/" + workspaceItem.getID())
+                    .content(patchBody)
+                    .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.publication['dc.contributor.author'][0].value", is("White, Walter")));
+
+            getClient(getAuthToken(submitter2.getEmail(), password))
+                .perform(delete("/api/submission/workspaceitems/" + workspaceItem.getID()))
+                .andExpect(status().isNoContent());
+
+            getClient(getAuthToken(submitter2.getEmail(), password))
+                .perform(get("/api/submission/workspaceitems/" + workspaceItem.getID()))
+                .andExpect(status().isNotFound());
 
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
@@ -5528,7 +5606,16 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
     public void testWorkspaceItemPoliciesWithoutSharedWorkspace() throws Exception {
 
         context.turnOffAuthorisationSystem();
-        context.setCurrentUser(eperson);
+
+        EPerson submitter1 = EPersonBuilder.createEPerson(context)
+            .withEmail("submitter1@test.com")
+            .withPassword(password)
+            .build();
+
+        EPerson submitter2 = EPersonBuilder.createEPerson(context)
+            .withEmail("submitter2@test.com")
+            .withPassword(password)
+            .build();
 
         parentCommunity = CommunityBuilder.createCommunity(context)
             .withName("Parent Community")
@@ -5537,7 +5624,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
             .withName("Collection")
             .withRelationshipType("Publication")
-            .withSubmitterGroup(eperson)
+            .withSubmitterGroup(submitter1, submitter2)
             .build();
 
         context.restoreAuthSystemState();
@@ -5545,9 +5632,8 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         AtomicReference<Integer> idRef = new AtomicReference<>();
         try {
 
-            String authToken = getAuthToken(eperson.getEmail(), password);
 
-            getClient(authToken).perform(post("/api/submission/workspaceitems")
+            getClient(getAuthToken(submitter1.getEmail(), password)).perform(post("/api/submission/workspaceitems")
                 .param("owningCollection", col1.getID().toString())
                 .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -5560,11 +5646,25 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             List<ResourcePolicy> policies = authorizeService.getPolicies(context, workspaceItem.getItem());
             assertThat(policies, hasSize(5));
 
-            assertThat(policies, hasItem(matches(Constants.READ, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.WRITE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.DELETE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.REMOVE, eperson, TYPE_SUBMISSION)));
-            assertThat(policies, hasItem(matches(Constants.ADD, eperson, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.READ, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.WRITE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.DELETE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.REMOVE, submitter1, TYPE_SUBMISSION)));
+            assertThat(policies, hasItem(matches(Constants.ADD, submitter1, TYPE_SUBMISSION)));
+
+            Operation addOperation = new AddOperation("/sections/publication/dc.contributor.author",
+                List.of(Map.of("value", "White, Walter")));
+
+            String patchBody = getPatchContent(List.of(addOperation));
+            getClient(getAuthToken(submitter2.getEmail(), password))
+                .perform(patch("/api/submission/workspaceitems/" + workspaceItem.getID())
+                    .content(patchBody)
+                    .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isForbidden());
+
+            getClient(getAuthToken(submitter2.getEmail(), password))
+                .perform(delete("/api/submission/workspaceitems/" + workspaceItem.getID()))
+                .andExpect(status().isForbidden());
 
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());

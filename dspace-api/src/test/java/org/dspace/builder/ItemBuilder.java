@@ -363,8 +363,16 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, "crispj", "investigator", null, investigator);
     }
 
+    public ItemBuilder withProjectInvestigator(String investigator, String authority) {
+        return addMetadataValue(item, "crispj", "investigator", null, null, investigator, authority, 600);
+    }
+
     public ItemBuilder withProjectCoinvestigators(String coinvestigators) {
         return addMetadataValue(item, "crispj", "coinvestigators", null, coinvestigators);
+    }
+
+    public ItemBuilder withProjectCoinvestigators(String coinvestigators, String authority) {
+        return addMetadataValue(item, "crispj", "coinvestigators", null, null, coinvestigators, authority, 600);
     }
 
     public ItemBuilder withProjectCoordinator(String coordinator) {
@@ -518,6 +526,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withCrisSourceId(String sourceId) {
         return addMetadataValue(item, "cris", "sourceId", null, sourceId);
+    }
+
+    public ItemBuilder withSharedProject(String shared) {
+        return addMetadataValue(item, "cris", "workspace", "shared", shared);
+    }
+
+    public ItemBuilder withPolicyGroup(String value) {
+        return addMetadataValue(item, "cris", "policy", "group", value);
     }
 
     public ItemBuilder withHandle(String handle) {

@@ -10,6 +10,7 @@ package org.dspace.app.rest.matcher;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasNoJsonPath;
 import static org.dspace.app.rest.matcher.HalMatcher.matchEmbeds;
+import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
 import static org.dspace.app.rest.test.AbstractControllerIntegrationTest.REST_SERVER_URL;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -139,5 +140,13 @@ public class WorkspaceItemMatcher {
                 "submitter",
                 "submissionDefinition"
         );
+    }
+
+    public static Matcher<? super Object> matchPolicyGroupAndSharedMetadata(
+                                  String shared, String policyGroup) {
+        return allOf(hasJsonPath("$._embedded.item.metadata",
+               allOf(
+                     matchMetadata("cris.workspace.shared", shared),
+                     matchMetadata("cris.policy.group", policyGroup))));
     }
 }

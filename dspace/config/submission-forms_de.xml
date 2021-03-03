@@ -4610,7 +4610,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>0</dc-qualifier>
+          <dc-qualifier>related-publications</dc-qualifier>
           <label>Verknüpfung mit einer Veröffentlichung</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>

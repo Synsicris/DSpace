@@ -4613,7 +4613,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>0</dc-qualifier>
+          <dc-qualifier>related-publications</dc-qualifier>
           <label>Link to a publication</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>

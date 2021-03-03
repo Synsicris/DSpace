@@ -1,0 +1,18 @@
+{
+    "status": "ready",
+    "totalPages": 1,
+    "requestId": "6c480a11-f001-492d-97a4-91a558268e9d",
+    "reportURI": "/Reports/Collection",
+    "exports": [
+        {
+            "status": "ready",
+            "outputResource": {
+                "contentType": "application/pdf",
+                "fileName": "Collection.pdf",
+                "outputFinal": true,
+                "outputTimestamp": 0
+            },
+            "id": "89d2c54b-8104-41bc-af7a-74af9333962b"
+        }
+    ]
+}

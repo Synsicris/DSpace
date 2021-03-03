@@ -54,7 +54,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
                 String shared = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
                 Community projectCommunity = getProjectCommunity(context, item);
-                if (Objects.isNull(projectCommunity)) {
+                if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }
                 switch (shared) {
@@ -77,6 +77,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                         }
                         break;
                     default:
+                        return;
                 }
             }
         } catch (SQLException e) {

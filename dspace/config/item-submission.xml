@@ -921,8 +921,7 @@
       <step id="collection" />
       <step id="others" />
     </submission-process>
-    <submission-process name="others-test">
-      <step id="collection" />
+    <submission-process name="others-edit">
       <step id="others" />
     </submission-process>
   </submission-definitions>

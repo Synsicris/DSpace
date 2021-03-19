@@ -9,14 +9,19 @@ package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
+import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
@@ -47,6 +52,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private WorkspaceItemService workspaceItemService;
     @Autowired
     private AuthorizeService authorizeService;
+    @Autowired
+    private CommunityService communityService;
 
     @Override
     public void processItem(Context context, EPerson currentUser, Item item) {
@@ -119,9 +126,69 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
-                    memberGrouoOfProjectCommunity.getID().toString(), 400, 0);
+                    memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0);
             return true;
         }
         return false;
     }
+
+    @Override
+    public void checkGrants(Context context, EPerson currentUser, Item item) {
+        try {
+            Community projectCommunity = getProjectCommunity(context, item);
+            if (Objects.isNull(projectCommunity)) {
+                return;
+            }
+            if (Objects.nonNull(isMemberOfSubProject(context, currentUser, projectCommunity))) {
+                List<MetadataValue> values = communityService.getMetadataByMetadataString(projectCommunity,
+                        "dc.relation.project");
+                if (CollectionUtils.isNotEmpty(values)) {
+                    String defaultValue = getDefaulSharedValue(context, values);
+                    if (StringUtils.isNoneEmpty(defaultValue)) {
+                        itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
+                                                       null, defaultValue, null, Choices.CF_UNSET, 0);
+                    }
+                }
+            } else {
+                itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
+                                            null, PROJECT, null, Choices.CF_UNSET, 0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+        }
+    }
+
+    private String getDefaulSharedValue(Context context, List<MetadataValue> values) throws SQLException {
+        UUID uuidProjectItem = UUID.fromString(values.get(0).getAuthority());
+        if (Objects.nonNull(uuidProjectItem)) {
+            Item projectItem = itemService.find(context, uuidProjectItem);
+            if (Objects.isNull(projectItem)) {
+                return null;
+            }
+            return itemService.getMetadataFirstValue(projectItem, "cris", "workspace", "shared", Item.ANY);
+        }
+        return null;
+    }
+
+    public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException {
+        Community subProject = getSubProjectCommunity(projectCommunity);
+        if (Objects.isNull(subProject)) {
+            return null;
+        }
+        List<Community> subCommunities = subProject.getSubcommunities();
+        for (Community community : subCommunities) {
+            StringBuilder memberGroupName = new StringBuilder("project_")
+                                                      .append(community.getID().toString())
+                                                      .append("_members_group");
+            Group group = groupService.findByName(context, memberGroupName.toString());
+            boolean isGroupMember = groupService.isMember(context, ePerson, group);
+            if (isGroupMember) {
+                return community;
+            }
+        }
+        return null;
+    }
+
 }

@@ -30,6 +30,7 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.authorize.service.ResourcePolicyService;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.dao.CommunityDAO;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CollectionService;
@@ -778,7 +779,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
         this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
-                             relationPlaceholder.toString(), newItem.getID().toString(), 400, 0);
+                             relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.addMetadata(context, newItem, "dc", "title", null, null, newName);
         if (StringUtils.isNoneBlank(grants)) {

@@ -6,7 +6,6 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
-
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
@@ -18,4 +17,7 @@ import org.dspace.eperson.EPerson;
 public interface ProjectConsumerService {
 
     public void processItem(Context context, EPerson currentUser, Item item);
+
+    public void checkGrants(Context context, EPerson currentUser, Item item);
+
 }

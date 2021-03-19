@@ -349,6 +349,12 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         HttpServletRequest req = getRequestService().getCurrentRequest().getHttpServletRequest();
         String parentUuid = req.getParameter("parent");
         String name = req.getParameter("name");
+        String grants = req.getParameter("grants");
+
+        if (StringUtils.isNoneEmpty(grants) &&
+            (!StringUtils.equals(grants, "project") & !StringUtils.equals(grants, "subproject"))) {
+            throw new UnprocessableEntityException("");
+        }
 
         if (StringUtils.isBlank(name)) {
             throw new UnprocessableEntityException("The community name must be provided");
@@ -367,7 +373,7 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         }
 
         context.turnOffAuthorisationSystem();
-        Community clone = communityService.cloneCommunity(context, community, parent, name);
+        Community clone = communityService.cloneCommunity(context, community, parent, name, grants);
         context.restoreAuthSystemState();
         return converter.toRest(clone, utils.obtainProjection());
     }

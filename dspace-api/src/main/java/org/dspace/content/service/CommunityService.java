@@ -278,6 +278,6 @@ public interface CommunityService extends DSpaceObjectService<Community>, DSpace
      * @throws SQLException       if database error
      * @throws AuthorizeException if authorization error
      */
-    public Community cloneCommunity(Context context, Community template, Community parent, String name)
+    public Community cloneCommunity(Context context, Community template, Community parent, String name, String grants)
         throws SQLException, AuthorizeException;
 }

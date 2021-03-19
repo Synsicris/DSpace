@@ -2145,6 +2145,166 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         }
     }
 
+    @Test
+    public void cloneCommunityWithGrantsValueUnprocessableEntityTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group adminGroup = GroupBuilder.createGroup(context).build();
+        Group writeGroup = GroupBuilder.createGroup(context).build();
+        Group readGroup = GroupBuilder.createGroup(context).build();
+
+        Group collectionGroupA = GroupBuilder.createGroup(context)
+                .withName("Group A")
+                .build();
+
+        Group collectionGroupB = GroupBuilder.createGroup(context)
+                .withName("Group B")
+                .build();
+
+        parentCommunity = createCommunity(context)
+            .withName("Parent Community")
+            .withAdminGroup(adminGroup)
+            .build();
+
+        groupService.setName(adminGroup, "project_" + parentCommunity.getID().toString() + "_admin_group");
+        groupService.setName(writeGroup, "project_" + parentCommunity.getID().toString() + "_write_group");
+        groupService.setName(readGroup, "project_" + parentCommunity.getID().toString() + "_read_group");
+
+        List<String> groups = new ArrayList<String>();
+        groups.add(adminGroup.getName());
+        groups.add(writeGroup.getName());
+        groups.add(readGroup.getName());
+
+        configurationService.setProperty("project.template.groups-name", groups);
+
+        Community child1 = createSubCommunity(context, parentCommunity)
+            .withName("Sub Community 1")
+            .build();
+
+        Community child2 = createSubCommunity(context, parentCommunity)
+            .withName("Sub Community 2")
+            .build();
+
+        createCollection(context, parentCommunity)
+               .withName("Collection of parent Community")
+               .withSubmitterGroup(readGroup)
+               .withAdminGroup(adminGroup)
+               .withWorkflowGroup(1, collectionGroupA)
+               .withWorkflowGroup(2, collectionGroupB)
+               .build();
+
+        createCollection(context, child1)
+               .withName("Child 1 Collection 1").build();
+
+        createCollection(context, child2)
+               .withName("Child 2 Collection 1")
+               .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        getClient(tokenAdmin).perform(post("/api/core/communities")
+                             .param("projection", "full")
+                             .param("name", "My new Community")
+                             .param("grants", "WrongValue")
+                     .contentType(MediaType.parseMediaType(org.springframework.data.rest.webmvc.RestMediaTypes
+                     .TEXT_URI_LIST_VALUE))
+                     .content("https://localhost:8080/server//api/core/communities/" + parentCommunity.getID()))
+                     .andExpect(status()
+                     .isUnprocessableEntity());
+    }
+
+
+    @Test
+    public void cloneCommunityWithGrantsValueTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Community cloneTarget = CommunityBuilder.createCommunity(context)
+                                                .withName("Community to hold cloned communities")
+                                                .build();
+
+        Community parentCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Parent Community")
+                                                    .build();
+
+        Community child1 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 1").build();
+
+        Community child2 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 2").build();
+
+        Collection col = CollectionBuilder.createCollection(context, child1)
+                                          .withName("Projects").build();
+
+        Item publicItem1 = ItemBuilder.createItem(context, col)
+                                      .withTitle("project_" + parentCommunity.getID().toString() + "_name")
+                                      .build();
+
+        StringBuilder placeholder = new StringBuilder();
+        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
+
+        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project", null,
+                                     placeholder.toString());
+
+        context.restoreAuthSystemState();
+
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        try {
+            getClient(tokenAdmin).perform(post("/api/core/communities")
+                                 .param("projection", "full")
+                                 .param("name", "My new Community")
+                                 .param("grants", "project")
+                                 .param("parent", cloneTarget.getID().toString())
+                                 .contentType(MediaType.parseMediaType(
+                                  org.springframework.data.rest.webmvc.RestMediaTypes.TEXT_URI_LIST_VALUE))
+                                 .content("https://localhost:8080/server//api/core/communities/"
+                                          + parentCommunity.getID()))
+                     .andExpect(status().isCreated()).andDo(result -> idRef
+                                        .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
+                    .andExpect(jsonPath("$",Matchers.allOf(hasJsonPath("$.name", is("My new Community")),
+                            hasJsonPath("$.id", is(idRef.get().toString())),
+                            hasJsonPath("$.id", not(parentCommunity.getID().toString())))));
+
+            cloneTarget = context.reloadEntity(cloneTarget);
+            Community subCommunityOfCloneTarget = cloneTarget.getSubcommunities().get(0);
+            assertEquals(subCommunityOfCloneTarget.getID().toString(), idRef.toString());
+            assertEquals("My new Community", subCommunityOfCloneTarget.getName());
+            assertNotEquals(parentCommunity.getID(), idRef.toString());
+            List<Community> communities = subCommunityOfCloneTarget.getSubcommunities();
+            List<Collection> collections = subCommunityOfCloneTarget.getCollections();
+
+            assertEquals(2, communities.size());
+            assertEquals(0, collections.size());
+            Community firstChild = communities.get(0);
+            Community secondChild = communities.get(1);
+            boolean child1Found = StringUtils.equals(firstChild.getName(), child1.getName())
+                    || StringUtils.equals(secondChild.getName(), child1.getName());
+            boolean child2Found = StringUtils.equals(firstChild.getName(), child2.getName())
+                    || StringUtils.equals(secondChild.getName(), child2.getName());
+            assertTrue(child1Found);
+            assertTrue(child2Found);
+            assertNotEquals(firstChild.getID(), child1.getID());
+            assertNotEquals(firstChild.getID(), child2.getID());
+            assertEquals(1, firstChild.getCollections().size());
+            assertEquals(0, secondChild.getCollections().size());
+            Collection colProject = firstChild.getCollections().get(0);
+            // check that the new cloned collelction has a new item project
+            Iterator<Item> items = itemService.findAllByCollection(context, colProject);
+            assertTrue(items.hasNext());
+            Item item = items.next();
+            assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
+            assertTrue(containeMetadata(itemService, item, "cris", "workspace", "shared", "project"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
+                                        "project_" + item.getID().toString() + "_item"));
+            assertFalse(items.hasNext());
+
+        } finally {
+            CommunityBuilder.deleteCommunity(idRef.get());
+        }
+    }
+
     private <T extends DSpaceObject> boolean containeMetadata(DSpaceObjectService<T> service, T target, String schema,
             String element, String qualifier, String valueToCheck) {
         String value = service.getMetadataFirstValue(target, schema, element, qualifier, null);

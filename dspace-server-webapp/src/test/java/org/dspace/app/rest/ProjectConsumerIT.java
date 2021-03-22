@@ -255,6 +255,7 @@ public class ProjectConsumerIT extends AbstractControllerIntegrationTest {
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
                        .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .addMember(admin)
                        .build();
 
         collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
@@ -350,6 +351,7 @@ public class ProjectConsumerIT extends AbstractControllerIntegrationTest {
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
                        .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .addMember(ePerson1)
                        .build();
 
         collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectBComm)

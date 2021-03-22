@@ -38,10 +38,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * Test suite to verify the related entities creation via {@link ProjectEditGrantsConsumer}.
  *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-public class ProjectConsumerIT extends AbstractControllerIntegrationTest {
+public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private ItemService itemService;

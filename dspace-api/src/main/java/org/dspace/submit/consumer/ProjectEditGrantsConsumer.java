@@ -24,7 +24,7 @@ import org.dspace.utils.DSpace;
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-public class ProjectConsumer implements Consumer {
+public class ProjectEditGrantsConsumer implements Consumer {
 
     private ProjectConsumerService projectConsumerService;
 

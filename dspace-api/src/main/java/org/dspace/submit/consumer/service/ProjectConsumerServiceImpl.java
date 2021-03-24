@@ -139,11 +139,12 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(projectCommunity)) {
                 return;
             }
-            if (Objects.nonNull(isMemberOfSubProject(context, currentUser, projectCommunity))) {
-                List<MetadataValue> values = communityService.getMetadataByMetadataString(projectCommunity,
+            Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
+            if (Objects.nonNull(subprojectCommunity)) {
+                List<MetadataValue> values = communityService.getMetadataByMetadataString(subprojectCommunity,
                         "dc.relation.project");
                 if (CollectionUtils.isNotEmpty(values)) {
-                    String defaultValue = getDefaulSharedValue(context, values);
+                    String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
                         itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
                                                        null, defaultValue, null, Choices.CF_UNSET, 0);
@@ -159,7 +160,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
-    private String getDefaulSharedValue(Context context, List<MetadataValue> values) throws SQLException {
+    private String getDefaultSharedValueByItemProject(Context context, List<MetadataValue> values) throws SQLException {
         UUID uuidProjectItem = UUID.fromString(values.get(0).getAuthority());
         if (Objects.nonNull(uuidProjectItem)) {
             Item projectItem = itemService.find(context, uuidProjectItem);

@@ -50,21 +50,27 @@ public class ProjectCreateGrantsConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        EPerson currentUser = context.getCurrentUser();
-        if (Objects.isNull(currentUser)) {
-            return;
-        }
-        Object dso = event.getSubject(context);
-        if ((dso instanceof Item)) {
-            Item item = (Item) dso;
-            if (itemsAlreadyProcessed.contains(item)) {
+        if (event.getEventType() == Event.CREATE) {
+            EPerson currentUser = context.getCurrentUser();
+            if (Objects.isNull(currentUser)) {
                 return;
             }
-            if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "workspace", "shared",null))
-                && Objects.nonNull(workspaceItemService.findByItem(context, item))) {
-                projectConsumerService.checkGrants(context, currentUser, item);
+            Object dso = event.getSubject(context);
+            if ((dso instanceof Item)) {
+                Item item = (Item) dso;
+                EPerson submitter = item.getSubmitter();
+                if (Objects.isNull(submitter)) {
+                    return;
+                }
+                if (itemsAlreadyProcessed.contains(item)) {
+                    return;
+                }
+                if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "workspace", "shared",null))
+                    && Objects.nonNull(workspaceItemService.findByItem(context, item))) {
+                    projectConsumerService.checkGrants(context, submitter, item);
+                }
+                itemsAlreadyProcessed.add(item);
             }
-            itemsAlreadyProcessed.add(item);
         }
     }
 

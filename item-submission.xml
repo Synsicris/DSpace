@@ -6,458 +6,533 @@
     <name-map collection-handle="default" submission-name="impact_pathway" />
   </submission-map>
   <step-definitions>
-    <step id="collection" mandatory="true">
+    <step-definition id="collection" mandatory="true">
       <heading>submit.progressbar.collection</heading>
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>
       <type>collection</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
-    </step>
-    <step id="impact_pathway_form" mandatory="true">
+    </step-definition>
+    <step-definition id="impact_pathway_form" mandatory="true">
       <heading>submit.progressbar.describe.impact_pathway_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="impact_pathway_step_form" mandatory="true">
+    </step-definition>
+    <step-definition id="impact_pathway_step_form" mandatory="true">
       <heading>submit.progressbar.describe.impact_pathway_step_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="upload" mandatory="false">
+    </step-definition>
+    <step-definition id="upload" mandatory="false">
       <heading>submit.progressbar.upload</heading>
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
-    </step>
-    <step id="license" mandatory="false">
+    </step-definition>
+    <step-definition id="license" mandatory="false">
       <heading>submit.progressbar.license</heading>
       <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
       <type>license</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="link_to_plan" mandatory="true">
+    </step-definition>
+    <step-definition id="link_to_plan" mandatory="true">
       <heading>submit.progressbar.describe.link_to_plan</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="patents" mandatory="true">
+    </step-definition>
+    <step-definition id="patents" mandatory="true">
       <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="patents_result" mandatory="true">
+    </step-definition>
+    <step-definition id="patents_result" mandatory="true">
       <heading>submit.progressbar.describe.patents_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="orgunits" mandatory="true">
+    </step-definition>
+    <step-definition id="orgunits" mandatory="true">
       <heading>submit.progressbar.describe.orgunits</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="orgunits_research" mandatory="true">
+    </step-definition>
+    <step-definition id="orgunits_research" mandatory="true">
       <heading>submit.progressbar.describe.orgunits_research</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="orgunits_companies" mandatory="true">
+    </step-definition>
+    <step-definition id="orgunits_companies" mandatory="true">
       <heading>submit.progressbar.describe.orgunits_companies</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="projects" mandatory="true">
+    </step-definition>
+    <step-definition id="projects" mandatory="true">
       <heading>submit.progressbar.describe.projects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="projects_overview" mandatory="true">
+    </step-definition>
+    <step-definition id="projects_overview" mandatory="true">
       <heading>submit.progressbar.describe.projects_overview</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="subprojects" mandatory="true">
+    </step-definition>
+    <step-definition id="subprojects" mandatory="true">
       <heading>submit.progressbar.describe.subprojects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="relation_targetgroup" mandatory="true">
+    </step-definition>
+    <step-definition id="relation_targetgroup" mandatory="true">
       <heading>submit.progressbar.describe.relation_targetgroup</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="events" mandatory="true">
+    </step-definition>
+    <step-definition id="events" mandatory="true">
       <heading>submit.progressbar.describe.events</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="events_result" mandatory="true">
+    </step-definition>
+    <step-definition id="events_involved" mandatory="true">
+      <heading>submit.progressbar.describe.events_involved</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="events_result" mandatory="true">
       <heading>submit.progressbar.describe.events_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="participation_events" mandatory="true">
+    </step-definition>
+    <step-definition id="participation_events" mandatory="true">
       <heading>submit.progressbar.describe.participation_events</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="participation_events_frequency" mandatory="true">
+    </step-definition>
+    <step-definition id="participation_events_frequency" mandatory="true">
       <heading>submit.progressbar.describe.participation_events_frequency</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="participation_events_date" mandatory="true">
+    </step-definition>
+    <step-definition id="participation_events_date" mandatory="true">
       <heading>submit.progressbar.describe.participation_events_date</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_events" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_events" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_events</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_events_frequency" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_events_frequency" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_events_frequency</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_events_date" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_events_date" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_events_date</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="persons" mandatory="true">
+    </step-definition>
+    <step-definition id="process_events" mandatory="true">
+      <heading>submit.progressbar.describe.process_events</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="process_events_involved" mandatory="true">
+      <heading>submit.progressbar.describe.process_events_involved</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="process_events_frequency" mandatory="true">
+      <heading>submit.progressbar.describe.process_events_frequency</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="process_events_description" mandatory="true">
+      <heading>submit.progressbar.describe.process_events_description</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="process_events_date" mandatory="true">
+      <heading>submit.progressbar.describe.process_events_date</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="persons" mandatory="true">
       <heading>submit.progressbar.describe.persons</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="spinoffs" mandatory="true">
+    </step-definition>
+    <step-definition id="spinoffs" mandatory="true">
       <heading>submit.progressbar.describe.spinoffs</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="spinoffs_result" mandatory="true">
+    </step-definition>
+    <step-definition id="spinoffs_result" mandatory="true">
       <heading>submit.progressbar.describe.spinoffs_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="spinoffs_result_funding" mandatory="true">
+    </step-definition>
+    <step-definition id="spinoffs_result_funding" mandatory="true">
       <heading>submit.progressbar.describe.spinoffs_result_funding</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="spinoffs_result_performance_development" mandatory="true">
+    </step-definition>
+    <step-definition id="spinoffs_result_performance_development" mandatory="true">
       <heading>submit.progressbar.describe.spinoffs_result_performance_development</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="publications" mandatory="true">
+    </step-definition>
+    <step-definition id="publications" mandatory="true">
       <heading>submit.progressbar.describe.publications</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="publications_result" mandatory="true">
+    </step-definition>
+    <step-definition id="publications_result" mandatory="true">
       <heading>submit.progressbar.describe.publications_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="awards" mandatory="true">
+    </step-definition>
+    <step-definition id="awards" mandatory="true">
       <heading>submit.progressbar.describe.awards</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="steps" mandatory="true">
+    </step-definition>
+    <step-definition id="steps" mandatory="true">
       <heading>submit.progressbar.describe.steps</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationideas" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationideas" mandatory="true">
       <heading>submit.progressbar.describe.innovationideas</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="workpackages" mandatory="true">
+    </step-definition>
+    <step-definition id="workpackages" mandatory="true">
       <heading>submit.progressbar.describe.workpackages</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="workpackages_result" mandatory="true">
+    </step-definition>
+    <step-definition id="workpackages_result" mandatory="true">
       <heading>submit.progressbar.describe.workpackages_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="tasks" mandatory="true">
+    </step-definition>
+    <step-definition id="tasks" mandatory="true">
       <heading>submit.progressbar.describe.tasks</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="milestones" mandatory="true">
+    </step-definition>
+    <step-definition id="milestones" mandatory="true">
       <heading>submit.progressbar.describe.milestones</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="stateofart" mandatory="true">
+    </step-definition>
+    <step-definition id="stateofart" mandatory="true">
       <heading>submit.progressbar.describe.stateofart</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_econtech" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_econtech" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_econtech</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_econtech_userbenefit" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_econtech_userbenefit" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_econtech_userbenefit</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_econtech_applicability" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_econtech_applicability" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_econtech_applicability</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_econtech_trl" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_econtech_trl" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_econtech_trl</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="agrovoc_keywords" mandatory="true">
+    </step-definition>
+    <step-definition id="agrovoc_keywords" mandatory="true">
       <heading>submit.progressbar.describe.agrovoc_keywords</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="regional_scope" mandatory="true">
+    </step-definition>
+    <step-definition id="regional_scope" mandatory="true">
       <heading>submit.progressbar.describe.regional_scope</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="contribution_fundingprogramme" mandatory="true">
+    </step-definition>
+    <step-definition id="contribution_fundingprogramme" mandatory="true">
       <heading>submit.progressbar.describe.contribution_fundingprogramme</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="contribution_fundingprogramme_sdg" mandatory="true">
+    </step-definition>
+    <step-definition id="contribution_fundingprogramme_sdg" mandatory="true">
       <heading>submit.progressbar.describe.contribution_fundingprogramme_sdg</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners_orgunits" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners_orgunits" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_orgunits</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners_orgunits_research" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners_orgunits_research" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_orgunits_research</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners_orgunits_companies" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners_orgunits_companies" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_orgunits_companies</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners_contribution" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners_contribution" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_contribution</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="cooperation_partners_staff" mandatory="true">
+    </step-definition>
+    <step-definition id="cooperation_partners_staff" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_staff</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="physical_objects" mandatory="true">
+    </step-definition>
+    <step-definition id="physical_objects" mandatory="true">
       <heading>submit.progressbar.describe.physical_objects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="physical_objects_result" mandatory="true">
+    </step-definition>
+    <step-definition id="physical_objects_result" mandatory="true">
       <heading>submit.progressbar.describe.physical_objects_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_social" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_social" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_social</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_social_types" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_social_types" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_social_types</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_social_applicability" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_social_applicability" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_social_applicability</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_social_applicability_plan" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_social_applicability_plan" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_social_applicability_plan</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="innovationpotentials_social_srl" mandatory="true">
+    </step-definition>
+    <step-definition id="innovationpotentials_social_srl" mandatory="true">
       <heading>submit.progressbar.describe.innovationpotentials_social_srl</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_social" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_social" mandatory="true">
       <heading>submit.progressbar.describe.applications_social</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_social_types" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_social_types" mandatory="true">
       <heading>submit.progressbar.describe.applications_social_types</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_social_quant" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_social_quant" mandatory="true">
       <heading>submit.progressbar.describe.applications_social_quant</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_econtech" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_econtech" mandatory="true">
       <heading>submit.progressbar.describe.applications_econtech</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_econtech_types" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_econtech_types" mandatory="true">
       <heading>submit.progressbar.describe.applications_econtech_types</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="applications_econtech_quant" mandatory="true">
+    </step-definition>
+    <step-definition id="applications_econtech_quant" mandatory="true">
       <heading>submit.progressbar.describe.applications_econtech_quant</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="unexpected_results" mandatory="true">
+    </step-definition>
+    <step-definition id="unexpected_results" mandatory="true">
       <heading>submit.progressbar.describe.unexpected_results</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="targetgroups" mandatory="true">
+    </step-definition>
+    <step-definition id="unexpected_results_publication" mandatory="true">
+      <heading>submit.progressbar.describe.unexpected_results_publication</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="targetgroups" mandatory="true">
       <heading>submit.progressbar.describe.targetgroups</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="pot_societalimpact" mandatory="true">
+    </step-definition>
+    <step-definition id="targetgroups_classification" mandatory="true">
+      <heading>submit.progressbar.describe.targetgroups_classification</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="pot_societalimpact" mandatory="true">
       <heading>submit.progressbar.describe.pot_societalimpact</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="conditions" mandatory="true">
+    </step-definition>
+    <step-definition id="conditions" mandatory="true">
       <heading>submit.progressbar.describe.conditions</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="gender" mandatory="true">
+    </step-definition>
+    <step-definition id="gender" mandatory="true">
       <heading>submit.progressbar.describe.gender</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="gender_personal" mandatory="true">
+    </step-definition>
+    <step-definition id="gender_personal" mandatory="true">
       <heading>submit.progressbar.describe.gender_personal</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="gender_project" mandatory="true">
+    </step-definition>
+    <step-definition id="gender_project" mandatory="true">
       <heading>submit.progressbar.describe.gender_project</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="ethics" mandatory="true">
+    </step-definition>
+    <step-definition id="ethics" mandatory="true">
       <heading>submit.progressbar.describe.ethics</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="ethics_process" mandatory="true">
+    </step-definition>
+    <step-definition id="ethics_process" mandatory="true">
       <heading>submit.progressbar.describe.ethics_process</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="ethics_use" mandatory="true">
+    </step-definition>
+    <step-definition id="ethics_use" mandatory="true">
       <heading>submit.progressbar.describe.ethics_use</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="proj_objectives" mandatory="true">
+    </step-definition>
+    <step-definition id="proj_objectives" mandatory="true">
       <heading>submit.progressbar.describe.proj_objectives</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="easy_upload" mandatory="true">
+    </step-definition>
+    <step-definition id="easy_upload" mandatory="true">
       <heading>submit.progressbar.easy_upload</heading>
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
-    </step>
-    <step id="import_orgunits_ST" mandatory="true">
+    </step-definition>
+    <step-definition id="import_orgunits_ST" mandatory="true">
       <heading>submit.progressbar.describe.import_orgunits_ST</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_orgunits_companies_ST" mandatory="true">
+    </step-definition>
+    <step-definition id="import_orgunits_companies_ST" mandatory="true">
       <heading>submit.progressbar.describe.import_orgunits_companies_ST</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_orgunits_ZK" mandatory="true">
+    </step-definition>
+    <step-definition id="import_orgunits_ZK" mandatory="true">
       <heading>submit.progressbar.describe.import_orgunits_ZK</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_orgunits_companies_ZK" mandatory="true">
+    </step-definition>
+    <step-definition id="import_orgunits_companies_ZK" mandatory="true">
       <heading>submit.progressbar.describe.import_orgunits_companies_ZK</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_subprojects" mandatory="true">
+    </step-definition>
+    <step-definition id="import_subprojects" mandatory="true">
       <heading>submit.progressbar.describe.import_subprojects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_person_PL" mandatory="true">
+    </step-definition>
+    <step-definition id="import_person_PL" mandatory="true">
       <heading>submit.progressbar.describe.import_person_PL</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_person_PA" mandatory="true">
+    </step-definition>
+    <step-definition id="import_person_PA" mandatory="true">
       <heading>submit.progressbar.describe.import_person_PA</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_person_UZ" mandatory="true">
+    </step-definition>
+    <step-definition id="import_person_UZ" mandatory="true">
       <heading>submit.progressbar.describe.import_person_UZ</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="import_person_A2" mandatory="true">
+    </step-definition>
+    <step-definition id="import_person_A2" mandatory="true">
       <heading>submit.progressbar.describe.import_person_A2</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibilityOutside="read-only">submission</scope>
-    </step>
-    <step id="tests" mandatory="true">
+    </step-definition>
+    <step-definition id="tests" mandatory="true">
       <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
-    <step id="research_results" mandatory="true">
+    </step-definition>
+    <step-definition id="research_results" mandatory="true">
       <heading>submit.progressbar.describe.research_results</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
-    </step>
+    </step-definition>
+    <step-definition id="innovationpotentials" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="innovationpotentials_applicability" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_applicability</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="innovationpotentials_regional_scope" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_regional_scope</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="innovationpotentials_srl_trl" mandatory="true">
+      <heading>submit.progressbar.describe.innovationpotentials_srl_trl</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="applications" mandatory="true">
+      <heading>submit.progressbar.describe.applications</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="applications_quant" mandatory="true">
+      <heading>submit.progressbar.describe.applications_quant</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="others" mandatory="true">
+      <heading>submit.progressbar.describe.others</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -470,7 +545,6 @@
     </submission-process>
     <submission-process name="patents">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="patents" />
       <step id="patents_result" />
       <step id="upload" />
@@ -503,7 +577,6 @@
     </submission-process>
     <submission-process name="spinoffs">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="spinoffs" />
       <step id="spinoffs_result" />
       <step id="spinoffs_result_funding" />
@@ -516,7 +589,6 @@
     </submission-process>
     <submission-process name="publications">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="publications_result" />
       <step id="upload" />
       <step id="license" />
@@ -544,7 +616,6 @@
     </submission-process>
     <submission-process name="workpackages">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="workpackages" />
       <step id="workpackages_result" />
     </submission-process>
@@ -554,7 +625,6 @@
     </submission-process>
     <submission-process name="tasks">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="tasks" />
     </submission-process>
     <submission-process name="plan_tasks">
@@ -563,7 +633,6 @@
     </submission-process>
     <submission-process name="milestones">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="milestones" />
     </submission-process>
     <submission-process name="plan_milestones">
@@ -591,7 +660,6 @@
     </submission-process>
     <submission-process name="innovationpotentials_econtech">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="innovationpotentials_econtech" />
       <step id="innovationpotentials_econtech_userbenefit" />
       <step id="innovationpotentials_econtech_applicability" />
@@ -608,7 +676,6 @@
     </submission-process>
     <submission-process name="innovationpotentials_social">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="innovationpotentials_social" />
       <step id="innovationpotentials_social_types" />
       <step id="innovationpotentials_social_applicability" />
@@ -638,23 +705,22 @@
     <submission-process name="unexpected_results">
       <step id="collection" />
       <step id="unexpected_results" />
+      <step id="unexpected_results_publication" />
     </submission-process>
     <submission-process name="events">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="events" />
-      <step id="relation_targetgroup" />
+      <step id="events_involved" />
       <step id="events_result" />
       <step id="upload" />
     </submission-process>
     <submission-process name="plan_events">
       <step id="collection" />
       <step id="events" />
-      <step id="relation_targetgroup" />
+      <step id="events_involved" />
     </submission-process>
     <submission-process name="participation_events">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="participation_events" />
       <step id="relation_targetgroup" />
       <step id="participation_events_date" />
@@ -668,7 +734,6 @@
     </submission-process>
     <submission-process name="cooperation_events">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
       <step id="cooperation_events_date" />
@@ -679,9 +744,17 @@
       <step id="cooperation_events" />
       <step id="cooperation_events_frequency" />
     </submission-process>
+    <submission-process name="process_events">
+      <step id="collection" />
+      <step id="process_events" />
+      <step id="process_events_involved" />
+      <step id="process_events_frequency" />
+      <step id="process_events_description" />
+      <step id="process_events_date" />
+      <step id="upload" />
+    </submission-process>
     <submission-process name="physical_objects">
       <step id="collection" />
-      <step id="link_to_plan" />
       <step id="physical_objects" />
       <step id="physical_objects_result" />
     </submission-process>
@@ -692,6 +765,7 @@
     <submission-process name="targetgroups">
       <step id="collection" />
       <step id="targetgroups" />
+      <step id="targetgroups_classification" />
     </submission-process>
     <submission-process name="pot_societalimpact">
       <step id="collection" />
@@ -737,6 +811,22 @@
     <submission-process name="research_results">
       <step id="collection" />
       <step id="research_results" />
+    </submission-process>
+    <submission-process name="innovationpotentials">
+      <step id="collection" />
+      <step id="innovationpotentials" />
+      <step id="innovationpotentials_applicability" />
+      <step id="innovationpotentials_regional_scope" />
+      <step id="innovationpotentials_srl_trl" />
+    </submission-process>
+    <submission-process name="applications">
+      <step id="collection" />
+      <step id="applications" />
+      <step id="applications_quant" />
+    </submission-process>
+    <submission-process name="others">
+      <step id="collection" />
+      <step id="others" />
     </submission-process>
   </submission-definitions>
 </item-submission>

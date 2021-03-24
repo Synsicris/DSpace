@@ -39,18 +39,25 @@ public class ProjectEditGrantsConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        EPerson currentUser = context.getCurrentUser();
-        if (Objects.isNull(currentUser)) {
-            return;
-        }
-        Object dso = event.getSubject(context);
-        if ((dso instanceof Item)) {
-            Item item = (Item) dso;
-            if (itemsAlreadyProcessed.contains(item)) {
+        if (event.getEventType() == Event.MODIFY_METADATA 
+                && (event.getDetail() != null && event.getDetail().contains("cris_workspace_shared"))) {
+            EPerson currentUser = context.getCurrentUser();
+            if (Objects.isNull(currentUser)) {
                 return;
             }
-            this.projectConsumerService.processItem(context, currentUser, item);
-            itemsAlreadyProcessed.add(item);
+            Object dso = event.getSubject(context);
+            if ((dso instanceof Item)) {
+                Item item = (Item) dso;
+                EPerson submitter = item.getSubmitter();
+                if (Objects.isNull(submitter)) {
+                    return;
+                }
+                if (itemsAlreadyProcessed.contains(item)) {
+                    return;
+                }
+                this.projectConsumerService.processItem(context, submitter, item);
+                itemsAlreadyProcessed.add(item);
+            }
         }
     }
 

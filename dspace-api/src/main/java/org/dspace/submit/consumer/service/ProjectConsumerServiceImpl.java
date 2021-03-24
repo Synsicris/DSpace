@@ -171,6 +171,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return null;
     }
 
+    @Override
     public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
         Community subProject = getSubProjectCommunity(projectCommunity);

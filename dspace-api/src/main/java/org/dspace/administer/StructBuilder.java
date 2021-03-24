@@ -680,11 +680,10 @@ public class StructBuilder {
                     authorizeService.removeGroupPolicies(context, targetDSO,
                             groupService.findByName(context, Group.ANONYMOUS));
                 }
-                
                 Integer rpType = getResourcePolicyTypeByName(policyType);
                 if (rpType != null) {
                     // add given permission to group
-                    authorizeService.addPolicy(context, targetDSO, rpType, policyGroup); 
+                    authorizeService.addPolicy(context, targetDSO, rpType, policyGroup);
                 }
             }
         }
@@ -700,26 +699,27 @@ public class StructBuilder {
         Integer rpType = null;
 
         switch (policyType) {
-            case "admin": 
+            case "admin":
                 rpType = Constants.ADMIN;
                 break;
-            case "read": 
+            case "read":
                 rpType = Constants.READ;
                 break;
-            case "remove": 
+            case "remove":
                 rpType = Constants.REMOVE;
                 break;
-            case "item_read": 
+            case "item_read":
                 rpType = Constants.DEFAULT_ITEM_READ;
                 break;
-            case "bitstream_read": 
+            case "bitstream_read":
                 rpType = Constants.DEFAULT_BITSTREAM_READ;
                 break;
-            case "add": 
+            case "add":
                 rpType = Constants.ADD;
                 break;
+            default:
+                break;
         }
-        
         return rpType;
     }
 

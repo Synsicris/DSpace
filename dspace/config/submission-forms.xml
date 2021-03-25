@@ -125,18 +125,6 @@
     <form name="impact_pathway_step_type_1_task_form">
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Please select an area:</label>
@@ -170,18 +158,6 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_2_task_form">
-      <row>
-        <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -219,18 +195,6 @@
     <form name="impact_pathway_step_type_2_task_objective_form">
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Please select an area:</label>
@@ -264,18 +228,6 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_3_task_form">
-      <row>
-        <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -313,18 +265,6 @@
     <form name="impact_pathway_step_type_3_task_objective_form">
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Please select an area:</label>
@@ -360,18 +300,6 @@
     <form name="impact_pathway_step_type_4_task_form">
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>relationship</dc-schema>
           <dc-element>type</dc-element>
           <label>Please select an area:</label>
@@ -405,18 +333,6 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_5_task_form">
-      <row>
-        <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>
@@ -463,18 +379,6 @@
       </row>
     </form>
     <form name="impact_pathway_step_type_6_task_form">
-      <row>
-        <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>workspace</dc-element>
-          <dc-qualifier>shared</dc-qualifier>
-          <label>Please select an option</label>
-          <input-type value-pairs-name="item_shared">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
       <row>
         <field>
           <dc-schema>relationship</dc-schema>

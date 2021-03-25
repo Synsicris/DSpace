@@ -30,6 +30,7 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.authorize.service.ResourcePolicyService;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.dao.CommunityDAO;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CollectionService;
@@ -709,7 +710,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     }
 
     @Override
-    public Community cloneCommunity(Context context, Community template, Community parent, String name)
+    public Community cloneCommunity(Context context, Community template, Community parent, String name, String grants)
         throws SQLException, AuthorizeException {
         Assert.notNull(name, "The name of the new community must be provided");
 
@@ -719,14 +720,14 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         String stringValue = this.getMetadataFirstValue(template, "dc", "relation", "project", null);
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name);
+                                      name, grants);
         setCommunityName(context, newCommunity, name);
 
         return newCommunity;
     }
 
     private Community cloneCommunity(Context context, Community communityToClone, Community clone,
-            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName)
+            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants)
             throws SQLException, AuthorizeException {
 
         List<Community> subCommunities = communityToClone.getSubcommunities();
@@ -736,14 +737,16 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
-            cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID, newName);
+            cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                           newName, grants);
         }
 
         for (Collection collection : subCollections) {
             Collection newCollection = collectionService.create(context, clone);
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
-            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID, newName);
+            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
+                                 newName, grants);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
         }
 
@@ -751,7 +754,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     }
 
     private void cloneCollectionItems(Context context, Collection newCollection, Collection collection,
-            UUID uuidProjectItem, UUID rootCommunityUUID, String newName) throws SQLException {
+            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants) throws SQLException {
         Iterator<Item> items = itemService.findAllByCollection(context, collection);
         try {
             while (items.hasNext()) {
@@ -761,7 +764,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 collectionService.addItem(context, newCollection, newItem);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
-                        replacePlaceholderValue(context, rootCommunityUUID, newItem, newName);
+                        replacePlaceholderValue(context, rootCommunityUUID, newItem, newName, grants);
                     }
                 }
             }
@@ -770,15 +773,18 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
     }
 
-    private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName)
-            throws SQLException {
+    private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName,
+            String grants) throws SQLException {
         Community rootCommunity = this.find(context, rootCommunityUUID);
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
         this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
-                             relationPlaceholder.toString(), newItem.getID().toString(), 400, 0);
+                             relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.addMetadata(context, newItem, "dc", "title", null, null, newName);
+        if (StringUtils.isNoneBlank(grants)) {
+            itemService.addMetadata(context, newItem, "cris", "workspace", "shared", null, grants);
+        }
     }
 
     private void cloneTemplateItem(Context context, Collection col, Collection collection)

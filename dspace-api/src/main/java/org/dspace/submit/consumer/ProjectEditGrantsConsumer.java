@@ -24,7 +24,7 @@ import org.dspace.utils.DSpace;
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-public class ProjectConsumer implements Consumer {
+public class ProjectEditGrantsConsumer implements Consumer {
 
     private ProjectConsumerService projectConsumerService;
 
@@ -39,18 +39,24 @@ public class ProjectConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        EPerson currentUser = context.getCurrentUser();
-        if (Objects.isNull(currentUser)) {
-            return;
-        }
-        Object dso = event.getSubject(context);
-        if ((dso instanceof Item)) {
-            Item item = (Item) dso;
-            if (itemsAlreadyProcessed.contains(item)) {
+        if (event.getEventType() == Event.MODIFY_METADATA) {
+            EPerson currentUser = context.getCurrentUser();
+            if (Objects.isNull(currentUser)) {
                 return;
             }
-            this.projectConsumerService.processItem(context, currentUser, item);
-            itemsAlreadyProcessed.add(item);
+            Object dso = event.getSubject(context);
+            if ((dso instanceof Item)) {
+                Item item = (Item) dso;
+                EPerson submitter = item.getSubmitter();
+                if (Objects.isNull(submitter)) {
+                    return;
+                }
+                if (itemsAlreadyProcessed.contains(item)) {
+                    return;
+                }
+                this.projectConsumerService.processItem(context, submitter, item);
+                itemsAlreadyProcessed.add(item);
+            }
         }
     }
 

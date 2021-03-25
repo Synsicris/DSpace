@@ -11,6 +11,15 @@
             <map>
                 <entry key="Patent">
                     <list>
+                       <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="patents-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -30,6 +39,15 @@
                 <entry key="OrgUnit">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="orgunits-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -47,6 +65,15 @@
                 </entry>
                 <entry key="Project">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -66,6 +93,15 @@
                 <entry key="subproject">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="subprojects-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -83,6 +119,15 @@
                 </entry>
                 <entry key="Person">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="persons-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -102,6 +147,15 @@
                 <entry key="spinoffs">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="spinoffs-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -119,6 +173,15 @@
                 </entry>
                 <entry key="Publication">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="publications-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -138,6 +201,15 @@
                 <entry key="awards">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="awards-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -155,6 +227,15 @@
                 </entry>
                 <entry key="steps">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="steps-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -174,6 +255,15 @@
                 <entry key="innovationideas">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="innovationideas-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -191,6 +281,15 @@
                 </entry>
                 <entry key="tasks">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="tasks-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -210,6 +309,15 @@
                 <entry key="milestones">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="milestones-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -227,6 +335,15 @@
                 </entry>
                 <entry key="stateofart">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="stateofart-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -246,6 +363,15 @@
                 <entry key="contribution_fundingprogramme">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="contribution_fundingprogramme-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -263,6 +389,15 @@
                 </entry>
                 <entry key="cooperation_partners">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="cooperation_partners-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -282,6 +417,15 @@
                 <entry key="inn_pot_econtech">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="innovationpotentials_econtech-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -299,6 +443,15 @@
                 </entry>
                 <entry key="inn_pot_social">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="innovationpotentials_social-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -318,6 +471,15 @@
                 <entry key="applications_social">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="applications_social-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -335,6 +497,15 @@
                 </entry>
                 <entry key="applications_econtech">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="applications_econtech-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -354,6 +525,15 @@
                 <entry key="unexpected_results">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="unexpected_results-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -371,6 +551,15 @@
                 </entry>
                 <entry key="Event">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="events-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -390,6 +579,15 @@
                 <entry key="participation_events">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="participation_events-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -407,6 +605,15 @@
                 </entry>
                 <entry key="cooperation_events">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="cooperation_events-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -426,6 +633,15 @@
                 <entry key="process_events">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="process_events-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -443,6 +659,15 @@
                 </entry>
                 <entry key="physical_objects">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="physical_objects-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -462,6 +687,15 @@
                 <entry key="targetgroups">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="targetgroups-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -479,6 +713,15 @@
                 </entry>
                 <entry key="pot_societalimpact">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="pot_societalimpact-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -498,6 +741,15 @@
                 <entry key="conditions">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="conditions-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -515,6 +767,15 @@
                 </entry>
                 <entry key="gender">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="gender-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -534,6 +795,15 @@
                 <entry key="ethics">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="ethics-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -551,6 +821,15 @@
                 </entry>
                 <entry key="proj_objectives">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="proj_objectives-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -570,6 +849,15 @@
                 <entry key="research_results">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="research_results-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -587,6 +875,15 @@
                 </entry>
                 <entry key="innovationpotentials">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="innovationpotentials-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
@@ -606,6 +903,15 @@
                 <entry key="applications">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="applications-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -623,6 +929,15 @@
                 </entry>
                 <entry key="others">
                     <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="others-edit" />
+                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
                             <property name="security">

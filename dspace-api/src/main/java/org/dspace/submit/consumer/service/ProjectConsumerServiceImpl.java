@@ -7,6 +7,7 @@
  */
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -175,11 +176,28 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
-        Community subProject = getSubProjectCommunity(projectCommunity);
-        if (Objects.isNull(subProject)) {
-            return null;
+
+        List<Community> subprojects = getAllSubProjectsByUser(context, ePerson, projectCommunity);
+        // user MUST be member of at least one subproject within a project
+        if (subprojects.size() > 0) {
+            return subprojects.get(0);
+        } else {
+            return null;    
         }
-        List<Community> subCommunities = subProject.getSubcommunities();
+        
+    }
+
+    @Override
+    public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException {
+        Community subprojectsParentCommunity = getSubProjectCommunity(projectCommunity);
+        List<Community> subprojects = new ArrayList<Community>();
+
+        if (Objects.isNull(subprojectsParentCommunity)) {
+            return subprojects;
+        }
+
+        List<Community> subCommunities = subprojectsParentCommunity.getSubcommunities();
         for (Community community : subCommunities) {
             StringBuilder memberGroupName = new StringBuilder("project_")
                                                       .append(community.getID().toString())
@@ -187,10 +205,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Group group = groupService.findByName(context, memberGroupName.toString());
             boolean isGroupMember = groupService.isMember(context, ePerson, group);
             if (isGroupMember) {
-                return community;
+                subprojects.add(community);
             }
         }
-        return null;
+        return subprojects;
     }
 
 }

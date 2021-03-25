@@ -7,6 +7,7 @@
  */
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.dspace.content.Community;
 import org.dspace.content.Item;
@@ -26,4 +27,6 @@ public interface ProjectConsumerService {
     public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
+    public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException;
 }

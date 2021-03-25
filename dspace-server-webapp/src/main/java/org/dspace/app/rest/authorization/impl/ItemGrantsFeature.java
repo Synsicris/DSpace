@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest.authorization.impl;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
@@ -52,15 +53,21 @@ public class ItemGrantsFeature implements AuthorizationFeature {
     @Override
     @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
+
+        if (context.getCurrentUser() == null) {
+            return false;
+        }
+
         if (object.getType().equals(ItemRest.NAME)) {
             EPerson submitter = getSubmitter(context, object);
             Community project = getProjectCommunity(context, object);
             if (Objects.nonNull(submitter) && Objects.nonNull(project)) {
-                Community subProject = projectConsumerService.isMemberOfSubProject(context, submitter, project);
-                if (Objects.isNull(subProject)) {
+                List<Community> subProjects = projectConsumerService.getAllSubProjectsByUser(context, submitter, project);
+                // to allow edit grants submitter MUST be member of only one subproject within a project
+                if (Objects.isNull(subProjects) || subProjects.size() != 1) {
                     return false;
                 }
-                boolean isAdminOfSubProject = isAdminMemberOfSubProject(context, subProject, submitter);
+                boolean isAdminOfSubProject = isAdminMemberOfSubProject(context, subProjects.get(0), context.getCurrentUser());
                 if (isAdminOfSubProject || submitter.getID().equals(context.getCurrentUser().getID())) {
                     return true;
                 }

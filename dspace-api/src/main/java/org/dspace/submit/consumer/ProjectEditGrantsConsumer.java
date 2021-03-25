@@ -39,8 +39,7 @@ public class ProjectEditGrantsConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        if (event.getEventType() == Event.MODIFY_METADATA 
-                && (event.getDetail() != null && event.getDetail().contains("cris_workspace_shared"))) {
+        if (event.getEventType() == Event.MODIFY_METADATA) {
             EPerson currentUser = context.getCurrentUser();
             if (Objects.isNull(currentUser)) {
                 return;

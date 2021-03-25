@@ -100,8 +100,7 @@ public class ItemGrantsFeature implements AuthorizationFeature {
     @SuppressWarnings("rawtypes")
     private Community getProjectCommunity(Context context, BaseObjectRest object)
             throws IllegalArgumentException, SQLException {
-        object = ((ItemRest) object);
-        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, object);
+        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
         if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
             Collection collection = ((Item) dSpaceObject).getOwningCollection();
             return collection.getCommunities().get(0);

@@ -90,8 +90,7 @@ public class ItemGrantsFeature implements AuthorizationFeature {
 
     @SuppressWarnings("rawtypes")
     private EPerson getSubmitter(Context context, BaseObjectRest object) throws IllegalArgumentException, SQLException {
-        object = ((ItemRest) object);
-        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, object);
+        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
         if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
             return ((Item) dSpaceObject).getSubmitter();
         }

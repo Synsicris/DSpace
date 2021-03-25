@@ -648,6 +648,11 @@
       <step id="workpackages" />
       <step id="workpackages_result" />
     </submission-process>
+    <submission-process name="workpackages-edit">
+      <step id="collection" />
+      <step id="workpackages" />
+      <step id="workpackages_result" />
+    </submission-process>
     <submission-process name="tasks">
       <step id="collection" />
       <step id="tasks" />

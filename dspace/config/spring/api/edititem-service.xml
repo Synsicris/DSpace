@@ -9,7 +9,7 @@
     <bean class="org.dspace.content.edit.service.impl.EditItemModeServiceImpl">
         <property name="editModesMap">
             <map>
-                <entry key="Patent">
+                <entry key="patent">
                     <list>
                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -36,7 +36,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="OrgUnit">
+                <entry key="orgunit">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -63,7 +63,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="Project">
+                <entry key="project">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -117,7 +117,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="Person">
+                <entry key="person">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -171,7 +171,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="Publication">
+                <entry key="publication">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -549,7 +549,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="Event">
+                <entry key="event">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -963,7 +963,7 @@
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="workpackages" />
+                            <property name="submissionDefinition" value="workpackages-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />

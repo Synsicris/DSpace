@@ -8,6 +8,7 @@
     <sidebar />
     <policy-group rpType="admin">project_template_admin_group</policy-group>
     <policy-group rpType="remove">project_template_admin_group</policy-group>
+    <policy-group rpType="delete">project_template_admin_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
     <community>
       <name>Impactpathway objects</name>
@@ -604,6 +605,7 @@
     <copyright />
     <sidebar />
     <policy-group rpType="add">project_submitters_group</policy-group>
+    <policy-group rpType="remove">project_submitters_group</policy-group>
     <policy-group rpType="read">Anonymous</policy-group>
   </community>
   <community>

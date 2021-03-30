@@ -33,11 +33,6 @@
       <type>license</type>
       <scope visibilityOutside="read-only">submission</scope>
     </step-definition>
-    <step-definition id="link_to_plan" mandatory="true">
-      <heading>submit.progressbar.describe.link_to_plan</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="patents" mandatory="true">
       <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -79,11 +74,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="relation_targetgroup" mandatory="true">
-      <heading>submit.progressbar.describe.relation_targetgroup</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="events" mandatory="true">
       <heading>submit.progressbar.describe.events</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -96,36 +86,6 @@
     </step-definition>
     <step-definition id="events_result" mandatory="true">
       <heading>submit.progressbar.describe.events_result</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="participation_events" mandatory="true">
-      <heading>submit.progressbar.describe.participation_events</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="participation_events_frequency" mandatory="true">
-      <heading>submit.progressbar.describe.participation_events_frequency</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="participation_events_date" mandatory="true">
-      <heading>submit.progressbar.describe.participation_events_date</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="cooperation_events" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_events</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="cooperation_events_frequency" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_events_frequency</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="cooperation_events_date" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_events_date</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -179,8 +139,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="publications" mandatory="true">
-      <heading>submit.progressbar.describe.publications</heading>
+    <step-definition id="plan_publications" mandatory="true">
+      <heading>submit.progressbar.describe.plan_publications</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -229,33 +189,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="innovationpotentials_econtech" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_econtech</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_econtech_userbenefit" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_econtech_userbenefit</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_econtech_applicability" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_econtech_applicability</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_econtech_trl" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_econtech_trl</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="agrovoc_keywords" mandatory="true">
       <heading>submit.progressbar.describe.agrovoc_keywords</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="regional_scope" mandatory="true">
-      <heading>submit.progressbar.describe.regional_scope</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -309,61 +244,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="innovationpotentials_social" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_social</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_social_types" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_social_types</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_social_applicability" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_social_applicability</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_social_applicability_plan" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_social_applicability_plan</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="innovationpotentials_social_srl" mandatory="true">
-      <heading>submit.progressbar.describe.innovationpotentials_social_srl</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_social" mandatory="true">
-      <heading>submit.progressbar.describe.applications_social</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_social_types" mandatory="true">
-      <heading>submit.progressbar.describe.applications_social_types</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_social_quant" mandatory="true">
-      <heading>submit.progressbar.describe.applications_social_quant</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_econtech" mandatory="true">
-      <heading>submit.progressbar.describe.applications_econtech</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_econtech_types" mandatory="true">
-      <heading>submit.progressbar.describe.applications_econtech_types</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="applications_econtech_quant" mandatory="true">
-      <heading>submit.progressbar.describe.applications_econtech_quant</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="unexpected_results" mandatory="true">
       <heading>submit.progressbar.describe.unexpected_results</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -399,13 +279,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="gender_personal" mandatory="true">
-      <heading>submit.progressbar.describe.gender_personal</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="gender_project" mandatory="true">
-      <heading>submit.progressbar.describe.gender_project</heading>
+    <step-definition id="gender_reflection" mandatory="true">
+      <heading>submit.progressbar.describe.gender_reflection</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -414,13 +289,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="ethics_process" mandatory="true">
-      <heading>submit.progressbar.describe.ethics_process</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="ethics_use" mandatory="true">
-      <heading>submit.progressbar.describe.ethics_use</heading>
+    <step-definition id="ethics_reflection" mandatory="true">
+      <heading>submit.progressbar.describe.ethics_reflection</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -533,6 +403,16 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="testgroups" mandatory="true">
+      <heading>submit.progressbar.describe.testgroups</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="testgroup_relation" mandatory="true">
+      <heading>submit.progressbar.describe.testgroup_relation</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -620,6 +500,10 @@
       <step id="upload" />
       <step id="license" />
     </submission-process>
+    <submission-process name="plan_publications">
+      <step id="collection" />
+      <step id="plan_publications" />
+    </submission-process>
     <submission-process name="awards">
       <step id="collection" />
       <step id="awards" />
@@ -649,7 +533,6 @@
       <step id="workpackages_result" />
     </submission-process>
     <submission-process name="workpackages-edit">
-      <step id="collection" />
       <step id="workpackages" />
       <step id="workpackages_result" />
     </submission-process>
@@ -702,58 +585,6 @@
       <step id="upload" />
       <step id="cooperation_partners_staff" />
     </submission-process>
-    <submission-process name="innovationpotentials_econtech">
-      <step id="collection" />
-      <step id="innovationpotentials_econtech" />
-      <step id="innovationpotentials_econtech_userbenefit" />
-      <step id="innovationpotentials_econtech_applicability" />
-      <step id="regional_scope" />
-      <step id="innovationpotentials_econtech_trl" />
-    </submission-process>
-    <submission-process name="innovationpotentials_econtech-edit">
-      <step id="innovationpotentials_econtech" />
-      <step id="innovationpotentials_econtech_userbenefit" />
-      <step id="innovationpotentials_econtech_applicability" />
-      <step id="regional_scope" />
-      <step id="innovationpotentials_econtech_trl" />
-    </submission-process>
-    <submission-process name="innovationpotentials_social">
-      <step id="collection" />
-      <step id="innovationpotentials_social" />
-      <step id="innovationpotentials_social_types" />
-      <step id="innovationpotentials_social_applicability" />
-      <step id="regional_scope" />
-      <step id="innovationpotentials_social_srl" />
-    </submission-process>
-    <submission-process name="innovationpotentials_social-edit">
-      <step id="innovationpotentials_social" />
-      <step id="innovationpotentials_social_types" />
-      <step id="innovationpotentials_social_applicability" />
-      <step id="regional_scope" />
-      <step id="innovationpotentials_social_srl" />
-    </submission-process>
-    <submission-process name="applications_social">
-      <step id="collection" />
-      <step id="applications_social" />
-      <step id="applications_social_types" />
-      <step id="applications_social_quant" />
-    </submission-process>
-    <submission-process name="applications_social-edit">
-      <step id="applications_social" />
-      <step id="applications_social_types" />
-      <step id="applications_social_quant" />
-    </submission-process>
-    <submission-process name="applications_econtech">
-      <step id="collection" />
-      <step id="applications_econtech" />
-      <step id="applications_econtech_types" />
-      <step id="applications_econtech_quant" />
-    </submission-process>
-    <submission-process name="applications_econtech-edit">
-      <step id="applications_econtech" />
-      <step id="applications_econtech_types" />
-      <step id="applications_econtech_quant" />
-    </submission-process>
     <submission-process name="unexpected_results">
       <step id="collection" />
       <step id="unexpected_results" />
@@ -774,32 +605,6 @@
       <step id="events" />
       <step id="events_involved" />
       <step id="events_result" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="participation_events">
-      <step id="collection" />
-      <step id="participation_events" />
-      <step id="relation_targetgroup" />
-      <step id="participation_events_date" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="participation_events-edit">
-      <step id="participation_events" />
-      <step id="relation_targetgroup" />
-      <step id="participation_events_date" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="cooperation_events">
-      <step id="collection" />
-      <step id="cooperation_events" />
-      <step id="cooperation_events_frequency" />
-      <step id="cooperation_events_date" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="cooperation_events-edit">
-      <step id="cooperation_events" />
-      <step id="cooperation_events_frequency" />
-      <step id="cooperation_events_date" />
       <step id="upload" />
     </submission-process>
     <submission-process name="process_events">
@@ -853,25 +658,21 @@
     </submission-process>
     <submission-process name="gender">
       <step id="collection" />
+      <step id="gender_reflection" />
       <step id="gender" />
-      <step id="gender_personal" />
-      <step id="gender_project" />
     </submission-process>
     <submission-process name="gender-edit">
+      <step id="gender_reflection" />
       <step id="gender" />
-      <step id="gender_personal" />
-      <step id="gender_project" />
     </submission-process>
     <submission-process name="ethics">
       <step id="collection" />
+      <step id="ethics_reflection" />
       <step id="ethics" />
-      <step id="ethics_process" />
-      <step id="ethics_use" />
     </submission-process>
     <submission-process name="ethics-edit">
+      <step id="ethics_reflection" />
       <step id="ethics" />
-      <step id="ethics_process" />
-      <step id="ethics_use" />
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="collection" />
@@ -893,6 +694,10 @@
       <step id="import_person_UZ" />
       <step id="import_person_A2" />
     </submission-process>
+    <submission-process name="tests">
+      <step id="collection" />
+      <step id="tests" />
+    </submission-process>
     <submission-process name="research_results">
       <step id="collection" />
       <step id="research_results" />
@@ -907,7 +712,7 @@
       <step id="innovationpotentials_regional_scope" />
       <step id="innovationpotentials_srl_trl" />
     </submission-process>
-    <submission-process name="innovationpotentials-edit">
+    <submission-process name="Innovationpotentials-edit">
       <step id="innovationpotentials" />
       <step id="innovationpotentials_applicability" />
       <step id="innovationpotentials_regional_scope" />
@@ -928,6 +733,18 @@
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />
+    </submission-process>
+    <submission-process name="testgroup_A">
+      <step id="collection" />
+      <step id="testgroups" />
+    </submission-process>
+    <submission-process name="testgroup_B">
+      <step id="collection" />
+      <step id="testgroups" />
+    </submission-process>
+    <submission-process name="testgroup_relation">
+      <step id="collection" />
+      <step id="testgroup_relation" />
     </submission-process>
   </submission-definitions>
 </item-submission>

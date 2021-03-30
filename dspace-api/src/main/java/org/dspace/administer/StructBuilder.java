@@ -717,6 +717,9 @@ public class StructBuilder {
             case "add":
                 rpType = Constants.ADD;
                 break;
+            case "delete":
+                rpType = Constants.DELETE;
+                break;
             default:
                 break;
         }

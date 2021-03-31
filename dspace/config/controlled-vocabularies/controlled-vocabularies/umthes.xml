@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+  <isComposedBy>
+    <node id="ID1" label="Cascade dropdown #1">
+    <hasNote>This cascade dropdown is still under construction.</hasNote>
+      <isComposedBy>
+        <node id="ID2" label="Item #1">
+        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        </node>
+        <node id="ID3" label="Item #2">
+        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID4" label="Cascade dropdown #2">
+    <hasNote>This cascade dropdown is still under construction.</hasNote>
+      <isComposedBy>
+        <node id="ID5" label="Item #1">
+        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        </node>
+        <node id="ID6" label="Item #2">
+        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

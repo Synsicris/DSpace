@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="IPW-COLUMN-4 2020-10-19">
+  <isComposedBy>
+    <node id="ID01" label="Planung eines Projektes">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID02" label="Intendierte Anwendung der Ergebnisse">
+        <hasNote>Im Projekt wird gezielt auf eine bestimmte Anwendung der Ergebnisse hingearbeitet. (Wählen Sie aus den untergeordneten Punkten.)</hasNote>
+          <isComposedBy>
+            <node id="ID03" label="Produkte und Dienstleistungen (Plan)">
+            <hasNote>Ergebnisse des Projektes können verwendet werden, um Produkte/Waren/Güter und Dienstleistungen zu entwickeln oder zu verbessern  </hasNote>
+            </node>
+            <node id="ID04" label="Produktions- und Geschäftsprozesse (Plan)">
+            <hasNote>Ergebnisse des Projektes leisten einen Beitrag zur Entwickklung oder Verbesserung von Produktionsprozessen, Vertieb und Logistik, Marketing und Verkauf, Informations- und Kommunikationssysteme, Produkt- und Geschäftsprozess-Entwicklung</hasNote>
+            </node>
+            <node id="ID05" label="Soziale Innovationen / Veränderungsprozesse (Plan)">
+            <hasNote>Ergebnisse des Projektes leisten einen Beitrag zu Sozialen Innovationen oder Veränderungsprozessen, wie Capacity Building, Veränderte Handlungsweisen, Netzwerke, Veränderung von Organisationen und Institutionen, Verhältnissen und Strukturen, Standards, Gesetzen, Verordnungen oder sonstigen politischen Prozessen.</hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID06" label="Ideen für Innovation und Veränderung (Plan)">
+        <hasNote>Ergebnisse des Projektes könnten zu vielfältigen, aber noch nicht genauer bestimmbaren Anwendungen beitragen.</hasNote>
+        </node>
+        <node id="ID07" label="Ausgründungen (inkl. Vereinsgründungen) (Plan)">
+        <hasNote>Es sind Ausgründungen oder Vereinsgründungen  geplant, um die Projektergebnisse zu verwerten bzw. in die Anwendung zu bringen.</hasNote>
+        </node>
+        <node id="ID08" label="Patente und Gebrauchsmuster (Plan)">
+        <hasNote>Es ist geplant, Patente oder Gebrauchsmuster anzumelden, um die Projektergebnisse zu verwerten.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID09" label="Dokumentation im Projektverlauf - Aktualisierung der möglichen Anwendung">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID10" label="Intendierte Anwendung der Ergebnisse">
+        <hasNote>Im Projekt wurde gezielt auf eine bestimmte Anwendung der Ergebnisse hingearbeitet. (Wählen Sie aus den untergeordneten Punkten.)</hasNote>
+          <isComposedBy>
+            <node id="ID11" label="Produkte und Dienstleistungen">
+            <hasNote>Ergebnisse des Projektes können verwendet werden, um Produkte/Waren/Güter und Dienstleistungen zu entwickeln oder zu verbessern  </hasNote>
+            </node>
+            <node id="ID12" label="Produktions- und Geschäftsprozesse">
+            <hasNote>Ergebnisse des Projektes leisten einen Beitrag zur Entwickklung oder Verbesserung von Produktionsprozessen, Vertieb und Logistik, Marketing und Verkauf, Informations- und Kommunikationssysteme, Produkt- und Geschäftsprozess-Entwicklung</hasNote>
+            </node>
+            <node id="ID13" label="Soziale Innovationen / Veränderungsprozesse">
+            <hasNote>Ergebnisse des Projektes leisten einen Beitrag zu Sozialen Innovationen oder Veränderungsprozessen, wie Capacity Building, Veränderte Handlungsweisen, Netzwerke, Veränderung von Organisationen und Institutionen, Verhältnissen und Strukturen, Standards, Gesetzen, Verordnungen oder sonstigen politischen Prozessen.</hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID14" label="Ideen für Innovation und Veränderung ">
+        <hasNote>Ergebnisse des Projektes könnten zu vielfältigen, aber noch nicht genauer bestimmbaren Anwendungen beitragen.</hasNote>
+        </node>
+        <node id="ID15" label="Ausgründungen (inkl. Vereinsgründungen)">
+        <hasNote>Es sind Ausgründungen oder Vereinsgründungen erfolgt.</hasNote>
+        </node>
+        <node id="ID16" label="Patente und Gebrauchsmuster">
+        <hasNote>Es sind Patente oder Gebrauchsmuster angemeldet worden.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID17" label="Dokumentation im Projektverlauf - Erfolge, unerwartete Probleme und nächste Schritte">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID18" label="Anwendungserfolg für Produkte, Dienstleistungen oder Produktions- und Geschäftsprozessen">
+        <hasNote>Es ist eine Anwendung der Projektergebnisse im wirtschaftlich-technischen Bereich erfolgt.  </hasNote>
+        </node>
+        <node id="ID19" label="Anwendungserfolg für soziale Innovationen/Veränderungsprozesse">
+        <hasNote>Es ist eine Anwendung der Projektergebnisse im Bereich sozialer Innovationen oder Veränderungsprozesse erfolgt.  </hasNote>
+        </node>
+        <node id="ID20" label="Auszeichnungen und Preise">
+        <hasNote>Es wurden Auszeichnungen oder Preise gewonnen, die im Zusammenhang mit dem Projekt und/oder seiner Ergebnisse stehen</hasNote>
+        </node>
+        <node id="ID21" label="Unerwartete Ergebnisse und Probleme">
+        <hasNote>Unerwartete Ergebnisse und Probleme haben eine intendierte Anwendung verhindert oder erschwert. Sie bieten wichtige Lernmöglichikeiten.</hasNote>
+        </node>
+        <node id="ID22" label="Arbeiten und Kooperation nach Projektende">
+        <hasNote>Die Projekt-Partner oder andere Kooperations-Partner planen die Zusammenarbeit nach Projektende fortzusetzen.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

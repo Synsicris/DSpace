@@ -403,16 +403,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="testgroups" mandatory="true">
-      <heading>submit.progressbar.describe.testgroups</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="testgroup_relation" mandatory="true">
-      <heading>submit.progressbar.describe.testgroup_relation</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -733,18 +723,6 @@
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />
-    </submission-process>
-    <submission-process name="testgroup_A">
-      <step id="collection" />
-      <step id="testgroups" />
-    </submission-process>
-    <submission-process name="testgroup_B">
-      <step id="collection" />
-      <step id="testgroups" />
-    </submission-process>
-    <submission-process name="testgroup_relation">
-      <step id="collection" />
-      <step id="testgroup_relation" />
     </submission-process>
   </submission-definitions>
 </item-submission>

@@ -586,6 +586,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Characterisation of the research theme and the intended innovation or solution approach with keywords</hint>
+          <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
     </form>
@@ -817,6 +818,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Select the type.</hint>
+          <vocabulary closed="true">coar</vocabulary>
         </field>
       </row>
       <row>
@@ -899,6 +901,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Assign the publication to a subject group.</hint>
+          <vocabulary closed="true">dnb</vocabulary>
         </field>
       </row>
       <row>
@@ -911,6 +914,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Classify the contents of the publication by assigning keywords.</hint>
+          <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -923,6 +927,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Classify the contents of the publication by assigning keywords.</hint>
+          <vocabulary closed="true">umthes</vocabulary>
         </field>
       </row>
       <row>
@@ -1144,7 +1149,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Application number</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>This field is mandatory for later import of the patent grant</required>
+          <required />
           <style>col-md-3</style>
           <hint>INID code 21 (DE), 96 (EP), 86 (WO) for this item</hint>
         </field>
@@ -1155,7 +1160,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Date of filing the application</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
-          <required>This field is mandatory for later import of the patent grant</required>
+          <required />
           <style>col-md-3</style>
           <hint>INID code 22 (DE), 96 (EP), 86 (WO) for this item</hint>
         </field>
@@ -1166,7 +1171,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Name(s) of applicant(s), name(s) of grantee(s) or of holder(s)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required>This field is mandatory for later import of the patent grant</required>
+          <required />
           <style>col-md-6</style>
           <hint>INID codes 71, 73 for this item</hint>
         </field>
@@ -1355,6 +1360,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
       <row>
@@ -1437,6 +1443,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
       <row>
@@ -1487,6 +1494,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint>only for companies</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1510,6 +1518,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>only for companies</hint>
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -1762,6 +1771,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <vocabulary closed="true">cooperation-type</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1941,6 +1951,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
       <row>
@@ -2023,6 +2034,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
       <row>
@@ -2073,6 +2085,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint>only for companies</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2551,6 +2564,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2561,6 +2575,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
     </form>
@@ -2721,6 +2736,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2938,6 +2954,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
       </row>
     </form>
@@ -3075,6 +3092,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3210,6 +3228,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3326,6 +3345,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3437,6 +3457,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3448,6 +3469,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-5</style>
           <hint>Please choose a suitable unit or enter a new one.</hint>
+          <vocabulary closed="true">units</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3583,6 +3605,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">event-type</vocabulary>
         </field>
       </row>
       <row>
@@ -3714,6 +3737,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
     </form>
@@ -3932,6 +3956,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <required />
           <style>col-md-2</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
     </form>
@@ -4814,6 +4839,7 @@ Groups of actors that have already been recorded for the project can be selected
           <required />
           <style>col-md-4</style>
           <hint>only for companies</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -4946,6 +4972,7 @@ Groups of actors that have already been recorded for the project can be selected
           <required />
           <style>col-md-4</style>
           <hint>only for companies</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>

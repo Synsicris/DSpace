@@ -26,46 +26,31 @@
 				<value>Equipment</value>
 				<value>impactpathway</value>
 				<value>impactpathwaystep</value>
-				<value>applications_econtech</value>
-				<value>applications_social</value>
-				<value>awards</value>
+				<value>award</value>
 				<value>contribution_fundingprogramme</value>
-				<value>cooperation_partners</value>
-				<value>cooperation_events</value>
-				<value>plan_cooperation_events</value>
-				<value>ethics</value>
-				<value>plan_events</value>
+				<value>cooperation_partner</value>
+				<value>ethic</value>
 				<value>pot_societalimpact</value>
-				<value>conditions</value>
+				<value>condition</value>
 				<value>gender</value>
-				<value>innovationideas</value>
-				<value>plan_innovationideas</value>
-				<value>inn_pot_econtech</value>
-				<value>plan_inn_pot_econtech</value>
-				<value>inn_pot_social</value>
-				<value>plan_inn_pot_social</value>
-				<value>milestones</value>
-				<value>plan_milestones</value>
-				<value>steps</value>
-				<value>physical_objects</value>
-				<value>plan_physical_objects</value>
-				<value>participation_events</value>
-				<value>plan_participation_events</value>
-				<value>plan_patent</value>
-				<value>proj_objectives</value>
-				<value>plan_publication</value>
-				<value>plan_research_quest</value>
-				<value>research_results</value>
-				<value>spinoffs</value>
-				<value>plan_spinoffs</value>
+				<value>innovationidea</value>
+				<value>milestone</value>
+				<value>step</value>
+				<value>physical_object</value>
+				<value>proj_objective</value>
+				<value>research_result</value>
+				<value>spinoff</value>
 				<value>stateofart</value>
 				<value>subproject</value>
-				<value>targetgroups</value>
-				<value>tasks</value>
-				<value>plan_tasks</value>
-				<value>unexpected_results</value>
-				<value>workpackages</value>
-				<value>plan_workpackages</value>
+				<value>targetgroup</value>
+				<value>task</value>
+				<value>unexpected_result</value>
+				<value>workpackage</value>
+				<value>process_event</value>
+				<value>other</value>
+				<value>innovationpotential</value>
+				<value>application</value>
+				<value>plan_publication</value>
             </list>
         </property>
     </bean>

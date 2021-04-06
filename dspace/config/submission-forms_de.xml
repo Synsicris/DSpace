@@ -586,6 +586,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Bitte ordnen Sie durch Vergabe von Schlagworten das Forschungsfeld und die beabsichtigte Innovation bzw. den Lösungsansatz ein.</hint>
+          <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
     </form>
@@ -816,6 +817,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">coar</vocabulary>
         </field>
       </row>
       <row>
@@ -898,6 +900,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Bitte ordnen Sie die Veröffentlichung einer Sachgruppe zu.</hint>
+          <vocabulary closed="true">dnb</vocabulary>
         </field>
       </row>
       <row>
@@ -910,6 +913,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Bitte ordnen Sie durch Vergabe von Schlagworten die Inhalte der Veröffentlichung ein.</hint>
+          <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -922,6 +926,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Bitte ordnen Sie durch Vergabe von Schlagworten die Inhalte der Veröffentlichung ein.</hint>
+          <vocabulary closed="true">umthes</vocabulary>
         </field>
       </row>
       <row>
@@ -1353,6 +1358,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
       <row>
@@ -1435,6 +1441,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
       <row>
@@ -1485,6 +1492,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1508,6 +1516,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Angaben nur für Unternehmen</hint>
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -1760,6 +1769,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <vocabulary closed="true">cooperation-type</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1938,6 +1948,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
       <row>
@@ -2020,6 +2031,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
       <row>
@@ -2070,6 +2082,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternhemen</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2548,6 +2561,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2558,6 +2572,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
     </form>
@@ -2718,6 +2733,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Wählen Sie den Ort des zuständigen Registergerichts aus.</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2936,6 +2952,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <repeatable>true</repeatable>
           <required />
           <hint>Charakterisieren Sie bitte die Idee, indem Sie die Art der Lösung, Veränderung oder Innovation auswählen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
       </row>
     </form>
@@ -3075,6 +3092,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <hint>Wählen Sie hier bitte die Art der von Ihnen beschriebenen Lösung, Veränderung oder Innovation. 
 Über die Pfeile lassen sich Listen aufklappen, in denen sich eine passende Art auswählen lässt.
 Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begriffes im Textfeld die Auswahl eingrenzen.</hint>
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3223,6 +3241,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <required />
           <style>col-md-4</style>
           <hint />
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3339,6 +3358,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3450,6 +3470,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <required />
           <style>col-md-6</style>
           <hint>Bitte wählen Sie die Region aus, in der die Anwendung stattfindet.</hint>
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3461,6 +3482,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <required />
           <style>col-md-5</style>
           <hint>Bitte wählen Sie eine passende Einheit aus. Falls keine Einheit passt, nutzen Sie bitte das nachfolgende Feld „Einheit (eigene Angaben)“.</hint>
+          <vocabulary closed="true">units</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3596,6 +3618,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">event-type</vocabulary>
         </field>
       </row>
       <row>
@@ -3727,6 +3750,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
     </form>
@@ -3946,6 +3970,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <required />
           <style>col-md-2</style>
           <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
       </row>
     </form>
@@ -4827,6 +4852,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -4959,6 +4985,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>

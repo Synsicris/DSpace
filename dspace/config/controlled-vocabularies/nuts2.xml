@@ -1,2368 +1,2365 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NUTS2 2019-12-05">
+<node id="ResourceTypeGenres" label="NUTS2 2021-03-05">
   <isComposedBy>
-    <node id="WW" label="weltweit / kein regionaler Bezug">
+    <node id="WW" label="weltweit / kein regionaler Bezug" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="KONTI" label="Kontinente">
+    <node id="KONTI" label="Kontinente" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="ASIEN" label="Asien">
+        <node id="ASIEN" label="Asien" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="AFRIKA" label="Afrika">
+        <node id="AFRIKA" label="Afrika" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="N-AMERIKA" label="Nordamerika">
+        <node id="N-AMERIKA" label="Nordamerika" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="S-AMERIKA" label="Südamerika">
+        <node id="S-AMERIKA" label="Südamerika" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="EUROPA" label="Europa">
+        <node id="EUROPA" label="Europa" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="AUSTRALIEN" label="Australien und Ozeanien">
+        <node id="AUSTRALIEN" label="Australien und Ozeanien" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ANTARKT" label="Antarktika">
+        <node id="ANTARKT" label="Antarktika" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="KLIMA" label="Klimazonen">
+    <node id="KLIMA" label="Klimazonen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="TROP" label="Tropen">
+        <node id="TROP" label="Tropen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="SUBTROP" label="Subtropen">
+        <node id="SUBTROP" label="Subtropen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="GEMAES" label="Gemäßigte Zone">
+        <node id="GEMAES" label="Gemäßigte Zone" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="KALT" label="kaltgemäßigte Zone">
+            <node id="KALT" label="kaltgemäßigte Zone" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KUEHL" label="kühlgemäßigte Zone">
+            <node id="KUEHL" label="kühlgemäßigte Zone" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="SUBPOLAR" label="Subpolare Zone">
+        <node id="SUBPOLAR" label="Subpolare Zone" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="POLAR" label="Polarzone">
+        <node id="POLAR" label="Polarzone" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="DE" label="Deutschland mit Regionen">
+    <node id="DE" label="Deutschland mit Regionen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="DE1" label="Baden-Württemberg">
+        <node id="DE1" label="Baden-Württemberg" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DE11" label="Stuttgart">
+            <node id="DE11" label="Stuttgart" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE111" label="Stuttgart, Stadtkreis">
+                <node id="DE111" label="Stuttgart, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE112" label="Böblingen">
+                <node id="DE112" label="Böblingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE113" label="Esslingen">
+                <node id="DE113" label="Esslingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE114" label="Göppingen">
+                <node id="DE114" label="Göppingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE115" label="Ludwigsburg">
+                <node id="DE115" label="Ludwigsburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE116" label="Rems-Murr-Kreis">
+                <node id="DE116" label="Rems-Murr-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE117" label="Heilbronn, Stadtkreis">
+                <node id="DE117" label="Heilbronn, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE118" label="Heilbronn, Landkreis">
+                <node id="DE118" label="Heilbronn, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE119" label="Hohenlohekreis">
+                <node id="DE119" label="Hohenlohekreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE11A" label="Schwäbisch Hall">
+                <node id="DE11A" label="Schwäbisch Hall" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE11B" label="Main-Tauber-Kreis">
+                <node id="DE11B" label="Main-Tauber-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE11C" label="Heidenheim">
+                <node id="DE11C" label="Heidenheim" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE11D" label="Ostalbkreis">
+                <node id="DE11D" label="Ostalbkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE12" label="Karlsruhe">
+            <node id="DE12" label="Karlsruhe" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE121" label="Baden-Baden, Stadtkreis">
+                <node id="DE121" label="Baden-Baden, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE122" label="Karlsruhe, Stadtkreis">
+                <node id="DE122" label="Karlsruhe, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE123" label="Karlsruhe, Landkreis">
+                <node id="DE123" label="Karlsruhe, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE124" label="Rastatt">
+                <node id="DE124" label="Rastatt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE125" label="Heidelberg, Stadtkreis">
+                <node id="DE125" label="Heidelberg, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE126" label="Mannheim, Stadtkreis">
+                <node id="DE126" label="Mannheim, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE127" label="Neckar-Odenwald-Kreis">
+                <node id="DE127" label="Neckar-Odenwald-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE128" label="Rhein-Neckar-Kreis">
+                <node id="DE128" label="Rhein-Neckar-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE129" label="Pforzheim, Stadtkreis">
+                <node id="DE129" label="Pforzheim, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE12A" label="Calw">
+                <node id="DE12A" label="Calw" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE12B" label="Enzkreis">
+                <node id="DE12B" label="Enzkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE12C" label="Freudenstadt">
+                <node id="DE12C" label="Freudenstadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE13" label="Freiburg">
+            <node id="DE13" label="Freiburg" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE131" label="Freiburg im Breisgau, Stadtkreis">
+                <node id="DE131" label="Freiburg im Breisgau, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE132" label="Breisgau-Hochschwarzwald">
+                <node id="DE132" label="Breisgau-Hochschwarzwald" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE133" label="Emmendingen">
+                <node id="DE133" label="Emmendingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE134" label="Ortenaukreis">
+                <node id="DE134" label="Ortenaukreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE135" label="Rottweil">
+                <node id="DE135" label="Rottweil" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE136" label="Schwarzwald-Baar-Kreis">
+                <node id="DE136" label="Schwarzwald-Baar-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE137" label="Tuttlingen">
+                <node id="DE137" label="Tuttlingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE138" label="Konstanz">
+                <node id="DE138" label="Konstanz" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE139" label="Lörrach">
+                <node id="DE139" label="Lörrach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE13A" label="Waldshut">
+                <node id="DE13A" label="Waldshut" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE14" label="Tübingen">
+            <node id="DE14" label="Tübingen" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE141" label="Reutlingen">
+                <node id="DE141" label="Reutlingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE142" label="Tübingen">
+                <node id="DE142" label="Tübingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE143" label="Zollernalbkreis">
+                <node id="DE143" label="Zollernalbkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE144" label="Ulm, Stadtkreis">
+                <node id="DE144" label="Ulm, Stadtkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE145" label="Alb-Donau-Kreis">
+                <node id="DE145" label="Alb-Donau-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE146" label="Biberach">
+                <node id="DE146" label="Biberach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE147" label="Bodenseekreis">
+                <node id="DE147" label="Bodenseekreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE148" label="Ravensburg">
+                <node id="DE148" label="Ravensburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE149" label="Sigmaringen">
+                <node id="DE149" label="Sigmaringen" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
           </isComposedBy>
             </node>
-        <node id="DE2" label="Bayern">
+        <node id="DE2" label="Bayern" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DE21" label="Oberbayern">
+            <node id="DE21" label="Oberbayern" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE211" label="Ingolstadt, Kreisfreie Stadt">
+                <node id="DE211" label="Ingolstadt, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE212" label="München, Kreisfreie Stadt">
+                <node id="DE212" label="München, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE213" label="Rosenheim, Kreisfreie Stadt">
+                <node id="DE213" label="Rosenheim, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE214" label="Altötting">
+                <node id="DE214" label="Altötting" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE215" label="Berchtesgadener Land">
+                <node id="DE215" label="Berchtesgadener Land" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE216" label="Bad Tölz-Wolfratshausen">
+                <node id="DE216" label="Bad Tölz-Wolfratshausen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE217" label="Dachau">
+                <node id="DE217" label="Dachau" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE218" label="Ebersberg">
+                <node id="DE218" label="Ebersberg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE219" label="Eichstätt">
+                <node id="DE219" label="Eichstätt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21A" label="Erding">
+                <node id="DE21A" label="Erding" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21B" label="Freising">
+                <node id="DE21B" label="Freising" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21C" label="Fürstenfeldbruck">
+                <node id="DE21C" label="Fürstenfeldbruck" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21D" label="Garmisch-Partenkirchen">
+                <node id="DE21D" label="Garmisch-Partenkirchen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21E" label="Landsberg am Lech">
+                <node id="DE21E" label="Landsberg am Lech" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21F" label="Miesbach">
+                <node id="DE21F" label="Miesbach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21G" label="Mühldorf a. Inn">
+                <node id="DE21G" label="Mühldorf a. Inn" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21H" label="München, Landkreis">
+                <node id="DE21H" label="München, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21I" label="Neuburg-Schrobenhausen">
+                <node id="DE21I" label="Neuburg-Schrobenhausen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21J" label="Pfaffenhofen a. d. Ilm">
+                <node id="DE21J" label="Pfaffenhofen a. d. Ilm" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21K" label="Rosenheim, Landkreis">
+                <node id="DE21K" label="Rosenheim, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21L" label="Starnberg">
+                <node id="DE21L" label="Starnberg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21M" label="Traunstein">
+                <node id="DE21M" label="Traunstein" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE21N" label="Weilheim-Schongau">
+                <node id="DE21N" label="Weilheim-Schongau" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE22" label="Niederbayern">
+            <node id="DE22" label="Niederbayern" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE221" label="Landshut, Kreisfreie Stadt">
+                <node id="DE221" label="Landshut, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE222" label="Passau, Kreisfreie Stadt">
+                <node id="DE222" label="Passau, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE223" label="Straubing, Kreisfreie Stadt">
+                <node id="DE223" label="Straubing, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE224" label="Deggendorf">
+                <node id="DE224" label="Deggendorf" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE225" label="Freyung-Grafenau">
+                <node id="DE225" label="Freyung-Grafenau" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE226" label="Kelheim">
+                <node id="DE226" label="Kelheim" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE227" label="Landshut, Landkreis">
+                <node id="DE227" label="Landshut, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE228" label="Passau, Landkreis">
+                <node id="DE228" label="Passau, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE229" label="Regen">
+                <node id="DE229" label="Regen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE22A" label="Rottal-Inn">
+                <node id="DE22A" label="Rottal-Inn" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE22B" label="Straubing-Bogen">
+                <node id="DE22B" label="Straubing-Bogen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE22C" label="Dingolfing-Landau">
+                <node id="DE22C" label="Dingolfing-Landau" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE23" label="Oberpfalz">
+            <node id="DE23" label="Oberpfalz" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE231" label="Amberg, Kreisfreie Stadt">
+                <node id="DE231" label="Amberg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE232" label="Regensburg, Kreisfreie Stadt">
+                <node id="DE232" label="Regensburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE233" label="Weiden i. d. OPf, Kreisfreie Stadt">
+                <node id="DE233" label="Weiden i. d. OPf, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE234" label="Amberg-Sulzbach">
+                <node id="DE234" label="Amberg-Sulzbach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE235" label="Cham">
+                <node id="DE235" label="Cham" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE236" label="Neumarkt i. d. OPf.">
+                <node id="DE236" label="Neumarkt i. d. OPf." selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE237" label="Neustadt a. d. Waldnaab">
+                <node id="DE237" label="Neustadt a. d. Waldnaab" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE238" label="Regensburg, Landkreis">
+                <node id="DE238" label="Regensburg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE239" label="Schwandorf">
+                <node id="DE239" label="Schwandorf" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE23A" label="Tirschenreuth">
+                <node id="DE23A" label="Tirschenreuth" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE24" label="Oberfranken">
+            <node id="DE24" label="Oberfranken" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE241" label="Bamberg, Kreisfreie Stadt">
+                <node id="DE241" label="Bamberg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE242" label="Bayreuth, Kreisfreie Stadt">
+                <node id="DE242" label="Bayreuth, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE243" label="Coburg, Kreisfreie Stadt">
+                <node id="DE243" label="Coburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE244" label="Hof, Kreisfreie Stadt">
+                <node id="DE244" label="Hof, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE245" label="Bamberg, Landkreis">
+                <node id="DE245" label="Bamberg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE246" label="Bayreuth, Landkreis">
+                <node id="DE246" label="Bayreuth, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE247" label="Coburg, Landkreis">
+                <node id="DE247" label="Coburg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE248" label="Forchheim">
+                <node id="DE248" label="Forchheim" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE249" label="Hof, Landkreis">
+                <node id="DE249" label="Hof, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE24A" label="Kronach">
+                <node id="DE24A" label="Kronach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE24B" label="Kulmbach">
+                <node id="DE24B" label="Kulmbach" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE24C" label="Lichtenfels">
+                <node id="DE24C" label="Lichtenfels" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE24D" label="Wunsiedel i. Fichtelgebirge">
+                <node id="DE24D" label="Wunsiedel i. Fichtelgebirge" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE25" label="Mittelfranken">
+            <node id="DE25" label="Mittelfranken" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE251" label="Ansbach, Kreisfreie Stadt">
+                <node id="DE251" label="Ansbach, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE252" label="Erlangen, Kreisfreie Stadt">
+                <node id="DE252" label="Erlangen, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE253" label="Fürth, Kreisfreie Stadt">
+                <node id="DE253" label="Fürth, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE254" label="Nürnberg, Kreisfreie Stadt">
+                <node id="DE254" label="Nürnberg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE255" label="Schwabach, Kreisfreie Stadt">
+                <node id="DE255" label="Schwabach, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE256" label="Ansbach, Landkreis">
+                <node id="DE256" label="Ansbach, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE257" label="Erlangen-Höchstadt">
+                <node id="DE257" label="Erlangen-Höchstadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE258" label="Fürth, Landkreis">
+                <node id="DE258" label="Fürth, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE259" label="Nürnberger Land">
+                <node id="DE259" label="Nürnberger Land" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE25A" label="Neustadt a. d. Aisch-Bad Windsheim">
+                <node id="DE25A" label="Neustadt a. d. Aisch-Bad Windsheim" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE25B" label="Roth">
+                <node id="DE25B" label="Roth" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE25C" label="Weißenburg-Gunzenhausen">
+                <node id="DE25C" label="Weißenburg-Gunzenhausen" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE26" label="Unterfranken">
+            <node id="DE26" label="Unterfranken" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE261" label="Aschaffenburg, Kreisfreie Stadt">
+                <node id="DE261" label="Aschaffenburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE262" label="Schweinfurt, Kreisfreie Stadt">
+                <node id="DE262" label="Schweinfurt, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE263" label="Würzburg, Kreisfreie Stadt">
+                <node id="DE263" label="Würzburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE264" label="Aschaffenburg, Landkreis">
+                <node id="DE264" label="Aschaffenburg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE265" label="Bad Kissingen">
+                <node id="DE265" label="Bad Kissingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE266" label="Rhön-Grabfeld">
+                <node id="DE266" label="Rhön-Grabfeld" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE267" label="Haßberge">
+                <node id="DE267" label="Haßberge" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE268" label="Kitzingen">
+                <node id="DE268" label="Kitzingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE269" label="Miltenberg">
+                <node id="DE269" label="Miltenberg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE26A" label="Main-Spessart">
+                <node id="DE26A" label="Main-Spessart" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE26B" label="Schweinfurt, Landkreis">
+                <node id="DE26B" label="Schweinfurt, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE26C" label="Würzburg, Landkreis">
+                <node id="DE26C" label="Würzburg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE27" label="Schwaben">
+            <node id="DE27" label="Schwaben" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE271" label="Augsburg, Kreisfreie Stadt">
+                <node id="DE271" label="Augsburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE272" label="Kaufbeuren, Kreisfreie Stadt">
+                <node id="DE272" label="Kaufbeuren, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE273" label="Kempten (Allgäu), Kreisfreie Stadt">
+                <node id="DE273" label="Kempten (Allgäu), Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE274" label="Memmingen, Kreisfreie Stadt">
+                <node id="DE274" label="Memmingen, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE275" label="Aichach-Friedberg">
+                <node id="DE275" label="Aichach-Friedberg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE276" label="Augsburg, Landkreis">
+                <node id="DE276" label="Augsburg, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE277" label="Dillingen a. d. Donau">
+                <node id="DE277" label="Dillingen a. d. Donau" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE278" label="Günzburg">
+                <node id="DE278" label="Günzburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE279" label="Neu-Ulm">
+                <node id="DE279" label="Neu-Ulm" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE27A" label="Lindau (Bodensee)">
+                <node id="DE27A" label="Lindau (Bodensee)" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE27B" label="Ostallgäu">
+                <node id="DE27B" label="Ostallgäu" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE27C" label="Unterallgäu">
+                <node id="DE27C" label="Unterallgäu" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE27D" label="Donau-Ries">
+                <node id="DE27D" label="Donau-Ries" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE27E" label="Oberallgäu">
+                <node id="DE27E" label="Oberallgäu" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
           </isComposedBy>
             </node>
-        <node id="DE3" label="Berlin">
+        <node id="DE3" label="Berlin" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="DE4" label="Brandenburg">
+        <node id="DE4" label="Brandenburg" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DE401" label="Brandenburg an der Havel, Kreisfreie Stadt">
+            <node id="DE401" label="Brandenburg an der Havel, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE402" label="Cottbus, Kreisfreie Stadt">
+            <node id="DE402" label="Cottbus, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE403" label="Frankfurt (Oder), Kreisfreie Stadt">
+            <node id="DE403" label="Frankfurt (Oder), Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE404" label="Potsdam, Kreisfreie Stadt">
+            <node id="DE404" label="Potsdam, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE405" label="Barnim">
+            <node id="DE405" label="Barnim" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE406" label="Dahme-Spreewald">
+            <node id="DE406" label="Dahme-Spreewald" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE407" label="Elbe-Elster">
+            <node id="DE407" label="Elbe-Elster" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE408" label="Havelland">
+            <node id="DE408" label="Havelland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE409" label="Märkisch-Oderland">
+            <node id="DE409" label="Märkisch-Oderland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40A" label="Oberhavel">
+            <node id="DE40A" label="Oberhavel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40B" label="Oberspreewald-Lausitz">
+            <node id="DE40B" label="Oberspreewald-Lausitz" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40C" label="Oder-Spree">
+            <node id="DE40C" label="Oder-Spree" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40D" label="Ostprignitz-Ruppin">
+            <node id="DE40D" label="Ostprignitz-Ruppin" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40E" label="Potsdam-Mittelmark">
+            <node id="DE40E" label="Potsdam-Mittelmark" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40F" label="Prignitz">
+            <node id="DE40F" label="Prignitz" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40G" label="Spree-Neiße">
+            <node id="DE40G" label="Spree-Neiße" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40H" label="Teltow-Fläming">
+            <node id="DE40H" label="Teltow-Fläming" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE40I" label="Uckermark">
-            <hasNote></hasNote>
-            </node>
-          </isComposedBy>
-        </node>
-        <node id="DE5" label="Bremen">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="DE501" label="Bremen, Kreisfreie Stadt">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE502" label="Bremerhaven, Kreisfreie Stadt">
+            <node id="DE40I" label="Uckermark" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="DE6" label="Hamburg">
-        <hasNote></hasNote>
-        </node>
-        <node id="DE7" label="Hessen">
+        <node id="DE5" label="Bremen" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DE71" label="Darmstadt">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DE711" label="Darmstadt, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE712" label="Frankfurt am Main, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE713" label="Offenbach am Main, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE714" label="Wiesbaden, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE715" label="Bergstraße">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE716" label="Darmstadt-Dieburg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE717" label="Groß-Gerau">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE718" label="Hochtaunuskreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE719" label="Main-Kinzig-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE71A" label="Main-Taunus-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE71B" label="Odenwaldkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE71C" label="Offenbach, Landkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE71D" label="Rheingau-Taunus-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE71E" label="Wetteraukreis">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DE72" label="Gießen">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DE721" label="Gießen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE722" label="Lahn-Dill-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE723" label="Limburg-Weilburg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE724" label="Marburg-Biedenkopf">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE725" label="Vogelsbergkreis">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DE73" label="Kassel">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DE731" label="Kassel, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE732" label="Fulda">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE733" label="Hersfeld-Rotenburg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE734" label="Kassel, Landkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE735" label="Schwalm-Eder-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE736" label="Waldeck-Frankenberg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE737" label="Werra-Meißner-Kreis">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-          </isComposedBy>
-            </node>
-        <node id="DE8" label="Mecklenburg-Vorpommern">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="DE803" label="Rostock, Kreisfreie Stadt">
+            <node id="DE501" label="Bremen, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DE804" label="Schwerin, Kreisfreie Stadt">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80J" label="Mecklenburgische Seenplatte">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80K" label="Rostock, Landkreis">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80L" label="Vorpommern-Rügen">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80M" label="Nordwestmecklenburg">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80N" label="Vorpommern-Greifswald">
-            <hasNote></hasNote>
-            </node>
-            <node id="DE80O" label="Ludwigslust-Parchim">
+            <node id="DE502" label="Bremerhaven, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="DE9" label="Niedersachsen">
+        <node id="DE6" label="Hamburg" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="DE7" label="Hessen" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DE91" label="Braunschweig">
+            <node id="DE71" label="Darmstadt" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE911" label="Braunschweig, Kreisfreie Stadt">
+                <node id="DE711" label="Darmstadt, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE912" label="Salzgitter, Kreisfreie Stadt">
+                <node id="DE712" label="Frankfurt am Main, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE913" label="Wolfsburg, Kreisfreie Stadt">
+                <node id="DE713" label="Offenbach am Main, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE914" label="Gifhorn">
+                <node id="DE714" label="Wiesbaden, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE916" label="Goslar">
+                <node id="DE715" label="Bergstraße" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE917" label="Helmstedt">
+                <node id="DE716" label="Darmstadt-Dieburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE918" label="Northeim">
+                <node id="DE717" label="Groß-Gerau" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE91A" label="Peine">
+                <node id="DE718" label="Hochtaunuskreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE91B" label="Wolfenbüttel">
+                <node id="DE719" label="Main-Kinzig-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE91C" label="Göttingen">
+                <node id="DE71A" label="Main-Taunus-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE71B" label="Odenwaldkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE71C" label="Offenbach, Landkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE71D" label="Rheingau-Taunus-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE71E" label="Wetteraukreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE92" label="Hannover">
+            <node id="DE72" label="Gießen" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE922" label="Diepholz">
+                <node id="DE721" label="Gießen" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE923" label="Hameln-Pyrmont">
+                <node id="DE722" label="Lahn-Dill-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE925" label="Hildesheim">
+                <node id="DE723" label="Limburg-Weilburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE926" label="Holzminden">
+                <node id="DE724" label="Marburg-Biedenkopf" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE927" label="Nienburg/Weser">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE928" label="Schaumburg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE929" label="Region Hannover">
+                <node id="DE725" label="Vogelsbergkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DE93" label="Lüneburg">
+            <node id="DE73" label="Kassel" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DE931" label="Celle">
+                <node id="DE731" label="Kassel, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE932" label="Cuxhaven">
+                <node id="DE732" label="Fulda" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE933" label="Harburg">
+                <node id="DE733" label="Hersfeld-Rotenburg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE934" label="Lüchow-Dannenberg">
+                <node id="DE734" label="Kassel, Landkreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE935" label="Lüneburg">
+                <node id="DE735" label="Schwalm-Eder-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE936" label="Osterholz">
+                <node id="DE736" label="Waldeck-Frankenberg" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DE937" label="Rotenburg (Wümme)">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE938" label="Heidekreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE939" label="Stade">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE93A" label="Uelzen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE93B" label="Verden">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DE94" label="Weser-Ems">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DE941" label="Delmenhorst, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE942" label="Emden, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE943" label="Oldenburg (Oldb), Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE944" label="Osnabrück, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE945" label="Wilhelmshaven, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE946" label="Ammerland">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE947" label="Aurich">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE948" label="Cloppenburg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE949" label="Emsland">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94A" label="Friesland (DE)">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94B" label="Grafschaft Bentheim">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94C" label="Leer">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94D" label="Oldenburg, Landkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94E" label="Osnabrück, Landkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94F" label="Vechta">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94G" label="Wesermarsch">
-                <hasNote></hasNote>
-                </node>
-                <node id="DE94H" label="Wittmund">
+                <node id="DE737" label="Werra-Meißner-Kreis" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
           </isComposedBy>
             </node>
-        <node id="DEA" label="Nordrhein-Westfalen">
+        <node id="DE8" label="Mecklenburg-Vorpommern" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DEA1" label="Düsseldorf">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEA11" label="Düsseldorf, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA12" label="Duisburg, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA13" label="Essen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA14" label="Krefeld, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA15" label="Mönchengladbach, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA16" label="Mülheim an der Ruhr, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA17" label="Oberhausen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA18" label="Remscheid, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA19" label="Solingen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1A" label="Wuppertal, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1B" label="Kleve">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1C" label="Mettmann">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1D" label="Rhein-Kreis Neuss">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1E" label="Viersen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA1F" label="Wesel">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEA2" label="Köln">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEA22" label="Bonn, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA23" label="Köln, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA24" label="Leverkusen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA26" label="Düren">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA27" label="Rhein-Erft-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA28" label="Euskirchen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA29" label="Heinsberg">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA2A" label="Oberbergischer Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA2B" label="Rheinisch-Bergischer Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA2C" label="Rhein-Sieg-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA2D" label="Städteregion Aachen">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEA3" label="Münster">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEA31" label="Bottrop, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA32" label="Gelsenkirchen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA33" label="Münster, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA34" label="Borken">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA35" label="Coesfeld">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA36" label="Recklinghausen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA37" label="Steinfurt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA38" label="Warendorf">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEA4" label="Detmold">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEA41" label="Bielefeld, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA42" label="Gütersloh">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA43" label="Herford">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA44" label="Höxter">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA45" label="Lippe">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA46" label="Minden-Lübbecke">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA47" label="Paderborn">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEA5" label="Arnsberg">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEA51" label="Bochum, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA52" label="Dortmund, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA53" label="Hagen, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA54" label="Hamm, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA55" label="Herne, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA56" label="Ennepe-Ruhr-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA57" label="Hochsauerlandkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA58" label="Märkischer Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA59" label="Olpe">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA5A" label="Siegen-Wittgenstein">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA5B" label="Soest">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEA5C" label="Unna">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-          </isComposedBy>
-            </node>
-        <node id="DEB" label="Rheinland-Pfalz">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="DEB1" label="Koblenz">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEB11" label="Koblenz, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB12" label="Ahrweiler">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB13" label="Altenkirchen (Westerwald)">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB14" label="Bad Kreuznach">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB15" label="Birkenfeld">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB17" label="Mayen-Koblenz">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB18" label="Neuwied">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB1A" label="Rhein-Lahn-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB1B" label="Westerwaldkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB1C" label="Cochem-Zell">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB1D" label="Rhein-Hunsrück-Kreis">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEB2" label="Trier">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEB21" label="Trier, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB22" label="Bernkastel-Wittlich">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB23" label="Eifelkreis Bitburg-Prüm">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB24" label="Vulkaneifel">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB25" label="Trier-Saarburg">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-            <node id="DEB3" label="Rheinhessen-Pfalz">
-            <hasNote></hasNote>
-              <isComposedBy>
-                <node id="DEB31" label="Frankenthal (Pfalz), Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB32" label="Kaiserslautern, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB33" label="Landau in der Pfalz, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB34" label="Ludwigshafen am Rhein, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB35" label="Mainz, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB36" label="Neustadt an der Weinstraße, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB37" label="Pirmasens, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB38" label="Speyer, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB39" label="Worms, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3A" label="Zweibrücken, Kreisfreie Stadt">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3B" label="Alzey-Worms">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3C" label="Bad Dürkheim">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3D" label="Donnersbergkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3E" label="Germersheim">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3F" label="Kaiserslautern, Landkreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3G" label="Kusel">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3H" label="Südliche Weinstraße">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3I" label="Rhein-Pfalz-Kreis">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3J" label="Mainz-Bingen">
-                <hasNote></hasNote>
-                </node>
-                <node id="DEB3K" label="Südwestpfalz">
-                <hasNote></hasNote>
-                </node>
-              </isComposedBy>
-            </node>
-          </isComposedBy>
-            </node>
-        <node id="DEC" label="Saarland">
-        <hasNote></hasNote>
-          <isComposedBy>
-            <node id="DEC01" label="Regionalverband Saarbrücken">
+            <node id="DE803" label="Rostock, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEC02" label="Merzig-Wadern">
+            <node id="DE804" label="Schwerin, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEC03" label="Neunkirchen">
+            <node id="DE80J" label="Mecklenburgische Seenplatte" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEC04" label="Saarlouis">
+            <node id="DE80K" label="Rostock, Landkreis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEC05" label="Saarpfalz-Kreis">
+            <node id="DE80L" label="Vorpommern-Rügen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEC06" label="St. Wendel">
+            <node id="DE80M" label="Nordwestmecklenburg" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DE80N" label="Vorpommern-Greifswald" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DE80O" label="Ludwigslust-Parchim" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="DED" label="Sachsen">
+        <node id="DE9" label="Niedersachsen" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DED2" label="Dresden">
+            <node id="DE91" label="Braunschweig" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DED21" label="Dresden, Kreisfreie Stadt">
+                <node id="DE911" label="Braunschweig, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED2C" label="Bautzen">
+                <node id="DE912" label="Salzgitter, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED2D" label="Görlitz">
+                <node id="DE913" label="Wolfsburg, Kreisfreie Stadt" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED2E" label="Meißen">
+                <node id="DE914" label="Gifhorn" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED2F" label="Sächsische Schweiz-Osterzgebirge">
+                <node id="DE916" label="Goslar" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE917" label="Helmstedt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE918" label="Northeim" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE91A" label="Peine" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE91B" label="Wolfenbüttel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE91C" label="Göttingen" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DED4" label="Chemnitz">
+            <node id="DE92" label="Hannover" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DED41" label="Chemnitz, Kreisfreie Stadt">
+                <node id="DE922" label="Diepholz" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED42" label="Erzgebirgskreis">
+                <node id="DE923" label="Hameln-Pyrmont" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED43" label="Mittelsachsen">
+                <node id="DE925" label="Hildesheim" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED44" label="Vogtlandkreis">
+                <node id="DE926" label="Holzminden" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED45" label="Zwickau">
+                <node id="DE927" label="Nienburg/Weser" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE928" label="Schaumburg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE929" label="Region Hannover" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
-            <node id="DED5" label="Leipzig">
+            <node id="DE93" label="Lüneburg" selectable="true">
             <hasNote></hasNote>
               <isComposedBy>
-                <node id="DED51" label="Leipzig, Kreisfreie Stadt">
+                <node id="DE931" label="Celle" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED52" label="Leipzig">
+                <node id="DE932" label="Cuxhaven" selectable="true">
                 <hasNote></hasNote>
                 </node>
-                <node id="DED53" label="Nordsachsen">
+                <node id="DE933" label="Harburg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE934" label="Lüchow-Dannenberg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE935" label="Lüneburg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE936" label="Osterholz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE937" label="Rotenburg (Wümme)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE938" label="Heidekreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE939" label="Stade" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE93A" label="Uelzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE93B" label="Verden" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DE94" label="Weser-Ems" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DE941" label="Delmenhorst, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE942" label="Emden, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE943" label="Oldenburg (Oldb), Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE944" label="Osnabrück, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE945" label="Wilhelmshaven, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE946" label="Ammerland" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE947" label="Aurich" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE948" label="Cloppenburg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE949" label="Emsland" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94A" label="Friesland (DE)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94B" label="Grafschaft Bentheim" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94C" label="Leer" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94D" label="Oldenburg, Landkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94E" label="Osnabrück, Landkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94F" label="Vechta" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94G" label="Wesermarsch" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DE94H" label="Wittmund" selectable="true">
                 <hasNote></hasNote>
                 </node>
               </isComposedBy>
             </node>
           </isComposedBy>
             </node>
-        <node id="DEE" label="Sachsen-Anhalt">
+        <node id="DEA" label="Nordrhein-Westfalen" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DEE01" label="Dessau-Roßlau, Kreisfreie Stadt">
+            <node id="DEA1" label="Düsseldorf" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEA11" label="Düsseldorf, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA12" label="Duisburg, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA13" label="Essen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA14" label="Krefeld, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA15" label="Mönchengladbach, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA16" label="Mülheim an der Ruhr, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA17" label="Oberhausen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA18" label="Remscheid, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA19" label="Solingen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1A" label="Wuppertal, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1B" label="Kleve" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1C" label="Mettmann" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1D" label="Rhein-Kreis Neuss" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1E" label="Viersen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA1F" label="Wesel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEA2" label="Köln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEA22" label="Bonn, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA23" label="Köln, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA24" label="Leverkusen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA26" label="Düren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA27" label="Rhein-Erft-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA28" label="Euskirchen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA29" label="Heinsberg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA2A" label="Oberbergischer Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA2B" label="Rheinisch-Bergischer Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA2C" label="Rhein-Sieg-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA2D" label="Städteregion Aachen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEA3" label="Münster" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEA31" label="Bottrop, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA32" label="Gelsenkirchen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA33" label="Münster, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA34" label="Borken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA35" label="Coesfeld" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA36" label="Recklinghausen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA37" label="Steinfurt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA38" label="Warendorf" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEA4" label="Detmold" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEA41" label="Bielefeld, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA42" label="Gütersloh" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA43" label="Herford" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA44" label="Höxter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA45" label="Lippe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA46" label="Minden-Lübbecke" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA47" label="Paderborn" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEA5" label="Arnsberg" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEA51" label="Bochum, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA52" label="Dortmund, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA53" label="Hagen, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA54" label="Hamm, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA55" label="Herne, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA56" label="Ennepe-Ruhr-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA57" label="Hochsauerlandkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA58" label="Märkischer Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA59" label="Olpe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA5A" label="Siegen-Wittgenstein" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA5B" label="Soest" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEA5C" label="Unna" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="DEB" label="Rheinland-Pfalz" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="DEB1" label="Koblenz" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEB11" label="Koblenz, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB12" label="Ahrweiler" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB13" label="Altenkirchen (Westerwald)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB14" label="Bad Kreuznach" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB15" label="Birkenfeld" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB17" label="Mayen-Koblenz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB18" label="Neuwied" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB1A" label="Rhein-Lahn-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB1B" label="Westerwaldkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB1C" label="Cochem-Zell" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB1D" label="Rhein-Hunsrück-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEB2" label="Trier" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEB21" label="Trier, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB22" label="Bernkastel-Wittlich" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB23" label="Eifelkreis Bitburg-Prüm" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB24" label="Vulkaneifel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB25" label="Trier-Saarburg" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DEB3" label="Rheinhessen-Pfalz" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DEB31" label="Frankenthal (Pfalz), Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB32" label="Kaiserslautern, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB33" label="Landau in der Pfalz, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB34" label="Ludwigshafen am Rhein, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB35" label="Mainz, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB36" label="Neustadt an der Weinstraße, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB37" label="Pirmasens, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB38" label="Speyer, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB39" label="Worms, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3A" label="Zweibrücken, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3B" label="Alzey-Worms" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3C" label="Bad Dürkheim" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3D" label="Donnersbergkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3E" label="Germersheim" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3F" label="Kaiserslautern, Landkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3G" label="Kusel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3H" label="Südliche Weinstraße" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3I" label="Rhein-Pfalz-Kreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3J" label="Mainz-Bingen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DEB3K" label="Südwestpfalz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="DEC" label="Saarland" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="DEC01" label="Regionalverband Saarbrücken" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEE02" label="Halle (Saale), Kreisfreie Stadt">
+            <node id="DEC02" label="Merzig-Wadern" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEE03" label="Magdeburg, Kreisfreie Stadt">
+            <node id="DEC03" label="Neunkirchen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEE04" label="Altmarkkreis Salzwedel">
+            <node id="DEC04" label="Saarlouis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEE05" label="Anhalt-Bitterfeld">
+            <node id="DEC05" label="Saarpfalz-Kreis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEE06" label="Jerichower Land">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE07" label="Börde">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE08" label="Burgenlandkreis">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE09" label="Harz">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE0A" label="Mansfeld-Südharz">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE0B" label="Saalekreis">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE0C" label="Salzlandkreis">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE0D" label="Stendal">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEE0E" label="Wittenberg">
+            <node id="DEC06" label="St. Wendel" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="DEF" label="Schleswig-Holstein">
+        <node id="DED" label="Sachsen" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DEF01" label="Flensburg, Kreisfreie Stadt">
+            <node id="DED2" label="Dresden" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DED21" label="Dresden, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED2C" label="Bautzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED2D" label="Görlitz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED2E" label="Meißen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED2F" label="Sächsische Schweiz-Osterzgebirge" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DED4" label="Chemnitz" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DED41" label="Chemnitz, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED42" label="Erzgebirgskreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED43" label="Mittelsachsen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED44" label="Vogtlandkreis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED45" label="Zwickau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="DED5" label="Leipzig" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="DED51" label="Leipzig, Kreisfreie Stadt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED52" label="Leipzig" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="DED53" label="Nordsachsen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="DEE" label="Sachsen-Anhalt" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="DEE01" label="Dessau-Roßlau, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF02" label="Kiel, Kreisfreie Stadt">
+            <node id="DEE02" label="Halle (Saale), Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF03" label="Lübeck, Kreisfreie Stadt">
+            <node id="DEE03" label="Magdeburg, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF04" label="Neumünster, Kreisfreie Stadt">
+            <node id="DEE04" label="Altmarkkreis Salzwedel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF05" label="Dithmarschen">
+            <node id="DEE05" label="Anhalt-Bitterfeld" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF06" label="Herzogtum Lauenburg">
+            <node id="DEE06" label="Jerichower Land" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF07" label="Nordfriesland">
+            <node id="DEE07" label="Börde" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF08" label="Ostholstein">
+            <node id="DEE08" label="Burgenlandkreis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF09" label="Pinneberg">
+            <node id="DEE09" label="Harz" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF0A" label="Plön">
+            <node id="DEE0A" label="Mansfeld-Südharz" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF0B" label="Rendsburg-Eckernförde">
+            <node id="DEE0B" label="Saalekreis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF0C" label="Schleswig-Flensburg">
+            <node id="DEE0C" label="Salzlandkreis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF0D" label="Segeberg">
+            <node id="DEE0D" label="Stendal" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEF0E" label="Steinburg">
-            <hasNote></hasNote>
-            </node>
-            <node id="DEF0F" label="Stormarn">
+            <node id="DEE0E" label="Wittenberg" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="DEG" label="Thüringen">
+        <node id="DEF" label="Schleswig-Holstein" selectable="true">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DEG01" label="Erfurt, Kreisfreie Stadt">
+            <node id="DEF01" label="Flensburg, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG02" label="Gera, Kreisfreie Stadt">
+            <node id="DEF02" label="Kiel, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG03" label="Jena, Kreisfreie Stadt">
+            <node id="DEF03" label="Lübeck, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG04" label="Suhl, Kreisfreie Stadt">
+            <node id="DEF04" label="Neumünster, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG05" label="Weimar, Kreisfreie Stadt">
+            <node id="DEF05" label="Dithmarschen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG06" label="Eichsfeld">
+            <node id="DEF06" label="Herzogtum Lauenburg" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG07" label="Nordhausen">
+            <node id="DEF07" label="Nordfriesland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG09" label="Unstrut-Hainich-Kreis">
+            <node id="DEF08" label="Ostholstein" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0A" label="Kyffhäuserkreis">
+            <node id="DEF09" label="Pinneberg" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0B" label="Schmalkalden-Meiningen">
+            <node id="DEF0A" label="Plön" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0C" label="Gotha">
+            <node id="DEF0B" label="Rendsburg-Eckernförde" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0D" label="Sömmerda">
+            <node id="DEF0C" label="Schleswig-Flensburg" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0E" label="Hildburghausen">
+            <node id="DEF0D" label="Segeberg" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0F" label="Ilm-Kreis">
+            <node id="DEF0E" label="Steinburg" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0G" label="Weimarer Land">
+            <node id="DEF0F" label="Stormarn" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0H" label="Sonneberg">
+          </isComposedBy>
+        </node>
+        <node id="DEG" label="Thüringen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="DEG01" label="Erfurt, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0I" label="Saalfeld-Rudolstadt">
+            <node id="DEG02" label="Gera, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0J" label="Saale-Holzland-Kreis">
+            <node id="DEG03" label="Jena, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0K" label="Saale-Orla-Kreis">
+            <node id="DEG04" label="Suhl, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0L" label="Greiz">
+            <node id="DEG05" label="Weimar, Kreisfreie Stadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0M" label="Altenburger Land">
+            <node id="DEG06" label="Eichsfeld" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0N" label="Eisenach, Kreisfreie Stadt">
+            <node id="DEG07" label="Nordhausen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEG0P" label="Wartburgkreis">
+            <node id="DEG09" label="Unstrut-Hainich-Kreis" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0A" label="Kyffhäuserkreis" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0B" label="Schmalkalden-Meiningen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0C" label="Gotha" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0D" label="Sömmerda" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0E" label="Hildburghausen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0F" label="Ilm-Kreis" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0G" label="Weimarer Land" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0H" label="Sonneberg" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0I" label="Saalfeld-Rudolstadt" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0J" label="Saale-Holzland-Kreis" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0K" label="Saale-Orla-Kreis" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0L" label="Greiz" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0M" label="Altenburger Land" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0N" label="Eisenach, Kreisfreie Stadt" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="DEG0P" label="Wartburgkreis" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
       </isComposedBy>
         </node>
-    <node id="LAND" label="andere Länder">
+    <node id="LAND" label="andere Länder" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="A" label="A">
+        <node id="A" label="A" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="AFG" label="Afghanistan">
+            <node id="AFG" label="Afghanistan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="EGY" label="Ägypten">
+            <node id="EGY" label="Ägypten" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ALA" label="Åland">
+            <node id="ALA" label="Åland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ALB" label="Albanien">
+            <node id="ALB" label="Albanien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DZA" label="Algerien">
+            <node id="DZA" label="Algerien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VIR" label="Amerikanische Jungferninseln">
+            <node id="VIR" label="Amerikanische Jungferninseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ASM" label="Amerikanisch-Samoa">
+            <node id="ASM" label="Amerikanisch-Samoa" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AND" label="Andorra">
+            <node id="AND" label="Andorra" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AGO" label="Angola">
+            <node id="AGO" label="Angola" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AIA" label="Anguilla">
+            <node id="AIA" label="Anguilla" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATA" label="Antarktika">
+            <node id="ATA" label="Antarktika" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATG" label="Antigua und Barbuda">
+            <node id="ATG" label="Antigua und Barbuda" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GNQ" label="Äquatorialguinea">
+            <node id="GNQ" label="Äquatorialguinea" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ARG" label="Argentinien">
+            <node id="ARG" label="Argentinien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ARM" label="Armenien">
+            <node id="ARM" label="Armenien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ABW" label="Aruba">
+            <node id="ABW" label="Aruba" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AZE" label="Aserbaidschan">
+            <node id="AZE" label="Aserbaidschan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ETH" label="Äthiopien">
+            <node id="ETH" label="Äthiopien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AUS" label="Australien">
+            <node id="AUS" label="Australien" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="B" label="B">
+        <node id="B" label="B" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="BHS" label="Bahamas">
+            <node id="BHS" label="Bahamas" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BHR" label="Bahrain">
+            <node id="BHR" label="Bahrain" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BGD" label="Bangladesch">
+            <node id="BGD" label="Bangladesch" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BRB" label="Barbados">
+            <node id="BRB" label="Barbados" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATF1" label="Bassas da India">
+            <node id="ATF1" label="Bassas da India" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BLR" label="Belarus">
+            <node id="BLR" label="Belarus" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BEL" label="Belgien">
+            <node id="BEL" label="Belgien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BLZ" label="Belize">
+            <node id="BLZ" label="Belize" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BEN" label="Benin">
+            <node id="BEN" label="Benin" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BMU" label="Bermuda">
+            <node id="BMU" label="Bermuda" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BTN" label="Bhutan">
+            <node id="BTN" label="Bhutan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BOL" label="Bolivien">
+            <node id="BOL" label="Bolivien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BIH" label="Bosnien und Herzegowina">
+            <node id="BIH" label="Bosnien und Herzegowina" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BWA" label="Botsuana">
+            <node id="BWA" label="Botsuana" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BVT" label="Bouvetinsel">
+            <node id="BVT" label="Bouvetinsel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BRA" label="Brasilien">
+            <node id="BRA" label="Brasilien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VGB" label="Britische Jungferninseln">
+            <node id="VGB" label="Britische Jungferninseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IOT" label="Britisches Territorium im Indischen Ozean">
+            <node id="IOT" label="Britisches Territorium im Indischen Ozean" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BRN" label="Brunei Darussalam">
+            <node id="BRN" label="Brunei Darussalam" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BGR" label="Bulgarien">
+            <node id="BGR" label="Bulgarien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BFA" label="Burkina Faso">
+            <node id="BFA" label="Burkina Faso" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BDI" label="Burundi">
+            <node id="BDI" label="Burundi" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="C" label="C">
+        <node id="C" label="C" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="CPV" label="Cabo Verde">
+            <node id="CPV" label="Cabo Verde" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CHL" label="Chile">
+            <node id="CHL" label="Chile" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CHN" label="China">
+            <node id="CHN" label="China" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="Frau" label="Clipperton">
+            <node id="FRAU" label="Clipperton" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="COK" label="Cookinseln">
+            <node id="COK" label="Cookinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CRI" label="Costa Rica">
+            <node id="CRI" label="Costa Rica" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CIV" label="Côte d'Ivoire">
+            <node id="CIV" label="Côte d'Ivoire" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="D" label="D">
+        <node id="D" label="D" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="DNK" label="Dänemark">
+            <node id="DNK" label="Dänemark" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DEU" label="Deutschland">
+            <node id="DEU" label="Deutschland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DMA" label="Dominica">
+            <node id="DMA" label="Dominica" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DOM" label="Dominikanische Republik">
+            <node id="DOM" label="Dominikanische Republik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="DJI" label="Dschibuti">
+            <node id="DJI" label="Dschibuti" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="E" label="E">
+        <node id="E" label="E" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="ECU" label="Ecuador">
+            <node id="ECU" label="Ecuador" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SLV" label="El Salvador">
+            <node id="SLV" label="El Salvador" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ERI" label="Eritrea">
+            <node id="ERI" label="Eritrea" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="EST" label="Estland">
+            <node id="EST" label="Estland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SWZ" label="Eswatini">
-            <hasNote></hasNote>
-            </node>
-            <node id="EURO" label="Europa">
+            <node id="SWZ" label="Eswatini" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="F" label="F">
+        <node id="F" label="F" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="FLK" label="Falklandinseln">
+            <node id="FLK" label="Falklandinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FRO" label="Färöer">
+            <node id="FRO" label="Färöer" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FJI" label="Fidschi">
+            <node id="FJI" label="Fidschi" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FIN" label="Finnland">
+            <node id="FIN" label="Finnland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FRA" label="Frankreich">
+            <node id="FRA" label="Frankreich" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FXX" label="Frankreich (metropolitanes)">
+            <node id="FXX" label="Frankreich (metropolitanes)" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATF" label="Französische Süd- und Antarktisgebiete">
+            <node id="ATF" label="Französische Süd- und Antarktisgebiete" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GUF" label="Französisch-Guayana">
+            <node id="GUF" label="Französisch-Guayana" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PYF" label="Französisch-Polynesien">
+            <node id="PYF" label="Französisch-Polynesien" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="G" label="G">
+        <node id="G" label="G" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="GAB" label="Gabun">
+            <node id="GAB" label="Gabun" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GMB" label="Gambia">
+            <node id="GMB" label="Gambia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PSE1" label="Gazastreifen">
+            <node id="PSE1" label="Gazastreifen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GEO" label="Georgien">
+            <node id="GEO" label="Georgien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GHA" label="Ghana">
+            <node id="GHA" label="Ghana" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GIB" label="Gibraltar">
+            <node id="GIB" label="Gibraltar" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATF2" label="Glorieuses">
+            <node id="ATF2" label="Glorieuses" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GRD" label="Grenada">
+            <node id="GRD" label="Grenada" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GRC" label="Griechenland">
+            <node id="GRC" label="Griechenland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GRL" label="Grönland">
+            <node id="GRL" label="Grönland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GBR" label="Großbritannien">
+            <node id="GBR" label="Großbritannien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GLP" label="Guadeloupe">
+            <node id="GLP" label="Guadeloupe" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GUM" label="Guam">
+            <node id="GUM" label="Guam" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GTM" label="Guatemala">
+            <node id="GTM" label="Guatemala" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GGY" label="Guernsey">
+            <node id="GGY" label="Guernsey" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GIN" label="Guinea">
+            <node id="GIN" label="Guinea" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GNB" label="Guinea-Bissau">
+            <node id="GNB" label="Guinea-Bissau" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="GUY" label="Guyana">
+            <node id="GUY" label="Guyana" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="H" label="H">
+        <node id="H" label="H" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="HTI" label="Haiti">
+            <node id="HTI" label="Haiti" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="HMD" label="Heard und McDonaldinseln">
+            <node id="HMD" label="Heard und McDonaldinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="HND" label="Honduras">
+            <node id="HND" label="Honduras" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="HKG" label="Hongkong">
+            <node id="HKG" label="Hongkong" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="I" label="I">
+        <node id="I" label="I" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="IND" label="Indien">
+            <node id="IND" label="Indien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IDN" label="Indonesien">
+            <node id="IDN" label="Indonesien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IMN" label="Insel Man">
+            <node id="IMN" label="Insel Man" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IRQ" label="Irak">
+            <node id="IRQ" label="Irak" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IRN" label="Iran">
+            <node id="IRN" label="Iran" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="IRL" label="Irland">
+            <node id="IRL" label="Irland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ISL" label="Island">
+            <node id="ISL" label="Island" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ISR" label="Israel">
+            <node id="ISR" label="Israel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ITA" label="Italien">
+            <node id="ITA" label="Italien" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="J" label="J">
+        <node id="J" label="J" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="JAM" label="Jamaika">
+            <node id="JAM" label="Jamaika" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="JPN" label="Japan">
+            <node id="JPN" label="Japan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="YEM" label="Jemen">
+            <node id="YEM" label="Jemen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="JEY" label="Jersey">
+            <node id="JEY" label="Jersey" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="JOR" label="Jordanien">
+            <node id="JOR" label="Jordanien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATF3" label="Juan de Nova">
+            <node id="ATF3" label="Juan de Nova" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="K" label="K">
+        <node id="K" label="K" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="CYM" label="Kaimaninseln">
+            <node id="CYM" label="Kaimaninseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KHM" label="Kambodscha">
+            <node id="KHM" label="Kambodscha" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CMR" label="Kamerun">
+            <node id="CMR" label="Kamerun" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CAN" label="Kanada">
+            <node id="CAN" label="Kanada" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KAZ" label="Kasachstan">
+            <node id="KAZ" label="Kasachstan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="QAT" label="Katar">
+            <node id="QAT" label="Katar" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KEN" label="Kenia">
+            <node id="KEN" label="Kenia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KGZ" label="Kirgisistan">
+            <node id="KGZ" label="Kirgisistan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KIR" label="Kiribati">
+            <node id="KIR" label="Kiribati" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="UMI" label="Kleinere Amerikanische Überseeinseln">
+            <node id="UMI" label="Kleinere Amerikanische Überseeinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CCK" label="Kokosinseln (Keelinginseln)">
+            <node id="CCK" label="Kokosinseln (Keelinginseln)" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="COL" label="Kolumbien">
+            <node id="COL" label="Kolumbien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="COM" label="Komoren">
+            <node id="COM" label="Komoren" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="COG" label="Kongo">
+            <node id="COG" label="Kongo" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="COD" label="Kongo, Demokratische Republik">
+            <node id="COD" label="Kongo, Demokratische Republik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PRK" label="Korea, Demokratische Volksrepublik">
+            <node id="PRK" label="Korea, Demokratische Volksrepublik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KOR" label="Korea, Republik">
+            <node id="KOR" label="Korea, Republik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="HRV" label="Kroatien">
+            <node id="HRV" label="Kroatien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CUB" label="Kuba">
+            <node id="CUB" label="Kuba" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KWT" label="Kuwait">
+            <node id="KWT" label="Kuwait" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="L" label="L">
+        <node id="L" label="L" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="LAO" label="Laos">
+            <node id="LAO" label="Laos" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LSO" label="Lesotho">
+            <node id="LSO" label="Lesotho" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LVA" label="Lettland">
+            <node id="LVA" label="Lettland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LBN" label="Libanon">
+            <node id="LBN" label="Libanon" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LBR" label="Liberia">
+            <node id="LBR" label="Liberia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LBY" label="Libyen">
+            <node id="LBY" label="Libyen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LIE" label="Liechtenstein">
+            <node id="LIE" label="Liechtenstein" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LTU" label="Litauen">
+            <node id="LTU" label="Litauen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LUX" label="Luxemburg">
+            <node id="LUX" label="Luxemburg" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="M" label="M">
+        <node id="M" label="M" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="MAC" label="Macau">
+            <node id="MAC" label="Macau" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MDG" label="Madagaskar">
+            <node id="MDG" label="Madagaskar" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MWI" label="Malawi">
+            <node id="MWI" label="Malawi" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MYS" label="Malaysia">
+            <node id="MYS" label="Malaysia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MDV" label="Malediven">
+            <node id="MDV" label="Malediven" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MLI" label="Mali">
+            <node id="MLI" label="Mali" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MLT" label="Malta">
+            <node id="MLT" label="Malta" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MAR" label="Marokko">
+            <node id="MAR" label="Marokko" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MHL" label="Marshallinseln">
+            <node id="MHL" label="Marshallinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MTQ" label="Martinique">
+            <node id="MTQ" label="Martinique" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MRT" label="Mauretanien">
+            <node id="MRT" label="Mauretanien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MUS" label="Mauritius">
+            <node id="MUS" label="Mauritius" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MYT" label="Mayotte">
+            <node id="MYT" label="Mayotte" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MEX" label="Mexiko">
+            <node id="MEX" label="Mexiko" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="FSM" label="Mikronesien">
+            <node id="FSM" label="Mikronesien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MDA" label="Moldau">
+            <node id="MDA" label="Moldau" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MCO" label="Monaco">
+            <node id="MCO" label="Monaco" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MNG" label="Mongolei">
+            <node id="MNG" label="Mongolei" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MNE" label="Montenegro">
+            <node id="MNE" label="Montenegro" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MSR" label="Montserrat">
+            <node id="MSR" label="Montserrat" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MOZ" label="Mosambik">
+            <node id="MOZ" label="Mosambik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MMR" label="Myanmar">
+            <node id="MMR" label="Myanmar" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="N" label="N">
+        <node id="N" label="N" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="NAM" label="Namibia">
+            <node id="NAM" label="Namibia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NRU" label="Nauru">
+            <node id="NRU" label="Nauru" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NPL" label="Nepal">
+            <node id="NPL" label="Nepal" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NCL" label="Neukaledonien">
+            <node id="NCL" label="Neukaledonien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NZL" label="Neuseeland">
+            <node id="NZL" label="Neuseeland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NIC" label="Nicaragua">
+            <node id="NIC" label="Nicaragua" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NLD" label="Niederlande">
+            <node id="NLD" label="Niederlande" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ANT" label="Niederländische Antillen">
+            <node id="ANT" label="Niederländische Antillen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NER" label="Niger">
+            <node id="NER" label="Niger" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NGA" label="Nigeria">
+            <node id="NGA" label="Nigeria" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NIU" label="Niue">
+            <node id="NIU" label="Niue" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MNP" label="Nördliche Marianen">
+            <node id="MNP" label="Nördliche Marianen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="MKD" label="Nordmazedonien">
+            <node id="MKD" label="Nordmazedonien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NFK" label="Norfolkinsel">
+            <node id="NFK" label="Norfolkinsel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="NOR" label="Norwegen">
+            <node id="NOR" label="Norwegen" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="O " label="O">
+        <node id="O" label="O" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="OMN" label="Oman">
+            <node id="OMN" label="Oman" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="AUT" label="Österreich">
+            <node id="AUT" label="Österreich" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="P" label="P">
+        <node id="P" label="P" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="PAK" label="Pakistan">
+            <node id="PAK" label="Pakistan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PLW" label="Palau">
+            <node id="PLW" label="Palau" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PAN" label="Panama">
+            <node id="PSE" label="Palästina" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PNG" label="Papua-Neuguinea">
+            <node id="PAN" label="Panama" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PRY" label="Paraguay">
+            <node id="PNG" label="Papua-Neuguinea" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PER" label="Peru">
+            <node id="PRY" label="Paraguay" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PHL" label="Philippinen">
+            <node id="PER" label="Peru" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PCN" label="Pitcairninseln">
+            <node id="PHL" label="Philippinen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="POL" label="Polen">
+            <node id="PCN" label="Pitcairninseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PRT" label="Portugal">
+            <node id="POL" label="Polen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PRI" label="Puerto Rico">
+            <node id="PRT" label="Portugal" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="PRI" label="Puerto Rico" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="R" label="R">
+        <node id="R" label="R" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="REU" label="Réunion">
+            <node id="REU" label="Réunion" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="RWA" label="Ruanda">
+            <node id="RWA" label="Ruanda" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ROU" label="Rumänien">
+            <node id="ROU" label="Rumänien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="RUS" label="Russische Föderation">
+            <node id="RUS" label="Russische Föderation" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="S" label="S">
+        <node id="S" label="S" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="MAF" label="Saint-Martin">
+            <node id="MAF" label="Saint-Martin" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SLB" label="Salomonen">
+            <node id="SLB" label="Salomonen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ZMB" label="Sambia">
+            <node id="ZMB" label="Sambia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="WSM" label="Samoa">
+            <node id="WSM" label="Samoa" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SMR" label="San Marino">
+            <node id="SMR" label="San Marino" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="STP" label="São Tomé und Príncipe">
+            <node id="STP" label="São Tomé und Príncipe" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SAU" label="Saudi-Arabien">
+            <node id="SAU" label="Saudi-Arabien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SWE" label="Schweden">
+            <node id="SWE" label="Schweden" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CHE" label="Schweiz">
+            <node id="CHE" label="Schweiz" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SEN" label="Senegal">
+            <node id="SEN" label="Senegal" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SRB" label="Serbien">
+            <node id="SRB" label="Serbien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SCG" label="Serbien und Montenegro">
+            <node id="SYC" label="Seychellen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SYC" label="Seychellen">
+            <node id="SLE" label="Sierra Leone" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SLE" label="Sierra Leone">
+            <node id="ZWE" label="Simbabwe" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ZWE" label="Simbabwe">
+            <node id="SGP" label="Singapur" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SGP" label="Singapur">
+            <node id="SVK" label="Slowakei" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SVK" label="Slowakei">
+            <node id="SVN" label="Slowenien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SVN" label="Slowenien">
+            <node id="SOM" label="Somalia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SOM" label="Somalia">
+            <node id="ESP" label="Spanien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ESP" label="Spanien">
+            <node id="SJM" label="Spitzbergen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SJM" label="Spitzbergen">
+            <node id="LKA" label="Sri Lanka" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LKA" label="Sri Lanka">
+            <node id="BLM" label="St. Barthélemy" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="BLM" label="St. Barthélemy">
+            <node id="SHN" label="St. Helena, Ascension und Tristan da Cunha" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SHN" label="St. Helena, Ascension und Tristan da Cunha">
+            <node id="KNA" label="St. Kitts und Nevis" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="KNA" label="St. Kitts und Nevis">
+            <node id="LCA" label="St. Lucia" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="LCA" label="St. Lucia">
+            <node id="SPM" label="St. Pierre und Miquelon" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SPM" label="St. Pierre und Miquelon">
+            <node id="VCT" label="St. Vincent und die Grenadinen" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VCT" label="St. Vincent und die Grenadinen">
+            <node id="ZAF" label="Südafrika" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ZAF" label="Südafrika">
+            <node id="SDN" label="Sudan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SDN" label="Sudan">
+            <node id="SGS" label="Südgeorgien und die Südlichen Sandwichinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SGS" label="Südgeorgien und die Südlichen Sandwichinseln">
+            <node id="SSD" label="Südsudan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SSD" label="Südsudan">
+            <node id="SUR" label="Suriname" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="SUR" label="Suriname">
-            <hasNote></hasNote>
-            </node>
-            <node id="SYR" label="Syrien">
+            <node id="SYR" label="Syrien" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="T" label="T">
+        <node id="T" label="T" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="TJK" label="Tadschikistan">
+            <node id="TJK" label="Tadschikistan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TWN" label="Taiwan">
+            <node id="TWN" label="Taiwan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TZA" label="Tansania">
+            <node id="TZA" label="Tansania" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="THA" label="Thailand">
+            <node id="THA" label="Thailand" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TLS" label="Timor-Leste">
+            <node id="TLS" label="Timor-Leste" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TGO" label="Togo">
+            <node id="TGO" label="Togo" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TKL" label="Tokelau">
+            <node id="TKL" label="Tokelau" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TON" label="Tonga">
+            <node id="TON" label="Tonga" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TTO" label="Trinidad und Tobago">
+            <node id="TTO" label="Trinidad und Tobago" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ATF4" label="Tromelin">
+            <node id="ATF4" label="Tromelin" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TCD" label="Tschad">
+            <node id="TCD" label="Tschad" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CZE" label="Tschechische Republik">
+            <node id="CZE" label="Tschechische Republik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TUN" label="Tunesien">
+            <node id="TUN" label="Tunesien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TUR" label="Türkei">
+            <node id="TUR" label="Türkei" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TKM" label="Turkmenistan">
+            <node id="TKM" label="Turkmenistan" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TCA" label="Turks- und Caicosinseln">
+            <node id="TCA" label="Turks- und Caicosinseln" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="TUV" label="Tuvalu">
+            <node id="TUV" label="Tuvalu" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="U" label="U">
+        <node id="U" label="U" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="UGA" label="Uganda">
+            <node id="UGA" label="Uganda" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="UKR" label="Ukraine">
+            <node id="UKR" label="Ukraine" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="HUN" label="Ungarn">
+            <node id="HUN" label="Ungarn" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="URY" label="Uruguay">
+            <node id="URY" label="Uruguay" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="UZB" label="Usbekistan">
+            <node id="UZB" label="Usbekistan" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="V" label="V">
+        <node id="V" label="V" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="VUT" label="Vanuatu">
+            <node id="VUT" label="Vanuatu" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VAT" label="Vatikanstadt">
+            <node id="VAT" label="Vatikanstadt" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VEN" label="Venezuela">
+            <node id="VEN" label="Venezuela" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ARE" label="Vereinigte Arabische Emirate">
+            <node id="ARE" label="Vereinigte Arabische Emirate" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="USA" label="Vereinigte Staaten">
+            <node id="USA" label="Vereinigte Staaten" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="VNM" label="Vietnam">
+            <node id="VNM" label="Vietnam" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="W " label="W">
+        <node id="W" label="W" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="WLF" label="Wallis und Futuna">
+            <node id="WLF" label="Wallis und Futuna" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CXR" label="Weihnachtsinsel">
+            <node id="CXR" label="Weihnachtsinsel" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="PSE2" label="Westjordanland">
+            <node id="PSE2" label="Westjordanland" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="ESH" label="Westsahara">
+            <node id="ESH" label="Westsahara" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>
         </node>
-        <node id="Z " label="Z">
+        <node id="Z" label="Z" selectable="false">
         <hasNote></hasNote>
           <isComposedBy>
-            <node id="CAF" label="Zentralafrikanische Republik">
+            <node id="CAF" label="Zentralafrikanische Republik" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="CYP" label="Zypern">
+            <node id="CYP" label="Zypern" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>

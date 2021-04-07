@@ -494,6 +494,9 @@
       <step id="collection" />
       <step id="plan_publications" />
     </submission-process>
+    <submission-process name="plan_publications-edit">
+      <step id="plan_publications" />
+    </submission-process>
     <submission-process name="awards">
       <step id="collection" />
       <step id="awards" />
@@ -702,7 +705,7 @@
       <step id="innovationpotentials_regional_scope" />
       <step id="innovationpotentials_srl_trl" />
     </submission-process>
-    <submission-process name="Innovationpotentials-edit">
+    <submission-process name="innovationpotentials-edit">
       <step id="innovationpotentials" />
       <step id="innovationpotentials_applicability" />
       <step id="innovationpotentials_regional_scope" />

@@ -299,21 +299,6 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>  
     <collection>
-      <name>Participative processes</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>participation_event</entity-type>
-      <submission-type>participation_events</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-    </collection>
-    <collection>
       <name>Patents and utility patents</name>
       <description />
       <intro />
@@ -358,6 +343,21 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
+    <collection>
+      <name>Processes of cooperation, participation and working together</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>process_event</entity-type>
+      <submission-type>process_events</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection> 
     <collection>
       <name>Project objectives</name>
       <description />

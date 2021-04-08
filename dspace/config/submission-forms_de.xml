@@ -1148,7 +1148,7 @@
           <label>Anmeldenummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe, um später Patentinformationen direkt abrufen zu können.</required>
+          <required />
           <style>col-md-3</style>
           <hint />
         </field>
@@ -1159,7 +1159,7 @@
           <label>Anmeldedatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe, um später Patentinformationen direkt abrufen zu können.</required>
+          <required />
           <style>col-md-3</style>
           <hint />
         </field>
@@ -1170,7 +1170,7 @@
           <label>Name(n) und Wohnsitz(e) des Antragstellers /der Antragsteller</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required>Pflichtangabe, um später Patentinformationen direkt abrufen zu können.</required>
+          <required />
           <style>col-md-6</style>
           <hint>Bitte kopieren Sie die Angaben aus dem Anmeldeformular.</hint>
         </field>
@@ -2900,7 +2900,7 @@
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Beteiligte Kooperationspartner</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Wählen Sie hier mindestens einen Kooperationspartner aus, von dem die Arbeiten durchgeführt werden (auch Ihre eigene Organisation). 
@@ -2913,7 +2913,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Beteiligte Akteursgruppen (falls relevant)</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Wählen Sie beteiligte Akteursgruppen aus, um zu verdeutlichen, mit wem noch zusammengearbeitet wird, falls es noch keine konkreten Kooperationspartner gibt oder die Zusammenarbeit unverbindlich mit einer größeren Gruppe an Organisationen stattfindet. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -2948,7 +2948,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Art</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Charakterisieren Sie bitte die Idee, indem Sie die Art der Lösung, Veränderung oder Innovation auswählen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -3446,7 +3446,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-5</style>
+          <style>col-md-4</style>
           <hint>Referenzjahr, auf das sich die nachfolgenden Angaben beziehen.</hint>
         </field>
         <field>
@@ -3455,9 +3455,9 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-qualifier>baseline</dc-qualifier>
           <label>Basiswert</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
-          <style>col-md-1</style>
+          <style>col-md-2</style>
           <hint>Bitte kennzeichnen Sie den Basiswert der Zeitreihe. Dies ist der Wert, bevor das Projekt einen Einfluss hatte.</hint>
         </field>
         <field>
@@ -3652,7 +3652,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Mitwirkende oder teilnehmende Kooperationspartner</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -3664,7 +3664,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Teilnehmende oder beteiligte Akteursgruppe(n)</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -3786,7 +3786,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Beteiligte Kooperationspartner</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -3798,7 +3798,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Beteiligte Akteursgruppe(n)</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
@@ -4386,7 +4386,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Auswahl der Akteursgruppe(n), die von der erwarteten Wirkung betroffen ist/sind</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
@@ -4456,7 +4456,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-qualifier>influence</dc-qualifier>
           <label>Kennzeichnung von hemmendem Einfluss</label>
           <input-type value-pairs-name="influence_conditions">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>Bitte geben Sie an, wenn sich herausstellt, dass eine äußere Bedingung oder Anforderung einen erheblichen hemmenden Einfluss auf den Projekterfolg und die Anwendung der Ergebnisse hat.</hint>

@@ -2903,7 +2903,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Involved partners</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Which partners or other organisations cooperates for the described task? Add also your own organisation, if it is involved.</hint>
@@ -2915,7 +2915,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Involved stakeholder groups</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Which stakeholder groups are involved? Use this field also, if further partners are not specified yet.</hint>
@@ -2950,7 +2950,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -3433,7 +3433,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-5</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -3442,9 +3442,9 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>baseline</dc-qualifier>
           <label>Baseline-value</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
-          <style>col-md-1</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -3639,7 +3639,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Involved organisations</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Please select one or more organisation(s).</hint>
@@ -3651,7 +3651,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Stakeholder groups involved</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Please select one or more stakeholder group(s).</hint>
@@ -3773,7 +3773,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Involved organisations</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Please select one or more organisation(s).</hint>
@@ -3785,7 +3785,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Stakeholder groups involved</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Please select one or more stakeholder group(s).</hint>
@@ -4372,7 +4372,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Selection of the group of actors affected by the impact</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>No input is possible for ecological impacts.
@@ -4443,7 +4443,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-qualifier>influence</dc-qualifier>
           <label>Identification of hampering influence</label>
           <input-type value-pairs-name="influence_conditions">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>Please indicate, if an external condition or requirement turns out to have an significant hampering influence on the project success and application of results.</hint>

@@ -690,7 +690,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-12</style>
-          <hint>Tragen Sie weitere Informationen zur Tagung in folgender Form ein: Name, Beginn, Ende, Ort, Land ein, z.B. [EuroCRIS-Mitgliederversammlung, 18.-20. November 2020, Münster, Deutschland].</hint>
+          <hint>Tragen Sie weitere Informationen zur Tagung in folgender Form ein: Name, Beginn, Ende, Ort, Land ein, z. B. [EuroCRIS-Mitgliederversammlung, 18.-20. November 2020, Münster, Deutschland].</hint>
         </field>
       </row>
     </form>
@@ -1510,7 +1510,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
+          <dc-qualifier>nace</dc-qualifier>
           <label>Branche</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2445,7 +2445,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Antragsart, z.B. Antrag auf Gewährung einer Bundeszuwendung auf Ausgabenbasis (AZA)</hint>
+          <hint>Antragsart, z. B. Antrag auf Gewährung einer Bundeszuwendung auf Ausgabenbasis (AZA)</hint>
         </field>
       </row>
       <row>
@@ -2679,7 +2679,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung / Bezeichnung der Ausgründung</label>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -2690,8 +2690,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>spinoff</dc-qualifier>
-          <label>Beschreibung der Ausgründung</label>
+          <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2704,7 +2703,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art/Typ der Ausgründung</label>
+          <label>Art der Ausgründung</label>
           <input-type value-pairs-name="spinoff_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2762,13 +2761,14 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>NACE</dc-qualifier>
+          <dc-qualifier>nace</dc-qualifier>
           <label>Branche</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -2780,8 +2780,20 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>place</dc-qualifier>
+          <label>Land</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary closed="true">countries</vocabulary>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2791,7 +2803,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2853,7 +2865,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art</label>
+          <label>Art des nächsten Schrittes</label>
           <input-type value-pairs-name="nextsteps">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2886,12 +2898,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>steps</dc-qualifier>
           <label>Beschreibung (möglichst mit Angaben zur Finanzierung)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie die Arbeit oder Kooperation und machen Sie, wenn möglich, Angaben zur Finanzierung.</hint>
+          <hint>Bitte beschreiben Sie den nächsten Schritt und machen Sie, wenn möglich, Angaben zur Finanzierung.</hint>
         </field>
       </row>
       <row>
@@ -2903,7 +2914,7 @@
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Wählen Sie hier mindestens einen Kooperationspartner aus, von dem die Arbeiten durchgeführt werden (auch Ihre eigene Organisation). 
+          <hint>Wählen Sie hier mindestens einen Kooperationspartner aus, von dem der nächste Schritt durchgeführt wird (auch Ihre eigene Organisation). 
 Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
         </field>
       </row>
@@ -2916,7 +2927,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Wählen Sie beteiligte Akteursgruppen aus, um zu verdeutlichen, mit wem noch zusammengearbeitet wird, falls es noch keine konkreten Kooperationspartner gibt oder die Zusammenarbeit unverbindlich mit einer größeren Gruppe an Organisationen stattfindet. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <hint>Wählen Sie Akteursgruppen aus, wenn diese in dem beschriebenen Schritt mitarbeiten oder beteiligt sind. Nutzen Sie die Angabe der Akteursgruppen, wenn die Zusammenarbeit unverbindlich mit einer größeren Gruppe an Organisationen stattfindet oder noch keine konkreten Kooperationspartner feststehen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
         </field>
       </row>
     </form>
@@ -3383,6 +3394,17 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Bitte nehmen Sie eine kurze Beschreibung vor. Aspekte die nachfolgend abgefragt werden, brauchen nicht beschrieben zu werden.</hint>
         </field>
       </row>
       <row>
@@ -4211,7 +4233,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>access</dc-qualifier>
-          <label>Zugänglichkeit z.B. für Besichtigungen</label>
+          <label>Zugänglichkeit z. B. für Besichtigungen</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4283,14 +4305,15 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
           <label>Wirtschaftszweig der Akteursgruppe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte ordnen Sie den Wirtschaftszweig ein, gemäß der statistischen Systematik der Wirtschaftszweige in der Europäischen Gemeinschaft (NACE).</hint>
+          <hint />
           <type-bind>SME, large enterprises</type-bind>
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -4443,23 +4466,23 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
-          <label>Zeitpunkt Eintreten der Rahmenbedingung (falls möglich)</label>
-          <input-type>date</input-type>
+          <label>Ab welchem Jahr ist die Rahmenbedingung wirksam?</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte geben Sie mindestens das Jahr ein, ab dem die Rahmenbedingung für das Projekt wirksam ist.</hint>
+          <hint>Wenn Ihnen diese Information nicht vorliegt und nicht leicht recherchiert werden kann, können Sie das Feld auch frei lassen.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>influence</dc-qualifier>
-          <label>Kennzeichnung von hemmendem Einfluss</label>
+          <label>Einfluss auf Erfolg und Wirkung</label>
           <input-type value-pairs-name="influence_conditions">list</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte geben Sie an, wenn sich herausstellt, dass eine äußere Bedingung oder Anforderung einen erheblichen hemmenden Einfluss auf den Projekterfolg und die Anwendung der Ergebnisse hat.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4469,20 +4492,23 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>researchquestion</dc-qualifier>
-          <label>Geschlechterbezug in der Forschungsfrage:</label>
+          <label>1) Gibt es einen Geschlechterbezug in der Problemstellung?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>z.B. Adressiert Ihre Forschungsfrage direkt einen Geschlechterbezug? Berührt Ihre Forschungsfrage indirekt Problemstellungen, die mit Unterschieden zwischen den Geschlechtern zusammenhängen?</hint>
+          <style>col-md-4</style>
+          <hint>Beschäftigt sich das Projekt mit Problemstellungen, bei denen Unterschiede zwischen den Geschlechtern eine Rolle spielen? 
+Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschlechterspezifische Forschungsfragen</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>researchquestion</dc-qualifier>
-          <label>Beschreibung</label>
+          <label>Begründung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4491,20 +4517,22 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>stateofart</dc-qualifier>
-          <label>Geschlechterbezug im Forschungsstand:</label>
+          <label>2) Gibt es einen Geschlechterbezug im Forschungsstand?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>z.B. Gibt es im Forschungsstand geschlechterspezifische Erkenntnisse in Bezug auf die adressierte Problemstellung?</hint>
+          <style>col-md-4</style>
+          <hint>Haben Sie im Forschungsstand geschlechterspezifische Erkenntnisse hinzugezogen, wie z. B. Nutzerverhalten nach Geschlecht, Literatur, die Geschlechteraspekte der Fragestellung behandelt, oder Genderstudies?</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>stateofart</dc-qualifier>
-          <label>Beschreibung</label>
+          <label>Begründung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4513,20 +4541,22 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>projectdesign</dc-qualifier>
-          <label>Geschlechterbezug im Forschungs- und Projektdesign:</label>
+          <label>3) Haben Sie im Projektdesign Geschlechteraspekte berücksichtigt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>z.B. Wird die Kategorie Geschlecht in der Datenerhebung und/oder in den Methoden systematisch berücksichtigt? Werden Geschlechteraspekte in den Interaktionsprozessen berücksichtigt?</hint>
+          <style>col-md-4</style>
+          <hint>Geschlechteraspekte können beispielsweise bei der Datenerhebung, bei der Auswahl von Methoden oder bei der Beteiligung von Männern und Frauen in Veranstaltungen oder bei der Kommunikation von Ergebnissen berücksichtigt werden.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>projectdesign</dc-qualifier>
-          <label>Beschreibung</label>
+          <label>Begründung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4535,20 +4565,22 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>application</dc-qualifier>
-          <label>Geschlechterbezug bei der Anwendung und Wirkung der F&amp;E-Ergebnisse:</label>
+          <label>4) Werden bei hinsichtlich der Anwendung und Wirkung der Projektergebnisse geschlechterspezifische Unterschiede berücksichtigt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>z.B. Sind Frauen eine relevante Nutzergruppe der Ergebnisse? Wurden geschlechtsspezifische Aspekte beim Entwickeln einer Neuerung/ Anwendung berücksichtigt?</hint>
+          <style>col-md-4</style>
+          <hint>Dies kann z. B. bei der Form der Nutzung, bei Anforderungen an Produkte oder bei geschlechterspezifischen Voraussetzungen für eine Nutzung der Fall sein.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>application</dc-qualifier>
-          <label>Beschreibung</label>
+          <label>Begründung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4557,20 +4589,22 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Umsetzung der Gleichberechtigung im Projekt:</label>
+          <label>5) In welcher Weise trägt das Projekt zur Gleichberechtigung der im Projekt Beschäftigten, unabhängig von deren Geschlecht, bei?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Was unternimmt das Projekt, um direkt zur Gleichberechtigung der im Projekt beschäftigten Frauen und Männern beizutragen (ergänzend zu den rechtlichen Regelungen zur Einstellung von Personal)?</hint>
+          <style>col-md-4</style>
+          <hint>Dies kann z. B. durch die Förderung von Frauen in Spitzenpositionen, durch Maßnahmen zur Vereinbarkeit von Beruf und Familie, durch Chancengleichheit bei der Qualifizierung und Vernetzung oder beim Umgang mit feldspezifischen Besonderheiten im Geschlechterverhältnis erfolgen.(Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Beschreibung</label>
+          <label>Begründung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4580,7 +4614,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Kernaussage zur Berücksichtigung von Geschlechteraspekten im Projekt</label>
+          <label>Kernaussage zur Reflexion der Geschlechteraspekte im Rahmen des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -4591,11 +4625,11 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Notizen</label>
+          <label>Notizen (nicht erforderlich)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben.</hint>
         </field>
       </row>
     </form>
@@ -4653,11 +4687,11 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Notizen</label>
+          <label>Notizen (nicht erforderlich)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Hier können Sie Ihre Notizen sehen, falls Sie diesen Eintrag im  Impact Pathway angelegt haben und Notitzen vorgenommen haben..</hint>
+          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben.</hint>
         </field>
       </row>
     </form>
@@ -4677,7 +4711,6 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>objective</dc-qualifier>
           <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5702,7 +5735,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <stored-value>Practical test</stored-value>
       </pair>
       <pair>
-        <displayed-value>Demo (Vorführung, Performance, Show z.B. von Maschinen, Geräten, Betriebsmitteln)</displayed-value>
+        <displayed-value>Demo (Vorführung, Performance, Show z. B. von Maschinen, Geräten, Betriebsmitteln)</displayed-value>
         <stored-value>Demo</stored-value>
       </pair>
       <pair>
@@ -6166,27 +6199,27 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
       <pair>
-        <displayed-value>Lebender Organismus wie z.B. Tier, Pflanze, Pilz</displayed-value>
+        <displayed-value>Lebender Organismus wie z. B. Tier, Pflanze, Pilz</displayed-value>
         <stored-value>Living organism, e.g. animal, plant, fungi etc.</stored-value>
       </pair>
       <pair>
-        <displayed-value>Organischer Überrest wie z.B. Fossil, Mumie, konserviertes Exemplar</displayed-value>
+        <displayed-value>Organischer Überrest wie z. B. Fossil, Mumie, konserviertes Exemplar</displayed-value>
         <stored-value>Organic residue, e.g. fossil, mummy, preserved specimen</stored-value>
       </pair>
       <pair>
-        <displayed-value>Geologische Substanz wie z.B. Gestein, Meteorit, Mineral, Sediment</displayed-value>
+        <displayed-value>Geologische Substanz wie z. B. Gestein, Meteorit, Mineral, Sediment</displayed-value>
         <stored-value>Geological substance, e.g. rock, meteorite, mineral, sediment</stored-value>
       </pair>
       <pair>
-        <displayed-value>Modell wie z.B. Miniatur für Ausstellungen</displayed-value>
+        <displayed-value>Modell wie z. B. Miniatur für Ausstellungen</displayed-value>
         <stored-value>Model e.g. miniature for exibitions etc.</stored-value>
       </pair>
       <pair>
-        <displayed-value>Gerät wie z.B. Maschine, Instrument</displayed-value>
+        <displayed-value>Gerät wie z. B. Maschine, Instrument</displayed-value>
         <stored-value>Device, e.g.machine, instrument</stored-value>
       </pair>
       <pair>
-        <displayed-value>Werkstoff wie z.B. Metall, Holz, Glas, Keramik</displayed-value>
+        <displayed-value>Werkstoff wie z. B. Metall, Holz, Glas, Keramik</displayed-value>
         <stored-value>Material /substance, e.g. metal, wood, glas, ceramics etc.</stored-value>
       </pair>
       <pair>
@@ -6216,6 +6249,10 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       <pair>
         <displayed-value>Transfer-Spin-off</displayed-value>
         <stored-value>Transfer spin-off</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Verein</displayed-value>
+        <stored-value>Assosiation</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="register_type" dc-term="register_type">
@@ -6258,7 +6295,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <stored-value>Cooperation via contract research</stored-value>
       </pair>
       <pair>
-        <displayed-value>Austausch von Wissen und Ideen (z.B. Think Tanks, offene Laboratorien, kreative Formate)</displayed-value>
+        <displayed-value>Austausch von Wissen und Ideen (z. B. Think Tanks, offene Laboratorien, kreative Formate)</displayed-value>
         <stored-value>Exchange of knowledge and ideas</stored-value>
       </pair>
       <pair>
@@ -6903,7 +6940,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <stored-value>EU level</stored-value>
       </pair>
       <pair>
-        <displayed-value>International (z.B. WTO, UN, WHO)</displayed-value>
+        <displayed-value>International (z. B. WTO, UN, WHO)</displayed-value>
         <stored-value>International (e.g. WTO, UN, WHO)</stored-value>
       </pair>
     </value-pairs>
@@ -7015,23 +7052,23 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <stored-value>Property rights of others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Rechtliche Rahmenbedingungen (z.B. Gesetze Gesetze und Verordnungen)</displayed-value>
+        <displayed-value>Rechtliche Rahmenbedingungen (z. B. Gesetze Gesetze und Verordnungen)</displayed-value>
         <stored-value>Legal conditions</stored-value>
       </pair>
       <pair>
-        <displayed-value>Soziale oder kulturelle Rahmenbedingungen (z.B. Einstellungen, Lebensverhältnisse, Praktiken, Traditionen, Normen, Bräuche, Religionen)</displayed-value>
+        <displayed-value>Soziale oder kulturelle Rahmenbedingungen (z. B. Einstellungen, Lebensverhältnisse, Praktiken, Traditionen, Normen, Bräuche, Religionen)</displayed-value>
         <stored-value>Social and cultural conditions</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ökologische Rahmenbedingungen (z.B. Klimatische Veränderungen, Auftreten neuer Schädlinge, Wasserverfügbarkeit)</displayed-value>
+        <displayed-value>Ökologische Rahmenbedingungen (z. B. Klimatische Veränderungen, Auftreten neuer Schädlinge, Wasserverfügbarkeit)</displayed-value>
         <stored-value>Ecological conditions</stored-value>
       </pair>
       <pair>
-        <displayed-value>Technische und infrastrukturelle Rahmenbedingungen oder Voraussetzungen (z.B. etablierte technische Standards, vorhandene Basistechnologien, vorausgesetzte Infrastrukturen)</displayed-value>
+        <displayed-value>Technische und infrastrukturelle Rahmenbedingungen oder Voraussetzungen (z. B. etablierte technische Standards, vorhandene Basistechnologien, vorausgesetzte Infrastrukturen)</displayed-value>
         <stored-value>Technical and infrastructural conditions or requirements</stored-value>
       </pair>
       <pair>
-        <displayed-value>Marktbedingungen (z.B. Preisverhältnisse, Kaufkraft, Wettbewerbsverhältnisse etc.)</displayed-value>
+        <displayed-value>Marktbedingungen (z. B. Preisverhältnisse, Kaufkraft, Wettbewerbsverhältnisse etc.)</displayed-value>
         <stored-value>Market conditions</stored-value>
       </pair>
       <pair>
@@ -7041,12 +7078,28 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     </value-pairs>
     <value-pairs value-pairs-name="influence_conditions" dc-term="influence_conditions">
       <pair>
-        <displayed-value>hemmend</displayed-value>
-        <stored-value>hampering</stored-value>
+        <displayed-value>[++] Stark fördernd</displayed-value>
+        <stored-value>Strongly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>stark hemmend</displayed-value>
-        <stored-value>strongly hampering</stored-value>
+        <displayed-value>[ + ] Leicht fördernd</displayed-value>
+        <stored-value>Slightly supporting</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>[+/-] Sowohl fördernd als auch hemmend</displayed-value>
+        <stored-value>facilitating and hampering</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>[ -  ] Leicht hemmend</displayed-value>
+        <stored-value>Slightly hampering</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>[ -- ] Stark hemmend</displayed-value>
+        <stored-value>Strongly hampering</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>[ ? ] Einfluss noch nicht einschätzbar</displayed-value>
+        <stored-value>Influence not yet assessable</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="yes_no" dc-term="yes_no">

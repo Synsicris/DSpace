@@ -7,17 +7,23 @@
  */
 package org.dspace.app.profile;
 
+import static java.util.List.of;
 import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import static org.dspace.core.Constants.READ;
 import static org.dspace.eperson.Group.ANONYMOUS;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.dspace.app.exception.ResourceConflictException;
+import org.dspace.app.profile.service.AfterResearcherProfileCreationAction;
 import org.dspace.app.profile.service.ResearcherProfileService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
@@ -80,6 +86,18 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
     @Autowired
     private AuthorizeService authorizeService;
 
+    @Autowired(required = false)
+    private List<AfterResearcherProfileCreationAction> afterCreationActions;
+
+    @PostConstruct
+    public void postConstruct() {
+
+        if (afterCreationActions == null) {
+            afterCreationActions = Collections.emptyList();
+        }
+
+    }
+
     @Override
     public ResearcherProfile findById(Context context, UUID id) throws SQLException, AuthorizeException {
         Assert.notNull(id, "An id must be provided to find a researcher profile");
@@ -110,7 +128,14 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
         context.turnOffAuthorisationSystem();
         Item item = createProfileItem(context, ePerson, collection);
         context.restoreAuthSystemState();
-        return new ResearcherProfile(item);
+
+        ResearcherProfile researcherProfile = new ResearcherProfile(item);
+
+        for (AfterResearcherProfileCreationAction afterCreationAction : afterCreationActions) {
+            afterCreationAction.perform(context, researcherProfile, ePerson);
+        }
+
+        return researcherProfile;
     }
 
     @Override
@@ -122,8 +147,12 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
             return;
         }
 
-        List<MetadataValue> metadata = itemService.getMetadata(profileItem, "cris", "owner", null, Item.ANY);
-        itemService.removeMetadataValues(context, profileItem, metadata);
+        if (isHardDeleteEnabled()) {
+            deleteItem(context, profileItem);
+        } else {
+            removeCrisOwnerMetadata(context, profileItem);
+        }
+
     }
 
     @Override
@@ -145,6 +174,37 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
 
     }
 
+    @Override
+    public void updatePreferenceForSynchronizingPublicationsWithOrcid(Context context,
+        ResearcherProfile researcherProfile, OrcidEntitySynchronizationPreference value) throws SQLException {
+        updatePreferenceForSynchronizingWithOrcid(context, researcherProfile, "sync-publications", of(value.name()));
+    }
+
+    @Override
+    public void updatePreferenceForSynchronizingProjectsWithOrcid(Context context, ResearcherProfile researcherProfile,
+        OrcidEntitySynchronizationPreference value) throws SQLException {
+        updatePreferenceForSynchronizingWithOrcid(context, researcherProfile, "sync-projects", of(value.name()));
+    }
+
+    @Override
+    public void updatePreferenceForSynchronizingProfileWithOrcid(Context context, ResearcherProfile researcherProfile,
+        List<OrcidProfileSynchronizationPreference> values) throws SQLException {
+
+        List<String> valuesAsString = values.stream()
+            .map(OrcidProfileSynchronizationPreference::name)
+            .collect(Collectors.toList());
+
+        updatePreferenceForSynchronizingWithOrcid(context, researcherProfile, "sync-profile", valuesAsString);
+
+    }
+
+    @Override
+    public void updateOrcidSynchronizationMode(Context context, ResearcherProfile researcherProfile,
+        OrcidSynchronizationMode value) throws SQLException {
+        Item item = researcherProfile.getItem();
+        itemService.setMetadataSingleValue(context, item, "cris", "orcid", "sync-mode", null, value.name());
+    }
+
     private Item findResearcherProfileItemById(Context context, UUID id) throws SQLException, AuthorizeException {
 
         String profileType = getProfileType();
@@ -152,7 +212,7 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
         Iterator<Item> items = itemService.findByAuthorityValue(context, "cris", "owner", null, id.toString());
         while (items.hasNext()) {
             Item item = items.next();
-            if (hasRelationshipTypeMetadataEqualsTo(item, profileType)) {
+            if (hasEntityTypeMetadataEqualsTo(item, profileType)) {
                 return item;
             }
         }
@@ -170,7 +230,7 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
 
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableCollection.TYPE);
-        discoverQuery.addFilterQueries("relationship.type:" + profileType);
+        discoverQuery.addFilterQueries("dspace.entity.type:" + profileType);
 
         DiscoverResult discoverResult = searchService.search(context, discoverQuery);
         List<IndexableObject> indexableObjects = discoverResult.getIndexableObjects();
@@ -207,15 +267,52 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
         return item;
     }
 
-    private boolean hasRelationshipTypeMetadataEqualsTo(Item item, String relationshipType) {
+    private boolean hasEntityTypeMetadataEqualsTo(Item item, String entityType) {
         return item.getMetadata().stream().anyMatch(metadataValue -> {
-            return "relationship.type".equals(metadataValue.getMetadataField().toString('.')) &&
-                relationshipType.equals(metadataValue.getValue());
+            return "dspace.entity.type".equals(metadataValue.getMetadataField().toString('.')) &&
+                entityType.equals(metadataValue.getValue());
         });
+    }
+
+    private boolean isHardDeleteEnabled() {
+        return configurationService.getBooleanProperty("researcher-profile.hard-delete.enabled");
+    }
+
+    private void removeCrisOwnerMetadata(Context context, Item profileItem) throws SQLException {
+        List<MetadataValue> metadata = itemService.getMetadata(profileItem, "cris", "owner", null, Item.ANY);
+        itemService.removeMetadataValues(context, profileItem, metadata);
+    }
+
+    private void deleteItem(Context context, Item profileItem) throws SQLException, AuthorizeException {
+        try {
+            context.turnOffAuthorisationSystem();
+            itemService.delete(context, profileItem);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            context.restoreAuthSystemState();
+        }
     }
 
     private String getProfileType() {
         return configurationService.getProperty("researcher-profile.type", "Person");
+    }
+
+    private void updatePreferenceForSynchronizingWithOrcid(Context context, ResearcherProfile researcherProfile,
+        String metadataQualifier, List<String> values) throws SQLException {
+
+        if (!researcherProfile.isLinkedToOrcid()) {
+            throw new IllegalArgumentException("The given profile cannot be configured for the ORCID "
+                + "synchronization because it is not linked to any ORCID account: " + researcherProfile.getId());
+        }
+
+        Item item = researcherProfile.getItem();
+
+        itemService.clearMetadata(context, item, "cris", "orcid", metadataQualifier, Item.ANY);
+        for (String value : values) {
+            itemService.addMetadata(context, item, "cris", "orcid", metadataQualifier, null, value);
+        }
+
     }
 
 }

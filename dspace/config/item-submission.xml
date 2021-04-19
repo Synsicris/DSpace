@@ -6,6 +6,9 @@
     <name-map collection-handle="default" submission-name="impact_pathway" />
   </submission-map>
   <step-definitions>
+    <!-- The "collection" step is a "special step" which is *REQUIRED* -->
+    <!-- In DSpace, all submitted items must be immediately assigned -->
+    <!-- to a collection. This step ensures that a collection is always selected. -->
     <step-definition id="collection" mandatory="true">
       <heading>submit.progressbar.collection</heading>
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>

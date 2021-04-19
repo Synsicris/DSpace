@@ -678,7 +678,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             Item person = ItemBuilder.createItem(context, collection)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withTitle("Walter White")
                 .withOrcidIdentifier("0000-0002-9079-593X")
                 .build();
@@ -734,7 +734,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             createCollection(context, community)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withAdminGroup(eperson)
                 .build();
 
@@ -792,7 +792,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             Item person = ItemBuilder.createItem(context, collection)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withTitle("Walter White")
                 .withOrcidIdentifier("0000-0002-9079-593X")
                 .build();
@@ -848,7 +848,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             createCollection(context, community)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withAdminGroup(eperson)
                 .build();
 
@@ -1292,7 +1292,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
         context.turnOffAuthorisationSystem();
 
         createCollection(context, community)
-            .withRelationshipType("Person")
+            .withEntityType("Person")
             .withAdminGroup(eperson)
             .build();
 
@@ -1375,6 +1375,8 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
     private void resetConsumers(String[] consumers) {
         ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
         configService.setProperty("event.dispatcher.default.consumers", consumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
     }
 
     private Item findItemByMetadata(String schema, String element, String qualifier, String value) throws Exception {

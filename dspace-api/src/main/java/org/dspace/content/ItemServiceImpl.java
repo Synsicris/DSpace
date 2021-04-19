@@ -11,18 +11,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
+import org.dspace.app.orcid.OrcidHistory;
+import org.dspace.app.orcid.OrcidQueue;
+import org.dspace.app.orcid.service.OrcidHistoryService;
+import org.dspace.app.orcid.service.OrcidQueueService;
 import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.authorize.AuthorizeConfiguration;
 import org.dspace.authorize.AuthorizeException;
@@ -117,6 +123,12 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
 
     @Autowired(required = true)
     private RelationshipMetadataService relationshipMetadataService;
+
+    @Autowired(required = true)
+    private OrcidHistoryService orcidHistoryService;
+
+    @Autowired(required = true)
+    private OrcidQueueService orcidQueueService;
 
     protected ItemServiceImpl() {
         super();
@@ -686,7 +698,7 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
 
         // Remove relationships
         for (Relationship relationship : relationshipService.findByItem(context, item)) {
-            relationshipService.delete(context, relationship, false, false);
+            relationshipService.forceDelete(context, relationship, false, false);
         }
 
         // Remove bundles
@@ -697,6 +709,8 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
 
         // remove version attached to the item
         removeVersion(context, item);
+
+        removeOrcidSynchronizationStuff(context, item);
 
         // Also delete the item if it appears in a harvested collection.
         HarvestedItem hi = harvestedItemService.find(context, item);
@@ -1348,42 +1362,37 @@ prevent the generation of resource policy entry values with null dspace_object a
     @Override
     public List<MetadataValue> getMetadata(Item item, String schema, String element, String qualifier, String lang,
                                            boolean enableVirtualMetadata) {
-        //Fields of the relation schema are virtual metadata
-        //except for relation.type which is the type of item in the model
-        if (StringUtils.equals(schema, MetadataSchemaEnum.RELATION.getName()) && !StringUtils.equals(element, "type")) {
 
-            List<RelationshipMetadataValue> relationMetadata = relationshipMetadataService
-                .getRelationshipMetadata(item, enableVirtualMetadata);
-            List<MetadataValue> listToReturn = new LinkedList<>();
-            for (MetadataValue metadataValue : relationMetadata) {
-                if (StringUtils.equals(metadataValue.getMetadataField().getElement(), element)) {
-                    listToReturn.add(metadataValue);
-                }
-            }
-            listToReturn = sortMetadataValueList(listToReturn);
+        enableVirtualMetadata = enableVirtualMetadata
+            && configurationService.getBooleanProperty("item.enable-virtual-metadata", false);
 
-            return listToReturn;
-
-        } else {
-            List<MetadataValue> dbMetadataValues = super.getMetadata(item, schema, element, qualifier, lang);
+        if (!enableVirtualMetadata) {
+            log.debug("Called getMetadata for " + item.getID() + " without enableVirtualMetadata");
+            return super.getMetadata(item, schema, element, qualifier, lang);
+        }
+        if (item.isModifiedMetadataCache()) {
+            log.debug("Called getMetadata for " + item.getID() + " with invalid cache");
+            //rebuild cache
+            List<MetadataValue> dbMetadataValues = item.getMetadata();
 
             List<MetadataValue> fullMetadataValueList = new LinkedList<>();
-            if (enableVirtualMetadata) {
-                fullMetadataValueList.addAll(relationshipMetadataService.getRelationshipMetadata(item, true));
-
-            }
+            fullMetadataValueList.addAll(relationshipMetadataService.getRelationshipMetadata(item, true));
             fullMetadataValueList.addAll(dbMetadataValues);
 
-            List<MetadataValue> finalList = new LinkedList<>();
-            for (MetadataValue metadataValue : fullMetadataValueList) {
-                if (match(schema, element, qualifier, lang, metadataValue)) {
-                    finalList.add(metadataValue);
-                }
-            }
-            finalList = sortMetadataValueList(finalList);
-            return finalList;
+            item.setCachedMetadata(sortMetadataValueList(fullMetadataValueList));
         }
 
+        log.debug("Called getMetadata for " + item.getID() + " based on cache");
+        // Build up list of matching values based on the cache
+        List<MetadataValue> values = new ArrayList<>();
+        for (MetadataValue dcv : item.getCachedMetadata()) {
+            if (match(schema, element, qualifier, lang, dcv)) {
+                values.add(dcv);
+            }
+        }
+
+        // Create an array of matching values
+        return values;
     }
 
     /**
@@ -1434,5 +1443,47 @@ prevent the generation of resource policy entry values with null dspace_object a
         return listToReturn;
     }
 
+    @Override
+    public MetadataValue addMetadata(Context context, Item dso, String schema, String element, String qualifier,
+            String lang, String value, String authority, int confidence, int place) throws SQLException {
+
+        // We will not verify that they are valid entries in the registry
+        // until update() is called.
+        MetadataField metadataField = metadataFieldService.findByElement(context, schema, element, qualifier);
+        if (metadataField == null) {
+            throw new SQLException(
+                "bad_dublin_core schema=" + schema + "." + element + "." + qualifier + ". Metadata field does not " +
+                "exist!");
+        }
+
+        final Supplier<Integer> placeSupplier =  () -> place;
+
+        return addMetadata(context, dso, metadataField, lang, Arrays.asList(value),
+                Arrays.asList(authority), Arrays.asList(confidence), placeSupplier)
+                .stream().findFirst().orElse(null);
+    }
+
+
+    private void removeOrcidSynchronizationStuff(Context context, Item item) throws SQLException, AuthorizeException {
+
+        try {
+
+            context.turnOffAuthorisationSystem();
+
+            List<OrcidHistory> orcidHistories = orcidHistoryService.findByOwner(context, item);
+            for (OrcidHistory orcidHistory : orcidHistories) {
+                orcidHistoryService.delete(context, orcidHistory);
+            }
+
+            List<OrcidQueue> orcidQueues = orcidQueueService.findByOwnerId(context, item.getID());
+            for (OrcidQueue orcidQueue : orcidQueues) {
+                orcidQueueService.delete(context, orcidQueue);
+            }
+
+        } finally {
+            context.restoreAuthSystemState();
+        }
+
+    }
 
 }

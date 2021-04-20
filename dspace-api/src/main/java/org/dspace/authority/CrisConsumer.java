@@ -14,6 +14,7 @@ import static org.dspace.content.MetadataSchemaEnum.CRIS;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -153,40 +154,41 @@ public class CrisConsumer implements Consumer {
                 continue;
             }
 
-            String entityType = choiceAuthorityService.getLinkedEntityType(fieldKey);
-            if (entityType == null) {
+            String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
+            if (Objects.isNull(entityTypes) || entityTypes.length == 0) {
                 log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
                 continue;
             }
+            for (String entityType : entityTypes) {
+                String crisSourceId = generateCrisSourceId(metadata);
 
-            String crisSourceId = generateCrisSourceId(metadata);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType);
+                boolean relatedItemAlreadyPresent = relatedItem != null;
 
-            Item relatedItem = itemSearchService.search(context, crisSourceId, entityType);
-            boolean relatedItemAlreadyPresent = relatedItem != null;
-
-            if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
-                log.warn(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
-                metadata.setConfidence(Choices.CF_UNSET);
-                continue;
-            }
-
-            if (!relatedItemAlreadyPresent) {
-                Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
-                if (collection == null) {
-                    log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
+                if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
+                    log.warn(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
+                    metadata.setConfidence(Choices.CF_UNSET);
                     continue;
                 }
-                collection = context.reloadEntity(collection);
 
-                log.debug(ITEM_CREATION_MSG, entityType, item.getID());
-                relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
+                if (!relatedItemAlreadyPresent) {
+                    Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
+                    if (collection == null) {
+                        log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
+                        continue;
+                    }
+                    collection = context.reloadEntity(collection);
 
+                    log.debug(ITEM_CREATION_MSG, entityType, item.getID());
+                    relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
+
+                }
+
+                fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
+
+                metadata.setAuthority(relatedItem.getID().toString());
+                metadata.setConfidence(Choices.CF_ACCEPTED);
             }
-
-            fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
-
-            metadata.setAuthority(relatedItem.getID().toString());
-            metadata.setConfidence(Choices.CF_ACCEPTED);
         }
 
     }

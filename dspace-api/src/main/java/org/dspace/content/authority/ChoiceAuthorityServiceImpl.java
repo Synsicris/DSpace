@@ -538,7 +538,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
     }
 
     @Override
-    public String getLinkedEntityType(String fieldKey) {
+    public String[] getLinkedEntityType(String fieldKey) {
         ChoiceAuthority ma = getAuthorityByFieldKeyCollection(fieldKey, null);
         if (ma == null) {
             throw new IllegalArgumentException("No choices plugin was configured for  field \"" + fieldKey + "\".");

@@ -602,159 +602,6 @@
         </field>
       </row>
     </form>
-    <form name="publications_result-dc-relation-partofjournal">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofjournal</dc-qualifier>
-          <label>Journaltitle</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Enter the title of the journal</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oaire</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>volume</dc-qualifier>
-          <label>Volume</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oaire</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>issue</dc-qualifier>
-          <label>Issue</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
-          <label>ISSN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Enter the ISSN</hint>
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofnewspaper">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>Newspaper</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Enter the title of the newspaper</hint>
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofbook">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofbook</dc-qualifier>
-          <label>Book / Monographic serie</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Enter the tilte of the book / monograph</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>seriesno</dc-qualifier>
-          <label>Series No.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofconferenceproceeding">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Conference proceeding</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Enter the title of conference proceeding</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Series No.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Enter the ISBN</hint>
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-contributor-supervisor">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>supervisor</dc-qualifier>
-          <label>Supervisors</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="publications_result-dc-contributor-author">
       <row>
         <field>
@@ -905,11 +752,11 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>titel</dc-element>
           <dc-qualifier>partofjournal</dc-qualifier>
-          <label>InJournal</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>In Journal</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
           <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
@@ -917,12 +764,38 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>volume</dc-qualifier>
+          <label>Volume</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+        </field>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>issue</dc-qualifier>
+          <label>Issue</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>title</dc-element>
           <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>InNewspaper</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>In Newspaper</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
           <type-bind>newspaper article, Zeitungsartikel</type-bind>
@@ -931,11 +804,11 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>title</dc-element>
           <dc-qualifier>partofbook</dc-qualifier>
-          <label>InBook</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>In Book</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
           <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
@@ -944,12 +817,52 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>InProceedings</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>seriesno</dc-qualifier>
+          <label>Series No.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>isbn</dc-qualifier>
+          <label>ISBN</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>Conference proceeding</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Enter the title of conference proceeding</hint>
+          <type-bind>conference paper, Konferenzbeitrag</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>Series No.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
           <type-bind>conference paper, Konferenzbeitrag</type-bind>
         </field>
@@ -1008,10 +921,23 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>supervisor</dc-qualifier>
+          <label>Main Supervisor</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>moresupervisor</dc-qualifier>
           <label>Supervisors</label>
-          <input-type>inline-group</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
+          <style>col-md-7</style>
           <hint />
           <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
         </field>
@@ -1022,7 +948,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>audience</dc-element>
-          <label>Target audience</label>
+          <label>Select the target audience(s)</label>
           <input-type value-pairs-name="target_audience">list</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1096,7 +1022,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Ttle of the patent</label>
+          <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
@@ -2216,7 +2142,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2535,7 +2461,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
@@ -5163,7 +5089,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>madatory</required>
           <hint />
@@ -5218,7 +5144,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
@@ -5273,7 +5199,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
@@ -5328,7 +5254,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />

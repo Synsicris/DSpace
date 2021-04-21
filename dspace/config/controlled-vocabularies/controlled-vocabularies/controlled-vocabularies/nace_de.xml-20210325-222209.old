@@ -1,0 +1,3755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="NACE 2021-03-24">
+  <isComposedBy>
+    <node id="A" label="LAND- UND FORSTWIRTSCHAFT, FISCHEREI" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="01" label="Landwirtschaft, Jagd und damit verbundene Tätigkeiten" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="01.1" label="Anbau einjähriger Pflanzen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.11" label="Anbau von Getreide (ohne Reis), Hülsenfrüchten und Ölsaaten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.12" label="Anbau von Reis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.13" label="Anbau von Gemüse und Melonen sowie Wurzeln und Knollen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.14" label="Anbau von Zuckerrohr" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.15" label="Anbau von Tabak" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.16" label="Anbau von Faserpflanzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.19" label="Anbau von sonstigen einjährigen Pflanzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.2" label="Anbau mehrjähriger Pflanzen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.21" label="Anbau von Wein- und Tafeltrauben" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.22" label="Anbau von tropischen und subtropischen Früchten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.23" label="Anbau von Zitrusfrüchten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.24" label="Anbau von Kern- und Steinobst" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.25" label="Anbau von sonstigem Obst und Nüssen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.26" label="Anbau von ölhaltigen Früchten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.27" label="Anbau von Pflanzen zur Herstellung von Getränken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.28" label="Anbau von Gewürzpflanzen, Pflanzen für aromatische, narkotische und pharmazeutische Zwecke" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.29" label="Anbau sonstiger mehrjähriger Pflanzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.3" label="Betrieb von Baumschulen, sowie Anbau von Pflanzen zu Vermehrungszwecken" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.30" label="Betrieb von Baumschulen, sowie Anbau von Pflanzen zu Vermehrungszwecken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.4" label="Tierhaltung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.41" label="Haltung von Milchkühen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.42" label="Haltung von anderen Rindern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.43" label="Haltung von Pferden und Eseln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.44" label="Haltung von Kamelen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.45" label="Haltung von Schafen und Ziegen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.46" label="Haltung von Schweinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.47" label="Haltung von Geflügel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.49" label="Sonstige Tierhaltung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.5" label="Gemischte Landwirtschaft" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.50" label="Gemischte Landwirtschaft" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.6" label="Erbringung von landwirtschaftlichen Dienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.61" label="Erbringung von landwirtschaftlichen Dienstleistungen für den Pflanzenbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.62" label="Erbringung von landwirtschaftlichen Dienstleistungen für die Tierhaltung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.63" label="Nach der Ernte anfallende Tätigkeiten in der pflanzlichen Erzeugung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="01.64" label="Saatgutaufbereitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="01.7" label="Jagd, Fallenstellerei und damit verbundene Tätigkeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="01.70" label="Jagd, Fallenstellerei und damit verbundene Tätigkeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="02" label="Forstwirtschaft und Holzeinschlag" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="02.1" label="Forstwirtschaft" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="02.10" label="Forstwirtschaft" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="02.2" label="Holzeinschlag" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="02.20" label="Holzeinschlag" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="02.3" label="Sammeln von wildwachsenden Produkten (ohne Holz)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="02.30" label="Sammeln von wildwachsenden Produkten (ohne Holz)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="02.4" label="Erbringung von Dienstleistungen für Forstwirtschaft und Holzeinschlag" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="02.40" label="Erbringung von Dienstleistungen für Forstwirtschaft und Holzeinschlag" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="03" label="Fischerei und Aquakultur" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="03.1" label="Fischerei" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="03.11" label="Meeresfischerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="03.12" label="Süßwasserfischerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="03.2" label="Aquakultur" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="03.21" label="Meeresaquakultur" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="03.22" label="Süßwasseraquakultur" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="B" label="BERGBAU UND GEWINNUNG VON STEINEN UND ERDEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="05" label="Kohlenbergbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="05.1" label="Steinkohlenbergbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="05.10" label="Steinkohlenbergbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="05.2" label="Braunkohlenbergbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="05.20" label="Braunkohlenbergbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="06" label="Gewinnung von Erdöl und Erdgas" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="06.1" label="Gewinnung von Erdöl" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="06.10" label="Gewinnung von Erdöl" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="06.2" label="Gewinnung von Erdgas" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="06.20" label="Gewinnung von Erdgas" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="07" label="Erzbergbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="07.1" label="Eisenerzbergbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="07.10" label="Eisenerzbergbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="07.2" label="NE-Metallerzbergbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="07.21" label="Bergbau auf Uran- und Thoriumerze" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="07.29" label="Sonstiger NE-Metallerzbergbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="08" label="Gewinnung von Steinen und Erden, sonstiger Bergbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="08.1" label="Gewinnung von Natursteinen, Kies, Sand, Ton und Kaolin" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="08.11" label="Gewinnung von Naturwerksteinen und Natursteinen, Kalk- und Gipsstein, Kreide und Schiefer" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="08.12" label="Gewinnung von Kies, Sand, Ton und Kaolin" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="08.9" label="Sonstiger Bergbau; Gewinnung von Steinen und Erden a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="08.91" label="Bergbau auf chemische und Düngemittelminerale" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="08.92" label="Torfgewinnung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="08.93" label="Gewinnung von Salz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="08.99" label="Gewinnung von Steinen und Erden a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="09" label="Erbringung von Dienstleistungen für den Bergbau und für die Gewinnung von Steinen und Erden" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="09.1" label="Erbringung von Dienstleistungen für die Gewinnung von Erdöl und Erdgas" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="09.10" label="Erbringung von Dienstleistungen für die Gewinnung von Erdöl und Erdgas" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="09.9" label="Erbringung von Dienstleistungen für den sonstigen Bergbau und die Gewinnung von Steinen und Erden" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="09.90" label="Erbringung von Dienstleistungen für den sonstigen Bergbau und die Gewinnung von Steinen und Erden" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="C" label="VERARBEITENDES GEWERBE/HERSTELLUNG VON WAREN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="10" label="Herstellung von Nahrungs- und Futtermitteln" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="10.1" label="Schlachten und Fleischverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.11" label="Schlachten (ohne Schlachten von Geflügel)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.12" label="Schlachten von Geflügel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.13" label="Fleischverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.2" label="Fischverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.20" label="Fischverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.3" label="Obst- und Gemüseverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.31" label="Kartoffelverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.32" label="Herstellung von Frucht- und Gemüsesäften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.39" label="Sonstige Verarbeitung von Obst und Gemüse" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.4" label="Herstellung von pflanzlichen und tierischen Ölen und Fetten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.41" label="Herstellung von Ölen und Fetten (ohne Margarine u. ä. Nahrungsfette)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.42" label="Herstellung von Margarine u. ä. Nahrungsfetten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.5" label="Milchverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.51" label="Milchverarbeitung (ohne Herstellung von Speiseeis)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.52" label="Herstellung von Speiseeis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.6" label="Mahl- und Schälmühlen, Herstellung von Stärke und Stärkeerzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.61" label="Mahl- und Schälmühlen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.62" label="Herstellung von Stärke und Stärkeerzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.7" label="Herstellung von Back- und Teigwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.71" label="Herstellung von Backwaren (ohne Dauerbackwaren)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.72" label="Herstellung von Dauerbackwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.73" label="Herstellung von Teigwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.8" label="Herstellung von sonstigen Nahrungsmitteln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.81" label="Herstellung von Zucker" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.82" label="Herstellung von Süßwaren (ohne Dauerbackwaren)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.83" label="Verarbeitung von Kaffee und Tee, Herstellung von Kaffee-Ersatz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.84" label="Herstellung von Würzmitteln und Soßen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.85" label="Herstellung von Fertiggerichten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.86" label="Herstellung von homogenisierten und diätetischen Nahrungsmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.89" label="Herstellung von sonstigen Nahrungsmitteln a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="10.9" label="Herstellung von Futtermitteln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="10.91" label="Herstellung von Futtermitteln für Nutztiere" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="10.92" label="Herstellung von Futtermitteln für sonstige Tiere" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="11" label="Getränkeherstellung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="11.0" label="Getränkeherstellung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="11.01" label="Herstellung von Spirituosen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.02" label="Herstellung von Traubenwein" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.03" label="Herstellung von Apfelwein und anderen Fruchtweinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.04" label="Herstellung von Wermutwein und sonstigen aromatisierten Weinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.05" label="Herstellung von Bier" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.06" label="Herstellung von Malz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="11.07" label="Herstellung von Erfrischungsgetränken; Gewinnung natürlicher Mineralwässer" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="12" label="Tabakverarbeitung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="12.0" label="Tabakverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="12.00" label="Tabakverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="13" label="Herstellung von Textilien" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="13.1" label="Spinnstoffaufbereitung und Spinnerei" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="13.10" label="Spinnstoffaufbereitung und Spinnerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="13.2" label="Weberei" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="13.20" label="Weberei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="13.3" label="Veredlung von Textilien und Bekleidung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="13.30" label="Veredlung von Textilien und Bekleidung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="13.9" label="Herstellung von sonstigen Textilwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="13.91" label="Herstellung von gewirktem und gestricktem Stoff" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.92" label="Herstellung von konfektionierten Textilwaren (ohne Bekleidung)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.93" label="Herstellung von Teppichen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.94" label="Herstellung von Seilerwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.95" label="Herstellung von Vliesstoff und Erzeugnissen daraus (ohne Bekleidung)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.96" label="Herstellung von technischen Textilien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="13.99" label="Herstellung von sonstigen Textilwaren a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="14" label="Herstellung von Bekleidung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="14.1" label="Herstellung von Bekleidung (ohne Pelzbekleidung)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="14.11" label="Herstellung von Lederbekleidung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="14.12" label="Herstellung von Arbeits- und Berufsbekleidung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="14.13" label="Herstellung von sonstiger Oberbekleidung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="14.14" label="Herstellung von Wäsche" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="14.19" label="Herstellung von sonstiger Bekleidung und Bekleidungszubehör a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="14.2" label="Herstellung von Pelzwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="14.20" label="Herstellung von Pelzwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="14.3" label="Herstellung von Bekleidung aus gewirktem und gestricktem Stoff" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="14.31" label="Herstellung von Strumpfwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="14.39" label="Herstellung von sonstiger Bekleidung aus gewirktem und gestricktem Stoff" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="15" label="Herstellung von Leder, Lederwaren und Schuhen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="15.1" label="Herstellung von Leder und Lederwaren (ohne Herstellung von Lederbekleidung)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="15.11" label="Herstellung von Leder und Lederfaserstoff; Zurichtung und Färben von Fellen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="15.12" label="Lederverarbeitung (ohne Herstellung von Lederbekleidung)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="15.2" label="Herstellung von Schuhen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="15.20" label="Herstellung von Schuhen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="16" label="Herstellung von Holz-, Flecht-, Korb- und Korkwaren (ohne Möbel)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="16.1" label="Säge-, Hobel- und Holzimprägnierwerke" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="16.10" label="Säge-, Hobel- und Holzimprägnierwerke" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="16.2" label="Herstellung von sonstigen Holz-, Kork-, Flecht- und Korbwaren (ohne Möbel)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="16.21" label="Herstellung von Furnier-, Sperrholz-, Holzfaser- und Holzspanplatten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="16.22" label="Herstellung von Parketttafeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="16.23" label="Herstellung von sonstigen Konstruktionsteilen, Fertigbauteilen, Ausbauelementen und Fertigteilbauten aus Holz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="16.24" label="Herstellung von Verpackungsmitteln, Lagerbehältern und Ladungsträgern aus Holz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="16.29" label="Herstellung von Holzwaren a.n.g, Kork-, Flecht- und Korbwaren (ohne Möbel)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="17" label="Herstellung von Papier, Pappe und Waren daraus" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="17.1" label="Herstellung von Holz- und Zellstoff, Papier, Karton und Pappe" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="17.11" label="Herstellung von Holz- und Zellstoff" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="17.12" label="Herstellung von Papier, Karton und Pappe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="17.2" label="Herstellung von Waren aus Papier, Karton und Pappe" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="17.21" label="Herstellung von Wellpapier und -pappe sowie von Verpackungsmitteln aus Papier, Karton und Pappe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="17.22" label="Herstellung von Haushalts-, Hygiene- und Toilettenartikeln aus Zellstoff, Papier und Pappe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="17.23" label="Herstellung von Schreibwaren und Bürobedarf aus Papier, Karton und Pappe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="17.24" label="Herstellung von Tapeten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="17.29" label="Herstellung von sonstigen Waren aus Papier, Karton und Pappe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="18" label="Herstellung von Druckerzeugnissen; Vervielfältigung von bespielten Ton-, Bild- und Datenträgern" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="18.1" label="Herstellung von Druckerzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="18.11" label="Drucken von Zeitungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="18.12" label="Drucken a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="18.13" label="Druck- und Medienvorstufe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="18.14" label="Binden von Druckerzeugnissen und damit verbundene Dienstleistungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="18.2" label="Vervielfältigung von bespielten Ton-, Bild- und Datenträgern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="18.20" label="Vervielfältigung von bespielten Ton-, Bild- und Datenträgern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="19" label="Kokerei und Mineralölverarbeitung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="19.1" label="Kokerei" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="19.10" label="Kokerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="19.2" label="Mineralölverarbeitung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="19.20" label="Mineralölverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="20" label="Herstellung von chemischen Erzeugnissen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="20.1" label="Herstellung von chemischen Grundstoffen, Düngemitteln und Stickstoffverbindungen, Kunststoffen in Primärformen und synthetischem Kautschuk in Primärformen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.11" label="Herstellung von Industriegasen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.12" label="Herstellung von Farbstoffen und Pigmenten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.13" label="Herstellung von sonstigen anorganischen Grundstoffen und Chemikalien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.14" label="Herstellung von sonstigen organischen Grundstoffen und Chemikalien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.15" label="Herstellung von Düngemitteln und Stickstoffverbindungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.16" label="Herstellung von Kunststoffen in Primärformen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.17" label="Herstellung von synthetischem Kautschuk in Primärformen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="20.2" label="Herstellung von Schädlingsbekämpfungs-, Pflanzenschutz- und Desinfektionsmitteln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.20" label="Herstellung von Schädlingsbekämpfungs-, Pflanzenschutz- und Desinfektionsmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="20.3" label="Herstellung von Anstrichmitteln, Druckfarben und Kitten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.30" label="Herstellung von Anstrichmitteln, Druckfarben und Kitten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="20.4" label="Herstellung von Seifen, Wasch-, Reinigungs- und Körperpflegemitteln sowie von Duftstoffen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.41" label="Herstellung von Seifen, Wasch-, Reinigungs- und Poliermitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.42" label="Herstellung von Körperpflegemitteln und Duftstoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="20.5" label="Herstellung von sonstigen chemischen Erzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.51" label="Herstellung von pyrotechnischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.52" label="Herstellung von Klebstoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.53" label="Herstellung von etherischen Ölen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="20.59" label="Herstellung von sonstigen chemischen Erzeugnissen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="20.6" label="Herstellung von Chemiefasern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="20.60" label="Herstellung von Chemiefasern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="21" label="Herstellung von pharmazeutischen Erzeugnissen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="21.1" label="Herstellung von pharmazeutischen Grundstoffen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="21.10" label="Herstellung von pharmazeutischen Grundstoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="21.2" label="Herstellung von pharmazeutischen Spezialitäten und sonstigen pharmazeutischen Erzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="21.20" label="Herstellung von pharmazeutischen Spezialitäten und sonstigen pharmazeutischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="22" label="Herstellung von Gummi- und Kunststoffwaren" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="22.1" label="Herstellung von Gummiwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="22.11" label="Herstellung und Runderneuerung von Bereifungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="22.19" label="Herstellung von sonstigen Gummiwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="22.2" label="Herstellung von Kunststoffwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="22.21" label="Herstellung von Platten, Folien, Schläuchen und Profilen aus Kunststoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="22.22" label="Herstellung von Verpackungsmitteln aus Kunststoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="22.23" label="Herstellung von Baubedarfsartikeln aus Kunststoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="22.29" label="Herstellung von sonstigen Kunststoffwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="23" label="Herstellung von Glas und Glaswaren, Keramik, Verarbeitung von Steinen und Erden" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="23.1" label="Herstellung von Glas und Glaswaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.11" label="Herstellung von Flachglas" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.12" label="Veredlung und Bearbeitung von Flachglas" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.13" label="Herstellung von Hohlglas" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.14" label="Herstellung von Glasfasern und Waren daraus" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.19" label="Herstellung, Veredlung und Bearbeitung von sonstigem Glas einschließlich technischen Glaswaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.2" label="Herstellung von feuerfesten keramischen Werkstoffen und Waren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.20" label="Herstellung von feuerfesten keramischen Werkstoffen und Waren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.3" label="Herstellung von keramischen Baumaterialien" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.31" label="Herstellung von keramischen Wand- und Bodenfliesen und -platten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.32" label="Herstellung von Ziegeln und sonstiger Baukeramik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.4" label="Herstellung von sonstigen Porzellan- und keramischen Erzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.41" label="Herstellung von keramischen Haushaltswaren und Ziergegenständen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.42" label="Herstellung von Sanitärkeramik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.43" label="Herstellung von Isolatoren und Isolierteilen aus Keramik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.44" label="Herstellung von keramischen Erzeugnissen für sonstige technische Zwecke" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.49" label="Herstellung von sonstigen keramischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.5" label="Herstellung von Zement, Kalk und gebranntem Gips" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.51" label="Herstellung von Zement" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.52" label="Herstellung von Kalk und gebranntem Gips" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.6" label="Herstellung von Erzeugnissen aus Beton, Zement und Gips" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.61" label="Herstellung von Erzeugnissen aus Beton, Zement und Kalksandstein für den Bau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.62" label="Herstellung von Gipserzeugnissen für den Bau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.63" label="Herstellung von Frischbeton (Transportbeton)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.64" label="Herstellung von Mörtel und anderem Beton (Trockenbeton)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.65" label="Herstellung von Faserzementwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.69" label="Herstellung von sonstigen Erzeugnissen aus Beton, Zement und Gips a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.7" label="Be- und Verarbeitung von Naturwerksteinen und Natursteinen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.70" label="Be- und Verarbeitung von Naturwerksteinen und Natursteinen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="23.9" label="Herstellung von Schleifkörpern und Schleifmitteln auf Unterlage sowie sonstigen Erzeugnissen aus nichtmetallischen Mineralien a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="23.91" label="Herstellung von Schleifkörpern und Schleifmitteln auf Unterlage" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="23.99" label="Herstellung von sonstigen Erzeugnissen aus nichtmetallischen Mineralien a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="24" label="Metallerzeugung und -bearbeitung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="24.1" label="Erzeugung von Roheisen, Stahl und Ferrolegierungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="24.10" label="Erzeugung von Roheisen, Stahl und Ferrolegierungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="24.2" label="Herstellung von Stahlrohren, Rohrform-, Rohrverschluss- und Rohrverbindungsstücken aus Stahl" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="24.20" label="Herstellung von Stahlrohren, Rohrform-, Rohrverschluss- und Rohrverbindungsstücken aus Stahl" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="24.3" label="Sonstige erste Bearbeitung von Eisen und Stahl" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="24.31" label="Herstellung von Blankstahl" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.32" label="Herstellung von Kaltband mit einer Breite von weniger als 600 mm" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.33" label="Herstellung von Kaltprofilen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.34" label="Herstellung von kaltgezogenem Draht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="24.4" label="Erzeugung und erste Bearbeitung von NE-Metallen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="24.41" label="Erzeugung und erste Bearbeitung von Edelmetallen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.42" label="Erzeugung und erste Bearbeitung von Aluminium" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.43" label="Erzeugung und erste Bearbeitung von Blei, Zink und Zinn" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.44" label="Erzeugung und erste Bearbeitung von Kupfer" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.45" label="Erzeugung und erste Bearbeitung von sonstigen NE-Metallen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.46" label="Aufbereitung von Kernbrennstoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="24.5" label="Gießereien" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="24.51" label="Eisengießereien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.52" label="Stahlgießereien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.53" label="Leichtmetallgießereien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="24.54" label="Buntmetallgießereien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="25" label="Herstellung von Metallerzeugnissen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="25.1" label="Stahl- und Leichtmetallbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.11" label="Herstellung von Metallkonstruktionen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.12" label="Herstellung von Ausbauelementen aus Metall" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.2" label="Herstellung von Metalltanks und -behältern; Herstellung von Heizkörpern und -kesseln für Zentralheizungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.21" label="Herstellung von Heizkörpern und –kesseln für Zentralheizungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.29" label="Herstellung von Sammelbehältern, Tanks u. ä. Behältern aus Metall" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.3" label="Herstellung von Dampfkesseln (ohne Zentralheizungskessel)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.30" label="Herstellung von Dampfkesseln (ohne Zentralheizungskessel)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.4" label="Herstellung von Waffen und Munition" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.40" label="Herstellung von Waffen und Munition" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.5" label="Herstellung von Schmiede-, Press-, Zieh- und Stanzteilen, gewalzten Ringen und pulvermetallurgischen Erzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.50" label="Herstellung von Schmiede-, Press-, Zieh- und Stanzteilen, gewalzten Ringen und pulvermetallurgischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.6" label="Oberflächenveredlung und Wärmebehandlung; Mechanik a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.61" label="Oberflächenveredlung und Wärmebehandlung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.62" label="Mechanik a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.7" label="Herstellung von Schneidwaren, Werkzeugen, Schlössern und Beschlägen aus unedlen Metallen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.71" label="Herstellung von Schneidwaren und Bestecken aus unedlen Metallen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.72" label="Herstellung von Schlössern und Beschlägen aus unedlen Metallen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.73" label="Herstellung von Werkzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="25.9" label="Herstellung von sonstigen Metallwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="25.91" label="Herstellung von Fässern, Trommeln, Dosen, Eimern u. ä. Behältern aus Metall" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.92" label="Herstellung von Verpackungen und Verschlüssen aus Eisen, Stahl und NE-Metall" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.93" label="Herstellung von Drahtwaren, Ketten und Federn" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.94" label="Herstellung von Schrauben und Nieten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="25.99" label="Herstellung von sonstigen Metallwaren a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="26" label="Herstellung von Datenverarbeitungsgeräten, elektronischen und optischen Erzeugnissen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="26.1" label="Herstellung von elektronischen Bauelementen und Leiterplatten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.11" label="Herstellung von elektronischen Bauelementen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="26.12" label="Herstellung von bestückten Leiterplatten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.2" label="Herstellung von Datenverarbeitungsgeräten und peripheren Geräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.20" label="Herstellung von Datenverarbeitungsgeräten und peripheren Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.3" label="Herstellung von Geräten und Einrichtungen der Telekommunikationstechnik" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.30" label="Herstellung von Geräten und Einrichtungen der Telekommunikationstechnik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.4" label="Herstellung von Geräten der Unterhaltungselektronik" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.40" label="Herstellung von Geräten der Unterhaltungselektronik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.5" label="Herstellung von Mess-, Kontroll-, Navigations- u. ä. Instrumenten und Vorrichtungen; Herstellung von Uhren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.51" label="Herstellung von Mess-, Kontroll-, Navigations- u. ä. Instrumenten und Vorrichtungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="26.52" label="Herstellung von Uhren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.6" label="Herstellung von Bestrahlungs- und Elektrotherapiegeräten und elektromedizinischen Geräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.60" label="Herstellung von Bestrahlungs- und Elektrotherapiegeräten und elektromedizinischen Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.7" label="Herstellung von optischen und fotografischen Instrumenten und Geräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.70" label="Herstellung von optischen und fotografischen Instrumenten und Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="26.8" label="Herstellung von magnetischen und optischen Datenträgern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="26.80" label="Herstellung von magnetischen und optischen Datenträgern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="27" label="Herstellung von elektrischen Ausrüstungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="27.1" label="Herstellung von Elektromotoren, Generatoren, Transformatoren, Elektrizitätsverteilungs- und schalteinrichtungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.11" label="Herstellung von Elektromotoren, Generatoren und Transformatoren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="27.12" label="Herstellung von Elektrizitätsverteilungs- und -schalteinrichtungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="27.2" label="Herstellung von Batterien und Akkumulatoren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.20" label="Herstellung von Batterien und Akkumulatoren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="27.3" label="Herstellung von Kabeln und elektrischem Installationsmaterial" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.31" label="Herstellung von Glasfaserkabeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="27.32" label="Herstellung von sonstigen elektronischen und elektrischen Drähten und Kabeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="27.33" label="Herstellung von elektrischem Installationsmaterial" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="27.4" label="Herstellung von elektrischen Lampen und Leuchten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.40" label="Herstellung von elektrischen Lampen und Leuchten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="27.5" label="Herstellung von Haushaltsgeräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.51" label="Herstellung von elektrischen Haushaltsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="27.52" label="Herstellung von nichtelektrischen Haushaltsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="27.9" label="Herstellung von sonstigen elektrischen Ausrüstungen und Geräten a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="27.90" label="Herstellung von sonstigen elektrischen Ausrüstungen und Geräten a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="28" label="Maschinenbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="28.1" label="Herstellung von nicht wirtschaftszweigspezifischen Maschinen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="28.11" label="Herstellung von Verbrennungsmotoren und Turbinen (ohne Motoren für Luft- und Straßenfahrzeuge)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.12" label="Herstellung von hydraulischen und pneumatischen Komponenten und Systemen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.13" label="Herstellung von Pumpen und Kompressoren a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.14" label="Herstellung von Armaturen a. n. g" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.15" label="Herstellung von Lagern, Getrieben, Zahnrädern und Antriebselementen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="28.2" label="Herstellung von sonstigen nicht wirtschaftszweigspezifischen Maschinen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="28.21" label="Herstellung von Öfen und Brennern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.22" label="Herstellung von Hebezeugen und Fördermitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.23" label="Herstellung von Büromaschinen (ohne Datenverarbeitungsgeräte und periphere Geräte)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.24" label="Herstellung von handgeführten Werkzeugen mit Motorantrieb" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.25" label="Herstellung von kälte- und lufttechnischen Erzeugnissen, nicht für den Haushalt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.29" label="Herstellung von sonstigen nicht wirtschaftszweigspezifischen Maschinen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="28.3" label="Herstellung von land- und forstwirtschaftlichen Maschinen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="28.30" label="Herstellung von land- und forstwirtschaftlichen Maschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="28.4" label="Herstellung von Werkzeugmaschinen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="28.41" label="Herstellung von Werkzeugmaschinen für die Metallbearbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.49" label="Herstellung von sonstigen Werkzeugmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="28.9" label="Herstellung von Maschinen für sonstige bestimmte Wirtschaftszweige" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="28.91" label="Herstellung von Maschinen für die Metallerzeugung, von Walzwerkseinrichtungen und Gießmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.92" label="Herstellung von Bergwerks-, Bau- und Baustoffmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.93" label="Herstellung von Maschinen für die Nahrungs- und Genussmittelerzeugung und die Tabakverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.94" label="Herstellung von Maschinen für die Textil- und Bekleidungsherstellung und die Lederverarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.95" label="Herstellung von Maschinen für die Papiererzeugung und –verarbeitung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.96" label="Herstellung von Maschinen für die Verarbeitung von Kunststoffen und Kautschuk" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="28.99" label="Herstellung von Maschinen für sonstige bestimmte Wirtschaftszweige a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="29" label="Herstellung von Kraftwagen und Kraftwagenteilen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="29.1" label="Herstellung von Kraftwagen und Kraftwagenmotoren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="29.10" label="Herstellung von Kraftwagen und Kraftwagenmotoren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="29.2" label="Herstellung von Karosserien, Aufbauten und Anhängern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="29.20" label="Herstellung von Karosserien, Aufbauten und Anhängern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="29.3" label="Herstellung von Teilen und Zubehör für Kraftwagen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="29.31" label="Herstellung elektrischer und elektronischer Ausrüstungsgegenstände für Kraftwagen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="29.32" label="Herstellung von sonstigen Teilen und sonstigem Zubehör für Kraftwagen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="30" label="Sonstiger Fahrzeugbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="30.1" label="Schiff- und Bootsbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="30.11" label="Schiffbau (ohne Boots- und Yachtbau)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="30.12" label="Boots- und Yachtbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="30.2" label="Schienenfahrzeugbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="30.20" label="Schienenfahrzeugbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="30.3" label="Luft- und Raumfahrzeugbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="30.30" label="Luft- und Raumfahrzeugbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="30.4" label="Herstellung von militärischen Kampffahrzeugen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="30.40" label="Herstellung von militärischen Kampffahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="30.9" label="Herstellung von Fahrzeugen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="30.91" label="Herstellung von Krafträdern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="30.92" label="Herstellung von Fahrrädern sowie von Behindertenfahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="30.99" label="Herstellung von sonstigen Fahrzeugen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="31" label="Herstellung von Möbeln" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="31.0" label="Herstellung von Möbeln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="31.01" label="Herstellung von Büro- und Ladenmöbeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="31.02" label="Herstellung von Küchenmöbeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="31.03" label="Herstellung von Matratzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="31.09" label="Herstellung von sonstigen Möbeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="32" label="Herstellung von sonstigen Waren" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="32.1" label="Herstellung von Münzen, Schmuck und ähnlichen Erzeugnissen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.11" label="Herstellung von Münzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="32.12" label="Herstellung von Schmuck, Gold- und Silberschmiedewaren (ohne Fantasieschmuck)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="32.13" label="Herstellung von Fantasieschmuck" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="32.2" label="Herstellung von Musikinstrumenten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.20" label="Herstellung von Musikinstrumenten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="32.3" label="Herstellung von Sportgeräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.30" label="Herstellung von Sportgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="32.4" label="Herstellung von Spielwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.40" label="Herstellung von Spielwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="32.5" label="Herstellung von medizinischen und zahnmedizinischen Apparaten und Materialien" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.50" label="Herstellung von medizinischen und zahnmedizinischen Apparaten und Materialien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="32.9" label="Herstellung von Erzeugnissen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="32.91" label="Herstellung von Besen und Bürsten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="32.99" label="Herstellung von sonstigen Erzeugnissen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="33" label="Reparatur und Installation von Maschinen und Ausrüstungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="33.1" label="Reparatur von Metallerzeugnissen, Maschinen und Ausrüstungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="33.11" label="Reparatur von Metallerzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.12" label="Reparatur von Maschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.13" label="Reparatur von elektronischen und optischen Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.14" label="Reparatur von elektrischen Ausrüstungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.15" label="Reparatur und Instandhaltung von Schiffen, Booten und Yachten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.16" label="Reparatur und Instandhaltung von Luft- und Raumfahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.17" label="Reparatur und Instandhaltung von Fahrzeugen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="33.19" label="Reparatur von sonstigen Ausrüstungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="33.2" label="Installation von Maschinen und Ausrüstungen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="33.20" label="Installation von Maschinen und Ausrüstungen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="D" label="ENERGIEVERSORGUNG" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="35" label="Energieversorgung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="35.1" label="Elektrizitätsversorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="35.11" label="Elektrizitätserzeugung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="35.12" label="Elektrizitätsübertragung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="35.13" label="Elektrizitätsverteilung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="35.14" label="Elektrizitätshandel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="35.2" label="Gasversorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="35.21" label="Gaserzeugung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="35.22" label="Gasverteilung durch Rohrleitungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="35.23" label="Gashandel durch Rohrleitungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="35.3" label="Wärme- und Kälteversorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="35.30" label="Wärme- und Kälteversorgung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="E" label="WASSERVERSORGUNG; ABWASSER- UND ABFALLENTSORGUNG UND BESEITIGUNG VON UMWELTVERSCHMUTZUNGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="36" label="Wasserversorgung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="36.0" label="Wasserversorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="36.00" label="Wasserversorgung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="37" label="Abwasserentsorgung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="37.0" label="Abwasserentsorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="37.00" label="Abwasserentsorgung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="38" label="Sammlung, Behandlung und Beseitigung von Abfällen; Rückgewinnung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="38.1" label="Sammlung von Abfällen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="38.11" label="Sammlung nicht gefährlicher Abfälle" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="38.12" label="Sammlung gefährlicher Abfälle" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="38.2" label="Abfallbehandlung und beseitigung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="38.21" label="Behandlung und Beseitigung nicht gefährlicher Abfälle" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="38.22" label="Behandlung und Beseitigung gefährlicher Abfälle" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="38.3" label="Rückgewinnung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="38.31" label="Zerlegen von Schiffs- und Fahrzeugwracks und anderen Altwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="38.32" label="Rückgewinnung sortierter Werkstoffe" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="39" label="Beseitigung von Umweltverschmutzungen und sonstige Entsorgung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="39.0" label="Beseitigung von Umweltverschmutzungen und sonstige Entsorgung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="39.00" label="Beseitigung von Umweltverschmutzungen und sonstige Entsorgung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="F" label="BAUGEWERBE/BAU" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="41" label="Hochbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="41.1" label="Erschließung von Grundstücken; Bauträger" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="41.10" label="Erschließung von Grundstücken; Bauträger" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="41.2" label="Bau von Gebäuden" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="41.20" label="Bau von Gebäuden" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="42" label="Tiefbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="42.1" label="Bau von Straßen und Bahnverkehrsstrecken" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="42.11" label="Bau von Straßen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="42.12" label="Bau von Bahnverkehrsstrecken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="42.13" label="Brücken- und Tunnelbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="42.2" label="Leitungstiefbau und Kläranlagenbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="42.21" label="Rohrleitungstiefbau, Brunnenbau und Kläranlagenbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="42.22" label="Kabelnetzleitungstiefbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="42.9" label="Sonstiger Tiefbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="42.91" label="Wasserbau" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="42.99" label="Sonstiger Tiefbau a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="43" label="Vorbereitende Baustellenarbeiten, Bauinstallation und sonstiges Ausbaugewerbe" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="43.1" label="Abbrucharbeiten und vorbereitende Baustellenarbeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="43.11" label="Abbrucharbeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.12" label="Vorbereitende Baustellenarbeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.13" label="Test- und Suchbohrung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="43.2" label="Bauinstallation" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="43.21" label="Elektroinstallation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.22" label="Gas-, Wasser-, Heizungs- sowie Lüftungs- und Klimainstallation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.29" label="Sonstige Bauinstallation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="43.3" label="Sonstiger Ausbau" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="43.31" label="Anbringen von Stuckaturen, Gipserei und Verputzerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.32" label="Bautischlerei und -schlosserei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.33" label="Fußboden-, Fliesen- und Plattenlegerei, Tapeziererei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.34" label="Malerei und Glaserei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.39" label="Sonstiger Ausbau a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="43.9" label="Sonstige spezialisierte Bautätigkeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="43.91" label="Dachdeckerei und Zimmerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="43.99" label="Sonstige spezialisierte Bautätigkeiten a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="G" label="HANDEL; INSTANDHALTUNG UND REPARATUR VON KRAFTFAHRZEUGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="45" label="Handel mit Kraftfahrzeugen; Instandhaltung und Reparatur von Kraftfahrzeugen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="45.1" label="Handel mit Kraftwagen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="45.11" label="Handel mit Kraftwagen mit einem Gesamtgewicht von 3,5 t oder weniger" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="45.19" label="Handel mit Kraftwagen mit einem Gesamtgewicht von mehr als 3,5 t" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="45.2" label="Instandhaltung und Reparatur von Kraftwagen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="45.20" label="Instandhaltung und Reparatur von Kraftwagen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="45.3" label="Handel mit Kraftwagenteilen und -zubehör" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="45.31" label="Großhandel mit Kraftwagenteilen und -zubehör" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="45.32" label="Einzelhandel mit Kraftwagenteilen und -zubehör" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="45.4" label="Handel mit Krafträdern, Kraftradteilen und -zubehör; Instandhaltung und Reparatur von Krafträdern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="45.40" label="Handel mit Krafträdern, Kraftradteilen und -zubehör; Instandhaltung und Reparatur von Krafträdern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="46" label="Großhandel (ohne Handel mit Kraftfahrzeugen und Krafträdern)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="46.1" label="Handelsvermittlung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.11" label="Handelsvermittlung von landwirtschaftlichen Grundstoffen, lebenden Tieren, textilen Rohstoffen und Halbwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.12" label="Handelsvermittlung von Brennstoffen, Erzen, Metallen und technischen Chemikalien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.13" label="Handelsvermittlung von Holz, Baustoffen und Anstrichmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.14" label="Handelsvermittlung von Maschinen, technischem Bedarf, Wasser- und Luftfahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.15" label="Handelsvermittlung von Möbeln, Einrichtungs- und Haushaltsgegenständen, Eisen- und Metallwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.16" label="Handelsvermittlung von Textilien, Bekleidung, Schuhen und Lederwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.17" label="Handelsvermittlung von Nahrungsmitteln, Getränken und Tabakwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.18" label="Handelsvermittlung von sonstigen Waren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.19" label="Handelsvermittlung von Waren ohne ausgeprägten Schwerpunkt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.2" label="Großhandel mit landwirtschaftlichen Grundstoffen und lebenden Tieren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.21" label="Großhandel mit Getreide, Rohtabak, Saatgut und Futtermitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.22" label="Großhandel mit Blumen und Pflanzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.23" label="Großhandel mit lebenden Tieren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.24" label="Großhandel mit Häuten, Fellen und Leder" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.3" label="Großhandel mit Nahrungs- und Genussmitteln, Getränken und Tabakwaren" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.31" label="Großhandel mit Obst, Gemüse und Kartoffeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.32" label="Großhandel mit Fleisch und Fleischwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.33" label="Großhandel mit Milch, Milcherzeugnissen, Eiern, Speiseölen und Nahrungsfetten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.34" label="Großhandel mit Getränken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.35" label="Großhandel mit Tabakwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.36" label="Großhandel mit Zucker, Süßwaren und Backwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.37" label="Großhandel mit Kaffee, Tee, Kakao und Gewürzen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.38" label="Großhandel mit sonstigen Nahrungs- und Genussmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.39" label="Großhandel mit Nahrungs- und Genussmitteln, Getränken und Tabakwaren, ohne ausgeprägten Schwerpunkt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.4" label="Großhandel mit Gebrauchs- und Verbrauchsgütern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.41" label="Großhandel mit Textilien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.42" label="Großhandel mit Bekleidung und Schuhen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.43" label="Großhandel mit Foto- und optischen Erzeugnissen, elektrischen Haushaltsgeräten und Geräten der Unterhaltungselektronik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.44" label="Großhandel mit keramischen Erzeugnissen, Glaswaren und Reinigungsmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.45" label="Großhandel mit kosmetischen Erzeugnissen und Körperpflegemitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.46" label="Großhandel mit pharmazeutischen, medizinischen und orthopädischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.47" label="Großhandel mit Möbeln, Teppichen, Lampen und Leuchten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.48" label="Großhandel mit Uhren und Schmuck" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.49" label="Großhandel mit sonstigen Gebrauchs- und Verbrauchsgütern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.5" label="Großhandel mit Geräten der Informations- und Kommunikationstechnik" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.51" label="Großhandel mit Datenverarbeitungsgeräten, peripheren Geräten und Software" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.52" label="Großhandel mit elektronischen Bauteilen und Telekommunikationsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.6" label="Großhandel mit sonstigen Maschinen, Ausrüstungen und Zubehör" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.61" label="Großhandel mit landwirtschaftlichen Maschinen, und Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.62" label="Großhandel mit Werkzeugmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.63" label="Großhandel mit Bergwerks-, Bau- und Baustoffmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.64" label="Großhandel mit Textil-, Näh- und Strickmaschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.65" label="Großhandel mit Büromöbeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.66" label="Großhandel mit sonstigen Büromaschinen und –einrichtungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.69" label="Großhandel mit sonstigen Maschinen und Ausrüstungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.7" label="Sonstiger Großhandel" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.71" label="Großhandel mit festen Brennstoffen und Mineralölerzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.72" label="Großhandel mit Erzen, Metallen und Metallhalbzeug" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.73" label="Großhandel mit Holz, Baustoffen, Anstrichmitteln und Sanitärkeramik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.74" label="Großhandel mit Metall- und Kunststoffwaren für Bauzwecke sowie Installationsbedarf für Gas, Wasser und Heizung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.75" label="Großhandel mit chemischen Erzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.76" label="Großhandel mit sonstigen Halbwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="46.77" label="Großhandel mit Altmaterialien und Reststoffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="46.9" label="Großhandel ohne ausgeprägten Schwerpunkt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="46.90" label="Großhandel ohne ausgeprägten Schwerpunkt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="47" label="Einzelhandel (ohne Handel mit Kraftfahrzeugen)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="47.1" label="Einzelhandel mit Waren verschiedener Art (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.11" label="Einzelhandel mit Waren verschiedener Art, Hauptrichtung Nahrungs- und Genussmittel, Getränke und Tabakwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.19" label="Sonstiger Einzelhandel mit Waren verschiedener Art" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.2" label="Einzelhandel mit Nahrungs- und Genussmitteln, Getränken und Tabakwaren (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.21" label="Einzelhandel mit Obst, Gemüse und Kartoffeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.22" label="Einzelhandel mit Fleisch und Fleischwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.23" label="Einzelhandel mit Fisch, Meeresfrüchten und Fischerzeugnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.24" label="Einzelhandel mit Back- und Süßwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.25" label="Einzelhandel mit Getränken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.26" label="Einzelhandel mit Tabakwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.29" label="Sonstiger Einzelhandel mit Nahrungs- und Genussmitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.3" label="Einzelhandel mit Motorenkraftstoffen (Tankstellen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.30" label="Einzelhandel mit Motorenkraftstoffen (Tankstellen)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.4" label="Einzelhandel mit Geräten der Informations- und Kommunikationstechnik (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.41" label="Einzelhandel mit Datenverarbeitungsgeräten, peripheren Geräten und Software" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.42" label="Einzelhandel mit Telekommunikationsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.43" label="Einzelhandel mit Geräten der Unterhaltungselektronik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.5" label="Einzelhandel mit sonstigen Haushaltsgeräten, Textilien, Heimwerker- und Einrichtungsbedarf (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.51" label="Einzelhandel mit Textilien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.52" label="Einzelhandel mit Metallwaren, Anstrichmitteln, Bau- und Heimwerkerbedarf" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.53" label="Einzelhandel mit Vorhängen, Teppichen, Fußbodenbelägen und Tapeten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.54" label="Einzelhandel mit elektrischen Haushaltsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.59" label="Einzelhandel mit Möbeln, Einrichtungsgegenständen und sonstigem Hausrat" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.6" label="Einzelhandel mit Verlagsprodukten, Sportausrüstungen und Spielwaren (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.61" label="Einzelhandel mit Büchern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.62" label="Einzelhandel mit Zeitschriften, Zeitungen, Schreibwaren und Bürobedarf" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.63" label="Einzelhandel mit bespielten Ton- und Bildträgern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.64" label="Einzelhandel mit Fahrrädern, Sport- und Campingartikeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.65" label="Einzelhandel mit Spielwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.7" label="Einzelhandel mit sonstigen Gütern (in Verkaufsräumen)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.71" label="Einzelhandel mit Bekleidung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.72" label="Einzelhandel mit Schuhen und Lederwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.73" label="Apotheken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.74" label="Einzelhandel mit medizinischen und orthopädischen Artikeln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.75" label="Einzelhandel mit kosmetischen Erzeugnissen und Körperpflegemitteln" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.76" label="Einzelhandel mit Blumen, Pflanzen, Sämereien, Düngemitteln, zoologischem Bedarf und lebenden Tieren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.77" label="Einzelhandel mit Uhren und Schmuck" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.78" label="Sonstiger Einzelhandel in Verkaufsräumen (ohne Antiquitäten und Gebrauchtwaren)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.79" label="Einzelhandel mit Antiquitäten und Gebrauchtwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.8" label="Einzelhandel an Verkaufsständen und auf Märkten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.81" label="Einzelhandel mit Nahrungs- und Genussmitteln, Getränken und Tabakwaren an Verkaufsständen und auf Märkten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.82" label="Einzelhandel mit Textilien, Bekleidung und Schuhen an Verkaufsständen und auf Märkten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.89" label="Einzelhandel mit sonstigen Gütern an Verkaufsständen und auf Märkten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="47.9" label="Einzelhandel, nicht in Verkaufsräumen, an Verkaufsständen oder auf Märkten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="47.91" label="Versand- und Internet-Einzelhandel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="47.99" label="Sonstiger Einzelhandel, nicht in Verkaufsräumen, an Verkaufsständen oder auf Märkten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="H" label="VERKEHR UND LAGEREI" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="49" label="Landverkehr und Transport in Rohrfernleitungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="49.1" label="Personenbeförderung im Eisenbahnfernverkehr" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="49.10" label="Personenbeförderung im Eisenbahnfernverkehr" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="49.2" label="Güterbeförderung im Eisenbahnverkehr" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="49.20" label="Güterbeförderung im Eisenbahnverkehr" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="49.3" label="Sonstige Personenbeförderung im Landverkehr" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="49.31" label="Personenbeförderung im Nahverkehr zu Lande (ohne Taxis)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="49.32" label="Betrieb von Taxis" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="49.39" label="Sonstige Personenbeförderung im Landverkehr a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="49.4" label="Güterbeförderung im Straßenverkehr, Umzugstransporte" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="49.41" label="Güterbeförderung im Straßenverkehr" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="49.42" label="Umzugstransporte" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="49.5" label="Transport in Rohrfernleitungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="49.50" label="Transport in Rohrfernleitungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="50" label="Schifffahrt" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="50.1" label="Personenbeförderung in der See- und Küstenschifffahrt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="50.10" label="Personenbeförderung in der See- und Küstenschifffahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="50.2" label="Güterbeförderung in der See- und Küstenschifffahrt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="50.20" label="Güterbeförderung in der See- und Küstenschifffahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="50.3" label="Personenbeförderung in der Binnenschifffahrt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="50.30" label="Personenbeförderung in der Binnenschifffahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="50.4" label="Güterbeförderung in der Binnenschifffahrt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="50.40" label="Güterbeförderung in der Binnenschifffahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="51" label="Luftfahrt" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="51.1" label="Personenbeförderung in der Luftfahrt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="51.10" label="Personenbeförderung in der Luftfahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="51.2" label="Güterbeförderung in der Luftfahrt und Raumtransport" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="51.21" label="Güterbeförderung in der Luftfahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="51.22" label="Raumtransport" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="52" label="Lagerei sowie Erbringung von sonstigen Dienstleistungen für den Verkehr" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="52.1" label="Lagerei" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="52.10" label="Lagerei" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="52.2" label="Erbringung von sonstigen Dienstleistungen für den Verkehr" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="52.21" label="Erbringung von sonstigen Dienstleistungen für den Landverkehr" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="52.22" label="Erbringung von sonstigen Dienstleistungen für die Schifffahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="52.23" label="Erbringung von sonstigen Dienstleistungen für die Luftfahrt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="52.24" label="Frachtumschlag" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="52.29" label="Erbringung von sonstigen Dienstleistungen für den Verkehr a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="53" label="Post-, Kurier- und Expressdienste" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="53.1" label="Postdienste von Universaldienstleistungsanbietern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="53.10" label="Postdienste von Universaldienstleistungsanbietern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="53.2" label="Sonstige Post-, Kurier- und Expressdienste" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="53.20" label="Sonstige Post-, Kurier- und Expressdienste" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="I" label="GASTGEWERBE/BEHERBERGUNG UND GASTRONOMIE" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="55" label="Beherbergung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="55.1" label="Hotels, Gasthöfe und Pensionen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="55.10" label="Hotels, Gasthöfe und Pensionen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="55.2" label="Ferienunterkünfte und ähnliche Beherbergungsstätten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="55.20" label="Ferienunterkünfte und ähnliche Beherbergungsstätten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="55.3" label="Campingplätze" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="55.30" label="Campingplätze" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="55.9" label="Sonstige Beherbergungsstätten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="55.90" label="Sonstige Beherbergungsstätten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="56" label="Gastronomie" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="56.1" label="Restaurants, Gaststätten, Imbissstuben, Cafés, Eissalons u. Ä." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="56.10" label="Restaurants, Gaststätten, Imbissstuben, Cafés, Eissalons u. Ä." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="56.2" label="Caterer und Erbringung sonstiger Verpflegungsdienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="56.21" label="Event-Caterer" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="56.29" label="Erbringung sonstiger Verpflegungsdienstleistungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="56.3" label="Ausschank von Getränken" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="56.30" label="Ausschank von Getränken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="J" label="INFORMATION UND KOMMUNIKATION" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="58" label="Verlagswesen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="58.1" label="Verlegen von Büchern und Zeitschriften; sonstiges Verlagswesen (ohne Software)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="58.11" label="Verlegen von Büchern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="58.12" label="Verlegen von Adressbüchern und Verzeichnissen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="58.13" label="Verlegen von Zeitungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="58.14" label="Verlegen von Zeitschriften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="58.19" label="Sonstiges Verlagswesen (ohne Software)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="58.2" label="Verlegen von Software" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="58.21" label="Verlegen von Computerspielen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="58.29" label="Verlegen von sonstiger Software" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="59" label="Herstellung, Verleih und Vertrieb von Filmen und Fernsehprogrammen; Kinos; Tonstudios und Verlegen von Musik" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="59.1" label="Herstellung von Filmen und Fernsehprogrammen, deren Verleih und Vertrieb; Kinos" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="59.11" label="Herstellung von Filmen, Videofilmen und Fernsehprogrammen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="59.12" label="Nachbearbeitung und sonstige Filmtechnik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="59.13" label="Filmverleih und -vertrieb (ohne Videotheken)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="59.14" label="Kinos" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="59.2" label="Tonstudios; Herstellung von Hörfunkbeiträgen; Verlegen von bespielten Tonträgern und Musikalien" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="59.20" label="Tonstudios; Herstellung von Hörfunkbeiträgen; Verlegen von bespielten Tonträgern und Musikalien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="60" label="Rundfunkveranstalter" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="60.1" label="Hörfunkveranstalter" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="60.10" label="Hörfunkveranstalter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="60.2" label="Fernsehveranstalter" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="60.20" label="Fernsehveranstalter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="61" label="Telekommunikation" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="61.1" label="Leitungsgebundene Telekommunikation" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="61.10" label="Leitungsgebundene Telekommunikation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="61.2" label="Drahtlose Telekommunikation" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="61.20" label="Drahtlose Telekommunikation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="61.3" label="Satellitentelekommunikation" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="61.30" label="Satellitentelekommunikation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="61.9" label="Sonstige Telekommunikation" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="61.90" label="Sonstige Telekommunikation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="62" label="Erbringung von Dienstleistungen der Informationstechnologie" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="62.0" label="Erbringung von Dienstleistungen der Informationstechnologie" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="62.01" label="Programmierungstätigkeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="62.02" label="Erbringung von Beratungsleistungen auf dem Gebiet der Informationstechnologie" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="62.03" label="Betrieb von Datenverarbeitungseinrichtungen für Dritte" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="62.09" label="Erbringung von sonstigen Dienstleistungen der Informationstechnologie" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="63" label="Informationsdienstleistungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="63.1" label="Datenverarbeitung, Hosting und damit verbundene Tätigkeiten; Webportale" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="63.11" label="Datenverarbeitung, Hosting und damit verbundene Tätigkeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="63.12" label="Webportale" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="63.9" label="Erbringung von sonstigen Informationsdienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="63.91" label="Korrespondenz- und Nachrichtenbüros" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="63.99" label="Erbringung von sonstigen Informationsdienstleistungen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="K" label="ERBRINGUNG VON FINANZ- UND VERSICHERUNGSDIENSTLEISTUNGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="64" label="Erbringung von Finanzdienstleistungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="64.1" label="Zentralbanken und Kreditinstitute" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="64.11" label="Zentralbanken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="64.19" label="Kreditinstitute (ohne Spezialkreditinstitute)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="64.2" label="Beteiligungsgesellschaften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="64.20" label="Beteiligungsgesellschaften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="64.3" label="Treuhand- und sonstige Fonds und ähnliche Finanzinstitutionen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="64.30" label="Treuhand- und sonstige Fonds und ähnliche Finanzinstitutionen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="64.9" label="Sonstige Finanzierungsinstitutionen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="64.91" label="Institutionen für Finanzierungsleasing" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="64.92" label="Spezialkreditinstitute" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="64.99" label="Sonstige Finanzdienstleistungen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="65" label="Versicherungen, Rückversicherungen und Pensionskassen (ohne Sozialversicherung)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="65.1" label="Versicherungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="65.11" label="Lebensversicherung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="65.12" label="Nichtlebensversicherungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="65.2" label="Rückversicherungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="65.20" label="Rückversicherungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="65.3" label="Pensionskassen und Pensionsfonds" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="65.30" label="Pensionskassen und Pensionsfonds" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="66" label="Mit Finanz- und Versicherungsdienstleistungen verbundene Tätigkeiten" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="66.1" label="Mit Finanzdienstleistungen verbundene Tätigkeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="66.11" label="Effekten- und Warenbörsen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="66.12" label="Effekten- und Warenhandel" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="66.19" label="Sonstige mit Finanzdienstleistungen verbundene Tätigkeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="66.2" label="Mit Versicherungsdienstleistungen und Pensionskassen verbundene Tätigkeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="66.21" label="Risiko- und Schadensbewertung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="66.22" label="Tätigkeit von Versicherungsmaklerinnen und -maklern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="66.29" label="Sonstige mit Versicherungsdienstleistungen und Pensionskassen verbundene Tätigkeiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="66.3" label="Fondsmanagement" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="66.30" label="Fondsmanagement" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="L" label="GRUNDSTÜCKS- UND WOHNUNGSWESEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="68" label="Grundstücks- und Wohnungswesen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="68.1" label="Kauf und Verkauf von eigenen Grundstücken, Gebäuden und Wohnungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="68.10" label="Kauf und Verkauf von eigenen Grundstücken, Gebäuden und Wohnungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="68.2" label="Vermietung, Verpachtung von eigenen oder geleasten Grundstücken, Gebäuden und Wohnungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="68.20" label="Vermietung, Verpachtung von eigenen oder geleasten Grundstücken, Gebäuden und Wohnungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="68.3" label="Vermittlung und Verwaltung von Grundstücken, Gebäuden und Wohnungen für Dritte" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="68.31" label="Vermittlung von Grundstücken, Gebäuden und Wohnungen für Dritte" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="68.32" label="Verwaltung von Grundstücken, Gebäuden und Wohnungen für Dritte" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="M" label="ERBRINGUNG VON FREIBERUFLICHEN, WISSENSCHAFTLICHEN UND TECHNISCHEN DIENSTLEISTUNGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="69" label="Rechts- und Steuerberatung, Wirtschaftsprüfung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="69.1" label="Rechtsberatung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="69.10" label="Rechtsberatung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="69.2" label="Wirtschaftsprüfung und Steuerberatung; Buchführung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="69.20" label="Wirtschaftsprüfung und Steuerberatung; Buchführung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="70" label="Verwaltung und Führung von Unternehmen und Betrieben; Unternehmensberatung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="70.1" label="Verwaltung und Führung von Unternehmen und Betrieben" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="70.10" label="Verwaltung und Führung von Unternehmen und Betrieben" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="70.2" label="Public-Relations- und Unternehmensberatung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="70.21" label="Public-Relations-Beratung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="70.22" label="Unternehmensberatung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="71" label="Architektur- und Ingenieurbüros; technische, physikalische und chemische Untersuchung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="71.1" label="Architektur- und Ingenieurbüros" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="71.11" label="Architekturbüros" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="71.12" label="Ingenieurbüros" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="71.2" label="Technische, physikalische und chemische Untersuchung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="71.20" label="Technische, physikalische und chemische Untersuchung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="72" label="Forschung und Entwicklung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="72.1" label="Forschung und Entwicklung im Bereich Natur-, Ingenieur-, Agrarwissenschaften und Medizin" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="72.11" label="Forschung und Entwicklung im Bereich Biotechnologie" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="72.19" label="Sonstige Forschung und Entwicklung im Bereich Natur-, Ingenieur-, Agrarwissenschaften und Medizin" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="72.2" label="Forschung und Entwicklung im Bereich Rechts-, Wirtschafts- und Sozialwissenschaften sowie im Bereich Sprach-, Kultur- und Kunstwissenschaften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="72.20" label="Forschung und Entwicklung im Bereich Rechts-, Wirtschafts- und Sozialwissenschaften sowie im Bereich Sprach-, Kultur- und Kunstwissenschaften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="73" label="Werbung und Marktforschung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="73.1" label="Werbung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="73.11" label="Werbeagenturen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="73.12" label="Vermarktung und Vermittlung von Werbezeiten und Werbeflächen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="73.2" label="Markt- und Meinungsforschung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="73.20" label="Markt- und Meinungsforschung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="74" label="Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="74.1" label="Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="74.10" label="Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="74.2" label="Fotografie und Fotolabors" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="74.20" label="Fotografie und Fotolabors" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="74.3" label="Übersetzen und Dolmetschen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="74.30" label="Übersetzen und Dolmetschen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="74.9" label="Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="74.90" label="Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="75" label="Veterinärwesen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="75.0" label="Veterinärwesen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="75.00" label="Veterinärwesen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="N" label="ERBRINGUNG VON SONSTIGEN WIRTSCHAFTLICHEN DIENSTLEISTUNGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="77" label="Vermietung von beweglichen Sachen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="77.1" label="Vermietung von Kraftwagen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="77.11" label="Vermietung von Kraftwagen mit einem Gesamtgewicht von 3,5 t oder weniger" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.12" label="Vermietung von Kraftwagen mit einem Gesamtgewicht von mehr als 3,5 t" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="77.2" label="Vermietung von Gebrauchsgütern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="77.21" label="Vermietung von Sport- und Freizeitgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.22" label="Videotheken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.29" label="Vermietung von sonstigen Gebrauchsgütern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="77.3" label="Vermietung von Maschinen, Geräten und sonstigen beweglichen Sachen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="77.31" label="Vermietung von landwirtschaftlichen Maschinen und Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.32" label="Vermietung von Baumaschinen und –geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.33" label="Vermietung von Büromaschinen, Datenverarbeitungsgeräten und -einrichtungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.34" label="Vermietung von Wasserfahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.35" label="Vermietung von Luftfahrzeugen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="77.39" label="Vermietung von sonstigen Maschinen, Geräten und beweglichen Sachen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="77.4" label="Leasing von nichtfinanziellen immateriellen Vermögensgegenständen (ohne Copyrights)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="77.40" label="Leasing von nichtfinanziellen immateriellen Vermögensgegenständen (ohne Copyrights)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="78" label="Vermittlung und Überlassung von Arbeitskräften" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="78.1" label="Vermittlung von Arbeitskräften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="78.10" label="Vermittlung von Arbeitskräften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="78.2" label="Befristete Überlassung von Arbeitskräften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="78.20" label="Befristete Überlassung von Arbeitskräften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="78.3" label="Sonstige Überlassung von Arbeitskräften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="78.30" label="Sonstige Überlassung von Arbeitskräften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="79" label="Reisebüros, Reiseveranstalter und Erbringung sonstiger Reservierungsdienstleistungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="79.1" label="Reisebüros und Reiseveranstalter" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="79.11" label="Reisebüros" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="79.12" label="Reiseveranstalter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="79.9" label="Erbringung sonstiger Reservierungsdienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="79.90" label="Erbringung sonstiger Reservierungsdienstleistungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="80" label="Wach- und Sicherheitsdienste sowie Detekteien" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="80.1" label="Private Wach- und Sicherheitsdienste" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="80.10" label="Private Wach- und Sicherheitsdienste" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="80.2" label="Sicherheitsdienste mithilfe von Überwachungs- und Alarmsystemen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="80.20" label="Sicherheitsdienste mithilfe von Überwachungs- und Alarmsystemen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="80.3" label="Detekteien" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="80.30" label="Detekteien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="81" label="Gebäudebetreuung; Garten- und Landschaftsbau" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="81.1" label="Hausmeisterdienste" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="81.10" label="Hausmeisterdienste" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="81.2" label="Reinigung von Gebäuden, Straßen und Verkehrsmitteln" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="81.21" label="Allgemeine Gebäudereinigung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="81.22" label="Spezielle Reinigung von Gebäuden und Reinigung von Maschinen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="81.29" label="Reinigung a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="81.3" label="Garten- und Landschaftsbau sowie Erbringung von sonstigen gärtnerischen Dienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="81.30" label="Garten- und Landschaftsbau sowie Erbringung von sonstigen gärtnerischen Dienstleistungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="82" label="Erbringung von wirtschaftlichen Dienstleistungen für Unternehmen und Privatpersonen a. n. g." selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="82.1" label="Sekretariats- und Schreibdienste, Copy-Shops" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="82.11" label="Allgemeine Sekretariats- und Schreibdienste" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="82.19" label="Copy-Shops; Dokumentenvorbereitung und Erbringung sonstiger spezieller Sekretariatsdienste" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="82.2" label="Call Centers" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="82.20" label="Call Centers" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="82.3" label="Messe-, Ausstellungs- und Kongressveranstalter" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="82.30" label="Messe-, Ausstellungs- und Kongressveranstalter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="82.9" label="Erbringung sonstiger wirtschaftlicher Dienstleistungen für Unternehmen und Privatpersonen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="82.91" label="Inkassobüros und Auskunfteien" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="82.92" label="Abfüllen und Verpacken" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="82.99" label="Erbringung sonstiger wirtschaftlicher Dienstleistungen für Unternehmen und Privatpersonen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="O" label="ÖFFENTLICHE VERWALTUNG, VERTEIDIGUNG; SOZIALVERSICHERUNG" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="84" label="Öffentliche Verwaltung, Verteidigung; Sozialversicherung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="84.1" label="Öffentliche Verwaltung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="84.11" label="Allgemeine öffentliche Verwaltung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.12" label="Öffentliche Verwaltung auf den Gebieten Gesundheitswesen, Bildung, Kultur und Sozialwesen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.13" label="Wirtschaftsförderung, -ordnung und –aufsicht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="84.2" label="Auswärtige Angelegenheiten, Verteidigung, Rechtspflege/Justiz, öffentliche Sicherheit und Ordnung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="84.21" label="Auswärtige Angelegenheiten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.22" label="Verteidigung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.23" label="Rechtspflege/Justiz" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.24" label="Öffentliche Sicherheit und Ordnung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="84.25" label="Feuerwehren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="84.3" label="Sozialversicherung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="84.30" label="Sozialversicherung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="P" label="ERZIEHUNG UND UNTERRICHT" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="85" label="Erziehung und Unterricht" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="85.1" label="Kindergärten und Vorschulen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.10" label="Kindergärten und Vorschulen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="85.2" label="Grundschulen/Volksschulen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.20" label="Grundschulen/Volksschulen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="85.3" label="Weiterführende Schulen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.31" label="Allgemein bildende weiterführende Schulen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="85.32" label="Berufsbildende weiterführende Schulen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="85.4" label="Tertiärer und post-sekundärer, nicht tertiärer Unterricht" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.41" label="Post-sekundärer, nicht tertiärer Unterricht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="85.42" label="Tertiärer Unterricht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="85.5" label="Sonstiger Unterricht" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.51" label="Sport- und Freizeitunterricht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="85.52" label="Kulturunterricht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="85.53" label="Fahr- und Flugschulen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="85.59" label="Sonstiger Unterricht a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="85.6" label="Erbringung von Dienstleistungen für den Unterricht" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="85.60" label="Erbringung von Dienstleistungen für den Unterricht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="Q" label="GESUNDHEITS- UND SOZIALWESEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="86" label="Gesundheitswesen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="86.1" label="Krankenhäuser" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="86.10" label="Krankenhäuser" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="86.2" label="Arzt- und Zahnarztpraxen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="86.21" label="Arztpraxen für Allgemeinmedizin" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="86.22" label="Facharztpraxen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="86.23" label="Zahnarztpraxen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="86.9" label="Gesundheitswesen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="86.90" label="Gesundheitswesen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="87" label="Heime (ohne Erholungs- und Ferienheime)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="87.1" label="Pflegeheime" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="87.10" label="Pflegeheime" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="87.2" label="Stationäre Einrichtungen zur psychosozialen Betreuung, Suchtbekämpfung u. Ä." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="87.20" label="Stationäre Einrichtungen zur psychosozialen Betreuung, Suchtbekämpfung u. Ä." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="87.3" label="Altenheime; Alten- und Behindertenwohnheime" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="87.30" label="Altenheime; Alten- und Behindertenwohnheime" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="87.9" label="Sonstige Heime (ohne Erholungs- und Ferienheime)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="87.90" label="Sonstige Heime (ohne Erholungs- und Ferienheime)" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="88" label="Sozialwesen (ohne Heime)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="88.1" label="Soziale Betreuung älterer Menschen und Behinderter" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="88.10" label="Soziale Betreuung älterer Menschen und Behinderter" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="88.9" label="Sonstiges Sozialwesen (ohne Heime)" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="88.91" label="Tagesbetreuung von Kindern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="88.99" label="Sonstiges Sozialwesen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="R" label="KUNST, UNTERHALTUNG UND ERHOLUNG" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="90" label="Kreative, künstlerische und unterhaltende Tätigkeiten" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="90.0" label="Kreative, künstlerische und unterhaltende Tätigkeiten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="90.01" label="Darstellende Kunst" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="90.02" label="Erbringung von Dienstleistungen für die darstellende Kunst" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="90.03" label="Künstlerisches und schriftstellerisches Schaffen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="90.04" label="Betrieb von Kultur- und Unterhaltungseinrichtungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="91" label="Bibliotheken, Archive, Museen, botanische und zoologische Gärten" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="91.0" label="Bibliotheken, Archive, Museen, botanische und zoologische Gärten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="91.01" label="Bibliotheken und Archive" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="91.02" label="Museen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="91.03" label="Betrieb von historischen Stätten und Gebäuden und ähnlichen Attraktionen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="91.04" label="Botanische und zoologische Gärten sowie Naturparks" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="92" label="Spiel-, Wett- und Lotteriewesen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="92.0" label="Spiel-, Wett- und Lotteriewesen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="92.00" label="Spiel-, Wett- und Lotteriewesen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="93" label="Erbringung von Dienstleistungen des Sports, der Unterhaltung und der Erholung" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="93.1" label="Erbringung von Dienstleistungen des Sports" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="93.11" label="Betrieb von Sportanlagen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="93.12" label="Sportvereine" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="93.13" label="Fitnesszentren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="93.19" label="Erbringung von sonstigen Dienstleistungen des Sports" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="93.2" label="Erbringung von sonstigen Dienstleistungen der Unterhaltung und der Erholung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="93.21" label="Vergnügungs- und Themenparks" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="93.29" label="Erbringung von Dienstleistungen der Unterhaltung und der Erholung a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="S" label="ERBRINGUNG VON SONSTIGEN DIENSTLEISTUNGEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="94" label="Interessenvertretungen sowie kirchliche und sonstige religiöse Vereinigungen (ohne Sozialwesen und Sport)" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="94.1" label="Wirtschafts- und Arbeitgeberverbände, Berufsorganisationen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="94.11" label="Wirtschafts- und Arbeitgeberverbände" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="94.12" label="Berufsorganisationen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="94.2" label="Arbeitnehmervereinigungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="94.20" label="Arbeitnehmervereinigungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="94.9" label="Kirchliche Vereinigungen; politische Parteien sowie sonstige Interessenvertretungen und Vereinigungen a. n. g." selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="94.91" label="Kirchliche und sonstige religiöse Vereinigungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="94.92" label="Politische Parteien und Vereinigungen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="94.99" label="Sonstige Interessenvertretungen und Vereinigungen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="95" label="Reparatur von Datenverarbeitungsgeräten und Gebrauchsgütern" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="95.1" label="Reparatur von Datenverarbeitungs- und Telekommunikationsgeräten" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="95.11" label="Reparatur von Datenverarbeitungsgeräten und peripheren Geräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.12" label="Reparatur von Telekommunikationsgeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="95.2" label="Reparatur von Gebrauchsgütern" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="95.21" label="Reparatur von Geräten der Unterhaltungselektronik" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.22" label="Reparatur von elektrischen Haushaltsgeräten und Gartengeräten" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.23" label="Reparatur von Schuhen und Lederwaren" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.24" label="Reparatur von Möbeln und Einrichtungsgegenständen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.25" label="Reparatur von Uhren und Schmuck" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="95.29" label="Reparatur von sonstigen Gebrauchsgütern" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="96" label="Erbringung von sonstigen überwiegend persönlichen Dienstleistungen" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="96.0" label="Erbringung von sonstigen überwiegend persönlichen Dienstleistungen" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="96.01" label="Wäscherei und chemische Reinigung" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="96.02" label="Frisör- und Kosmetiksalons" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="96.03" label="Bestattungswesen" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="96.04" label="Saunas, Solarien, Bäder u. Ä." selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="96.09" label="Erbringung von sonstigen Dienstleistungen a. n. g." selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="T" label="PRIVATE HAUSHALTE MIT HAUSPERSONAL; HERSTELLUNG VON WAREN UND ERBRINGUNG VON DIENSTLEISTUNGEN DURCH PRIVATE HAUSHALTE FÜR DEN EIGENBEDARF OHNE AUSGEPRÄGTEN SCHWERPUNKT" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="97" label="Private Haushalte mit Hauspersonal" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="97.0" label="Private Haushalte mit Hauspersonal" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="97.00" label="Private Haushalte mit Hauspersonal" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+            </node>
+        <node id="98" label="Herstellung von Waren und Erbringung von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="98.1" label="Herstellung von Waren durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="98.10" label="Herstellung von Waren durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="98.2" label="Erbringungen von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="98.20" label="Erbringungen von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+            </node>
+    <node id="U" label="EXTERRITORIALE ORGANISATIONEN UND KÖRPERSCHAFTEN" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="99" label="Exterritoriale Organisationen und Körperschaften" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="99.0" label="Exterritoriale Organisationen und Körperschaften" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="99.00" label="Exterritoriale Organisationen und Körperschaften" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

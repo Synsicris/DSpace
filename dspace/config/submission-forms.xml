@@ -608,17 +608,40 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partofjournal</dc-qualifier>
-          <label>Journal</label>
+          <label>Journaltitle</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
           <hint>Enter the title of the journal</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>volume</dc-qualifier>
+          <label>Volume</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>issue</dc-qualifier>
+          <label>Issue</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>issn-partofjournal</dc-qualifier>
+          <dc-qualifier>issn</dc-qualifier>
           <label>ISSN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -638,7 +661,6 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
           <hint>Enter the title of the newspaper</hint>
         </field>
       </row>
@@ -653,19 +675,31 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
           <hint>Enter the tilte of the book / monograph</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>seriesno</dc-qualifier>
+          <label>Series No.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn-partofbook</dc-qualifier>
+          <dc-qualifier>isbn</dc-qualifier>
           <label>ISBN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint>Enter the ISBN</hint>
+          <style>col-md-6</style>
+          <hint />
         </field>
       </row>
     </form>
@@ -679,30 +713,31 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
           <hint>Enter the title of conference proceeding</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>Series No.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>issn-partofconferenceproceeding</dc-qualifier>
-          <label>ISSN</label>
+          <dc-qualifier>isbn</dc-qualifier>
+          <label>ISBN</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint>Enter the ISSN</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>conference</dc-qualifier>
-          <label>Conference</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
-          <hint>Enter the conference information assigned to this item in the form Name, Start, End, Place, Country [i.e. EuroCRIS Membership Meeting, 18-20 November 2020, Münster, Germany]</hint>
+          <style>col-md-6</style>
+          <hint>Enter the ISBN</hint>
         </field>
       </row>
     </form>
@@ -712,49 +747,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>supervisor</dc-qualifier>
-          <label>Supervisor(s)</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>relatedorgunit</dc-qualifier>
-          <label>Organisation</label>
+          <label>Supervisors</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Choose the related organisation.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-contributor-communication">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>communication</dc-qualifier>
-          <label>Contributor(s) from the project</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>relatedorgunit</dc-qualifier>
-          <label>Organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Choose the related organisation.</hint>
         </field>
       </row>
     </form>
@@ -765,22 +762,22 @@
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Author(s)</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>relatedorgunit</dc-qualifier>
-          <label>Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Choose the related organisation.</hint>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>author</dc-element>
+          <dc-qualifier>affiliation</dc-qualifier>
+          <label>Affiliation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Enter the affiliation of the author as stated on the publication.</hint>
         </field>
       </row>
     </form>
@@ -836,8 +833,34 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>test2</dc-qualifier>
+          <label>Type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Select the type.</hint>
+          <vocabulary closed="true">coar2</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>test3</dc-qualifier>
+          <label>Type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Select the type.</hint>
+          <vocabulary closed="true">coar3</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title of the publication</label>
+          <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
@@ -850,7 +873,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Author(s)</label>
-          <input-type>inline-group</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -865,7 +888,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Please give the date of publication or public distribution.  You can leave out the day and/or month if they aren't applicable.</hint>
+          <hint>Enter at least the year of publication, month and day are optional.</hint>
         </field>
       </row>
       <row>
@@ -876,19 +899,71 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Enter the name of the publisher.</hint>
+          <hint>Optionally enter the publisher here.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>ispartofseries</dc-qualifier>
-          <label>Source (Series Name / Series Nr.)</label>
-          <input-type>series</input-type>
+          <dc-qualifier>partofjournal</dc-qualifier>
+          <label>InJournal</label>
+          <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Enter the series and number assigned.</hint>
+          <hint />
+          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partofnewspaper</dc-qualifier>
+          <label>InNewspaper</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <type-bind>newspaper article, Zeitungsartikel</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partofbook</dc-qualifier>
+          <label>InBook</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>InProceedings</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <type-bind>conference paper, Konferenzbeitrag</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Publisher link</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
@@ -907,39 +982,13 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>dnb</dc-qualifier>
-          <label>DDC Subject Category at DNB</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Assign the publication to a subject group.</hint>
-          <vocabulary closed="true">dnb</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
           <dc-qualifier>agrovoc</dc-qualifier>
-          <label>Keywords (Agrovoc)</label>
+          <label>Keywords</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Classify the contents of the publication by assigning keywords.</hint>
+          <hint>Enter appropriate subject keywords or phrases.</hint>
           <vocabulary closed="true">agrovoc</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>umthes</dc-qualifier>
-          <label>Keywords (UMTHES)</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Classify the contents of the publication by assigning keywords.</hint>
-          <vocabulary closed="true">umthes</vocabulary>
         </field>
       </row>
       <row>
@@ -957,6 +1006,21 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>supervisor</dc-qualifier>
+          <label>Supervisors</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
+        </field>
+      </row>
+    </form>
+    <form name="publications_result_more">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>audience</dc-element>
           <label>Target audience</label>
           <input-type value-pairs-name="target_audience">list</input-type>
@@ -968,91 +1032,25 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Web address</label>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>publications-result</dc-qualifier>
+          <label>Data set</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Enter the link, if available.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>supervisor</dc-qualifier>
-          <label>Supervisor(s)</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>communication</dc-qualifier>
-          <label>Contributor(s) from the project</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>interview, sound, moving image, Interview, Tondokument, Film / Video</type-bind>
+          <hint>Link to research data used in the project here, if you have published it.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partofjournal</dc-qualifier>
-          <label>Journal</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>events</dc-qualifier>
+          <label>Event</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>Newspaper</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>newspaper article, Zeitungsartikel</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofbook</dc-qualifier>
-          <label>Book / Monographic series</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Conference proceeding</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>conference paper, Konferenzbeitrag</type-bind>
         </field>
       </row>
     </form>
@@ -1190,9 +1188,8 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>creator</dc-element>
-          <dc-qualifier>inventors</dc-qualifier>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>rightsHolder</dc-element>
           <label>Inventor(s)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -1226,12 +1223,12 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
-          <label>Publisher</label>
+          <label>Issuer</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Escapent or Depatisnet (depending on source of automatic data collection)</hint>
+          <hint>The issuer of the patent: the patent office</hint>
         </field>
       </row>
       <row>
@@ -3476,7 +3473,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>baseline</dc-qualifier>
           <label>Baseline-value</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>repeatable</repeatable>
           <required />
           <style>col-md-2</style>
           <hint />
@@ -4102,7 +4099,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -4113,7 +4110,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -4123,7 +4120,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>relation</dc-element>
           <dc-qualifier>person</dc-qualifier>
           <label>Laureate</label>
-          <input-type>tag</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
@@ -4135,7 +4132,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>orgunit</dc-qualifier>
           <label>Award-winning institution</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>If the prize goes to an organisation, select the organisation.</hint>

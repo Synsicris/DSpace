@@ -152,6 +152,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="publications_result_more" mandatory="true">
+      <heading>submit.progressbar.describe.publications_result_more</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="awards" mandatory="true">
       <heading>submit.progressbar.describe.awards</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -485,11 +490,13 @@
     <submission-process name="publications">
       <step id="collection" />
       <step id="publications_result" />
+      <step id="publications_result_more" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications_result" />
+      <step id="publications_result_more" />
       <step id="upload" />
       <step id="license" />
     </submission-process>

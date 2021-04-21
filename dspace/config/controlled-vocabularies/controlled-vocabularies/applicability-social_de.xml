@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY-SOCIAL 2020-01-16">
+  <isComposedBy>
+    <node id="ID1" label="Voraussetzungen für eine Anwendung auf Ebene der beteiligten Akteure">
+    <hasNote>
+Welche Key-Stakeholder sollten unbedingt beteiligt sein? Welche elementaren Zielkonflikte zwischen Stakeholdern sind ggf. zu berücksichtigen? Welche spezifischen Fähigkeiten und Kenntnisse, sind bei den beteiligten Akteuren für die Anwendung der Lösung  erforderlich?  Setzt die Innovation auf ehrenamtliches Engagement oder den Einsatz von Personal?
+
+ </hasNote>
+    </node>
+    <node id="ID2" label="Anforderungen für die Anwendung in Bezug auf (Infra)strukturen und Ressourcen">
+    <hasNote>Welche Infrastrukturen, Ausstattungen, Materialien etc. sind für eine Umsetzung der Lösung erforderlich? Welcher Aufwand ist mit einer Umsetzung der Lösung verbunden? Welche institutionellen Anbindungen, Organisationsstrukturen und Vereinbarungen haben sich als hilfreich erwiesen? 
+
+</hasNote>
+    </node>
+    <node id="ID3" label="Aussichten für eine weitere Etablierung der sozialen Innovation (am Ort der Umsetzung)">
+    <hasNote>Ist die Einbindung der Key-Stakeholder gelungen? Konnte eine kontinuierliche Zusammenarbeit aufgebaut werden? Konnte ein Konsens zwischen Stakeholdern hergestellt werden? Sind genügend qualifizierte Akteure vorhanden (ehrenamtlich oder als Personal)? Wurde eine Vernetzung mit und Sichtbarkeit bei der Bevölkerung erreicht?  Bestehen Finanzierungsmöglichkeiten für einen Fortbestand? Wird die Innovation politisch unterstützt? Wurden tragfähige Strukturen geschaffen? (z.B. Organisationsstrukturen, institutionelle Anbindung, Vereinbarungen, Räumlichkeiten etc.) </hasNote>
+    </node>
+    <node id="ID4" label="Voraussetzungen für eine Übertragung  und Verbreitung">
+    <hasNote>Inwieweit ist eine Übertragbarkeit der Lösung gegeben (auf andere Branchen, Regionen, Nutzergruppen, etc.)? Ob und wie müssen Strukturen und Rahmenbedingungen verändert werden, damit sich die Lösung ausbreiten kann? Welche unterstützenden Strukturen und Rahmenbedingungen gibt es bereits, die eine Etablierung/ Übertragung / Ausbreitung der Lösung fördern? Bestehen Finanzierungsmöglichkeiten um eine breitere Etablierung zu unterstützen? Berührt die  Lösung konfliktäre Interessen, die einer Etablierung entgegenstehen?</hasNote>
+    </node>
+  </isComposedBy>
+</node>

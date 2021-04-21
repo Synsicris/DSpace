@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="ALL-INNOVATION 2021-02-02">
+  <isComposedBy>
+    <node id="BI01" label="Product innovation" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="BI02" label="Goods" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI04" label="Service" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI06" label="Combination of goods and service" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="BI08" label="Business process innovation" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="BI09" label="Production of goods or services" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI10" label="Distribution and logistics" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI11" label="Marketing and sales" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI12" label="Information and communication systems" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI13" label="Administration and management" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI14" label="Product and business process development" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="BI20" label="Social innovation / change processes" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="BI21" label="Capacity building and learning" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI22" label="Changed behaviour, practices" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI23" label="Networks" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI24" label="Changes in or of Organisations and Institutions" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI25" label="Changed conditions and structures" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI26" label="Development of standards, norms or  guidelines (not in legislation)" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI27" label="Development of laws or regulations" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI28" label="Other political processes" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="BI29" label="Others" selectable="false">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

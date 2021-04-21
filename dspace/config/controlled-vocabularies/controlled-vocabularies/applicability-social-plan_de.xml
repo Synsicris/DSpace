@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="APPLICABILITY-SOCIAL-PLAN 2020-01-16">
+  <isComposedBy>
+    <node id="ID1" label="Voraussetzungen für eine Anwendung auf Ebene der beteiligten Akteure">
+    <hasNote>
+Welche Key-Stakeholder sollten unbedingt beteiligt sein? Welche elementaren Zielkonflikte zwischen Stakeholdern sind ggf. zu berücksichtigen? Welche spezifischen Fähigkeiten und Kenntnisse, sind bei den beteiligten Akteuren für die Anwendung der Lösung  erforderlich?  Setzt die Innovation auf ehrenamtliches Engagement oder den Einsatz von Personal?
+
+ </hasNote>
+    </node>
+    <node id="ID2" label="Anforderungen für die Anwendung in Bezug auf (Infra)strukturen und Ressourcen">
+    <hasNote>Welche Infrastrukturen, Ausstattungen, Materialien etc. sind für eine Umsetzung der Lösung erforderlich? Welcher Aufwand ist mit einer Umsetzung der Lösung verbunden? Welche institutionellen Anbindungen, Organisationsstrukturen und Vereinbarungen haben sich als hilfreich erwiesen? 
+
+</hasNote>
+    </node>
+  </isComposedBy>
+</node>

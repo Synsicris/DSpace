@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="REGISTER-COURT 2019-11-04">
+  <isComposedBy>
+    <node id="ID001" label="Aachen - Aurich">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID002" label="Aachen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID003" label="Altenburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID004" label="Amberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID005" label="Apolda">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID006" label="Arnsberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID007" label="Arnstadt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID008" label="Arnstadt Zweigstelle Ilmenau">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID009" label="Aschaffenburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID010" label="Ausburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID011" label="Aurich">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID012" label="Bad Hersfeld - Bremen">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID013" label="Bad Hersfeld">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID014" label="Bad Homburg v.d.H.">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID015" label="Bad Kreuznach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID016" label="Bad Oeynhausen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID017" label="Bad Salzungen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID018" label="Bamberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID019" label="Bayreuth">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID020" label="Berlin (Charlottenburg)">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID021" label="Bielefeld">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID022" label="Bochum">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID023" label="Bonn">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID024" label="Braunschweig">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID025" label="Bremen">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID026" label="Chemnitz - Cottbus">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID027" label="Chemnitz">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID028" label="Coburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID029" label="Coesfeld">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID030" label="Cottbus">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID031" label="Darmstadt - Düsseldorf">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID032" label="Darmstadt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID033" label="Deggendorf">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID034" label="Dortmund">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID035" label="Dresden">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID036" label="Duisburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID037" label="Düren">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID038" label="Düsseldorf">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID039" label="Eisennach - Essen">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID040" label="Eisenach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID041" label="Erfurt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID042" label="Eschwege">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID043" label="Essen">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID044" label="Flensburg - Fürth">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID045" label="Flensburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID046" label="Frankfurt am Main">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID047" label="Frankfurt/Oder">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID048" label="Freiburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID049" label="Friedberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID050" label="Fritzlar">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID051" label="Fulda">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID052" label="Fürth">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID053" label="Gelsenkirchen - Gütersloh">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID054" label="Gelsenkirchen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID055" label="Gera">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID056" label="Gießen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID057" label="Gotha">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID058" label="Göttingen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID059" label="Greiz">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID060" label="Gütersloh">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID061" label="Hagen - Homburg">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID062" label="Hagen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID063" label="Hamburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID064" label="Hamm">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID065" label="Hanau">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID066" label="Hannover">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID067" label="Heiligenbad Heiligenstadt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID068" label="Hildburghausen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID069" label="Hildesheim">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID070" label="Hof">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID071" label="Homburg">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID072" label="Iserlohn">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID073" label="Jena">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID074" label="Kaiserslautern - Krefeld">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID075" label="Kaiserslautern">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID076" label="Kassel">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID077" label="Kempten (Allgäu)">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID078" label="Kiel">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID079" label="Kleve">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID080" label="Koblenz">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID081" label="Köln">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID082" label="Königstein">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID083" label="Korbach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID084" label="Krefeld">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID085" label="Landau - Lüneburg">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID086" label="Landau">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID087" label="Landshut">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID088" label="Langenfeld">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID089" label="Lebach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID090" label="Leipzig">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID091" label="Lemgo">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID092" label="Lübeck">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID093" label="Ludwigshafen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID094" label="Lüneburg">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID095" label="Mainz - Münster">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID096" label="Mainz">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID097" label="Mannheim">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID098" label="Marburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID099" label="Meiningen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID100" label="Memmingen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID101" label="Merzig">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID102" label="Mönchengladbach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID103" label="Montabaur">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID104" label="Mühlhausen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID105" label="München">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID106" label="Münster">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID107" label="Offenbach - Ottweiler">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID108" label="Offenbach">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID109" label="Oldenburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID110" label="Osnabrück">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID111" label="Ottweiler">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID112" label="Paderborn - Potsdam">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID113" label="Paderborn">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID114" label="Passau">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID115" label="Pinneberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID116" label="Pößneck">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID117" label="Pößneck Zweigstelle Lobenstein">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID118" label="Potsdam">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID119" label="Recklinghausen - Rudolstadt">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID120" label="Recklinghausen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID121" label="Regensburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID122" label="Rostock">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID123" label="Rudolstadt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID124" label="Rudolstadt Zweigstelle Saalfeld">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID125" label="Saarbrücken - Suhl">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID126" label="Saarbrücken">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID127" label="Saarlouis">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID128" label="Schweinfurth">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID129" label="Schwerin">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID130" label="Siegburg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID131" label="Siegen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID132" label="Sömmerda">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID133" label="Sondershausen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID134" label="Sonneberg">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID135" label="Stadthagen">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID136" label="Stadtroda">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID137" label="Steinfurt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID138" label="Stendal">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID139" label="St. Ingbert">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID140" label="Stralsund">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID141" label="Straubing">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID142" label="Stuttgart">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID143" label="St. Wendel">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID144" label="Suhl">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID145" label="Tostedt - Traunstein">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID146" label="Tostedt">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID147" label="Traunstein">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID148" label="Ulm">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID149" label="Völklingen">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID150" label="Walsrode - Würzburg">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID151" label="Walsrode">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID152" label="Weiden i.d. Opflz.">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID153" label="Weimar">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID154" label="Wetzlar">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID155" label="Wiesbaden">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID156" label="Wittlich">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID157" label="Wuppertal">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID158" label="Würzburg">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID159" label="Zweibrücken">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

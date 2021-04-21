@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="TARGETGROUP-TYPE 2020-02-14">
+  <isComposedBy>
+    <node id="TARGET010" label="Wissenschaft und Forschung">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET011" label="Forschende ">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET012" label="Forschungseinrichtungen">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET020" label="Wirtschaft">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET021" label="vorwiegend KMU">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET022" label="vorwiegend Großbetriebe/ Großunternehmen">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET030" label="Beratung (privatwirtschaftlich und öffentlich)">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET040" label="Bildung (privatwirtschaftlich und öffentlich)">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET050" label="Medien">
+    <hasNote></hasNote>
+    </node>
+    <node id="TARGET060" label="Politische und administrative Arena">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET061" label="politische Entscheidungsträger*innen und Träger">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET062" label="öffentliche Institutionen, Einrichtungen oder Behörden">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="TARGET070" label="Zivilgesellschaft">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="TARGET071" label="Privatpersonen (Konsument*innen, Bürger*innnen)">
+        <hasNote></hasNote>
+        </node>
+        <node id="TARGET072" label="Zivilgesellschaftliche Organisationen und Verbände">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

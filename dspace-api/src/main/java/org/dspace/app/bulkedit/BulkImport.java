@@ -45,7 +45,6 @@ import org.dspace.app.bulkimport.exception.BulkImportException;
 import org.dspace.app.bulkimport.model.EntityRow;
 import org.dspace.app.bulkimport.model.ImportAction;
 import org.dspace.app.bulkimport.model.MetadataGroup;
-import org.dspace.app.bulkimport.model.MetadataValueVO;
 import org.dspace.app.bulkimport.utils.WorkbookUtils;
 import org.dspace.app.util.DCInputsReader;
 import org.dspace.app.util.DCInputsReaderException;
@@ -66,6 +65,7 @@ import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.MetadataFieldService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;
 import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.eperson.EPerson;
@@ -184,11 +184,9 @@ public class BulkImport extends DSpaceRunnable<BulkImportScriptConfiguration<Bul
 
     @Override
     public void internalRun() throws Exception {
-        context = new Context();
-        context.setMode(Context.Mode.BATCH_EDIT);
+        context = new Context(Context.Mode.BATCH_EDIT);
         assignCurrentUserInContext();
-
-        //FIXME: see https://4science.atlassian.net/browse/CSTPER-236 for final solution
+        assignSpecialGroupsInContext();
 
         context.turnOffAuthorisationSystem();
 
@@ -927,6 +925,12 @@ public class BulkImport extends DSpaceRunnable<BulkImportScriptConfiguration<Bul
         if (uuid != null) {
             EPerson ePerson = EPersonServiceFactory.getInstance().getEPersonService().find(context, uuid);
             context.setCurrentUser(ePerson);
+        }
+    }
+
+    private void assignSpecialGroupsInContext() throws SQLException {
+        for (UUID uuid : handler.getSpecialGroups()) {
+            context.setSpecialGroup(uuid);
         }
     }
 

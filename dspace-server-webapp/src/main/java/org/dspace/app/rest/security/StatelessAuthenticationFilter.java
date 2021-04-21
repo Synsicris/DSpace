@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.utils.ContextUtil;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.factory.AuthorizeServiceFactory;
@@ -96,7 +97,9 @@ public class StatelessAuthenticationFilter extends BasicAuthenticationFilter {
         }
         if (authentication != null) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            restAuthenticationService.invalidateAuthenticationCookie(res);
+            if (StringUtils.contains(req.getRequestURI(), "/api/authn/login")) {
+                restAuthenticationService.invalidateAuthenticationCookie(res);
+            }
         }
         chain.doFilter(req, res);
     }
@@ -129,7 +132,7 @@ public class StatelessAuthenticationFilter extends BasicAuthenticationFilter {
                 requestService.setCurrentUserId(eperson.getID());
 
                 //Get the Spring authorities for this eperson
-                List<GrantedAuthority> authorities = authenticationProvider.getGrantedAuthorities(context, eperson);
+                List<GrantedAuthority> authorities = authenticationProvider.getGrantedAuthorities(context);
                 String onBehalfOfParameterValue = request.getHeader(ON_BEHALF_OF_REQUEST_PARAM);
                 if (onBehalfOfParameterValue != null) {
                     if (configurationService.getBooleanProperty("webui.user.assumelogin")) {
@@ -174,7 +177,7 @@ public class StatelessAuthenticationFilter extends BasicAuthenticationFilter {
             requestService.setCurrentUserId(epersonUuid);
             context.switchContextUser(onBehalfOfEPerson);
             return new DSpaceAuthentication(onBehalfOfEPerson.getEmail(),
-                                            authenticationProvider.getGrantedAuthorities(context, onBehalfOfEPerson));
+                                            authenticationProvider.getGrantedAuthorities(context));
         } else {
             throw new IllegalArgumentException("You're unable to use the login as feature to log " +
                                                    "in as another admin");

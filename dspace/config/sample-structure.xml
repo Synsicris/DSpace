@@ -30,6 +30,7 @@
         <submission-type>impact_pathway_step</submission-type>
         <policy-group rpType="admin">project_template_members_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       </collection>
@@ -44,6 +45,7 @@
         <submission-type>impact_pathway</submission-type>
         <policy-group rpType="admin">project_template_members_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       </collection>

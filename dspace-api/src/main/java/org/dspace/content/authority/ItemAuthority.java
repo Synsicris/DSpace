@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.SolrClient;
@@ -56,7 +57,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
 
     private DSpace dspace = new DSpace();
 
-    private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
+    protected ItemService itemService = ContentServiceFactory.getInstance().getItemService();
 
     private SearchService searchService = dspace.getServiceManager().getServiceByName(
         "org.dspace.discovery.SearchService", SearchService.class);
@@ -86,6 +87,8 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
      */
     @Override
     public Choices getMatches(String text, int start, int limit, String locale) {
+        List<Choice> choices = new ArrayList<Choice>();
+        long totFound = 0;
         if (limit <= 0) {
             limit = 20;
         }
@@ -96,48 +99,45 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             return new Choices(Choices.CF_UNSET);
         }
 
-        String relationshipType = getLinkedEntityType();
-        ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(relationshipType);
-        String luceneQuery = itemAuthorityService.getSolrQuery(text);
+        String[] entityTypes = getLinkedEntityType();
+        if (Objects.nonNull(entityTypes) && entityTypes.length > 0) {
+            for (String entityType : entityTypes) {
+                ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(entityType);
+                String luceneQuery = itemAuthorityService.getSolrQuery(text);
 
+                SolrQuery solrQuery = new SolrQuery();
+                solrQuery.setQuery(luceneQuery);
+                solrQuery.setStart(start);
+                solrQuery.setRows(limit);
+                solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
 
-        SolrQuery solrQuery = new SolrQuery();
-        solrQuery.setQuery(luceneQuery);
-        solrQuery.setStart(start);
-        solrQuery.setRows(limit);
-        solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
+                if (StringUtils.isNotBlank(entityType)) {
+                    solrQuery.addFilterQuery("dspace.entity.type:" + entityType);
+                }
+                customAuthorityFilters.stream().flatMap(caf -> caf.getFilterQueries(entityType).stream())
+                        .forEach(solrQuery::addFilterQuery);
 
-        if (StringUtils.isNotBlank(relationshipType)) {
-            solrQuery.addFilterQuery("relationship.type:" + relationshipType);
+                try {
+                    QueryResponse queryResponse = solr.query(solrQuery);
+                    List<Choice> choiceList = queryResponse.getResults().stream().map(doc -> {
+                        String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
+                        Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
+                        return new Choice((String) doc.getFieldValue("search.resourceid"), title, title, extras);
+                    }).collect(Collectors.toList());
+                    choices.addAll(choiceList);
+                    totFound += queryResponse.getResults().getNumFound();
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                    return new Choices(Choices.CF_UNSET);
+                }
+            }
         }
-
-        customAuthorityFilters.stream()
-            .flatMap(caf -> caf.getFilterQueries(relationshipType).stream())
-            .forEach(solrQuery::addFilterQuery);
-
-        try {
-            QueryResponse queryResponse = solr.query(solrQuery);
-            List<Choice> choiceList = queryResponse.getResults()
-                .stream()
-                .map(doc ->  {
-                    String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
-                    Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
-                    return new Choice((String) doc.getFieldValue("search.resourceid"),
-                        title,
-                        title, extras);
-                }).collect(Collectors.toList());
-
-            Choice[] results = new Choice[choiceList.size()];
-            results = choiceList.toArray(results);
-            long numFound = queryResponse.getResults().getNumFound();
-
-            return new Choices(results, start, (int) numFound, Choices.CF_AMBIGUOUS,
-                               numFound > (start + limit), 0);
-
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return new Choices(Choices.CF_UNSET);
+        if (CollectionUtils.isNotEmpty(choices)) {
+            Choice[] results = new Choice[choices.size()];
+            results = choices.toArray(results);
+            return new Choices(results, start, (int) totFound, Choices.CF_AMBIGUOUS, totFound > (start + limit), 0);
         }
+        return new Choices(Choices.CF_UNSET);
     }
 
     @Override
@@ -160,8 +160,8 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     }
 
     @Override
-    public String getLinkedEntityType() {
-        return configurationService.getProperty("cris.ItemAuthority." + authorityName + ".relationshipType");
+    public String[] getLinkedEntityType() {
+        return configurationService.getArrayProperty("cris.ItemAuthority." + authorityName + ".entityType");
     }
 
     public void setPluginInstanceName(String name) {

@@ -54,6 +54,7 @@ public class ItemMatcher {
                 "mappedCollections[]",
                 "owningCollection",
                 "version",
+                "metrics",
                 "relationships[]",
                 "templateItemOf"
         );
@@ -70,6 +71,7 @@ public class ItemMatcher {
                 "relationships",
                 "self",
                 "version",
+                "metrics",
                 "templateItemOf"
         );
     }
@@ -84,6 +86,23 @@ public class ItemMatcher {
             hasJsonPath("$.withdrawn", is(item.isWithdrawn())),
             hasJsonPath("$.lastModified", is(notNullValue())),
             hasJsonPath("$.type", is("item"))
+        );
+    }
+
+    public static Matcher<? super Object> matchItemPolicyGroupAndSharedMetadata(Item item,
+                  String title, String policyGroup, String shared) {
+        return allOf(
+            //Check item properties
+            matchItemProperties(item),
+            //Check core metadata (the JSON Path expression evaluates to a collection so we have to use contains)
+            hasJsonPath("$.metadata", allOf(
+                              matchMetadata("dc.title", title),
+                              matchMetadata("cris.workspace.shared", shared),
+                              matchMetadata("cris.policy.group", policyGroup)
+                              )),
+
+            //Check links
+            matchLinks(item.getID())
         );
     }
 

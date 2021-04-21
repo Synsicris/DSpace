@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The contents of this file are subject to the license and copyright
+  ~ detailed in the LICENSE and NOTICE files at the root of the source
+  ~ tree and available online at
+  ~
+  ~  http://www.dspace.org/license/
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="projectAuthorityFilter" class="org.dspace.content.authority.ProjectAuthorityFilter">
+        <property name="supportedEntities">
+            <list>
+				<value>Person</value>
+				<value>Project</value>
+				<value>Funding</value>
+				<value>OrgUnit</value>
+				<value>Journal</value>
+				<value>Publication</value>
+				<value>Dataset</value>
+				<value>Patent</value>
+				<value>Event</value>
+				<value>Equipment</value>
+				<value>impactpathway</value>
+				<value>impactpathwaystep</value>
+				<value>award</value>
+				<value>contribution_fundingprogramme</value>
+				<value>cooperation_partner</value>
+				<value>ethic</value>
+				<value>pot_societalimpact</value>
+				<value>condition</value>
+				<value>gender</value>
+				<value>innovationidea</value>
+				<value>milestone</value>
+				<value>step</value>
+				<value>physical_object</value>
+				<value>proj_objective</value>
+				<value>research_result</value>
+				<value>spinoff</value>
+				<value>stateofart</value>
+				<value>subproject</value>
+				<value>targetgroup</value>
+				<value>task</value>
+				<value>unexpected_result</value>
+				<value>workpackage</value>
+				<value>process_event</value>
+				<value>other</value>
+				<value>innovationpotential</value>
+				<value>application</value>
+				<value>plan_publication</value>
+            </list>
+        </property>
+    </bean>
+</beans>

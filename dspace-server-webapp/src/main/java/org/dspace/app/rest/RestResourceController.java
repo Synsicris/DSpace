@@ -83,6 +83,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * This is the main entry point of the new REST API. Its responsibility is to
@@ -763,9 +764,13 @@ public class RestResourceController implements InitializingBean {
             log.error(e.getMessage(), e);
             throw e;
         }
-        DSpaceResource result = converter.toResource(modelObject);
-        //TODO manage HTTPHeader
-        return ControllerUtils.toResponseEntity(HttpStatus.OK, new HttpHeaders(), result);
+        if (modelObject != null) {
+            DSpaceResource result = converter.toResource(modelObject);
+            //TODO manage HTTPHeader
+            return ControllerUtils.toResponseEntity(HttpStatus.OK, new HttpHeaders(), result);
+        } else {
+            return ControllerUtils.toEmptyResponse(HttpStatus.NO_CONTENT);
+        }
 
     }
 
@@ -1030,8 +1035,10 @@ public class RestResourceController implements InitializingBean {
             PagedResourcesAssembler assembler,
             @RequestParam MultiValueMap<String, Object> parameters)
         throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        String encodedParameterString = getEncodedParameterStringFromRequestParams(parameters);
 
-        Link link = linkTo(this.getClass(), apiCategory, model).slash("search").slash(searchMethodName).withSelfRel();
+        Link link = linkTo(this.getClass(), apiCategory, model).slash("search").slash(searchMethodName)
+                                                               .slash(encodedParameterString).withSelfRel();
         DSpaceRestRepository repository = utils.getResourceRepository(apiCategory, model);
         boolean returnPage = false;
         Object searchResult = null;
@@ -1069,6 +1076,21 @@ public class RestResourceController implements InitializingBean {
         return result;
     }
 
+    /**
+     * Internal method to convert the parameters provided as a MultivalueMap as a string to use in the self-link.
+     * @param parameters
+     * @return encoded uriString containing request parameters
+     */
+    private String getEncodedParameterStringFromRequestParams(
+            @RequestParam MultiValueMap<String, Object> parameters) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
+
+        for (String key : parameters.keySet()) {
+            uriComponentsBuilder.queryParam(key, parameters.get(key));
+        }
+        return uriComponentsBuilder.encode().build().toString();
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = REGEX_REQUESTMAPPING_IDENTIFIER_AS_DIGIT)
     public ResponseEntity<RepresentationModel<?>> delete(HttpServletRequest request, @PathVariable String apiCategory,
                                                          @PathVariable String model, @PathVariable Integer id)
@@ -1081,6 +1103,13 @@ public class RestResourceController implements InitializingBean {
                                                          @PathVariable String model, @PathVariable UUID uuid)
         throws HttpRequestMethodNotSupportedException {
         return deleteInternal(apiCategory, model, uuid);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = REGEX_REQUESTMAPPING_IDENTIFIER_AS_STRING_VERSION_STRONG)
+    public ResponseEntity<RepresentationModel<?>> delete(HttpServletRequest request, @PathVariable String apiCategory,
+                                                         @PathVariable String model, @PathVariable String id)
+        throws HttpRequestMethodNotSupportedException {
+        return deleteInternal(apiCategory, model, id);
     }
 
     /**

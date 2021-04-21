@@ -6,14 +6,19 @@
     <intro />
     <copyright />
     <sidebar />
-    <policy-group>project-template-group</policy-group>
+    <policy-group rpType="admin">project_template_admin_group</policy-group>
+    <policy-group rpType="remove">project_template_admin_group</policy-group>
+    <policy-group rpType="delete">project_template_admin_group</policy-group>
+    <policy-group rpType="read">project_template_members_group</policy-group>
     <community>
       <name>Impactpathway objects</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
-      <policy-group>project-template-group</policy-group>
+	  <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="remove">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
       <collection>
         <name>Impactpathway steps</name>
         <description />
@@ -23,7 +28,11 @@
         <license />
         <entity-type>impactpathwaystep</entity-type>
         <submission-type>impact_pathway_step</submission-type>
-        <policy-group>project-template-group</policy-group>
+        <policy-group rpType="admin">project_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       </collection>
       <collection>
         <name>Impactpathways</name>
@@ -34,8 +43,22 @@
         <license />
         <entity-type>impactpathway</entity-type>
         <submission-type>impact_pathway</submission-type>
-        <policy-group>project-template-group</policy-group>
+        <policy-group rpType="admin">project_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       </collection>
+    </community>
+    <community>
+      <name>Subprojects</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+	  <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="remove">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
     </community>
     <collection>
       <name>Application of a solution / change / innovation</name>
@@ -44,31 +67,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>applications</entity-type>
+      <entity-type>application</entity-type>
       <submission-type>applications</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>    
-    <collection>
-      <name>Application success for business innovations</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>applications_econtech</entity-type>
-      <submission-type>applications_econtech</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Application success in social innovations/change processes</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>applications_social</entity-type>
-      <submission-type>applications_social</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+	  <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Awards and prizes</name>
@@ -77,9 +82,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>awards</entity-type>
+      <entity-type>award</entity-type>
       <submission-type>awards</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Contribution to funding programme objectives</name>
@@ -90,7 +99,11 @@
       <license />
       <entity-type>contribution_fundingprogramme</entity-type>
       <submission-type>contribution_fundingprogramme</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Cooperation partners</name>
@@ -99,20 +112,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>cooperation_partners</entity-type>
+      <entity-type>cooperation_partner</entity-type>
       <submission-type>cooperation_partners</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Cooperation processes</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>cooperation_events</entity-type>
-      <submission-type>cooperation_events</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Ethical reflection</name>
@@ -121,9 +127,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>ethics</entity-type>
+      <entity-type>ethic</entity-type>
       <submission-type>ethics</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Events</name>
@@ -134,7 +144,11 @@
       <license />
       <entity-type>Event</entity-type>
       <submission-type>events</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Expected societal impact</name>
@@ -145,7 +159,11 @@
       <license />
       <entity-type>pot_societalimpact</entity-type>
       <submission-type>pot_societalimpact</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>External conditions and requirements</name>
@@ -154,9 +172,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>conditions</entity-type>
+      <entity-type>condition</entity-type>
       <submission-type>conditions</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Gender reflection</name>
@@ -167,7 +189,11 @@
       <license />
       <entity-type>gender</entity-type>
       <submission-type>gender</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Ideas for innovation and change</name>
@@ -176,9 +202,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>innovationideas</entity-type>
+      <entity-type>innovationidea</entity-type>
       <submission-type>innovationideas</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Import easy-Online xml-file</name>
@@ -189,29 +219,11 @@
       <license />
       <entity-type></entity-type>
       <submission-type>easy-import</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Intended business innovations</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>inn_pot_econtech</entity-type>
-      <submission-type>innovationpotentials_econtech</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Intended social innovations/change processes</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>inn_pot_social</entity-type>
-      <submission-type>innovationpotentials_social</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Milestones</name>
@@ -220,9 +232,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>milestones</entity-type>
+      <entity-type>milestone</entity-type>
       <submission-type>milestones</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Next steps and cooperation</name>
@@ -231,9 +247,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>steps</entity-type>
+      <entity-type>step</entity-type>
       <submission-type>steps</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Objects, materials</name>
@@ -242,9 +262,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>physical_objects</entity-type>
+      <entity-type>physical_object</entity-type>
       <submission-type>physical_objects</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Organisation units</name>
@@ -255,7 +279,11 @@
       <license />
       <entity-type>OrgUnit</entity-type>
       <submission-type>orgunits</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Others</name>
@@ -264,21 +292,14 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>others</entity-type>
+      <entity-type>other</entity-type>
       <submission-type>others</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>  
-    <collection>
-      <name>Participative processes</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>participation_events</entity-type>
-      <submission-type>participation_events</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
     <collection>
       <name>Patents and utility patents</name>
       <description />
@@ -288,7 +309,11 @@
       <license />
       <entity-type>Patent</entity-type>
       <submission-type>patents</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Persons</name>
@@ -299,19 +324,42 @@
       <license />
       <entity-type>Person</entity-type>
       <submission-type>persons</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
-      <name>Process of cooperation, participation and working together</name>
+      <name>Planned Publications</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
       <license />
-      <entity-type>process_events</entity-type>
+      <entity-type>plan_publication</entity-type>
+      <submission-type>plan_publications</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection>
+    <collection>
+      <name>Processes of cooperation, participation and working together</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>process_event</entity-type>
       <submission-type>process_events</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>  
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection> 
     <collection>
       <name>Project objectives</name>
       <description />
@@ -319,9 +367,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>proj_objectives</entity-type>
+      <entity-type>proj_objective</entity-type>
       <submission-type>proj_objectives</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Projects</name>
@@ -332,7 +384,10 @@
       <license />
       <entity-type>Project</entity-type>
       <submission-type>projects</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Publications</name>
@@ -343,7 +398,11 @@
       <license />
       <entity-type>Publication</entity-type>
       <submission-type>publications</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Research findings</name>
@@ -352,9 +411,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>research_results</entity-type>
+      <entity-type>research_result</entity-type>
       <submission-type>research_results</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>Solution / change / innovation</name>
@@ -363,9 +426,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>innovationpotentials</entity-type>
+      <entity-type>innovationpotential</entity-type>
       <submission-type>innovationpotentials</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>  
     <collection>
       <name>Spin-offs (incl. associations)</name>
@@ -374,9 +441,13 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>spinoffs</entity-type>
+      <entity-type>spinoff</entity-type>
       <submission-type>spinoffs</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
     <collection>
       <name>State of knowledge</name>
@@ -387,8 +458,93 @@
       <license />
       <entity-type>stateofart</entity-type>
       <submission-type>stateofart</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
+    <collection>
+      <name>Target groups</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>targetgroup</entity-type>
+      <submission-type>targetgroups</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection>
+    <collection>
+      <name>Tasks</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>task</entity-type>
+      <submission-type>tasks</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection>
+    <collection>
+      <name>Unexpected results and problems</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>unexpected_result</entity-type>
+      <submission-type>unexpected_results</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection>
+    <collection>
+      <name>Work packages</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>workpackage</entity-type>
+      <submission-type>workpackages</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+    </collection>
+  </community>
+  <community>
+    <name>projects</name>
+    <description />
+    <intro />
+    <copyright />
+    <sidebar />
+    <policy-group rpType="add">project_submitters_group</policy-group>
+    <policy-group rpType="remove">project_submitters_group</policy-group>
+    <policy-group rpType="read">Anonymous</policy-group>
+  </community>
+  <community>
+    <name>sub-project-template</name>
+    <description />
+    <intro />
+    <copyright />
+    <sidebar />
+    <policy-group rpType="admin">project_template_admin_group</policy-group>
+    <policy-group rpType="remove">project_template_admin_group</policy-group>
+    <policy-group rpType="delete">project_template_admin_group</policy-group>
+    <policy-group rpType="read">project_template_members_group</policy-group>
     <collection>
       <name>Subprojects</name>
       <description />
@@ -398,60 +554,10 @@
       <license />
       <entity-type>subproject</entity-type>
       <submission-type>subprojects</submission-type>
-      <policy-group>project-template-group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
     </collection>
-    <collection>
-      <name>Target groups</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>targetgroups</entity-type>
-      <submission-type>targetgroups</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Tasks</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>tasks</entity-type>
-      <submission-type>tasks</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Unexpected results and problems</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>unexpected_results</entity-type>
-      <submission-type>unexpected_results</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-    <collection>
-      <name>Work packages</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>workpackages</entity-type>
-      <submission-type>workpackages</submission-type>
-      <policy-group>project-template-group</policy-group>
-    </collection>
-
-  </community>
-  <community>
-    <name>projects</name>
-    <description />
-    <intro />
-    <copyright />
-    <sidebar />
   </community>
 </import_structure>
 

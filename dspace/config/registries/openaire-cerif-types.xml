@@ -134,6 +134,12 @@
 
     <dc-type>
         <schema>oairecerif</schema>
+        <element>fundingParent</element>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>oairecerif</schema>
         <element>amount</element>
         <qualifier>currency</qualifier>
         <scope_note></scope_note>
@@ -152,11 +158,17 @@
         <scope_note></scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>oairecerif</schema>
+        <element>funding</element>
+        <qualifier>startDate</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
     <dc-type>
         <schema>oairecerif</schema>
         <element>funding</element>
-        <qualifier>duration</qualifier>
+        <qualifier>endDate</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

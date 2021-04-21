@@ -9,6 +9,7 @@ package org.dspace.external.provider.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,13 +19,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.logging.log4j.Logger;
@@ -32,13 +31,13 @@ import org.dspace.app.sherpa.SHERPAJournal;
 import org.dspace.app.sherpa.SHERPAResponse;
 import org.dspace.content.dto.MetadataValueDTO;
 import org.dspace.external.model.ExternalDataObject;
-import org.dspace.external.provider.ExternalDataProvider;
+import org.dspace.external.provider.AbstractExternalDataProvider;
 
 /**
- * This class is the implementation of the ExternalDataProvider interface that will deal with SherpaJournal External
- * data lookups
+ * This class is the implementation of the ExternalDataProvider interface that
+ * will deal with SherpaJournal External data lookups.
  */
-public class SherpaJournalDataProvider implements ExternalDataProvider {
+public class SherpaJournalDataProvider extends AbstractExternalDataProvider {
 
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(SherpaJournalDataProvider.class);
 
@@ -138,8 +137,7 @@ public class SherpaJournalDataProvider implements ExternalDataProvider {
     public List<ExternalDataObject> searchExternalDataObjects(String query, int start, int limit) {
         // query args to add to SHERPA/RoMEO request URL
         HttpGet get = constructHttpGet(query);
-        try {
-            HttpClient hc = new DefaultHttpClient();
+        try ( CloseableHttpClient hc = HttpClientBuilder.create().build(); ) {
             HttpResponse response = hc.execute(get);
             if (response.getStatusLine().getStatusCode() == 200) {
 
@@ -153,15 +151,15 @@ public class SherpaJournalDataProvider implements ExternalDataProvider {
             }
         } catch (IOException e) {
             log.error("SHERPA/RoMEO query failed: ", e);
-            return null;
+            return Collections.emptyList();
         } finally {
             get.releaseConnection();
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private HttpGet constructHttpGet(String query) {
-        List<BasicNameValuePair> args = new ArrayList<BasicNameValuePair>();
+        List<BasicNameValuePair> args = new ArrayList<>();
         args.add(new BasicNameValuePair("jtitle", query));
         args.add(new BasicNameValuePair("qtype", "contains"));
         args.add(new BasicNameValuePair("ak", apiKey));
@@ -177,11 +175,9 @@ public class SherpaJournalDataProvider implements ExternalDataProvider {
     @Override
     public int getNumberOfResults(String query) {
         HttpGet get = constructHttpGet(query);
-        try {
-            HttpClient hc = new DefaultHttpClient();
+        try ( CloseableHttpClient hc = HttpClientBuilder.create().build(); ) {
             HttpResponse response = hc.execute(get);
             if (response.getStatusLine().getStatusCode() == 200) {
-
                 SHERPAResponse sherpaResponse = new SHERPAResponse(response.getEntity().getContent());
                 return sherpaResponse.getNumHits();
             }

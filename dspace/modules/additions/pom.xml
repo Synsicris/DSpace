@@ -17,7 +17,7 @@
    <parent>
       <groupId>org.dspace</groupId>
       <artifactId>modules</artifactId>
-      <version>7.0-beta4-SNAPSHOT</version>
+      <version>7.0-beta5-SNAPSHOT</version>
       <relativePath>..</relativePath>
    </parent>
 
@@ -209,23 +209,6 @@
                <groupId>org.dspace</groupId>
                <artifactId>dspace-api</artifactId>
                <type>test-jar</type>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.apache.lucene</groupId>
-               <artifactId>lucene-analyzers-icu</artifactId>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.apache.lucene</groupId>
-               <artifactId>lucene-analyzers-smartcn</artifactId>
-               <version>${solr.client.version}</version>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.apache.lucene</groupId>
-               <artifactId>lucene-analyzers-stempel</artifactId>
-               <version>${solr.client.version}</version>
                <scope>test</scope>
             </dependency>
          </dependencies>

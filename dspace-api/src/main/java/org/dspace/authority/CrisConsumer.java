@@ -8,11 +8,11 @@
 
 package org.dspace.authority;
 
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.dspace.content.MetadataSchemaEnum.CRIS;
 
 import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -23,11 +23,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.authority.factory.AuthorityServiceFactory;
 import org.dspace.authority.filler.AuthorityImportFiller;
-import org.dspace.authority.filler.AuthorityImportFillerHolder;
+import org.dspace.authority.filler.AuthorityImportFillerService;
 import org.dspace.authority.service.AuthorityValueService;
+import org.dspace.authority.service.ItemSearchService;
 import org.dspace.content.Collection;
-import org.dspace.content.Community;
-import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
@@ -35,8 +34,10 @@ import org.dspace.content.authority.Choices;
 import org.dspace.content.authority.factory.ContentAuthorityServiceFactory;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.factory.ContentServiceFactory;
+import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.core.CrisConstants;
@@ -44,6 +45,7 @@ import org.dspace.event.Consumer;
 import org.dspace.event.Event;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.utils.DSpace;
 import org.dspace.workflow.WorkflowService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
@@ -57,7 +59,7 @@ import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
  */
 public class CrisConsumer implements Consumer {
 
-    public static final String SOURCE_INTERNAL = "INTERNAL-SUBMISSION";
+    public static final String CONSUMER_NAME = "crisconsumer";
 
     private final static String NO_RELATIONSHIP_TYPE_FOUND_MSG = "No relationship.type found for field {}";
 
@@ -65,6 +67,8 @@ public class CrisConsumer implements Consumer {
 
     private final static String NO_COLLECTION_FOUND_MSG = "No collection found with relationship.type = {} "
             + "for item = {}. No related item will be created.";
+
+    private final static String NO_ITEM_FOUND_BY_AUTHORITY_MSG = "No related item found by authority {}";
 
     private static Logger log = LogManager.getLogger(CrisConsumer.class);
 
@@ -80,9 +84,15 @@ public class CrisConsumer implements Consumer {
 
     private InstallItemService installItemService;
 
+    private CollectionService collectionService;
+
+    private RelationshipService relationshipService;
+
     private ConfigurationService configurationService;
 
-    private AuthorityImportFillerHolder authorityImportFillerHolder;
+    private AuthorityImportFillerService authorityImportFillerService;
+
+    private ItemSearchService itemSearchService;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -91,9 +101,12 @@ public class CrisConsumer implements Consumer {
         itemService = ContentServiceFactory.getInstance().getItemService();
         workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
         installItemService = ContentServiceFactory.getInstance().getInstallItemService();
+        collectionService = ContentServiceFactory.getInstance().getCollectionService();
         configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
         workflowService = WorkflowServiceFactory.getInstance().getWorkflowService();
-        authorityImportFillerHolder = AuthorityServiceFactory.getInstance().getAuthorityImportFillerHolder();
+        authorityImportFillerService = AuthorityServiceFactory.getInstance().getAuthorityImportFillerService();
+        itemSearchService = new DSpace().getSingletonService(ItemSearchService.class);
+        relationshipService = ContentServiceFactory.getInstance().getRelationshipService();
     }
 
     @Override
@@ -127,11 +140,13 @@ public class CrisConsumer implements Consumer {
         for (MetadataValue metadata : metadataValues) {
 
             String authority = metadata.getAuthority();
-            // ignore nested metadata with placeholder
-            if (StringUtils.equals(metadata.getValue(), CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE)) {
+
+            if (isNestedMetadataPlaceholder(metadata) || isAuthorityAlreadySet(authority)) {
                 continue;
             }
-            if (StringUtils.isNotBlank(authority) && !authority.startsWith(AuthorityValueService.GENERATE)) {
+
+            boolean skipEmptyAuthority = configurationService.getBooleanProperty("cris-consumer.skip-empty-authority");
+            if (skipEmptyAuthority && StringUtils.isBlank(authority)) {
                 continue;
             }
 
@@ -149,12 +164,18 @@ public class CrisConsumer implements Consumer {
 
             String crisSourceId = generateCrisSourceId(metadata);
 
-            Item relatedItem = findRelatedItemByCrisSourceId(context, crisSourceId, relationshipType);
+            Item relatedItem = itemSearchService.search(context, crisSourceId, relationshipType);
             boolean relatedItemAlreadyPresent = relatedItem != null;
 
-            if (!relatedItemAlreadyPresent) {
+            if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
+                log.warn(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
+                metadata.setConfidence(Choices.CF_UNSET);
+                continue;
+            }
 
-                Collection collection = retrieveCollectionByRelationshipType(item, relationshipType);
+            if (!relatedItemAlreadyPresent) {
+                Collection collection = collectionService.retrieveCollectionByRelationshipType(context, item,
+                        relationshipType);
                 if (collection == null) {
                     log.warn(NO_COLLECTION_FOUND_MSG, relationshipType, item.getID());
                     continue;
@@ -166,11 +187,7 @@ public class CrisConsumer implements Consumer {
 
             }
 
-            String authorityType = calculateAuthorityType(authority);
-            AuthorityImportFiller filler = authorityImportFillerHolder.getFiller(authorityType);
-            if (filler != null && (!relatedItemAlreadyPresent || filler.allowsUpdate(context, metadata, relatedItem))) {
-                filler.fillItem(context, metadata, relatedItem);
-            }
+            fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
 
             metadata.setAuthority(relatedItem.getID().toString());
             metadata.setConfidence(Choices.CF_ACCEPTED);
@@ -178,36 +195,29 @@ public class CrisConsumer implements Consumer {
 
     }
 
+    private boolean isAuthorityAlreadySet(String authority) {
+        return isNotBlank(authority) && !isGenerateAuthority(authority) && !isReferenceAuthority(authority);
+    }
+
+    private boolean isNestedMetadataPlaceholder(MetadataValue metadata) {
+        return StringUtils.equals(metadata.getValue(), CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE);
+    }
+
+    private boolean isGenerateAuthority(String authority) {
+        return StringUtils.startsWith(authority, AuthorityValueService.GENERATE);
+    }
+
+    private boolean isReferenceAuthority(String authority) {
+        return StringUtils.startsWith(authority, AuthorityValueService.REFERENCE);
+    }
+
     @Override
     public void end(Context context) throws Exception {
         itemsAlreadyProcessed.clear();
     }
 
-    private Item findRelatedItemByCrisSourceId(Context context, String crisSourceId,
-            String relationshipType) throws Exception {
-
-        Iterator<Item> items = itemService.findByMetadataField(context, CRIS.getName(), "sourceId", null, crisSourceId);
-
-        while (items.hasNext()) {
-            Item item = items.next();
-            if (hasRelationshipTypeMetadataEqualsTo(item, relationshipType)) {
-                return item;
-            }
-        }
-
-        return null;
-
-    }
-
     private String getFieldKey(MetadataValue metadata) {
         return metadata.getMetadataField().toString('_');
-    }
-
-    private boolean hasRelationshipTypeMetadataEqualsTo(DSpaceObject dsObject, String relationshipType) {
-        return dsObject.getMetadata().stream().anyMatch(metadataValue -> {
-            return "relationship.type".equals(metadataValue.getMetadataField().toString('.')) &&
-                    relationshipType.equals(metadataValue.getValue());
-        });
     }
 
     private Item buildRelatedItem(Context context, Item item, Collection collection, MetadataValue metadata,
@@ -215,11 +225,8 @@ public class CrisConsumer implements Consumer {
 
         WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, false);
         Item relatedItem = workspaceItem.getItem();
-        relatedItem.setOwningCollection(collection);
-        relatedItem.setSubmitter(item.getSubmitter());
         itemService.addMetadata(context, relatedItem, CRIS.getName(), "sourceId", null, null, crisSourceId);
-        itemService.addMetadata(context, relatedItem, "dc", "title", null, null, metadata.getValue());
-        if (!hasRelationshipTypeMetadataEqualsTo(relatedItem, relationshipType)) {
+        if (!relationshipService.hasRelationshipType(relatedItem, relationshipType)) {
             log.error("Inconstent configuration the related item " + relatedItem.getID().toString() + ", created from "
                     + item.getID().toString() + " (" + metadata.getMetadataField().toString('.') + ")"
                     + " hasn't the expected [" + relationshipType + "] relationshipType");
@@ -233,51 +240,12 @@ public class CrisConsumer implements Consumer {
         return relatedItem;
     }
 
-    private Collection retrieveCollectionByRelationshipType(Item item, String relationshipType) throws SQLException {
-        Collection ownCollection = item.getOwningCollection();
-        return retrieveCollectionByRelationshipType(ownCollection.getCommunities(), relationshipType);
-    }
-
-    private Collection retrieveCollectionByRelationshipType(List<Community> communities, String relationshipType) {
-
-        for (Community community : communities) {
-            Collection collection = retriveCollectionByRelationshipType(community, relationshipType);
-            if (collection != null) {
-                return collection;
-            }
-        }
-
-        for (Community community : communities) {
-            List<Community> parentCommunities = community.getParentCommunities();
-            Collection collection = retrieveCollectionByRelationshipType(parentCommunities, relationshipType);
-            if (collection != null) {
-                return collection;
-            }
-        }
-
-        return null;
-    }
-
-    private Collection retriveCollectionByRelationshipType(Community community, String relationshipType) {
-
-        for (Collection collection : community.getCollections()) {
-            if (hasRelationshipTypeMetadataEqualsTo(collection, relationshipType)) {
-                return collection;
-            }
-        }
-
-        for (Community subCommunity : community.getSubcommunities()) {
-            Collection collection = retriveCollectionByRelationshipType(subCommunity, relationshipType);
-            if (collection != null) {
-                return collection;
-            }
-        }
-
-        return null;
-    }
-
     private String generateCrisSourceId(MetadataValue metadata) {
-        if (isUuidStrategyEnabled(metadata)) {
+        if (isGenerateAuthority(metadata.getAuthority())) {
+            return metadata.getAuthority().substring(AuthorityValueService.GENERATE.length());
+        } else if (isReferenceAuthority(metadata.getAuthority())) {
+            return metadata.getAuthority().substring(AuthorityValueService.REFERENCE.length());
+        } else if (isUuidStrategyEnabled(metadata)) {
             return UUID.randomUUID().toString();
         } else {
             return DigestUtils.md5Hex(metadata.getValue().toUpperCase());
@@ -299,14 +267,16 @@ public class CrisConsumer implements Consumer {
         }
     }
 
-    private String calculateAuthorityType(String authority ) {
-        if (StringUtils.isNotBlank(authority) && authority.startsWith(AuthorityValueService.GENERATE)) {
-            String[] split = StringUtils.split(authority, AuthorityValueService.SPLIT);
-            if (split.length > 1) {
-                return split[1];
-            }
+    private void fillRelatedItem(Context context, MetadataValue metadata, Item relatedItem, boolean alreadyPresent)
+        throws SQLException {
+
+        AuthorityImportFiller filler = authorityImportFillerService.getAuthorityImportFillerByMetadata(metadata);
+        if (filler != null && (!alreadyPresent || filler.allowsUpdate(context, metadata, relatedItem))) {
+            filler.fillItem(context, metadata, relatedItem);
+        } else if (filler == null && !alreadyPresent) {
+            itemService.addMetadata(context, relatedItem, "dc", "title", null, null, metadata.getValue());
         }
-        return SOURCE_INTERNAL;
+
     }
 
 }

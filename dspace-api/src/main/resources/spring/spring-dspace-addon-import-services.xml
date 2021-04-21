@@ -39,6 +39,36 @@
          </property>
     </bean>
 
+    <bean id="PubmedEuropeImportService" class="org.dspace.importer.external.pubmedeurope.PubmedEuropeMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="PubmedEuropeMetadataFieldMapping"/>
+    </bean>
+    <bean id="PubmedEuropeMetadataFieldMapping"
+          class="org.dspace.importer.external.pubmedeurope.PubmedEuropeFieldMapping">
+    </bean>
+
+    <bean id="ADSImportService" class="org.dspace.importer.external.ads.ADSImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="ADSMetadataFieldMapping"/>
+    </bean>
+    <bean id="ADSMetadataFieldMapping"
+          class="org.dspace.importer.external.ads.ADSFieldMapping">
+    </bean>
+
+    <bean id="CiniiImportService"
+          class="org.dspace.importer.external.cinii.CiniiImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="CiniiMetadataFieldMapping"/>
+    </bean>
+    <bean id="CiniiMetadataFieldMapping"
+          class="org.dspace.importer.external.cinii.CiniiFieldMapping">
+    </bean>
+
+    <bean id="CrossRefImportService"
+          class="org.dspace.importer.external.crossref.CrossRefImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="CrossRefMetadataFieldMapping"/>
+    </bean>
+    <bean id="CrossRefMetadataFieldMapping"
+          class="org.dspace.importer.external.crossref.CrossRefFieldMapping">
+    </bean>
+
     <bean id="ArXivImportService"
           class="org.dspace.importer.external.arxiv.service.ArXivImportMetadataSourceServiceImpl" scope="singleton">
         <property name="metadataFieldMapping" ref="ArXivMetadataFieldMapping"/>
@@ -138,10 +168,40 @@
     <bean id="ScopusImportService"
           class="org.dspace.importer.external.scopus.service.ScopusImportMetadataSourceServiceImpl" scope="singleton">
         <property name="metadataFieldMapping" ref="scopusMetadataFieldMapping"/>
+        <property name="apiKey" value="${submission.lookup.scopus.apikey}"/>
+        <property name="instKey" value="${submission.lookup.scopus.instkey}"/>
     </bean>
     <bean id="scopusMetadataFieldMapping"
           class="org.dspace.importer.external.scopus.service.ScopusFieldMapping">
     </bean>
 
+    <bean id="ScieloImportService"
+          class="org.dspace.importer.external.scielo.service.ScieloImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="scieloMetadataFieldMapping"/>
+    </bean>
+    <bean id="scieloMetadataFieldMapping"
+          class="org.dspace.importer.external.scielo.service.ScieloFieldMapping">
+    </bean>
+    <bean id="WosImportService"
+          class="org.dspace.importer.external.wos.service.WOSImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="wosMetadataFieldMapping"/>
+    </bean>
+    <bean id="wosMetadataFieldMapping"
+          class="org.dspace.importer.external.wos.service.WOSFieldMapping">
+    </bean>
+
+    <bean id="openaireImportServiceByAuthor"
+          class="org.dspace.importer.external.openaire.service.OpenAireImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="openaireMetadataFieldMapping"/>
+        <property name="queryParam" value="author"/>
+    </bean>
+    <bean id="openaireImportServiceByTitle"
+          class="org.dspace.importer.external.openaire.service.OpenAireImportMetadataSourceServiceImpl" scope="singleton">
+        <property name="metadataFieldMapping" ref="openaireMetadataFieldMapping"/>
+        <property name="queryParam" value="title"/>
+    </bean>
+    <bean id="openaireMetadataFieldMapping"
+          class="org.dspace.importer.external.openaire.service.metadatamapping.OpenAireFieldMapping">
+    </bean>
 
 </beans>

@@ -7,9 +7,11 @@
  */
 package org.dspace.builder;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Bitstream;
@@ -22,6 +24,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 
 /**
  * Builder to construct WorkspaceItem objects
@@ -88,6 +91,9 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
      * @throws IOException
      */
     public static void deleteWorkspaceItem(Integer id) throws SQLException, IOException {
+        if (Objects.isNull(id)) {
+            return;
+        }
         try (Context c = new Context()) {
             c.turnOffAuthorisationSystem();
             WorkspaceItem workspaceItem = workspaceItemService.find(c, id);
@@ -110,6 +116,13 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
             workspaceItem = c.reloadEntity(workspaceItem);
             if (workspaceItem != null) {
                 delete(c, workspaceItem);
+            } else {
+                item = c.reloadEntity(item);
+                // check if the wsi has been pushed to the workflow
+                XmlWorkflowItem wfi = workflowItemService.findByItem(c, item);
+                if (wfi != null) {
+                    workflowItemService.delete(c, wfi);
+                }
             }
             item = c.reloadEntity(item);
             if (item != null) {
@@ -125,21 +138,32 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return workspaceItemService;
     }
 
-    protected WorkspaceItemBuilder addMetadataValue(final String schema,
-            final String element, final String qualifier, final String value) {
+    protected WorkspaceItemBuilder addMetadataValue(String schema, String element, String qualifier, String value) {
+        return addMetadataValue(schema, element, qualifier, null, value, null, -1);
+    }
+
+    protected WorkspaceItemBuilder addMetadataValue(String schema, String element, String qualifier, String language,
+        String value, String authority, int confidence) {
+
         try {
-            itemService.addMetadata(context, workspaceItem.getItem(), schema, element, qualifier, Item.ANY,
-                    value, null, -1);
+            itemService.addMetadata(context, workspaceItem.getItem(), schema, element, qualifier, language,
+                value, authority, confidence);
         } catch (Exception e) {
             return handleException(e);
         }
+
+        return this;
+    }
+
+    public WorkspaceItemBuilder withSubmitter(EPerson ePerson) {
+        workspaceItem.getItem().setSubmitter(ePerson);
         return this;
     }
 
     protected WorkspaceItemBuilder setMetadataSingleValue(final String schema,
             final String element, final String qualifier, final String value) {
         try {
-            itemService.setMetadataSingleValue(context, workspaceItem.getItem(), schema, element, qualifier, Item.ANY,
+            itemService.setMetadataSingleValue(context, workspaceItem.getItem(), schema, element, qualifier, null,
                     value);
         } catch (Exception e) {
             return handleException(e);
@@ -156,8 +180,17 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return addMetadataValue(MetadataSchemaEnum.DC.getName(), "date", "issued", new DCDate(issueDate).toString());
     }
 
+    public WorkspaceItemBuilder withType(final String type) {
+        return addMetadataValue(MetadataSchemaEnum.DC.getName(), "type", null, type);
+    }
+
     public WorkspaceItemBuilder withAuthor(final String authorName) {
         return addMetadataValue(MetadataSchemaEnum.DC.getName(), "contributor", "author", authorName);
+    }
+
+    public WorkspaceItemBuilder withAuthor(String authorName, String authority) {
+        return addMetadataValue(MetadataSchemaEnum.DC.getName(), "contributor", "author", null, authorName, authority,
+            600);
     }
 
     public WorkspaceItemBuilder withAuthorAffilitation(final String affilation) {
@@ -184,6 +217,34 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return addMetadataValue("relationship", "type", null, relationshipType);
     }
 
+    public WorkspaceItemBuilder withCrisSourceId(String sourceId) {
+        return addMetadataValue("cris", "sourceId", null, sourceId);
+    }
+
+    public WorkspaceItemBuilder withDoiIdentifier(String doi) {
+        return addMetadataValue("dc", "identifier", "doi", doi);
+    }
+
+    public WorkspaceItemBuilder withIsniIdentifier(String isni) {
+        return addMetadataValue("person", "identifier", "isni", isni);
+    }
+
+    public WorkspaceItemBuilder withOrcidIdentifier(String orcid) {
+        return addMetadataValue("person", "identifier", "orcid", orcid);
+    }
+
+    public WorkspaceItemBuilder withPatentNo(String patentNo) {
+        return addMetadataValue("dc", "identifier", "patentno", patentNo);
+    }
+
+    public WorkspaceItemBuilder withSharedProject(String shared) {
+        return addMetadataValue("cris", "workspace", "shared", shared);
+    }
+
+    public WorkspaceItemBuilder withPolicyGroup(String value) {
+        return addMetadataValue("cris", "policy", "group", value);
+    }
+
     public WorkspaceItemBuilder grantLicense() {
         Item item = workspaceItem.getItem();
         String license;
@@ -197,6 +258,10 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
             handleException(e);
         }
         return this;
+    }
+
+    public WorkspaceItemBuilder withFulltext(String name, String source, byte[] content) {
+        return withFulltext(name, source, new ByteArrayInputStream(content));
     }
 
     public WorkspaceItemBuilder withFulltext(String name, String source, InputStream is) {

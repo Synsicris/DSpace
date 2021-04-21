@@ -10,8 +10,12 @@ package org.dspace.external.service.impl;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.dspace.app.suggestion.SolrSuggestionStorageService;
+import org.dspace.app.suggestion.SuggestionProvider;
+import org.dspace.app.suggestion.SuggestionService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Collection;
@@ -46,6 +50,12 @@ public class ExternalDataServiceImpl implements ExternalDataService {
     @Autowired
     private AuthorizeService authorizeService;
 
+    @Autowired
+    private SolrSuggestionStorageService solrSuggestionStorageService;
+
+    @Autowired
+    private SuggestionService suggestionService;
+
     @Override
     public Optional<ExternalDataObject> getExternalDataObject(String source, String id) {
         ExternalDataProvider provider = getExternalDataProvider(source);
@@ -68,6 +78,12 @@ public class ExternalDataServiceImpl implements ExternalDataService {
     @Override
     public List<ExternalDataProvider> getExternalDataProviders() {
         return externalDataProviders;
+    }
+
+    @Override
+    public List<ExternalDataProvider> getExternalDataProvidersForEntityType(String entityType) {
+        return externalDataProviders.stream().filter(edp -> edp.supportsEntityType(entityType))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -95,9 +111,6 @@ public class ExternalDataServiceImpl implements ExternalDataService {
                                                                     ExternalDataObject externalDataObject,
                                                                     Collection collection)
         throws AuthorizeException, SQLException {
-        if (!authorizeService.isAdmin(context)) {
-            throw new AuthorizeException("You have to be an admin to create an Item from an ExternalDataObject");
-        }
         WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, true);
         Item item = workspaceItem.getItem();
         for (MetadataValueDTO metadataValueDTO : externalDataObject.getMetadata()) {
@@ -110,6 +123,16 @@ public class ExternalDataServiceImpl implements ExternalDataService {
         log.info(LogManager.getHeader(context, "create_item_from_externalDataObject", "Created item" +
             "with id: " + item.getID() + " from source: " + externalDataObject.getSource() + " with identifier: " +
             externalDataObject.getId()));
+        try {
+            List<SuggestionProvider> providers = suggestionService.getSuggestionProviders();
+            if (providers != null) {
+                for (SuggestionProvider p : providers) {
+                    p.flagRelatedSuggestionsAsProcessed(context, externalDataObject);
+                }
+            }
+        } catch (Exception e) {
+            log.error("Got problems with the solr suggestion storage service: " + e.getMessage(), e);
+        }
         return workspaceItem;
     }
 }

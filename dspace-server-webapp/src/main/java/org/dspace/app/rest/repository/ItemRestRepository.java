@@ -135,8 +135,7 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
     }
 
     @Override
-//    @PreAuthorize("hasPermission(#id, 'ITEM', #patch)")
-    @PreAuthorize("hasAuthority('AUTHENTICATED')")
+    @PreAuthorize("hasPermission(#uuid, 'ITEM', 'WRITE')")
     protected void patch(Context context, HttpServletRequest request, String apiCategory, String model, UUID id,
                          Patch patch) throws AuthorizeException, SQLException {
         patchDSpaceObject(apiCategory, model, id, patch);
@@ -148,7 +147,7 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
     }
 
     @Override
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasPermission(#uuid, 'ITEM', 'DELETE')")
     protected void delete(Context context, UUID id) throws AuthorizeException {
         String[] copyVirtual =
             requestService.getCurrentRequest().getServletRequest()

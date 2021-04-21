@@ -52,8 +52,9 @@
       </row>
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Select the entity type</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -112,8 +113,9 @@
       </row>
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Select the entity type</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -125,8 +127,9 @@
     <form name="impact_pathway_step_type_1_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -160,8 +163,9 @@
     <form name="impact_pathway_step_type_2_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -195,8 +199,9 @@
     <form name="impact_pathway_step_type_2_task_objective_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
@@ -230,8 +235,9 @@
     <form name="impact_pathway_step_type_3_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -265,8 +271,9 @@
     <form name="impact_pathway_step_type_3_task_objective_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
@@ -300,8 +307,9 @@
     <form name="impact_pathway_step_type_4_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please select an area:</label>
           <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -335,8 +343,9 @@
     <form name="impact_pathway_step_type_5_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please confirm the preselection.</label>
           <input-type value-pairs-name="impactpathway_step_type_5_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -370,8 +379,9 @@
     <form name="impact_pathway_step_type_6_task_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Please confirm the preselection.</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
@@ -417,8 +427,9 @@
     <form name="working_plan_workpackage_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Type</label>
           <input-type value-pairs-name="working_plan_workpackage_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -486,8 +497,9 @@
     <form name="working_plan_workpackage_step_form">
       <row>
         <field>
-          <dc-schema>relationship</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
           <label>Type</label>
           <input-type value-pairs-name="working_plan_workpackage_step_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -7235,6 +7247,16 @@ Groups of actors that have already been recorded for the project can be selected
       <pair>
         <displayed-value>yes - done</displayed-value>
         <stored-value>yes done</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
+      <pair>
+        <displayed-value>Editable by all project members</displayed-value>
+        <stored-value>project</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Editable by only sub-project members</displayed-value>
+        <stored-value>subproject</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

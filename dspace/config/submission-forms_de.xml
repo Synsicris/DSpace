@@ -602,159 +602,6 @@
         </field>
       </row>
     </form>
-    <form name="publications_result-dc-relation-partofjournal">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofjournal</dc-qualifier>
-          <label>Zeitschriftentitel</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Tragen Sie hier den Titel der Zeitschrift ein, in dem die Veröffentlichung erschienen ist.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oaire</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>volume</dc-qualifier>
-          <label>Jahrgang/Band Nr.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oaire</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>issue</dc-qualifier>
-          <label>Heft Nr.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
-          <label>ISSN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofnewspaper">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>Zeitung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie hier bitte den Titel der Zeitung ein, in dem die Veröffentlichung erschienen ist.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofbook">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofbook</dc-qualifier>
-          <label>Titel</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Wenn das Dokument Teil einer Monographie oder ein Buchkapitel ist, tragen Sie hier den Titel der Monographie/des Buches ein.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>seriesno</dc-qualifier>
-          <label>Band Nr.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Wenn ein Dokument in einer Reihe erschienen ist, dann geben Sie hier die Bandnummer an.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-relation-partofconferenceproceeding">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Tagungsband</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie hier den Titel ein, in dem die Veröffentlichung erschienen ist.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Band Nr.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISSN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="publications_result-dc-contributor-supervisor">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>supervisor</dc-qualifier>
-          <label>Gutachter</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Bei einer Abschlussarbeit oder Dissertation tragen Sie hier die Namen des/der Gutachter ein.</hint>
-        </field>
-      </row>
-    </form>
     <form name="publications_result-dc-contributor-author">
       <row>
         <field>
@@ -904,12 +751,38 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>titel</dc-element>
           <dc-qualifier>partofjournal</dc-qualifier>
-          <label>InZeitschrift</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>Zeitschriftentitel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
+          <hint>Tragen Sie hier den Titel der Zeitschrift ein, in dem die Veröffentlichung erschienen ist.</hint>
+          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>volume</dc-qualifier>
+          <label>Jahrgang/Band Nr.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+        </field>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>issue</dc-qualifier>
+          <label>Heft Nr.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
           <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
         </field>
@@ -917,39 +790,79 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>title</dc-element>
           <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>InZeitung</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>Zeitungstitel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie hier bitte den Titel der Zeitung ein, in dem die Veröffentlichung erschienen ist.</hint>
           <type-bind>newspaper article, Zeitungsartikel</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-element>title</dc-element>
           <dc-qualifier>partofbook</dc-qualifier>
-          <label>InBuch (Kapitel/Teil einer Monographie)</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>Titel der Monographie / des Buches</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Wenn das Dokument Teil einer Monographie oder ein Buchkapitel ist, tragen Sie hier den Titel der Monographie/des Buches ein.</hint>
           <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>InProceedings (Aufsatz/Paper einer Konferenz)</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>seriesno</dc-qualifier>
+          <label>Band Nr.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <style>col-md-6</style>
+          <hint>Wenn ein Dokument in einer Reihe erschienen ist, dann geben Sie hier die Bandnummer an.</hint>
+          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>isbn</dc-qualifier>
+          <label>ISBN</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Geben Sie die ISBN an.</hint>
+          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>Tagungsband</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Geben Sie hier den Titel ein, in dem die Veröffentlichung erschienen ist.</hint>
+          <type-bind>conference paper, Konferenzbeitrag</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
+          <label>Band Nr.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Wenn ein Dokument in einer Reihe erschienen ist, dann geben Sie hier die Bandnummer an.</hint>
           <type-bind>conference paper, Konferenzbeitrag</type-bind>
         </field>
       </row>
@@ -1007,11 +920,24 @@
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>supervisor</dc-qualifier>
+          <label>Hauptberichter</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Bei einer Abschlussarbeit oder Dissertation wird hier der Name des Erstgutachters (Doktorvaters bei Dissertationen) eingetragen.</hint>
+          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>moresupervisor</dc-qualifier>
           <label>Gutachter</label>
-          <input-type>inline-group</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <style>col-md-7</style>
+          <hint>Geben Sie hier die Namen weiterer Gutachter ein.</hint>
           <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
         </field>
       </row>
@@ -1021,11 +947,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>audience</dc-element>
-          <label>Adressatenkreis</label>
+          <label>Bitte wählen Sie aus, an welche Gruppe sich die Veröffentlichung richtet. (Mehrfachauswahl möglich):</label>
           <input-type value-pairs-name="target_audience">list</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Bitte wählen Sie aus, an welche Gruppe sich die Veröffentlichung richtet. (Mehrfachauswahl möglich)</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -2213,7 +2139,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2532,7 +2458,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name der Person</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -5177,7 +5103,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name der Person</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -5232,7 +5158,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name der Person</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -5287,7 +5213,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name der Person</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -5342,7 +5268,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Name der Person</label>
-          <input-type>name</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />

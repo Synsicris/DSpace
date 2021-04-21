@@ -190,12 +190,12 @@ public interface ChoiceAuthorityService {
     public void clearCache();
 
     /**
-     * Get the entity type starting from the metadata field.
+     * Get the entity types starting from the metadata field.
      *
      * @param  field single string identifying metadata field
-     * @return       the entity type as a String
+     * @return the entity types as an Array
      */
-    String getLinkedEntityType(String fieldKey);
+    String[] getLinkedEntityType(String fieldKey);
 
     /**
      * Should we store the authority key (if any) for such field key and collection?

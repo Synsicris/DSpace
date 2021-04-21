@@ -18,11 +18,11 @@ import java.util.Map;
 public interface LinkableEntityAuthority {
 
     /**
-     * Get the linked entity type managed by the authority
+     * Get the linked entity types managed by the authority
      *
-     * @return the linked entity type as a String
+     * @return the linked entity types as an Array
      */
-    public String getLinkedEntityType();
+    public String[] getLinkedEntityType();
 
     /**
      * Get the eternal source configured for this authority by given metadata key

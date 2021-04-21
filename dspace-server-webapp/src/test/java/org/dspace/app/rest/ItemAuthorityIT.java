@@ -419,6 +419,48 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
                        .andExpect(jsonPath("$.externalSource", Matchers.is(exptectedMap)));
     }
 
+    @Test
+    public void itemAuthorityWithMultipleEntityTypeTest() throws Exception {
+       context.turnOffAuthorisationSystem();
+       configurationService.setProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority",
+                                        "org.dspace.content.authority.ItemAuthority = TestMultiAuthority");
+       configurationService.setProperty("cris.ItemAuthority.TestMultiAuthority.entityType", "Project, Funding");
+
+       pluginService.clearNamedPluginClasses();
+       choiceAuthorityService.clearCache();
+
+       parentCommunity = CommunityBuilder.createCommunity(context).build();
+
+       Collection col1 = CollectionBuilder.createCollection(context, parentCommunity).build();
+
+       Item item1 = ItemBuilder.createItem(context, col1)
+                               .withTitle("Title Project Item")
+                               .withEntityType("Project").build();
+
+       Item item2 = ItemBuilder.createItem(context, col1)
+                               .withTitle("Title Funding Item")
+                               .withEntityType("Funding").build();
+
+       ItemBuilder.createItem(context, col1)
+                  .withTitle("Title Publication Item")
+                  .withEntityType("Publication").build();
+
+       context.restoreAuthSystemState();
+
+       String token = getAuthToken(eperson.getEmail(), password);
+       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
+                       .param("filter", "Title")
+                       .param("exact", "false"))
+                       .andExpect(status().isOk())
+                       .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                           ItemAuthorityMatcher.matchItemAuthorityProperties(
+                                  item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry"),
+                           ItemAuthorityMatcher.matchItemAuthorityProperties(
+                                  item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
+                           )))
+                       .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
+    }
+
     @Override
     @After
     // We need to cleanup the authorities cache once than the configuration has been restored

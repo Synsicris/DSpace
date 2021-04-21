@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="CONDITION 2020-02-13">
+  <isComposedBy>
+    <node id="COND01" label="Schutzrechtsanmeldungen Anderer ">
+    <hasNote>Schutzrechtsanmeldungen Anderer die einer Verwertung durch die Antragsteller entgegenstehen</hasNote>
+    </node>
+    <node id="COND02" label="Rechtliche Rahmenbedingungen ">
+    <hasNote>(z.B. Gesetze Gesetze und Verordnungen)</hasNote>
+    </node>
+    <node id="COND03" label="Ethische Aspekte">
+    <hasNote>Berührt ihr Projekt ethische Aspekte? (z.B. in Bezug auf verwendete Methoden und Daten, (nicht) eingeschlossene oder (nicht) adressierte Personen, Möglichkeiten der Missinterpretation von Ergebnissen.) Mögliche negative Auswirkungen einer Anwendung erfassen Sie bitte als potenziellen Impact.</hasNote>
+    </node>
+    <node id="COND04" label="Soziale oder kulturelle Rahmenbedingungen">
+    <hasNote>(z.B. Einstellungen, Lebensverhältnisse, Praktiken, Traditionen, Normen, Bräuche, Religionen)</hasNote>
+    </node>
+    <node id="COND05" label="Ökologische Rahmenbedingungen ">
+    <hasNote>(z.B. Klimatische Veränderungen, Auftreten neuer Schädlinge, Wasserverfügbarkeit)</hasNote>
+    </node>
+    <node id="COND06" label="Technische und infrastrukturelle Rahmenbedingungen oder Voraussetzungen">
+    <hasNote>(z.B. etablierte technische Standards, vorhandene Basistechnologien, vorausgesetzte Infrastrukturen)</hasNote>
+    </node>
+    <node id="COND07" label="Marktbedingungen">
+    <hasNote>(z.B. Preisverhältnisse, Kaufkraft, Wettbewerbsverhältnisse etc.)</hasNote>
+    </node>
+    <node id="COND08" label="Sonstiges">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

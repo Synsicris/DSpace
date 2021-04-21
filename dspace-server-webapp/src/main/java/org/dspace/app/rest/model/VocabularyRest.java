@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.dspace.app.rest.RestResourceController;
@@ -19,7 +20,7 @@ import org.dspace.app.rest.RestResourceController;
 @LinksRest(links = {
     @LinkRest(name = VocabularyRest.ENTRIES,
             method = "filter"
-    ),
+            ),
 })
 public class VocabularyRest extends BaseObjectRest<String> {
 
@@ -35,7 +36,7 @@ public class VocabularyRest extends BaseObjectRest<String> {
 
     private Integer preloadLevel;
 
-    private String entity;
+    private List<String> entity;
 
     private Map<String,String> externalSource;
 
@@ -76,11 +77,11 @@ public class VocabularyRest extends BaseObjectRest<String> {
         this.preloadLevel = preloadLevel;
     }
 
-    public String getEntity() {
+    public List<String> getEntity() {
         return entity;
     }
 
-    public void setEntity(String entity) {
+    public void setEntity(List<String> entity) {
         this.entity = entity;
     }
 

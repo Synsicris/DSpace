@@ -6,6 +6,9 @@
     <name-map collection-handle="default" submission-name="impact_pathway" />
   </submission-map>
   <step-definitions>
+    <!-- The "collection" step is a "special step" which is *REQUIRED* -->
+    <!-- In DSpace, all submitted items must be immediately assigned -->
+    <!-- to a collection. This step ensures that a collection is always selected. -->
     <step-definition id="collection" mandatory="true">
       <heading>submit.progressbar.collection</heading>
       <processing-class>org.dspace.app.rest.submit.step.CollectionStep</processing-class>
@@ -146,6 +149,11 @@
     </step-definition>
     <step-definition id="publications_result" mandatory="true">
       <heading>submit.progressbar.describe.publications_result</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="publications_result_more" mandatory="true">
+      <heading>submit.progressbar.describe.publications_result_more</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -482,11 +490,13 @@
     <submission-process name="publications">
       <step id="collection" />
       <step id="publications_result" />
+      <step id="publications_result_more" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications_result" />
+      <step id="publications_result_more" />
       <step id="upload" />
       <step id="license" />
     </submission-process>

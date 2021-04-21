@@ -7,6 +7,8 @@
  */
 package org.dspace.app.rest.converter;
 
+import java.util.Arrays;
+
 import org.dspace.app.rest.model.VocabularyRest;
 import org.dspace.app.rest.projection.Projection;
 import org.dspace.app.rest.utils.AuthorityUtils;
@@ -34,7 +36,7 @@ public class VocabularyRestConverter implements DSpaceConverter<ChoiceAuthority,
         authorityRest.setScrollable(authority.isScrollable());
         authorityRest.setPreloadLevel(authority.getPreloadLevel());
         if (authority instanceof LinkableEntityAuthority) {
-            authorityRest.setEntity(((LinkableEntityAuthority) authority).getLinkedEntityType());
+            authorityRest.setEntity(Arrays.asList(((LinkableEntityAuthority) authority).getLinkedEntityType()));
             authorityRest.setExternalSource(((LinkableEntityAuthority) authority).getExternalSource());
         }
 

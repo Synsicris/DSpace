@@ -735,6 +735,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         cloneMetadata(context, this, clone, communityToClone);
         cloneCommunityGroups(context, clone, communityToClone, scopedRoles);
 
+        List<Item> newItems = new ArrayList<Item>();
+        Map<UUID, CloneDTO> oldItem2clonedItem = new HashMap<UUID, CloneDTO>();
+
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
             cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
@@ -746,15 +749,35 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
             cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
-                                 newName, grants);
+                                 newName, grants,newItems, oldItem2clonedItem);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
         }
+        updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return clone;
     }
 
+    private void updateClonedItems(Context context, List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) {
+        for (Item item : newItems) {
+            for (MetadataValue metadataValue : item.getMetadata()) {
+                if (StringUtils.isNotBlank(metadataValue.getAuthority())) {
+                    updateClone(metadataValue, oldItem2clonedItem.get(UUID.fromString(metadataValue.getAuthority())));
+                }
+
+            }
+        }
+    }
+
+    private void updateClone(MetadataValue metadataValue, CloneDTO cloneDTO) {
+        if (Objects.nonNull(cloneDTO)) {
+            metadataValue.setAuthority(cloneDTO.getItemUuid().toString());
+            metadataValue.setValue(cloneDTO.getTitle());
+        }
+    }
+
     private void cloneCollectionItems(Context context, Collection newCollection, Collection collection,
-            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants) throws SQLException {
+            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) throws SQLException {
         Iterator<Item> items = itemService.findAllByCollection(context, collection);
         try {
             while (items.hasNext()) {
@@ -762,11 +785,14 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, false);
                 Item newItem = installItemService.installItem(context, workspaceItem);
                 collectionService.addItem(context, newCollection, newItem);
+                cloneMetadata(context, itemService, newItem, item);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
                         replacePlaceholderValue(context, rootCommunityUUID, newItem, newName, grants);
                     }
                 }
+                newItems.add(newItem);
+                oldItem2clonedItem.put(item.getID(), new CloneDTO(newItem.getID(), newItem.getName()));
             }
         } catch (AuthorizeException e) {
             log.error(e.getMessage(), e);
@@ -781,9 +807,10 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
                              relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
-        itemService.addMetadata(context, newItem, "dc", "title", null, null, newName);
+        itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
-            itemService.addMetadata(context, newItem, "cris", "workspace", "shared", null, grants);
+            itemService.replaceMetadata(context, newItem, "cris", "workspace", "shared", null, grants, null,
+                                        Choices.CF_UNSET, 0);
         }
     }
 
@@ -802,8 +829,14 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         List<MetadataValue> metadataValue = dsoToClone.getMetadata();
         for (MetadataValue metadata : metadataValue) {
-            service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                metadata.getQualifier(), null, metadata.getValue());
+            if (StringUtils.isNotBlank(metadata.getAuthority())) {
+                service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
+                        metadata.getQualifier(), null, metadata.getValue(), metadata.getAuthority(),
+                        Choices.CF_ACCEPTED, 0);
+            } else {
+                service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
+                        metadata.getQualifier(), null, metadata.getValue());
+            }
         }
     }
 

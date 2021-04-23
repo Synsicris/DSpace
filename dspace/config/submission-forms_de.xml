@@ -979,49 +979,12 @@
         </field>
       </row>
     </form>
-    <form name="patents_result-dc-identifier-patentnumber">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
-          <label>Patentnummer</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>language</dc-element>
-          <dc-qualifier>iso</dc-qualifier>
-          <label>Sprache</label>
-          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Direktlink</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="patents">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung / Titel</label>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1037,41 +1000,40 @@
           <input-type value-pairs-name="patent_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Form der Verwerung</label>
+          <input-type value-pairs-name="patent_use">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Bitte wählen Sie aus, in welcher Form eine Verwertung vorgesehen ist.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>patentuse</dc-qualifier>
+          <label>Erläuterung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Nutzung des Patents</label>
-          <input-type value-pairs-name="patent_use">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Wählen Sie eine Nutzungsart aus.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>patentuse</dc-qualifier>
-          <label>Erläuterung zur Nutzung</label>
+          <label>Anwendungsbereich</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Kommentieren Sie kurz die Nutzung.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung des Anwendungsbereichs</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Beschreiben Sie kurz den geplanten Anwendungsbereich.</hint>
+          <hint>Beschreiben Sie bitte kurz mögliche Anwendungsbereiche</hint>
         </field>
       </row>
     </form>
@@ -1086,43 +1048,43 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint />
+          <hint>Geben Sie bitte die Anmeldenummer aus dem Formular zu der Registrierung beim Patentamt ein.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>filled</dc-qualifier>
-          <label>Anmeldedatum</label>
+          <label>Datum der Anmeldung</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint />
+          <hint>.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>applicant</dc-qualifier>
-          <label>Name(n) und Wohnsitz(e) des Antragstellers /der Antragsteller</label>
+          <label>Antragsteller</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte kopieren Sie die Angaben aus dem Anmeldeformular.</hint>
+          <hint>Bitte übertragen sie die Daten zum Antragsteller  aus dem Anmeldeformular in folgender Form: Name(n), Wohnsitz, PLZ, Ort, Land</hint>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>rightsHolder</dc-element>
-          <label>Rechteinhaber</label>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>patentnumber</dc-qualifier>
+          <label>Nummer des Schutzrechts (Patentummer/Nummer des Gebrauchsmusters)</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <style>col-md-4</style>
+          <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -1132,8 +1094,20 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
+          <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
         </field>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>rightsHolder</dc-element>
+          <label>Rechteinhaber (wenn veröffentlicht)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
@@ -1143,14 +1117,25 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
+          <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
+        </field>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateAccepted</dc-element>
+          <label>Datum der Zulassung (gilt nur für Patente)</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
+          <type-bind>patent</type-bind>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
           <label>Herausgeber</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint>Herausgeber ist das Europäische Patentamt</hint>
@@ -1161,23 +1146,46 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
-          <label>Kurzfassung</label>
+          <label>Zusammenfassung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Die Zusammenfassung hilft anderen, möglichst schnell zu erkennen, worum es bei dem Schutzrecht geht.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
-          <label>Patentinformationen</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>language</dc-element>
+          <dc-qualifier>iso</dc-qualifier>
+          <label>Sprache</label>
+          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+          <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Direktlink zum Dokument</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Hier können Sie den Link zu der Veröffentlichung beim Europäischen Patentamt angeben</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>applications</dc-qualifier>
+          <label>Verlinkung zu einer Anwendung von Lösung / Veränderung / Innovation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Wenn das Schutzrecht verwertet wird, verlinken Sie hier bitte zu der Anwendung.</hint>
         </field>
       </row>
     </form>
@@ -2639,7 +2647,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Art der Ausgründung</label>
-          <input-type value-pairs-name="spinoff_type">dropdown</input-type>
+          <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Wählen Sie einen Typ aus.</hint>

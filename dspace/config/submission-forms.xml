@@ -980,43 +980,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="patents_result-dc-identifier-patentnumber">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
-          <label>Patent number</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>language</dc-element>
-          <dc-qualifier>iso</dc-qualifier>
-          <label>Language</label>
-          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Web address</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="patents">
       <row>
         <field>
@@ -1038,21 +1001,19 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="patent_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Patent use</label>
-          <input-type value-pairs-name="patent_use">dropdown</input-type>
+          <input-type value-pairs-name="patent_use">list</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint>Select the type of use.</hint>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -1061,6 +1022,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint>Enter any other description or comments for patetent use.</hint>
         </field>
       </row>
@@ -1114,16 +1076,16 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>rightsHolder</dc-element>
-          <label>Inventor(s)</label>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>patentnumber</dc-qualifier>
+          <label>Patent number</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
-          <hint>INID code 72 for this item, if published</hint>
+          <style>col-md-4</style>
+          <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -1136,6 +1098,18 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>INID code 43 for this item</hint>
         </field>
         <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>rightsHolder</dc-element>
+          <label>Inventor(s)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>INID code 72 for this item, if published</hint>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>ipc</dc-qualifier>
@@ -1147,11 +1121,22 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>INID code 51 for this item</hint>
         </field>
         <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateAccepted</dc-element>
+          <label>Approval Date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <type-bind>patent</type-bind>
+        </field>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
           <label>Issuer</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint>The issuer of the patent: the patent office</hint>
@@ -1172,13 +1157,36 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
-          <label>Patent numbers and patent documents</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>language</dc-element>
+          <dc-qualifier>iso</dc-qualifier>
+          <label>Language</label>
+          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint>INID code 10 for this item</hint>
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Web address</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>applications</dc-qualifier>
+          <label>Link to an application</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
     </form>
@@ -2642,7 +2650,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Spin-off type</label>
-          <input-type value-pairs-name="spinoff_type">dropdown</input-type>
+          <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Select the type.</hint>

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -102,6 +103,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Autowired
     protected InstallItemService installItemService;
 
+    private String matadataToSkip[] = new String[] { 
+            "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
     protected CommunityServiceImpl() {
         super();
 
@@ -829,15 +832,32 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         List<MetadataValue> metadataValue = dsoToClone.getMetadata();
         for (MetadataValue metadata : metadataValue) {
+            if (isMetadataToSkip(service, target, metadata)) {
+                continue; 
+            }
             if (StringUtils.isNotBlank(metadata.getAuthority())) {
                 service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
                         metadata.getQualifier(), null, metadata.getValue(), metadata.getAuthority(),
-                        Choices.CF_ACCEPTED, 0);
+                        Choices.CF_ACCEPTED);
             } else {
                 service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
                         metadata.getQualifier(), null, metadata.getValue());
             }
         }
+    }
+
+    private <T extends DSpaceObject> boolean isMetadataToSkip(DSpaceObjectService<T> service, T target,
+            MetadataValue metadata) {
+        String metadataName = metadata.getSchema() + "." + metadata.getElement();
+        if (StringUtils.isNotBlank(metadata.getQualifier())) {
+            metadataName += "." + metadata.getQualifier();
+        }
+        Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
+        if (Arrays.stream(matadataToSkip).anyMatch(metadataName::equals)) {
+            List<MetadataValue> metadataList = service.getMetadataByMetadataString(target, metadataName);
+            return metadataList.size() > 0;
+        }
+        return false;
     }
 
     private UUID extractItemUuid(String value) {

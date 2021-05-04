@@ -602,7 +602,31 @@
         </field>
       </row>
     </form>
-    <form name="publications_result-dc-contributor-author">
+    <form name="plan_publications">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, mit der Angabe von Anzahl, Art und Thema.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="publications-dc-contributor-author">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -628,31 +652,7 @@
         </field>
       </row>
     </form>
-    <form name="plan_publications">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, mit der Angabe von Anzahl, Art und Thema.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="publications_result">
+    <form name="publications">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -741,24 +741,76 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
-          <label>Herausgeber / herausgebender Verlag</label>
+          <label>Verlag</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Geben Sie hier den Herausgeber bzw. herausgebenden Verlag ein.</hint>
+          <hint>Geben Sie hier den herausgebenden Verlag ein.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>titel</dc-element>
-          <dc-qualifier>partofjournal</dc-qualifier>
-          <label>Zeitschriftentitel</label>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>publications</dc-qualifier>
+          <label>In Buch (Monographie, Sammelwerk)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Tragen Sie hier den Titel der Zeitschrift ein, in dem die Veröffentlichung erschienen ist.</hint>
-          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+          <hint>Die Publikation, in der diese Veröffentlichung enthalten ist. Z. B. ein Buchkapitel listet hier das Buch auf, ein Beitrag zu einer Konferenz listet hier den Tagungsband auf.</hint>
+          <type-bind>c_3248, c_5794</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>isbn</dc-qualifier>
+          <label>ISBN</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Wenn zu der Publikation eine ISBN (International Standard Book Number) gehört, dann tragen Sie diese bitte hier ein.</hint>
+          <type-bind>c_3248, c_5795</type-bind>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>doi</dc-qualifier>
+          <label>DOI</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Wenn zu der Publikation eine DOI gehört, dann tragen Sie diese bitte hier ein.</hint>
+          <type-bind>c_3248, c_5796</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>ispartof</dc-qualifier>
+          <label>In Zeitschrift oder Reihe</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Geben Sie hier den Titel ein, in dem die Veröffentlichung erschienen ist.</hint>
+          <type-bind>c_6501, c_7bab, c_7bab, c_dcae04bc, c_beb9, c_2df8fbb1, c_3e5a, c_998f, c_b239</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>issn</dc-qualifier>
+          <label>ISSN</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Tragen Sie bitte die ISSN ein, wenn sie nicht im System gefunden wurde.</hint>
+          <type-bind>c_6501, c_7bab, c_7bab, c_dcae04bc, c_beb9, c_2df8fbb1, c_3e5a, c_998f, c_b240</type-bind>
         </field>
       </row>
       <row>
@@ -770,10 +822,10 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint />
-          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
+          <hint>Falls zutreffend, geben Sie die Bandnummer ein.</hint>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>oaire</dc-schema>
           <dc-element>citation</dc-element>
@@ -782,88 +834,31 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <hint>Falls zutreffend, geben Sie die Heft Nr. an.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oaire</dc-schema>
+          <dc-element>citation</dc-element>
+          <dc-qualifier>startPage</dc-qualifier>
+          <label>Startseite</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
-          <type-bind>journal article, software paper, review article, data paper, research article, editorial, Artikel, Softwareartikel, Übersichtsartikel, Data Paper, Forschungsartikel</type-bind>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>partofnewspaper</dc-qualifier>
-          <label>Zeitungstitel</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie hier bitte den Titel der Zeitung ein, in dem die Veröffentlichung erschienen ist.</hint>
-          <type-bind>newspaper article, Zeitungsartikel</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>partofbook</dc-qualifier>
-          <label>Titel der Monographie / des Buches</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Wenn das Dokument Teil einer Monographie oder ein Buchkapitel ist, tragen Sie hier den Titel der Monographie/des Buches ein.</hint>
-          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>oaire</dc-schema>
           <dc-element>citation</dc-element>
-          <dc-qualifier>seriesno</dc-qualifier>
-          <label>Band Nr.</label>
+          <dc-qualifier>endPage</dc-qualifier>
+          <label>Endseite</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Wenn ein Dokument in einer Reihe erschienen ist, dann geben Sie hier die Bandnummer an.</hint>
-          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Geben Sie die ISBN an.</hint>
-          <type-bind>book part / part of monographic series, Buchkapitel / Teil einer Monographie</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Tagungsband</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie hier den Titel ein, in dem die Veröffentlichung erschienen ist.</hint>
-          <type-bind>conference paper, Konferenzbeitrag</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>citation</dc-element>
-          <dc-qualifier>partofconferenceproceeding</dc-qualifier>
-          <label>Band Nr.</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Wenn ein Dokument in einer Reihe erschienen ist, dann geben Sie hier die Bandnummer an.</hint>
-          <type-bind>conference paper, Konferenzbeitrag</type-bind>
+          <hint />
         </field>
       </row>
       <row>
@@ -871,7 +866,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Verlangslink</label>
+          <label>Verlagslink</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -894,7 +889,6 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>agrovoc</dc-qualifier>
           <label>Schlagwörter</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -926,7 +920,7 @@
           <required />
           <style>col-md-6</style>
           <hint>Bei einer Abschlussarbeit oder Dissertation wird hier der Name des Erstgutachters (Doktorvaters bei Dissertationen) eingetragen.</hint>
-          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
+          <type-bind>c_db06, c_bdcc, c_7a1f</type-bind>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -936,13 +930,13 @@
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-7</style>
+          <style>col-md-6</style>
           <hint>Geben Sie hier die Namen weiterer Gutachter ein.</hint>
-          <type-bind>thesis, doctoral thesis, master thesis, bachelor thesis,schriftliche Abschlussarbeit, Dissertation oder Habilitation, Abschlussarbeit (Master), Abschlussarbeit (Bachelor)</type-bind>
+          <type-bind>c_db06</type-bind>
         </field>
       </row>
     </form>
-    <form name="publications_result_more">
+    <form name="publications_references">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -958,12 +952,12 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>publications-result</dc-qualifier>
-          <label>Verwendete Forschungsdaten</label>
+          <dc-qualifier>dataset</dc-qualifier>
+          <label>Forschungsdaten</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
-          <hint>Verlinken Sie hier im Projekt verwendete Forschungsdaten, sofern Sie diese veröffentlicht haben.</hint>
+          <hint>Verknüpfen Sie den Eintrag mit einem oder mehreren vorhandenen Datensätzen im Repository, die von der Publikation verwendet oder beschrieben werden, oder geben Sie hier die Zitation des Datensatzes an</hint>
         </field>
       </row>
       <row>
@@ -971,11 +965,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>events</dc-qualifier>
-          <label>Veranstaltung</label>
+          <label>Konferenz</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wenn es sich bei der Veröffentlichung um einen Konferenzbeitrag handelt, verlinken Sie hier bitte zu der Veranstaltung.</hint>
+          <hint>Wenn es sich bei der Veröffentlichung um einen Konferenzbeitrag handelt, geben Sie den Namen der Konferenz an.</hint>
         </field>
       </row>
     </form>
@@ -994,8 +988,7 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>patenttype</dc-qualifier>
+          <dc-element>type</dc-element>
           <label>Art des Schutzrechts</label>
           <input-type value-pairs-name="patent_type">list</input-type>
           <repeatable>false</repeatable>
@@ -1004,8 +997,9 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
+          <dc-qualifier>patentuse</dc-qualifier>
           <label>Form der Verwerung</label>
           <input-type value-pairs-name="patent_use">list</input-type>
           <repeatable>false</repeatable>
@@ -1062,22 +1056,21 @@
           <hint>.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>applicant</dc-qualifier>
-          <label>Antragsteller</label>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>rightsHolder</dc-element>
+          <label>Inhaber</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte übertragen sie die Daten zum Antragsteller  aus dem Anmeldeformular in folgender Form: Name(n), Wohnsitz, PLZ, Ort, Land</hint>
+          <hint>Bitte übertragen sie die Daten zum Inhaber aus dem Anmeldeformular in folgender Form: Name(n), Wohnsitz, PLZ, Ort, Land</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>patentnumber</dc-qualifier>
+          <dc-qualifier>patentno</dc-qualifier>
           <label>Nummer des Schutzrechts (Patentummer/Nummer des Gebrauchsmusters)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -1097,8 +1090,9 @@
           <hint>Dieses Feld wird (nach Import) automatisch gefüllt.</hint>
         </field>
         <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>rightsHolder</dc-element>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>author</dc-qualifier>
           <label>Rechteinhaber (wenn veröffentlicht)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -1166,7 +1160,7 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
           <label>Direktlink zum Dokument</label>
@@ -2086,133 +2080,6 @@
         </field>
       </row>
     </form>
-    <form name="cooperation_partners_staff-dc-relation-person">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>person</dc-qualifier>
-          <label>Personensuche</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint>Wenn die Person nicht im System zu finden ist, bitten Sie sie darum, sich im System zu registrieren. Geben Sie den Namen als Platzhalter ein.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>role</dc-qualifier>
-          <label>Rolle im Projekt</label>
-          <input-type value-pairs-name="project_staff_role">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>qualification</dc-qualifier>
-          <label>Qualifizierungsabsichten</label>
-          <input-type value-pairs-name="project_staff_qualification">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>formaddress</dc-qualifier>
-          <label>Anrede</label>
-          <input-type value-pairs-name="person_form">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Name</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>fon</dc-qualifier>
-          <label>Telefon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>mailto</dc-qualifier>
-          <label>E-Mail</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>workingfield1</dc-qualifier>
-          <label>Hauptarbeitsbereich (nach Destatis)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>workingfield2</dc-qualifier>
-          <label>weiterer Arbeitsbereich (nach Destatis)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="cooperation_partners_staff">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>person</dc-qualifier>
-          <label>Mitarbeitende im Projekt</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="subprojects">
       <row>
         <field>
@@ -2431,7 +2298,75 @@
     <form name="persons">
       <row>
         <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>givenName</dc-element>
+          <label>Vorname</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>familyName</dc-element>
+          <label>Nachname</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>email</dc-element>
+          <label>E-Mail</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>akademischer Abschluss</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <label>Disziplin / Forschungsfeld</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Persönliche Seite(n)</label>
+          <input-type>group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>person</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>orcid</dc-qualifier>
           <label>ORCID Nummer</label>
@@ -2443,51 +2378,45 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>formaddress</dc-qualifier>
-          <label>Anrede</label>
-          <input-type value-pairs-name="person_form">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation/akad. Grad</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Name der Person</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>fon</dc-qualifier>
-          <label>Telefon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>person</dc-schema>
           <dc-element>identifier</dc-element>
-          <dc-qualifier>mailto</dc-qualifier>
-          <label>E-Mail</label>
+          <dc-qualifier>scopus-author-id</dc-qualifier>
+          <label>Scopus Author ID</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>rid</dc-qualifier>
+          <label>Researcher ID</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>knowsLanguage</dc-element>
+          <label>Schriftsprachen(n)</label>
+          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>policy</dc-element>
+          <dc-qualifier>eperson</dc-qualifier>
+          <label>Eperson Policy</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2496,26 +2425,40 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>destatis1</dc-qualifier>
-          <label>Hauptarbeitsbereich (nach Destatis)</label>
+          <dc-schema>cris</dc-schema>
+          <dc-element>policy</dc-element>
+          <dc-qualifier>group</dc-qualifier>
+          <label>Group Policy</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <vocabulary closed="true">destatis</vocabulary>
         </field>
+      </row>
+    </form>
+    <form name="persons-oairecerif-identifier-url">
+      <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>destatis2</dc-qualifier>
-          <label>weiterer Arbeitsbereich (nach Destatis)</label>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>URL der Seite</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <vocabulary closed="true">destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>crisrp</dc-schema>
+          <dc-element>site</dc-element>
+          <dc-qualifier>title</dc-qualifier>
+          <label>Titel der Seite</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -2576,11 +2519,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-funding</dc-qualifier>
-          <label>Referenzjahr</label>
+          <label>Jahr der Förderung</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -2591,17 +2534,17 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Zuwendung (EUR)</label>
+          <label>Höhe der Förderung (EUR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -2612,7 +2555,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2650,7 +2593,7 @@
           <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie einen Typ aus.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -2658,12 +2601,12 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>registertype</dc-qualifier>
-          <label>Registertyp</label>
+          <label>Registerart</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Wählen Sie einen Typ aus.</hint>
+          <hint>Wählen Sie das passende Register.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -2686,7 +2629,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Tragen Sie die Nummer ein.</hint>
+          <hint>Tragen Sie hier die Registernummer ein.</hint>
         </field>
       </row>
       <row>
@@ -2698,20 +2641,33 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Branche</label>
+          <label>Wirtschaftszweig</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint />
+          <style>col-md-8</style>
+          <hint>Wählen Sie den Wirtschaftszweig bitte so spezifisch wie möglich.</hint>
+          <type-bind>Transfer spin-off,  Competence spin-off</type-bind>
           <vocabulary closed="true">nace</vocabulary>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>purpose</dc-qualifier>
+          <label>Zweck (Angabe nur für Verein)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint>Bitte nennen Sie den Vereinszweck gemäß Satzung.</hint>
+          <type-bind>Assosiation</type-bind>
         </field>
       </row>
       <row>
@@ -2739,7 +2695,7 @@
           <vocabulary closed="true">countries</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
           <label>Webadresse</label>
@@ -2747,7 +2703,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
+          <hint>Tragen Sie hier, falls vorhanden, den Link zur Webseite ein.</hint>
         </field>
       </row>
       <row>
@@ -2755,11 +2711,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
-          <label>zugehörige Forschungsorganisation (falls vorhanden)</label>
+          <label>zugehörige Forschungsorganisation</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Bitte wählen Sie die Einrichtung, aus welcher die Gründung erfolgt.</hint>
         </field>
       </row>
     </form>
@@ -2783,7 +2739,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-performance</dc-qualifier>
-          <label>Übersicht zur wirtschaftlichne Entwicklung</label>
+          <label>Übersicht zur wirtschaftlichen Entwicklung</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2795,11 +2751,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>notes</dc-qualifier>
-          <label>Erläuterungen zum Nutzen/Vorteil für Praxis und Gesellschaft</label>
+          <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Erläutern Sie kurz den Nutzen der Ausgründung für Praxis und Gesellschaft</hint>
+          <hint>Bitte erläutern Sie den Erfolg bzw. den Nutzen der Ausgründung für Praxis und Gesellschaft.</hint>
         </field>
       </row>
     </form>
@@ -3032,12 +2988,11 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
         </field>
       </row>
     </form>
-    <form name="innovationpotentials-dc-type-innovation">
+    <form name="innovationpotentials-dc-type">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
           <label>Art</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3077,7 +3032,6 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
           <label>Art und Akteursgruppen für eine Lösung, Veränderung oder Innovation</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -3564,7 +3518,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="events">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project-contribution</dc-qualifier>
           <label>Art der Beteiligung des Projektes an der Veranstaltung</label>
@@ -3599,7 +3553,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
           <label>Bitte charakterisieren Sie, wozu die Veranstaltung im Projekt dient (maximal 3 Angaben).</label>
@@ -3625,7 +3579,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Teilnehmende oder beteiligte Akteursgruppe(n)</label>
@@ -3651,9 +3605,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     <form name="events_result">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>startDate</dc-qualifier>
           <label>Startdatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
@@ -3662,9 +3616,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Bitte wählen Sie das Startdatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>endDate</dc-qualifier>
           <label>Enddatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
@@ -3673,7 +3627,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Bitte wählen Sie das Enddatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>duration</dc-qualifier>
           <label>Gesamtdauer (h)</label>
@@ -3684,7 +3638,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Geben Sie bitte die Gesamtdauer der Interaktion/Veranstaltung in Stunden an.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>participants</dc-qualifier>
           <label>Anzahl Teilnehmende</label>
@@ -3695,9 +3649,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Charakterisieren Sie bitte die Interaktion oder Veranstaltung durch eine ungefähre Angabe der Anzahl an Teilnehmenden.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>city</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>place</dc-qualifier>
           <label>Ort</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3706,9 +3660,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>place</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>country</dc-qualifier>
           <label>Land</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3770,12 +3724,11 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         </field>
       </row>
     </form>
-    <form name="process_events_frequency-dc-type-process-event">
+    <form name="process_events_frequency-dc-type">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event</dc-qualifier>
           <label>Art</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3823,7 +3776,6 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event</dc-qualifier>
           <label>Angaben zur Häufigkeit</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -3846,12 +3798,11 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         </field>
       </row>
     </form>
-    <form name="process_events_date-dc-title-date">
+    <form name="process_events_date-dc-type">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event</dc-qualifier>
           <label>Art</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3943,8 +3894,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>date</dc-qualifier>
+          <dc-element>type</dc-element>
           <label>Daten zum Nachweis wichtiger Veranstaltungen</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -4508,7 +4458,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>application</dc-qualifier>
-          <label>4) Werden bei hinsichtlich der Anwendung und Wirkung der Projektergebnisse geschlechterspezifische Unterschiede berücksichtigt?</label>
+          <label>4) Werden hinsichtlich der Anwendung und Wirkung der Projektergebnisse geschlechterspezifische Unterschiede berücksichtigt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4532,7 +4482,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>5) In welcher Weise trägt das Projekt zur Gleichberechtigung der im Projekt Beschäftigten, unabhängig von deren Geschlecht, bei?</label>
+          <label>5) In welcher Weise trägt das Projekt zur Gleichberechtigung der im Projekt Beschäftigten bei?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4557,7 +4507,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Kernaussage zur Reflexion der Geschlechteraspekte im Rahmen des Projektes</label>
+          <label>Fazit zur Berücksichtigung von Geschlechteraspekten im Projekt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -4597,7 +4547,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Reflexion (oben im Text)</hint>
+          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Reflexion (oben im Text).</hint>
         </field>
       </row>
     </form>
@@ -4606,7 +4556,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Auswahl relevanter ethischer Aspekte und Beschreibung von Maßnahmen zum angemessenem Umgang damit</label>
+          <label>Auswahl relevanter ethischer Aspekte und Beschreibung von Maßnahmen zum angemessenen Umgang damit</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5468,7 +5418,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="yes" dc-term="yes">
       <pair>
-        <displayed-value>ja</displayed-value>
+        <displayed-value>Ja</displayed-value>
         <stored-value>yes</stored-value>
       </pair>
     </value-pairs>
@@ -6186,12 +6136,12 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="spinoff_type" dc-term="spinoff_type">
       <pair>
-        <displayed-value>Kompetenz-Sipn-off</displayed-value>
-        <stored-value>Competence spin-off</stored-value>
+        <displayed-value>Transfer-Spin-off (Anwendung von Forschungsergebnissen und Methoden)</displayed-value>
+        <stored-value>Transfer spin-off</stored-value>
       </pair>
       <pair>
-        <displayed-value>Transfer-Spin-off</displayed-value>
-        <stored-value>Transfer spin-off</stored-value>
+        <displayed-value>Kompetenz-Spin-off (Anwendung angeeigneter personenbezogener Fähigkeiten und Kompetenzen)</displayed-value>
+        <stored-value>Competence spin-off</stored-value>
       </pair>
       <pair>
         <displayed-value>Verein</displayed-value>
@@ -7047,12 +6997,12 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="yes_no" dc-term="yes_no">
       <pair>
-        <displayed-value>ja</displayed-value>
-        <stored-value>yes</stored-value>
+        <displayed-value>Ja</displayed-value>
+        <stored-value>Yes</stored-value>
       </pair>
       <pair>
-        <displayed-value>nein</displayed-value>
-        <stored-value>no</stored-value>
+        <displayed-value>Nein</displayed-value>
+        <stored-value>No</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="ethics" dc-term="ethics">
@@ -7073,7 +7023,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>animal-testing</stored-value>
       </pair>
       <pair>
-        <displayed-value>5) Forschungsarbeiten können der Umwelt, den Tieren oder Pflanzen schaden</displayed-value>
+        <displayed-value>5) Forschungsarbeiten können der Umwelt, Tieren oder Pflanzen schaden</displayed-value>
         <stored-value>harmful-env</stored-value>
       </pair>
       <pair>

@@ -55,6 +55,7 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.CrisConstants;
@@ -124,6 +125,8 @@ public class StructBuilder {
             = EPersonServiceFactory.getInstance().getGroupService();
     protected static AuthorizeService authorizeService
             = AuthorizeServiceFactory.getInstance().getAuthorizeService();
+    protected static ItemService itemService
+            = ContentServiceFactory.getInstance().getItemService();
     /**
      * Default constructor
      */
@@ -302,6 +305,7 @@ public class StructBuilder {
         collectionMap.put("license", MD_LICENSE);
         collectionMap.put("provenance", MD_PROVENANCE_DESCRIPTION);
         collectionMap.put("policy-group", null);
+        collectionMap.put("item-template", null);
 
         Element[] elements = new Element[]{};
         try {
@@ -690,6 +694,29 @@ public class StructBuilder {
     }
 
     /**
+     * Create an item template for a collection
+     *
+     * @param context         the context of the request
+     * @param node            the Node element that contains information for creating item template
+     * @param collection      the collection for which create the item template
+     * @throws SQLException, AuthorizeException, TransformerException 
+     */
+    private static void handleItemTemplate(Context context, Node node, Collection collection)
+            throws SQLException, AuthorizeException, TransformerException {
+        collectionService.createTemplateItem(context, collection);
+        Item templateItem = collection.getTemplateItem();
+        NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
+        for (int i = 0; i < metadataList.getLength(); i++) {
+            String metadataName = getAttributeValue(metadataList.item(i), "name");
+            System.out.println(metadataName);
+            String metadatavalue = getStringValue(metadataList.item(i));
+            System.out.println(metadatavalue);
+            String[] elements = MetadataFieldName.parse(metadataName);
+            itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue);
+        }
+    }
+
+    /**
      * Return the int value for the resource policy by string value
      *
      * @param policyType the string value to convert
@@ -896,6 +923,8 @@ public class StructBuilder {
                             policyGroupName = getStringValue(nl.item(j));
                             handleResourcePolicyGroup(context, policyGroupName, policyType, collection, toDelete);
                             toDelete = false;
+                        } else if (entry.getKey().equals("item-template")) {
+                            handleItemTemplate(context, nl.item(j), collection);
                         } else {
                             collectionService.setMetadataSingleValue(context, collection,
                                 entry.getValue(), null, getStringValue(nl.item(j)));

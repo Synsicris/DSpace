@@ -1,25 +1,2088 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+<node id="ResourceTypeGenres" label="DESTATIS 2021-04-21">
   <isComposedBy>
-    <node id="ID1" label="Cascade dropdown #1">
-    <hasNote>This cascade dropdown is still under construction.</hasNote>
+    <node id="01" label="Geisteswissenschaften" selectable="false">
+    <hasNote></hasNote>
       <isComposedBy>
-        <node id="ID2" label="Item #1">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        <node id="010" label="Geisteswissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0100" label="Geisteswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0120" label="Interdisziplinäre Studien (Schwerpunkt Sprach- und Kulturwissenschaften)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0130" label="Medienwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
         </node>
-        <node id="ID3" label="Item #2">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
+        <node id="020" label="Evang. Theologie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0200" label="Evang. Theologie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0210" label="Altes Testament (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0215" label="Diakoniewissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0230" label="Historische Theologie (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0220" label="Neues Testament (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0250" label="Praktische Theologie und Religionspädagogik (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0260" label="Religionsgeschichte und Missionswissenschaft (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0240" label="Systematische Theologie (evang. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="030" label="Kath. Theologie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0300" label="Kath. Theologie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0390" label="Altkatholische Theologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0310" label="Biblische Theologie (kath. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0315" label="Caritaswissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0320" label="Historische Theologie (kath. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0350" label="Kanonistik (kath. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0340" label="Praktische Theologie und Religionspädagogik (kath. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0330" label="Systematische Theologie (kath. Th.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="040" label="Philosophie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0400" label="Philosophie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0420" label="Didaktik der Philosophie/Ethik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0425" label="Geschichte der Philosophie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0426" label="Logik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0410" label="Religionswissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0430" label="Wissenschaftsforschung/-lehre" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="050" label="Geschichte" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0500" label="Geschichte allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0520" label="Alte Geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0570" label="Archäologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0580" label="Didaktik der Geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0585" label="Kultur- und Geistesgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0550" label="Länder-, Landesgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0530" label="Mittelalterliche Geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0540" label="Neuere und neueste Geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0590" label="Technikgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0510" label="Ur- und Frühgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0560" label="Wirtschafts- und Sozialgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="070" label="Bibliothekswissenschaft, Dokumentation" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0700" label="Bibliothekswissenschaft, Dokumentation allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0710" label="Bibliothekswissenschaft/-wesen (nicht für Verwaltungs-FH)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0720" label="Dokumentationswissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="080" label="Allgemeine und vergleichende Literatur- und Sprachwissenschaft" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0800" label="Allgemeine und vergleichende Literatur- und Sprachwissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0820" label="Allg. und vergleichende Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0810" label="Allg. und vergleichende Sprachwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0830" label="Angewandte Sprachwissenschaft, berufsbezogene Fremdsprachenausbildung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0835" label="Computerlinguistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0840" label="Fremdsprachenausbildung (f. Hörer aller Fakultäten)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0845" label="Indogermanistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="090" label="Altphilologie (klass. Philologie)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="0900" label="Altphilologie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0930" label="Byzantinistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0960" label="Didaktik der Altphilologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0910" label="Griechische Philologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0920" label="Lateinische Philologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0940" label="Neugriechisch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="0950" label="Papyrologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="100" label="Germanistik (Deutsch, germanische Sprachen ohne Anglistik)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1000" label="Germanistik (Deutsch, germanische Sprachen ohne Anglistik) allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1040" label="Deutsch als Fremdsprache oder als Zweitsprache" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1080" label="Deutsche Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1090" label="Deutsche Sprachwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1050" label="Didaktik der deutschen Sprache" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1030" label="Niederlandistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1020" label="Skandinavistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1070" label="Sonstige germanische Sprachen (ohne Anglistik)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="110" label="Anglistik, Amerikanistik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1110" label="Amerikanistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1100" label="Anglistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1120" label="Didaktik des Englischen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1125" label="Wirtschaftsenglisch, Englische Fachsprachen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="120" label="Romanistik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1200" label="Romanistik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1215" label="Didaktik des Französischen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1225" label="Didaktik des Italienischen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1235" label="Didaktik des Spanischen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1210" label="Französische Sprach- und Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1230" label="Iberoromanische Sprach- und Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1220" label="Italienische Sprach- und Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1240" label="Sonstige romanische Sprachen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="130" label="Slawistik, Baltistik, Finno-Ugristik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1300" label="Slawistik, Baltistik, Finno-Ugristik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1310" label="Slawistik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1380" label="Balkanologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1350" label="Baltistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1370" label="Finno-Ugristik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1315" label="Ostslawische Philologien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1346" label="Polnisch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1320" label="Russische Sprach-und Literaturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1347" label="Sorbisch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1340" label="Südslawische Philologien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1348" label="Tschechisch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1345" label="Westslawische Philologien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="140" label="Sonstige/Außereuropäische Sprach- und Kulturwissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1400" label="Sonstige/Außereuropäische Sprach- und Kulturwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1420" label="Afrikanistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1410" label="Ägyptologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1430" label="Altorientalistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1570" label="Außereuropäische Sprachen und Kulturen Amerikas" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1575" label="Außereuropäische Sprachen und Kulturen Australiens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1490" label="Indologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1480" label="Iranistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1470" label="Islamwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1540" label="Japanologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1460" label="Judaistik/Hebräisch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1465" label="Kaukasistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1550" label="Koreanistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1576" label="Orientalistik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1450" label="Semitistik, Arabistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1530" label="Sinologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1440" label="Sprachen und Kulturen des christlichen Orients" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1445" label="Sprachen und Kulturen des Nahen und Mittleren Ostens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1495" label="Sprachen und Kulturen Ostasiens allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1560" label="Sprachen und Kulturen Südostasiens und Ozeaniens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1520" label="Sprachen und Kulturen Zentralasiens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1510" label="Turkologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1610" label="Sonstige Sprachwissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="160" label="Kulturwissenschaften i.e.S." selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1650" label="Allgemeine Kulturwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1580" label="Ethnologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1660" label="Europäische Ethnologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1590" label="Volkskunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="195" label="Islamische Studien" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1950" label="Islamische Studien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
         </node>
       </isComposedBy>
-    </node>
-    <node id="ID4" label="Cascade dropdown #2">
-    <hasNote>This cascade dropdown is still under construction.</hasNote>
-      <isComposedBy>
-        <node id="ID5" label="Item #1">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
         </node>
-        <node id="ID6" label="Item #2">
-        <hasNote>This cascade dropdown is still under construction.</hasNote>
+    <node id="02" label="Sport" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="200" label="Sport" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2000" label="Sportwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2005" label="Didaktiken einzelner Sportarten" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2010" label="Sportmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2020" label="Sportpädagogik/Sportpsychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="03" label="Rechts-, Wirtschafts- und Sozialwissenschaften" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="220" label="Rechts-, Wirtschafts- und Sozialwissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2200" label="Rechts-, Wirtschafts- und Sozialwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2210" label="Interdisziplinäre Studien (Schwerpunkt Rechts-, Wirtschafts- und Sozialwissenschaften)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2240" label="Kommunikationswissenschaft/Publizistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2220" label="Wirtschafts- und Sozialwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2230" label="Wirtschafts- und Sozialpolitik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="225" label="Regionalwissenschaften (soweit nicht einzelnen Lehr- und Forschungsbereichen oder anderen Fächergruppen zuzuordnen)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2250" label="Afrika" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2255" label="Lateinamerika" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2265" label="Naher und Mittlerer Osten" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2260" label="Nordamerika" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2290" label="Nord-und Westeuropa" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2270" label="Ostasien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2285" label="Ost-undSüdosteuropa" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2275" label="Südasien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2280" label="Südostasien und Ozeanien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="230" label="Politikwissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2300" label="Politikwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2350" label="Internationale Politik, Internationale Beziehungen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2360" label="Politische Bildung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="235" label="Sozialwissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2320" label="Sozialwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2340" label="Bevölkerungswissenschaft (Demographie)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2345" label="Sozialkunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2330" label="Soziologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="240" label="Sozialwesen" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2400" label="Sozialwesen allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2410" label="Soziale Arbeit" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2420" label="Sozialpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="250" label="Rechtswissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2500" label="Rechtswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2630" label="Arbeitsrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2670" label="Bürgerliches Recht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2665" label="Europarecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2620" label="Handelsrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2580" label="Internationales Recht und Rechtsvergleichung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2540" label="Kirchenrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2545" label="Kriminologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2560" label="Öffentliches Recht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2550" label="Privatrecht (ohne Arbeitsrecht)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2650" label="Prozessrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2520" label="Rechts- und Staatsphilosophie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2510" label="Rechtsgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2515" label="Rechtsinformatik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2530" label="Rechtssoziologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2680" label="Sozialrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2590" label="Steuerrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2570" label="Strafrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2690" label="Versicherungsrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2640" label="Wirtschaftsrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="270" label="Verwaltungswissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2700" label="Verwaltungswissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2770" label="Allgemeine innere Verwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2710" label="Arbeits- und Berufsberatung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2720" label="Arbeitsverwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2711" label="Archivwesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2730" label="Auswärtige Angelegenheiten" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2740" label="Bankwesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2712" label="Bibliothekswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2750" label="Bundeswehrverwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2760" label="Finanzverwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2780" label="Justizvollzug" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2790" label="Polizei/Verfassungsschutz" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2810" label="Post- und Fernmeldewesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2610" label="Rechtspflege" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2820" label="Sozialverwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2830" label="Verkehrswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2840" label="Zoll- und Steuerverwaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="290" label="Wirtschaftswissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="2900" label="Wirtschaftswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3010" label="Arbeitslehre/-wissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2960" label="Betriebswirtschaftslehre" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2980" label="Finanzwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2966" label="Internationale Wirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2985" label="Medienwirtschaft/Medienmanagement" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2940" label="Ökonometrie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2925" label="Sportmanagement/Sportökonomie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2815" label="Tourismuswirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2905" label="Umweltwirtschaft/Umweltökonomie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2971" label="Verkehrswirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2835" label="Versicherungswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2930" label="Volkswirtschaftslehre" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2920" label="Wirtschaftsinformatik (f. Wirtschaftsingenieure)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2935" label="Wirtschaftsinformatik (f. Wirtschaftswiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2936" label="Wirtschaftsmathematik (f. Wirtschaftswiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2910" label="Wirtschaftspädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2915" label="Wirtschaftsstatistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="310" label="Wirtschaftsingenieurwesen mit wirtschaftswissenschaftlichem Schwerpunkt" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3100" label="Wirtschaftsingenieurwesen mit wirtschaftswissenschaftlichem Schwerpunkt" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3110" label="Facility Management" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="315" label="Psychologie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1700" label="Psychologie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1750" label="Allgemeine und kognitive Psychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1715" label="Arbeits-, Organisations- und Wirtschaftspsychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1760" label="Biologische und Neuropsychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1710" label="Differentielle Psychologie, Persönlichkeitspsychologie und Diagnostik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1720" label="Entwicklungspsychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1740" label="Klinische Psychologie, Diagnostik und Psychotherapie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1725" label="Pädagogische Psychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1730" label="Sozialpsychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="320" label="Erziehungswissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="1800" label="Erziehungswissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1805" label="Berufs- und Wirtschaftspädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1801" label="Didaktik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1802" label="Empirische Bildungsforschung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1820" label="Erwachsenenbildung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1803" label="Grundschul- und Primarstufenpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1804" label="Historische Bildungsforschung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1829" label="Interkulturelle und International Vergleichende Erziehungswissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1828" label="Kultur- und Medienpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1826" label="Pädagogik der frühen Kindheit" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1825" label="Pädagogische Freizeitforschung und Sportpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1827" label="Schulpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="1806" label="Sonderpädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="04" label="Mathematik, Naturwissenschaften" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="330" label="Mathematik, Naturwissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3300" label="Mathematik, Naturwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3320" label="Interdisziplinäre Studien (Schwerpunkt Naturwissenschaft)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3310" label="Geschichte der Mathematik und Naturwissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3315" label="Naturwissenschaftliche Fachdidaktiken, soweit snicht aufteilbar" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="340" label="Mathematik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3400" label="Mathematik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3420" label="Angewandte Mathematik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3450" label="Didaktik der Mathematik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2950" label="Mathematische Statistik/Wahrscheinlichkeitsrechnung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3410" label="Reine Mathematik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3430" label="Wirtschaftsmathematik (f. Mathematiker)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="360" label="Physik, Astronomie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3600" label="Physik, Astronomie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3690" label="Astronomie, Astrophysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3650" label="Didaktik der Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3630" label="Experimentelle Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3635" label="Festkörperphysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3636" label="Kernphysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3638" label="Materialphysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3637" label="Optik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3610" label="Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3640" label="Technische Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3620" label="Theoretische Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="370" label="Chemie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3700" label="Chemie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3750" label="Analytische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3710" label="Anorganische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3760" label="Biochemie (f. Chemiker)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3800" label="Didaktik der Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3830" label="Elektrochemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3810" label="Lebensmittelchemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3770" label="Makromolekulare Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3820" label="Materialchemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3780" label="Nuklearchemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3840" label="Oberflächen- und Nanochemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3720" label="Organische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3730" label="Physikalische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3740" label="Technische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3790" label="Theoretische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3850" label="Umwelt- und Atmosphärenchemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="390" label="Pharmazie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3900" label="Pharmazie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3950" label="Klinische Pharmazie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3940" label="Pharmakologie und Toxikologie (Pharmazie)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3910" label="Pharmazeutische Biologie/Pharmakognosie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3920" label="Pharmazeutische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3930" label="Pharmazeutische Technologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="400" label="Biologie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4000" label="Biologie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4060" label="Anthropologie (Humanbiologie)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4065" label="Biochemie (f. Biologen)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4030" label="Biophysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4035" label="Biotechnologie (f. Biologen)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4040" label="Botanik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4070" label="Didaktik der Biologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4010" label="Genetik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4020" label="Mikrobiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4080" label="Neurobiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4090" label="Ökologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4050" label="Zoologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="410" label="Geowissenschaften (ohne Geographie)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4100" label="Geowissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4180" label="Geochemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4110" label="Geologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4190" label="Geoökologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4150" label="Geophysik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4170" label="Kristallographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4160" label="Meteorologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4130" label="Mineralogie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4135" label="Ozeanographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4120" label="Paläontologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4140" label="Petrologie, -graphie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="420" label="Geographie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4200" label="Geographie allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4220" label="Anthropogeographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4240" label="Biogeographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4250" label="Didaktik der Geographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4230" label="Geographische Länder- und Landschaftskunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4205" label="Geoinformatik/Geoinformationssysteme" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4210" label="Physische Geographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4215" label="Wirtschafts- und Sozialgeographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="05" label="Humanmedizin/Gesundheitswissenschaften" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="440" label="Humanmedizin allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4400" label="Humanmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="445" label="Gesundheitswissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4450" label="Gesundheitswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4459" label="Gesundheitsökonomie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4451" label="Gesundheitspädagogik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4453" label="Gesundheitswissenschaft/-management" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4455" label="Nichtärztliche Heilberufe/Therapien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4457" label="Pflegewissenschaft/-management" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="450" label="Vorklinische Humanmedizin (einschl. Zahnmedizin)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4500" label="Vorklinische Humanmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4560" label="Anatomie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4530" label="Medizinische Biologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4520" label="Medizinische Chemie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4525" label="Medizinische Informatik (nur für Mediziner)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4510" label="Medizinische Physik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4580" label="Medizinische Psychologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4585" label="Medizinische Soziologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4590" label="Medizinische Terminologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4540" label="Physiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4550" label="Physiologische Chemie (Biochemie)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4595" label="Radiologie/Strahlentherapie/Nuklearmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4610" label="Vorklin. Zahnheilkunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="470" label="Klinisch-Theoretische Humanmedizin (einschl. Zahnmedizin)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4700" label="Klinisch-Theoretische Humanmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4705" label="Arbeitsmedizin (klin.-theor.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4720" label="Biomathematik (f. Mediziner)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4725" label="Biomedizinische Technik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4745" label="Epidemiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4820" label="Experimentelle Medizin/Medizinforschung (ohne klinische Medizin)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4760" label="Geschichte der Medizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4750" label="Humangenetik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4780" label="Hygiene und Mikrobiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4810" label="Immunologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4730" label="Klinische Chemie und Hämatologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4732" label="Klinische Krebsforschung und molekulare Tumorforschung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4735" label="Medizinische Balneologie und Klimatologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4736" label="Medizinische Biophysik und Elektronenmikroskopie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4737" label="Medizinische Statistik und Dokumentation" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4738" label="Parasitologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4710" label="Pathologie, Neuropathologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4715" label="Pharmakologie und Toxikologie (medizinisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4716" label="Präventiv- und Vorsorgemedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4740" label="Radiologie (diagnostisch, ohne Betten)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4770" label="Rechtsmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4775" label="Sexualmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4776" label="Sozialmedizin (klinisch-theoretisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4790" label="Virologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="490" label="Klinisch-Praktische Humanmedizin (ohne Zahnmedizin)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="4900" label="Klin.-Prakt. Humanmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4910" label="Allgemeinmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5070" label="Anästhesiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5090" label="Arbeitsmedizin (klin.-prakt.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5020" label="Augenheilkunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4980" label="Chirurgie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4960" label="Dermato-Venerologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5120" label="Geriatrie/Gerontologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4990" label="Gynäkologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5030" label="Hals-, Nasen-, Ohrenheilkunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4940" label="Innere Medizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4950" label="Kinderheilkunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5160" label="Kinder- und Jugendpsychiatrie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5130" label="Neurochirurgie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5040" label="Neurologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5010" label="Orthopädie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5015" label="Physikalische Medizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5050" label="Psychiatrie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5060" label="Psychosomatische Medizin und Psychotherapie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5150" label="Radiologie/Strahlentherapie/Nuklearmedizin (mit Betten)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5080" label="Rehabilitation" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5140" label="Rheumatologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5110" label="Sozialmedizin (klinisch-praktisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4920" label="Spezielle Pathologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4930" label="Spezielle Pharmakologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4935" label="Sportmedizin (klinisch-praktisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4936" label="Tumorzentrum und Transfusionsmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="4970" label="Urologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="520" label="Zahnmedizin (klinisch-praktisch)" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="5200" label="Zahnmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5240" label="Kieferorthopädie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5220" label="Zahnärztliche Prothetik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5210" label="Zahnerhaltung und Paradontologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5230" label="Zahn-, Mund- und Kieferchirurgie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="07" label="Agrar-, Forst- und Ernährungswissenschaften, Veterinärmedizin" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="540" label="Veterinärmedizin allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="5400" label="Veterinärmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="550" label="Vorklinische Veterinärmedizin" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="5500" label="Vorklinische Veterinärmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5510" label="Anatomie, Embryologie und Histologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5520" label="Physiologie, Biochemie und Ernährungsphysiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5530" label="Tierschutz, Medizinische Terminologie, Geschichte der Veterinärmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5535" label="Veterinärmedizinische Zoologie und Hydrobiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="560" label="Klinisch-Theoretische Veterinärmedizin" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="5600" label="Klin.-Theor. Veterinärmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5670" label="Fleisch-, Lebensmittel- und Milchhygiene" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5640" label="Mikrobiologie, Virologie, Tierhygiene und Tierseuchenbekämpfung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5650" label="Parasitologie, Tropenveterinärmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5660" label="Pharmakologie, Toxikologie und Arzneiverordnungslehre" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5620" label="Tierernährung, allg. Landwirtschaftslehre, Verhaltenskunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5610" label="Tierzucht, vet.-med. Genetik und Zuchthygiene" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5680" label="Versuchstierkunde und Fischkunde einschl. Krankheiten" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5630" label="Veterinärmedizinische Pathologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="580" label="Klinisch-Praktische Veterinärmedizin" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="5800" label="Klin.-Prakt. Veterinärmedizin allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5840" label="Andrologie und Haustierbesamung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5830" label="Geburtshilfe und Gynäkologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5850" label="Gerichtliche Veterinärmedizin" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5860" label="Innere Veterinärmedizin einschl. Labordiagnostik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5920" label="Krankheiten des Geflügels" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5910" label="Krankheiten der kleinen Haustiere" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5890" label="Krankheiten der kleinen Klauentiere" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5870" label="Krankheiten der Pferde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5880" label="Krankheiten der Rinder" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5810" label="Tierklinik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="5820" label="Veterinärmedizinische Chirurgie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="610" label="Agrar-, Forst- und Ernährungswissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6100" label="Agrar-, Forst- und Ernährungswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6105" label="Angewandte Biotechnologie (Agrar-, F.- u. E.-wiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6106" label="Angewandte Maschinenbautechnik (Agrar-, F.- u. E.-wiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6107" label="Angewandte Naturwissenschaften (Agrar-, F.- u. E.-wiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6108" label="Angewandte Verfahrenstechnik (Agrar-, F.- u. E.-wiss.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="615" label="Landespflege, Umweltgestaltung" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6310" label="Landespflege allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6315" label="Landschaftsarchitektur (ohne Gartenbau)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6320" label="Landschaftsökologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6330" label="Landschaftsplanung und Landschaftsentwicklung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6340" label="Meliorationswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6350" label="Naturschutz" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="620" label="Agrarwissenschaften, Lebensmittel- und Getränketechnologie" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6200" label="Agrarwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6205" label="Agrarbiologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6210" label="Agrartechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6260" label="Brauwesen/Getränketechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6300" label="Gartenbau" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6250" label="Lebensmitteltechnologie/Getränketechnologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6255" label="Milch- und Molkereiwirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6220" label="Pflanzenproduktion" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6230" label="Tierproduktion" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6235" label="Weinbau- und Kellerwirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6240" label="Wirtschafts- und Sozialwissenschaften des Landbaus" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="640" label="Forstwissenschaft, Holzwirtschaft" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6400" label="Forstwissenschaft, Holzwirtschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6420" label="Forstliche Fachwissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6410" label="Forstliche Grundlagenwissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6415" label="Holzwirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6430" label="Holzwissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="650" label="Ernährungs- und Haushaltswissenschaften" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6500" label="Ernährungs- und Haushaltswissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6520" label="Ernährungswissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6510" label="Haushaltswissenschaften" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="08" label="Ingenieurwissenschaften" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="670" label="Ingenieurwissenschaften allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6700" label="Ingenieurwissenschaften allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6740" label="Interdisziplinäre Studien (Schwerpunkt Ingenieurwesen - ohne Mechatronik)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6750" label="Mechatronik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6780" label="Medientechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6710" label="Polytechnik/Arbeitslehre" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6790" label="Regenerative Energien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6720" label="Techn. Gesundheitswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="675" label="Wirtschaftsingenieurwesen mit ingenieurwissenschaftlichem Schwerpunkt" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6755" label="Wirtschaftsingenieurwesen mit ingenieurwissenschaftlichem Schwerpunkt" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="680" label="Bergbau, Hüttenwesen" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6800" label="Bergbau, Hüttenwesen allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6870" label="Archäometrie (Ingenieurarchäologie)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6860" label="Aufbereitung und Veredelung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6830" label="Bergbauliche Betriebswirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6810" label="Bergbau und mineralische Rohstoffwirtschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6820" label="Bergtechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6840" label="Bergwirtschaft, Bergrecht" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6845" label="Hütten- und Gießereiwesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6850" label="Markscheidewesen, Bergschadenkunde, Geophysik im Bergbau" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6855" label="Metallurgie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="690" label="Maschinenbau/Verfahrenstechnik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="6900" label="Maschinenbau allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6760" label="Automatisierungstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6905" label="Biotechnologie (techn. Verfahren)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6906" label="Chemieingenieurwesen/-Chemietechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6930" label="Energietechnik (ohne Elektrotechnik)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7190" label="Feinwerktechnik (mechanisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6910" label="Grundlagen des Maschinenwesens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7040" label="Holztechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7045" label="Kerntechnik, Kernverfahrenstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7030" label="Kunststofftechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6935" label="Logistik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7010" label="Medizintechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7020" label="Physikalische Technik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6907" label="Print- und Medientechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6920" label="Produkte des Maschinenbaus" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6940" label="Produktions- und Fertigungstechnologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6945" label="Sicherheitstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6980" label="Sondergebiete des Maschinenwesens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6970" label="Steuerungs-, Mess- und Regelungstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6975" label="Technische/angewandte Optik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6976" label="Textiltechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6950" label="Transport- und Verteiltechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6985" label="Umwelttechnik (einschl. Recycling)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6960" label="Verfahrenstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6965" label="Versorgungs-/Entsorgungstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="710" label="Elektrotechnik und Informationstechnik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7100" label="Elektrotechnik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7110" label="Allgemeine Elektrotechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7120" label="Elektrische Energietechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7125" label="Feinwerktechnik (elektrisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7130" label="Kommunikations- und Informationstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7160" label="Mikro-und Nanoelektronik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7140" label="Mikrosystemtechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7150" label="Optoelektronik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7170" label="Sensorik und Messtechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7155" label="Steuerungs-, Mess- und Regelungstechnik (elektrisch)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="720" label="Verkehrstechnik, Nautik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7200" label="Verkehrstechnik, Nautik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7240" label="Fahrzeug- und Flugzeugbau" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7245" label="Fahrzeugtechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7246" label="Luft- und Raumfahrttechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7230" label="Nautik, Seefahrt" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7220" label="Schiffbau, Meerestechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7210" label="Schiffsbetriebstechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7215" label="Verkehrsingenieurwesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="730" label="Architektur" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7300" label="Architektur allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7350" label="Baugeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7330" label="Bautechnik und Baubetrieb" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7335" label="Denkmalpflege (Architekt.)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7340" label="Gebäudeplanung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7320" label="Gestaltung und Darstellung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7310" label="Grundlagen und Hilfswissenschaften der Architektur" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7390" label="Innenarchitektur" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7395" label="Städtebau und Siedlungswesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="740" label="Raumplanung" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7400" label="Raumplanung allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7410" label="Grundlagen der Raumplanung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7450" label="Infrastrukturplanung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7440" label="Raumordnung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7430" label="Regional- und Landesplanung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7420" label="Stadtplanung (Ortsplanung)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7460" label="Umweltschutz" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="750" label="Bauingenieurwesen" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7500" label="Bauingenieurwesen allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7540" label="Baubetriebswesen/Baumanagement" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7570" label="Baustofftechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7560" label="Holzbau" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7510" label="Konstruktiver Ingenieurbau" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7530" label="Verkehrsbau, -wesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7520" label="Wasserbau, -wesen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7550" label="Sonstige Bereiche des Bauingenieurwesens" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="760" label="Vermessungswesen" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7600" label="Vermessungswesen allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7610" label="Kartographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7620" label="Photogrammetrie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="765" label="Informatik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="3500" label="Informatik allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3520" label="Angewandte Informatik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3540" label="Bioinformatik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3550" label="Computer- und Kommunikationstechniken" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3530" label="Ingenieurinformatik/Technische Informatik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3560" label="Künstliche Intelligenz" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3570" label="Softwaretechnologie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="3510" label="Theoretische Informatik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="2990" label="Wirtschaftsinformatik (f. Informatiker)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="770" label="Materialwissenschaft und Werkstofftechnik" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7700" label="Materialwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="6990" label="Werkstofftechnik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+        </node>
+    <node id="09" label="Kunst, Kunstwissenschaft" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="780" label="Kunst, Kunstwissenschaft allgemein" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7800" label="Kunst, Kunstwissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7820" label="Kunsterziehung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7810" label="Kunstgeschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7840" label="Kunsttherapie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7830" label="Restaurierungskunde" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="790" label="Bildende Kunst" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="7900" label="Bildende Kunst allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7950" label="Aktionen, Performance, Environment, Fotografie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7940" label="Graphik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7920" label="Malerei" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7960" label="Neue Medien" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="7930" label="Plastik, Bildhauerei" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="800" label="Gestaltung" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="8000" label="Gestaltung allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8050" label="Angewandte Kunst" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8060" label="Bühnenbild, Kostüm" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8070" label="Designtheorie, -geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8075" label="Edelstein- und Schmuckdesign" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8076" label="Graphikdesign/Kommunikationsgestaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8010" label="Industriedesign/Produktgestaltung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8020" label="Modedesign" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8040" label="Textildesign" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8030" label="Visuelle Kommunikation" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8035" label="Werkerziehung (Gestaltung)" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="820" label="Darstellende Kunst, Film und Fernsehen, Theaterwissenschaft" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="8200" label="Darstellende Kunst, Film und Fernsehen, Theaterwissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8210" label="Darstellende Kunst" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8250" label="Film und Fernsehen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8270" label="Musiktheater" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8275" label="Produktionswirtschaft im Bereich Darstellende Kunst, Theater, Film und Fernsehen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8230" label="Regie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8220" label="Schauspiel" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8225" label="Tanzwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8240" label="Theaterwissenschaft" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="830" label="Musik, Musikwissenschaft" selectable="false">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="8300" label="Musik, Musikwissenschaft allgemein" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8340" label="Dirigieren" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8320" label="Gesang" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8310" label="Instrumentalmusik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8315" label="Jazz und Popularmusik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8325" label="Kirchenmusik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8330" label="Komposition" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8360" label="Musikerziehung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8350" label="Musikwissenschaft, -geschichte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8363" label="Orchestermusik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8364" label="Rhythmik" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="8365" label="Sonstige Musikpraxis" selectable="false">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
         </node>
       </isComposedBy>
     </node>

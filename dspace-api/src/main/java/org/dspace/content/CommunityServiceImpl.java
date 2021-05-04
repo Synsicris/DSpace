@@ -717,20 +717,24 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         throws SQLException, AuthorizeException {
         Assert.notNull(name, "The name of the new community must be provided");
 
+        List<Item> newItems = new ArrayList<Item>();
+        Map<UUID, CloneDTO> oldItem2clonedItem = new HashMap<UUID, CloneDTO>();
         Community newCommunity = create(parent, context);
         UUID rootCommunityUUID = newCommunity.getID();
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
         String stringValue = this.getMetadataFirstValue(template, "dc", "relation", "project", null);
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name, grants);
+                                      name, grants, newItems, oldItem2clonedItem);
         setCommunityName(context, newCommunity, name);
+        updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
     }
 
     private Community cloneCommunity(Context context, Community communityToClone, Community clone,
-            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants)
+            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem)
             throws SQLException, AuthorizeException {
 
         List<Community> subCommunities = communityToClone.getSubcommunities();
@@ -738,13 +742,10 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         cloneMetadata(context, this, clone, communityToClone);
         cloneCommunityGroups(context, clone, communityToClone, scopedRoles);
 
-        List<Item> newItems = new ArrayList<Item>();
-        Map<UUID, CloneDTO> oldItem2clonedItem = new HashMap<UUID, CloneDTO>();
-
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
             cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                           newName, grants);
+                           newName, grants, newItems, oldItem2clonedItem);
         }
 
         for (Collection collection : subCollections) {
@@ -755,7 +756,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                                  newName, grants,newItems, oldItem2clonedItem);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
         }
-        updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return clone;
     }

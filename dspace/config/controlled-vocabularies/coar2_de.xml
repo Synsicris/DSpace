@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COAR2 2021-04-16">
+<node id="ResourceTypeGenres" label="COAR2 2021-04-26">
   <isComposedBy>
-    <node id="ID01" label="Artikel" selectable="true">
+    <node id="ID01" label="Artikel" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="ID02" label="wissenschaftlicher Artikel" selectable="true">
@@ -29,7 +29,7 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="ID09" label="Bericht / Report" selectable="true">
+    <node id="ID09" label="Bericht / Report" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="ID10" label="Bericht an Förderorganisation" selectable="true">
@@ -87,13 +87,13 @@
     <node id="ID26" label="Poster" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="ID27" label="schriftliche Abschlussarbeit" selectable="true">
+    <node id="ID27" label="schriftliche Abschlussarbeit" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="ID28" label="Dissertation oder Habilitation" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ID29" label="Abschlussarbeit (Master)" selectable="true">
+        <node id="ID29" label="Abschlussarbeit (Master, Diplom)" selectable="true">
         <hasNote></hasNote>
         </node>
         <node id="ID30" label="Abschlussarbeit (Bachelor)" selectable="true">
@@ -107,7 +107,7 @@
     <node id="ID32" label="Webseite" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="ID33" label="Andere Dokumententypen" selectable="true">
+    <node id="ID33" label="Andere Dokumententypen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="ID34" label="Arbeitspapier / Working paper" selectable="true">
@@ -167,7 +167,7 @@
         <node id="ID52" label="Rezension" selectable="true">
         <hasNote>Überblick zu veröffentlichten Arbeiten anderer</hasNote>
         </node>
-        <node id="ID53" label="Manuskript" selectable="true">
+        <node id="ID53" label="Manuskript" selectable="false">
         <hasNote>Handschrift</hasNote>
         </node>
       </isComposedBy>

@@ -754,19 +754,20 @@
           <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please formulate a clear and easily understandable title, because this will be displayed in overviews.</hint>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description</label>
-          <input-type>textarea</input-type>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>author</dc-element>
+          <dc-qualifier>affiliation</dc-qualifier>
+          <label>Affiliation</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Enter the affiliation of the author as stated on the publication.</hint>
         </field>
       </row>
     </form>

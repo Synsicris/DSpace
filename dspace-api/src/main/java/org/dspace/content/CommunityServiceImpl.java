@@ -852,7 +852,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         if (StringUtils.isNotBlank(metadata.getQualifier())) {
             metadataName += "." + metadata.getQualifier();
         }
-        Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
+
         if (Arrays.stream(matadataToSkip).anyMatch(metadataName::equals)) {
             List<MetadataValue> metadataList = service.getMetadataByMetadataString(target, metadataName);
             return metadataList.size() > 0;

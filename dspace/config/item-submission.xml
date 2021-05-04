@@ -144,13 +144,13 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="publications_result" mandatory="true">
-      <heading>submit.progressbar.describe.publications_result</heading>
+    <step-definition id="publications" mandatory="true">
+      <heading>submit.progressbar.describe.publications</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="publications_result_more" mandatory="true">
-      <heading>submit.progressbar.describe.publications_result_more</heading>
+    <step-definition id="publications_references" mandatory="true">
+      <heading>submit.progressbar.describe.publications_references</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -231,11 +231,6 @@
     </step-definition>
     <step-definition id="cooperation_partners_contribution" mandatory="true">
       <heading>submit.progressbar.describe.cooperation_partners_contribution</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="cooperation_partners_staff" mandatory="true">
-      <heading>submit.progressbar.describe.cooperation_partners_staff</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -486,14 +481,14 @@
     </submission-process>
     <submission-process name="publications">
       <step id="collection" />
-      <step id="publications_result" />
-      <step id="publications_result_more" />
+      <step id="publications" />
+      <step id="publications_references" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
     <submission-process name="publications-edit">
-      <step id="publications_result" />
-      <step id="publications_result_more" />
+      <step id="publications" />
+      <step id="publications_references" />
       <step id="upload" />
       <step id="license" />
     </submission-process>
@@ -574,7 +569,6 @@
       <step id="cooperation_partners_orgunits_research" />
       <step id="cooperation_partners_orgunits_companies" />
       <step id="upload" />
-      <step id="cooperation_partners_staff" />
     </submission-process>
     <submission-process name="cooperation_partners-edit">
       <step id="cooperation_partners" />
@@ -583,7 +577,6 @@
       <step id="cooperation_partners_orgunits_research" />
       <step id="cooperation_partners_orgunits_companies" />
       <step id="upload" />
-      <step id="cooperation_partners_staff" />
     </submission-process>
     <submission-process name="unexpected_results">
       <step id="collection" />

@@ -708,9 +708,7 @@ public class StructBuilder {
         NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
         for (int i = 0; i < metadataList.getLength(); i++) {
             String metadataName = getAttributeValue(metadataList.item(i), "name");
-            System.out.println(metadataName);
             String metadatavalue = getStringValue(metadataList.item(i));
-            System.out.println(metadatavalue);
             String[] elements = MetadataFieldName.parse(metadataName);
             itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue);
         }

@@ -448,51 +448,6 @@
           <hint>Please formulate a short content-related statement.</hint>
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Enter the start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Enter the end date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>responsible</dc-element>
-          <label>Responsible</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>step</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="working_plan_workpackage_status_type">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
     </form>
     <form name="working_plan_workpackage_step_form">
       <row>
@@ -516,51 +471,6 @@
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint>Please formulate a short content-related statement.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Enter the start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Enter the end date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>responsible</dc-element>
-          <label>Responsible</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>step</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="working_plan_workpackage_status_type">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
         </field>
       </row>
     </form>
@@ -806,20 +716,19 @@
           <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
-          <hint />
+          <required>mandatory</required>
+          <hint>Please formulate a clear and easily understandable title, because this will be displayed in overviews.</hint>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>author</dc-element>
-          <dc-qualifier>affiliation</dc-qualifier>
-          <label>Affiliation</label>
-          <input-type>onebox</input-type>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Enter the affiliation of the author as stated on the publication.</hint>
+          <hint />
         </field>
       </row>
     </form>

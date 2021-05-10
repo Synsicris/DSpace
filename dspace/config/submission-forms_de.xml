@@ -448,51 +448,6 @@
           <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Startdatum</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Enddatum</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>responsible</dc-element>
-          <label>Verantwortliche Organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>step</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="working_plan_workpackage_status_type">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
     </form>
     <form name="working_plan_workpackage_step_form">
       <row>
@@ -516,51 +471,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
-          <label>Startdatum</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
-          <label>Enddatum</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>responsible</dc-element>
-          <label>Verantwortliche Person</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>workingplan</dc-schema>
-          <dc-element>step</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="working_plan_workpackage_status_type">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
         </field>
       </row>
     </form>
@@ -802,25 +712,23 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>author</dc-qualifier>
-          <label>Autoren</label>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie die Autoren in der Reihenfolge an, wie sie auf der Veröffentlichung angegeben sind. Die Angabe enthält: Nachname, Vorname [d. h. Smith, Josh oder Smith, J].</hint>
+          <required>Pflichtangabe</required>
+          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, mit der Angabe von Anzahl, Art und Thema.</hint>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>author</dc-element>
-          <dc-qualifier>affiliation</dc-qualifier>
-          <label>Zugehörigkeit</label>
-          <input-type>onebox</input-type>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Geben Sie die Zugehörigkeit des Autors ein, wie sie auf der Publikation angegeben ist.</hint>
+          <hint />
         </field>
       </row>
     </form>

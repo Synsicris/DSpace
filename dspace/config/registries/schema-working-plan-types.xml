@@ -39,6 +39,7 @@
     <dc-type>
         <schema>workingplan</schema>
         <element>link</element>
-        <scope_note>status</scope_note>
+        <qualifier>status</qualifier>
+        <scope_note>link status</scope_note>
     </dc-type>
 </dspace-dc-types>

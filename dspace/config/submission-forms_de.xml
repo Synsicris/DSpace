@@ -802,23 +802,25 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>author</dc-qualifier>
+          <label>Autoren</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, mit der Angabe von Anzahl, Art und Thema.</hint>
+          <required />
+          <hint>Geben Sie die Autoren in der Reihenfolge an, wie sie auf der Veröffentlichung angegeben sind. Die Angabe enthält: Nachname, Vorname [d. h. Smith, Josh oder Smith, J].</hint>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>author</dc-element>
+          <dc-qualifier>affiliation</dc-qualifier>
+          <label>Zugehörigkeit</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie die Zugehörigkeit des Autors ein, wie sie auf der Publikation angegeben ist.</hint>
         </field>
       </row>
     </form>

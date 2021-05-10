@@ -564,6 +564,58 @@
         </field>
       </row>
     </form>
+    <form name="exploitation_plan_step_type_1_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_type_2_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_type_3_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_type_4_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+        </field>
+      </row>
+    </form>
     <form name="exploitation_plan_step_type_1_task_form">
       <row>
         <field>
@@ -1154,7 +1206,7 @@
           <hint>Bitte wählen Sie aus, in welcher Form eine Verwertung vorgesehen ist.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>patentuse</dc-qualifier>
           <label>Erläuterung</label>
@@ -1180,7 +1232,7 @@
     <form name="patents_result">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>applicationnumber</dc-qualifier>
           <label>Anmeldenummer</label>
@@ -1191,7 +1243,7 @@
           <hint>Geben Sie bitte die Anmeldenummer aus dem Formular zu der Registrierung beim Patentamt ein.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>filled</dc-qualifier>
           <label>Datum der Anmeldung</label>
@@ -1249,7 +1301,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>ipc</dc-qualifier>
           <label>IPC-Klasse</label>
@@ -1317,7 +1369,7 @@
           <hint>Hier können Sie den Link zu der Veröffentlichung beim Europäischen Patentamt angeben</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>applications</dc-qualifier>
           <label>Verlinkung zu einer Anwendung von Lösung / Veränderung / Innovation</label>
@@ -2441,6 +2493,32 @@
         </field>
       </row>
     </form>
+    <form name="persons-oairecerif-identifier-url">
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>URL der Seite</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>crisrp</dc-schema>
+          <dc-element>site</dc-element>
+          <dc-qualifier>title</dc-qualifier>
+          <label>Titel der Seite</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="persons">
       <row>
         <field>
@@ -2464,10 +2542,11 @@
           <hint />
         </field>
         <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>email</dc-element>
-          <label>E-Mail</label>
-          <input-type>onebox</input-type>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>person</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Geschlecht</label>
+          <input-type value-pairs-name="gender">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -2477,7 +2556,7 @@
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-element>type</dc-element>
           <dc-qualifier>degree</dc-qualifier>
           <label>akademischer Abschluss</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
@@ -2487,15 +2566,28 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <label>Disziplin / Forschungsfeld</label>
-          <input-type>onebox</input-type>
+          <dc-qualifier>destatis</dc-qualifier>
+          <label>Disziplin</label>
+          <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>person</dc-schema>
+          <dc-element>email</dc-element>
+          <label>E-Mail</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -2534,6 +2626,8 @@
           <hint />
         </field>
       </row>
+    </form>
+    <form name="team">
       <row>
         <field>
           <dc-schema>person</dc-schema>
@@ -2548,70 +2642,130 @@
       </row>
       <row>
         <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>knowsLanguage</dc-element>
-          <label>Schriftsprachen(n)</label>
-          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>person</dc-qualifier>
+          <label>Personensuche</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>team</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Geschlecht</label>
+          <input-type value-pairs-name="gender">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>Akademischer Abschluss</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>destatis</dc-qualifier>
+          <label>Disziplin</label>
+          <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>role</dc-qualifier>
+          <label>Rolle im Projekt</label>
+          <input-type value-pairs-name="project_team_role">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>qualification</dc-qualifier>
+          <label>Qualifizierungsabsichten</label>
+          <input-type value-pairs-name="project_team_qualification">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>policy</dc-element>
-          <dc-qualifier>eperson</dc-qualifier>
-          <label>Eperson Policy</label>
-          <input-type>onebox</input-type>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>jobproportion</dc-qualifier>
+          <label>Stellenungefährer anteil</label>
+          <input-type value-pairs-name="job_proportion">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>team</dc-element>
+          <dc-qualifier>startDate</dc-qualifier>
+          <label>Beginn der Arbeit im Projekt - wenn vom Projektstart mehr als 2 Monate abweichend</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>team</dc-element>
+          <dc-qualifier>endDate</dc-qualifier>
+          <label>Ende der Arbeit im Projekt - wenn vom Projektende mehr als 2 Monate abweichend</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>cris</dc-schema>
-          <dc-element>policy</dc-element>
-          <dc-qualifier>group</dc-qualifier>
-          <label>Group Policy</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>project-partner</dc-qualifier>
+          <label>Project partner</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
-    <form name="persons-oairecerif-identifier-url">
+    <form name="spinoffs_result-synsicris-relation-cooperation-partner">
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>URL der Seite</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>crisrp</dc-schema>
-          <dc-element>site</dc-element>
-          <dc-qualifier>title</dc-qualifier>
-          <label>Titel der Seite</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="spinoffs_result-dc-relation-cooperation-partner">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>zugehörige Forschungseinrichtung</label>
@@ -2622,7 +2776,7 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>relation-to-orgunit</dc-qualifier>
           <label>Beschreibung der Zugehörigkeit</label>
@@ -2634,10 +2788,10 @@
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_performance_development-dc-date-reference-year-performance">
+    <form name="spinoffs_result_performance-synsicris-date-reference-year-performance">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-performance</dc-qualifier>
           <label>Referenzjahr</label>
@@ -2659,10 +2813,10 @@
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_funding-dc-date-reference-year-funding">
+    <form name="spinoffs_result_funding-synsicris-date-reference-year-funding">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-funding</dc-qualifier>
           <label>Jahr der Förderung</label>
@@ -2673,7 +2827,7 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>funding</dc-qualifier>
           <label>Name des Förderprogramms</label>
@@ -2684,8 +2838,8 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
           <label>Höhe der Förderung (EUR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2694,7 +2848,7 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>nonfinancalsupport</dc-qualifier>
           <label>Beschreibung der nicht-finanziellen Unterstützung</label>
@@ -2744,8 +2898,8 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
           <dc-qualifier>registertype</dc-qualifier>
           <label>Registerart</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
@@ -2755,8 +2909,8 @@
           <hint>Wählen Sie das passende Register.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
           <dc-qualifier>registercourt</dc-qualifier>
           <label>Registergericht</label>
           <input-type>onebox</input-type>
@@ -2767,11 +2921,11 @@
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>registernumber</dc-qualifier>
           <label>Registernummer</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -2780,9 +2934,8 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>founding</dc-qualifier>
+          <dc-schema>organisation</dc-schema>
+          <dc-element>foundingDate</dc-element>
           <label>Datum der Eintragung im Register</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
@@ -2791,7 +2944,7 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
           <label>Wirtschaftszweig</label>
@@ -2804,7 +2957,7 @@
           <vocabulary closed="true">nace</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
           <label>Zweck (Angabe nur für Verein)</label>
@@ -2818,8 +2971,8 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
           <dc-qualifier>city</dc-qualifier>
           <label>Ort</label>
           <input-type>onebox</input-type>
@@ -2829,9 +2982,9 @@
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>place</dc-qualifier>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCountry</dc-qualifier>
           <label>Land</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2854,7 +3007,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>zugehörige Forschungsorganisation</label>
@@ -2868,7 +3021,7 @@
     <form name="spinoffs_result_funding">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-funding</dc-qualifier>
           <label>Angaben zur Förderung (falls relevant)</label>
@@ -2879,10 +3032,10 @@
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_performance_development">
+    <form name="spinoffs_result_performance">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-performance</dc-qualifier>
           <label>Übersicht zur wirtschaftlichen Entwicklung</label>
@@ -2894,7 +3047,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>notes</dc-qualifier>
           <label>Beschreibung</label>
@@ -2919,7 +3072,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <label>Zeithorizont für die Realisierung</label>
           <input-type value-pairs-name="year">dropdown</input-type>
@@ -2952,7 +3105,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Beteiligte Kooperationspartner</label>
@@ -2965,7 +3118,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Beteiligte Akteursgruppen (falls relevant)</label>
@@ -3037,9 +3190,9 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>dependencies</dc-qualifier>
+          <dc-qualifier>requirements</dc-qualifier>
           <label>Voraussetzungen zur Erfüllung der Arbeiten</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3051,9 +3204,9 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
     <form name="workpackages_result">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>comments</dc-qualifier>
+          <dc-qualifier>changes</dc-qualifier>
           <label>Beschreiben Sie bitte die Veränderung im Projektverlauf und begründen diese.</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3150,7 +3303,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Adressierte Akteursgruppe</label>
@@ -3200,7 +3353,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="innovationpotentials_applicability">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability1</dc-qualifier>
           <label>Grad der Neuheit</label>
@@ -3215,7 +3368,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability2</dc-qualifier>
           <label>Effizienz</label>
@@ -3229,7 +3382,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability3</dc-qualifier>
           <label>Praktikabilität und Anschlussfähigkeit</label>
@@ -3244,7 +3397,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability4</dc-qualifier>
           <label>Voraussetzungen für die Anwendung</label>
@@ -3258,7 +3411,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability5</dc-qualifier>
           <label>Aussichten für eine Etablierung / Verbreitung / Übertragung</label>
@@ -3272,10 +3425,10 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_regional_scope-dc-coverage-regional">
+    <form name="innovationpotentials_regional_scope-synsicris-coverage-regional">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>regional-status</dc-qualifier>
           <label>Auswahl des Bezugspunktes</label>
@@ -3286,7 +3439,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
           <dc-qualifier>regional</dc-qualifier>
           <label>Auswahl der Region</label>
@@ -3298,7 +3451,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>regional</dc-qualifier>
           <label>Erläuterungen</label>
@@ -3313,7 +3466,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="innovationpotentials_regional_scope">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
           <dc-qualifier>regional</dc-qualifier>
           <label>Regionale Verortung</label>
@@ -3327,7 +3480,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="innovationpotentials_srl_trl">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>srl-trl</dc-qualifier>
           <label>Auswahl der Art des Readiness Levels</label>
@@ -3339,7 +3492,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
           <label>Reifegradeinschätzung zu Startwert und Zielwert</label>
@@ -3350,10 +3503,10 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_srl_trl-dc-type-status">
+    <form name="innovationpotentials_srl_trl-synsicris-type-status">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
           <label>Auswahl Startwert/Zielwert</label>
@@ -3364,7 +3517,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>srl</dc-qualifier>
           <label>Beschreibung des Reifegrades</label>
@@ -3375,7 +3528,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint>Bitte beschreiben Sie den Reifegrad zum ausgewählten Bezugspunkt in eigenen Worten.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>trl</dc-qualifier>
           <label>Auswahl des Technology Readiness Level</label>
@@ -3387,7 +3540,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <type-bind>TRL</type-bind>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>srl</dc-qualifier>
           <label>Auswahl des Solution Readiness Level</label>
@@ -3400,10 +3553,10 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         </field>
       </row>
     </form>
-    <form name="applications-dc-type-innovation">
+    <form name="applications-synsicris-type-innovation">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>innovation</dc-qualifier>
           <label>Art der Lösung / Veränderung / Innovation</label>
@@ -3415,7 +3568,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Adressierte Akteursgruppe</label>
@@ -3463,7 +3616,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>innovationpotentials</dc-qualifier>
           <label>Verlinkung zur dokumentierten Lösung / Veränderung / Innovation</label>
@@ -3476,7 +3629,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>innovation</dc-qualifier>
           <label>Charakterisieren Sie bitte die Lösung / Veränderung / Innovation, indem Sie die passende Art und die adressierte Akteursgruppe    auswählen (Mehrfachangabe möglich).</label>
@@ -3489,9 +3642,9 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>description</dc-qualifier>
+          <dc-qualifier>innovation</dc-qualifier>
           <label>Beschreibung der Lösung / Veränderung / Innovation (einschließlich Nutzen und möglichem Marktpotenzial beziehungsweise Größe der Nutzergruppe)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -3501,10 +3654,10 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         </field>
       </row>
     </form>
-    <form name="applications_quant-dc-date-referenceyear">
+    <form name="applications_quant-synsicris-date-referenceyear">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>referenceyear</dc-qualifier>
           <label>Referenzjahr</label>
@@ -3515,18 +3668,18 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint>Referenzjahr, auf das sich die nachfolgenden Angaben beziehen.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>baseline</dc-qualifier>
           <label>Basiswert</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>repeatable</repeatable>
           <required />
           <style>col-md-2</style>
           <hint>Bitte kennzeichnen Sie den Basiswert der Zeitreihe. Dies ist der Wert, bevor das Projekt einen Einfluss hatte.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
           <dc-qualifier>regional</dc-qualifier>
           <label>Auswahl der Region</label>
@@ -3538,7 +3691,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>quantifier</dc-qualifier>
           <label>Einheit (Auswahlliste)</label>
@@ -3550,7 +3703,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <vocabulary closed="true">units</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>quantifier-own</dc-qualifier>
           <label>Einheit (eigene Angaben)</label>
@@ -3561,8 +3714,8 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint>Falls keine der vorgeschlagenen Einheiten passt, geben Sie bitte eine eigene Einheit an.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
           <dc-qualifier>quantity</dc-qualifier>
           <label>Menge / Anzahl</label>
           <input-type>number</input-type>
@@ -3572,7 +3725,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>description</dc-qualifier>
           <label>Anmerkungen und, falls vorhanden, Weblinks</label>
@@ -3587,7 +3740,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="applications_quant">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>referenceyear</dc-qualifier>
           <label>Umfang und zeitliche Entwicklung der Anwendung</label>
@@ -3636,7 +3789,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>relevance</dc-qualifier>
           <label>Beschreibung der Vorbehalte oder Informationen zur geplanten Veröffentlichung</label>
@@ -3649,7 +3802,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>publications</dc-qualifier>
           <label>Auswahl der Veröffentlichung</label>
@@ -3713,7 +3866,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
     <form name="events_involved">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Mitwirkende oder teilnehmende Kooperationspartner</label>
@@ -3774,7 +3927,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-element>amount</dc-element>
           <dc-qualifier>duration</dc-qualifier>
           <label>Gesamtdauer (h)</label>
           <input-type>number</input-type>
@@ -3785,7 +3938,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-element>amount</dc-element>
           <dc-qualifier>participants</dc-qualifier>
           <label>Anzahl Teilnehmende</label>
           <input-type>number</input-type>
@@ -3833,7 +3986,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
           <label>Bitte charakterisieren Sie, wozu der Prozess im Projekt dient (maximal 5 Angaben).</label>
@@ -3847,7 +4000,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     <form name="process_events_involved">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>cooperation-partner</dc-qualifier>
           <label>Beteiligte Kooperationspartner</label>
@@ -3859,7 +4012,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Beteiligte Akteursgruppe(n)</label>
@@ -3883,18 +4036,18 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Wählen Sie bitte das passende Format der Veranstaltung oder die Art der Interaktion.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
           <dc-qualifier>duration</dc-qualifier>
           <label>Dauer (h)</label>
-          <input-type>onebox</input-type>
+          <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
           <hint>Geben Sie bitte die durchschnittliche Dauer pro Interaktion/ Veranstaltung in Stunden an.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>frequency</dc-qualifier>
           <label>Häufigkeit</label>
@@ -3905,7 +4058,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Wählen Sie bitte eine Häufigkeitsangabe für Interaktionen/Veranstaltungen die im gesamten Projektverlauf relativ kontinuierlich stattfinden. Wenn Sie phasenweise auswählen, können Sie im nächsten Feld eine Anzahl eintragen.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>period</dc-qualifier>
           <label>Zeitraum</label>
@@ -3957,9 +4110,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>start</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>startDate</dc-qualifier>
           <label>Startdatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
@@ -3968,9 +4121,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Bitte wählen Sie das Startdatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>end</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>endDate</dc-qualifier>
           <label>Enddatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
@@ -3979,8 +4132,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Bitte wählen Sie das Enddatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
           <dc-qualifier>duration</dc-qualifier>
           <label>Gesamtdauer (h)</label>
           <input-type>number</input-type>
@@ -3990,8 +4143,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Geben Sie bitte die Gesamtdauer der Interaktion/Veranstaltung in Stunden an.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
           <dc-qualifier>participants</dc-qualifier>
           <label>Anzahl Teilnehmende</label>
           <input-type>number</input-type>
@@ -4003,7 +4156,6 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <dc-qualifier>date</dc-qualifier>
           <label>Titel oder Thema der Interaktion oder Veranstaltung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4012,9 +4164,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>city</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>place</dc-qualifier>
           <label>Ort</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4023,9 +4175,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>place</dc-qualifier>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>event</dc-element>
+          <dc-qualifier>country</dc-qualifier>
           <label>Land</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4063,7 +4215,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
           <label>Ziel des Förderprogramms</label>
@@ -4090,7 +4242,6 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sdg</dc-qualifier>
           <label>Beitrag des Projekts zu einem bestimmten SDG-Ziel</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -4099,7 +4250,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Bitte wählen Sie so genau wie möglich, idealerweise auf der Ebene der Unterziele.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>sdg</dc-qualifier>
           <label>Anmerkungen zum SDG-Beitrag (fakultativ)</label>
@@ -4147,9 +4298,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>amountofprize</dc-qualifier>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
           <label>Höhe des Preisgeldes (EUR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4160,7 +4310,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>person</dc-qualifier>
           <label>Ausgezeichnete Person(en)</label>
@@ -4171,7 +4321,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Wenn der Preis an (eine) Person(en) ging, wählen Sie die Person(en) aus.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>orgunit</dc-qualifier>
           <label>Ausgezeichnete Organisation(en)</label>
@@ -4184,7 +4334,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
           <label>Stifter</label>
@@ -4195,7 +4345,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Geben Sie die Organisation an, die den Preis verleiht.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Akteursgruppe des Stifters</label>
@@ -4245,7 +4395,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     <form name="physical_objects_result">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>functions</dc-qualifier>
           <label>Verwendungsmöglichkeiten (Mehrfachauswahl möglich)</label>
@@ -4256,9 +4406,9 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>contact</dc-qualifier>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressLocality</dc-qualifier>
           <label>Kontaktinformationen für Anfragen</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4269,8 +4419,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
           <dc-qualifier>access</dc-qualifier>
           <label>Zugänglichkeit z. B. für Besichtigungen</label>
           <input-type value-pairs-name="yes_no">list</input-type>
@@ -4280,7 +4430,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
           <label>Link zu einer Website</label>
@@ -4306,7 +4456,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>direct-indirect</dc-qualifier>
           <label>Ist die Akteursgruppe direkt oder nur indirekt für das Projekt relevant?</label>
@@ -4318,7 +4468,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Warum ist die Zielgruppe für das Projekt relevant?</label>
@@ -4343,7 +4493,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
           <label>Wirtschaftszweig der Akteursgruppe</label>
@@ -4357,8 +4507,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
           <dc-qualifier>political</dc-qualifier>
           <label>Adressierte Politikebene(n)</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
@@ -4370,8 +4520,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
           <dc-qualifier>civilsociety</dc-qualifier>
           <label>Schlagworte zur näheren Beschreibung der Akteursgruppe</label>
           <input-type>onebox</input-type>
@@ -4383,8 +4533,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
           <dc-qualifier>urban-rural</dc-qualifier>
           <label>Verortung der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
@@ -4418,7 +4568,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Je nach Auswahl erscheinen nachfolgend unterschiedliche Eingabefelder.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>direction</dc-qualifier>
           <label>Auswahl der Wirkungsrichtung</label>
@@ -4431,8 +4581,8 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>coverage</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
           <dc-qualifier>ecological</dc-qualifier>
           <label>Spezifischer ökologischer Bereich</label>
           <input-type value-pairs-name="ecological_field">dropdown</input-type>
@@ -4444,7 +4594,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Auswahl der Akteursgruppe(n), die von der erwarteten Wirkung betroffen ist/sind</label>
@@ -4503,7 +4653,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <label>Ab welchem Jahr ist die Rahmenbedingung wirksam?</label>
           <input-type>onebox</input-type>
@@ -4513,7 +4663,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Wenn Ihnen diese Information nicht vorliegt und nicht leicht recherchiert werden kann, können Sie das Feld auch frei lassen.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>influence</dc-qualifier>
           <label>Einfluss auf Erfolg und Wirkung</label>
@@ -4528,7 +4678,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     <form name="gender_reflection">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>researchquestion</dc-qualifier>
           <label>1) Gibt es einen Geschlechterbezug in der Problemstellung?</label>
@@ -4540,7 +4690,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
 Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschlechterspezifische Forschungsfragen</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>researchquestion</dc-qualifier>
           <label>Begründung</label>
@@ -4553,7 +4703,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>stateofart</dc-qualifier>
           <label>2) Gibt es einen Geschlechterbezug im Forschungsstand?</label>
@@ -4564,7 +4714,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <hint>Haben Sie im Forschungsstand geschlechterspezifische Erkenntnisse hinzugezogen, wie z. B. Nutzerverhalten nach Geschlecht, Literatur, die Geschlechteraspekte der Fragestellung behandelt, oder Genderstudies?</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>stateofart</dc-qualifier>
           <label>Begründung</label>
@@ -4577,7 +4727,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>projectdesign</dc-qualifier>
           <label>3) Haben Sie im Projektdesign Geschlechteraspekte berücksichtigt?</label>
@@ -4588,7 +4738,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <hint>Geschlechteraspekte können beispielsweise bei der Datenerhebung, bei der Auswahl von Methoden oder bei der Beteiligung von Männern und Frauen in Veranstaltungen oder bei der Kommunikation von Ergebnissen berücksichtigt werden.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>projectdesign</dc-qualifier>
           <label>Begründung</label>
@@ -4601,7 +4751,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>application</dc-qualifier>
           <label>4) Werden hinsichtlich der Anwendung und Wirkung der Projektergebnisse geschlechterspezifische Unterschiede berücksichtigt?</label>
@@ -4612,7 +4762,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <hint>Dies kann z. B. bei der Form der Nutzung, bei Anforderungen an Produkte oder bei geschlechterspezifischen Voraussetzungen für eine Nutzung der Fall sein.</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>application</dc-qualifier>
           <label>Begründung</label>
@@ -4625,7 +4775,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project</dc-qualifier>
           <label>5) In welcher Weise trägt das Projekt zur Gleichberechtigung der im Projekt Beschäftigten bei?</label>
@@ -4636,7 +4786,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <hint>Dies kann z. B. durch die Förderung von Frauen in Spitzenpositionen, durch Maßnahmen zur Vereinbarkeit von Beruf und Familie, durch Chancengleichheit bei der Qualifizierung und Vernetzung oder beim Umgang mit feldspezifischen Besonderheiten im Geschlechterverhältnis erfolgen.(Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>project</dc-qualifier>
           <label>Begründung</label>
@@ -4685,7 +4835,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <hint />
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>aspect</dc-qualifier>
           <label>Beschreibung der Maßnahmen</label>
@@ -5832,11 +5982,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>examined</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="project_staff_role" dc-term="project_staff_role">
-      <pair>
-        <displayed-value>Projektleiter/in gemäß dem eingereichten Antrag</displayed-value>
-        <stored-value>project manager</stored-value>
-      </pair>
+    <value-pairs value-pairs-name="project_team_role" dc-term="project_team_role">
       <pair>
         <displayed-value>Mitarbeitende mit Leitungs- und Entscheidungspositionen im Projekt (einschließlich Koordinator* oder Sprecherpositionen in Konsortien)</displayed-value>
         <stored-value>leading and decision-making position</stored-value>
@@ -5854,7 +6000,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>others</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="project_staff_qualification" dc-term="project_staff_qualification">
+    <value-pairs value-pairs-name="project_team_qualification" dc-term="project_team_qualification">
       <pair>
         <displayed-value>Promotionsstudierende</displayed-value>
         <stored-value>PhD applicants</stored-value>
@@ -5868,6 +6014,28 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>currently none</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="job_proportion" dc-term="job_proportion">
+      <pair>
+        <displayed-value>10 - 20 %</displayed-value>
+        <stored-value>10 - 20 %</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>20 - 40 %</displayed-value>
+        <stored-value>20 - 40 %</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>40 - 60 %</displayed-value>
+        <stored-value>40 - 60 %</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>60 - 80 %</displayed-value>
+        <stored-value>60 - 80 %</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>80 - 100 %</displayed-value>
+        <stored-value>80 - 100 %</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="person_form" dc-term="person_form">
       <pair>
         <displayed-value>Herr</displayed-value>
@@ -5878,22 +6046,40 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Mrs.</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="gender" dc-term="gender">
+      <pair>
+        <displayed-value>Unbekannt</displayed-value>
+        <stored-value />
+      </pair>
+      <pair>
+        <displayed-value>Männlich</displayed-value>
+        <stored-value>m</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Weiblich</displayed-value>
+        <stored-value>f</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Divers</displayed-value>
+        <stored-value>n/a</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="person_degree" dc-term="person_degree">
       <pair>
-        <displayed-value>Bachelor</displayed-value>
+        <displayed-value>Bachelor / FH-Diplom</displayed-value>
         <stored-value>Bachelor</stored-value>
       </pair>
       <pair>
-        <displayed-value>Master</displayed-value>
+        <displayed-value>Master / Diplom / Magister</displayed-value>
         <stored-value>Master</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dr./PhD</displayed-value>
-        <stored-value>Doctor</stored-value>
+        <displayed-value>Dr.</displayed-value>
+        <stored-value>Dr.</stored-value>
       </pair>
       <pair>
-        <displayed-value>Professor</displayed-value>
-        <stored-value>Professor</stored-value>
+        <displayed-value>Prof.</displayed-value>
+        <stored-value>Prof.</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="orgunit_legalform" dc-term="orgunit_legalform">

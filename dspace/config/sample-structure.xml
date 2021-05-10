@@ -282,6 +282,7 @@
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
     <collection>
@@ -642,6 +643,7 @@
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
   </community>

@@ -134,8 +134,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="spinoffs_result_performance_development" mandatory="true">
-      <heading>submit.progressbar.describe.spinoffs_result_performance_development</heading>
+    <step-definition id="spinoffs_result_performance" mandatory="true">
+      <heading>submit.progressbar.describe.spinoffs_result_performance</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -403,6 +403,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="team" mandatory="true">
+      <heading>submit.progressbar.describe.team</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -469,14 +474,14 @@
       <step id="spinoffs" />
       <step id="spinoffs_result" />
       <step id="spinoffs_result_funding" />
-      <step id="spinoffs_result_performance_development" />
+      <step id="spinoffs_result_performance" />
       <step id="upload" />
     </submission-process>
     <submission-process name="spinoffs-edit">
       <step id="spinoffs" />
       <step id="spinoffs_result" />
       <step id="spinoffs_result_funding" />
-      <step id="spinoffs_result_performance_development" />
+      <step id="spinoffs_result_performance" />
       <step id="upload" />
     </submission-process>
     <submission-process name="publications">
@@ -728,6 +733,13 @@
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />
+    </submission-process>
+    <submission-process name="team">
+      <step id="collection" />
+      <step id="team" />
+    </submission-process>
+    <submission-process name="team-edit">
+      <step id="team" />
     </submission-process>
   </submission-definitions>
 </item-submission>

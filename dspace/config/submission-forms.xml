@@ -865,7 +865,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>The publication where this publication is included. E.g. a book chapter lists here the book, a contribution to a conference lists here the conference proceeding.</hint>
-          <type-bind>c_3248, c_5794</type-bind>
+          <type-bind>coar:c_3248, coar:c_5794</type-bind>
         </field>
       </row>
       <row>
@@ -879,7 +879,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint>If the publication has an ISBN (International Standard Book Number), please enter it here.</hint>
-          <type-bind>c_3248, c_5795</type-bind>
+          <type-bind>coar:c_3248, coar:c_5795</type-bind>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -891,7 +891,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint>If the publication has a DOI, please enter it here.</hint>
-          <type-bind>c_3248, c_5796</type-bind>
+          <type-bind>coar:c_3248, coar:c_5796</type-bind>
         </field>
       </row>
       <row>
@@ -904,7 +904,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>The journal or serie where this publication has been published.</hint>
-          <type-bind>c_6501, c_7bab, c_7bab, c_dcae04bc, c_beb9, c_2df8fbb1, c_3e5a, c_998f, c_b239</type-bind>
+          <type-bind>coar:c_6501, coar:c_7bab, coar:c_dcae04bc, coar:c_beb9, coar:c_2df8fbb1, coar:c_3e5a, coar:c_998f, coar:c_b239</type-bind>
         </field>
       </row>
       <row>
@@ -917,7 +917,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>The journal or Serie ISSN if it was not found in the system</hint>
-          <type-bind>c_6501, c_7bab, c_7bab, c_dcae04bc, c_beb9, c_2df8fbb1, c_3e5a, c_998f, c_b240</type-bind>
+          <type-bind>coar:c_6501, coar:c_7bab, coar:c_dcae04bc, coar:c_beb9, coar:c_2df8fbb1, coar:c_3e5a, coar:c_998f, coar:c_b239</type-bind>
         </field>
       </row>
       <row>
@@ -1027,7 +1027,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <type-bind>c_db06, c_bdcc, c_7a1f</type-bind>
+          <type-bind>coar:c_db06, coar:c_bdcc, coar:c_7a1f</type-bind>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1039,7 +1039,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <type-bind>c_db06</type-bind>
+          <type-bind>coar:c_db06</type-bind>
         </field>
       </row>
     </form>

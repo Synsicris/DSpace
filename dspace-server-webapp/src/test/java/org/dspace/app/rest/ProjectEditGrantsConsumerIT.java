@@ -32,6 +32,7 @@ import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -61,7 +62,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     private Collection collectionSubProjectB;
 
     @Test
-    public void createWorkspaceItemWithSubmitterUsing_projectTest() throws Exception {
+    public void createWorkspaceItemWithSubmitterUsing_parentprojectTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson ePerson1 = EPersonBuilder.createEPerson(context)
@@ -90,7 +91,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "project");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.PARENTPROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -135,7 +137,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
          getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      "project", "project_" + projectsCommunity.getID().toString() + "_members_group")
+                                      ProjectConstants.PARENTPROJECT,
+                                      "project_" + projectsCommunity.getID().toString() + "_members_group")
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -143,7 +146,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    public void createWorkspaceItemWithSubmitterUsing_subprojectTest() throws Exception {
+    public void createWorkspaceItemWithSubmitterUsing_projectTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson ePerson1 = EPersonBuilder.createEPerson(context)
@@ -172,7 +175,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "subproject");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -219,7 +223,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
          getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      "subproject", "project_" + subprojectBComm.getID().toString() + "_members_group")
+                                      ProjectConstants.PROJECT,
+                                      "project_" + subprojectBComm.getID().toString() + "_members_group")
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -228,7 +233,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
 
     @Test
-    public void createWorkspaceItemWithAdminUsing_subprojectTest() throws Exception {
+    public void createWorkspaceItemWithAdminUsing_projectTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         projectsCommunity = CommunityBuilder.createCommunity(context)
@@ -246,7 +251,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "subproject");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -295,7 +300,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
          getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      "subproject", "project_" + subprojectAComm.getID().toString() + "_members_group")
+                                      ProjectConstants.PROJECT,
+                                      "project_" + subprojectAComm.getID().toString() + "_members_group")
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -304,7 +310,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    public void createWorkspaceItemWithAdminOfCommunityUsing_subprojectTest() throws Exception {
+    public void createWorkspaceItemWithAdminOfCommunityUsing_projectTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson ePerson1 = EPersonBuilder.createEPerson(context)
@@ -329,7 +335,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "subproject");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -380,7 +386,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
          getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      "subproject", "project_" + subprojectAComm.getID().toString() + "_members_group")
+                                      ProjectConstants.PROJECT,
+                                      "project_" + subprojectAComm.getID().toString() + "_members_group")
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -436,6 +443,124 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                                )))));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
+        }
+    }
+
+    @Test
+    public void createWorkspaceItemWithSubmitterUsing_sharedValueTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group sharedGroup = GroupBuilder.createGroup(context)
+                                        .withName("Test Shared Group")
+                                        .build();
+
+        configurationService.setProperty("project.creation.group", sharedGroup.getID());
+
+        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
+                                         .withNameInMetadata("Mykhaylo", "Boychuk")
+                                         .withEmail("mykhaylo.boychuk@email.com")
+                                         .withPassword(password).build();
+
+        projectsCommunity = CommunityBuilder.createCommunity(context)
+                                            .withName("Projects Community").build();
+
+        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
+                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
+                     .addMember(ePerson1)
+                     .build();
+
+        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                                                  .withName("Publication Collection")
+                                                  .withSubmitterGroup(projectsCommunityGroup)
+                                                  .withTemplateItem().build();
+
+        Item templateItem = publicationsCollection.getTemplateItem();
+        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
+                                "GROUP_POLICY_PLACEHOLDER");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.SHARED);
+
+        context.restoreAuthSystemState();
+
+        AtomicReference<Integer> idRef = new AtomicReference<>();
+        try {
+            String authToken = getAuthToken(ePerson1.getEmail(), password);
+
+            getClient(authToken).perform(post("/api/submission/workspaceitems")
+                                .param("owningCollection", publicationsCollection.getID().toString())
+                                .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
+                                .andExpect(status().isCreated())
+                                .andExpect(jsonPath("$._embedded.collection.id",
+                                                 is(publicationsCollection.getID().toString())))
+                                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+
+            getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef.get()))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
+                                          .matchPolicyGroupAndSharedMetadata(
+                                                ProjectConstants.SHARED, sharedGroup.getName())
+                                          )));
+        } finally {
+            WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
+        }
+    }
+
+    @Test
+    public void createWorkspaceItemWithSubmitterUsing_funderValueTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group funderGroup = GroupBuilder.createGroup(context)
+                                        .withName("Test Funder Group")
+                                        .build();
+
+        configurationService.setProperty("project.funder.group", funderGroup.getID());
+
+        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
+                                         .withNameInMetadata("Mykhaylo", "Boychuk")
+                                         .withEmail("mykhaylo.boychuk@email.com")
+                                         .withPassword(password).build();
+
+        projectsCommunity = CommunityBuilder.createCommunity(context)
+                                            .withName("Projects Community").build();
+
+        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
+                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
+                     .addMember(ePerson1)
+                     .build();
+
+        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                                                  .withName("Publication Collection")
+                                                  .withSubmitterGroup(projectsCommunityGroup)
+                                                  .withTemplateItem().build();
+
+        Item templateItem = publicationsCollection.getTemplateItem();
+        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
+                                "GROUP_POLICY_PLACEHOLDER");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.FUNDER);
+
+        context.restoreAuthSystemState();
+
+        AtomicReference<Integer> idRef = new AtomicReference<>();
+        try {
+            String authToken = getAuthToken(ePerson1.getEmail(), password);
+
+            getClient(authToken).perform(post("/api/submission/workspaceitems")
+                                .param("owningCollection", publicationsCollection.getID().toString())
+                                .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
+                                .andExpect(status().isCreated())
+                                .andExpect(jsonPath("$._embedded.collection.id",
+                                                 is(publicationsCollection.getID().toString())))
+                                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+
+            getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef.get()))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
+                                          .matchPolicyGroupAndSharedMetadata(
+                                                ProjectConstants.FUNDER, funderGroup.getName())
+                                          )));
+        } finally {
+            WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
         }
     }
 

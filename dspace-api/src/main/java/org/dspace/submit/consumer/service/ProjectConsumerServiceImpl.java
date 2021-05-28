@@ -29,6 +29,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,9 +40,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
-
-    private static final String PROJECT = "project";
-    private static final String SUBPROJECT = "subproject";
 
     @Autowired
     private ItemService itemService;
@@ -66,23 +64,29 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                     return;
                 }
                 switch (shared) {
-                    case PROJECT :
+                    case ProjectConstants.PARENTPROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
                         }
                         break;
-                    case SUBPROJECT:
-                        Community subProject = getSubProjectCommunity(projectCommunity);
-                        if (Objects.isNull(subProject)) {
+                    case ProjectConstants.PROJECT:
+                        Community project = getSubProjectCommunity(projectCommunity);
+                        if (Objects.isNull(project)) {
                             throw new RuntimeException("It was not possible to find the subProject Community");
                         }
-                        List<Community> subCommunities = subProject.getSubcommunities();
+                        List<Community> subCommunities = project.getSubcommunities();
                         for (Community community : subCommunities) {
                             if (setPolicyGroup(context, item, currentUser, community)) {
                                 return;
                             }
                         }
+                        break;
+                    case ProjectConstants.SHARED:
+                        setPolicyGroup(context, item, configurationService.getProperty("project.creation.group"));
+                        break;
+                    case ProjectConstants.FUNDER:
+                        setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
                         break;
                     default:
                         return;
@@ -90,6 +94,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setPolicyGroup(Context context, Item item, String groupUuid) throws SQLException {
+        Group group = groupService.find(context, UUID.fromString(groupUuid));
+        if (Objects.nonNull(group)) {
+            itemService.replaceMetadata(context, item, "cris", "policy", "group", null, group.getName(),
+                        groupUuid, Choices.CF_ACCEPTED, 0);
+        } else {
+            log.error("It was not possible to find the group with uuid : " + groupUuid);
         }
     }
 
@@ -153,7 +167,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 }
             } else {
                 itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
-                                            null, PROJECT, null, Choices.CF_UNSET, 0);
+                                            null, ProjectConstants.PARENTPROJECT, null, Choices.CF_UNSET, 0);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -182,9 +196,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         if (subprojects.size() > 0) {
             return subprojects.get(0);
         } else {
-            return null;    
+            return null;
         }
-        
     }
 
     @Override

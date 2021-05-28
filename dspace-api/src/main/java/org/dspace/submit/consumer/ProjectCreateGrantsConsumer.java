@@ -19,6 +19,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
@@ -65,8 +66,14 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                 if (itemsAlreadyProcessed.contains(item)) {
                     return;
                 }
-                if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "workspace", "shared",null))
-                    && Objects.nonNull(workspaceItemService.findByItem(context, item))) {
+
+                String sharedValue = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
+                if (StringUtils.equals(sharedValue, ProjectConstants.SHARED) ||
+                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER)) {
+                    return;
+                }
+                if (StringUtils.isNotBlank(sharedValue) &&
+                    Objects.nonNull(workspaceItemService.findByItem(context, item))) {
                     projectConsumerService.checkGrants(context, submitter, item);
                 }
                 itemsAlreadyProcessed.add(item);

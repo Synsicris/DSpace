@@ -10,6 +10,7 @@ package org.dspace.app.rest;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withBrowseComponent;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withFacetComponent;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withIdAndBrowseComponent;
+import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withIdAndCountersComponent;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withIdAndFacetComponent;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withIdAndSearchComponent;
 import static org.dspace.app.rest.matcher.CrisLayoutSectionMatcher.withIdAndTopComponent;
@@ -21,6 +22,8 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Arrays;
 
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.junit.Test;
@@ -40,7 +43,7 @@ public class CrisLayoutSectionRestRepositoryIT extends AbstractControllerIntegra
 
         getClient().perform(get("/api/layout/sections"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.sections", hasSize(5)))
+            .andExpect(jsonPath("$._embedded.sections", hasSize(4)))
 
             .andExpect(jsonPath("$._embedded.sections",
                 hasItem(withIdAndBrowseComponent("researchoutputs", 0, 0, "col-md-4", expectedBrowseNames))))
@@ -51,7 +54,7 @@ public class CrisLayoutSectionRestRepositoryIT extends AbstractControllerIntegra
                     "researchoutputs", "dc.date.accessioned", "desc"))))
             .andExpect(jsonPath("$._embedded.sections",
                 hasItem(withIdAndTopComponent("researchoutputs", 1, 1, "col-md-6",
-                                    "researchoutputs", "dc.title", "asc"))))
+                                    "researchoutputs", "metric.view", "desc"))))
             .andExpect(jsonPath("$._embedded.sections",
                 hasItem(withIdAndFacetComponent("researchoutputs", 2, 0, "col-md-12", "researchoutputs"))))
 
@@ -66,17 +69,20 @@ public class CrisLayoutSectionRestRepositoryIT extends AbstractControllerIntegra
                 hasItem(withIdAndSearchComponent("fundings_and_projects", 0, 1, "col-md-8", "project_funding"))))
 
             .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndBrowseComponent("orgunits", 0, 0, "col-md-4", "ouname"))))
+                hasItem(withIdAndSearchComponent("site", 0, 0, "col-md-12", "site"))))
+
             .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndSearchComponent("orgunits", 0, 1, "col-md-8", "orgunit"))))
+                hasItem(withIdAndCountersComponent("site", 1, 0, "col-md-12 py-4", Arrays.asList("researchoutputs",
+                                                                                                 "project_funding",
+                                                                                                 "person")))))
+
             .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndFacetComponent("orgunits", 1, 0, "col-md-12", "orgunit"))))
+              hasItem(withIdAndTopComponent("site", 2, 0, "col-md-6", "homePageTopItems", "dc.date.accessioned",
+                                            "desc"))))
             .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndBrowseComponent("infrastructure", 0, 0, "col-md-4", "eqtitle"))))
-            .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndSearchComponent("infrastructure", 0, 1, "col-md-8", "infrastructure"))))
-            .andExpect(jsonPath("$._embedded.sections",
-                hasItem(withIdAndFacetComponent("infrastructure", 1, 0, "col-md-12", "infrastructure"))));
+              hasItem(withIdAndTopComponent("site", 2, 1, "col-md-6", "homePageTopItems", "metric.view",
+                                            "desc"))))
+            ;
     }
 
     @Test
@@ -91,7 +97,7 @@ public class CrisLayoutSectionRestRepositoryIT extends AbstractControllerIntegra
             .andExpect(jsonPath("$", withSearchComponent(0, 1, "col-md-8", "researchoutputs")))
             .andExpect(jsonPath("$", withTopComponent(1, 0, "col-md-6", "researchoutputs",
                                                       "dc.date.accessioned", "desc")))
-            .andExpect(jsonPath("$", withTopComponent(1, 1, "col-md-6", "researchoutputs", "dc.title", "asc")))
+            .andExpect(jsonPath("$", withTopComponent(1, 1, "col-md-6", "researchoutputs", "metric.view", "desc")))
             .andExpect(jsonPath("$", withFacetComponent(2, 0, "col-md-12", "researchoutputs")));
     }
 

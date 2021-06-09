@@ -280,8 +280,6 @@
           <required>mandatory</required>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -317,6 +315,8 @@
           <hint />
         </field>
       </row>
+    </form>
+    <form name="person-crisrp-qualification">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -352,8 +352,6 @@
           <required>mandatory</required>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -386,6 +384,7 @@
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-xs-12 col-md-3</style>
           <hint />
         </field>
       </row>
@@ -400,8 +399,6 @@
           <required>mandatory</required>
           <hint>Please copy the selected objective from the funding programme into this field. In future, the funding policy objectives of the programme will be provided in a selection list.</hint>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -436,8 +433,6 @@
           <required>mandatory</required>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
@@ -1906,6 +1901,39 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>patentno</dc-qualifier>
+          <label>Patent Number</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The patent number</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>applicationnumber</dc-qualifier>
+          <label>Application Number</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The application number</hint>
+        </field>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateSubmitted</dc-element>
+          <label>Registration Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Date on which the application was physically received at the Patent Authority. Also named Filling Date</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Organization name</label>
           <input-type>onebox</input-type>
@@ -2522,7 +2550,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Settable by connecting the entity with ORCID</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -5047,7 +5076,7 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-element>description</dc-element>
           <dc-qualifier>place</dc-qualifier>
           <label>Country</label>
-          <input-type>onebox</input-type>
+          <input-type value-pairs-name="common_iso_countries">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -5534,10 +5563,6 @@ Groups of actors that have already been recorded for the project can be selected
       <pair>
         <displayed-value>arXiv ID</displayed-value>
         <stored-value>arxiv</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>ISSN</displayed-value>
-        <stored-value>issn</stored-value>
       </pair>
       <pair>
         <displayed-value>Other</displayed-value>

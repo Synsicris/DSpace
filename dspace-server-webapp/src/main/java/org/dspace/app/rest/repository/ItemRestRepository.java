@@ -147,7 +147,7 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
     }
 
     @Override
-    @PreAuthorize("hasPermission(#uuid, 'ITEM', 'DELETE')")
+    @PreAuthorize("hasPermission(#id, 'ITEM', 'DELETE')")
     protected void delete(Context context, UUID id) throws AuthorizeException {
         String[] copyVirtual =
             requestService.getCurrentRequest().getServletRequest()

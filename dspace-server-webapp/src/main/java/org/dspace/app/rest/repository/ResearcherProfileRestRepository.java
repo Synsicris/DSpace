@@ -7,10 +7,13 @@
  */
 package org.dspace.app.rest.repository;
 
+import java.net.URI;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.dspace.app.profile.ResearcherProfile;
 import org.dspace.app.profile.service.ResearcherProfileService;
 import org.dspace.app.rest.exception.DSpaceBadRequestException;
@@ -97,6 +100,33 @@ public class ResearcherProfileRestRepository extends DSpaceRestRepository<Resear
     }
 
     @Override
+    protected ResearcherProfileRest createAndReturn(final Context context, final List<String> list)
+        throws AuthorizeException, SQLException, RepositoryMethodNotImplementedException {
+        if (CollectionUtils.isEmpty(list) || list.size() > 1) {
+            throw new IllegalArgumentException("Uri list must contain exactly one element");
+        }
+
+
+        UUID id = getEPersonIdFromRequest(context);
+        if (isNotAuthorized(id, "WRITE")) {
+            throw new AuthorizeException("User unauthorized to create a new profile for user " + id);
+        }
+
+        EPerson ePerson = ePersonService.find(context, id);
+        if (ePerson == null) {
+            throw new UnprocessableEntityException("No EPerson exists with id: " + id);
+        }
+
+        try {
+            ResearcherProfile newProfile = researcherProfileService
+                                               .claim(context, ePerson, URI.create(list.get(0)));
+            return converter.toRest(newProfile, utils.obtainProjection());
+        } catch (SearchServiceException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public Page<ResearcherProfileRest> findAll(Context context, Pageable pageable) {
         throw new RepositoryMethodNotImplementedException("No implementation found; Method not allowed!", "");
     }
@@ -123,11 +153,6 @@ public class ResearcherProfileRestRepository extends DSpaceRestRepository<Resear
 
         resourcePatch.patch(context, profile, patch.getOperations());
 
-    }
-
-    public boolean hasNotVisibilityChange(Patch patch) {
-        return patch.getOperations().stream()
-            .noneMatch(operation -> "/visible".equalsIgnoreCase(operation.getPath()));
     }
 
     @Override

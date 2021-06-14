@@ -1,7 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <import_structure>
   <community>
-    <name>project-template</name>
+    <name>Shared</name>
+    <description />
+    <intro />
+    <copyright />
+    <sidebar />
+    <policy-group rpType="admin">Administrator</policy-group>
+    <policy-group rpType="remove">project_submitters_group</policy-group>
+    <policy-group rpType="delete">project_submitters_group</policy-group>
+    <policy-group rpType="read">project_submitters_group</policy-group>
+    <collection>
+      <name>Calls</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>call</entity-type>
+      <submission-type>calls</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">project_funder_programme_group</policy-group>
+	  <policy-group rpType="add">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">funder_programme</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Funding objective</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>fundingobjective</entity-type>
+      <submission-type>fundingobjectives</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">project_funder_programme_group</policy-group>
+	  <policy-group rpType="add">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">funder_programme</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Organisation units</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>OrgUnit</entity-type>
+      <submission-type>orgunits</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">Administrator</policy-group>
+	  <policy-group rpType="add">Administrator</policy-group>
+      <policy-group rpType="item_read">Administrator</policy-group>
+      <policy-group rpType="bitstream_read">Administrator</policy-group>
+    </collection>
+    <collection>
+      <name>Persons</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Person</entity-type>
+      <submission-type>persons</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">Administrator</policy-group>
+	  <policy-group rpType="add">Administrator</policy-group>
+      <policy-group rpType="item_read">Administrator</policy-group>
+      <policy-group rpType="bitstream_read">Administrator</policy-group>
+    </collection>
+    <collection>
+      <name>Progammes</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>programme</entity-type>
+      <submission-type>programme</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">project_funder_programme_group</policy-group>
+	  <policy-group rpType="add">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">funder_programme</metadata>
+      </item-template>
+    </collection>
+  </community>    
+  <community>
+    <name>parent-project-template</name>
     <description />
     <intro />
     <copyright />
@@ -51,7 +149,7 @@
       </collection>
     </community>
     <community>
-      <name>Subprojects</name>
+      <name>Projects</name>
       <description />
       <intro />
       <copyright />
@@ -76,7 +174,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -95,7 +193,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -114,7 +212,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -125,7 +223,7 @@
       <sidebar />
       <license />
       <entity-type>cooperation_partner</entity-type>
-      <submission-type>cooperation_partners</submission-type>
+      <submission-type>cooperationpartners</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
 	  <policy-group rpType="add">project_template_members_group</policy-group>
@@ -133,7 +231,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -152,7 +250,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -171,7 +269,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -190,7 +288,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -209,7 +307,26 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Fundings</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>funding</entity-type>
+      <submission-type>funding</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -228,7 +345,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -247,7 +364,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -281,7 +398,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
@@ -301,7 +418,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -320,26 +437,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name>Organisation units</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>OrgUnit</entity-type>
-      <submission-type>orgunits</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -358,47 +456,9 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
-    </collection>
-    <collection>
-      <name>Team</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>team</entity-type>
-      <submission-type>team</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
-      </item-template>
-    </collection>    
-    <collection>
-      <name>Data sets</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>dataset</entity-type>
-      <submission-type>datasets</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
-      </item-template>
-    </collection> 
+    </collection>  
     <collection>
       <name>Patents and utility patents</name>
       <description />
@@ -415,26 +475,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name>Persons</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Person</entity-type>
-      <submission-type>persons</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -453,7 +494,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -472,9 +513,9 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
-    </collection> 
+    </collection>
     <collection>
       <name>Project objectives</name>
       <description />
@@ -491,25 +532,44 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
-      <name>Projects</name>
+      <name>Project partners</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
       <license />
-      <entity-type>Project</entity-type>
-      <submission-type>projects</submission-type>
+      <entity-type>projectpartner</entity-type>
+      <submission-type>projectpartners</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Joint projects</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>parentproject</entity-type>
+      <submission-type>parentprojects</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -528,7 +588,26 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Research data</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Product</entity-type>
+      <submission-type>products</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -547,7 +626,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -566,7 +645,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>  
     <collection>
@@ -585,7 +664,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -604,7 +683,26 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Subcontractors</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>subcontractor</entity-type>
+      <submission-type>subcontractors</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -623,7 +721,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -642,7 +740,26 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
+      <name>Team</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>team</entity-type>
+      <submission-type>team</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -661,7 +778,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
     </collection>
     <collection>
@@ -680,13 +797,13 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.workspace.shared">project</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
   </community>
   <community>
-    <name>projects</name>
+    <name>Joint projects</name>
     <description />
     <intro />
     <copyright />
@@ -696,7 +813,7 @@
     <policy-group rpType="read">Anonymous</policy-group>
   </community>
   <community>
-    <name>sub-project-template</name>
+    <name>project-template</name>
     <description />
     <intro />
     <copyright />
@@ -746,14 +863,14 @@
       </collection>
     </community>
     <collection>
-      <name>Subprojects</name>
+      <name>Projects</name>
       <description />
       <intro />
       <copyright />
       <sidebar />
       <license />
-      <entity-type>subproject</entity-type>
-      <submission-type>subprojects</submission-type>
+      <entity-type>Project</entity-type>
+      <submission-type>projects</submission-type>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>

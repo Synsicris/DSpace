@@ -17,12 +17,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocumentList;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.authority.factory.ItemAuthorityServiceFactory;
@@ -119,11 +121,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
 
                 try {
                     QueryResponse queryResponse = solr.query(solrQuery);
-                    List<Choice> choiceList = queryResponse.getResults().stream().map(doc -> {
-                        String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
-                        Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
-                        return new Choice((String) doc.getFieldValue("search.resourceid"), title, title, extras);
-                    }).collect(Collectors.toList());
+                    List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults());
                     choices.addAll(choiceList);
                     totFound += queryResponse.getResults().getNumFound();
                 } catch (Exception e) {
@@ -135,9 +133,22 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         if (CollectionUtils.isNotEmpty(choices)) {
             Choice[] results = new Choice[choices.size()];
             results = choices.toArray(results);
-            return new Choices(results, start, (int) totFound, Choices.CF_AMBIGUOUS, totFound > (start + limit), 0);
+            return new Choices(results, start, (int) totFound, calculateConfidence(results),
+                               totFound > (start + limit), 0);
         }
         return new Choices(Choices.CF_UNSET);
+    }
+
+    private List<Choice> getChoiceListFromQueryResults(SolrDocumentList results) {
+        return results
+        .stream()
+        .map(doc ->  {
+            String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
+            Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
+            return new Choice((String) doc.getFieldValue("search.resourceid"),
+                title,
+                title, extras);
+        }).collect(Collectors.toList());
     }
 
     @Override
@@ -211,6 +222,46 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     @Override
     public boolean isScrollable() {
         return configurationService.getBooleanProperty("cris.ItemAuthority." + authorityName + ".isScrollable", true);
+    }
+
+    @Override
+    public Map<String, String> getExtra(String key, String locale) {
+
+        SolrClient solr = searchService.getSolrSearchCore().getSolr();
+        if (Objects.isNull(solr)) {
+            log.error("unable to find solr instance");
+            return new HashMap<String, String>();
+        }
+
+        String[] entityTypes = getLinkedEntityType();
+        if (Objects.nonNull(entityTypes) && entityTypes.length == 1) {
+            SolrQuery solrQuery = new SolrQuery();
+            solrQuery.setQuery("*:*");
+            solrQuery.addFilterQuery("search.resourceid:" + key);
+    
+            customAuthorityFilters.stream()
+                .flatMap(caf -> caf.getFilterQueries(entityTypes[0]).stream())
+                .forEach(solrQuery::addFilterQuery);
+    
+            try {
+                QueryResponse queryResponse = solr.query(solrQuery);
+                List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults());
+                if (choiceList.isEmpty()) {
+                    log.warn("No documents found for key=" + key);
+                    return new HashMap<String, String>();
+                }
+    
+                return choiceList.iterator().next().extras;
+    
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+        return new HashMap<String, String>();
+    }
+
+    protected int calculateConfidence(Choice[] choices) {
+        return ArrayUtils.isNotEmpty(choices) ? Choices.CF_AMBIGUOUS : Choices.CF_UNSET;
     }
 
     private boolean hasValidExternalSource(String sourceIdentifier) {

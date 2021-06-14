@@ -238,7 +238,7 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
     }
 
     public WorkspaceItemBuilder withSharedProject(String shared) {
-        return addMetadataValue("cris", "workspace", "shared", shared);
+        return addMetadataValue("cris", "project", "shared", shared);
     }
 
     public WorkspaceItemBuilder withPolicyGroup(String value) {

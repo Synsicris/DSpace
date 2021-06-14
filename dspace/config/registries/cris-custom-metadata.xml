@@ -12,5 +12,12 @@
 		<element>submission</element>
 		<qualifier>definition</qualifier>
 	</dc-type>
+	
+    <dc-type>
+        <schema>cris</schema>
+        <element>project</element>
+        <qualifier>shared</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
 </dspace-dc-types>

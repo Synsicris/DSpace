@@ -146,7 +146,7 @@ public class WorkspaceItemMatcher {
                                   String shared, String policyGroup) {
         return allOf(hasJsonPath("$._embedded.item.metadata",
                allOf(
-                     matchMetadata("cris.workspace.shared", shared),
+                     matchMetadata("cris.project.shared", shared),
                      matchMetadata("cris.policy.group", policyGroup))));
     }
 }

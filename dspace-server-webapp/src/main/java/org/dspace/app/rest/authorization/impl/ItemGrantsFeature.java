@@ -10,20 +10,22 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.utils.Utils;
-import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,34 +48,58 @@ public class ItemGrantsFeature implements AuthorizationFeature {
 
     @Autowired
     private Utils utils;
+
     @Autowired
     private GroupService groupService;
 
+    @Autowired
+    private ItemService itemService;
 
     @Override
     @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
-
-        if (context.getCurrentUser() == null) {
+        EPerson currentUser = context.getCurrentUser();
+        if (Objects.isNull(currentUser)) {
             return false;
         }
 
-        if (object.getType().equals(ItemRest.NAME)) {
-            EPerson submitter = getSubmitter(context, object);
-            Community project = getProjectCommunity(context, object);
+        if (StringUtils.equals(object.getType(), ItemRest.NAME)) {
+            Item item = getItem(context, object);
+            if (isSharedOrFunder(context, item)) {
+                return false;
+            }
+            EPerson submitter = item.getSubmitter();
+            Community project = item.getOwningCollection().getCommunities().get(0);
             if (Objects.nonNull(submitter) && Objects.nonNull(project)) {
-                List<Community> subProjects = projectConsumerService.getAllSubProjectsByUser(context, submitter, project);
+                List<Community> subProjects = projectConsumerService.getAllSubProjectsByUser(context,submitter,project);
                 // to allow edit grants submitter MUST be member of only one subproject within a project
                 if (Objects.isNull(subProjects) || subProjects.size() != 1) {
                     return false;
                 }
-                boolean isAdminOfSubProject = isAdminMemberOfSubProject(context, subProjects.get(0), context.getCurrentUser());
-                if (isAdminOfSubProject || submitter.getID().equals(context.getCurrentUser().getID())) {
+                boolean isAdminOfSubProject = isAdminMemberOfSubProject(context, subProjects.get(0), currentUser);
+                if (isAdminOfSubProject || submitter.getID().equals(currentUser.getID())) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    @SuppressWarnings("rawtypes")
+    private Item getItem(Context context, BaseObjectRest object) throws IllegalArgumentException, SQLException {
+        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
+        if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
+            return ((Item) dSpaceObject);
+        }
+        return null;
+    }
+
+    private boolean isSharedOrFunder(Context context, Item item) {
+        String value = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
+        return StringUtils.isNotBlank(value) &&
+             (StringUtils.equals(value, ProjectConstants.SHARED) ||
+              StringUtils.equals(value, ProjectConstants.FUNDER) ||
+              StringUtils.equals(value, ProjectConstants.FUNDER_PROGRAMME));
     }
 
     private boolean isAdminMemberOfSubProject(Context context, Community community, EPerson submitter)
@@ -86,26 +112,6 @@ public class ItemGrantsFeature implements AuthorizationFeature {
             return true;
         }
         return false;
-    }
-
-    @SuppressWarnings("rawtypes")
-    private EPerson getSubmitter(Context context, BaseObjectRest object) throws IllegalArgumentException, SQLException {
-        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
-        if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
-            return ((Item) dSpaceObject).getSubmitter();
-        }
-        return null;
-    }
-
-    @SuppressWarnings("rawtypes")
-    private Community getProjectCommunity(Context context, BaseObjectRest object)
-            throws IllegalArgumentException, SQLException {
-        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
-        if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
-            Collection collection = ((Item) dSpaceObject).getOwningCollection();
-            return collection.getCommunities().get(0);
-        }
-        return null;
     }
 
     @Override

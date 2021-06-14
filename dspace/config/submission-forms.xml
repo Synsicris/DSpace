@@ -4372,7 +4372,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>baseline</dc-qualifier>
           <label>Baseline-value</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
           <hint />

@@ -360,7 +360,45 @@
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.workspace.shared">project</metadata>
       </item-template>
-    </collection>  
+    </collection>
+    <collection>
+      <name>Team</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>team</entity-type>
+      <submission-type>team</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.workspace.shared">project</metadata>
+      </item-template>
+    </collection>    
+    <collection>
+      <name>Data sets</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>dataset</entity-type>
+      <submission-type>datasets</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.workspace.shared">project</metadata>
+      </item-template>
+    </collection> 
     <collection>
       <name>Patents and utility patents</name>
       <description />
@@ -722,4 +760,3 @@
     </collection>
   </community>
 </import_structure>
-

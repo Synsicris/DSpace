@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DESTATIS 2021-04-21">
+<node id="ResourceTypeGenres" label="DESTATIS 2021-06-10">
   <isComposedBy>
     <node id="01" label="Geisteswissenschaften" selectable="false">
     <hasNote></hasNote>
@@ -486,7 +486,7 @@
             <node id="2270" label="Ostasien" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="2285" label="Ost-undSüdosteuropa" selectable="true">
+            <node id="2285" label="Ost-und Südosteuropa" selectable="true">
             <hasNote></hasNote>
             </node>
             <node id="2275" label="Südasien" selectable="true">

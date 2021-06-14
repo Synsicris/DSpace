@@ -69,7 +69,8 @@ public class ProjectCreateGrantsConsumer implements Consumer {
 
                 String sharedValue = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
                 if (StringUtils.equals(sharedValue, ProjectConstants.SHARED) ||
-                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER)) {
+                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER) ||
+                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER_PROGRAMME)) {
                     return;
                 }
                 if (StringUtils.isNotBlank(sharedValue) &&

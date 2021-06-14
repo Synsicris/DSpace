@@ -15,6 +15,8 @@ package org.dspace.project.util;
 public class ProjectConstants {
 
     public static final String FUNDER = "funder";
+    
+    public static final String FUNDER_PROGRAMME = "funder_programme";
 
     public static final String SHARED = "shared";
 

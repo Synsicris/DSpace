@@ -88,6 +88,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                     case ProjectConstants.FUNDER:
                         setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
                         break;
+                    case ProjectConstants.FUNDER_PROGRAMME:
+                        setPolicyGroup(context, item, configurationService.getProperty("project.funder_programme.group"));
+                        break;
                     default:
                         return;
                 }

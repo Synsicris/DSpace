@@ -97,7 +97,9 @@ public class ItemGrantsFeature implements AuthorizationFeature {
     private boolean isSharedOrFunder(Context context, Item item) {
         String value = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
         return StringUtils.isNotBlank(value) &&
-             (StringUtils.equals(value, ProjectConstants.SHARED) || StringUtils.equals(value, ProjectConstants.FUNDER));
+             (StringUtils.equals(value, ProjectConstants.SHARED) ||
+              StringUtils.equals(value, ProjectConstants.FUNDER) ||
+              StringUtils.equals(value, ProjectConstants.FUNDER_PROGRAMME));
     }
 
     private boolean isAdminMemberOfSubProject(Context context, Community community, EPerson submitter)

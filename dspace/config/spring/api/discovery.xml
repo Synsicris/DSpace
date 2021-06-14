@@ -2738,7 +2738,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:subproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -2791,7 +2791,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:subproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -2844,7 +2844,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:subproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -2897,7 +2897,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:subproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->

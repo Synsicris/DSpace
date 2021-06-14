@@ -103,8 +103,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Autowired
     protected InstallItemService installItemService;
 
-    private String matadataToSkip[] = new String[] { 
-            "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
+    private String matadataToSkip[] = new String[] {
+        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
     protected CommunityServiceImpl() {
         super();
 
@@ -833,7 +833,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         List<MetadataValue> metadataValue = dsoToClone.getMetadata();
         for (MetadataValue metadata : metadataValue) {
             if (isMetadataToSkip(service, target, metadata)) {
-                continue; 
+                continue;
             }
             if (StringUtils.isNotBlank(metadata.getAuthority())) {
                 service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),

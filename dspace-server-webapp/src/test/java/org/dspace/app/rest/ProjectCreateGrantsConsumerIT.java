@@ -31,6 +31,7 @@ import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -82,7 +83,8 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "project");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.PARENTPROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                          .withName("Sub Projects Community").build();
@@ -113,7 +115,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
 
         Item publicItem1 = ItemBuilder.createItem(context, publicationsCollection)
                                       .withTitle("project_" + projectsCommunity.getID().toString() + "_name")
-                                      .withSharedProject("subproject")
+                                      .withSharedProject(ProjectConstants.PROJECT)
                                       .build();
 
         StringBuilder placeholder = new StringBuilder();
@@ -141,7 +143,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
          getClient(tokenEPerson1).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      "subproject", projectsCommunityGroup.getName())
+                                      ProjectConstants.PARENTPROJECT, projectsCommunityGroup.getName())
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -178,7 +180,8 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "project");
+        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+                                ProjectConstants.PARENTPROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                          .withName("Sub Projects Community").build();
@@ -209,7 +212,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
 
         Item publicItem1 = ItemBuilder.createItem(context, publicationsCollection)
                                       .withTitle("project_" + projectsCommunity.getID().toString() + "_name")
-                                      .withSharedProject("subproject")
+                                      .withSharedProject(ProjectConstants.PROJECT)
                                       .build();
 
         StringBuilder placeholder = new StringBuilder();
@@ -238,7 +241,8 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                  .andExpect(status().isOk())
                                  .andExpect(jsonPath("$", Matchers.is(
                                                           WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                                          "project", projectsCommunityGroup.getName())
+                                                                   ProjectConstants.PARENTPROJECT,
+                                                                   projectsCommunityGroup.getName())
                                                           )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());

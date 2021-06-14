@@ -4384,7 +4384,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-qualifier>baseline</dc-qualifier>
           <label>Basiswert</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-2</style>
           <hint>Bitte kennzeichnen Sie den Basiswert der Zeitreihe. Dies ist der Wert, bevor das Projekt einen Einfluss hatte.</hint>
@@ -8024,11 +8024,11 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>parentproject</stored-value>
       </pair>
       <pair>
         <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>subproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

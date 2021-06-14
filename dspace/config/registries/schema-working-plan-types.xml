@@ -15,20 +15,6 @@
         <qualifier>step</qualifier>
         <scope_note></scope_note>
     </dc-type>
-    
-    <dc-type>
-        <schema>workingplan</schema>
-        <element>responsible</element>
-        <qualifier></qualifier>
-        <scope_note></scope_note>
-    </dc-type>
-
-    <dc-type>
-        <schema>workingplan</schema>
-        <element>step</element>
-        <qualifier>status</qualifier>
-        <scope_note></scope_note>
-    </dc-type>
 
     <dc-type>
         <schema>workingplan</schema>

@@ -4372,7 +4372,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>baseline</dc-qualifier>
           <label>Baseline-value</label>
           <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-2</style>
           <hint />
@@ -8012,11 +8012,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>parentproject</stored-value>
       </pair>
       <pair>
         <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>subproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

@@ -83,7 +83,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PARENTPROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
@@ -180,7 +180,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PARENTPROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)

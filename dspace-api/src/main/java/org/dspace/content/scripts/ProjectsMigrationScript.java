@@ -154,7 +154,7 @@ public class ProjectsMigrationScript extends
             for (WorkspaceItem workspaceItem : workspaceItems) {
                 itemService.replaceMetadata(context, workspaceItem.getItem(), "cris", "policy", "group", null,
                                                           "GROUP_POLICY_PLACEHOLDER", null, Choices.CF_UNSET, 0);
-                itemService.replaceMetadata(context, workspaceItem.getItem(), "cris", "workspace", "shared", null,
+                itemService.replaceMetadata(context, workspaceItem.getItem(), "cris", "project", "shared", null,
                                                                               "project", null, Choices.CF_UNSET, 0);
                 addSubmitterToProjectGroup(project, workspaceItem);
                 depositeWorkspaceItem(workspaceItem);
@@ -188,7 +188,7 @@ public class ProjectsMigrationScript extends
             if (Objects.isNull(collection.getTemplateItem())) {
                 Item template = itemService.createTemplateItem(context, collection);
                 itemService.addMetadata(context, template, "cris", "policy", "group", null, "GROUP_POLICY_PLACEHOLDER");
-                itemService.addMetadata(context, template, "cris", "workspace", "shared", null, "project");
+                itemService.addMetadata(context, template, "cris", "project", "shared", null, "project");
             }
         } catch (SQLException | AuthorizeException e) {
             log.error(e.getMessage());

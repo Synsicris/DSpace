@@ -27,7 +27,7 @@ import org.dspace.utils.DSpace;
 /**
  * The purpose of this consumer is to check if the user
  * who created the workspaceitem belongs to the subProject groups,
- * if yes in the metadata 'cris.workspace.shared' it is written <subproject>,
+ * if yes in the metadata 'cris.project.shared' it is written <subproject>,
  * otherwise it is written <project>.
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
@@ -67,7 +67,7 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                     return;
                 }
 
-                String sharedValue = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
+                String sharedValue = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
                 if (StringUtils.equals(sharedValue, ProjectConstants.SHARED) ||
                     StringUtils.equals(sharedValue, ProjectConstants.FUNDER) ||
                     StringUtils.equals(sharedValue, ProjectConstants.FUNDER_PROGRAMME)) {

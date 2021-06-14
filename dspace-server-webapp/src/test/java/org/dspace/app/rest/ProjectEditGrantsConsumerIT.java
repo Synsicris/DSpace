@@ -91,7 +91,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PARENTPROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
@@ -175,7 +175,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
@@ -251,7 +251,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, ProjectConstants.PROJECT);
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -335,7 +335,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, ProjectConstants.PROJECT);
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.PROJECT);
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -438,7 +438,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
          getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", allOf(hasJsonPath("$._embedded.item.metadata", allOf(
-                                   matchMetadataDoesNotExist("cris.workspace.shared"),
+                                   matchMetadataDoesNotExist("cris.project.shared"),
                                                matchMetadata("cris.policy.group", "GROUP_POLICY_PLACEHOLDER")
                                                )))));
         } finally {
@@ -477,7 +477,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.SHARED);
 
         context.restoreAuthSystemState();
@@ -536,7 +536,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null,
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.FUNDER);
 
         context.restoreAuthSystemState();

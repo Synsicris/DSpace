@@ -58,7 +58,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     public void processItem(Context context, EPerson currentUser, Item item) {
         try {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
-                String shared = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
+                String shared = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
                 Community projectCommunity = getProjectCommunity(context, item);
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
@@ -164,12 +164,12 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
-                        itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
+                        itemService.replaceMetadata(context, item, "cris", "project", "shared",
                                                        null, defaultValue, null, Choices.CF_UNSET, 0);
                     }
                 }
             } else {
-                itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
+                itemService.replaceMetadata(context, item, "cris", "project", "shared",
                                             null, ProjectConstants.PARENTPROJECT, null, Choices.CF_UNSET, 0);
             }
         } catch (SQLException e) {
@@ -185,7 +185,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(projectItem)) {
                 return null;
             }
-            return itemService.getMetadataFirstValue(projectItem, "cris", "workspace", "shared", Item.ANY);
+            return itemService.getMetadataFirstValue(projectItem, "cris", "project", "shared", Item.ANY);
         }
         return null;
     }

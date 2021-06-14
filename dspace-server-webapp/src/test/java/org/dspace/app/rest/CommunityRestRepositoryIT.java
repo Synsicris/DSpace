@@ -3285,7 +3285,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertTrue(items.hasNext());
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(itemService, item, "cris", "workspace", "shared", "project"));
+            assertTrue(containeMetadata(itemService, item, "cris", "project", "shared", "project"));
             assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
                                         "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());

@@ -708,7 +708,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
     }
 
     public ItemBuilder withSharedProject(String shared) {
-        return addMetadataValue(item, "cris", "workspace", "shared", shared);
+        return addMetadataValue(item, "cris", "project", "shared", shared);
     }
 
     public ItemBuilder withPolicyGroup(String value) {

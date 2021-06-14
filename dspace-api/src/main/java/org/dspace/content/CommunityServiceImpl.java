@@ -812,7 +812,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
-            itemService.replaceMetadata(context, newItem, "cris", "workspace", "shared", null, grants, null,
+            itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
                                         Choices.CF_UNSET, 0);
         }
     }

@@ -49,6 +49,7 @@ import org.dspace.discovery.SearchServiceException;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -370,7 +371,8 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         String grants = req.getParameter("grants");
 
         if (StringUtils.isNoneEmpty(grants) &&
-            (!StringUtils.equals(grants, "project") & !StringUtils.equals(grants, "subproject"))) {
+            (!StringUtils.equals(grants, ProjectConstants.PARENTPROJECT) &&
+                    !StringUtils.equals(grants, ProjectConstants.PROJECT))) {
             throw new UnprocessableEntityException("");
         }
 

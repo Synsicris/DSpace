@@ -159,8 +159,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
-                List<MetadataValue> values = communityService.getMetadataByMetadataString(subprojectCommunity,
-                        "dc.relation.project");
+                List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
+                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, 
+                        ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {

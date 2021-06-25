@@ -58,7 +58,7 @@ public class CurrentProjectGenerator implements TemplateValueGenerator {
             Community projectCommunity;
             switch (extraParams) {
                 case ProjectConstants.PARENTPROJECT:
-                    projectCommunity = getProjectCommunity(templateItem);
+                    projectCommunity = getParentProjectCommunity(templateItem);
                     break;
                 case ProjectConstants.PROJECT:
                     projectCommunity = getProjectCommunity(templateItem);
@@ -86,6 +86,13 @@ public class CurrentProjectGenerator implements TemplateValueGenerator {
         while(Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
             parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
         }
+        return parentProjectCommunity;
+    }
+
+    private Community getParentProjectCommunity(Item templateItem) throws SQLException {
+        Community projectCommunity = getProjectCommunity(templateItem);
+        Community parentProjectCommunity = projectCommunity.getParentCommunities().get(0)
+                .getParentCommunities().get(0);
         return parentProjectCommunity;
     }
 

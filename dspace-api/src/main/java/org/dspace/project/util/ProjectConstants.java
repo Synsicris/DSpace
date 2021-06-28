@@ -22,6 +22,8 @@ public class ProjectConstants {
 
     public static final String SHARED = "shared";
 
+    public static final String OWNING_PROJECT = "owningproject";
+
     public static final String PROJECT = "project";
 
     public static final String PARENTPROJECT = "parentproject";

@@ -50,6 +50,7 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
 import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -722,7 +723,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community newCommunity = create(parent, context);
         UUID rootCommunityUUID = newCommunity.getID();
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, "dc", "relation", "project", null);
+        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
@@ -785,7 +787,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         try {
             while (items.hasNext()) {
                 Item item = items.next();
-                WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, false);
+                WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, true);
                 Item newItem = installItemService.installItem(context, workspaceItem);
                 collectionService.addItem(context, newCollection, newItem);
                 cloneMetadata(context, itemService, newItem, item);
@@ -807,7 +809,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community rootCommunity = this.find(context, rootCommunityUUID);
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
+        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null,
                              relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
@@ -868,7 +871,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
             } else {
-                throw new RuntimeException("Metadata value of dc.relation.project : " + value
+                throw new RuntimeException("Metadata value of synsicris.relation.entity_project : " + value
                         + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
             }
         }

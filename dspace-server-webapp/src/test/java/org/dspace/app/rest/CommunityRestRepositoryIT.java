@@ -74,6 +74,7 @@ import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
@@ -2862,7 +2863,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project",
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER,
                                      null, placeholder.toString());
 
         Item itemAuthor = ItemBuilder.createItem(context, col)
@@ -3066,7 +3068,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project",
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER,
                                      null, placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -3120,8 +3123,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertTrue(items.hasNext());
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
-                       "project_" + item.getID().toString() + "_item"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                    ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
             // checking the original collection
@@ -3233,7 +3237,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project", null,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null,
                                      placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -3286,8 +3291,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
             assertTrue(containeMetadata(itemService, item, "cris", "project", "shared", "project"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
-                                        "project_" + item.getID().toString() + "_item"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                    ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
         } finally {

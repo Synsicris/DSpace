@@ -75,6 +75,9 @@
                 <entry key="currentuser">
                     <bean class="org.dspace.content.template.generator.CurrentUserValueGenerator" />
                 </entry>
+                <entry key="currentproject">
+                    <bean class="org.dspace.content.template.generator.CurrentProjectGenerator" />
+                </entry>
             </map>
         </constructor-arg>
     </bean>

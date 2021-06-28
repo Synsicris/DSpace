@@ -8,6 +8,7 @@
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,7 +18,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
@@ -65,6 +68,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 }
                 switch (shared) {
                     case ProjectConstants.PARENTPROJECT :
+                    case ProjectConstants.OWNING_PROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
@@ -111,15 +115,31 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     private Community getProjectCommunity(Context context, Item item) throws SQLException {
+        Community parentProjectCommunity = null;
+        Collection owningCollection = null;
+        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
+
         WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
         if (Objects.nonNull(workspaceItem)) {
-            return workspaceItem.getCollection().getCommunities().get(0);
+            owningCollection = workspaceItem.getCollection();
+        } else {
+          if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+              // the item is a template item
+              return null;
+          }
+          owningCollection = item.getCollections().get(0);
         }
-        if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+
+        if (owningCollection == null) {
             // the item is a template item
             return null;
         }
-        return item.getCollections().get(0).getCommunities().get(0);
+
+        parentProjectCommunity = owningCollection.getCommunities().get(0);
+        while(Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
+            parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
+        }
+        return parentProjectCommunity;
     }
 
     private Community getSubProjectCommunity(Community projectCommunity) {
@@ -159,8 +179,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
-                List<MetadataValue> values = communityService.getMetadataByMetadataString(subprojectCommunity,
-                        "dc.relation.project");
+                List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
+                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, 
+                        ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {

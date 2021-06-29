@@ -3291,12 +3291,15 @@
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <property name="sortFields">
-                    <list>
-                        <ref bean="sortEntityType"/>
+                  <list>
                         <ref bean="sortWorkingplanPlace"/>
                         <ref bean="sortTitle"/>
-                        <ref bean="sortDateAccessioned"/>
-                    </list>
+                        <ref bean="sortEntityType"/>
+                        <ref bean="sortWorkingplanStatus"/>
+                        <ref bean="sortWorkingplanOrganization"/>
+                        <ref bean="sortWorkingplanDateStart"/>
+                        <ref bean="sortWorkingplanDateEnd"/>
+                  </list>
                 </property>
             </bean>
         </property>
@@ -3347,10 +3350,8 @@
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <property name="sortFields">
                     <list>
-                        <ref bean="sortEntityType"/>
-                        <ref bean="sortWorkingplanPlace"/>
                         <ref bean="sortTitle"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortEntityType"/>
                     </list>
                 </property>
             </bean>
@@ -4882,4 +4883,25 @@
         <property name="defaultSortOrder" value="asc"/>
     </bean>
 
+    <bean id="sortWorkingplanStatus" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="synsicris.type.status"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
+    
+    <bean id="sortWorkingplanOrganization" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="synsicris.relation.partner"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
+    
+    <bean id="sortWorkingplanDateStart" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.date.start"/>
+        <property name="type" value="date"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
+    
+    <bean id="sortWorkingplanDateEnd" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.date.end"/>
+        <property name="type" value="date"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
 </beans>

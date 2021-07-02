@@ -234,7 +234,7 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>cooperation_partner</entity-type>
+      <entity-type>cooperationpartner</entity-type>
       <submission-type>cooperationpartners</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>

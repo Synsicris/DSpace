@@ -688,7 +688,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !entityType:impactpathwaystep</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -912,7 +912,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>search.resourcetype:Item AND !entityType:impactpathwaystep AND !entityType:exploitationplanstep</value>
+                <value>search.resourcetype:Item AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep</value>
             </list>
         </property>
         <!--Default result per page  -->

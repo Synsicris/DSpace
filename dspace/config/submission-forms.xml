@@ -394,11 +394,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Enter funding programme objective</label>
+          <label>Select funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please copy the selected objective from the funding programme into this field. In future, the funding policy objectives of the programme will be provided in a selection list.</hint>
+          <required />
+          <hint>Please select a funding policy objectives of the programme.</hint>
         </field>
       </row>
       <row>
@@ -431,7 +431,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Type</label>
-          <input-type value-pairs-name="working_plan_workpackage_type">dropdown</input-type>
+          <input-type value-pairs-name="working_plan_workpackage_type">list</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
@@ -506,7 +506,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Type</label>
-          <input-type value-pairs-name="working_plan_workpackage_step_type">dropdown</input-type>
+          <input-type value-pairs-name="working_plan_workpackage_step_type">list</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
@@ -1448,6 +1448,18 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Call / funding area</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
           <dc-qualifier>project</dc-qualifier>
           <label>Coordinating project</label>
           <input-type>onebox</input-type>
@@ -1632,7 +1644,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1644,7 +1655,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1668,7 +1678,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1682,7 +1691,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1694,7 +1702,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1707,7 +1714,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1720,7 +1726,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1733,7 +1738,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1746,7 +1750,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1759,7 +1762,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1772,7 +1774,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1785,7 +1786,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1798,7 +1798,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1811,7 +1810,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1824,7 +1822,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1837,7 +1834,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1850,7 +1846,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1863,7 +1858,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1876,7 +1870,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1889,7 +1882,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
     </form>
@@ -2018,18 +2010,6 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Corresponding stakeholder group</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>sector</dc-qualifier>
           <label>Societal area of the organisation</label>
@@ -2043,26 +2023,13 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>economic sector of the organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>SME, large enterprises</type-bind>
-          <vocabulary closed="true">nace</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
           <dc-qualifier>destatis</dc-qualifier>
           <label>Discipline</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2076,6 +2043,18 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <hint>If the item has any identification numbers or codes associated with
 it, please select a type and enter the actual number or code.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>easy-import</dc-qualifier>
+          <label>Executing Organisation in the official proposal (easy-online)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
         </field>
       </row>
     </form>
@@ -2112,7 +2091,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2123,7 +2102,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -2134,7 +2113,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2145,7 +2124,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
       </row>
@@ -2205,24 +2184,22 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>type</dc-element>
           <dc-qualifier>legalform</dc-qualifier>
           <label>Legal form</label>
-          <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>orgform</dc-qualifier>
-          <label>Organisationform</label>
+          <label>Type of organisation</label>
           <input-type value-pairs-name="organisationform">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2234,7 +2211,32 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>recipient-stats</dc-qualifier>
+          <label>profi recipient stats</label>
+          <input-type value-pairs-name="recipient_stats">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>economic sector of the organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <type-bind>Economy</type-bind>
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -2247,7 +2249,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2259,7 +2260,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
@@ -2272,133 +2272,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>gender</dc-qualifier>
-          <label>Gender</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Degree</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <label>Family name, first name</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Phone</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>Email</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>gender</dc-qualifier>
-          <label>Form of address</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Degree</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <label>Family name, first name</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Phone</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>Email</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -2411,7 +2284,126 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
+        </field>
+      </row>
+    </form>
+    <form name="projectpartners_import_lead">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Gender</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>Degree</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <label>Name</label>
+          <input-type>name</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>phone</dc-qualifier>
+          <label>Phone</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>email</dc-qualifier>
+          <label>Email</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projectpartners_import_leadadmin">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Gender</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>Degree</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <label>Name</label>
+          <input-type>name</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>phone</dc-qualifier>
+          <label>Phone</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>email</dc-qualifier>
+          <label>Email</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
       </row>
     </form>
@@ -2609,7 +2601,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2623,6 +2615,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2854,7 +2847,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2868,6 +2861,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2917,7 +2911,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Automatically filled</hint>
-          <readonly>readonly</readonly>
         </field>
       </row>
     </form>
@@ -3058,7 +3051,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>type</dc-element>
           <dc-qualifier>legalform</dc-qualifier>
           <label>Legal form</label>
-          <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -3080,7 +3073,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>type</dc-element>
           <dc-qualifier>publicfunded</dc-qualifier>
           <label>The organisation is mainly financed by public funding.</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
+          <input-type value-pairs-name="yes_no">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -3144,7 +3137,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -3158,6 +3151,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -3416,7 +3410,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -3776,50 +3769,6 @@ it, please select a type and enter the actual number or code.</hint>
     <form name="steps">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type of next steps</label>
-          <input-type value-pairs-name="nextsteps">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <label>Approx. year of starting with the task</label>
-          <input-type value-pairs-name="year">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint>Please provide an approx. time frame in which the described tasks are undertaken.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-9</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description of the task</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Please describe the task and, if possible, indicate its financing.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
@@ -3842,6 +3791,50 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>Which stakeholder groups are involved? Use this field also, if further partners are not specified yet.</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type of next steps</label>
+          <input-type value-pairs-name="nextsteps">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <label>Approx. year of starting with the task</label>
+          <input-type value-pairs-name="year">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Please provide an approx. time frame in which the described tasks are undertaken.</hint>
+        </field>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description of the task</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-9</style>
+          <hint>Please describe the task and, if possible, indicate its financing.</hint>
+        </field>
+      </row>
     </form>
     <form name="innovationideas">
       <row>
@@ -3858,17 +3851,6 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Type</label>
           <input-type>onebox</input-type>
@@ -3876,6 +3858,17 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <hint />
           <vocabulary closed="true">all-innovation</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -4134,7 +4127,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="status_regional">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
@@ -4145,20 +4138,9 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">nuts2</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Notes</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
         </field>
       </row>
     </form>
@@ -4175,15 +4157,39 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Notes</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="innovationpotentials_srl_trl">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
-          <label>Selection TRL / SRL</label>
-          <input-type value-pairs-name="srl_trl">list</input-type>
+          <dc-element>description</dc-element>
+          <dc-qualifier>rl-start</dc-qualifier>
+          <label>Description state of development at projectstart</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>rl-end</dc-qualifier>
+          <label>Description state of development at projectend</label>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -4217,38 +4223,25 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>rl</dc-qualifier>
-          <label>Description of Readiness Level</label>
-          <input-type>textarea</input-type>
+          <dc-element>type</dc-element>
+          <dc-qualifier>srl-trl</dc-qualifier>
+          <label>Selection TRL / SRL</label>
+          <input-type value-pairs-name="srl_trl">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
-          <hint>Please indicate here (if necessary), specific aspects, interdependences or uncertainities, regarding the SRL-level of the solution.</hint>
+          <style>col-md-4</style>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>trl</dc-qualifier>
-          <label>Choose Technology Readiness Level</label>
-          <input-type>onebox</input-type>
+          <dc-element>level</dc-element>
+          <dc-qualifier>srl-trl</dc-qualifier>
+          <label>Readiness Level</label>
+          <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
+          <style>col-md-4</style>
           <hint />
-          <vocabulary closed="true">trl</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>srl</dc-qualifier>
-          <label>Choose Solution Readiness Level</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
-          <hint />
-          <vocabulary closed="true">srl</vocabulary>
         </field>
       </row>
     </form>
@@ -4521,7 +4514,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Nature of the project's participation in the event</label>
           <input-type value-pairs-name="project_contribution">list</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -4530,11 +4523,10 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Type of the event/interaction</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <input-type value-pairs-name="event_type">list</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
-          <vocabulary closed="true">event-type</vocabulary>
         </field>
       </row>
       <row>
@@ -4560,8 +4552,18 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
-    </form>
-    <form name="events_involved">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Additional description of the event</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>If necessary, add here further information about the event that you consider to be essential. 
+For example topics, specific methods, procedures, peculiarities of the participating organizations or groups of actors or the importance of the event for the impact of the project.</hint>
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4584,18 +4586,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Please select one or more stakeholder group(s).</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Additional description of the event</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>If necessary, add here further information about the event that you consider to be essential. 
-For example topics, specific methods, procedures, peculiarities of the participating organizations or groups of actors or the importance of the event for the impact of the project.</hint>
         </field>
       </row>
     </form>
@@ -4671,6 +4661,30 @@ For example topics, specific methods, procedures, peculiarities of the participa
     <form name="process_events">
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partner</dc-qualifier>
+          <label>Involved organisations</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please select one or more organisation(s).</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Stakeholder groups involved</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Please select one or more stakeholder group(s).</hint>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <label>Key information / title of the process of cooperation, participation and working together</label>
@@ -4692,30 +4706,15 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <hint>Please select one or several purposes of the activity.</hint>
         </field>
       </row>
-    </form>
-    <form name="process_events_involved">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
-          <label>Involved organisations</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Additional description of the process</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint>Please select one or more organisation(s).</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Stakeholder groups involved</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please select one or more stakeholder group(s).</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4780,19 +4779,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
-    <form name="process_events_description">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Additional description of the process</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="process_events_date-synsicris-type-process-event-date">
       <row>
         <field>
@@ -4849,17 +4835,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <hint>Please characterise the interaction/event by giving an approximate number of participants.</hint>
         </field>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>event</dc-qualifier>
-          <label>Title or Topic of the interaction/event</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-        </field>
-        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>event</dc-element>
           <dc-qualifier>place</dc-qualifier>
@@ -4881,6 +4856,17 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <style>col-md-2</style>
           <hint />
           <vocabulary closed="true">countries</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>event</dc-qualifier>
+          <label>Title or Topic of the interaction/event</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
         </field>
       </row>
     </form>
@@ -5788,7 +5774,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Description</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -5858,7 +5844,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Description</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -5951,8 +5937,20 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Description</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Related SDG</label>
+          <input-type value-pairs-name="sdg">dropdown</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -6365,27 +6363,27 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="event_purpose" dc-term="event_purpose">
       <pair>
-        <displayed-value>Develop/concretise the problem definition for the project</displayed-value>
+        <displayed-value>Sharpen the problem definition</displayed-value>
         <stored-value>Problem definition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Develop/concretise project design (e.g. question, methods)</displayed-value>
+        <displayed-value>Concretise project design (e.g. research question, methods)</displayed-value>
         <stored-value>Project design</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Further develop the project's impact pathway</displayed-value>
+        <stored-value>Impact pathway reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Develop transfer and dissemination strategies</displayed-value>
         <stored-value>Transfer strategies</stored-value>
       </pair>
       <pair>
-        <displayed-value>Further develop/ reflect on the impact pathway of the project</displayed-value>
-        <stored-value>Impact pathway reflection</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflect ongoing research and development process</displayed-value>
+        <displayed-value>Reflect on the ongoing research and development process</displayed-value>
         <stored-value>Research process reflection</stored-value>
       </pair>
       <pair>
-        <displayed-value>Data collection / carrying out tests</displayed-value>
+        <displayed-value>Collect data / carry out experiments</displayed-value>
         <stored-value>Data collection / tests</stored-value>
       </pair>
       <pair>
@@ -6397,7 +6395,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Practice knowledge integration</stored-value>
       </pair>
       <pair>
-        <displayed-value>Joint development of results</displayed-value>
+        <displayed-value>Develop results</displayed-value>
         <stored-value>Joint development</stored-value>
       </pair>
       <pair>
@@ -6405,15 +6403,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Discuss project results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dissemination / exchange of knowledge</displayed-value>
+        <displayed-value>Dissimination / knowledge exchange</displayed-value>
         <stored-value>Research process - others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Reflect on the practicality/applicability of the results</displayed-value>
+        <displayed-value>Illuminate practicality/applicability of the results</displayed-value>
         <stored-value>Reflect applicability</stored-value>
       </pair>
       <pair>
-        <displayed-value>Reflect on the desired societal impacts of the project/results</displayed-value>
+        <displayed-value>Promote desired social effects of the project / results</displayed-value>
         <stored-value>Reflect desired societal impacts</stored-value>
       </pair>
       <pair>
@@ -6421,7 +6419,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Ethical reflection</stored-value>
       </pair>
       <pair>
-        <displayed-value>Reflect on risks and consequences/ side-effects of the project results</displayed-value>
+        <displayed-value>Weigh risks and consequences/side-effects of the project results</displayed-value>
         <stored-value>Risk reflection</stored-value>
       </pair>
       <pair>
@@ -6583,6 +6581,54 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Other</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="event_type" dc-term="event_type">
+      <pair>
+        <displayed-value>Non-scientific (specialist) meeting/conference/congress 
+(please do not enter contributions to conferences here, but in publications)</displayed-value>
+        <stored-value>Non-scientific (specialist) meeting/conference/congress</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Scientific (professional) meeting/conference/congress
+(please do not enter contributions to scientific conferences here, but in publications)</displayed-value>
+        <stored-value>Scientific (professional) meeting/conference/congress</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Fair/Exhibition</displayed-value>
+        <stored-value>Fair/Exhibition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Workshop</displayed-value>
+        <stored-value>Workshop</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Excursion</displayed-value>
+        <stored-value>Excursion</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Non-academic course</displayed-value>
+        <stored-value>Non-academic course</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Academic course (e.g. for students or PhDs)</displayed-value>
+        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Trial / Practical test</displayed-value>
+        <stored-value>Practical test</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Interview / Survey</displayed-value>
+        <stored-value>Interview / Survey</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Meeting (e.g. advisory board meeting)</displayed-value>
+        <stored-value>Meeting</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Other / miscellaneous</displayed-value>
+        <stored-value>Other</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
         <displayed-value>requested</displayed-value>
@@ -6729,340 +6775,30 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>GenericID</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="orgunit_legalform" dc-term="orgunit_legalform">
-      <pair>
-        <displayed-value>Public limited company</displayed-value>
-        <stored-value>Public limited company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership with a public limited company as general partner</displayed-value>
-        <stored-value>Limited partnership with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership limited by shares with a public limited company as general partner</displayed-value>
-        <stored-value>Partnership limited by shares with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>General partnership with a public limited company as general partner</displayed-value>
-        <stored-value>General partnership with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public limited company (Swiss law)</displayed-value>
-        <stored-value>Public limited company (Swiss law)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public limited company in process of formation</displayed-value>
-        <stored-value>Public limited company in process of formation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public limited company, non-profit</displayed-value>
-        <stored-value>Public limited company, non-profit</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>American limited partnership</displayed-value>
-        <stored-value>American limited partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public-law institution</displayed-value>
-        <stored-value>Public-law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Working partnership/consortium</displayed-value>
-        <stored-value>Working partnership/consortium</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Authority</displayed-value>
-        <stored-value>Authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>BGB company (partnership under the Civil Code)</displayed-value>
-        <stored-value>BGB company (partnership under the Civil Code)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Federal association</displayed-value>
-        <stored-value>Federal association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Registered association</displayed-value>
-        <stored-value>Registered association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Registered merchant</displayed-value>
-        <stored-value>Registered merchant</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Registered association/union</displayed-value>
-        <stored-value>Registered association/union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Registered association/union, non-profit</displayed-value>
-        <stored-value>Registered association/union, non-profit</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Registered association/union in the process of formation</displayed-value>
-        <stored-value>Registered association/union in the process of formation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Own establishment/owner operated</displayed-value>
-        <stored-value>Own establishment/owner operated</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Owner-operated local enterprise</displayed-value>
-        <stored-value>Owner-operated local enterprise</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public law institution</displayed-value>
-        <stored-value>Public law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Individual enterprise/sole proprietorship</displayed-value>
-        <stored-value>Individual enterprise/sole proprietorship</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Not applicable, due to implementing agency or subunit of ZE</displayed-value>
-        <stored-value>Not applicable, due to implementing agency or subunit of ZE</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>European Union</displayed-value>
-        <stored-value>European Union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(engl.) GbR</displayed-value>
-        <stored-value>(engl.) GbR</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>regional authority</displayed-value>
-        <stored-value>regional authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit public limited company</displayed-value>
-        <stored-value>Non-profit public limited company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit limited liability company</displayed-value>
-        <stored-value>Non-profit limited liability company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit foundation</displayed-value>
-        <stored-value>Non-profit foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit civil law foundation</displayed-value>
-        <stored-value>Non-profit civil law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit private law foundation</displayed-value>
-        <stored-value>Non-profit private law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-profit entrepreneurial company</displayed-value>
-        <stored-value>Non-profit entrepreneurial company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cooperative</displayed-value>
-        <stored-value>Cooperative</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under civil law</displayed-value>
-        <stored-value>Corporation under civil law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public corporation</displayed-value>
-        <stored-value>Public corporation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited liability company</displayed-value>
-        <stored-value>Limited liability company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Compulsory health insurance fund</displayed-value>
-        <stored-value>Compulsory health insurance fund</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Trade union</displayed-value>
-        <stored-value>Trade union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(engl.) GmbH</displayed-value>
-        <stored-value>(engl.) GmbH</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>General partnership with a limited liability company as general partner</displayed-value>
-        <stored-value>General partnership with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership with a limited liability company as shareholder</displayed-value>
-        <stored-value>Limited partnership with a limited liability company as shareholder</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>International organisation</displayed-value>
-        <stored-value>International organisation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Legal person</displayed-value>
-        <stored-value>Legal person</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Body corporate organised under public law</displayed-value>
-        <stored-value>Body corporate organised under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Body corporate/juristic person governed by private law</displayed-value>
-        <stored-value>Body corporate/juristic person governed by private law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership</displayed-value>
-        <stored-value>Limited partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership with a limited liability company as general partner</displayed-value>
-        <stored-value>Limited partnership with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership limited by shares</displayed-value>
-        <stored-value>Partnership limited by shares</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership limited by shares with a limited liability company as general partner</displayed-value>
-        <stored-value>Partnership limited by shares with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Local authority</displayed-value>
-        <stored-value>Local authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under English law</displayed-value>
-        <stored-value>Corporation under English law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under French law</displayed-value>
-        <stored-value>Corporation under French law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under public law</displayed-value>
-        <stored-value>Corporation under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under private law</displayed-value>
-        <stored-value>Corporation under private law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Corporation under Spanish law</displayed-value>
-        <stored-value>Corporation under Spanish law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Provincial authority</displayed-value>
-        <stored-value>Provincial authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>State authority</displayed-value>
-        <stored-value>State authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited</displayed-value>
-        <stored-value>Limited</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Natural person</displayed-value>
-        <stored-value>Natural person</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Unregistered charity</displayed-value>
-        <stored-value>Unregistered charity</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-incorporated public-law institution</displayed-value>
-        <stored-value>Non-incorporated public-law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-incorporated association</displayed-value>
-        <stored-value>Non-incorporated association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Supreme federal authority</displayed-value>
-        <stored-value>Supreme federal authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Supreme provincial authority</displayed-value>
-        <stored-value>Supreme provincial authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(engl.) OHG</displayed-value>
-        <stored-value>(engl.) OHG</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>General partnership</displayed-value>
-        <stored-value>General partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership association</displayed-value>
-        <stored-value>Partnership association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership</displayed-value>
-        <stored-value>Partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Private association</displayed-value>
-        <stored-value>Private association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Incorporated civil-law association</displayed-value>
-        <stored-value>Incorporated civil-law association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Incorporated association by virtue of national bestowal</displayed-value>
-        <stored-value>Incorporated association by virtue of national bestowal</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership with the European Union as a general partner</displayed-value>
-        <stored-value>Limited partnership with the European Union as a general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnership limited by shares with the European Union as a general partner</displayed-value>
-        <stored-value>Partnership limited by shares with the European Union as a general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Foundation</displayed-value>
-        <stored-value>Foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Limited partnership with a foundation as liable shareholder</displayed-value>
-        <stored-value>Limited partnership with a foundation as liable shareholder</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Civil-law foundation</displayed-value>
-        <stored-value>Civil-law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Public-law foundation</displayed-value>
-        <stored-value>Public-law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Private law foundation</displayed-value>
-        <stored-value>Private law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Secondary corporation under public law</displayed-value>
-        <stored-value>Secondary corporation under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Entrepreneurial company (limited liability)</displayed-value>
-        <stored-value>Entrepreneurial company (limited liability)</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="organisationform" dc-term="organisationform">
       <pair>
         <displayed-value>public</displayed-value>
         <stored-value>public</stored-value>
       </pair>
       <pair>
-        <displayed-value>private</displayed-value>
+        <displayed-value>non-profit</displayed-value>
+        <stored-value>non-profit</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>private - SME</displayed-value>
+        <stored-value>SME</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>private - Company</displayed-value>
+        <stored-value>Company</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>private (size not defined)</displayed-value>
         <stored-value>private</stored-value>
       </pair>
       <pair>
-        <displayed-value>non-profit</displayed-value>
-        <stored-value>non-profit</stored-value>
+        <displayed-value>private / public combined</displayed-value>
+        <stored-value>private/public</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
@@ -7147,28 +6883,24 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="nextsteps" dc-term="nextsteps">
       <pair>
-        <displayed-value>Further steps to develop the innovation</displayed-value>
-        <stored-value>Further steps to develop the innovation</stored-value>
+        <displayed-value>Application for a follow-up project (from public funds)</displayed-value>
+        <stored-value>follow-up project</stored-value>
       </pair>
       <pair>
-        <displayed-value>Further dissemination of results</displayed-value>
-        <stored-value>Further dissemination of results</stored-value>
+        <displayed-value>Cooperation between research and business via contract research</displayed-value>
+        <stored-value>contract research</stored-value>
       </pair>
       <pair>
-        <displayed-value>Intention to apply for other public funding sources</displayed-value>
-        <stored-value>Intention to apply for other public funding sources</stored-value>
+        <displayed-value>Work on the further development of the possible solution / change / innovation</displayed-value>
+        <stored-value>Work on the further development</stored-value>
       </pair>
       <pair>
-        <displayed-value>Cooperation via contract research</displayed-value>
-        <stored-value>Cooperation via contract research</stored-value>
+        <displayed-value>Transfer of the project results into practice</displayed-value>
+        <stored-value>Transfer into practice</stored-value>
       </pair>
       <pair>
         <displayed-value>Exchange of knowledge and ideas (e.g. think tanks, open labs, creative formats)</displayed-value>
         <stored-value>Exchange of knowledge and ideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants)</displayed-value>
-        <stored-value>Sharing of resources</stored-value>
       </pair>
       <pair>
         <displayed-value>Transfer of employees from research institutions to companies</displayed-value>
@@ -7185,6 +6917,10 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Cooperation in teaching</displayed-value>
         <stored-value>Cooperation in teaching</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sharing of resources (e.g. equipment, facilities, premises plots, plants)</displayed-value>
+        <stored-value>Sharing of resources</stored-value>
       </pair>
       <pair>
         <displayed-value>Others</displayed-value>
@@ -7343,21 +7079,21 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
       <pair>
-        <displayed-value>1. Region in which the application is envisaged</displayed-value>
+        <displayed-value>1. Primary field of application</displayed-value>
         <stored-value>Region in which the application is envisaged</stored-value>
       </pair>
       <pair>
-        <displayed-value>2. Possible region for transmission and dissemination</displayed-value>
+        <displayed-value>2. Later dissemination</displayed-value>
         <stored-value>Possible region for transmission and dissemination</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
       <pair>
-        <displayed-value>link</displayed-value>
+        <displayed-value>A: The application belongs to an already documented solution / change / innovation or to a patent.</displayed-value>
         <stored-value>link</stored-value>
       </pair>
       <pair>
-        <displayed-value>new</displayed-value>
+        <displayed-value>B: The application relates to a new / not yet documented solution / change / innovation that may have been developed by a third party.</displayed-value>
         <stored-value>new</stored-value>
       </pair>
     </value-pairs>
@@ -7703,6 +7439,52 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Research</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="recipient_stats" dc-term="recipient_stats">
+      <pair>
+        <displayed-value>Not yet known</displayed-value>
+        <stored-value>?</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Abroad</displayed-value>
+        <stored-value>AU</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Education</displayed-value>
+        <stored-value>BI</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Large enterprises</displayed-value>
+        <stored-value>GR</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Large enterprises</displayed-value>
+        <stored-value>GR</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Small and medium-sized enterprises (SMEs)</displayed-value>
+        <stored-value>KM</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Medium-sized companies</displayed-value>
+        <stored-value>MI</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Public institutions and companies</displayed-value>
+        <stored-value>OE</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Partnerships, family-owned, privately-owned, free float</displayed-value>
+        <stored-value>PE</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Other companies</displayed-value>
+        <stored-value>SO</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Associations</displayed-value>
+        <stored-value>VE</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="targetgroup_urban_rural" dc-term="targetgroup_urban_rural">
       <pair>
         <displayed-value>Rural areas</displayed-value>
@@ -7839,6 +7621,76 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>International environmental impacts</displayed-value>
         <stored-value>International environmental impacts</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="sdg" dc-term="sdg">
+      <pair>
+        <displayed-value>SDG 1: End poverty in all its forms everywhere</displayed-value>
+        <stored-value>SDG 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 2: End hunger, achieve food security and improved nutrition and promote sustainable agriculture</displayed-value>
+        <stored-value>SDG 2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 3: Ensure healthy lives and promote well-being for all at all ages</displayed-value>
+        <stored-value>SDG 3</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 4</displayed-value>
+        <stored-value>SDG 4</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 5</displayed-value>
+        <stored-value>SDG 5</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 6</displayed-value>
+        <stored-value>SDG 6</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 7</displayed-value>
+        <stored-value>SDG 7</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 8</displayed-value>
+        <stored-value>SDG 8</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 9</displayed-value>
+        <stored-value>SDG 9</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 10</displayed-value>
+        <stored-value>SDG 10</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 11</displayed-value>
+        <stored-value>SDG 11</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 12</displayed-value>
+        <stored-value>SDG 12</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 13</displayed-value>
+        <stored-value>SDG 13</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 14</displayed-value>
+        <stored-value>SDG 14</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 15</displayed-value>
+        <stored-value>SDG 15</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 16</displayed-value>
+        <stored-value>SDG 16</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 17</displayed-value>
+        <stored-value>SDG 17</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">
@@ -8012,11 +7864,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>parentproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
       <pair>
         <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>subproject</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

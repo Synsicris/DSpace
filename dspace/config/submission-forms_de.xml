@@ -430,7 +430,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Typ</label>
+          <label>Bereich</label>
           <input-type value-pairs-name="working_plan_workpackage_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -505,7 +505,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Typ</label>
+          <label>Bereich</label>
           <input-type value-pairs-name="working_plan_workpackage_step_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -3877,7 +3877,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3927,7 +3927,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3951,7 +3951,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -4910,22 +4910,22 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Beitrags des Projekt</label>
+          <label>Bezeichnung des Beitrag des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Erläuterung Beitrag des Projekts</label>
+          <label>Beschreibung des Beitrag des Projektes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Erläuterung zum Beitrag des Projekts zu den Zielen des Förderprogramms.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -5545,7 +5545,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5569,7 +5569,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>

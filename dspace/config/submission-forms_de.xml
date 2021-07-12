@@ -130,7 +130,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -166,7 +166,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -202,7 +202,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -238,7 +238,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -274,7 +274,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -310,7 +310,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -346,7 +346,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte bestätigen Sie die Vorauswahl:</label>
+          <label>Bitte bestätigen Sie die Vorauswahl</label>
           <input-type value-pairs-name="impactpathway_step_type_5_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -382,7 +382,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte bestätigen Sie die Vorauswahl:</label>
+          <label>Bitte bestätigen Sie die Vorauswahl</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -394,10 +394,10 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Bitte geben Sie ein Ziel des Förderprogramms an.</label>
+          <label>Bitte wählen Sie ein Ziel des Förderprogramms aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
         </field>
       </row>
@@ -405,7 +405,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Beitrag des Projektes zum gewählten förderpolitischen Ziel</label>
+          <label>Bezeichnung für den Beitrag des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -430,8 +430,8 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Typ</label>
-          <input-type value-pairs-name="working_plan_workpackage_type">dropdown</input-type>
+          <label>Bereich</label>
+          <input-type value-pairs-name="working_plan_workpackage_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -505,8 +505,8 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Typ</label>
-          <input-type value-pairs-name="working_plan_workpackage_step_type">dropdown</input-type>
+          <label>Bereich</label>
+          <input-type value-pairs-name="working_plan_workpackage_step_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -632,7 +632,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="exploitation_plan_step_type_1_task_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -668,7 +668,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="exploitation_plan_step_type_2_task_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -704,7 +704,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="exploitation_plan_step_type_3_task_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -740,7 +740,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus:</label>
+          <label>Bitte wählen Sie einen Bereich aus</label>
           <input-type value-pairs-name="exploitation_plan_step_type_4_task_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -775,7 +775,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel / Kurzbezeichnung</label>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1423,7 +1423,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Verbundprojektes</label>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1436,11 +1436,23 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Bezeichnung des Verbundprojektes in Englisch</label>
+          <label>Bezeichnung in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Förderbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
         </field>
       </row>
       <row>
@@ -1593,7 +1605,7 @@
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Durch die Verlinkung mit aktuellen Projektseiten verbessern Sie die Sichtbarkeit und Erreichbarkeit des Projektes.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -1631,7 +1643,6 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1643,14 +1654,13 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title</label>
+          <label>Bezeichnung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1662,12 +1672,11 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Projekttitel englisch</label>
+          <label>Bezeichnung in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1681,7 +1690,6 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1693,7 +1701,6 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1706,7 +1713,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1719,7 +1725,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1732,7 +1737,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1745,7 +1749,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1753,12 +1756,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort</dc-qualifier>
-          <label>Schalgwort Sorter</label>
+          <label>Schlagwort Sorter</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1766,12 +1768,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort1</dc-qualifier>
-          <label>Schalgwort Sorter 1</label>
+          <label>Schlagwort Sorter 1</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1779,12 +1780,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort2</dc-qualifier>
-          <label>Schalgwort Sorter 2</label>
+          <label>Schlagwort Sorter 2</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1792,12 +1792,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort3</dc-qualifier>
-          <label>Schalgwort Sorter 3</label>
+          <label>Schlagwort Sorter 3</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1805,12 +1804,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort4</dc-qualifier>
-          <label>Schalgwort Sorter 4</label>
+          <label>Schlagwort Sorter 4</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1818,12 +1816,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort5</dc-qualifier>
-          <label>Schalgwort Sorter 5</label>
+          <label>Schlagwort Sorter 5</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1831,12 +1828,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort6</dc-qualifier>
-          <label>Schalgwort Sorter 6</label>
+          <label>Schlagwort Sorter 6</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1844,12 +1840,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort7</dc-qualifier>
-          <label>Schalgwort Sorter 7</label>
+          <label>Schlagwort Sorter 7</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1857,12 +1852,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort8</dc-qualifier>
-          <label>Schalgwort Sorter 8</label>
+          <label>Schlagwort Sorter 8</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1870,12 +1864,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort9</dc-qualifier>
-          <label>Schalgwort Sorter 9</label>
+          <label>Schlagwort Sorter 9</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -1883,12 +1876,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort10</dc-qualifier>
-          <label>Schalgwort Sorter 10</label>
+          <label>Schlagwort Sorter 10</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
     </form>
@@ -2006,24 +1998,12 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>acronym</dc-element>
-          <label>Akronym oder Kurzname der Organisation</label>
+          <label>Akronym der Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Zielgruppe</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
+          <hint>Das Akronym wird verwendet, um die Beteiligung der Organisation in Arbeiten und Aktiviäten des Projektes leicht zuordnen zu können.</hint>
         </field>
       </row>
       <row>
@@ -2031,25 +2011,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>sector</dc-qualifier>
-          <label>Gesellschaftsbereich der Organisation</label>
+          <label>Tätigkeitsbereich</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Auswahl des Gesellschaftsbereiches hat Einfluss auf die nachfolgenden Abfragen des Formulars.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig der Organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>SME, large enterprises</type-bind>
-          <vocabulary closed="true">nace</vocabulary>
+          <hint>Die Liste umfasst eine grobe Strukturierung, von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind.</hint>
         </field>
       </row>
       <row>
@@ -2057,11 +2023,12 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>destatis</dc-qualifier>
-          <label>Disziplin / Fachgebiet</label>
+          <label>Disziplin / Fachgebiet der Forschungseinrichtung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Die Informationen dienen dazu, die Disziplinen übergreifende Arbeitsweise des Projektes einzuschätzen.</hint>
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2076,13 +2043,25 @@
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>easy-import</dc-qualifier>
+          <label>Ausführende Stelle im offiziellen Antrag (easy-online)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint>Diese Angabe dient dazu, den Import und die Aktualisierung korrekt durchzuführen.</hint>
+        </field>
+      </row>
     </form>
     <form name="projectpartners_import">
       <row>
         <field>
           <dc-schema>organization</dc-schema>
           <dc-element>parentOrganization</dc-element>
-          <label>übergeordnete Organisation</label>
+          <label>Übergeordnete Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2106,11 +2085,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Straße</label>
+          <label>Straße, Hausnummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2121,7 +2100,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -2132,7 +2111,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2143,7 +2122,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
           <hint />
         </field>
       </row>
@@ -2203,12 +2182,11 @@
           <dc-element>type</dc-element>
           <dc-qualifier>legalform</dc-qualifier>
           <label>Rechtsform</label>
-          <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2220,7 +2198,6 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2232,7 +2209,32 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>readonly</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>recipient-stats</dc-qualifier>
+          <label>profi Empfängerstatistik</label>
+          <input-type value-pairs-name="recipient_stats">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Wirtschaftszweig der Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
+          <type-bind>Economy</type-bind>
+          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -2245,7 +2247,6 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>readonly</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2257,7 +2258,6 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>readonly</readonly>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
@@ -2270,133 +2270,6 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>gender</dc-qualifier>
-          <label>Geschlecht</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation / akad. Grad</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <label>Nachname, Vorname</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Telefon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personleader</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>E-Mail</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>gender</dc-qualifier>
-          <label>Anrede</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Qualifikation / akad. Grad</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <label>Nachname, Vorname</label>
-          <input-type>name</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Telefon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>personadmin</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>E-Mail</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <readonly>readonly</readonly>
         </field>
       </row>
       <row>
@@ -2408,8 +2281,127 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wird automatisch gefüllt</hint>
-          <readonly>readonly</readonly>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projectpartners_import_lead">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Geschlecht</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>Akad. Grad</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <label>Name</label>
+          <input-type>name</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>phone</dc-qualifier>
+          <label>Telefon</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personleader</dc-element>
+          <dc-qualifier>email</dc-qualifier>
+          <label>E-Mail</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projectpartners_import_leadadmin">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>gender</dc-qualifier>
+          <label>Geschlecht</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>degree</dc-qualifier>
+          <label>Akad. Grad</label>
+          <input-type value-pairs-name="person_degree">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <label>Name</label>
+          <input-type>name</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>phone</dc-qualifier>
+          <label>Telefon</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>personadmin</dc-element>
+          <dc-qualifier>email</dc-qualifier>
+          <label>E-Mail</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
       </row>
     </form>
@@ -2442,7 +2434,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Straße</label>
+          <label>Straße, Hausnummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2577,11 +2569,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Zielgruppe</label>
+          <label>Entsprechende Akteursgruppe(n)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
+          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden.</hint>
         </field>
       </row>
       <row>
@@ -2606,7 +2598,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2620,6 +2612,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2689,7 +2682,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Straße</label>
+          <label>Straße, Hausnummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2821,11 +2814,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Zielgruppe</label>
+          <label>Entsprechende Akteursgruppe(n)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
+          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden.</hint>
         </field>
       </row>
       <row>
@@ -2850,7 +2843,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2864,6 +2857,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -2912,8 +2906,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wird automatisch gefüllt</hint>
-          <readonly>readonly</readonly>
+          <hint />
         </field>
       </row>
     </form>
@@ -2932,7 +2925,7 @@
         <field>
           <dc-schema>organization</dc-schema>
           <dc-element>parentOrganization</dc-element>
-          <label>übergeordnete Organisation</label>
+          <label>Übergeordnete Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2956,7 +2949,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Straße</label>
+          <label>Straße, Hausnummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3053,7 +3046,7 @@
           <dc-element>type</dc-element>
           <dc-qualifier>legalform</dc-qualifier>
           <label>Rechtsform</label>
-          <input-type value-pairs-name="orgunit_legalform">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -3075,7 +3068,7 @@
           <dc-element>type</dc-element>
           <dc-qualifier>publicfunded</dc-qualifier>
           <label>Die Organisation wird überwiegend aus Zuwendungen der öffentlichen Hand finanziert.</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
+          <input-type value-pairs-name="yes_no">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -3139,7 +3132,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>SME, large enterprises</type-bind>
+          <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -3153,6 +3146,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
         </field>
       </row>
@@ -3212,7 +3206,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>person</dc-element>
           <dc-qualifier>degree</dc-qualifier>
-          <label>akademischer Abschluss</label>
+          <label>Akademischer Abschluss</label>
           <input-type value-pairs-name="person_degree">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3372,7 +3366,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>jobproportion</dc-qualifier>
-          <label>Stellenungefährer anteil</label>
+          <label>Ungefährer Stellenanteil</label>
           <input-type value-pairs-name="job_proportion">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3412,7 +3406,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -3557,7 +3550,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3772,9 +3765,44 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
     <form name="steps">
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partner</dc-qualifier>
+          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Beteiligte Akteursgruppe(n)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art des nächsten Schrittes</label>
+          <label>Art der Arbeit nach Projektende (Mehrfachauswahl möglich)</label>
           <input-type value-pairs-name="nextsteps">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3790,20 +3818,8 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Bitte geben Sie einen ungefähren Zeithorizont an, zu dem die beschriebene Aufgabe realisiert sein soll.</hint>
+          <hint>Bitte geben Sie einen ungefähren Zeithorizont an, zu dem die Arbeit(en) realisiert sein soll(en).</hint>
         </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <style>col-md-9</style>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -3811,32 +3827,8 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie den nächsten Schritt und machen Sie, wenn möglich, Angaben zur Finanzierung.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
-          <label>Beteiligte Kooperationspartner</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Wählen Sie hier mindestens einen Kooperationspartner aus, von dem der nächste Schritt durchgeführt wird (auch Ihre eigene Organisation). 
-Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Beteiligte Akteursgruppen (falls relevant)</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Wählen Sie Akteursgruppen aus, wenn diese in dem beschriebenen Schritt mitarbeiten oder beteiligt sind. Nutzen Sie die Angabe der Akteursgruppen, wenn die Zusammenarbeit unverbindlich mit einer größeren Gruppe an Organisationen stattfindet oder noch keine konkreten Kooperationspartner feststehen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <style>col-md-9</style>
+          <hint>Bitte beschreiben Sie die geplante(n) Arbeit(en) und machen Sie, wenn möglich, Angaben zur Finanzierung.</hint>
         </field>
       </row>
     </form>
@@ -3849,7 +3841,19 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Art</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Charakterisieren Sie bitte die Idee zur Nutzung der Projektergebnisse, indem Sie die Art einer möglichen Lösung, Veränderung oder Innovation auswählen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche + weitere Felder an.</hint>
+          <vocabulary closed="true">all-innovation</vocabulary>
         </field>
       </row>
       <row>
@@ -3863,18 +3867,6 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Art</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Charakterisieren Sie bitte die Idee, indem Sie die Art der Lösung, Veränderung oder Innovation auswählen. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-      </row>
     </form>
     <form name="workpackages">
       <row>
@@ -3885,7 +3877,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3935,7 +3927,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3959,7 +3951,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3983,7 +3975,7 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -4008,21 +4000,19 @@ Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.<
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Wählen Sie hier bitte die Art der von Ihnen beschriebenen Lösung, Veränderung oder Innovation. 
-Über die Pfeile lassen sich Listen aufklappen, in denen sich eine passende Art auswählen lässt.
-Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begriffes im Textfeld die Auswahl eingrenzen.</hint>
+          <hint />
           <vocabulary closed="true">all-innovation</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Adressierte Akteursgruppe</label>
+          <label>Nutzende Akteursgruppe(n)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Es können Akteursgruppen (wie z. B. Nutzende oder Kundengruppen) ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
+          <hint>Die Liste zeigt die Akteursguppen, die im Projekt bereits angelegt wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
         </field>
       </row>
     </form>
@@ -4035,29 +4025,30 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art und Akteursgruppen für eine Lösung, Veränderung oder Innovation</label>
+          <label>Art und nutzende Akteursgruppe(n) der Lösung, Veränderung oder Innovation</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Bitte wählen Sie die Art der Lösung, Veränderung oder Innovation sowie die Akteursgruppe aus, die einen Nutzen davon haben soll. Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an. Wenn eine Art mehrere Akteursgruppen adressiert, wählen Sie die Art mehrfach aus und ordnen die entsprechende Akteursgruppe zu.</hint>
+          <hint>Wählen Sie bitte die Art der Lösung, Veränderung oder Innovation und die Akteursgruppe, die sie nutzen soll.
+Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläche [+] weitere Einträge an und ordnen Sie die entsprechenden Akteursgruppen zu.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung (inkl. Nutzen und Markpotenzial)</label>
+          <label>Beschreibung (einschließlich Nutzen und mögliche Verbreitung)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Beschreiben Sie den Nutzen für die Akteursgruppe(n) und welche Verbesserungen oder Problemlösungen für sie erzielt werden sollen. Stellen Sie bitte, soweit möglich, Informationen über das mögliche Marktpotenzial bzw. die Größe der nutzenden Akteursgruppe  bereit.</hint>
+          <hint>Beschreiben Sie, welche Verbesserungen für die Akteursgruppe(n) durch die Lösung, Veränderung oder Innovation erzielt werden sollen. Ergänzen Sie, soweit möglich, Informationen über das mögliche Marktpotenzial bzw. die Größe der nutzenden Akteursgruppe.</hint>
         </field>
       </row>
     </form>
@@ -4111,12 +4102,12 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>applicability4</dc-qualifier>
-          <label>Voraussetzungen für die Anwendung</label>
+          <label>Erforderliche Voraussetzungen für die Anwendung der Lösung, Veränderung, Innovation</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Leitfragen:
-- Welche spezifischen Fähigkeiten und Kenntnisse sind bei den Nutzenden erforderlich? 
+- Welche spezifischen Fähigkeiten und Kenntnisse sind bei den Anwendern erforderlich? 
 - Welche Voraussetzungen sollten gegeben sein oder sind förderlich? (z. B. Ausrüstung, Materialien, Personal, ehrenamtliches Engagement, institutionelle Anbindungen, Organisationsstrukturen und Vereinbarungen, kulturelle oder politische Milieus etc.)</hint>
         </field>
       </row>
@@ -4132,7 +4123,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint>Leitfragen:
 - Wie schätzen Sie die Aussichten für eine weitere Etablierung oder Verbreitung ein? 
 - Inwieweit ist die Innovation oder Entwicklung übertragbar, z. B. auf andere Sektoren, Regionen oder Nutzergruppen? 
-- Welche Voraussetzungen dafür sind bereits vorhanden, welche müssen geschaffen oder verändert werden? (z. B. Strukturen, Rahmenbedingungen, Finanzen, kulturelle oder soziale Gegebenheiten)</hint>
+- Welche Voraussetzungen dafür sind bereits vorhanden, welche müssen geschaffen oder verändert werden? (z. B. Förderung, Strukturen, Rahmenbedingungen, Finanzen, kulturelle oder soziale Gegebenheiten)</hint>
         </field>
       </row>
     </form>
@@ -4146,31 +4137,20 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type value-pairs-name="status_regional">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
           <dc-qualifier>regional</dc-qualifier>
-          <label>Auswahl der Region</label>
+          <label>Region</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">nuts2</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Erläuterungen</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Nehmen Sie hier kurze Erläuterungen vor, falls Sie auf Besonderheiten in der regionalen Verortung hinweisen möchten.</hint>
         </field>
       </row>
     </form>
@@ -4187,18 +4167,42 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>regional</dc-qualifier>
+          <label>Erläuterungen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="innovationpotentials_srl_trl">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
-          <label>Auswahl der Art des Readiness Levels</label>
-          <input-type value-pairs-name="srl_trl">list</input-type>
+          <dc-element>description</dc-element>
+          <dc-qualifier>rl-start</dc-qualifier>
+          <label>Beschreibung Entwicklungsstand zum Projektbeginn (Startwert)</label>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte wählen Sie je nach Schwerpunkt der Lösung / Veränderung / Innovation aus, ob der TRL oder der SRL besser für die Einstufung geeignet ist.</hint>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>rl-end</dc-qualifier>
+          <label>Beschreibung Entwicklungsstand zum Projektende (Zielwert)</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
@@ -4206,7 +4210,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>rl-status</dc-qualifier>
-          <label>Reifegradeinschätzung zu Startwert und Zielwert</label>
+          <label>Readiness-Level zu Projektbeginn (Startwert) und Projektende (Zielwert)</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4229,38 +4233,25 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>rl</dc-qualifier>
-          <label>Beschreibung des Reifegrades</label>
-          <input-type>textarea</input-type>
+          <dc-element>type</dc-element>
+          <dc-qualifier>srl-trl</dc-qualifier>
+          <label>Auswahl TRL/SRL</label>
+          <input-type value-pairs-name="srl_trl">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
-          <hint>Bitte beschreiben Sie den Reifegrad zum ausgewählten Bezugspunkt in eigenen Worten.</hint>
+          <style>col-md-4</style>
+          <hint>Wählen Sie den Readiness Level, der besser möglichen zur Lösung, Veränderung oder Innovation passt.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>trl</dc-qualifier>
-          <label>Auswahl des Technology Readiness Level</label>
-          <input-type>onebox</input-type>
+          <dc-element>level</dc-element>
+          <dc-qualifier>srl-trl</dc-qualifier>
+          <label>Readiness Level</label>
+          <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
+          <style>col-md-4</style>
           <hint />
-          <vocabulary closed="true">trl</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>srl</dc-qualifier>
-          <label>Auswahl des Solution Readiness Level</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
-          <hint />
-          <vocabulary closed="true">srl</vocabulary>
         </field>
       </row>
     </form>
@@ -4287,7 +4278,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Es können Akteursgruppen (wie z. B. Nutzende oder Kundengruppen) ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
+          <hint>Die Liste zeigt die Akteursguppen, die im Projekt bereits angelegt wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
         </field>
       </row>
     </form>
@@ -4300,29 +4291,29 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung</label>
+          <label>Notizen/Beschreibung (nicht erforderlich)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte nehmen Sie eine kurze Beschreibung vor. Aspekte die nachfolgend abgefragt werden, brauchen nicht beschrieben zu werden.</hint>
+          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben. Nutzen Sie dieses Feld bei Bedarf für ergänzende Beschreibungen zu Aspekten, die nachfolgend nicht abgefragt werden.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Bitte wählen Sie aus:</label>
+          <label>Bitte wählen Sie aus</label>
           <input-type value-pairs-name="innovation_link_new">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie, ob Sie einen bereits vorhandenen Eintrag verlinken oder aber eine kurze Beschreibung ergänzen wollen.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -4334,7 +4325,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>In der Liste können Sie aus den Lösungen / Veränderungen / Innovationen und aus den Patenten auswählen, die Sie bisher im Projekt erfasst haben.</hint>
+          <hint>Sie sehen in der Liste Einträge, die bisher im Projekt erfasst wurden.</hint>
           <type-bind>link</type-bind>
         </field>
       </row>
@@ -4343,7 +4334,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>innovation</dc-qualifier>
-          <label>Charakterisieren Sie bitte die Lösung / Veränderung / Innovation, indem Sie die passende Art und die adressierte Akteursgruppe auswählen (Mehrfachangabe möglich)</label>
+          <label>Art und nutzende Akteursgruppe(n) der Lösung, Veränderung oder Innovation</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4356,11 +4347,11 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>innovation</dc-qualifier>
-          <label>Beschreibung der Lösung / Veränderung / Innovation (einschließlich Nutzen und möglichem Marktpotenzial beziehungsweise Größe der Nutzergruppe)</label>
+          <label>Beschreibung (einschließlich Nutzen und möglichem Verbreitung)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie auch, welchen Nutzen die adressierten Akteursgruppe(n) haben oder welche Verbesserungen / Problemlösungen für sie erzielt werden sollen. Soweit möglich, stellen Sie bitte Informationen über das mögliche Marktpotenzial bzw. die Größe der Nutzergruppe bereit.</hint>
+          <hint>Beschreiben Sie, welche Verbesserungen für die Akteursgruppe(n) durch die Lösung, Veränderung oder Innovation erzielt werden sollen. Ergänzen Sie, soweit möglich, Informationen über das mögliche Marktpotenzial bzw. die Größe der nutzenden Akteursgruppe.</hint>
           <type-bind>new</type-bind>
         </field>
       </row>
@@ -4376,36 +4367,36 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Referenzjahr, auf das sich die nachfolgenden Angaben beziehen.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>baseline</dc-qualifier>
-          <label>Basiswert</label>
+          <label>Basisjahr</label>
           <input-type value-pairs-name="yes">list</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Bitte kennzeichnen Sie den Basiswert der Zeitreihe. Dies ist der Wert, bevor das Projekt einen Einfluss hatte.</hint>
+          <hint>Bitte kennzeichnen Sie das Basisjahr der Zeitreihe. Dies ist das Jahr, bevor das Projekt einen Einfluss hatte.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
           <dc-qualifier>regional</dc-qualifier>
-          <label>Auswahl der Region</label>
+          <label>Region der Anwendung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte wählen Sie die Region aus, in der die Anwendung stattfindet.</hint>
+          <hint />
           <vocabulary closed="true">nuts2</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>quantifier</dc-qualifier>
-          <label>Einheit (Auswahlliste)</label>
+          <label>Einheit (Auswahl) ODER</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4443,7 +4434,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <repeatable>false</repeatable>
           <required />
           <style>col-md-12</style>
-          <hint>Ergänzen Sie hier Erläuterungen und, falls vorhanden, Weblinks, um auf Anwendungen zu verweisen.</hint>
+          <hint>Ergänzen Sie, falls vorhanden, Weblinks, um auf spezifische Anwendungsfälle oder erweiterte Informationen zu verweisen.</hint>
         </field>
       </row>
     </form>
@@ -4470,18 +4461,18 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung des (Zwischen- ) Ergebnisses oder Problems und der daraus gewonnenen Erkenntnisse und Empfehlungen</label>
+          <label>Beschreibung des (Zwischen-) Ergebnisses oder Problems und der daraus gewonnenen Erkenntnisse und Empfehlungen</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie das Ergebnis und welche Erkenntnisse („Lessons learned“) und Empfehlungen Sie daraus ableiten (z. B. Hinterfragen des Forschungsstandes, vertiefte Untersuchungen, Hinweise für eine veränderte Versuchsdurchführung).</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4502,11 +4493,11 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>relevance</dc-qualifier>
-          <label>Beschreibung der Vorbehalte oder Informationen zur geplanten Veröffentlichung</label>
+          <label>Beschreibung der Vorbehalte</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Informationen zur geplanten Veröffentlichung sollten die Art (z. B. Datenbank, Journal, Praxiszeitschrift) und den geplanten Zeitraum umfassen. Geben Sie bitte an, ob die „negativen Ergebnisse“ („Negative Results“) Hauptinhalt oder ein Nebenergebnis in der Veröffentlichung sein werden.</hint>
+          <hint />
           <type-bind>reservations, yes planned</type-bind>
         </field>
       </row>
@@ -4515,7 +4506,7 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>publication</dc-qualifier>
-          <label>Auswahl der Veröffentlichung</label>
+          <label>Erfolgte Veröffentlichung(en) zuordnen</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4530,10 +4521,10 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project-contribution</dc-qualifier>
-          <label>Art der Beteiligung des Projektes an der Veranstaltung</label>
+          <label>Art der Beteiligung des Projektes</label>
           <input-type value-pairs-name="project_contribution">list</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -4541,23 +4532,22 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <label>Art der Veranstaltung</label>
+          <input-type value-pairs-name="event_type">list</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
-          <vocabulary closed="true">event-type</vocabulary>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
+          <label>Bezeichnung/TItel</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Diese Bezeichnung wird in Übersichten angezeigt. Formulieren Sie daher eine eindeutige, leicht verständliche Bezeichnung, die den Charakter verdeutlicht (z. B. den Titel oder das Thema)</hint>
+          <hint>Geben Sie bitte den Titel der Veranstaltung an.</hint>
         </field>
       </row>
       <row>
@@ -4565,21 +4555,30 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
-          <label>Bitte charakterisieren Sie, wozu die Veranstaltung im Projekt dient (maximal 3 Angaben)</label>
+          <label>Wozu dient die Veranstaltung? (maximal 5 Punkte auswählen)</label>
           <input-type value-pairs-name="event_purpose">list</input-type>
           <repeatable>true</repeatable>
+          <required />
+          <hint>Wählen Sie die 5 wichtigsten Punkte aus. Die Begrenzung dient der verbesserten Auswertbarkeit.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
       </row>
-    </form>
-    <form name="events_involved">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Mitwirkende oder teilnehmende Kooperationspartner</label>
+          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4591,23 +4590,11 @@ Alternativ können Sie durch Eingabe der ersten Buchstaben eines gesuchten Begri
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Teilnehmende oder beteiligte Akteursgruppe(n)</label>
+          <label>Beteiligte Akteursgruppe(n)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Ergänzende Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Ergänzen Sie hier bei Bedarf weitere, aus Ihrer Sicht wesentliche Informationen zur Veranstaltung. 
-Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der beteiligten Organisationen oder Akteursgruppen oder die Bedeutung der Veranstaltung für die Wirkungen des Projektes</hint>
         </field>
       </row>
     </form>
@@ -4653,18 +4640,18 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Charakterisieren Sie bitte die Interaktion oder Veranstaltung durch eine ungefähre Angabe der Anzahl an Teilnehmenden.</hint>
+          <hint>Eine ungefähre Angabe reicht aus.</hint>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>event</dc-element>
           <dc-qualifier>place</dc-qualifier>
-          <label>Ort</label>
+          <label>Ort/Stadt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Es sind keine Adressangaben erforderlich.</hint>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -4683,35 +4670,10 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
     <form name="process_events">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Diese Bezeichnung wird in Übersichten angezeigt. Formulieren Sie daher bitte eine eindeutige, leicht verständliche Bezeichnung, die den Charakter verdeutlicht (z. B. Thema, Format, Zweck oder adressierte Akteursgruppe).</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>purpose</dc-qualifier>
-          <label>Bitte charakterisieren Sie, wozu der Prozess im Projekt dient (maximal 5 Angaben)</label>
-          <input-type value-pairs-name="event_purpose">list</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="process_events_involved">
-      <row>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Beteiligte Kooperationspartner</label>
+          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4730,6 +4692,40 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>purpose</dc-qualifier>
+          <label>Wozu dient die Veranstaltung? (maximal 5 Punkte auswählen)</label>
+          <input-type value-pairs-name="event_purpose">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Wählen Sie die 5 wichtigsten Punkte aus. Die Begrenzung dient der verbesserten Auswertbarkeit.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="process_events_frequency-synsicris-type-process-event-frequency">
       <row>
@@ -4742,17 +4738,17 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Wählen Sie bitte das passende Format der Veranstaltung oder die Art der Interaktion.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>duration</dc-element>
-          <label>Dauer (h)</label>
+          <label>Durchschnittliche Dauer (h)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Geben Sie bitte die durchschnittliche Dauer pro Interaktion/ Veranstaltung in Stunden an.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4763,7 +4759,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Wählen Sie bitte eine Häufigkeitsangabe für Interaktionen/Veranstaltungen die im gesamten Projektverlauf relativ kontinuierlich stattfinden. Wenn Sie phasenweise auswählen, können Sie im nächsten Feld eine Anzahl eintragen.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4774,7 +4770,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Wählen Sie bitte den Zeitraum für die Interaktionen/Veranstaltungen aus.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4789,20 +4785,6 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>true</repeatable>
           <required />
           <hint />
-        </field>
-      </row>
-    </form>
-    <form name="process_events_description">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Ergänzende Beschreibung des Prozesses</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Ergänzen Sie hier bei Bedarf weitere, aus Ihrer Sicht wesentliche Informationen zum Prozess. 
-Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der beteiligten Organisationen oder Akteursgruppen oder die Bedeutung des Prozesses für die Wirkungen des Projektes</hint>
         </field>
       </row>
     </form>
@@ -4828,7 +4810,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Bitte wählen Sie das Startdatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -4839,7 +4821,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Bitte wählen Sie das Enddatum über den Kalender, eine manuelle Eingabe ist nicht möglich.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4849,7 +4831,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Geben Sie bitte die Gesamtdauer der Interaktion/Veranstaltung in Stunden an.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4859,29 +4841,18 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Charakterisieren Sie bitte die Interaktion oder Veranstaltung durch eine ungefähre Angabe der Anzahl an Teilnehmenden.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>event</dc-qualifier>
-          <label>Titel oder Thema der Interaktion oder Veranstaltung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
+          <hint>Eine ungefähre Angabe reicht aus.</hint>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>event</dc-element>
           <dc-qualifier>place</dc-qualifier>
-          <label>Ort</label>
+          <label>Ort/Stadt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint />
+          <hint>Es sind keine Adressangaben erforderlich.</hint>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -4895,6 +4866,17 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <hint />
           <vocabulary closed="true">countries</vocabulary>
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>event</dc-qualifier>
+          <label>Bezeichnung/Titel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
       </row>
     </form>
     <form name="process_events_date">
@@ -4903,7 +4885,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>process-event-date</dc-qualifier>
-          <label>Daten zum Nachweis wichtiger Veranstaltungen</label>
+          <label>Daten zum Treffen/Veranstaltung</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4928,22 +4910,22 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Beitrags des Projekt</label>
+          <label>Bezeichnung des Beitrag des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Erläuterung Beitrag des Projekts</label>
+          <label>Beschreibung des Beitrag des Projektes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Erläuterung zum Beitrag des Projekts zu den Zielen des Förderprogramms.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -5062,7 +5044,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5147,7 +5129,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine möglichst eindeutige und leicht verständliche Bezeichnung. Dieser Eintrag wird in allen Interaktionen angezeigt, denen diese Akteursgruppe zugeordnet wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5155,7 +5137,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Warum ist die Zielgruppe für das Projekt relevant?</label>
+          <label>Warum ist die Akteursgruppe für das Projekt relevant?</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5168,11 +5150,11 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Gesellschaftsbereich der Akteursgruppe</label>
+          <label>Tätigkeitsbereich der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Auswahl des Gesellschaftsbereiches hat Einfluss auf die nachfolgenden Abfragen des Formulars.</hint>
+          <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen.</hint>
         </field>
       </row>
       <row>
@@ -5180,7 +5162,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig der Akteursgruppe</label>
+          <label>Bitte wählen Sie aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5224,7 +5206,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5297,7 +5279,7 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5357,14 +5339,13 @@ Beispiele: Themen, spezifische Methoden, Vorgehensweisen, Besonderheiten der bet
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Beschäftigt sich das Projekt mit Problemstellungen, bei denen Unterschiede zwischen den Geschlechtern eine Rolle spielen? 
-Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschlechterspezifische Forschungsfragen</hint>
+          <hint>Beschäftigt sich das Projekt mit Problemstellungen, bei denen Unterschiede zwischen den Geschlechtern eine Rolle spielen, z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind oder unterschiedlich an der Verursachung oder Lösung beteiligt sind?</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>researchquestion</dc-qualifier>
-          <label>Begründung</label>
+          <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5388,7 +5369,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>stateofart</dc-qualifier>
-          <label>Begründung</label>
+          <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5412,7 +5393,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>projectdesign</dc-qualifier>
-          <label>Begründung</label>
+          <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5430,13 +5411,13 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Dies kann z. B. bei der Form der Nutzung, bei Anforderungen an Produkte oder bei geschlechterspezifischen Voraussetzungen für eine Nutzung der Fall sein.</hint>
+          <hint>Dies kann z. B. bei Anforderungen an Produkte oder bei geschlechterspezifischen Voraussetzungen für eine Nutzung der Fall sein.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>application</dc-qualifier>
-          <label>Begründung</label>
+          <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5449,18 +5430,18 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>5) Werden im Projekt direkte Maßnahmen zur Förderung der Gleichberechtigung bei den Beschäftigten umgesetzt?</label>
+          <label>5) Werden im Projekt direkte Maßnahmen zur Förderung der Gleichstellung bei den Beschäftigten umgesetzt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Dies kann z. B. durch die Förderung von Frauen in Spitzenpositionen, durch Maßnahmen zur Vereinbarkeit von Beruf und Familie, durch Chancengleichheit bei der Qualifizierung und Vernetzung oder beim Umgang mit feldspezifischen Besonderheiten im Geschlechterverhältnis erfolgen.(Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
+          <hint>z. B. Förderung von Frauen in Spitzenpositionen, Vereinbarkeit von Beruf und Familie (flexible Arbeitszeiten, Homeoffice, institutionell unterstützte Kinderbetreuung), Chancengleichheit bei der Qualifizierung, Unterstützung für die Teilnehme an Tagungen oder Umgang mit ungleichem Verhältnis von Männern und Frauen in bestimmten Branchen (Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Begründung</label>
+          <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5474,7 +5455,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Fazit zur Berücksichtigung von Geschlechteraspekten im Projekt</label>
+          <label>Kernaussage zum Ergebnis der Reflexion</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -5564,7 +5545,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5588,7 +5569,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5612,18 +5593,18 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Zusammenfassung</label>
+          <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Fassen Sie bitte das Forschungsergebnis prägnant zusammen, es genügen Stichpunkte.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -5800,7 +5781,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Beschreibung</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -5870,7 +5851,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Beschreibung</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -5963,8 +5944,20 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Beschreibung</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Zugehöriges SDG</label>
+          <input-type value-pairs-name="sdg">dropdown</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -6377,27 +6370,27 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="event_purpose" dc-term="event_purpose">
       <pair>
-        <displayed-value>Problemstellung für Projekt entwickeln/konkretisieren</displayed-value>
+        <displayed-value>Problemstellung schärfen</displayed-value>
         <stored-value>Problem definition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Projektdesign entwickeln/konkretisieren (z. B. Fragestellung, Methoden)</displayed-value>
+        <displayed-value>Projektdesign konkretisieren (z. B. Fragestellung, Methoden)</displayed-value>
         <stored-value>Project design</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Impact Pathway des Projektes weiterentwickeln</displayed-value>
+        <stored-value>Impact pathway reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Transfer- und Verbreitungsstrategien entwickeln</displayed-value>
         <stored-value>Transfer strategies</stored-value>
       </pair>
       <pair>
-        <displayed-value>Wirkungspfad des Projektes weiterentwickeln/reflektieren</displayed-value>
-        <stored-value>Impact pathway reflection</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Laufenden Forschungs- und Entwicklungsprozess reflektieren</displayed-value>
         <stored-value>Research process reflection</stored-value>
       </pair>
       <pair>
-        <displayed-value>Datenerhebung / Durchführung von Versuchen</displayed-value>
+        <displayed-value>Daten erheben / Versuche durchführen</displayed-value>
         <stored-value>Data collection / tests</stored-value>
       </pair>
       <pair>
@@ -6405,11 +6398,11 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Interdisciplinary knowledge integration</stored-value>
       </pair>
       <pair>
-        <displayed-value>Wissen und Anforderungen aus  der Praxis integrieren</displayed-value>
+        <displayed-value>Wissen und Anforderungen aus der Praxis integrieren</displayed-value>
         <stored-value>Practice knowledge integration</stored-value>
       </pair>
       <pair>
-        <displayed-value>Gemeinsame Entwicklung von Ergebnissen</displayed-value>
+        <displayed-value>Ergebnisse entwickeln</displayed-value>
         <stored-value>Joint development</stored-value>
       </pair>
       <pair>
@@ -6421,11 +6414,11 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Research process - others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Praxisreife/Anwendbarkeit der Ergebnisse reflektieren</displayed-value>
+        <displayed-value>Praxisreife/Anwendbarkeit der Ergebnisse beleuchten</displayed-value>
         <stored-value>Reflect applicability</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwünschte gesellschaftliche Wirkungen des Projektes / der Ergebnisse reflektieren</displayed-value>
+        <displayed-value>Erwünschte gesellschaftliche Wirkungen des Projektes / der Ergebnisse fördern</displayed-value>
         <stored-value>Reflect desired societal impacts</stored-value>
       </pair>
       <pair>
@@ -6433,7 +6426,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Ethical reflection</stored-value>
       </pair>
       <pair>
-        <displayed-value>Risiken und Folgen/Nebenfolgen der Projektergebnisse reflektieren</displayed-value>
+        <displayed-value>Risiken und Folgen/Nebenfolgen der Projektergebnisse abwägen</displayed-value>
         <stored-value>Risk reflection</stored-value>
       </pair>
       <pair>
@@ -6595,6 +6588,53 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Other</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="event_type" dc-term="event_type">
+      <pair>
+        <displayed-value>Nicht-wissenschaftliche (Fach-)Tagung/Konferenz/Kongress (Beitrag zu  Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
+        <stored-value>Non-scientific (specialist) meeting/conference/congress</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wissenschaftliche (Fach-)Tagung/Konferenz/Kongress
+(Beitrag zu  wissenschaftlichen Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
+        <stored-value>Scientific (professional) meeting/conference/congress</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Fach-)Messe/Ausstellung (inkl. Stall- und Feldtage)</displayed-value>
+        <stored-value>Fair/Exhibition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Workshop</displayed-value>
+        <stored-value>Workshop</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Exkursion</displayed-value>
+        <stored-value>Excursion</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kurs für Teilnehmende außerhalb des akademischen Bereichs</displayed-value>
+        <stored-value>Non-academic course</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kurs für Studierende oder Doktoranden</displayed-value>
+        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erprobung / Praxistest</displayed-value>
+        <stored-value>Practical test</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Interview / Befragung</displayed-value>
+        <stored-value>Interview / Survey</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sitzung/Versammlung (z.B. Beiratssitzung)</displayed-value>
+        <stored-value>Meeting</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>Other</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
         <displayed-value>beantragt</displayed-value>
@@ -6715,7 +6755,7 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Dr.</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prof.</displayed-value>
+        <displayed-value>Prof. Dr.</displayed-value>
         <stored-value>Prof.</stored-value>
       </pair>
     </value-pairs>
@@ -6741,340 +6781,30 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>GenericID</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="orgunit_legalform" dc-term="orgunit_legalform">
-      <pair>
-        <displayed-value>GmbH</displayed-value>
-        <stored-value>Public limited company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>AG</displayed-value>
-        <stored-value>Limited partnership with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>AG &amp; Co. KG</displayed-value>
-        <stored-value>Partnership limited by shares with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>AG &amp; Co. KGaA</displayed-value>
-        <stored-value>General partnership with a public limited company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>AG &amp; Co. OHG</displayed-value>
-        <stored-value>Public limited company (Swiss law)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>AG in Gründung</displayed-value>
-        <stored-value>Public limited company in process of formation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Aktiengesellschaft (AG), gemeinnützig</displayed-value>
-        <stored-value>Public limited company, non-profit</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>amerikanische Kommanditgesellschaft</displayed-value>
-        <stored-value>American limited partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Anstalt des öffentlichen Rechts</displayed-value>
-        <stored-value>Public-law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeitsgemeinschaft</displayed-value>
-        <stored-value>Working partnership/consortium</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Behörde</displayed-value>
-        <stored-value>Authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>BGB-Gesellschaft</displayed-value>
-        <stored-value>BGB company (partnership under the Civil Code)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Bundesverband</displayed-value>
-        <stored-value>Federal association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e.G.</displayed-value>
-        <stored-value>Registered association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e.K.</displayed-value>
-        <stored-value>Registered merchant</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e.V.</displayed-value>
-        <stored-value>Registered association/union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e.V. gemeinnützig</displayed-value>
-        <stored-value>Registered association/union, non-profit</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>e.V. in Gründung</displayed-value>
-        <stored-value>Registered association/union in the process of formation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Eigenbetrieb</displayed-value>
-        <stored-value>Own establishment/owner operated</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Eigenbetrieb=own establishment</displayed-value>
-        <stored-value>Owner-operated local enterprise</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Einrichtung des öffentlichen Rechts</displayed-value>
-        <stored-value>Public law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Einzelunternehmen</displayed-value>
-        <stored-value>Individual enterprise/sole proprietorship</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>entfällt, da ausführende Stelle oder Untereinheit des ZE</displayed-value>
-        <stored-value>Not applicable, due to implementing agency or subunit of ZE</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Europäische Gesellschaft</displayed-value>
-        <stored-value>European Union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>GbR</displayed-value>
-        <stored-value>(engl.) GbR</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gebietskörperschaft</displayed-value>
-        <stored-value>regional authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige Aktiengesellschaft (gAG)</displayed-value>
-        <stored-value>Non-profit public limited company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige GmbH</displayed-value>
-        <stored-value>Non-profit limited liability company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige Stiftung</displayed-value>
-        <stored-value>Non-profit foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige Stiftung des bürgerlichen Rechts</displayed-value>
-        <stored-value>Non-profit civil law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige Stiftung des privaten Rechts</displayed-value>
-        <stored-value>Non-profit private law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>gemeinnützige Unternehmensgesellschaft</displayed-value>
-        <stored-value>Non-profit entrepreneurial company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Genossenschaft</displayed-value>
-        <stored-value>Cooperative</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gesellschaft des bürgerlichen Rechts</displayed-value>
-        <stored-value>Corporation under civil law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gesellschaft des öffentlichen Rechts</displayed-value>
-        <stored-value>Public corporation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gesellschaft mit beschränkter Haftung (GmbH) i. G.</displayed-value>
-        <stored-value>Limited liability company</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gesetzliche Krankenkasse</displayed-value>
-        <stored-value>Compulsory health insurance fund</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gewerkschaft</displayed-value>
-        <stored-value>Trade union</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>GmbH</displayed-value>
-        <stored-value>(engl.) GmbH</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>GmbH &amp; Co. OHG</displayed-value>
-        <stored-value>General partnership with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>GmbH KG</displayed-value>
-        <stored-value>Limited partnership with a limited liability company as shareholder</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Internationale Organisation</displayed-value>
-        <stored-value>International organisation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Juristische Person</displayed-value>
-        <stored-value>Legal person</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Juristische Person des öffentlichen Rechts</displayed-value>
-        <stored-value>Body corporate organised under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Juristische Person des privaten Rechts</displayed-value>
-        <stored-value>Body corporate/juristic person governed by private law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>KG</displayed-value>
-        <stored-value>Limited partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>KG=Kommanditgesellschaft</displayed-value>
-        <stored-value>Limited partnership with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>KGaA</displayed-value>
-        <stored-value>Partnership limited by shares</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>KGaA=Kommanditgesellschaft auf Aktien</displayed-value>
-        <stored-value>Partnership limited by shares with a limited liability company as general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kommune</displayed-value>
-        <stored-value>Local authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Körperschaft des englischen Rechts</displayed-value>
-        <stored-value>Corporation under English law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Körperschaft des französischen Rechts</displayed-value>
-        <stored-value>Corporation under French law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Körperschaft des öffentlichen Rechts</displayed-value>
-        <stored-value>Corporation under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Körperschaft des privaten Rechts</displayed-value>
-        <stored-value>Corporation under private law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Körperschaft des spanischen Rechts</displayed-value>
-        <stored-value>Corporation under Spanish law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Landesbehörde</displayed-value>
-        <stored-value>Provincial authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Landesoberbehörde</displayed-value>
-        <stored-value>State authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ltd.</displayed-value>
-        <stored-value>Limited</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Natürliche Person</displayed-value>
-        <stored-value>Natural person</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Nichteingetragener Verein</displayed-value>
-        <stored-value>Unregistered charity</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Nichtrechtsfähige Anstalt des öffentlichen Rechts</displayed-value>
-        <stored-value>Non-incorporated public-law institution</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Nichtrechtsfähiger Verein</displayed-value>
-        <stored-value>Non-incorporated association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Oberste Bundesbehörde</displayed-value>
-        <stored-value>Supreme federal authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Oberste Landesbehörde</displayed-value>
-        <stored-value>Supreme provincial authority</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>offene Handelsgesellschaft</displayed-value>
-        <stored-value>(engl.) OHG</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Offene Handelsgesellschaft (OHG)</displayed-value>
-        <stored-value>General partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Partnerschaftsgesellschaft</displayed-value>
-        <stored-value>Partnership association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Personengesellschaft</displayed-value>
-        <stored-value>Partnership</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>privatrechtlicher Verein</displayed-value>
-        <stored-value>Private association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Rechtsfähiger Verein des Bürgerlichen Rechts</displayed-value>
-        <stored-value>Incorporated civil-law association</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Rechtsfähiger Verein kraft staatlicher Verleihung</displayed-value>
-        <stored-value>Incorporated association by virtue of national bestowal</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SE &amp; Co. KG</displayed-value>
-        <stored-value>Limited partnership with the European Union as a general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SE &amp; Co. KGaA</displayed-value>
-        <stored-value>Partnership limited by shares with the European Union as a general partner</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stiftung</displayed-value>
-        <stored-value>Foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stiftung &amp; Co. KG</displayed-value>
-        <stored-value>Limited partnership with a foundation as liable shareholder</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stiftung des bürgerlichen Rechts</displayed-value>
-        <stored-value>Civil-law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stiftung des öffentlichen Rechts</displayed-value>
-        <stored-value>Public-law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stiftung des privaten Rechts</displayed-value>
-        <stored-value>Private law foundation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Teilkörperschaft des öffentlichen Rechts</displayed-value>
-        <stored-value>Secondary corporation under public law</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>UG = Unternehmergesellschaft</displayed-value>
-        <stored-value>Entrepreneurial company (limited liability)</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="organisationform" dc-term="organisationform">
       <pair>
         <displayed-value>öffentlich</displayed-value>
         <stored-value>public</stored-value>
       </pair>
       <pair>
-        <displayed-value>privat</displayed-value>
+        <displayed-value>gemeinnützig</displayed-value>
+        <stored-value>non-profit</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>KMU</displayed-value>
+        <stored-value>SME</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Großunternehmen</displayed-value>
+        <stored-value>Company</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>privat (Größe nicht definiert)</displayed-value>
         <stored-value>private</stored-value>
       </pair>
       <pair>
-        <displayed-value>gemeinnützig</displayed-value>
-        <stored-value>non-profit</stored-value>
+        <displayed-value>privat und öffentlich kombiniert</displayed-value>
+        <stored-value>private/public</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
@@ -7159,28 +6889,24 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="nextsteps" dc-term="nextsteps">
       <pair>
-        <displayed-value>Weitere Schritte zur Entwicklung der Innovation</displayed-value>
-        <stored-value>Further steps to develop the innovation</stored-value>
+        <displayed-value>Beantragung eines Folgeprojektes (aus öffentlichen Mitteln)</displayed-value>
+        <stored-value>follow-up project</stored-value>
       </pair>
       <pair>
-        <displayed-value>Weitere Verbreitung der Ergebnisse</displayed-value>
-        <stored-value>Further dissemination of results</stored-value>
+        <displayed-value>Zusammenarbeit zwischen Forschung und Wirtschaft über Auftragsforschung</displayed-value>
+        <stored-value>contract research</stored-value>
       </pair>
       <pair>
-        <displayed-value>Absicht, sich um andere öffentliche Finanzierungsquellen zu bewerben</displayed-value>
-        <stored-value>Intention to apply for other public funding sources</stored-value>
+        <displayed-value>Arbeiten zur weiteren Entwicklung der möglichen Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>Work on the further development</stored-value>
       </pair>
       <pair>
-        <displayed-value>Zusammenarbeit durch Auftragsforschung</displayed-value>
-        <stored-value>Cooperation via contract research</stored-value>
+        <displayed-value>Transfer der Projektergebnisse in die Praxis</displayed-value>
+        <stored-value>Transfer into practice</stored-value>
       </pair>
       <pair>
         <displayed-value>Austausch von Wissen und Ideen (z. B. Think Tanks, offene Laboratorien, kreative Formate)</displayed-value>
         <stored-value>Exchange of knowledge and ideas</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gemeinsame Nutzung von Ressourcen</displayed-value>
-        <stored-value>Sharing of resources</stored-value>
       </pair>
       <pair>
         <displayed-value>Transfer von Mitarbeitenden von Forschungseinrichtungen zu Unternehmen</displayed-value>
@@ -7197,6 +6923,10 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       <pair>
         <displayed-value>Zusammenarbeit in der Lehre</displayed-value>
         <stored-value>Cooperation in teaching</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gemeinsame Nutzung von Ressourcen</displayed-value>
+        <stored-value>Sharing of resources</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>
@@ -7355,21 +7085,21 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     </value-pairs>
     <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
       <pair>
-        <displayed-value>1. Region, in der die Lösung/ Entwicklung / Innovation primär eingesetzt werden soll</displayed-value>
+        <displayed-value>1. primärer Einsatzbereich</displayed-value>
         <stored-value>Region in which the application is envisaged</stored-value>
       </pair>
       <pair>
-        <displayed-value>2. Region, in der eine spätere Verbreitung stattfinden könnte</displayed-value>
+        <displayed-value>2. spätere Verbreitung</displayed-value>
         <stored-value>Possible region for transmission and dissemination</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
       <pair>
-        <displayed-value>Die Anwendung gehört zu einer bereits dokumentierten Lösung / Veränderung / Innovation oder zu einem Patent</displayed-value>
+        <displayed-value>A: Die Anwendung gehört zu einer bereits dokumentierten Lösung / Veränderung / Innovation oder zu einem Patent.</displayed-value>
         <stored-value>link</stored-value>
       </pair>
       <pair>
-        <displayed-value>Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte (ggf. durch Dritte entwickelte) Lösung / Veränderung / Innovation</displayed-value>
+        <displayed-value>B: Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte und ggf. durch Dritte entwickelte Lösung / Veränderung / Innovation.</displayed-value>
         <stored-value>new</stored-value>
       </pair>
     </value-pairs>
@@ -7715,6 +7445,52 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
         <stored-value>Research</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="recipient_stats" dc-term="recipient_stats">
+      <pair>
+        <displayed-value>Noch nicht bekannt</displayed-value>
+        <stored-value>?</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ausland</displayed-value>
+        <stored-value>AU</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bildung</displayed-value>
+        <stored-value>BI</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Großunternehmen</displayed-value>
+        <stored-value>GR</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Großunternehmen</displayed-value>
+        <stored-value>GR</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kleine und mittlere Unternehmen (KMU)</displayed-value>
+        <stored-value>KM</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mittelstand</displayed-value>
+        <stored-value>MI</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Öffentliche institutionen und Untrnehmen</displayed-value>
+        <stored-value>OE</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Personengesellschaften, Familien-, Privat-, Streubesitz</displayed-value>
+        <stored-value>PE</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sonstige Unternehmen</displayed-value>
+        <stored-value>SO</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vereine</displayed-value>
+        <stored-value>VE</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="targetgroup_urban_rural" dc-term="targetgroup_urban_rural">
       <pair>
         <displayed-value>Ländlicher Raum</displayed-value>
@@ -7851,6 +7627,76 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
       <pair>
         <displayed-value>weltweite ökologische Folgen</displayed-value>
         <stored-value>International environmental impacts</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="sdg" dc-term="sdg">
+      <pair>
+        <displayed-value>SDG 1: Armut in all ihren Formen und überall beenden</displayed-value>
+        <stored-value>SDG 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 2: Den Hunger beenden, Nahrungsmittelsicherheit und -schutz, verbesserte Ernährungssyteme und eine ökologisch nachaltige Landwirtschaft erreichen.</displayed-value>
+        <stored-value>SDG 2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 3: Ein gesundes Leben für alle Menschen jeden Alters gewährleisten und ihr körperliches, geistiges und seelisches Wohlergehen fördern.</displayed-value>
+        <stored-value>SDG 3</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 4</displayed-value>
+        <stored-value>SDG 4</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 5</displayed-value>
+        <stored-value>SDG 5</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 6</displayed-value>
+        <stored-value>SDG 6</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 7</displayed-value>
+        <stored-value>SDG 7</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 8</displayed-value>
+        <stored-value>SDG 8</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 9</displayed-value>
+        <stored-value>SDG 9</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 10</displayed-value>
+        <stored-value>SDG 10</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 11</displayed-value>
+        <stored-value>SDG 11</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 12</displayed-value>
+        <stored-value>SDG 12</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 13</displayed-value>
+        <stored-value>SDG 13</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 14</displayed-value>
+        <stored-value>SDG 14</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 15</displayed-value>
+        <stored-value>SDG 15</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 16</displayed-value>
+        <stored-value>SDG 16</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>SDG 17</displayed-value>
+        <stored-value>SDG 17</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">
@@ -8024,11 +7870,11 @@ Beispiele: die Ursachen und Wirkungen von Geschlechterverhältnissen oder geschl
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>parentproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
       <pair>
         <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>subproject</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

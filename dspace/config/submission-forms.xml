@@ -11,7 +11,7 @@
           <label>Enter the impact pathway title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -36,6 +36,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -48,6 +49,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -60,6 +62,7 @@
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -77,6 +80,17 @@
       </row>
       <row>
         <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Enter the impact pathway description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>impactpathway</dc-schema>
           <dc-element>step</dc-element>
           <dc-qualifier>type</dc-qualifier>
@@ -85,6 +99,7 @@
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -97,6 +112,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -109,6 +125,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -232,6 +249,30 @@
         </field>
       </row>
     </form>
+    <form name="impact_pathway_step_type_2_task_objective_edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint>Please formulate a short content-related statement.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notes</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>You can use this field to add further considerations. Later, when you edit the detail page of the item, you can use these notes.</hint>
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_step_type_3_task_form">
       <row>
         <field>
@@ -281,6 +322,30 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint>Please formulate a short content-related statement.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notes</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>You can use this field to add further considerations. Later, when you edit the detail page of the item, you can use these notes.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_step_type_3_task_objective_edit_form">
       <row>
         <field>
           <dc-schema>dc</dc-schema>

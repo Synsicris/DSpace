@@ -73,10 +73,10 @@
       <entity-type>Person</entity-type>
       <submission-type>persons</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">Administrator</policy-group>
-	  <policy-group rpType="add">Administrator</policy-group>
-      <policy-group rpType="item_read">Administrator</policy-group>
-      <policy-group rpType="bitstream_read">Administrator</policy-group>
+      <policy-group rpType="read">project_submitters_group</policy-group>
+	  <policy-group rpType="add">project_submitters_group</policy-group>
+      <policy-group rpType="item_read">project_submitters_group</policy-group>
+      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
     </collection>
     <collection>
       <name>Progammes</name>

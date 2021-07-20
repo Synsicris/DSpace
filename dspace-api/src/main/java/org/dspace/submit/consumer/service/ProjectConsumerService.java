@@ -29,4 +29,6 @@ public interface ProjectConsumerService {
 
     public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
+
+    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
 }

@@ -20,7 +20,6 @@ import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
-import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
@@ -93,7 +92,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                         setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
                         break;
                     case ProjectConstants.FUNDER_PROGRAMME:
-                        setPolicyGroup(context, item, configurationService.getProperty("project.funder_programme.group"));
+                        setPolicyGroup(context,item,configurationService.getProperty("project.funder_programme.group"));
                         break;
                     default:
                         return;
@@ -123,11 +122,11 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         if (Objects.nonNull(workspaceItem)) {
             owningCollection = workspaceItem.getCollection();
         } else {
-          if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
-              // the item is a template item
-              return null;
-          }
-          owningCollection = item.getCollections().get(0);
+            if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+                // the item is a template item
+                return null;
+            }
+            owningCollection = item.getCollections().get(0);
         }
 
         if (owningCollection == null) {
@@ -136,7 +135,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
 
         parentProjectCommunity = owningCollection.getCommunities().get(0);
-        while(Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
+        while (Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
             parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
         }
         return parentProjectCommunity;
@@ -180,7 +179,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
                 List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
-                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, 
+                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
                         ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
@@ -246,6 +245,18 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
         }
         return subprojects;
+    }
+
+    @Override
+    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
+        String uuid = itemService.getMetadataFirstValue(item, "synsicris", "relation", "parentproject", Item.ANY);
+        if (StringUtils.isNotBlank(uuid)) {
+            Item parentProjectItem = itemService.find(context, UUID.fromString(uuid));
+            if (Objects.nonNull(parentProjectItem)) {
+                return item.getOwningCollection().getCommunities().get(0);
+            }
+        }
+        return null;
     }
 
 }

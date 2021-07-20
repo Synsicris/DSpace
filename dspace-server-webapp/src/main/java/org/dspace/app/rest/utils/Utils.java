@@ -44,6 +44,9 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -55,6 +58,7 @@ import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.CommunityRest;
 import org.dspace.app.rest.model.CrisLayoutBoxRest;
 import org.dspace.app.rest.model.CrisMetricsRest;
+import org.dspace.app.rest.model.EasyOnlineImportRest;
 import org.dspace.app.rest.model.LinkRest;
 import org.dspace.app.rest.model.LinksRest;
 import org.dspace.app.rest.model.OrcidHistoryRest;
@@ -99,6 +103,8 @@ import org.springframework.hateoas.Link;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  * Collection of utility methods
@@ -326,6 +332,9 @@ public class Utils {
         }
         if (StringUtils.equals(modelPlural, "categories")) {
             return UsageReportCategoryRest.NAME;
+        }
+        if (StringUtils.equals(modelPlural, "easyonlineimports")) {
+            return EasyOnlineImportRest.NAME;
         }
         return modelPlural.replaceAll("s$", "");
     }
@@ -1032,5 +1041,12 @@ public class Utils {
         } finally {
             context.restoreAuthSystemState();
         }
+    }
+
+    public static Document extractDocument(MultipartFile multipartFile)
+            throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(multipartFile.getInputStream());
     }
 }

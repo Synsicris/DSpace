@@ -699,7 +699,7 @@ public class StructBuilder {
      * @param context         the context of the request
      * @param node            the Node element that contains information for creating item template
      * @param collection      the collection for which create the item template
-     * @throws SQLException, AuthorizeException, TransformerException 
+     * @throws SQLException, AuthorizeException, TransformerException
      */
     private static void handleItemTemplate(Context context, Node node, Collection collection)
             throws SQLException, AuthorizeException, TransformerException {

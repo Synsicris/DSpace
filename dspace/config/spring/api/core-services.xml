@@ -68,7 +68,13 @@
     
     <bean class="org.dspace.app.profile.OrcidMetadataCopyingAction"/>
     <bean class="org.dspace.app.profile.OrcidProfileEnricher"/>
-
+    <bean class="org.dspace.content.EasyonlineimportServiceImpl">
+        <constructor-arg>
+		 <map>
+		    <entry key="Project" value-ref= "projectEasyLiveImportItemBuilder" />
+		 </map>
+		</constructor-arg>
+	</bean>
     <!-- Ensure PluginService is initialized properly via init() method -->
     <bean class="org.dspace.core.LegacyPluginServiceImpl" init-method="init"/>
     <bean class="org.dspace.core.LicenseServiceImpl"/>

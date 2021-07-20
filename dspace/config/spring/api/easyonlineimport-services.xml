@@ -1,0 +1,201 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire-candidates="*Service,*DAO,javax.sql.DataSource">
+
+    <context:annotation-config /> <!-- allows us to use spring annotations in beans -->
+
+    <bean id="projectEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
+        <constructor-arg>
+			<map>
+				<entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Akronym/text()"
+                    value-ref= "oairecerif.acronym">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Thema/text()"
+                    value-ref= "dc.title">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:fremd_Thema/text()"
+                    value-ref= "dc.title.alternative">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Beschreibung1/text()"
+                    value-ref= "dc.description.abstract">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Beschreibung2/text()"
+                    value-ref= "synsicris.description.workplan">
+                </entry>                 
+			</map>
+		</constructor-arg>
+	</bean>
+
+    <bean id="projectPartnersEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
+        <constructor-arg>
+			<map>
+				<entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Name_ZE/text()"
+                    value-ref="organization.parentOrganization">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Name_ST/text()"
+                    value-ref="dc.title">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Strasse_ST/text()"
+                    value-ref="synsicris.address.addressStreetnamenumber">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:PLZ_Strasse_ST/text()"
+                    value-ref="synsicris.address.addressPostcode">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Ort_Strasse_ST/text()"
+                    value-ref="synsicris.address.addressCity">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Land_ST/text()"
+                    value-ref="organization.address.addressCountry">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Web_Adresse_ST/text()"
+                    value-ref="oairecerif.identifier.url">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:E_Mail_Adresse_ST/text()"
+                    value-ref="synsicris.orgunits.email">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:TelefonNr_ST/text()"
+                    value-ref="synsicris.orgunits.phone">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Rechtsform/text()"
+                    value-ref="synsicris.type.legalform">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:RegisterNr/text()"
+                    value-ref="synsicris.identifier.registernumber">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PL/xf:Maske_Ansprechpartner_PL/xf:Einzelposition/xf:akad_Grad_PL/text()"
+                    value-ref="synsicris.personleader.degree">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PL/xf:Maske_Ansprechpartner_PL/xf:Einzelposition/xf:Telefon_PL/text()"
+                    value-ref="synsicris.personleader.phone">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PL/xf:Maske_Ansprechpartner_PL/xf:Einzelposition/xf:Email_PL/text()"
+                    value-ref="synsicris.personleader.email">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PA/xf:Maske_Ansprechpartner_PA/xf:Einzelposition/xf:akad_Grad_PA/text()"
+                    value-ref="synsicris.personadmin.degree">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PA/xf:Maske_Ansprechpartner_PA/xf:Einzelposition/xf:Telefon_PA/text()"
+                    value-ref="synsicris.personadmin.phone">
+                </entry>
+                <entry 
+                    key="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PA/xf:Maske_Ansprechpartner_PA/xf:Einzelposition/xf:Email_PA/text()"
+                    value-ref="person.personadmin.email">
+                </entry>                                  
+			</map>
+		</constructor-arg>
+	</bean>
+
+    <bean id="oairecerif.acronym" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.acronym"/>
+    </bean>
+
+    <bean id="dc.title" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.title"/>
+    </bean>
+
+    <bean id="dc.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.title.alternative"/>
+    </bean>
+
+    <bean id="dc.description.abstract" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.description.abstract"/>
+    </bean>
+
+    <bean id="synsicris.description.workplan" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.workplan"/>
+    </bean>
+
+    <bean id="organization.parentOrganization" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="organization.parentOrganization"/>
+    </bean>
+
+    <bean id="synsicris.address.addressStreetnamenumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressStreetnamenumber"/>
+    </bean>
+
+    <bean id="synsicris.address.addressPostcode" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressPostcode"/>
+    </bean>
+
+    <bean id="synsicris.address.addressCity" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressCity"/>
+    </bean>
+
+    <bean id="organization.address.addressCountry" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="organization.address.addressCountry"/>
+    </bean>
+
+    <bean id="oairecerif.identifier.url" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.identifier.url"/>
+    </bean>
+
+    <bean id="synsicris.orgunits.email" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.orgunits.email"/>
+    </bean>
+
+    <bean id="synsicris.orgunits.phone" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.orgunits.phone"/>
+    </bean>
+
+    <bean id="synsicris.type.legalform" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.legalform"/>
+    </bean>
+
+    <bean id="synsicris.identifier.registernumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.identifier.registernumber"/>
+    </bean>
+
+    <bean id="synsicris.personleader.degree" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personleader.degree"/>
+    </bean>
+
+    <bean id="synsicris.personleader.phone" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personleader.phone"/>
+    </bean>
+
+    <bean id="synsicris.personleader.email" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personleader.email"/>
+    </bean>
+
+    <bean id="synsicris.personadmin.degree" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personadmin.degree"/>
+    </bean>
+
+    <bean id="synsicris.personadmin.phone" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personadmin.phone"/>
+    </bean>
+
+    <bean id="person.personadmin.email" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="person.personadmin.email"/>
+    </bean>
+
+</beans>

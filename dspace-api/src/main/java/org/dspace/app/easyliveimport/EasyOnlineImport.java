@@ -19,11 +19,11 @@ public class EasyOnlineImport implements Serializable {
 
     private static final long serialVersionUID = 3256085881203495459L;
 
+    private UUID id;
+
     private List<UUID> created;
 
     private List<UUID> modified;
-
-    private String type;
 
     public List<UUID> getCreated() {
         if (Objects.isNull(this.created)) {
@@ -47,12 +47,12 @@ public class EasyOnlineImport implements Serializable {
         this.modified = modified;
     }
 
-    public String getType() {
-        return type;
+    public UUID getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
 }

@@ -17,7 +17,7 @@ import org.dspace.content.MetadataFieldName;
 public class ProjectConstants {
 
     public static final String FUNDER = "funder";
-    
+
     public static final String FUNDER_PROGRAMME = "funder_programme";
 
     public static final String SHARED = "shared";
@@ -27,8 +27,9 @@ public class ProjectConstants {
     public static final String PROJECT = "project";
 
     public static final String PARENTPROJECT = "parentproject";
-    
-    public static final MetadataFieldName MD_PROJECT_ENTITY = new MetadataFieldName("synsicris", "relation", "entity_project");
+
+    public static final MetadataFieldName MD_PROJECT_ENTITY =
+                    new MetadataFieldName("synsicris", "relation", "entity_project");
 
     /**
      * Default constructor

@@ -16,7 +16,7 @@ import org.dspace.app.rest.RestResourceController;
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-public class EasyOnlineImportRest extends BaseObjectRest {
+public class EasyOnlineImportRest extends BaseObjectRest<UUID> {
 
     private static final long serialVersionUID = 3838848767422793748L;
     public static final String NAME = "easyonlineimport";

@@ -1046,6 +1046,7 @@ public class Utils {
     public static Document extractDocument(MultipartFile multipartFile)
             throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
         DocumentBuilder builder = factory.newDocumentBuilder();
         return builder.parse(multipartFile.getInputStream());
     }

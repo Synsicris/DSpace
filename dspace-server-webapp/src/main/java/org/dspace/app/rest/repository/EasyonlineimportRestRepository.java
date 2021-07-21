@@ -8,8 +8,10 @@
 package org.dspace.app.rest.repository;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
@@ -84,6 +86,9 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             UUID id, MultipartFile multipartFile)
             throws SQLException, IOException, AuthorizeException {
         EasyOnlineImport easyOnlineImportDTO = new EasyOnlineImport();
+        easyOnlineImportDTO.setId(id);
+        List<UUID> modified = new ArrayList<UUID>();
+
         Context context = obtainContext();
         Item item = itemService.find(context, id);
         if (Objects.isNull(item)) {
@@ -100,22 +105,25 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             //TODO
         }
 
-        easyOnlineImportDTO.setType(EasyOnlineImportRest.TYPE);
         // import Project item
         easyOnlineImportService.importFile(context, item, document, entityType);
-        easyOnlineImportDTO.setModified(Collections.singletonList(item.getID()));
+        modified.add(item.getID());
 
         // import project partner item
         Collection projectPartnerCollection = getProjectPartnerCollection(context, item);
         Item projectPartnerItem = getProjectPartnerItem(context, projectPartnerCollection);
         if (Objects.nonNull(projectPartnerItem)) {
             easyOnlineImportService.importFile(context, projectPartnerItem, document, "projectpartner");
+            modified.add(projectPartnerItem.getID());
         } else {
             WorkspaceItem workspaceItem = workspaceItemService.create(context, projectPartnerCollection, true);
             Item newItem = installItemService.installItem(context, workspaceItem);
             easyOnlineImportService.importFile(context, newItem, document, "projectpartner");
             collectionService.addItem(context, projectPartnerCollection, newItem);
+            newItem = context.reloadEntity(newItem);
+            easyOnlineImportDTO.setCreated(Collections.singletonList(newItem.getID()));
         }
+        easyOnlineImportDTO.setModified(modified);
         return converter.toRest(easyOnlineImportDTO, utils.obtainProjection());
     }
 

@@ -23,9 +23,10 @@ public class EasyOnlineImportRestConverter implements DSpaceConverter<EasyOnline
     @Override
     public EasyOnlineImportRest convert(EasyOnlineImport modelObject, Projection projection) {
         EasyOnlineImportRest rest = new EasyOnlineImportRest();
+        rest.setId(modelObject.getId());
         rest.setCreated(modelObject.getCreated());
         rest.setModified(modelObject.getModified());
-        rest.setType(modelObject.getType());
+        rest.setType(EasyOnlineImportRest.TYPE);
         return rest;
     }
 

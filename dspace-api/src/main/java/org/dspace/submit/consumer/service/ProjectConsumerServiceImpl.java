@@ -113,7 +113,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
-    private Community getProjectCommunity(Context context, Item item) throws SQLException {
+    @Override
+    public Community getProjectCommunity(Context context, Item item) throws SQLException {
         Community parentProjectCommunity = null;
         Collection owningCollection = null;
         String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});

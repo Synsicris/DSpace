@@ -29,7 +29,6 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EasyonlineimportServiceImpl;
 import org.dspace.content.Item;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.InstallItemService;
@@ -44,6 +43,7 @@ import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
@@ -86,6 +86,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
     }
 
     @Override
+    @PreAuthorize("hasPermission(#id, 'easyonlineimport', 'WRITE')")
     public EasyOnlineImportRest upload(HttpServletRequest request,String apiCategory, String model,
             UUID id, MultipartFile multipartFile)
             throws SQLException, IOException, AuthorizeException {
@@ -128,9 +129,6 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             easyOnlineImport.setModified(modified);
         } catch (ParserConfigurationException | SAXException | SearchServiceException | XPathExpressionException e) {
             throw new UnprocessableEntityException(e.getMessage());
-        }
-        for (MetadataValue v : item.getMetadata()) {
-            System.out.println(v.getValue());
         }
         context.commit();
         return converter.toRest(easyOnlineImport, utils.obtainProjection());

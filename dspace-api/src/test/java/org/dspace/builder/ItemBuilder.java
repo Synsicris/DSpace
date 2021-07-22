@@ -720,6 +720,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return this;
     }
 
+    public ItemBuilder withParentproject(String uuid) {
+        return addMetadataValue(item, "synsicris", "relation", "parentproject", uuid);
+    }
+
+    public ItemBuilder withEasyImport(String value) {
+        return addMetadataValue(item, "synsicris", "type", "easy-import", value);
+    }
+
     /**
      * Withdrawn the item under build. Please note that an user need to be loggedin the context to avoid NPE during the
      * creation of the provenance metadata

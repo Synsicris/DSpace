@@ -6,8 +6,10 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.content;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Objects;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.dspace.app.easyliveimport.EasyImportItemBuilder;
 import org.dspace.content.service.EasyonlineimportService;
@@ -23,12 +25,12 @@ public class EasyonlineimportServiceImpl implements EasyonlineimportService {
     }
 
     @Override
-    public boolean importFile(Context context, Item item, Document document, String entityType) {
+    public void importFile(Context context, Item item, Document document, String entityType)
+            throws SQLException, XPathExpressionException {
         EasyImportItemBuilder easyImportItemBuilder = entityType2itemBuilder.get(entityType);
         if (Objects.nonNull(easyImportItemBuilder)) {
             easyImportItemBuilder.updateItem(context, item, document);
         }
-        return false;
     }
 
     public Map<String, EasyImportItemBuilder> getEntityType2itemBuilder() {

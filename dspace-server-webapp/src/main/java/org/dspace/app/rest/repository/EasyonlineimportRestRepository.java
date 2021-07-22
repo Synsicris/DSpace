@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.easyliveimport.EasyOnlineImport;
@@ -28,6 +29,7 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EasyonlineimportServiceImpl;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.InstallItemService;
@@ -48,6 +50,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
+ * This is the repository responsible to manage EasyOnlineImport Rest object
+ * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component(EasyOnlineImportRest.CATEGORY + "." + EasyOnlineImportRest.NAME)
@@ -85,59 +89,51 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
     public EasyOnlineImportRest upload(HttpServletRequest request,String apiCategory, String model,
             UUID id, MultipartFile multipartFile)
             throws SQLException, IOException, AuthorizeException {
-        EasyOnlineImport easyOnlineImportDTO = new EasyOnlineImport();
-        easyOnlineImportDTO.setId(id);
+        EasyOnlineImport easyOnlineImport = new EasyOnlineImport();
+        easyOnlineImport.setId(id);
         List<UUID> modified = new ArrayList<UUID>();
 
         Context context = obtainContext();
         Item item = itemService.find(context, id);
         if (Objects.isNull(item)) {
-            throw new UnprocessableEntityException("");
+            throw new UnprocessableEntityException("The uuid: " + id +
+                                                   " provided is not correspond to a valid Project");
         }
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
         if (!StringUtils.equals("Project", entityType)) {
-            throw new UnprocessableEntityException("");
+            throw new UnprocessableEntityException("The uuid:" + id +
+                                                   " proviede is non correspond to Project, is " + entityType);
         }
-        Document document = null;
+        Item projectPartnerItem = null;
         try {
-            document = Utils.extractDocument(multipartFile);
-        } catch (ParserConfigurationException | SAXException e) {
-            //TODO
+            Document document = Utils.extractDocument(multipartFile);
+            // import Project item
+            easyOnlineImportService.importFile(context, item, document, entityType);
+            modified.add(item.getID());
+            // import project partner item
+            Collection projectPartnerCollection = getProjectPartnerCollection(context, item);
+            Iterator<Item> items = findItems(context, projectPartnerCollection);
+            if (items.hasNext()) {
+                projectPartnerItem = items.next();
+                easyOnlineImportService.importFile(context, projectPartnerItem, document, "projectpartner");
+                modified.add(projectPartnerItem.getID());
+            } else {
+                WorkspaceItem workspaceItem = workspaceItemService.create(context, projectPartnerCollection, true);
+                Item newItem = installItemService.installItem(context, workspaceItem);
+                easyOnlineImportService.importFile(context, newItem, document, "projectpartner");
+                collectionService.addItem(context, projectPartnerCollection, newItem);
+                newItem = context.reloadEntity(newItem);
+                easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));
+            }
+            easyOnlineImport.setModified(modified);
+        } catch (ParserConfigurationException | SAXException | SearchServiceException | XPathExpressionException e) {
+            throw new UnprocessableEntityException(e.getMessage());
         }
-
-        // import Project item
-        easyOnlineImportService.importFile(context, item, document, entityType);
-        modified.add(item.getID());
-
-        // import project partner item
-        Collection projectPartnerCollection = getProjectPartnerCollection(context, item);
-        Item projectPartnerItem = getProjectPartnerItem(context, projectPartnerCollection);
-        if (Objects.nonNull(projectPartnerItem)) {
-            easyOnlineImportService.importFile(context, projectPartnerItem, document, "projectpartner");
-            modified.add(projectPartnerItem.getID());
-        } else {
-            WorkspaceItem workspaceItem = workspaceItemService.create(context, projectPartnerCollection, true);
-            Item newItem = installItemService.installItem(context, workspaceItem);
-            easyOnlineImportService.importFile(context, newItem, document, "projectpartner");
-            collectionService.addItem(context, projectPartnerCollection, newItem);
-            newItem = context.reloadEntity(newItem);
-            easyOnlineImportDTO.setCreated(Collections.singletonList(newItem.getID()));
+        for (MetadataValue v : item.getMetadata()) {
+            System.out.println(v.getValue());
         }
-        easyOnlineImportDTO.setModified(modified);
-        return converter.toRest(easyOnlineImportDTO, utils.obtainProjection());
-    }
-
-    private Item getProjectPartnerItem(Context context, Collection collection) throws SQLException {
-        Iterator<Item> items = null;
-        try {
-            items = findItems(context, collection);
-        } catch (SearchServiceException e) {
-            e.printStackTrace();
-        }
-        if (items.hasNext()) {
-            return items.next();
-        }
-        return null;
+        context.commit();
+        return converter.toRest(easyOnlineImport, utils.obtainProjection());
     }
 
     private Collection getProjectPartnerCollection(Context context, Item item) throws SQLException {

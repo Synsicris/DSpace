@@ -20,14 +20,10 @@ public class EasyOnlineImportSimpleXPath extends EasyOnlineImportXPath {
     private String path;
 
     @Override
-    public String getValue(Document document) {
-        try {
-            NodeList nodes = extractNodes(path, document);
-            if (nodes.getLength() > 0) {
-                return nodes.item(0).getNodeValue();
-            }
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
+    public String getValue(Document document) throws XPathExpressionException {
+        NodeList nodes = extractNodes(path, document);
+        if (nodes.getLength() > 0) {
+            return nodes.item(0).getNodeValue();
         }
         return StringUtils.EMPTY;
     }

@@ -149,4 +149,11 @@
         <scope_note></scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>type</element>
+        <qualifier>orgform</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
 </dspace-dc-types>

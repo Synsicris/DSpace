@@ -125,6 +125,10 @@
                 <entry 
                     key-ref="partner-Geschlecht_PA"
                     value-ref="synsicris.personadmin.gender">
+                </entry> 
+                <entry 
+                    key-ref="partner-KmuAndMittelstand"
+                    value-ref="synsicris.type.orgform">
                 </entry>                                        
 			</map>
 		</constructor-arg>
@@ -228,6 +232,10 @@
 
     <bean id="synsicris.personadmin.gender" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="synsicris.personadmin.gender"/>
+    </bean>
+
+    <bean id="synsicris.type.orgform" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.orgform"/>
     </bean>
 
     <!-- Project entity configurations -->
@@ -350,6 +358,23 @@
 
     <bean id="mapConverterGenderToEasyOnlineImport" class="org.dspace.util.SimpleMapConverter" init-method="init">
 		<property name="converterNameFile" value="mapConverter-easyOnlineImport.properties" />
+		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
+		<property name="defaultValue" value=""/>
+	</bean>
+
+    <bean id="partner-KmuAndMittelstand" class="org.dspace.app.easyliveimport.EasyOnlineImportKmuAndMittelstandXPath">
+       <property name="fieldToPath" ref="KmuAndMittelstandMap" />
+       <property name="simpleMapConverter" ref="mapConverterToEasyOnlineImportRechtsformMapping"/>
+    </bean>
+
+    <util:map id="KmuAndMittelstandMap" value-type="java.lang.String">
+          <entry key="KMU"  value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:KMU/text()" />
+          <entry key="Mittelstand" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Mittelstand/text()" />
+          <entry key="Rechtsform"  value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Rechtsform/text()" />
+    </util:map>
+
+    <bean id="mapConverterToEasyOnlineImportRechtsformMapping" class="org.dspace.util.SimpleMapConverter" init-method="init">
+		<property name="converterNameFile" value="mapConverter-easyOnlineImportRechtsformMapping.properties" />
 		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
 		<property name="defaultValue" value=""/>
 	</bean>

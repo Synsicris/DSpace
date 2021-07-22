@@ -6,17 +6,19 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.content.service;
+import java.sql.SQLException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.w3c.dom.Document;
 
 /**
- * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public interface EasyonlineimportService {
 
-    public boolean importFile(Context context, Item item, Document document, String entityType);
+    public void importFile(Context context, Item item, Document document, String entityType)
+            throws SQLException, XPathExpressionException;
 
 }

@@ -17,9 +17,12 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+/**
+ * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
+ */
 public abstract class EasyOnlineImportXPath {
 
-    public abstract String getValue(Document document);
+    public abstract String getValue(Document document) throws XPathExpressionException;
 
     protected NodeList extractNodes(String path, Document document) throws XPathExpressionException {
         XPath xpath = XPathFactory.newInstance().newXPath();

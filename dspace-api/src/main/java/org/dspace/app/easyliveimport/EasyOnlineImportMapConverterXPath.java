@@ -23,17 +23,13 @@ public class EasyOnlineImportMapConverterXPath extends EasyOnlineImportXPath {
     private SimpleMapConverter simpleMapConverter;
 
     @Override
-    public String getValue(Document document) {
-        try {
-            NodeList nodes = extractNodes(path, document);
-            if (nodes.getLength() > 0) {
-                String value = nodes.item(0).getNodeValue();
-                if (StringUtils.isNotBlank(value)) {
-                    return simpleMapConverter.getValue(value);
-                }
+    public String getValue(Document document) throws XPathExpressionException {
+        NodeList nodes = extractNodes(path, document);
+        if (nodes.getLength() > 0) {
+            String value = nodes.item(0).getNodeValue();
+            if (StringUtils.isNotBlank(value)) {
+                return simpleMapConverter.getValue(value);
             }
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
         }
         return StringUtils.EMPTY;
     }

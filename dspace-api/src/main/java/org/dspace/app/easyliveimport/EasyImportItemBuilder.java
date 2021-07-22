@@ -6,6 +6,9 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.easyliveimport;
+import java.sql.SQLException;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.w3c.dom.Document;
@@ -15,6 +18,6 @@ import org.w3c.dom.Document;
  */
 public interface EasyImportItemBuilder {
 
-    public void updateItem(Context context, Item item, Document document);
+    public void updateItem(Context context, Item item, Document document) throws SQLException, XPathExpressionException;
 
 }

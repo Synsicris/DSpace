@@ -21,21 +21,17 @@ public class EasyOnlineImportConcatValuesXPath extends EasyOnlineImportXPath {
     private List<String> paths;
 
     @Override
-    public String getValue(Document document) {
+    public String getValue(Document document) throws XPathExpressionException {
         StringBuilder result = new StringBuilder();
-        try {
-            for (String path : paths) {
-                NodeList nodes = extractNodes(path, document);
-                if (nodes.getLength() > 0) {
-                    if (StringUtils.isBlank(result.toString())) {
-                        result.append(nodes.item(0).getNodeValue());
-                    } else {
-                        result.append(", " + nodes.item(0).getNodeValue());
-                    }
+        for (String path : paths) {
+            NodeList nodes = extractNodes(path, document);
+            if (nodes.getLength() > 0) {
+                if (StringUtils.isBlank(result.toString())) {
+                    result.append(nodes.item(0).getNodeValue());
+                } else {
+                    result.append(", " + nodes.item(0).getNodeValue());
                 }
             }
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
         }
         return result.toString();
     }

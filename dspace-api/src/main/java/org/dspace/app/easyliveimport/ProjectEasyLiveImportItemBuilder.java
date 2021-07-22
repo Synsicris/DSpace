@@ -8,10 +8,9 @@
 package org.dspace.app.easyliveimport;
 import java.sql.SQLException;
 import java.util.Map;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.dspace.content.Item;
 import org.dspace.content.authority.Choices;
 import org.dspace.content.service.ItemService;
@@ -25,8 +24,6 @@ import org.w3c.dom.Document;
  */
 public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
 
-    private static Logger log = LogManager.getLogger(ProjectEasyLiveImportItemBuilder.class);
-
     private Map<EasyOnlineImportXPath, MetadataFieldConfig> xPathManagerToMetadataField;
 
     @Autowired
@@ -38,18 +35,15 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
     }
 
     @Override
-    public void updateItem(Context context, Item item, Document document) {
-        try {
-            for (EasyOnlineImportXPath xPathManager : xPathManagerToMetadataField.keySet()) {
-                String value = xPathManager.getValue(document);
-                if (StringUtils.isNotBlank(value)) {
-                    MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
-                    itemService.replaceMetadata(context, item, metadataField.getSchema(), metadataField.getElement(),
-                                               metadataField.getQualifier(), null, value, null, Choices.CF_UNSET, 0);
-                }
+    public void updateItem(Context context, Item item, Document document)
+            throws SQLException, XPathExpressionException {
+        for (EasyOnlineImportXPath xPathManager : xPathManagerToMetadataField.keySet()) {
+            String value = xPathManager.getValue(document);
+            if (StringUtils.isNotBlank(value)) {
+                MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
+                itemService.replaceMetadata(context, item, metadataField.getSchema(), metadataField.getElement(),
+                        metadataField.getQualifier(), null, value, null, Choices.CF_UNSET, 0);
             }
-        } catch (SQLException e) {
-            System.out.println("-> err " + e.getMessage());
         }
     }
 

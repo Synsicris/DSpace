@@ -139,7 +139,8 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="spinoff">CrisLayoutBoxServiceImpl
+                <entry key="spinoff">
+                    <list>    
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
                             <property name="security">

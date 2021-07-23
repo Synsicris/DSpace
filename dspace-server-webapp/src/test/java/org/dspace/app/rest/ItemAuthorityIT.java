@@ -419,7 +419,7 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
        String token = getAuthToken(eperson.getEmail(), password);
        getClient(token).perform(get("/api/submission/vocabularies/AuthorAuthority"))
                        .andExpect(status().isOk())
-                       .andExpect(jsonPath("$.entity", Matchers.is("Person")))
+                       .andExpect(jsonPath("$.entity", Matchers.contains("Person")))
                        .andExpect(jsonPath("$.externalSource", Matchers.is(exptectedMap)));
     }
 
@@ -440,7 +440,7 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
        String token = getAuthToken(eperson.getEmail(), password);
        getClient(token).perform(get("/api/submission/vocabularies/AuthorAuthority"))
                        .andExpect(status().isOk())
-                       .andExpect(jsonPath("$.entity", Matchers.is("Person")))
+                       .andExpect(jsonPath("$.entity", Matchers.contains("Person")))
                        .andExpect(jsonPath("$.externalSource", Matchers.is(exptectedMap)));
     }
 

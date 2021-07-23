@@ -11,7 +11,7 @@
           <label>Geben Sie einen Namen für den neuen Impact Pathway ein.</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -36,7 +36,6 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -49,7 +48,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -62,7 +60,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -80,17 +77,6 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>impactpathway</dc-schema>
           <dc-element>step</dc-element>
           <dc-qualifier>type</dc-qualifier>
@@ -99,7 +85,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -112,7 +97,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -125,7 +109,6 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -249,30 +232,6 @@
         </field>
       </row>
     </form>
-    <form name="impact_pathway_step_type_2_task_objective_edit_form">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird. Sie können die Bezeichnung auf der Detailseite anpassen.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
-    </form>
     <form name="impact_pathway_step_type_3_task_form">
       <row>
         <field>
@@ -322,30 +281,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird. Sie können die Bezeichnung auf der Detailseite anpassen.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="impact_pathway_step_type_3_task_objective_edit_form">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -516,6 +451,17 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>start</dc-qualifier>
           <label>Startdatum</label>
@@ -586,6 +532,17 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
         </field>
       </row>
       <row>
@@ -4047,11 +4004,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Zusammenfassung</label>
+          <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Fassen Sie bitte den Aspekt prägnant zusammen, es genügen Stichpunkte.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -5056,12 +5013,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>person</dc-qualifier>
-          <label>Ausgezeichnete Person(en)</label>
+          <label>Ausgezeichnete Person(en) ODER</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Wenn der Preis an (eine) Person(en) ging, wählen Sie die Person(en) aus.</hint>
+          <hint>Wenn die Auszeichnung an (eine) Person(en) ging, wählen Sie die Person(en) aus.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5072,7 +5029,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Wenn der Preis an (eine) Organisation(en) ging, wählen Sie die Organisation(en) aus.</hint>
+          <hint>Wenn die Auszeichnung an (eine) Organisation(en) ging, wählen Sie die Organisation(en) aus.</hint>
         </field>
       </row>
       <row>
@@ -5080,23 +5037,23 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
-          <label>Stifter</label>
+          <label>Initiator(en)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Geben Sie die Organisation an, die den Preis verleiht.</hint>
+          <hint />
         </field>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
           <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Akteursgruppe des Stifters</label>
+          <label>Akteursgruppe des Initiators</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Ordnen Sie den Stifter einer Akteursgruppe zu, um zu verdeutlichen, welche Gruppe die Leistungen würdigt.</hint>
+          <hint>Ordnen Sie den Initiator in eine Akteursgruppe ein, um zu verdeutlichen, welche Gruppe die Leistungen würdigt.</hint>
         </field>
       </row>
     </form>
@@ -5360,35 +5317,35 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung und Reflexion</label>
-          <input-type>textarea</input-type>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Einfluss der Rahmenbedingung auf die Wirkung des Projektes</label>
+          <input-type value-pairs-name="influence_conditions">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <label>Ab wann ist die Rahmenbedingung wirksam?</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie die Rahmenbedingung und wie damit im Projekt umgegangen wird.</hint>
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <label>Ab welchem Jahr ist die Rahmenbedingung wirksam?</label>
-          <input-type>onebox</input-type>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung der Rahmenbedingung und des Umgangs damit</label>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Wenn Ihnen diese Information nicht vorliegt und nicht leicht recherchiert werden kann, können Sie das Feld auch frei lassen.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>influence</dc-qualifier>
-          <label>Einfluss auf Erfolg und Wirkung</label>
-          <input-type value-pairs-name="influence_conditions">list</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -7326,7 +7283,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <displayed-value>(Zwischen-) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
@@ -7354,7 +7311,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <displayed-value>(Zwischen-) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
@@ -7364,16 +7321,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschptozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
       </pair>
       <pair>
         <displayed-value>Veröffentlichung</displayed-value>
@@ -7394,7 +7355,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
-        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
+        <displayed-value>Mögliche Lösung/ Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
@@ -7406,7 +7367,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <displayed-value>(Zwischen-) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
@@ -7422,7 +7383,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
       </pair>
       <pair>
@@ -7770,7 +7731,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Property rights of others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Rechtliche Rahmenbedingungen (z. B. Gesetze Gesetze und Verordnungen)</displayed-value>
+        <displayed-value>Rechtliche Rahmenbedingungen (z. B. Gesetze und Verordnungen)</displayed-value>
         <stored-value>Legal conditions</stored-value>
       </pair>
       <pair>
@@ -7888,11 +7849,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>milestone</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
@@ -7948,7 +7909,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
@@ -7968,7 +7929,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
       </pair>
       <pair>
@@ -7988,23 +7949,27 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnisse</displayed-value>
+        <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <displayed-value>(Zwischen-) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
@@ -8020,11 +7985,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>milestone</stored-value>
       </pair>
       <pair>
-        <displayed-value>Projektziele</displayed-value>
+        <displayed-value>Projektziel</displayed-value>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beiträge zu förderpolitischen Zielen</displayed-value>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
@@ -8046,7 +8011,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_2_task_type" dc-term="exploitation_plan_step_type_2_task_type">
       <pair>
-        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
@@ -8066,7 +8031,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
       </pair>
       <pair>
@@ -8086,11 +8051,15 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnisse</displayed-value>
+        <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
@@ -8098,11 +8067,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
@@ -8118,11 +8087,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>milestone</stored-value>
       </pair>
       <pair>
-        <displayed-value>Projektziele</displayed-value>
+        <displayed-value>Projektziel</displayed-value>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beiträge zu förderpolitischen Zielen</displayed-value>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
@@ -8144,7 +8113,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
-        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
@@ -8184,11 +8153,15 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnisse</displayed-value>
+        <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
@@ -8196,11 +8169,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
@@ -8216,11 +8189,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>milestone</stored-value>
       </pair>
       <pair>
-        <displayed-value>Projektziele</displayed-value>
+        <displayed-value>Projektziel</displayed-value>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beiträge zu förderpolitischen Zielen</displayed-value>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
@@ -8242,7 +8215,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
-        <displayed-value>Lösung/ Veränderung / Innovation</displayed-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
@@ -8282,11 +8255,15 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Publication</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnisse</displayed-value>
+        <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
@@ -8294,11 +8271,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Prozess der Kooperation, Partizipation und Zusammenarbeit</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veranstaltung / Interaktion</displayed-value>
+        <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
@@ -8314,11 +8291,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>milestone</stored-value>
       </pair>
       <pair>
-        <displayed-value>Projektziele</displayed-value>
+        <displayed-value>Projektziel</displayed-value>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beiträge zu förderpolitischen Zielen</displayed-value>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>

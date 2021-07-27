@@ -38,13 +38,23 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
     public void updateItem(Context context, Item item, Document document)
             throws SQLException, XPathExpressionException {
         for (EasyOnlineImportXPath xPathManager : xPathManagerToMetadataField.keySet()) {
-            String value = xPathManager.getValue(document);
+            String value = cleanText(xPathManager.getValue(document));
             if (StringUtils.isNotBlank(value)) {
                 MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
                 itemService.replaceMetadata(context, item, metadataField.getSchema(), metadataField.getElement(),
-                        metadataField.getQualifier(), null, value, null, Choices.CF_UNSET, 0);
+                            metadataField.getQualifier(), null, value, null, Choices.CF_UNSET, 0);
             }
         }
+    }
+
+    private String cleanText(String value) {
+        if (value.contains("\n")) {
+            value = value.replaceAll("\n", " ");
+        }
+        if (value.contains("\t")) {
+            value = value.replaceAll("\t", "");
+        }
+        return value.trim();
     }
 
 }

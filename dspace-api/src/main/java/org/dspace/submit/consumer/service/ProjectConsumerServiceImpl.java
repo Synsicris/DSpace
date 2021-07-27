@@ -127,7 +127,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 // the item is a template item
                 return null;
             }
-            owningCollection = item.getCollections().get(0);
+            owningCollection = item.getOwningCollection();
         }
 
         if (owningCollection == null) {

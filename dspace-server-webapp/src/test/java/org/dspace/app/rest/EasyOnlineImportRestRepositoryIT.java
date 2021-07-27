@@ -36,7 +36,7 @@ import org.springframework.mock.web.MockMultipartFile;
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrationTest {
+public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private ConfigurationService configurationService;

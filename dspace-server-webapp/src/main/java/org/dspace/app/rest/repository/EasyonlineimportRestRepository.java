@@ -81,6 +81,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
     }
 
     @Override
+    @PreAuthorize("hasAuthority('AUTHENTICATED')")
     public EasyOnlineImportRest findOne(Context context, UUID id) {
         throw new RepositoryMethodNotImplementedException(EasyOnlineImportRest.NAME, "findOne");
     }

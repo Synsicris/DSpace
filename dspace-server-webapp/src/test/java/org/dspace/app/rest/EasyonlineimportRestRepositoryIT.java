@@ -18,10 +18,17 @@ import java.util.UUID;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
+import org.dspace.builder.EPersonBuilder;
+import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
+import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.eperson.EPerson;
+import org.dspace.eperson.Group;
+import org.dspace.services.ConfigurationService;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 
 /**
@@ -30,6 +37,9 @@ import org.springframework.mock.web.MockMultipartFile;
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrationTest {
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Test
     public void findAllTest() throws Exception {
@@ -46,6 +56,7 @@ public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrat
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void easyOnlineImportUnauthorizedTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
@@ -74,6 +85,7 @@ public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrat
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void easyOnlineImportAdminTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
@@ -124,9 +136,249 @@ public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrat
         getClient().perform(get("/api/core/items/" + projectItem.getID()))
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.metadata", matchMetadata("dc.title",
-                           "orschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
-                         + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
-                         + " Projektträger in der Agrarforschung")));
+                              "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
+                            + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
+                            + " Projektträger in der Agrarforschung")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title.alternative",
+                           "Research Information System and Evaluation Concept for Research Contributions to Practice"
+                         + " and Society – Optimized Through Pilot Studies Within Funding Agencies"
+                         + " for Agricultural Research")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.description.abstract",
+                           "Das Projekt strebt eine Weiterentwicklung des im Projekt Praxis-Impact II (FKZ 2812NA102)"
+                         + " erarbeiteten Dokumentations- und Evaluierungskonzeptes an, welches eine auf praktischen"
+                         + " und gesellschaftlichen Nutzen ausgerichtete Forschungskultur fördern soll. Dieses Konzept"
+                         + " soll entlang der Anforderungen des Agrar-Innovationssystems (Förderer, Forschung,"
+                         + " Wissenstransfer/-nutzer) bis zur Anwendbarkeit im Pilotbetrieb weiterentwickelt werden."
+                         + " Das Dokumentationskonzept soll umgesetzt werden, indem ein Open Source"
+                         + " Forschungsinformationssystem (FIS) erweitert wird, a) um Leistungen der Forschung für"
+                         + " Praxis und Gesellschaft und b) um Informationen, die in der Forschungsförderung zusätzlich"
+                         + " benötigt werden (um Teile von Anträgen und Berichten zu ersetzen)."
+                         + " Das erweiterte FIS soll a) Förderentscheidungen und die Projektbegleitung unterstützen,"
+                         + " b) eine qualitativ hochwertige Evaluierung gesellschaftlicher Leistungen ermöglichen und"
+                         + " c) Qualität, Transfer und Zugänglichkeit zielgruppengerechter Outputs erhöhen."
+                         + " Das Verfahren für die Projektevaluierung soll a) durch partizipative Dokumentations-"
+                         + " und Evaluierungsprozesse die Ausrichtung der Projekte auf gesellschaftlichen Nutzen"
+                         + " steigern, b) die Wirksamkeit von Forschungsprogrammen nachweisen können und"
+                         + " c) es ermöglichen besonders erfolgreiche Projekte auszuzeichnen.")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.acronym", "SynSICRIS")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.description.workplan",
+                           "Die Anforderungen des Agrarinnovationssystems an das erweiterte FIS und das"
+                         + " Evaluierungskonzept werden über Beteiligungs- und Erprobungsprozesse und"
+                         + " Experteneinbindung mit einem Living Lab Ansatz ermittelt und in mehreren"
+                         + " Rückkopplungsschlaufen umgesetzt. Die Erweiterung des Open Source FIS DSpace-CRIS erfolgt"
+                         + " über ein agiles Vorgehensmodell der Softwareentwicklung. Die nutzbaren Zwischenversionen"
+                         + " und das weiterentwickelte Evaluierungskonzept werden für Sichtungs- und Testprozesse im"
+                         + " Living Lab genutzt. Ca. 8 Projektträger und 5 Stiftungen werden in Sichtungen einbezogen,"
+                         + " Erprobungen finden in der BLE und bei drei weiteren Projektträgern statt." )));
+    }
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void easyOnlineImportAdminWithRandomUuidTest() throws Exception {
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
+        final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
+        getClient(tokenAdmin).perform(fileUpload("/api/integration/easyonlineimports/" + UUID.randomUUID())
+                             .file(xmlFile))
+                             .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void easyOnlineImportForbiddenTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+
+        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Collection 1")
+                                           .withEntityType("Project")
+                                           .build();
+
+        Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Project partners")
+                                           .withEntityType("projectpartner")
+                                           .build();
+
+
+        Collection col3 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Parent Project Collection Title")
+                                           .build();
+
+        Item parentProjectItem = ItemBuilder.createItem(context, col3)
+                                            .withTitle("Parent Project Item Title")
+                                            .build();
+
+        Item projectItem = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Test Title")
+                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                                  .build();
+
+
+        ItemBuilder.createItem(context, col2)
+                   .withTitle("project partner item Title")
+                   .withEasyImport("no")
+                   .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenEPerson = getAuthToken(eperson.getEmail(), password);
+        InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
+        final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
+        getClient(tokenEPerson).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID())
+                             .file(xmlFile))
+                             .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void easyOnlineImportAdminMissingFileisTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+
+        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Collection 1")
+                                           .withEntityType("Project")
+                                           .build();
+
+        Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Project partners")
+                                           .withEntityType("projectpartner")
+                                           .build();
+
+
+        Collection col3 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Parent Project Collection Title")
+                                           .build();
+
+        Item parentProjectItem = ItemBuilder.createItem(context, col3)
+                                            .withTitle("Parent Project Item Title")
+                                            .build();
+
+        Item projectItem = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Test Title")
+                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                                  .build();
+
+
+        ItemBuilder.createItem(context, col2)
+                   .withTitle("project partner item Title")
+                   .withEasyImport("no")
+                   .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        getClient(tokenAdmin).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID()))
+                             .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void easyOnlineImportTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
+                                         .withNameInMetadata("Mykhaylo", "Boychuk")
+                                         .withEmail("mykhaylo.boychuk@email.com")
+                                         .withPassword(password).build();
+
+        Community projectA = CommunityBuilder.createCommunity(context)
+                                             .withName("project A").build();
+
+
+        CollectionBuilder.createCollection(context, projectA)
+                         .withName("Project partners")
+                         .withEntityType("projectpartner")
+                         .withSubmitterGroup(ePerson1)
+                         .build();
+
+        Collection joinProjects = CollectionBuilder.createCollection(context, projectA)
+                                           .withName("Parent Project Collection Title")
+                                           .build();
+
+        Item projectAItem = ItemBuilder.createItem(context, joinProjects)
+                                       .withTitle("project A")
+                                       .build();
+
+        Community Projects = CommunityBuilder.createSubCommunity(context, projectA)
+                                                         .withName("Projects").build();
+
+        Community subprojectA = CommunityBuilder.createSubCommunity(context, Projects)
+                                          .withName("subproject A - project A all grants").build();
+
+        Group subprojectAGroup = GroupBuilder.createGroup(context)
+                       .withName("project_" + subprojectA.getID().toString() + "_members_group")
+                       .addMember(ePerson1).build();
+
+        Collection projects = CollectionBuilder.createCollection(context, subprojectA)
+                                               .withName("Projects")
+                                               .withSubmitterGroup(subprojectAGroup)
+                                               .withEntityType("Project")
+                                               .build();
+
+        Item projectItem = ItemBuilder.createItem(context, projects)
+                .withTitle("Project Item Title")
+                .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
+                .build();
+
+        configurationService.setProperty("project.subproject-community-name", Projects.getName());
+
+        context.restoreAuthSystemState();
+
+        String tokenUser = getAuthToken(ePerson1.getEmail(), password);
+        InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
+        final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
+        getClient(tokenUser).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID())
+                             .file(xmlFile))
+                             .andExpect(status().isCreated());
+
+        getClient().perform(get("/api/core/items/" + projectItem.getID()))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title",
+                              "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
+                            + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
+                            + " Projektträger in der Agrarforschung")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title.alternative",
+                           "Research Information System and Evaluation Concept for Research Contributions to Practice"
+                         + " and Society – Optimized Through Pilot Studies Within Funding Agencies"
+                         + " for Agricultural Research")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.description.abstract",
+                           "Das Projekt strebt eine Weiterentwicklung des im Projekt Praxis-Impact II (FKZ 2812NA102)"
+                         + " erarbeiteten Dokumentations- und Evaluierungskonzeptes an, welches eine auf praktischen"
+                         + " und gesellschaftlichen Nutzen ausgerichtete Forschungskultur fördern soll. Dieses Konzept"
+                         + " soll entlang der Anforderungen des Agrar-Innovationssystems (Förderer, Forschung,"
+                         + " Wissenstransfer/-nutzer) bis zur Anwendbarkeit im Pilotbetrieb weiterentwickelt werden."
+                         + " Das Dokumentationskonzept soll umgesetzt werden, indem ein Open Source"
+                         + " Forschungsinformationssystem (FIS) erweitert wird, a) um Leistungen der Forschung für"
+                         + " Praxis und Gesellschaft und b) um Informationen, die in der Forschungsförderung zusätzlich"
+                         + " benötigt werden (um Teile von Anträgen und Berichten zu ersetzen)."
+                         + " Das erweiterte FIS soll a) Förderentscheidungen und die Projektbegleitung unterstützen,"
+                         + " b) eine qualitativ hochwertige Evaluierung gesellschaftlicher Leistungen ermöglichen und"
+                         + " c) Qualität, Transfer und Zugänglichkeit zielgruppengerechter Outputs erhöhen."
+                         + " Das Verfahren für die Projektevaluierung soll a) durch partizipative Dokumentations-"
+                         + " und Evaluierungsprozesse die Ausrichtung der Projekte auf gesellschaftlichen Nutzen"
+                         + " steigern, b) die Wirksamkeit von Forschungsprogrammen nachweisen können und"
+                         + " c) es ermöglichen besonders erfolgreiche Projekte auszuzeichnen.")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.acronym", "SynSICRIS")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.description.workplan",
+                           "Die Anforderungen des Agrarinnovationssystems an das erweiterte FIS und das"
+                         + " Evaluierungskonzept werden über Beteiligungs- und Erprobungsprozesse und"
+                         + " Experteneinbindung mit einem Living Lab Ansatz ermittelt und in mehreren"
+                         + " Rückkopplungsschlaufen umgesetzt. Die Erweiterung des Open Source FIS DSpace-CRIS erfolgt"
+                         + " über ein agiles Vorgehensmodell der Softwareentwicklung. Die nutzbaren Zwischenversionen"
+                         + " und das weiterentwickelte Evaluierungskonzept werden für Sichtungs- und Testprozesse im"
+                         + " Living Lab genutzt. Ca. 8 Projektträger und 5 Stiftungen werden in Sichtungen einbezogen,"
+                         + " Erprobungen finden in der BLE und bei drei weiteren Projektträgern statt." )));
+
     }
 
 }

@@ -250,12 +250,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        String uuid = itemService.getMetadataFirstValue(item, "synsicris", "relation", "parentproject", Item.ANY);
+        List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+        if (values.isEmpty()) {
+            return null;
+        }
+        String uuid = values.get(0).getAuthority();
         if (StringUtils.isNotBlank(uuid)) {
-            Item parentProjectItem = itemService.find(context, UUID.fromString(uuid));
-            if (Objects.nonNull(parentProjectItem)) {
-                return item.getOwningCollection().getCommunities().get(0);
-            }
+            // item that rappresent Project community
+            Item projectItem = itemService.find(context, UUID.fromString(uuid));
+            return getProjectCommunity(context, projectItem);
         }
         return null;
     }

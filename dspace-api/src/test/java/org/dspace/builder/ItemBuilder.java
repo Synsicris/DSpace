@@ -28,6 +28,7 @@ import org.dspace.content.Item;
 import org.dspace.content.LicenseUtils;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.core.Context;
 import org.dspace.core.CrisConstants;
@@ -720,8 +721,9 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return this;
     }
 
-    public ItemBuilder withParentproject(String uuid) {
-        return addMetadataValue(item, "synsicris", "relation", "parentproject", uuid);
+    public ItemBuilder withParentproject(String value, String authority_uuid) {
+        return addMetadataValue(item, "synsicris", "relation", "parentproject", null,
+                                         value, authority_uuid, Choices.CF_ACCEPTED);
     }
 
     public ItemBuilder withEasyImport(String value) {

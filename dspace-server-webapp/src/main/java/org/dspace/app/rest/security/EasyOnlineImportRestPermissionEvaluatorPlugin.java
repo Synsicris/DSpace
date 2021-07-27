@@ -8,6 +8,7 @@
 package org.dspace.app.rest.security;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import org.dspace.app.rest.model.EasyOnlineImportRest;
 import org.dspace.app.rest.utils.ContextUtil;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataValue;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
@@ -71,18 +73,29 @@ public class EasyOnlineImportRestPermissionEvaluatorPlugin extends RestObjectPer
                 return false;
             }
             Item item = itemService.find(context, dsoUuid);
-            Community projectCommunity = projectConsumerService.getProjectCommunity(context, item);
-            if (Objects.isNull(projectCommunity)) {
+            if (Objects.isNull(item)) {
                 return false;
             }
-            if (Objects.nonNull(
-                projectConsumerService.isMemberOfSubProject(context, context.getCurrentUser(), projectCommunity))) {
-                return true;
+            List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+            if (values.isEmpty()) {
+                return false;
+            }
+            String uuid = values.get(0).getAuthority();
+            if (StringUtils.isNotBlank(uuid)) {
+                // item that rappresent Project community
+                Item projectItem = itemService.find(context, UUID.fromString(uuid));
+                Community projectCommunity = projectConsumerService.getProjectCommunity(context, projectItem);
+                if (Objects.isNull(projectCommunity)) {
+                    return false;
+                }
+                if (Objects.nonNull(projectConsumerService.isMemberOfSubProject(context, context.getCurrentUser(),
+                        projectCommunity))) {
+                    return true;
+                }
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }
-
         return false;
     }
 

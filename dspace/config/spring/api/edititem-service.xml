@@ -129,23 +129,18 @@
                             <property name="submissionDefinition" value="persons-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="OWNER" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    OWNER
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="persons-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
                         </bean>
                     </list>
                 </entry>
                 <entry key="spinoff">
-                    <list>
+                    <list>    
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
                             <property name="security">

@@ -102,9 +102,9 @@ public class EasyonlineimportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item projectItem = ItemBuilder.createItem(context, col1)
-                                      .withTitle("Test Title")
-                                      .withParentproject(parentProjectItem.getID().toString())
-                                      .build();
+                                  .withTitle("Test Title")
+                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                                  .build();
 
 
         ItemBuilder.createItem(context, col2)

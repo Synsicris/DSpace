@@ -30,6 +30,7 @@ import org.dspace.content.Community;
 import org.dspace.content.EasyonlineimportServiceImpl;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
@@ -124,6 +125,8 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 Item newItem = installItemService.installItem(context, workspaceItem);
                 easyOnlineImportService.importFile(context, newItem, document, "projectpartner");
                 collectionService.addItem(context, projectPartnerCollection, newItem);
+                itemService.replaceMetadata(context, newItem, "synsicris", "type", "easy-import", null, "Yes", null,
+                                            Choices.CF_UNSET, 0);
                 newItem = context.reloadEntity(newItem);
                 easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));
             }
@@ -148,7 +151,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.addFilterQueries("dspace.entity.type:projectpartner");
-        discoverQuery.addFilterQueries("synsicris.type.easy-import:yes");
+        discoverQuery.addFilterQueries("synsicris.type.easy-import:Yes");
         discoverQuery.addFilterQueries("location.coll:" + collection.getID().toString());
         return new DiscoverResultIterator<Item, UUID>(context, discoverQuery);
     }

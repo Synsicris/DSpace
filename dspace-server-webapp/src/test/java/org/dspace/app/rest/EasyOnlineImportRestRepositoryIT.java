@@ -6,6 +6,7 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest;
+import static com.jayway.jsonpath.JsonPath.read;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.InputStream;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.builder.CollectionBuilder;
@@ -334,12 +336,16 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
 
         context.restoreAuthSystemState();
 
+        AtomicReference<String> idRef1 = new AtomicReference<>();
+
+        try {
         String tokenUser = getAuthToken(ePerson1.getEmail(), password);
         InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
         final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
         getClient(tokenUser).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID())
-                             .file(xmlFile))
-                             .andExpect(status().isCreated());
+                            .file(xmlFile))
+                         .andExpect(status().isCreated())
+                         .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.created.[0]")));
 
         getClient().perform(get("/api/core/items/" + projectItem.getID()))
                    .andExpect(status().isOk())
@@ -379,6 +385,43 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                          + " Living Lab genutzt. Ca. 8 Projektträger und 5 Stiftungen werden in Sichtungen einbezogen,"
                          + " Erprobungen finden in der BLE und bei drei weiteren Projektträgern statt." )));
 
+            getClient().perform(get("/api/core/items/" + idRef1.get()))
+                       .andExpect(status().isOk())
+                       .andExpect(jsonPath("$.metadata", matchMetadata("dc.title", "disy Informationssysteme GmbH")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.identifier.url", "www.disy.net")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("organization.address.addressCountry",
+                                                                       "Deutschland")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("organization.parentOrganization",
+                                                                       "disy Informationssysteme GmbH")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("person.personadmin.email",
+                                                                       "andreas.abecker@disy.net")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressCity", "Karlsruhe")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressPostcode", "76131")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressStreetnamenumber",
+                                                                       "Ludwig-Erhard-Allee 6")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.identifier.registernumber",
+                                                                       "HRB 107964")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.orgunits.email", "office@disy.net")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.orgunits.phone",
+                                                                       "+49 721 16006-000")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personadmin", "Abecker, Andreas")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personadmin.degree", "Dr.")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personadmin.gender", "m")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personadmin.phone",
+                                                                       "+49 721 16006-256")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader", "Abecker, Andreas")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.degree", "Dr.")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.email",
+                                                                       "andreas.abecker@disy.net")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.gender", "m")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.phone",
+                                                                       "+49 721 16006-256")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.easy-import", "Yes")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.legalform", "GmbH")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.orgform", "SME")));
+        } finally {
+            ItemBuilder.deleteItem(UUID.fromString(idRef1.get()));
+        }
     }
 
 }

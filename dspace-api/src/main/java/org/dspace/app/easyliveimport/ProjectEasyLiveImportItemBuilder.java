@@ -12,7 +12,10 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang.StringUtils;
 import org.dspace.content.Item;
+import org.dspace.content.authority.Choice;
+import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
@@ -29,6 +32,9 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private ChoiceAuthorityService cas;
+
     public ProjectEasyLiveImportItemBuilder(
             Map<EasyOnlineImportXPath, MetadataFieldConfig> xPathManagerToMetadataField) {
         this.xPathManagerToMetadataField = xPathManagerToMetadataField;
@@ -40,9 +46,24 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
         for (EasyOnlineImportXPath xPathManager : xPathManagerToMetadataField.keySet()) {
             String value = cleanText(xPathManager.getValue(document));
             if (StringUtils.isNotBlank(value)) {
+                String authorityValue = null;
                 MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
+                String authorityName = cas.getChoiceAuthorityName(metadataField.getSchema(), metadataField.getElement(),
+                                                           metadataField.getQualifier(), item.getOwningCollection());
+                if (StringUtils.isNotBlank(authorityName)) {
+                    ChoiceAuthority authority = cas.getChoiceAuthorityByAuthorityName(authorityName);
+                    Choices choices = authority.getBestMatch(value, context.getCurrentLocale().toString());
+                    if (choices.values.length > 0) {
+                        Choice choice = choices.values[0];
+                        value = choice.value;
+                        if (StringUtils.isNotBlank(choice.authority)) {
+                            authorityValue = authorityName + ":" + choice.authority;
+                        }
+                    }
+                }
                 itemService.replaceMetadata(context, item, metadataField.getSchema(), metadataField.getElement(),
-                            metadataField.getQualifier(), null, value, null, Choices.CF_UNSET, 0);
+                            metadataField.getQualifier(), null, value, authorityValue,
+                            StringUtils.isNotBlank(authorityValue) ? Choices.CF_ACCEPTED : Choices.CF_UNSET , 0);
             }
         }
     }

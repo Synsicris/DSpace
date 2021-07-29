@@ -115,7 +115,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             modified.add(item.getID());
             // import project partner item
             Collection projectPartnerCollection = getProjectPartnerCollection(context, item);
-            Iterator<Item> items = findItems(context, projectPartnerCollection);
+            Iterator<Item> items = findItems(context, projectPartnerCollection, item);
             if (items.hasNext()) {
                 projectPartnerItem = items.next();
                 easyOnlineImportService.importFile(context, projectPartnerItem, document, "projectpartner");
@@ -127,6 +127,8 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 collectionService.addItem(context, projectPartnerCollection, newItem);
                 itemService.replaceMetadata(context, newItem, "synsicris", "type", "easy-import", null, "Yes", null,
                                             Choices.CF_UNSET, 0);
+                itemService.replaceMetadata(context, newItem, "dc", "relation", "project", null, item.getName(),
+                                            item.getID().toString(), Choices.CF_ACCEPTED, 0);
                 newItem = context.reloadEntity(newItem);
                 easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));
             }
@@ -146,13 +148,14 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
         return null;
     }
 
-    private Iterator<Item> findItems(Context context, Collection collection)
+    private Iterator<Item> findItems(Context context, Collection collection, Item projectItem)
             throws SQLException, SearchServiceException {
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.addFilterQueries("dspace.entity.type:projectpartner");
         discoverQuery.addFilterQueries("synsicris.type.easy-import:Yes");
         discoverQuery.addFilterQueries("location.coll:" + collection.getID().toString());
+        discoverQuery.addFilterQueries("dc.relation.project_authority:" + projectItem.getID().toString());
         return new DiscoverResultIterator<Item, UUID>(context, discoverQuery);
     }
 

@@ -253,6 +253,20 @@ it, please enter the types and the actual numbers or codes.</hint>
        </field>
      </row>
      <row>
+        <field>
+          <dc-schema>organization</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCountry</dc-qualifier>
+          <label>Country</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">countries</vocabulary>
+        </field>
+     </row>
+     <row>
        <field>
          <dc-schema>dc</dc-schema>
          <dc-element>title</dc-element>

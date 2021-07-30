@@ -300,6 +300,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         CollectionBuilder.createCollection(context, projectA)
                          .withName("Project partners")
                          .withEntityType("projectpartner")
+                         .withSubmissionDefinition("traditional-cris")
                          .withSubmitterGroup(ePerson1)
                          .build();
 
@@ -390,7 +391,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                        .andExpect(jsonPath("$.metadata", matchMetadata("dc.title", "disy Informationssysteme GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.identifier.url", "www.disy.net")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("organization.address.addressCountry",
-                                                                       "Deutschland")))
+                                                                       "COUNTRIES 2021-03-05::D::Deutschland")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("organization.parentOrganization",
                                                                        "disy Informationssysteme GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("person.personadmin.email",

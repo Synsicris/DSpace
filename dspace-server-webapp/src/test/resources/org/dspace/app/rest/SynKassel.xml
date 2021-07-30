@@ -1,0 +1,2199 @@
+<xf:Feldgruppe_Formular
+	xmlns:xf="http://ip.kp.dlr.de/Xfoerder"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:spez="http://ip.kp.dlr.de/Xfoerder/Spezifikation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<xf:Feldgruppe_Eigenschaften>
+		<xf:Maske_Eigenschaften>
+			<xf:Einzelposition>
+				<xf:Antragsteller>Standard</xf:Antragsteller>
+				<xf:Haftungsausschluss>Die Inhalte dieses Dokuments werden mit
+					größtmöglicher Sorgfalt recherchiert und implementiert. Fehler im
+					Bearbeitungsvorgang sind dennoch nicht auszuschließen. Hinweise und
+					Korrekturen senden Sie bitte an eine der unten aufgeführten
+					Adressen von DLR-IP. Eine Haftung für die Richtigkeit,
+					Vollstandigkeit und Aktualitat kann trotz sorgfaltiger Prüfung
+					nicht übernommen werden. DLR-IP übernimmt insbesondere keinerlei
+					Haftung für eventuelle Schaden oder Konsequenzen, die durch die
+					direkte oder indirekte Nutzung der angebotenen Inhalte entstehen.
+					Dieses Dokument ist ein technisches Hilfsmittel in der
+					Formularerstellung. Es hat keine Relevanz im rechtlichen Sinne.
+				</xf:Haftungsausschluss>
+				<xf:Hinweise>BITTE NICHT MANUELL BEARBEITEN! Dieses Formular wird
+					elektronisch geprüft und verarbeitet. Eine manuelle Bearbeitung
+					wird mit hoher Wahrscheinlichkeit dazu führen, a) dass das Dokument
+					ungültig wird und nicht verarbeitet, insbesondere nicht eingereicht
+					werden kann, oder b) dass manuelle Änderungen beim Einlesen
+					überschrieben werden und unerwartete Ergebnisse verursachen.
+				</xf:Hinweise>
+				<xf:IstAnhangPflicht>Nein</xf:IstAnhangPflicht>
+				<xf:XSD_Version>1.8.0; SVN: 8264, (2016-05-18T17:45:02.271+02:00)
+				</xf:XSD_Version>
+				<xf:easyOnlineKennung>100322604</xf:easyOnlineKennung>
+				<xf:easyOnlineVersion>easyOnline 1.7.4.5.7856</xf:easyOnlineVersion>
+				<xf:easyOnlineVersion_aktuell>easyOnline 2.2.1.2.9046
+				</xf:easyOnlineVersion_aktuell>
+				<xf:letzte_Benutzung>2017-02-21</xf:letzte_Benutzung>
+			</xf:Einzelposition>
+		</xf:Maske_Eigenschaften>
+	</xf:Feldgruppe_Eigenschaften>
+	<xf:Feldgruppe_Basisdaten>
+		<xf:Feldgruppe_KerndatenFinanzplan>
+			<xf:Maske_KerndatenFinanzplan>
+				<xf:Einzelposition>
+					<xf:Mandant>Bundesministerium für Ernährung und Landwirtschaft
+					</xf:Mandant>
+					<xf:Foerdermassnahme>BLEINNO</xf:Foerdermassnahme>
+					<xf:Foerderbereich>BLEINNO91</xf:Foerderbereich>
+					<xf:FoerdermassnahmeLang>Programm zur Innovationsförderung des BMEL
+					</xf:FoerdermassnahmeLang>
+					<xf:FoerderbereichLang>Sonstige Vorhaben</xf:FoerderbereichLang>
+					<xf:Formulartyp>AZKP</xf:Formulartyp>
+					<xf:Summarisches_Vorhaben>Nein</xf:Summarisches_Vorhaben>
+					<xf:KennungAntragsverfahren>N</xf:KennungAntragsverfahren>
+					<xf:KennungAntragsverfahrenLang>Einfacher Antrag
+					</xf:KennungAntragsverfahrenLang>
+					<xf:kng_neu_aufst_anschl>Erstzuwendung</xf:kng_neu_aufst_anschl>
+					<xf:istAnschluss>Nein</xf:istAnschluss>
+					<xf:von>2017-06-01</xf:von>
+					<xf:bis>2022-05-31</xf:bis>
+					<xf:von_Jahr>2017</xf:von_Jahr>
+                    <xf:bis_Jahr>2022</xf:bis_Jahr>
+					<xf:Waehrung>EUR</xf:Waehrung>
+					<xf:pauschalierte_Abrechnung>Ja</xf:pauschalierte_Abrechnung>
+					<xf:pauschalierte_Abrechnung_andere>Ja
+					</xf:pauschalierte_Abrechnung_andere>
+					<xf:Vorhaben_nicht_begonnen>Ja</xf:Vorhaben_nicht_begonnen>
+					<xf:Kennzeichen_Datenschutzerklaerung>Ja
+					</xf:Kennzeichen_Datenschutzerklaerung>
+					<xf:Antragsdatum>2017-02-21</xf:Antragsdatum>
+					<xf:Antragsort>Karlsruhe</xf:Antragsort>
+				</xf:Einzelposition>
+			</xf:Maske_KerndatenFinanzplan>
+		</xf:Feldgruppe_KerndatenFinanzplan>
+		<xf:Feldgruppe_Vorhabenbeschreibung>
+			<xf:Maske_Vorhabenbeschreibung>
+				<xf:Einzelposition>
+					<xf:Akronym>SynSICRIS</xf:Akronym>
+					<xf:Thema>Forschungsinformationssystem und Evaluierungsverfahren
+						für Leistungen der Forschung für Praxis und Gesellschaft –
+						ausgereift im Pilot-Betrieb für Projektträger in der
+						Agrarforschung
+					</xf:Thema>
+					<xf:fremd_Thema>Research Information System and Evaluation Concept
+						for Research Contributions to Practice and Society – Optimized
+						Through Pilot Studies Within Funding Agencies for Agricultural
+						Research
+					</xf:fremd_Thema>
+					<xf:Beschreibung1>Das Projekt strebt eine Weiterentwicklung des im
+						Projekt Praxis-Impact II (FKZ 2812NA102) erarbeiteten
+						Dokumentations- und Evaluierungskonzeptes an, welches eine auf
+						praktischen und gesellschaftlichen Nutzen ausgerichtete
+						Forschungskultur fördern soll. Dieses Konzept soll entlang der
+						Anforderungen des Agrar-Innovationssystems (Förderer, Forschung,
+						Wissenstransfer/-nutzer) bis zur Anwendbarkeit im Pilotbetrieb
+						weiterentwickelt werden. Das Dokumentationskonzept soll umgesetzt
+						werden, indem ein Open Source Forschungsinformationssystem (FIS)
+						erweitert wird, a) um Leistungen der Forschung für Praxis und
+						Gesellschaft und b) um Informationen, die in der
+						Forschungsförderung zusätzlich benötigt werden (um Teile von
+						Anträgen und Berichten zu ersetzen). Das erweiterte FIS soll a)
+						Förderentscheidungen und die Projektbegleitung unterstützen, b)
+						eine qualitativ hochwertige Evaluierung gesellschaftlicher
+						Leistungen ermöglichen und c) Qualität, Transfer und
+						Zugänglichkeit zielgruppengerechter Outputs erhöhen. Das Verfahren
+						für die Projektevaluierung soll a) durch partizipative
+						Dokumentations- und Evaluierungsprozesse die Ausrichtung der
+						Projekte auf gesellschaftlichen Nutzen steigern, b) die
+						Wirksamkeit von Forschungsprogrammen nachweisen können und c) es
+						ermöglichen besonders erfolgreiche Projekte auszuzeichnen.
+					</xf:Beschreibung1>
+					<xf:Beschreibung2>Die Anforderungen des Agrarinnovationssystems an
+						das erweiterte FIS und das Evaluierungskonzept werden über
+						Beteiligungs- und Erprobungsprozesse und Experteneinbindung mit
+						einem Living Lab Ansatz ermittelt und in mehreren
+						Rückkopplungsschlaufen umgesetzt. Die Erweiterung des Open Source
+						FIS DSpace-CRIS erfolgt über ein agiles Vorgehensmodell der
+						Softwareentwicklung. Die nutzbaren Zwischenversionen und das
+						weiterentwickelte Evaluierungskonzept werden für Sichtungs- und
+						Testprozesse im Living Lab genutzt. Ca. 8 Projektträger und 5
+						Stiftungen werden in Sichtungen einbezogen, Erprobungen finden in
+						der BLE und bei drei weiteren Projektträgern statt.
+					</xf:Beschreibung2>
+					<xf:Ergebnisverwertung>Im Zentrum der Verwertungsplanung stehen die
+						maximale Verbreitung der Projektergebnisse und die Nutzbarkeit des
+						erweiterten DSpace-CRIS, damit Forschung und Forschungsförderung
+						effizient zum gesellschaftlichen und praktischen Nutzen der
+						Forschung beitragen können. Das erweiterte DSpace-CRIS wird unter
+						der Open Source Lizenz New-BSD nutzbar sein, welche jede Form der
+						Nutzung und Veränderung erlaubt. In SynSICRIS wird eine deutsche
+						und englische Benutzeroberfläche erstellt. Beide Aspekte fördern
+						die maximale Verbreitung und kontinuierliche Weiterentwicklung und
+						Aktualisierung durch die weltweite DSpace-CRIS Community. Durch
+						den Pilotbetrieb innerhalb der BLE wird das erweiterte DSpace-CRIS
+						eine besonders hohe Nutzbarkeit für Projektträger des Bundes
+						aufweisen. Das Evaluierungskonzept sowie alle weiteren
+						Projektergebnisse sollen Open Access publiziert werden. Disy als
+						KMU steigert durch die Beteiligung am Forschungsprojekt sein
+						innovatives Potenzial und seine internationale Vernetzung. Die
+						Zusammenarbeit mit 4Science führt zu einem massiven
+						Kompetenzaufbau und deutlich gesteigerter Sichtbarkeit im Thema
+						FIS. Damit kann DISY neue Dienstleistungsangebote entwickeln und
+						Aufträge generieren, z.B. für die Inbetriebnahme,
+						Systemintegration und den Betrieb des erweiterten DSpace-CRIS bei
+						weiteren Projektträgern oder Forschungseinrichtungen.
+					</xf:Ergebnisverwertung>
+					<xf:fremd_Beschreibung1>The project aims to further developing the
+						preliminary documentation and evaluation concept for research and
+						innovation projects, which was worked out in the project
+						Praxis-Impact II (grant 2812NA102). The overall aim of this
+						concept is to facilitate a research culture that is oriented
+						towards impact for practice and society. We will further develop
+						the concept up to a pilot-operations maturity level – based on the
+						requirements of the agricultural innovation system (funding
+						organizations, researchers, knowledge brokers, knowledge users).
+						The documentation concept shall be implemented by extending a
+						research information system (RIS) a) by achievements for practice
+						and society and b) by information that is required by the funding
+						agency (in order to replace parts of project reports and project
+						proposals). The extended RIS shall a) support funding decisions
+						and project supervision, b) enable a high-quality evaluation of
+						projects’ societal contributions, and c) increase quality,
+						transfer and accessibility of target-group oriented project
+						outputs. The project evaluation concept shall a) strengthen
+						projects’ focus on societal benefits by participatory
+						documentation and evaluation processes, b) allow assessment of the
+						orientation of funding programs towards societal impact, and c)
+						acknowledge particularly successful projects.
+					</xf:fremd_Beschreibung1>
+					<xf:fremd_Beschreibung2>The agro-innovation system’s requirements
+						to an extended RIS and an appropriate evaluation concept will be
+						acquired through participation and collaborative test processes
+						with experts in a living lab approach. They will be technically
+						realized in several iterative implementation cycles. The
+						implementation of the extended DSpace-CRIS will follow an agile
+						software engineering approach. Usable and testable intermediate
+						software versions as well as the further developed evaluation
+						concept will be employed for test and validation steps throughout
+						the project implementation phases. BLE and three further funding
+						agencies will perform intensive testing. About 8 funding agencies
+						and 5 foundations will additionally be involved in screening
+						processes.
+					</xf:fremd_Beschreibung2>
+					<xf:Schreibschutz>Standard</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Vorhabenbeschreibung>
+		</xf:Feldgruppe_Vorhabenbeschreibung>
+	</xf:Feldgruppe_Basisdaten>
+	<xf:Feldgruppe_Institutionen>
+		<xf:Feldgruppe_InstitutionVertraege_ZE>
+			<xf:Feldgruppe_Institution_ZE>
+				<xf:Maske_Institution_ZE>
+					<xf:Einzelposition>
+						<xf:Name_ZE>disy Informationssysteme GmbH</xf:Name_ZE>
+						<xf:Adresssuche_ZE>Ja</xf:Adresssuche_ZE>
+						<xf:Strasse_ZE>Ludwig-Erhard-Allee 6</xf:Strasse_ZE>
+						<xf:PLZ_Strasse_ZE>76131</xf:PLZ_Strasse_ZE>
+						<xf:Ort_Strasse_ZE>Karlsruhe</xf:Ort_Strasse_ZE>
+						<xf:Land_ZE>Deutschland</xf:Land_ZE>
+						<xf:TelefonNr_ZE>+49 721 16006-000</xf:TelefonNr_ZE>
+						<xf:FaxNr_ZE>+49 721 16006-05</xf:FaxNr_ZE>
+						<xf:E_Mail_Adresse_ZE>office@disy.net</xf:E_Mail_Adresse_ZE>
+						<xf:Web_Adresse_ZE>www.disy.net</xf:Web_Adresse_ZE>
+						<xf:Pruef_ID_Adresse_ZE>1078772</xf:Pruef_ID_Adresse_ZE>
+						<xf:Pruef_ID_Name_ZE>1080864</xf:Pruef_ID_Name_ZE>
+						<xf:Rechtsform>GmbH</xf:Rechtsform>
+						<xf:AmtsgerichtHWK>Mannheim</xf:AmtsgerichtHWK>
+						<xf:RegisterNr>HRB 107964</xf:RegisterNr>
+						<xf:oeffentlich_finanziert>Nein</xf:oeffentlich_finanziert>
+						<xf:Buchfuehrung>kaufmännisch (doppelt)</xf:Buchfuehrung>
+						<xf:KMU>Ja</xf:KMU>
+						<xf:Kosten_Leistungsrechnung>Ja</xf:Kosten_Leistungsrechnung>
+						<xf:auslaendischer_Mehrheitsbesitz>Nein
+						</xf:auslaendischer_Mehrheitsbesitz>
+						<xf:Anzahl_Auszubildende>0</xf:Anzahl_Auszubildende>
+						<xf:Ausbildungsbetrieb>Ja</xf:Ausbildungsbetrieb>
+						<xf:Anzahl_Beschaeftigte>58</xf:Anzahl_Beschaeftigte>
+						<xf:Jahresumsatz>4909509.63</xf:Jahresumsatz>
+						<xf:Bezugsjahr>2015</xf:Bezugsjahr>
+						<xf:Vor_Umsatzsteuerabzugsberechtigt_JNT>zum Vorsteuerabzug
+							berechtigt. Umsatzsteuer ist in den Einzelpositionen der
+							Gesamtvorkalkulation nicht veranschlagt.
+						</xf:Vor_Umsatzsteuerabzugsberechtigt_JNT>
+						<xf:Schreibschutz>Standard</xf:Schreibschutz>
+					</xf:Einzelposition>
+				</xf:Maske_Institution_ZE>
+			</xf:Feldgruppe_Institution_ZE>
+			<xf:Feldgruppe_UnternehmensVertraege>
+				<xf:Maske_UnternehmensVertraege />
+			</xf:Feldgruppe_UnternehmensVertraege>
+		</xf:Feldgruppe_InstitutionVertraege_ZE>
+		<xf:Feldgruppe_Institution_ST>
+			<xf:Maske_Institution_ST>
+				<xf:Einzelposition>
+					<xf:Institution_ST>Ja</xf:Institution_ST>
+					<xf:Name_ST>disy Informationssysteme GmbH</xf:Name_ST>
+					<xf:Adresssuche_ST>Ja</xf:Adresssuche_ST>
+					<xf:Strasse_ST>Ludwig-Erhard-Allee 6</xf:Strasse_ST>
+					<xf:PLZ_Strasse_ST>76131</xf:PLZ_Strasse_ST>
+					<xf:Ort_Strasse_ST>Karlsruhe</xf:Ort_Strasse_ST>
+					<xf:Land_ST>Deutschland</xf:Land_ST>
+					<xf:TelefonNr_ST>+49 721 16006-000</xf:TelefonNr_ST>
+					<xf:FaxNr_ST>+49 721 16006-05</xf:FaxNr_ST>
+					<xf:E_Mail_Adresse_ST>office@disy.net</xf:E_Mail_Adresse_ST>
+					<xf:Web_Adresse_ST>www.disy.net</xf:Web_Adresse_ST>
+					<xf:Pruef_ID_Adresse_ST>1078772</xf:Pruef_ID_Adresse_ST>
+					<xf:Pruef_ID_Name_ST>1080864</xf:Pruef_ID_Name_ST>
+					<xf:Schreibschutz>Stufe1</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Institution_ST>
+		</xf:Feldgruppe_Institution_ST>
+		<xf:Feldgruppe_Institution_GE>
+			<xf:Maske_Institution_GE>
+				<xf:Einzelposition>
+					<xf:Status_Institution_GE>S</xf:Status_Institution_GE>
+					<xf:Institution_GE>Antragsteller</xf:Institution_GE>
+					<xf:Name_GE>disy Informationssysteme GmbH</xf:Name_GE>
+					<xf:IBAN>DE94660400180222578700</xf:IBAN>
+					<xf:bestimmeBIC>Ja</xf:bestimmeBIC>
+					<xf:BIC>COBADEFFXXX</xf:BIC>
+					<xf:Geldinstitut>Commerzbank Karlsruhe</xf:Geldinstitut>
+					<xf:GeldinstitutLand>Deutschland</xf:GeldinstitutLand>
+					<xf:Verbuchungsstelle>SynSICRIS KT 21760</xf:Verbuchungsstelle>
+					<xf:Schreibschutz>Stufe1</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Institution_GE>
+		</xf:Feldgruppe_Institution_GE>
+		<xf:Feldgruppe_Institution_ZK>
+			<xf:Maske_Institution_ZK>
+				<xf:Einzelposition>
+					<xf:Status_Institution_ZK>S</xf:Status_Institution_ZK>
+					<xf:Institution_ZK>Antragsteller</xf:Institution_ZK>
+					<xf:Name_ZK>disy Informationssysteme GmbH</xf:Name_ZK>
+					<xf:Adresssuche>Ja</xf:Adresssuche>
+					<xf:Strasse_ZK>Ludwig-Erhard-Allee 6</xf:Strasse_ZK>
+					<xf:PLZ_Strasse_ZK>76131</xf:PLZ_Strasse_ZK>
+					<xf:Ort_Strasse_ZK>Karlsruhe</xf:Ort_Strasse_ZK>
+					<xf:Land_ZK>Deutschland</xf:Land_ZK>
+					<xf:Pruef_ID_Adresse_ZK>1078772</xf:Pruef_ID_Adresse_ZK>
+					<xf:Pruef_ID_Name_ZK>1080864</xf:Pruef_ID_Name_ZK>
+					<xf:Schreibschutz>Stufe1</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Institution_ZK>
+		</xf:Feldgruppe_Institution_ZK>
+		<xf:Feldgruppe_Institution_KO>
+			<xf:Maske_Institution_KO>
+				<xf:Tabellenposition xf:TabID="1">
+					<xf:ZeileNr>1</xf:ZeileNr>
+					<xf:Name_KO>Universität Kassel</xf:Name_KO>
+					<xf:PLZ_Strasse_KO>34125</xf:PLZ_Strasse_KO>
+					<xf:Ort_Strasse_KO>Kassel</xf:Ort_Strasse_KO>
+					<xf:Land_KO>Deutschland</xf:Land_KO>
+					<xf:Rolle>Zusammenarbeit ohne gesellschaftlichen Zusammenschluss
+					</xf:Rolle>
+				</xf:Tabellenposition>
+			</xf:Maske_Institution_KO>
+		</xf:Feldgruppe_Institution_KO>
+	</xf:Feldgruppe_Institutionen>
+	<xf:Feldgruppe_Ansprechpartner>
+		<xf:Feldgruppe_Ansprechpartner_PL>
+			<xf:Maske_Ansprechpartner_PL>
+				<xf:Einzelposition>
+					<xf:Status_kopiere_PL>PAPLUZ</xf:Status_kopiere_PL>
+					<xf:kopiere_in_PL>aus folgenden Eingabefeldern</xf:kopiere_in_PL>
+					<xf:Geschlecht_PL>Herr</xf:Geschlecht_PL>
+					<xf:akad_Grad_PL>Dr.</xf:akad_Grad_PL>
+					<xf:Vorname_PL>Andreas</xf:Vorname_PL>
+					<xf:Name_PL>Abecker</xf:Name_PL>
+					<xf:Telefon_PL>+49 721 16006-256</xf:Telefon_PL>
+					<xf:Fax_PL>+49 721 16006-05</xf:Fax_PL>
+					<xf:Email_PL>andreas.abecker@disy.net</xf:Email_PL>
+					<xf:Schreibschutz>Standard</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Ansprechpartner_PL>
+		</xf:Feldgruppe_Ansprechpartner_PL>
+		<xf:Feldgruppe_Ansprechpartner_PA>
+			<xf:Maske_Ansprechpartner_PA>
+				<xf:Einzelposition>
+					<xf:Status_kopiere_PA>PAPLUZ</xf:Status_kopiere_PA>
+					<xf:kopiere_in_PA>der Projektleitung</xf:kopiere_in_PA>
+					<xf:Geschlecht_PA>Herr</xf:Geschlecht_PA>
+					<xf:akad_Grad_PA>Dr.</xf:akad_Grad_PA>
+					<xf:Vorname_PA>Andreas</xf:Vorname_PA>
+					<xf:Name_PA>Abecker</xf:Name_PA>
+					<xf:Telefon_PA>+49 721 16006-256</xf:Telefon_PA>
+					<xf:Fax_PA>+49 721 16006-05</xf:Fax_PA>
+					<xf:Email_PA>andreas.abecker@disy.net</xf:Email_PA>
+					<xf:Geschlecht_A2>Frau</xf:Geschlecht_A2>
+					<xf:Vorname_A2>Petra</xf:Vorname_A2>
+					<xf:Name_A2>Dörr-Thern</xf:Name_A2>
+					<xf:Telefon_A2>+49 721 16006-210</xf:Telefon_A2>
+					<xf:Fax_A2>+49 721 16006-05</xf:Fax_A2>
+					<xf:Email_A2>petra.thern@disy.net</xf:Email_A2>
+					<xf:Schreibschutz>Stufe1</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Ansprechpartner_PA>
+		</xf:Feldgruppe_Ansprechpartner_PA>
+		<xf:Feldgruppe_Ansprechpartner_UZ>
+			<xf:Maske_Ansprechpartner_UZ>
+				<xf:Einzelposition>
+					<xf:Status_kopiere_UZ>PAPLUZ</xf:Status_kopiere_UZ>
+					<xf:kopiere_in_UZ>aus folgenden Eingabefeldern</xf:kopiere_in_UZ>
+					<xf:Geschlecht_UZ>Herr</xf:Geschlecht_UZ>
+					<xf:akad_Grad_UZ>Dipl.-Inform.</xf:akad_Grad_UZ>
+					<xf:Vorname_UZ>Claus</xf:Vorname_UZ>
+					<xf:Name_UZ>Hofmann</xf:Name_UZ>
+					<xf:Telefon_UZ>+49 721 16006-220</xf:Telefon_UZ>
+					<xf:Fax_UZ>+49 721 16006-05</xf:Fax_UZ>
+					<xf:Email_UZ>claus.hofmann@disy.net</xf:Email_UZ>
+					<xf:Schreibschutz>Standard</xf:Schreibschutz>
+				</xf:Einzelposition>
+			</xf:Maske_Ansprechpartner_UZ>
+		</xf:Feldgruppe_Ansprechpartner_UZ>
+	</xf:Feldgruppe_Ansprechpartner>
+	<xf:Feldgruppe_Finanzplan>
+		<xf:Feldgruppe_Ausgaben>
+			<xf:Feldgruppe_KalkulatorischeKosten>
+				<xf:Feldgruppe_MaterialEkGk>
+					<xf:Maske_MaterialEkGk>
+						<xf:Einzelposition />
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Maske_MaterialEkGk>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_MaterialEkGk>
+				<xf:Feldgruppe_Fremdleistungen>
+					<xf:Feldgruppe_Fremdleistung_fremde>
+						<xf:Maske_Fremdleistung_fremde>
+							<xf:Einzelposition />
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_Fremdleistung_fremde>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_Fremdleistung_fremde>
+					<xf:Feldgruppe_Fremdleistung_verbundene>
+						<xf:Maske_Fremdleistung_verbundene>
+							<xf:Einzelposition />
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_Fremdleistung_verbundene>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_Fremdleistung_verbundene>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_Fremdleistungen>
+				<xf:Feldgruppe_Personalkosten>
+					<xf:Feldgruppe_Gehaelter>
+						<xf:Maske_Gehaelter>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2017">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>420</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>14540.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>17448.48</xf:BetragAusProzent>
+								<xf:BetragSumme>31988.88</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2018">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>420</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>14540.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>17448.48</xf:BetragAusProzent>
+								<xf:BetragSumme>31988.88</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2019">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>420</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>14540.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>17448.48</xf:BetragAusProzent>
+								<xf:BetragSumme>31988.88</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2020">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>420</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>14540.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>17448.48</xf:BetragAusProzent>
+								<xf:BetragSumme>31988.88</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2021">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>280</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>9693.6</xf:EK_Betrag>
+								<xf:BetragAusProzent>11632.32</xf:BetragAusProzent>
+								<xf:BetragSumme>21325.92</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2022">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>72000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>350</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>34.62</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>12117</xf:EK_Betrag>
+								<xf:BetragAusProzent>14540.4</xf:BetragAusProzent>
+								<xf:BetragSumme>26657.4</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2017">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>1120</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>29612.8</xf:EK_Betrag>
+								<xf:BetragAusProzent>35535.36</xf:BetragAusProzent>
+								<xf:BetragSumme>65148.16</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2018">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>910</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>24060.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>28872.48</xf:BetragAusProzent>
+								<xf:BetragSumme>52932.88</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2019">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>648</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>17133.12</xf:EK_Betrag>
+								<xf:BetragAusProzent>20559.74</xf:BetragAusProzent>
+								<xf:BetragSumme>37692.86</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2020">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>700</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>18508</xf:EK_Betrag>
+								<xf:BetragAusProzent>22209.6</xf:BetragAusProzent>
+								<xf:BetragSumme>40717.6</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2021">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>560</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>14806.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>17767.68</xf:BetragAusProzent>
+								<xf:BetragSumme>32574.08</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2022">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Jahresbrutto>55000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>630</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>26.44</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>16657.2</xf:EK_Betrag>
+								<xf:BetragAusProzent>19988.64</xf:BetragAusProzent>
+								<xf:BetragSumme>36645.84</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2017">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>1172</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>25924.64</xf:EK_Betrag>
+								<xf:BetragAusProzent>31109.57</xf:BetragAusProzent>
+								<xf:BetragSumme>57034.21</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2018">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>1750</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>38710</xf:EK_Betrag>
+								<xf:BetragAusProzent>46452</xf:BetragAusProzent>
+								<xf:BetragSumme>85162</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2019">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>1120</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>24774.4</xf:EK_Betrag>
+								<xf:BetragAusProzent>29729.28</xf:BetragAusProzent>
+								<xf:BetragSumme>54503.68</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2020">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>700</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>15484</xf:EK_Betrag>
+								<xf:BetragAusProzent>18580.8</xf:BetragAusProzent>
+								<xf:BetragSumme>34064.8</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2021">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>525</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>11613</xf:EK_Betrag>
+								<xf:BetragAusProzent>13935.6</xf:BetragAusProzent>
+								<xf:BetragSumme>25548.6</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2022">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Jahresbrutto>46000</xf:Jahresbrutto>
+								<xf:Jahresarbeitsstunden>2080</xf:Jahresarbeitsstunden>
+								<xf:Anzahl>175</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:PreisProEinheit>22.12</xf:PreisProEinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>3871</xf:EK_Betrag>
+								<xf:BetragAusProzent>4645.2</xf:BetragAusProzent>
+								<xf:BetragSumme>8516.2</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Gesamtansicht xf:TabID="1" xf:Jahr="Gesamt">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Projektmanager / Sr Software Architekt
+								</xf:Bezeichnung>
+								<xf:Anzahl>2310</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>79972.2</xf:EK_Betrag>
+								<xf:BetragAusProzent>95966.64</xf:BetragAusProzent>
+								<xf:BetragSumme>175938.84</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="2" xf:Jahr="Gesamt">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Bezeichnung>Sr Berater / Sr Software Ingenieur
+								</xf:Bezeichnung>
+								<xf:Anzahl>4568</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>120777.92</xf:EK_Betrag>
+								<xf:BetragAusProzent>144933.5</xf:BetragAusProzent>
+								<xf:BetragSumme>265711.42</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="3" xf:Jahr="Gesamt">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Bezeichnung>Jr Software Ingenieur</xf:Bezeichnung>
+								<xf:Anzahl>5442</xf:Anzahl>
+								<xf:Zeiteinheit>Stunde</xf:Zeiteinheit>
+								<xf:Prozentsatz>120</xf:Prozentsatz>
+								<xf:EK_Betrag>120377.04</xf:EK_Betrag>
+								<xf:BetragAusProzent>144452.45</xf:BetragAusProzent>
+								<xf:BetragSumme>264829.49</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Einzelposition>
+								<xf:rpf_Begruendung>Die Gesamtaufwandskalkulation ist in der
+									gemeinsamen Vorhabenbeschreibung von Disy und Universität
+									Kassel aus dem Arbeitsplan heraus erläutert. Als
+									Umrechnungsfaktor von Personenmonaten in Personenstunden wurde
+									140 Std pro PM verwendet. Es handelt sich hier um produktive
+									Arbeitsstunden. Die Aufteilung auf die verschiedenen
+									Mitarbeiterkategorien ist aufgrund der Erfahrungen mit früheren
+									geförderten FuE-Projekten geschätzt. Die Jahresbruttos stammen
+									nicht von jeweils konkret existierenden Personen, sind aber auf
+									der Basis der Jahresbruttos von Kollegen, die nach ihrer
+									Qualifikation für die Projektdurchführung in Frage kommen
+									könnten, geschätzt. Die wöchentliche Arbeitszeit beträgt 40
+									Stunden. Es wurden keine Geschäftsführergehälter oder ähnliches
+									(Prokuristen u.ä.) für die Vorkalkulation herangezogen. Die
+									Erläuterungen zur Vorkalkulation für Vorhaben gemäß NKBF98
+									wurden beachtet. Die zugrundegelegten Personalkosten wurden
+									nach Punkt 6.1 ANBest-P-Kosten ermittelt.
+								</xf:rpf_Begruendung>
+								<xf:IstMarktpreis_Gehaelter>Nein</xf:IstMarktpreis_Gehaelter>
+								<xf:kopiere_bis>2022-05-31</xf:kopiere_bis>
+								<xf:kopiere_von>2017-06-01</xf:kopiere_von>
+							</xf:Einzelposition>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>84093.41</xf:BetragAusProzent>
+								<xf:BetragSumme>154171.25</xf:BetragSumme>
+								<xf:EK_Betrag>70077.84</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>92772.96</xf:BetragAusProzent>
+								<xf:BetragSumme>170083.76</xf:BetragSumme>
+								<xf:EK_Betrag>77310.8</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>67737.5</xf:BetragAusProzent>
+								<xf:BetragSumme>124185.42</xf:BetragSumme>
+								<xf:EK_Betrag>56447.92</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>58238.88</xf:BetragAusProzent>
+								<xf:BetragSumme>106771.28</xf:BetragSumme>
+								<xf:EK_Betrag>48532.4</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>43335.6</xf:BetragAusProzent>
+								<xf:BetragSumme>79448.6</xf:BetragSumme>
+								<xf:EK_Betrag>36113</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>39174.24</xf:BetragAusProzent>
+								<xf:BetragSumme>71819.44</xf:BetragSumme>
+								<xf:EK_Betrag>32645.2</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>385352.59</xf:BetragAusProzent>
+								<xf:BetragSumme>706479.75</xf:BetragSumme>
+								<xf:EK_Betrag>321127.16</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_Gehaelter>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>84093.41</xf:BetragAusProzent>
+							<xf:BetragSumme>154171.25</xf:BetragSumme>
+							<xf:EK_Betrag>70077.84</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>92772.96</xf:BetragAusProzent>
+							<xf:BetragSumme>170083.76</xf:BetragSumme>
+							<xf:EK_Betrag>77310.8</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>67737.5</xf:BetragAusProzent>
+							<xf:BetragSumme>124185.42</xf:BetragSumme>
+							<xf:EK_Betrag>56447.92</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>58238.88</xf:BetragAusProzent>
+							<xf:BetragSumme>106771.28</xf:BetragSumme>
+							<xf:EK_Betrag>48532.4</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>43335.6</xf:BetragAusProzent>
+							<xf:BetragSumme>79448.6</xf:BetragSumme>
+							<xf:EK_Betrag>36113</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>39174.24</xf:BetragAusProzent>
+							<xf:BetragSumme>71819.44</xf:BetragSumme>
+							<xf:EK_Betrag>32645.2</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>385352.59</xf:BetragAusProzent>
+							<xf:BetragSumme>706479.75</xf:BetragSumme>
+							<xf:EK_Betrag>321127.16</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_Gehaelter>
+					<xf:Feldgruppe_Loehne>
+						<xf:Maske_Loehne>
+							<xf:Einzelposition>
+								<xf:IstMarktpreis_Loehne>Nein</xf:IstMarktpreis_Loehne>
+								<xf:kopiere_bis>2022-05-31</xf:kopiere_bis>
+								<xf:kopiere_von>2017-06-01</xf:kopiere_von>
+							</xf:Einzelposition>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_Loehne>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_Loehne>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>84093.41</xf:BetragAusProzent>
+						<xf:BetragSumme>154171.25</xf:BetragSumme>
+						<xf:EK_Betrag>70077.84</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>92772.96</xf:BetragAusProzent>
+						<xf:BetragSumme>170083.76</xf:BetragSumme>
+						<xf:EK_Betrag>77310.8</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>67737.5</xf:BetragAusProzent>
+						<xf:BetragSumme>124185.42</xf:BetragSumme>
+						<xf:EK_Betrag>56447.92</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>58238.88</xf:BetragAusProzent>
+						<xf:BetragSumme>106771.28</xf:BetragSumme>
+						<xf:EK_Betrag>48532.4</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>43335.6</xf:BetragAusProzent>
+						<xf:BetragSumme>79448.6</xf:BetragSumme>
+						<xf:EK_Betrag>36113</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>39174.24</xf:BetragAusProzent>
+						<xf:BetragSumme>71819.44</xf:BetragSumme>
+						<xf:EK_Betrag>32645.2</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>385352.59</xf:BetragAusProzent>
+						<xf:BetragSumme>706479.75</xf:BetragSumme>
+						<xf:EK_Betrag>321127.16</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_Personalkosten>
+				<xf:Feldgruppe_Reisekosten>
+					<xf:Feldgruppe_Inland_Reisekosten>
+						<xf:Maske_Inland_Reisekosten>
+							<xf:Tabellenposition xf:TabID="1"
+								xf:Jahr="2017">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="2"
+								xf:Jahr="2018">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>1440</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1440</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="3"
+								xf:Jahr="2019">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="4"
+								xf:Jahr="2020">
+								<xf:ZeileNr>4</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="5"
+								xf:Jahr="2021">
+								<xf:ZeileNr>5</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="6"
+								xf:Jahr="2022">
+								<xf:ZeileNr>6</xf:ZeileNr>
+								<xf:PreisProEinheit>720</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="7"
+								xf:Jahr="2017">
+								<xf:ZeileNr>7</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>4</xf:Anzahl>
+								<xf:EK_Betrag>480</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>480</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="8"
+								xf:Jahr="2017">
+								<xf:ZeileNr>8</xf:ZeileNr>
+								<xf:PreisProEinheit>960</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>960</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>960</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="9"
+								xf:Jahr="2018">
+								<xf:ZeileNr>9</xf:ZeileNr>
+								<xf:PreisProEinheit>960</xf:PreisProEinheit>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>1920</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1920</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="10"
+								xf:Jahr="2018">
+								<xf:ZeileNr>10</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>240</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>240</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="11"
+								xf:Jahr="2019">
+								<xf:ZeileNr>11</xf:ZeileNr>
+								<xf:PreisProEinheit>960</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>960</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>960</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="12"
+								xf:Jahr="2019">
+								<xf:ZeileNr>12</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>7</xf:Anzahl>
+								<xf:EK_Betrag>840</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>840</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="13"
+								xf:Jahr="2019">
+								<xf:ZeileNr>13</xf:ZeileNr>
+								<xf:PreisProEinheit>360</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>360</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>360</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="14"
+								xf:Jahr="2020">
+								<xf:ZeileNr>14</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>10</xf:Anzahl>
+								<xf:EK_Betrag>1200</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1200</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="15"
+								xf:Jahr="2021">
+								<xf:ZeileNr>15</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>12</xf:Anzahl>
+								<xf:EK_Betrag>1440</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1440</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="16"
+								xf:Jahr="2022">
+								<xf:ZeileNr>16</xf:ZeileNr>
+								<xf:PreisProEinheit>120</xf:PreisProEinheit>
+								<xf:Anzahl>6</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Tabellenposition xf:TabID="17"
+								xf:Jahr="2021">
+								<xf:ZeileNr>17</xf:ZeileNr>
+								<xf:PreisProEinheit>240</xf:PreisProEinheit>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>240</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>240</xf:BetragSumme>
+							</xf:Tabellenposition>
+							<xf:Gesamtansicht xf:TabID="1" xf:Jahr="Gesamt">
+								<xf:ZeileNr>1</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="2" xf:Jahr="Gesamt">
+								<xf:ZeileNr>2</xf:ZeileNr>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>1440</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1440</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="3" xf:Jahr="Gesamt">
+								<xf:ZeileNr>3</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="4" xf:Jahr="Gesamt">
+								<xf:ZeileNr>4</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="5" xf:Jahr="Gesamt">
+								<xf:ZeileNr>5</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="6" xf:Jahr="Gesamt">
+								<xf:ZeileNr>6</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="7" xf:Jahr="Gesamt">
+								<xf:ZeileNr>7</xf:ZeileNr>
+								<xf:Anzahl>4</xf:Anzahl>
+								<xf:EK_Betrag>480</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>480</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="8" xf:Jahr="Gesamt">
+								<xf:ZeileNr>8</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>960</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>960</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="9" xf:Jahr="Gesamt">
+								<xf:ZeileNr>9</xf:ZeileNr>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>1920</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1920</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="10" xf:Jahr="Gesamt">
+								<xf:ZeileNr>10</xf:ZeileNr>
+								<xf:Anzahl>2</xf:Anzahl>
+								<xf:EK_Betrag>240</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>240</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="11" xf:Jahr="Gesamt">
+								<xf:ZeileNr>11</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>960</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>960</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="12" xf:Jahr="Gesamt">
+								<xf:ZeileNr>12</xf:ZeileNr>
+								<xf:Anzahl>7</xf:Anzahl>
+								<xf:EK_Betrag>840</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>840</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="13" xf:Jahr="Gesamt">
+								<xf:ZeileNr>13</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>360</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>360</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="14" xf:Jahr="Gesamt">
+								<xf:ZeileNr>14</xf:ZeileNr>
+								<xf:Anzahl>10</xf:Anzahl>
+								<xf:EK_Betrag>1200</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1200</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="15" xf:Jahr="Gesamt">
+								<xf:ZeileNr>15</xf:ZeileNr>
+								<xf:Anzahl>12</xf:Anzahl>
+								<xf:EK_Betrag>1440</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1440</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="16" xf:Jahr="Gesamt">
+								<xf:ZeileNr>16</xf:ZeileNr>
+								<xf:Anzahl>6</xf:Anzahl>
+								<xf:EK_Betrag>720</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>720</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Gesamtansicht xf:TabID="17" xf:Jahr="Gesamt">
+								<xf:ZeileNr>17</xf:ZeileNr>
+								<xf:Anzahl>1</xf:Anzahl>
+								<xf:EK_Betrag>240</xf:EK_Betrag>
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>240</xf:BetragSumme>
+							</xf:Gesamtansicht>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>2160</xf:BetragSumme>
+								<xf:EK_Betrag>2160</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>3600</xf:BetragSumme>
+								<xf:EK_Betrag>3600</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>2880</xf:BetragSumme>
+								<xf:EK_Betrag>2880</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1920</xf:BetragSumme>
+								<xf:EK_Betrag>1920</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>2400</xf:BetragSumme>
+								<xf:EK_Betrag>2400</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>1440</xf:BetragSumme>
+								<xf:EK_Betrag>1440</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>14400</xf:BetragSumme>
+								<xf:EK_Betrag>14400</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_Inland_Reisekosten>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>2160</xf:BetragSumme>
+							<xf:EK_Betrag>2160</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>3600</xf:BetragSumme>
+							<xf:EK_Betrag>3600</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>2880</xf:BetragSumme>
+							<xf:EK_Betrag>2880</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>1920</xf:BetragSumme>
+							<xf:EK_Betrag>1920</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>2400</xf:BetragSumme>
+							<xf:EK_Betrag>2400</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>1440</xf:BetragSumme>
+							<xf:EK_Betrag>1440</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>14400</xf:BetragSumme>
+							<xf:EK_Betrag>14400</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_Inland_Reisekosten>
+					<xf:Feldgruppe_InnerEU_Reisekosten>
+						<xf:Maske_InnerEU_Reisekosten>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_InnerEU_Reisekosten>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_InnerEU_Reisekosten>
+					<xf:Feldgruppe_AusserEU_Reisekosten>
+						<xf:Maske_AusserEU_Reisekosten>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_AusserEU_Reisekosten>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_AusserEU_Reisekosten>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>2160</xf:BetragSumme>
+						<xf:EK_Betrag>2160</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>3600</xf:BetragSumme>
+						<xf:EK_Betrag>3600</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>2880</xf:BetragSumme>
+						<xf:EK_Betrag>2880</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>1920</xf:BetragSumme>
+						<xf:EK_Betrag>1920</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>2400</xf:BetragSumme>
+						<xf:EK_Betrag>2400</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>1440</xf:BetragSumme>
+						<xf:EK_Betrag>1440</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>14400</xf:BetragSumme>
+						<xf:EK_Betrag>14400</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_Reisekosten>
+				<xf:Feldgruppe_Abschreibungen>
+					<xf:Feldgruppe_AbschreibungSpezifisch>
+						<xf:Maske_AbschreibungSpezifisch>
+							<xf:Einzelposition>
+								<xf:kopiere_von>2017-06-01</xf:kopiere_von>
+								<xf:kopiere_bis>2022-05-31</xf:kopiere_bis>
+							</xf:Einzelposition>
+							<xf:Zwischensumme xf:Jahr="2017">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2018">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2019">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2020">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2021">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="2022">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+							<xf:Zwischensumme xf:Jahr="Gesamt">
+								<xf:BetragAusProzent>0</xf:BetragAusProzent>
+								<xf:BetragSumme>0</xf:BetragSumme>
+								<xf:EK_Betrag>0</xf:EK_Betrag>
+							</xf:Zwischensumme>
+						</xf:Maske_AbschreibungSpezifisch>
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Feldgruppe_AbschreibungSpezifisch>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_Abschreibungen>
+				<xf:Feldgruppe_KostenSonstige>
+					<xf:Maske_KostenSonstige>
+						<xf:Einzelposition />
+						<xf:Zwischensumme xf:Jahr="2017">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2018">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2019">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2020">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2021">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="2022">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+						<xf:Zwischensumme xf:Jahr="Gesamt">
+							<xf:BetragAusProzent>0</xf:BetragAusProzent>
+							<xf:BetragSumme>0</xf:BetragSumme>
+							<xf:EK_Betrag>0</xf:EK_Betrag>
+						</xf:Zwischensumme>
+					</xf:Maske_KostenSonstige>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:BetragAusProzent>0</xf:BetragAusProzent>
+						<xf:BetragSumme>0</xf:BetragSumme>
+						<xf:EK_Betrag>0</xf:EK_Betrag>
+					</xf:Zwischensumme>
+				</xf:Feldgruppe_KostenSonstige>
+				<xf:Zwischensumme xf:Jahr="2017">
+					<xf:BetragAusProzent>84093.41</xf:BetragAusProzent>
+					<xf:BetragSumme>156331.25</xf:BetragSumme>
+					<xf:EK_Betrag>72237.84</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2018">
+					<xf:BetragAusProzent>92772.96</xf:BetragAusProzent>
+					<xf:BetragSumme>173683.76</xf:BetragSumme>
+					<xf:EK_Betrag>80910.8</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2019">
+					<xf:BetragAusProzent>67737.5</xf:BetragAusProzent>
+					<xf:BetragSumme>127065.42</xf:BetragSumme>
+					<xf:EK_Betrag>59327.92</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2020">
+					<xf:BetragAusProzent>58238.88</xf:BetragAusProzent>
+					<xf:BetragSumme>108691.28</xf:BetragSumme>
+					<xf:EK_Betrag>50452.4</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2021">
+					<xf:BetragAusProzent>43335.6</xf:BetragAusProzent>
+					<xf:BetragSumme>81848.6</xf:BetragSumme>
+					<xf:EK_Betrag>38513</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2022">
+					<xf:BetragAusProzent>39174.24</xf:BetragAusProzent>
+					<xf:BetragSumme>73259.44</xf:BetragSumme>
+					<xf:EK_Betrag>34085.2</xf:EK_Betrag>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="Gesamt">
+					<xf:BetragAusProzent>385352.59</xf:BetragAusProzent>
+					<xf:BetragSumme>720879.75</xf:BetragSumme>
+					<xf:EK_Betrag>335527.16</xf:EK_Betrag>
+				</xf:Zwischensumme>
+			</xf:Feldgruppe_KalkulatorischeKosten>
+			<xf:Zwischensumme xf:Jahr="2017">
+				<xf:BetragAusProzent>84093.41</xf:BetragAusProzent>
+				<xf:BetragSumme>156331.25</xf:BetragSumme>
+				<xf:EK_Betrag>72237.84</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2018">
+				<xf:BetragAusProzent>92772.96</xf:BetragAusProzent>
+				<xf:BetragSumme>173683.76</xf:BetragSumme>
+				<xf:EK_Betrag>80910.8</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2019">
+				<xf:BetragAusProzent>67737.5</xf:BetragAusProzent>
+				<xf:BetragSumme>127065.42</xf:BetragSumme>
+				<xf:EK_Betrag>59327.92</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2020">
+				<xf:BetragAusProzent>58238.88</xf:BetragAusProzent>
+				<xf:BetragSumme>108691.28</xf:BetragSumme>
+				<xf:EK_Betrag>50452.4</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2021">
+				<xf:BetragAusProzent>43335.6</xf:BetragAusProzent>
+				<xf:BetragSumme>81848.6</xf:BetragSumme>
+				<xf:EK_Betrag>38513</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2022">
+				<xf:BetragAusProzent>39174.24</xf:BetragAusProzent>
+				<xf:BetragSumme>73259.44</xf:BetragSumme>
+				<xf:EK_Betrag>34085.2</xf:EK_Betrag>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="Gesamt">
+				<xf:BetragAusProzent>385352.59</xf:BetragAusProzent>
+				<xf:BetragSumme>720879.75</xf:BetragSumme>
+				<xf:EK_Betrag>335527.16</xf:EK_Betrag>
+			</xf:Zwischensumme>
+		</xf:Feldgruppe_Ausgaben>
+		<xf:Feldgruppe_Finanzierung>
+			<xf:Feldgruppe_MittelDritter>
+				<xf:Maske_MittelDritter>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+					</xf:Zwischensumme>
+				</xf:Maske_MittelDritter>
+				<xf:Zwischensumme xf:Jahr="2017">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2018">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2019">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2020">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2021">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2022">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="Gesamt">
+					<xf:FinanzierungSumme>0</xf:FinanzierungSumme>
+				</xf:Zwischensumme>
+			</xf:Feldgruppe_MittelDritter>
+			<xf:Feldgruppe_Eigenmittel_Zuwendung>
+				<xf:Maske_Eigenmittel_Zuwendung>
+					<xf:Tabellenposition xf:TabID="2017"
+						xf:Jahr="2017">
+						<xf:Kosten>156331.25</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>62532.5</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>62532.5</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>93798.75</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>93798.75</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>156331.25</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Tabellenposition xf:TabID="2018"
+						xf:Jahr="2018">
+						<xf:Kosten>173683.76</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>69473.5</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>69473.5</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>104210.26</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>104210.26</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>173683.76</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Tabellenposition xf:TabID="2019"
+						xf:Jahr="2019">
+						<xf:Kosten>127065.42</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>50826.17</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>50826.17</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>76239.25</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>76239.25</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>127065.42</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Tabellenposition xf:TabID="2020"
+						xf:Jahr="2020">
+						<xf:Kosten>108691.28</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>43476.51</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>43476.51</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>65214.77</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>65214.77</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>108691.28</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Tabellenposition xf:TabID="2021"
+						xf:Jahr="2021">
+						<xf:Kosten>81848.6</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>32739.44</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>32739.44</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>49109.16</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>49109.16</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>81848.6</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Tabellenposition xf:TabID="2022"
+						xf:Jahr="2022">
+						<xf:Kosten>73259.44</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>29303.78</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>29303.78</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>43955.66</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>43955.66</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>73259.44</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Gesperrt</xf:Strategie>
+					</xf:Tabellenposition>
+					<xf:Gesamtansicht xf:TabID="1" xf:Jahr="Gesamt">
+						<xf:Kosten>720879.75</xf:Kosten>
+						<xf:MittelDritter>0</xf:MittelDritter>
+						<xf:Eigenmittel>288351.9</xf:Eigenmittel>
+						<xf:Eigenmittel_zuvor>288351.9</xf:Eigenmittel_zuvor>
+						<xf:Zuwendung>432527.85</xf:Zuwendung>
+						<xf:Zuwendung_zuvor>432527.85</xf:Zuwendung_zuvor>
+						<xf:FinanzierungSumme>720879.75</xf:FinanzierungSumme>
+						<xf:Foerderquote>60</xf:Foerderquote>
+						<xf:Foerderquote_zuvor>60</xf:Foerderquote_zuvor>
+						<xf:Strategie>Förderquote</xf:Strategie>
+					</xf:Gesamtansicht>
+					<xf:Einzelposition>
+						<xf:Strategie_EP>Förderquote</xf:Strategie_EP>
+					</xf:Einzelposition>
+					<xf:Zwischensumme xf:Jahr="2017">
+						<xf:FinanzierungSumme>156331.25</xf:FinanzierungSumme>
+						<xf:Eigenmittel>62532.5</xf:Eigenmittel>
+						<xf:Kosten>156331.25</xf:Kosten>
+						<xf:Zuwendung>93798.75</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2018">
+						<xf:FinanzierungSumme>173683.76</xf:FinanzierungSumme>
+						<xf:Eigenmittel>69473.5</xf:Eigenmittel>
+						<xf:Kosten>173683.76</xf:Kosten>
+						<xf:Zuwendung>104210.26</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2019">
+						<xf:FinanzierungSumme>127065.42</xf:FinanzierungSumme>
+						<xf:Eigenmittel>50826.17</xf:Eigenmittel>
+						<xf:Kosten>127065.42</xf:Kosten>
+						<xf:Zuwendung>76239.25</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2020">
+						<xf:FinanzierungSumme>108691.28</xf:FinanzierungSumme>
+						<xf:Eigenmittel>43476.51</xf:Eigenmittel>
+						<xf:Kosten>108691.28</xf:Kosten>
+						<xf:Zuwendung>65214.77</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2021">
+						<xf:FinanzierungSumme>81848.6</xf:FinanzierungSumme>
+						<xf:Eigenmittel>32739.44</xf:Eigenmittel>
+						<xf:Kosten>81848.6</xf:Kosten>
+						<xf:Zuwendung>49109.16</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="2022">
+						<xf:FinanzierungSumme>73259.44</xf:FinanzierungSumme>
+						<xf:Eigenmittel>29303.78</xf:Eigenmittel>
+						<xf:Kosten>73259.44</xf:Kosten>
+						<xf:Zuwendung>43955.66</xf:Zuwendung>
+					</xf:Zwischensumme>
+					<xf:Zwischensumme xf:Jahr="Gesamt">
+						<xf:FinanzierungSumme>720879.75</xf:FinanzierungSumme>
+						<xf:Eigenmittel>288351.9</xf:Eigenmittel>
+						<xf:Kosten>720879.75</xf:Kosten>
+						<xf:Zuwendung>432527.85</xf:Zuwendung>
+					</xf:Zwischensumme>
+				</xf:Maske_Eigenmittel_Zuwendung>
+				<xf:Zwischensumme xf:Jahr="2017">
+					<xf:FinanzierungSumme>156331.25</xf:FinanzierungSumme>
+					<xf:Eigenmittel>62532.5</xf:Eigenmittel>
+					<xf:Kosten>156331.25</xf:Kosten>
+					<xf:Zuwendung>93798.75</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2018">
+					<xf:FinanzierungSumme>173683.76</xf:FinanzierungSumme>
+					<xf:Eigenmittel>69473.5</xf:Eigenmittel>
+					<xf:Kosten>173683.76</xf:Kosten>
+					<xf:Zuwendung>104210.26</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2019">
+					<xf:FinanzierungSumme>127065.42</xf:FinanzierungSumme>
+					<xf:Eigenmittel>50826.17</xf:Eigenmittel>
+					<xf:Kosten>127065.42</xf:Kosten>
+					<xf:Zuwendung>76239.25</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2020">
+					<xf:FinanzierungSumme>108691.28</xf:FinanzierungSumme>
+					<xf:Eigenmittel>43476.51</xf:Eigenmittel>
+					<xf:Kosten>108691.28</xf:Kosten>
+					<xf:Zuwendung>65214.77</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2021">
+					<xf:FinanzierungSumme>81848.6</xf:FinanzierungSumme>
+					<xf:Eigenmittel>32739.44</xf:Eigenmittel>
+					<xf:Kosten>81848.6</xf:Kosten>
+					<xf:Zuwendung>49109.16</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="2022">
+					<xf:FinanzierungSumme>73259.44</xf:FinanzierungSumme>
+					<xf:Eigenmittel>29303.78</xf:Eigenmittel>
+					<xf:Kosten>73259.44</xf:Kosten>
+					<xf:Zuwendung>43955.66</xf:Zuwendung>
+				</xf:Zwischensumme>
+				<xf:Zwischensumme xf:Jahr="Gesamt">
+					<xf:FinanzierungSumme>720879.75</xf:FinanzierungSumme>
+					<xf:Eigenmittel>288351.9</xf:Eigenmittel>
+					<xf:Kosten>720879.75</xf:Kosten>
+					<xf:Zuwendung>432527.85</xf:Zuwendung>
+				</xf:Zwischensumme>
+			</xf:Feldgruppe_Eigenmittel_Zuwendung>
+			<xf:Zwischensumme xf:Jahr="2017">
+				<xf:FinanzierungSumme>156331.25</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2018">
+				<xf:FinanzierungSumme>173683.76</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2019">
+				<xf:FinanzierungSumme>127065.42</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2020">
+				<xf:FinanzierungSumme>108691.28</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2021">
+				<xf:FinanzierungSumme>81848.6</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="2022">
+				<xf:FinanzierungSumme>73259.44</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+			<xf:Zwischensumme xf:Jahr="Gesamt">
+				<xf:FinanzierungSumme>720879.75</xf:FinanzierungSumme>
+			</xf:Zwischensumme>
+		</xf:Feldgruppe_Finanzierung>
+	</xf:Feldgruppe_Finanzplan>
+	<xf:Feldgruppe_Reiter1>
+		<xf:Feldgruppe_Erklaerungen>
+			<xf:Maske_Erklaerungen>
+				<xf:Einzelposition>
+					<xf:Vorhabenbeschreibung>Ja</xf:Vorhabenbeschreibung>
+					<xf:Balkenplan>Ja</xf:Balkenplan>
+					<xf:Strukturplan>Nein</xf:Strukturplan>
+					<xf:Netzplan>Nein</xf:Netzplan>
+					<xf:Vorkalkulationsdaten>Ja</xf:Vorkalkulationsdaten>
+					<xf:Geraeteliste>Nein</xf:Geraeteliste>
+					<xf:Bonitaetsnachweis>Ja</xf:Bonitaetsnachweis>
+					<xf:Zeichnungen>Ja</xf:Zeichnungen>
+					<xf:Mitfinanzierung>Nein</xf:Mitfinanzierung>
+					<xf:Eigenmittel_vorhanden>Ja</xf:Eigenmittel_vorhanden>
+					<xf:Sonstige_Foerderung>Das Vorhaben ist oder wird nicht
+						anderweitig mit Zuwendung oder Auftrag öffentlich finanziert.
+					</xf:Sonstige_Foerderung>
+					<xf:Folgekosten>Nein</xf:Folgekosten>
+					<xf:wirtschaftlichen_Bereich_J_N_N>(trifft nicht auf den
+						Antragsteller zu)
+					</xf:wirtschaftlichen_Bereich_J_N_N>
+					<xf:Einverstaendnis_Vollstaendigkeit>Ja
+					</xf:Einverstaendnis_Vollstaendigkeit>
+				</xf:Einzelposition>
+			</xf:Maske_Erklaerungen>
+		</xf:Feldgruppe_Erklaerungen>
+	</xf:Feldgruppe_Reiter1>
+</xf:Feldgruppe_Formular>

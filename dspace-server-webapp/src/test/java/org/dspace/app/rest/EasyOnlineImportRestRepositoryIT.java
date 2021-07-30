@@ -104,6 +104,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
                                            .withName("Project partners")
                                            .withEntityType("projectpartner")
+                                           .withSubmissionDefinition("projectpartners")
                                            .build();
 
 
@@ -300,7 +301,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         CollectionBuilder.createCollection(context, projectA)
                          .withName("Project partners")
                          .withEntityType("projectpartner")
-                         .withSubmissionDefinition("traditional-cris")
+                         .withSubmissionDefinition("projectpartners")
                          .withSubmitterGroup(ePerson1)
                          .build();
 

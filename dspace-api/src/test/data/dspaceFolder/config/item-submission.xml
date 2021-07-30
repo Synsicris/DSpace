@@ -25,6 +25,7 @@
         <name-map collection-handle="123456789/traditional-cris" submission-name="traditional-cris"/>
         <name-map collection-handle="123456789/extraction-test" submission-name="extractiontestprocess"/>
         <name-map collection-handle="entityType" submission-name="patent"/>
+        <name-map collection-handle="entityType/projectpartner" submission-name="projectpartners"/>
     </submission-map>
 
 
@@ -69,6 +70,11 @@
             <type>submission-form</type>
         </step-definition>
         <step-definition id="traditionalpagetwo" mandatory="true">
+            <heading>submit.progressbar.describe.steptwo</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="projectpartners" mandatory="true">
             <heading>submit.progressbar.describe.steptwo</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
@@ -303,7 +309,13 @@
             <step id="license"/>
             <step id="cclicense"/>
         </submission-process>
-
+        
+	    <submission-process name="projectpartners">
+	      <step id="collection" />
+	      <step id="projectpartners" />
+	      <step id="upload" />
+	      <step id="license" />
+	    </submission-process>
     </submission-definitions>
 
 </item-submission>

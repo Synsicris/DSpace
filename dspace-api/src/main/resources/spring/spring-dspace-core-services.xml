@@ -78,6 +78,9 @@
                 <entry key="currentproject">
                     <bean class="org.dspace.content.template.generator.CurrentProjectGenerator" />
                 </entry>
+                <entry key="agrovockeywords">
+                    <bean class="org.dspace.content.template.generator.AgrovocKeywordsGenerator" />
+                </entry>
             </map>
         </constructor-arg>
     </bean>

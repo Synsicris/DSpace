@@ -36,7 +36,6 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -49,7 +48,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -62,7 +60,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -88,7 +85,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -101,7 +97,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -114,7 +109,6 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -127,7 +121,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -524,7 +517,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -535,7 +527,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -548,7 +539,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -561,7 +551,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -610,7 +599,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
@@ -621,7 +609,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -634,7 +621,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -647,7 +633,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -710,7 +695,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Bitte wählen Sie einen Bereich aus</label>
-          <input-type value-pairs-name="exploitation_plan_step_type_1_task_type">dropdown</input-type>
+          <input-type value-pairs-name="exploitation_plan_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -746,7 +731,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Bitte wählen Sie einen Bereich aus</label>
-          <input-type value-pairs-name="exploitation_plan_step_type_2_task_type">dropdown</input-type>
+          <input-type value-pairs-name="exploitation_plan_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -782,7 +767,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Bitte wählen Sie einen Bereich aus</label>
-          <input-type value-pairs-name="exploitation_plan_step_type_3_task_type">dropdown</input-type>
+          <input-type value-pairs-name="exploitation_plan_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -818,7 +803,7 @@
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
           <label>Bitte wählen Sie einen Bereich aus</label>
-          <input-type value-pairs-name="exploitation_plan_step_type_4_task_type">dropdown</input-type>
+          <input-type value-pairs-name="exploitation_plan_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
@@ -4610,7 +4595,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Art der Veranstaltung</label>
-          <input-type value-pairs-name="event_type">list</input-type>
+          <input-type value-pairs-name="event_type">dropdown</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -4814,7 +4799,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-12</style>
           <hint />
         </field>
         <field>
@@ -4835,7 +4820,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="frequency">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-5</style>
           <hint />
         </field>
         <field>
@@ -4846,7 +4831,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="period_project">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-5</style>
           <hint />
         </field>
       </row>
@@ -5067,7 +5052,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>person</dc-qualifier>
+          <dc-qualifier>team</dc-qualifier>
           <label>Ausgezeichnete Person(en) ODER</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -5078,7 +5063,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>orgunit</dc-qualifier>
+          <dc-qualifier>partner</dc-qualifier>
           <label>Ausgezeichnete Organisation(en)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -6613,10 +6598,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Web / telephone conference</stored-value>
       </pair>
       <pair>
-        <displayed-value>Vortrag / Präsentation (Beiträge zu wissenschaftlichen Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
-        <stored-value>Presentation</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Workshop</displayed-value>
         <stored-value>Workshop</stored-value>
       </pair>
@@ -6625,32 +6606,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Excursion</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dialogforum / Runder Tisch</displayed-value>
-        <stored-value>Dialogue forum</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Anderes dialogisches Gruppenformat</displayed-value>
-        <stored-value>Other group dialouge</stored-value>
+        <displayed-value>Interview / Befragung</displayed-value>
+        <stored-value>Interview / Survey</stored-value>
       </pair>
       <pair>
         <displayed-value>Erprobung / Praxistest</displayed-value>
         <stored-value>Practical test</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Demo (Vorführung, Performance, Show z. B. von Maschinen, Geräten, Betriebsmitteln)</displayed-value>
-        <stored-value>Demo</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beirat oder Expertengremium</displayed-value>
-        <stored-value>Advisory board</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beratungsaktivität</displayed-value>
-        <stored-value>Consulting activitiy</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Interview / Befragung</displayed-value>
-        <stored-value>Interview / Survey</stored-value>
       </pair>
       <pair>
         <displayed-value>Kurs für Teilnehmende außerhalb des akademischen Bereichs</displayed-value>
@@ -6659,6 +6620,14 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       <pair>
         <displayed-value>Kurs für Studierende oder Doktoranden</displayed-value>
         <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sitzung/Versammlung (z.B. Beiratssitzung)</displayed-value>
+        <stored-value>Meeting</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vortrag / Präsentation (Beiträge zu Fach-tagung/Konferenz/Kongress bitte nicht hier, sondern in Veröffentlichung erfassen)</displayed-value>
+        <stored-value>Presentation</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>
@@ -6667,17 +6636,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="event_type" dc-term="event_type">
       <pair>
-        <displayed-value>Nicht-wissenschaftliche (Fach-)Tagung/Konferenz/Kongress (Beitrag zu  Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
+        <displayed-value>Nicht-wissenschaftliche (Fach-)Tagung/Konferenz/Kongress</displayed-value>
         <stored-value>Non-scientific (specialist) meeting/conference/congress</stored-value>
       </pair>
       <pair>
-        <displayed-value>Wissenschaftliche (Fach-)Tagung/Konferenz/Kongress
-(Beitrag zu  wissenschaftlichen Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
+        <displayed-value>Wissenschaftliche (Fach-)Tagung/Konferenz/Kongress</displayed-value>
         <stored-value>Scientific (professional) meeting/conference/congress</stored-value>
       </pair>
       <pair>
         <displayed-value>(Fach-)Messe/Ausstellung (inkl. Stall- und Feldtage)</displayed-value>
         <stored-value>Fair/Exhibition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Besichtigung/Tag der offenen Tür</displayed-value>
+        <stored-value>Open Day</stored-value>
       </pair>
       <pair>
         <displayed-value>Workshop</displayed-value>
@@ -6688,20 +6660,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Excursion</stored-value>
       </pair>
       <pair>
-        <displayed-value>Kurs für Teilnehmende außerhalb des akademischen Bereichs</displayed-value>
-        <stored-value>Non-academic course</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kurs für Studierende oder Doktoranden</displayed-value>
-        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
+        <displayed-value>Interview / Befragung</displayed-value>
+        <stored-value>Interview / Survey</stored-value>
       </pair>
       <pair>
         <displayed-value>Erprobung / Praxistest</displayed-value>
         <stored-value>Practical test</stored-value>
       </pair>
       <pair>
-        <displayed-value>Interview / Befragung</displayed-value>
-        <stored-value>Interview / Survey</stored-value>
+        <displayed-value>Kurs für Teilnehmende außerhalb des akademischen Bereichs</displayed-value>
+        <stored-value>Non-academic course</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kurs für Studierende oder Doktoranden</displayed-value>
+        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
       </pair>
       <pair>
         <displayed-value>Sitzung/Versammlung (z.B. Beiratssitzung)</displayed-value>

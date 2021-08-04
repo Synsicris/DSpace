@@ -581,6 +581,7 @@
       	<metadata name="synsicris.relation.entity_project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="synsicris.type.easy-import">No</metadata>
       </item-template>
     </collection>
     <collection>

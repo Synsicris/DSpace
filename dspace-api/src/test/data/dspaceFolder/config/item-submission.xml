@@ -25,6 +25,7 @@
         <name-map collection-handle="123456789/traditional-cris" submission-name="traditional-cris"/>
         <name-map collection-handle="123456789/extraction-test" submission-name="extractiontestprocess"/>
         <name-map collection-handle="entityType" submission-name="patent"/>
+        <name-map collection-handle="entityType/projectpartner" submission-name="projectpartners"/>
     </submission-map>
 
 
@@ -69,6 +70,21 @@
             <type>submission-form</type>
         </step-definition>
         <step-definition id="traditionalpagetwo" mandatory="true">
+            <heading>submit.progressbar.describe.steptwo</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="traditionalpagethree-cris-open" mandatory="true" opened="true">
+            <heading>submit.progressbar.describe.stepthree</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="traditionalpagethree-cris-collapsed" mandatory="true" opened="false">
+            <heading>submit.progressbar.describe.stepthree</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="projectpartners" mandatory="true">
             <heading>submit.progressbar.describe.steptwo</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
@@ -216,7 +232,7 @@
             <step id="extraction" />
 
             <!--Step will be to Describe the item. -->
-            <step id="traditionalpageone"/>
+            <step id="traditionalpageone"/>"
             <step id="traditionalpagetwo"/>
 
             <!--Step will be to Upload the item -->
@@ -242,6 +258,8 @@
             <!--Step will be to Describe the item. -->
             <step id="traditionalpageone-cris"/>
             <step id="traditionalpagetwo"/>
+            <step id="traditionalpagethree-cris-open"/>
+            <step id="traditionalpagethree-cris-collapsed"/>
 
             <!--Step will be to Upload the item -->
             <step id="upload"/>
@@ -303,7 +321,13 @@
             <step id="license"/>
             <step id="cclicense"/>
         </submission-process>
-
+        
+	    <submission-process name="projectpartners">
+	      <step id="collection" />
+	      <step id="projectpartners" />
+	      <step id="upload" />
+	      <step id="license" />
+	    </submission-process>
     </submission-definitions>
 
 </item-submission>

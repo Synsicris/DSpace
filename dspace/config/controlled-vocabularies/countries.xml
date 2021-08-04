@@ -202,6 +202,9 @@
         <node id="DNK" label="Denmark" selectable="true">
         <hasNote></hasNote>
         </node>
+        <node id="DEU" label="Deutschland" selectable="true">
+        <hasNote></hasNote>
+        </node>
         <node id="DJI" label="Djibouti" selectable="true">
         <hasNote></hasNote>
         </node>
@@ -211,14 +214,14 @@
         <node id="DOM" label="Dominican Republic" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ECU" label="Ecuador" selectable="true">
-        <hasNote></hasNote>
-        </node>
       </isComposedBy>
     </node>
     <node id="E" label="E" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
+        <node id="ECU" label="Ecuador" selectable="true">
+        <hasNote></hasNote>
+        </node>
         <node id="EGY" label="Egypt" selectable="true">
         <hasNote></hasNote>
         </node>

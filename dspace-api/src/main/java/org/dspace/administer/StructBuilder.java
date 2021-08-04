@@ -546,11 +546,11 @@ public class StructBuilder {
         for (int i = 0; i < communities.getLength(); i++) {
             Node n = communities.item(i);
             NodeList name = XPathAPI.selectNodeList(n, "name");
-            if (name.getLength() != 1) {
+            if (name.getLength() < 1) {
                 String pos = Integer.toString(i + 1);
                 err.append("-The level ").append(level)
                         .append(" community in position ").append(pos)
-                        .append(" does not contain exactly one name field.\n");
+                        .append(" does not contain any name field.\n");
                 trip = true;
             }
 
@@ -595,11 +595,11 @@ public class StructBuilder {
         for (int i = 0; i < collections.getLength(); i++) {
             Node n = collections.item(i);
             NodeList name = XPathAPI.selectNodeList(n, "name");
-            if (name.getLength() != 1) {
+            if (name.getLength() < 1) {
                 String pos = Integer.toString(i + 1);
                 err.append("-The level ").append(level)
                         .append(" collection in position ").append(pos)
-                        .append(" does not contain exactly one name field.\n");
+                        .append(" does not contain any name field.\n");
                 trip = true;
             }
         }
@@ -699,7 +699,7 @@ public class StructBuilder {
      * @param context         the context of the request
      * @param node            the Node element that contains information for creating item template
      * @param collection      the collection for which create the item template
-     * @throws SQLException, AuthorizeException, TransformerException 
+     * @throws SQLException, AuthorizeException, TransformerException
      */
     private static void handleItemTemplate(Context context, Node node, Collection collection)
             throws SQLException, AuthorizeException, TransformerException {
@@ -795,8 +795,9 @@ public class StructBuilder {
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
                         } else {
-                            communityService.setMetadataSingleValue(context, community,
-                                entry.getValue(), null, getStringValue(nl.item(j)));
+                            communityService.addMetadata(context, community,
+                                    entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }
                 }
@@ -821,10 +822,16 @@ public class StructBuilder {
             // we want to move it or make it switchable later
             element.setAttribute("identifier", community.getHandle());
 
-            Element nameElement = new Element("name");
-            nameElement.setText(communityService.getMetadataFirstValue(
-                    community, CommunityService.MD_NAME, Item.ANY));
-            element.addContent(nameElement);
+            List<MetadataValue> nameList = communityService.getMetadataByMetadataString(community,
+                    CommunityService.MD_NAME.toString());
+            for (MetadataValue name : nameList) {
+                Element nameElement = new Element("name"); 
+                nameElement.setText(name.getValue());
+                if (StringUtils.isNotBlank(name.getLanguage())) {
+                    nameElement.setAttribute("language", name.getLanguage());
+                }
+                element.addContent(nameElement);
+            }
 
             String fieldValue;
 
@@ -924,8 +931,9 @@ public class StructBuilder {
                         } else if (entry.getKey().equals("item-template")) {
                             handleItemTemplate(context, nl.item(j), collection);
                         } else {
-                            collectionService.setMetadataSingleValue(context, collection,
-                                entry.getValue(), null, getStringValue(nl.item(j)));
+                            collectionService.addMetadata(context, collection,
+                                entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }
                 }
@@ -934,11 +942,17 @@ public class StructBuilder {
             collectionService.update(context, collection);
 
             element.setAttribute("identifier", collection.getHandle());
-
-            Element nameElement = new Element("name");
-            nameElement.setText(collectionService.getMetadataFirstValue(collection,
-                    CollectionService.MD_NAME, Item.ANY));
-            element.addContent(nameElement);
+                    
+            List<MetadataValue> nameList = collectionService.getMetadataByMetadataString(collection,
+                    CollectionService.MD_NAME.toString());
+            for (MetadataValue name : nameList) {
+                Element nameElement = new Element("name"); 
+                nameElement.setText(name.getValue());
+                if (StringUtils.isNotBlank(name.getLanguage())) {
+                    nameElement.setAttribute("language", name.getLanguage());
+                }
+                element.addContent(nameElement);
+            }
 
             String fieldValue;
 

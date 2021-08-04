@@ -8,10 +8,10 @@
 package org.dspace.content.template.generator;
 
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
-import org.dspace.content.Collection;
+import java.util.stream.Collectors;
+
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
@@ -20,7 +20,6 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;
 import org.dspace.project.util.ProjectConstants;
-import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,35 +30,53 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Davide Negretti (davide.negretti at 4science.it)
  */
-public class AgrovocKeywordsGenerator implements TemplateValueGenerator {
+public class AgrovocKeywordsGenerator extends AbstractGenerator {
 
-//    private static final Logger log = LoggerFactory.getLogger(AgrovocKeywordGenerator.class);
-//
-//    @Autowired
-//    private CommunityService communityService;
-//
-//    @Autowired
-//    private ConfigurationService configurationService;
-//
-//    @Autowired
-//    private ItemService itemService;
+    private static final Logger log = LoggerFactory.getLogger(AgrovocKeywordsGenerator.class);
+
+    @Autowired
+    private CommunityService communityService;
+
+    @Autowired
+    private ItemService itemService;
 
     public AgrovocKeywordsGenerator() {
     }
 
     @Override
-    public MetadataValueVO generator(Context context, Item targetItem, Item templateItem, String extraParams) {
-    	
-    	System.out.println("AGROVOC GENERATOR");
-    	System.out.println(targetItem.getCollections().toString());
+    public List<MetadataValueVO> generator(Context context, Item targetItem, Item templateItem, String extraParams) {
+        try {
+            Community projectCommunity;
+            switch (extraParams) {
+                case ProjectConstants.PARENTPROJECT:
+                    projectCommunity = getParentProjectCommunity(templateItem);
+                    break;
+                case ProjectConstants.PROJECT:
+                    projectCommunity = getProjectCommunity(templateItem);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);
+            }
+            Item item = getProjectItem(context, projectCommunity);
+            List<MetadataValue> values = itemService.getMetadata(item,
+                    ProjectConstants.MD_AGROVOC.SCHEMA, ProjectConstants.MD_AGROVOC.ELEMENT, 
+                    ProjectConstants.MD_AGROVOC.QUALIFIER, null);
 
-        return getProjectKeywords();
-    }
-    
-    private MetadataValueVO getProjectKeywords() {
-    	return new MetadataValueVO("");
-    }
-    
+            return values.stream().map(value -> new MetadataValueVO(value)).collect(Collectors.toList());
 
+        } catch (Exception e) {
+            log.error("Error while retreiving Agrovoc keywords for {}: {}",
+                    templateItem.getTemplateItemOf().getID(), e.getMessage(), e);
+            return new ArrayList<MetadataValueVO>();
+        }
+
+    }
+
+    private Item getProjectItem(Context context, Community projectCommunity) throws SQLException {
+        List<MetadataValue> values = communityService.getMetadata(projectCommunity,
+                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+        return itemService.find(context, UUIDUtils.fromString(values.get(0).getAuthority()));
+    }
 
 }

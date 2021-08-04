@@ -30,6 +30,8 @@ public class ProjectConstants {
     
     public static final MetadataFieldName MD_PROJECT_ENTITY = new MetadataFieldName("synsicris", "relation", "entity_project");
 
+    public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
+
     /**
      * Default constructor
      */

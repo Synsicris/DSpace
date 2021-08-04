@@ -1181,6 +1181,19 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
+          <dc-schema>datacite</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>fos</dc-qualifier>
+          <label>Fields of Science and Technology (OECD)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">oecd</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
@@ -3318,6 +3331,19 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
+          <dc-schema>datacite</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>fos</dc-qualifier>
+          <label>Fields of Science and Technology (OECD)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">oecd</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>person</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>orcid</dc-qualifier>
@@ -4589,6 +4615,19 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>datacite</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>fos</dc-qualifier>
+          <label>Fields of Science and Technology (OECD)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">oecd</vocabulary>
         </field>
       </row>
       <row>
@@ -6817,6 +6856,10 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Ringgold identifier</displayed-value>
         <stored-value>rin</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Legal Entity Identifier</displayed-value>
+        <stored-value>lei</stored-value>
       </pair>
       <pair>
         <displayed-value>Generic ID</displayed-value>

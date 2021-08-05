@@ -840,11 +840,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             }
             if (StringUtils.isNotBlank(metadata.getAuthority())) {
                 service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                        metadata.getQualifier(), null, metadata.getValue(), metadata.getAuthority(),
+                        metadata.getQualifier(), metadata.getLanguage(), metadata.getValue(), metadata.getAuthority(),
                         Choices.CF_ACCEPTED);
             } else {
                 service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                        metadata.getQualifier(), null, metadata.getValue());
+                        metadata.getQualifier(), metadata.getLanguage(), metadata.getValue());
             }
         }
     }

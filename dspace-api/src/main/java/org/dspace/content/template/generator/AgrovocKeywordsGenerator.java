@@ -26,7 +26,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 
+ * Implementation of {@link TemplateValueGenerator} that copies the Agrovoc keywords
+ * from the parent project's item template
  *
  * @author Davide Negretti (davide.negretti at 4science.it)
  */
@@ -59,7 +60,7 @@ public class AgrovocKeywordsGenerator extends AbstractGenerator {
             }
             Item item = getProjectItem(context, projectCommunity);
             List<MetadataValue> values = itemService.getMetadata(item,
-                    ProjectConstants.MD_AGROVOC.SCHEMA, ProjectConstants.MD_AGROVOC.ELEMENT, 
+                    ProjectConstants.MD_AGROVOC.SCHEMA, ProjectConstants.MD_AGROVOC.ELEMENT,
                     ProjectConstants.MD_AGROVOC.QUALIFIER, null);
 
             return values.stream().map(value -> new MetadataValueVO(value)).collect(Collectors.toList());

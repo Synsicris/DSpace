@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
@@ -29,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * the current parentproject/project item.
  * <p>
  * Syntax is: ###CURRENTPROJECT.[parentproject|project]###, so for example
- * ###CURRENTPROJECT.parentproject### will set metadata with value of item that represent 
+ * ###CURRENTPROJECT.parentproject### will set metadata with value of item that represent
  * the parentproject entity.
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
@@ -74,7 +75,7 @@ public class CurrentProjectGenerator extends AbstractGenerator {
             return new MetadataValueVO("");
         }
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
-                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, 
+                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
                 ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
         if (values.isEmpty()) {
             return new MetadataValueVO("");
@@ -87,7 +88,7 @@ public class CurrentProjectGenerator extends AbstractGenerator {
             } catch (SQLException e) {
                 return new MetadataValueVO("");
             }
-           
+
         }
     }
 }

@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * http://www.dspace.org/license/
+ */
 package org.dspace.content.template.generator;
 
 import java.sql.SQLException;
@@ -10,7 +17,7 @@ import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractGenerator implements TemplateValueGenerator {
-	
+
     @Autowired
     private ConfigurationService configurationService;
 
@@ -23,7 +30,7 @@ public abstract class AbstractGenerator implements TemplateValueGenerator {
         }
         String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
         parentProjectCommunity = owningCollection.getCommunities().get(0);
-        while(Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
+        while (Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
             parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
         }
         return parentProjectCommunity;
@@ -35,5 +42,5 @@ public abstract class AbstractGenerator implements TemplateValueGenerator {
                 .getParentCommunities().get(0);
         return parentProjectCommunity;
     }
-	
+
 }

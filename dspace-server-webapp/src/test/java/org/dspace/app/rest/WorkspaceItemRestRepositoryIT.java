@@ -80,6 +80,8 @@ import org.dspace.content.Item;
 import org.dspace.content.Relationship;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
+import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.EntityTypeService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
@@ -107,9 +109,13 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
 
     @Autowired
     private ConfigurationService configurationService;
+    
     @Autowired
     EntityTypeService entityTypeService;
 
+    @Autowired
+    private CommunityService communityService;
+    
     @Autowired
     private ItemService itemService;
 
@@ -1908,6 +1914,52 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
                             .andExpect(jsonPath("$._embedded.item.metadata['dc.date.issued'][0].value",
                                                 is(today)))
                             .andExpect(jsonPath("$._embedded.collection.id", is(col1.getID().toString())));
+    }
+
+    @Test
+    public void inheritAgrovocKeywordsFromTemplate() throws Exception {
+        context.turnOffAuthorisationSystem();
+        
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Test project")
+            .build();
+
+        Collection projectCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Parent project")
+            .withEntityType("parentproject")
+            .withSubmitterGroup(eperson)
+            .build();
+
+        Item parentProjectItem = ItemBuilder.createItem(context, projectCollection)
+            .withTitle("Parent Project Item Title")
+            .build();
+
+        final String projectItemID = "project_" + parentProjectItem.getID().toString() + "_item";
+
+        communityService.addMetadata(context, parentCommunity, "synsicris", "relation", "entity_project", null,
+            projectItemID, parentProjectItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        itemService.addMetadata(context, parentProjectItem, "synsicris", "subject", "agrovoc", null, "Item #1");
+        itemService.addMetadata(context, parentProjectItem, "synsicris", "subject", "agrovoc", null, "Item #2");
+
+        Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Publications")
+            .withSubmitterGroup(eperson)
+            .withTemplateItem()
+            .build();
+
+        itemService.addMetadata(context, publicationCollection.getTemplateItem(), "synsicris", "subject", "agrovoc",
+            null, "###AGROVOCKEYWORDS.project###");
+
+        String authToken = getAuthToken(eperson.getEmail(), password);
+
+        context.restoreAuthSystemState();
+
+        getClient(authToken).perform(post("/api/submission/workspaceitems")
+            .param("owningCollection", publicationCollection.getID().toString())
+            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$._embedded.item.metadata['synsicris.subject.agrovoc'][0].value", is("Item #1")));
     }
 
     @Test

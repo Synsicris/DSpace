@@ -4970,7 +4970,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <label>Funding programme objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
+          <required />
           <hint>Please copy the selected objective from the funding programme into this field. In future, the funding policy objectives of the programme will be provided in a selection list.</hint>
         </field>
       </row>

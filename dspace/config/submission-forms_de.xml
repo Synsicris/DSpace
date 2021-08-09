@@ -3718,12 +3718,12 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
-          <label>Zweck (Angabe nur für Verein)</label>
+          <label>Vereinszweck lt Satzung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
-          <hint>Bitte nennen Sie den Vereinszweck gemäß Satzung.</hint>
+          <hint />
           <type-bind>Assosiation</type-bind>
         </field>
       </row>

@@ -825,7 +825,7 @@ public class StructBuilder {
             List<MetadataValue> nameList = communityService.getMetadataByMetadataString(community,
                     CommunityService.MD_NAME.toString());
             for (MetadataValue name : nameList) {
-                Element nameElement = new Element("name"); 
+                Element nameElement = new Element("name");
                 nameElement.setText(name.getValue());
                 if (StringUtils.isNotBlank(name.getLanguage())) {
                     nameElement.setAttribute("language", name.getLanguage());
@@ -942,11 +942,11 @@ public class StructBuilder {
             collectionService.update(context, collection);
 
             element.setAttribute("identifier", collection.getHandle());
-                    
+
             List<MetadataValue> nameList = collectionService.getMetadataByMetadataString(collection,
                     CollectionService.MD_NAME.toString());
             for (MetadataValue name : nameList) {
-                Element nameElement = new Element("name"); 
+                Element nameElement = new Element("name");
                 nameElement.setText(name.getValue());
                 if (StringUtils.isNotBlank(name.getLanguage())) {
                     nameElement.setAttribute("language", name.getLanguage());

@@ -109,13 +109,13 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
 
     @Autowired
     private ConfigurationService configurationService;
-    
+
     @Autowired
     EntityTypeService entityTypeService;
 
     @Autowired
     private CommunityService communityService;
-    
+
     @Autowired
     private ItemService itemService;
 
@@ -1919,7 +1919,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
     @Test
     public void inheritAgrovocKeywordsFromTemplate() throws Exception {
         context.turnOffAuthorisationSystem();
-        
+
         parentCommunity = CommunityBuilder.createCommunity(context)
             .withName("Test project")
             .build();

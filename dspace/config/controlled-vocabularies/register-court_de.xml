@@ -509,7 +509,7 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="ID159" label="Zweibrücken" selectable="false">
+    <node id="ID159" label="Zweibrücken" selectable="true">
     <hasNote></hasNote>
     </node>
   </isComposedBy>

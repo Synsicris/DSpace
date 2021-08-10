@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <node id="ResourceTypeGenres" label="FUNDING-OBJECTIVES 2020-04-03">
   <isComposedBy>
-    <node id="FO01" label="Sustainable and animal-friendly agriculture and food economy">
+    <node id="FO01" label="Sustainable and animal-friendly agriculture and food economy" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO02" label="Conservation of natural resources">
+    <node id="FO02" label="Conservation of natural resources" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO03" label="Improving competitiveness">
+    <node id="FO03" label="Improving competitiveness" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO04" label="Strengthening economic innovation">
+    <node id="FO04" label="Strengthening economic innovation" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO05" label="Improving consumer information">
+    <node id="FO05" label="Improving consumer information" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO06" label="Creating and securing jobs">
+    <node id="FO06" label="Creating and securing jobs" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="FO07" label="improvement of working conditions">
+    <node id="FO07" label="improvement of working conditions" selectable="true">
     <hasNote></hasNote>
     </node>
   </isComposedBy>

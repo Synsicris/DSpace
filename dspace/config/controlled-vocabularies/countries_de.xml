@@ -876,7 +876,7 @@
         <node id="CAF" label="Zentralafrikanische Republik" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="CYP" label="Zypern" selectable="false">
+        <node id="CYP" label="Zypern" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

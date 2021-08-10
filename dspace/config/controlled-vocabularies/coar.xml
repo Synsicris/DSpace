@@ -161,7 +161,7 @@
         <node id="c_efa0" label="review" selectable="true">
         <hasNote>A review of others' published work.</hasNote>
         </node>
-        <node id="c_0040" label="manuscript" selectable="false">
+        <node id="c_0040" label="manuscript" selectable="true">
         <hasNote>A manuscript is a work of any kind (text, inscription, music score, map, etc.) written entirely by hand. (Adapted from ODLIS)</hasNote>
         </node>
       </isComposedBy>

@@ -2079,7 +2079,7 @@
             <node id="8364" label="Rhythmics" selectable="true">
             <hasNote></hasNote>
             </node>
-            <node id="8365" label="Other music practice" selectable="false">
+            <node id="8365" label="Other music practice" selectable="true">
             <hasNote></hasNote>
             </node>
           </isComposedBy>

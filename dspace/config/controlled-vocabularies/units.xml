@@ -71,7 +71,7 @@
         <node id="UI38" label="Increase in productivity" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="UI39" label="Market share gain" selectable="false">
+        <node id="UI39" label="Market share gain" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

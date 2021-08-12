@@ -65,7 +65,7 @@
         <node id="BI28" label="Other political processes" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="BI29" label="Others" selectable="false">
+        <node id="BI29" label="Others" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

@@ -165,7 +165,7 @@ in einer wissenschaftlichen Zeitschrift oder als Teil eines Buches erscheinen</h
         <node id="c_efa0" label="Rezension" selectable="true">
         <hasNote>Überblick zu veröffentlichten Arbeiten anderer</hasNote>
         </node>
-        <node id="c_0040" label="Manuskript" selectable="false">
+        <node id="c_0040" label="Manuskript" selectable="true">
         <hasNote>Handschrift</hasNote>
         </node>
       </isComposedBy>

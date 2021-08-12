@@ -1,0 +1,1876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    default-lazy-init="true">
+
+    <!-- Config like this will tell our VirtualMetadataPopulator to include the virtual metadata field
+         'dc.contributor.author' on the appropriate item with the values defined in the value-ref.
+          This value-ref should be a bean of type VirtualMetadataConfiguration -->
+    <util:map id="metadataMigrationMap">
+        <entry key="dc.date.start" value-ref="dcdatestartMigrate"/>
+        <entry key="dc.date.end" value-ref="dcdateendMigrate"/>
+        <entry key="dc.relation.ispartofseries" value-ref="dcrelationispartofseriesMigrate"/>
+        <entry key="dc.relation.relatedorgunit" value-ref="dcrelationrelatedorgunitMigrate"/>
+        <entry key="dc.relation.conference" value-ref="dcrelationconferenceMigrate"/>
+        <entry key="dc.type" value-ref="dctypeMigrate"/>
+        <entry key="dc.identifier.applicationnumber" value-ref="dcidentifierapplicationnumberMigrate"/>
+        <entry key="dc.date.filled" value-ref="dcdatefilledMigrate"/>
+        <entry key="dc.subject.ipc" value-ref="dc.subject.ipcMigrate"/>
+        <entry key="dc.relation.cooperation-partner" value-ref="dc.relation.cooperation-partnerMigrate"/>
+        <entry key="dc.relation.related-targetgroup" value-ref="dc.relation.related-targetgroupMigrate"/>
+        <entry key="dc.relation.targetgroup" value-ref="dc.relation.targetgroupMigrate"/>
+        <entry key="impactpathway.relation.parent" value-ref="impactpathway.relation.parentMigrate"/>
+        <entry key="workingplan.relation.parent" value-ref="workingplan.relation.parentMigrate"/>
+        <entry key="workingplan.responsible" value-ref="workingplan.responsibleMigrate"/>
+        <entry key="workingplan.step.status" value-ref="workingplan.step.statusMigrate"/>
+        <entry key="dc.type.regional-status" value-ref="dc.type.regional-statusMigrate"/>
+        <entry key="dc.coverage.regional" value-ref="dc.coverage.regionalMigrate"/>
+        <entry key="dc.description.regional" value-ref="dc.description.regionalMigrate"/>
+        <entry key="dc.relation.partofconferenceproceeding" value-ref="dc.relation.partofconferenceproceedingMigrate"/>
+        <entry key="dc.contributor.communication" value-ref="dc.contributor.communicationMigrate"/>
+        <entry key="dc.subject.dnb" value-ref="dc.subject.dnbMigrate"/>
+        <entry key="dc.identifier.url" value-ref="dc.identifier.urlMigrate"/>
+        <entry key="dc.description.description" value-ref="dc.description.descriptionMigrate"/>
+        <entry key="dc.relation.duration" value-ref="dc.relation.durationMigrate"/>
+        <entry key="dc.description.userbenefit" value-ref="dc.description.userbenefitMigrate"/>
+        <entry key="dc.description.size" value-ref="dc.description.sizeMigrate"/>
+        <entry key="dc.type.applicability" value-ref="dc.type.applicabilityMigrate"/>
+        <entry key="dc.description.applicability" value-ref="dc.description.applicabilityMigrate"/>
+        <entry key="dc.type.trl" value-ref="dc.type.trlMigrate"/>
+        <entry key="dc.description.trl" value-ref="dc.description.trlMigrate"/>
+        <entry key="dc.type.srl" value-ref="dc.type.srlMigrate"/>
+        <entry key="dc.description.srl" value-ref="dc.description.srlMigrate"/>
+        <entry key="dc.date.referenceyear" value-ref="dc.date.referenceyearMigrate"/>
+        <entry key="dc.relation.quantifier" value-ref="dc.relation.quantifierMigrate"/>
+        <entry key="dc.relation.quantifier-own" value-ref="dc.relation.quantifier-ownMigrate"/>
+        <entry key="dc.relation.quantity" value-ref="dc.relation.quantityMigrate"/>
+        <entry key="dc.type.business-innovation" value-ref="dc.type.business-innovationMigrate"/>
+        <entry key="dc.relation.participants" value-ref="dc.relation.participantsMigrate"/>
+        <entry key="dc.coverage.place" value-ref="dc.coverage.placeMigrate"/>
+        <entry key="dc.coverage.country" value-ref="dc.coverage.countryMigrate"/>
+        <entry key="dc.type.project-contribution" value-ref="dc.type.project-contributionMigrate"/>
+        <entry key="dc.type.purpose" value-ref="dc.type.purposeMigrate"/>
+        <entry key="dc.type.frequency" value-ref="dc.type.frequencyMigrate"/>
+        <entry key="dc.type.fullday" value-ref="dc.type.fulldayMigrate"/>
+        <entry key="dc.type.direction" value-ref="dc.type.directionMigrate"/>
+        <entry key="dc.coverage.ecological" value-ref="dc.coverage.ecologicalMigrate"/>
+        <entry key="dc.type.influence" value-ref="dc.type.influenceMigrate"/>
+        <entry key="dc.description.objective" value-ref="dc.description.objectiveMigrate"/>
+        <entry key="dc.description.patenttype" value-ref="dc.description.patenttypeMigrate"/>
+        <entry key="dc.type.process-event" value-ref="dc.type.process-eventMigrate"/>
+        <entry key="dc.type.period" value-ref="dc.type.periodMigrate"/>
+        <entry key="dc.type.innovation" value-ref="dc.type.innovationMigrate"/>
+        <entry key="dc.description.applicability1" value-ref="dc.description.applicability1Migrate"/>
+        <entry key="dc.description.applicability2" value-ref="dc.description.applicability2Migrate"/>
+        <entry key="dc.description.applicability3" value-ref="dc.description.applicability3Migrate"/>
+        <entry key="dc.description.applicability4" value-ref="dc.description.applicability4Migrate"/>
+        <entry key="dc.description.applicability5" value-ref="dc.description.applicability5Migrate"/>
+        <entry key="dc.type.srl-trl" value-ref="dc.type.srl-trlMigrate"/>
+        <entry key="dc.type.status" value-ref="dc.type.statusMigrate"/>
+        <entry key="dc.type.baseline" value-ref="dc.type.baselineMigrate"/>
+        <entry key="dc.contributor.donor" value-ref="dc.contributor.donorMigrate"/>
+        <entry key="dc.coverage.urban-rural" value-ref="dc.coverage.urban-ruralMigrate"/>
+        <entry key="dc.date" value-ref="dc.dateMigrate"/>
+        <entry key="dc.description.access" value-ref="dc.description.accessMigrate"/>
+        <entry key="dc.description.amountofprize" value-ref="dc.description.amountofprizeMigrate"/>
+        <entry key="dc.description.application" value-ref="dc.description.applicationMigrate"/>
+        <entry key="dc.description.aspect" value-ref="dc.description.aspectMigrate"/>
+        <entry key="dc.description.city" value-ref="dc.description.cityMigrate"/>
+        <entry key="dc.description.contact" value-ref="dc.description.contactMigrate"/>
+        <entry key="dc.description.dependencies" value-ref="dc.description.dependenciesMigrate"/>
+        <entry key="dc.description.duration" value-ref="dc.description.durationMigrate"/>
+        <entry key="dc.description" value-ref="dc.descriptionMigrate"/>
+        <entry key="dc.description.participants" value-ref="dc.description.participantsMigrate"/>
+        <entry key="dc.description.place" value-ref="dc.description.placeMigrate"/>
+        <entry key="dc.description.project" value-ref="dc.description.projectMigrate"/>
+        <entry key="dc.description.projectdesign" value-ref="dc.description.projectdesignMigrate"/>
+        <entry key="dc.description.quantity" value-ref="dc.description.quantityMigrate"/>
+        <entry key="dc.description.relevance" value-ref="dc.description.relevanceMigrate"/>
+        <entry key="dc.description.researchquestion" value-ref="dc.description.researchquestionMigrate"/>
+        <entry key="dc.description.stateofart" value-ref="dc.description.stateofartMigrate"/>
+        <entry key="dc.description.targetgroup" value-ref="dc.description.targetgroupMigrate"/>
+        <entry key="dc.relation.fundingobjective" value-ref="dc.relation.fundingobjectiveMigrate"/>
+        <entry key="dc.relation.orgunit" value-ref="dc.relation.orgunitMigrate"/>
+        <entry key="dc.relation.person" value-ref="dc.relation.personMigrate"/>
+        <entry key="dc.title.date" value-ref="dc.title.dateMigrate"/>
+        <entry key="dc.type.application" value-ref="dc.type.applicationMigrate"/>
+        <entry key="dc.type.direct-indirect" value-ref="dc.type.direct-indirectMigrate"/>
+        <entry key="dc.type.functions" value-ref="dc.type.functionsMigrate"/>
+        <entry key="dc.type.project" value-ref="dc.type.projectMigrate"/>
+        <entry key="dc.type.projectdesign" value-ref="dc.type.projectdesignMigrate"/>
+        <entry key="dc.type.quantifier" value-ref="dc.type.quantifierMigrate"/>
+        <entry key="dc.type.quantifier-own" value-ref="dc.type.quantifier-ownMigrate"/>
+        <entry key="dc.type.researchquestion" value-ref="dc.type.researchquestionMigrate"/>
+        <entry key="dc.type.stateofart" value-ref="dc.type.stateofartMigrate"/>
+    </util:map>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.stateofartMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.stateofartMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.stateofartMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.stateofart"/>
+    </bean>
+    
+    <bean id="synsicris.type.stateofart" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.stateofart"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.researchquestionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.researchquestionMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.researchquestionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.researchquestion"/>
+    </bean>
+    
+    <bean id="synsicris.type.researchquestion" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.researchquestion"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.quantifier-ownMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.quantifier-ownMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.quantifier-ownMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.quantifier-own"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.quantifierMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.quantifierMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.quantifierMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.quantifier"/>
+    </bean>
+    
+    <bean id="synsicris.type.quantifier" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.quantifier"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.projectdesignMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.projectdesignMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.projectdesignMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.projectdesign"/>
+    </bean>
+    
+    <bean id="synsicris.type.projectdesign" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.projectdesign"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.projectMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.projectMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.projectMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.project"/>
+    </bean>
+    
+    <bean id="synsicris.type.project" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.project"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.functionsMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.functionsMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.functionsMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.functions"/>
+    </bean>
+    
+    <bean id="synsicris.type.functions" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.functions"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.direct-indirectMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.direct-indirectMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.direct-indirectMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="targetgroup" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.applicationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.applicationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.applicationMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.application"/>
+    </bean>
+    
+    <bean id="synsicris.type.application" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.application"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.title.dateMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.title.dateMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.title.dateMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.title.event"/>
+    </bean>
+    
+    <bean id="synsicris.title.event" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.title.event"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.personMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.personMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.personMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.person"/>
+    </bean>
+    
+    <bean id="synsicris.relation.person" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.person"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.orgunitMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.orgunitMigrateAction"/>
+	            <ref bean="dc.relation.orgunitMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.orgunitMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="award" />
+        <property name="metadata" ref="synsicris.relation.orgunit"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.orgunitMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="projectpartner" />
+        <property name="metadata" ref="organization.parentOrganization"/>
+    </bean>
+
+    <bean id="synsicris.relation.orgunit" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.orgunit"/>
+    </bean>
+
+    <bean id="organization.parentOrganization" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="organization.parentOrganization"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.fundingobjectiveMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.fundingobjectiveMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.fundingobjectiveMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.fundingobjective"/>
+    </bean>
+    
+    <bean id="synsicris.relation.fundingobjective" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.fundingobjective"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.targetgroupMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.targetgroupMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.targetgroupMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.targetgroup"/>
+    </bean>
+    
+    <bean id="synsicris.description.targetgroup" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.targetgroup"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.stateofartMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.stateofartMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.stateofartMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.stateofart"/>
+    </bean>
+    
+    <bean id="synsicris.description.stateofart" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.stateofart"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.researchquestionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.researchquestionMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.researchquestionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.researchquestion"/>
+    </bean>
+    
+    <bean id="synsicris.description.researchquestion" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.researchquestion"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.relevanceMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.relevanceMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.relevanceMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.relevance"/>
+    </bean>
+    
+    <bean id="synsicris.description.relevance" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.relevance"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.quantityMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.quantityMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.quantityMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.quantity"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.projectdesignMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.projectdesignMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.projectdesignMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.projectdesign"/>
+    </bean>
+    
+    <bean id="synsicris.description.projectdesign" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.projectdesign"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.projectMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.projectMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.projectMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.project"/>
+    </bean>
+    
+    <bean id="synsicris.description.project" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.project"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.placeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.placeMigrateAction"/>
+	            <ref bean="dc.description.placeMigrateAction2"/>
+	            <ref bean="dc.description.placeMigrateAction3"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.placeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Event" />
+        <property name="metadata" ref="oairecerif.event.country"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.placeMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="process_event" />
+        <property name="metadata" ref="oairecerif.event.country"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.placeMigrateAction3">
+        <property name="action" value="rename" />
+        <property name="entityType" value="projectpartner" />
+        <property name="metadata" ref="organization.address.addressCountry"/>
+    </bean>
+
+    <bean id="organization.address.addressCountry" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="organization.address.addressCountry"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.participantsMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.participantsMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.participantsMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.participantnumber"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.descriptionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.descriptionMigrateAction"/>
+	            <ref bean="dc.descriptionMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.descriptionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="spinoff" />
+        <property name="metadata" ref="synsicris.amount.funding"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.descriptionMigrateAction2">
+        <property name="action" value="remove" />
+        <property name="entityType" value="Patent" />
+    </bean>
+    
+    <bean id="synsicris.amount.funding" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.amount.funding"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.durationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.durationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.durationMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.duration"/>
+    </bean>
+    
+    <bean id="synsicris.duration" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.duration"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.dependenciesMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.dependenciesMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.dependenciesMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.requirements"/>
+    </bean>
+    
+    <bean id="synsicris.description.requirements" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.requirements"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.contactMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.contactMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.contactMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.address.addressLocality"/>
+    </bean>
+    
+    <bean id="synsicris.address.addressLocality" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressLocality"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.cityMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.cityMigrateAction"/>
+	            <ref bean="dc.description.cityMigrateAction2"/>
+	            <ref bean="dc.description.cityMigrateAction3"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.cityMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Event" />
+        <property name="metadata" ref="oairecerif.event.place"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.cityMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="process_event" />
+        <property name="metadata" ref="oairecerif.event.place"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.cityMigrateAction3">
+        <property name="action" value="rename" />
+        <property name="entityType" value="projectpartner" />
+        <property name="metadata" ref="synsicris.address.addressCity"/>
+    </bean>
+
+    <bean id="synsicris.address.addressCity" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressCity"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.aspectMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.aspectMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.aspectMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.aspect"/>
+    </bean>
+    
+    <bean id="synsicris.description.aspect" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.aspect"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicationMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.application"/>
+    </bean>
+    
+    <bean id="synsicris.description.application" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.application"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcdatestartMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcdatestartMigrateAction"/>
+	            <ref bean="dcdatestartMigrateAction2"/>
+	            <ref bean="dcdatestartMigrateAction3"/>
+	            <ref bean="dcdatestartMigrateAction4"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdatestartMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Event" />
+        <property name="metadata" ref="oairecerif.event.startDate"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdatestartMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="process_event" />
+        <property name="metadata" ref="oairecerif.event.startDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdatestartMigrateAction3">
+        <property name="action" value="rename" />
+        <property name="entityType" value="parentproject" />
+        <property name="metadata" ref="oairecerif.project.startDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdatestartMigrateAction4">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Project" />
+        <property name="metadata" ref="oairecerif.project.startDate"/>
+    </bean>
+
+    <bean id="oairecerif.event.startDate" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.event.startDate"/>
+    </bean>
+
+    <bean id="oairecerif.project.startDate" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.project.startDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcdateendMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcdateendMigrateAction"/>
+	            <ref bean="dcdateendMigrateAction2"/>
+	            <ref bean="dcdateendMigrateAction3"/>
+	            <ref bean="dcdateendMigrateAction4"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdateendMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Event" />
+        <property name="metadata" ref="oairecerif.event.endDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdateendMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="process_event" />
+        <property name="metadata" ref="oairecerif.event.endDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdateendMigrateAction3">
+        <property name="action" value="rename" />
+        <property name="entityType" value="parentproject" />
+        <property name="metadata" ref="oairecerif.project.endDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdateendMigrateAction4">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Project" />
+        <property name="metadata" ref="oairecerif.project.endDate"/>
+    </bean>
+
+    <bean id="oairecerif.event.endDate" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.event.endDate"/>
+    </bean>
+
+    <bean id="oairecerif.project.endDate" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.project.endDate"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcrelationispartofseriesMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcrelationispartofseriesMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcrelationispartofseriesMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcrelationrelatedorgunitMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcrelationrelatedorgunitMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcrelationrelatedorgunitMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="oairecerif.author.affiliation"/>
+    </bean>
+    
+    <bean id="oairecerif.author.affiliation" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.author.affiliation"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcrelationconferenceMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcrelationconferenceMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcrelationconferenceMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="dc.relation.event"/>
+    </bean>
+    
+    <bean id="dc.relation.event" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.relation.event"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dctypeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dctypeMigrateAction"/>
+	            <ref bean="dctypeMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dctypeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Patent" />
+        <property name="metadata" ref="synsicris.type.patentuse"/>
+    </bean>
+    
+    <bean id="synsicris.type.patentuse" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.patentuse"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dctypeMigrateAction2">
+        <property name="action" value="remove" />
+        <property name="entityType" value="plan_publication" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcidentifierapplicationnumberMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcidentifierapplicationnumberMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcidentifierapplicationnumberMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Patent" />
+        <property name="metadata" ref="synsicris.identifier.applicationnumber"/>
+    </bean>
+    
+    <bean id="synsicris.identifier.applicationnumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.identifier.applicationnumber"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dccontributorapplicantMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dccontributorapplicantMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dccontributorapplicantMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="Patent" />
+        <property name="metadata" ref="dcterms.rightsHolder"/>
+    </bean>
+    
+    <bean id="dcterms.rightsHolder" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dcterms.rightsHolder"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dcdatefilledMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dcdatefilledMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dcdatefilledMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.date.filled"/>
+    </bean>
+    
+    <bean id="synsicris.date.filled" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.date.filled"/>
+    </bean>    
+    
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.subject.ipcMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.subject.ipcMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.subject.ipcMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.subject.ipc"/>
+    </bean>
+    
+    <bean id="synsicris.subject.ipc" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.subject.ipc"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.cooperation-partnerMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.cooperationpartnerMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.cooperationpartnerMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.partner"/>
+    </bean>
+    
+    <bean id="synsicris.relation.partner" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.partner"/>
+    </bean>    
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.related-targetgroupMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.related-targetgroupMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.related-targetgroupMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.targetgroup"/>
+    </bean>
+    
+    <bean id="synsicris.relation.targetgroup" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.targetgroup"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.targetgroupMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.targetgroupMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.targetgroupMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.targetgroup"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="impactpathway.relation.parentMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="impactpathway.relation.parentMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="impactpathway.relation.parentMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="workingplan.relation.parentMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="workingplan.relation.parentMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="workingplan.relation.parentMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="workingplan.responsibleMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="workingplan.responsibleMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="workingplan.responsibleMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.relation.partner"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="workingplan.step.statusMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="workingplan.step.statusMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="workingplan.step.statusMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.status"/>
+    </bean>
+    
+    <bean id="synsicris.type.status" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.status"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.regional-statusMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.regional-statusMigrateAction"/>
+	            <ref bean="dc.type.regional-statusMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.regional-statusMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.regional-statusMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="innovationpotential" />
+        <property name="metadata" ref="synsicris.type.regional-status"/>
+    </bean>
+    
+    <bean id="synsicris.type.regional-status" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.regional-status"/>
+    </bean>  
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.coverage.regionalMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.coverage.regionalMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.coverage.regionalMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.coverage.regional"/>
+    </bean>
+    
+    <bean id="synsicris.coverage.regional" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.coverage.regional"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.regionalMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.regionalMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.regionalMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.regional"/>
+    </bean>
+    
+    <bean id="synsicris.description.regional" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.regional"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.partofconferenceproceedingMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.partofconferenceproceedingMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.partofconferenceproceedingMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.contributor.communicationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.contributor.communicationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.contributor.communicationMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.subject.dnbMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.subject.dnbMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.subject.dnbMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.identifier.urlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.identifier.urlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.identifier.urlMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="oairecerif.identifier.url"/>
+    </bean>
+    
+    <bean id="oairecerif.identifier.url" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.identifier.url"/>
+    </bean>
+ 
+     <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.descriptionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.descriptionMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.descriptionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.description"/>
+    </bean>
+    
+    <bean id="synsicris.description.description" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.description"/>
+    </bean>   
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.durationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.durationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.durationMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.duration"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.userbenefitMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.userbenefitMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.userbenefitMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.sizeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.sizeMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.sizeMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.applicabilityMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.applicabilityMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.applicabilityMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicabilityMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicabilityMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicabilityMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.trlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.trlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.trlMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.trl"/>
+    </bean>
+    
+    <bean id="synsicris.type.trl" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.trl"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.trlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.trlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.trlMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.srlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.srlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.srlMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.srl"/>
+    </bean>
+    
+    <bean id="synsicris.type.srl" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.srl"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.srlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.srlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.srlMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.rl-start"/>
+    </bean>
+    
+    <bean id="synsicris.description.rl-start" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.rl-start"/>
+    </bean>
+        
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.date.referenceyearMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.date.referenceyearMigrateACtion"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.date.referenceyearMigrateACtion">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.date.referenceyear"/>
+    </bean>
+    
+    <bean id="synsicris.date.referenceyear" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.date.referenceyear"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.quantifierMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.quantifierMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.quantifierMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.quantifier"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.quantifier-ownMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.quantifier-ownMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.quantifier-ownMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.quantifier-own"/>
+    </bean>
+    
+    <bean id="synsicris.type.quantifier-own" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.quantifier-own"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.quantityMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.quantityMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.quantityMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.quantity"/>
+    </bean>
+    
+    <bean id="synsicris.quantity" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.quantity"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.business-innovationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.business-innovationMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.business-innovationMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.relation.participantsMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.relation.participantsMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.relation.participantsMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.participantnumber"/>
+    </bean>
+    
+    <bean id="synsicris.participantnumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.participantnumber"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.coverage.placeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.coverage.placeMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.coverage.placeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="oairecerif.event.place"/>
+    </bean>
+    
+    <bean id="oairecerif.event.place" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.event.place"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.coverage.countryMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.coverage.countryMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.coverage.countryMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="oairecerif.event.country"/>
+    </bean>
+    
+    <bean id="oairecerif.event.country" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.event.country"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.project-contributionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.project-contributionMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.project-contributionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.project-contribution"/>
+    </bean>
+    
+    <bean id="synsicris.type.project-contribution" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.project-contribution"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.purposeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.purposeMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.purposeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.purpose"/>
+    </bean>
+    
+    <bean id="synsicris.type.purpose" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.purpose"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.frequencyMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.frequencyMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.frequencyMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.frequency"/>
+    </bean>
+    
+    <bean id="synsicris.type.frequency" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.frequency"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.fulldayMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.fulldayMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.fulldayMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.directionMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.directionMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.directionMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.direction"/>
+    </bean>
+    
+    <bean id="synsicris.type.direction" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.direction"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.coverage.ecologicalMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.coverage.ecologicalMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.coverage.ecologicalMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.ecological"/>
+    </bean>
+    
+    <bean id="synsicris.type.ecological" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.ecological"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.influenceMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.influenceMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.influenceMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.influence"/>
+    </bean>
+    
+    <bean id="synsicris.type.influence" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.influence"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.objectiveMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.objectiveMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.objectiveMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="dc.description"/>
+    </bean>
+    
+    <bean id="dc.description" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.description"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.patenttypeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.patenttypeMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.patenttypeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="dc.type"/>
+    </bean>
+    
+    <bean id="dc.type" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="dc.type"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.process-eventMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.process-eventMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.process-eventMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.process-event-frequency"/>
+    </bean>
+    
+    <bean id="synsicris.type.process-event-frequency" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.process-event-frequency"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.periodMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.periodMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.periodMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.period"/>
+    </bean>
+    
+    <bean id="synsicris.type.period" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.period"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.innovationMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.innovationMigrateAction"/>
+	            <ref bean="dc.type.innovationMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.innovationMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="application" />
+        <property name="metadata" ref="synsicris.type.innovation"/>
+    </bean>
+    
+    <bean id="synsicris.type.innovation" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.innovation"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.innovationMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="innovationpotential" />
+        <property name="metadata" ref="dc.type"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicability1Migrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicability1MigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicability1MigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.applicability1"/>
+    </bean>
+    
+    <bean id="synsicris.description.applicability1" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.applicability1"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicability2Migrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicability2MigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicability2MigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.applicability2"/>
+    </bean>
+    
+    <bean id="synsicris.description.applicability2" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.applicability2"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicability3Migrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicability3MigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicability3MigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.applicability3"/>
+    </bean>
+    
+    <bean id="synsicris.description.applicability3" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.applicability3"/>
+    </bean>
+    
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicability4Migrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicability4MigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicability4MigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.applicability4"/>
+    </bean>
+    
+    <bean id="synsicris.description.applicability4" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.applicability4"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.applicability5Migrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.applicability5MigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.applicability5MigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.description.applicability5"/>
+    </bean>
+    
+    <bean id="synsicris.description.applicability5" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.description.applicability5"/>
+    </bean>
+    
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.srl-trlMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.srl-trlMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.srl-trlMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.srl-trl"/>
+    </bean>
+    
+    <bean id="synsicris.type.srl-trl" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.srl-trl"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.statusMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.statusMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.statusMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.rl-status"/>
+    </bean>
+    
+    <bean id="synsicris.type.rl-status" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.rl-status"/>
+    </bean>
+    
+        <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.baselineMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.type.baselineMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.type.baselineMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.baseline"/>
+    </bean>
+    
+    <bean id="synsicris.type.baseline" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.baseline"/>
+    </bean>
+
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.contributor.donorMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.contributor.donorMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.contributor.donorMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.contributor.donor"/>
+    </bean>
+    
+    <bean id="synsicris.contributor.donor" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.contributor.donor"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.coverage.urban-ruralMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.coverage.urban-ruralMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.coverage.urban-ruralMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.subject.urban-rural"/>
+    </bean>
+    
+    <bean id="synsicris.subject.urban-rural" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.subject.urban-rural"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.dateMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.dateMigrateAction"/>
+	            <ref bean="dc.dateMigrateAction2"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.dateMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="condition" />
+        <property name="metadata" ref="synsicris.date"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.dateMigrateAction2">
+        <property name="action" value="rename" />
+        <property name="entityType" value="step" />
+        <property name="metadata" ref="synsicris.date"/>
+    </bean>
+    
+    <bean id="synsicris.date" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.date"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.accessMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.accessMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.accessMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="synsicris.type.access"/>
+    </bean>
+    
+    <bean id="synsicris.type.access" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.type.access"/>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.description.amountofprizeMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="dc.description.amountofprizeMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="dc.description.amountofprizeMigrateAction">
+        <property name="action" value="rename" />
+        <property name="entityType" value="ALL" />
+        <property name="metadata" ref="oairecerif.amount"/>
+    </bean>
+    
+    <bean id="oairecerif.amount" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="oairecerif.amount"/>
+    </bean>
+
+</beans>

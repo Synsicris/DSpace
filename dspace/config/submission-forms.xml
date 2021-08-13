@@ -4963,7 +4963,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
-    <form name="process_events">
+    <form name="contribution_fundingprogramme">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5004,7 +5004,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title of the award</label>
+          <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>madatory</required>
@@ -5110,7 +5110,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Key information / title of the object or material</label>
+          <label>Title</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
@@ -6693,68 +6693,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Other</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="process_event_type" dc-term="process_event_type">
-      <pair>
-        <displayed-value>face-to-face working meeting</displayed-value>
-        <stored-value>Working meeting</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Web / telephone conference</displayed-value>
-        <stored-value>Web / telephone conference</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Speech / presentation (please do not enter contributions to academic conferences here, but in publications)</displayed-value>
-        <stored-value>Presentation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Workshop</displayed-value>
-        <stored-value>Workshop</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Excursion</displayed-value>
-        <stored-value>Excursion</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Dialogue forum / Round table</displayed-value>
-        <stored-value>Dialogue forum</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Other dialogical group format</displayed-value>
-        <stored-value>Other group dialouge</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Trial / Practical test</displayed-value>
-        <stored-value>Practical test</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Demo (demonstration, performance, show e.g. of Machines, Devices, Equipment)</displayed-value>
-        <stored-value>Demo</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Advisory board or expert panel</displayed-value>
-        <stored-value>Advisory board</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Consulting activitiy</displayed-value>
-        <stored-value>Consulting activitiy</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Interview / Survey</displayed-value>
-        <stored-value>Interview / Survey</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Non-academic course</displayed-value>
-        <stored-value>Non-academic course</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Academic course (e.g. for students or PhDs)</displayed-value>
-        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Other / miscellaneous</displayed-value>
-        <stored-value>Other</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
         <displayed-value>requested</displayed-value>
@@ -7408,10 +7346,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Others</displayed-value>
         <stored-value>other</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>others</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
@@ -7444,8 +7378,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Publication</displayed-value>
         <stored-value>Publication</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
         <displayed-value>Dataset</displayed-value>
         <stored-value>Product</stored-value>
@@ -7488,8 +7420,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Spin-off (incl. association)</displayed-value>
         <stored-value>spinoff</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
         <displayed-value>Application of a solution / change / innovation</displayed-value>
         <stored-value>application</stored-value>
@@ -7498,8 +7428,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Award</displayed-value>
         <stored-value>award</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
       <pair>
         <displayed-value>Others</displayed-value>
         <stored-value>other</stored-value>
@@ -7522,8 +7450,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Advisory service / Consulting</displayed-value>
         <stored-value>Advisory service / Consulting</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="targetgroup-type" dc-term="targetgroup-type">
       <pair>
         <displayed-value>Education</displayed-value>
         <stored-value>Education</stored-value>

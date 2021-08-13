@@ -4972,7 +4972,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         </field>
       </row>
     </form>
-    <form name="process_events">
+    <form name="contribution_fundingprogramme">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6700,68 +6700,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Other</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="process_event_type" dc-term="process_event_type">
-      <pair>
-        <displayed-value>persönliches Arbeitstreffen</displayed-value>
-        <stored-value>Working meeting</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Web- / Telefonkonferenz</displayed-value>
-        <stored-value>Web / telephone conference</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Vortrag / Präsentation (Beiträge zu wissenschaftlichen Konferenzen bitte nicht hier, sondern in Veröffentlichungen erfassen)</displayed-value>
-        <stored-value>Presentation</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Workshop</displayed-value>
-        <stored-value>Workshop</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Exkursion</displayed-value>
-        <stored-value>Excursion</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Dialogforum / Runder Tisch</displayed-value>
-        <stored-value>Dialogue forum</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Anderes dialogisches Gruppenformat</displayed-value>
-        <stored-value>Other group dialouge</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Erprobung / Praxistest</displayed-value>
-        <stored-value>Practical test</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Demo (Vorführung, Performance, Show z.B. von Maschinen, Geräten, Betriebsmitteln)</displayed-value>
-        <stored-value>Demo</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beirat oder Expertengremium</displayed-value>
-        <stored-value>Advisory board</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beratungsaktivität</displayed-value>
-        <stored-value>Consulting activitiy</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Interview / Befragung</displayed-value>
-        <stored-value>Interview / Survey</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kurs für Teilnehmende außerhalb des akademischen Bereichs</displayed-value>
-        <stored-value>Non-academic course</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kurs für Studierende oder Doktoranden</displayed-value>
-        <stored-value>Academic course (e.g. for students or PhDs)</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>Other</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
         <displayed-value>beantragt</displayed-value>
@@ -7415,10 +7353,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <displayed-value>Sonstiges</displayed-value>
         <stored-value>other</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>others</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
@@ -7451,8 +7385,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <displayed-value>Veröffentlichung</displayed-value>
         <stored-value>Publication</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
       <pair>
         <displayed-value>Forschungsdaten</displayed-value>
         <stored-value>Product</stored-value>
@@ -7495,8 +7427,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
         <stored-value>spinoff</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
         <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>application</stored-value>
@@ -7505,8 +7435,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
       <pair>
         <displayed-value>Sonstiges</displayed-value>
         <stored-value>other</stored-value>
@@ -7529,8 +7457,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <displayed-value>Beratung</displayed-value>
         <stored-value>Advisory service / Consulting</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="targetgroup-type" dc-term="targetgroup-type">
       <pair>
         <displayed-value>Bildung</displayed-value>
         <stored-value>Education</stored-value>

@@ -882,7 +882,7 @@
         <node id="ZMB" label="Zambia" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="ZWE" label="Zimbabwe" selectable="false">
+        <node id="ZWE" label="Zimbabwe" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

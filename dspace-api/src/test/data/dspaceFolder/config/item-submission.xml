@@ -23,7 +23,9 @@
         <name-map collection-handle="123456789/language-test-1" submission-name="languagetestprocess"/>
         <name-map collection-handle="123456789/patent-test" submission-name="patent"/>
         <name-map collection-handle="123456789/traditional-cris" submission-name="traditional-cris"/>
+        <name-map collection-handle="123456789/extraction-test" submission-name="extractiontestprocess"/>
         <name-map collection-handle="entityType" submission-name="patent"/>
+        <name-map collection-handle="entityType/projectpartner" submission-name="projectpartners"/>
     </submission-map>
 
 
@@ -37,11 +39,11 @@
     <!-- @id - The unique identifier for this step -->
     <!-- -->
     <!-- <processing-class> - The class which will process all information for -->
-    <!-- this step. The class must extend -->
-    <!-- 'org.dspace.submit.AbstractProcessingStep' -->
-    <!-- (or one of the org.dspace.submit.step.* classes) -->
+    <!-- this step. The class must implement -->
+    <!-- 'org.dspace.app.rest.submit.RestProcessingStep' -->
+    <!-- (or one of the org.dspace.rest.submit.step.* classes) -->
     <!-- This property should reference the full path of the class -->
-    <!-- (e.g. org.dspace.submit.step.MyCustomStep) -->
+    <!-- (e.g. org.dspace.app.rest.submit.step.MyCustomStep) -->
     <!-- -->
     <!-- The following properties are OPTIONAL for each <step>: -->
     <!-- <heading> - References the message key, from the -->
@@ -72,6 +74,21 @@
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
         </step-definition>
+        <step-definition id="traditionalpagethree-cris-open" mandatory="true" opened="true">
+            <heading>submit.progressbar.describe.stepthree</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="traditionalpagethree-cris-collapsed" mandatory="true" opened="false">
+            <heading>submit.progressbar.describe.stepthree</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
+        <step-definition id="projectpartners" mandatory="true">
+            <heading>submit.progressbar.describe.steptwo</heading>
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
         <step-definition id="upload">
             <heading>submit.progressbar.upload</heading>
             <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
@@ -96,11 +113,10 @@
 
 
         <!--Step will be to select a Creative Commons License -->
-        <!-- Uncomment this step to allow the user to select a Creative Commons
-            license -->
-         <step-definition id="cclicense"> <heading>submit.progressbar.CClicense</heading>
+        <step-definition id="cclicense"> <heading>submit.progressbar.CClicense</heading>
             <processing-class>org.dspace.app.rest.submit.step.CCLicenseStep</processing-class>
-            <type>cclicense</type> </step-definition>
+            <type>cclicense</type> 
+        </step-definition>
 
         <!--Step will be to Check for potential duplicate -->
         <step-definition id="detect-duplicate">
@@ -109,9 +125,11 @@
             <type>detect-duplicate</type>
         </step-definition>
 
-        <!--Step will be to Verify/Review everything -->
-        <!-- <step-definition id="verify"> <heading>submit.progressbar.verify</heading> <processing-class>org.dspace.submit.step.VerifyStep</processing-class>
-            <type>verify</type> </step-definition> -->
+        <step-definition id="extractionstep"> 
+            <heading>submit.progressbar.ExtractMetadataStep</heading>
+            <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
+            <type>extract</type>
+        </step-definition>
 
         <!-- Fake Steps to test parsing of all options -->
         <!-- <step mandatory="false"> <heading>fake.submission.readonly</heading>
@@ -214,18 +232,18 @@
             <step id="extraction" />
 
             <!--Step will be to Describe the item. -->
-            <step id="traditionalpageone"/>
+            <step id="traditionalpageone"/>"
             <step id="traditionalpagetwo"/>
 
             <!--Step will be to Upload the item -->
             <step id="upload"/>
             <!-- <step id="upload-with-embargo"/> -->
             <step id="detect-duplicate"/>
+            <!-- <step id="extractionstep"/> -->
 
             <!--Step will be to Sign off on the License -->
             <step id="license"/>
             <step id="cclicense"/>
-            <!-- <step id="verify"/> -->
         </submission-process>
 
         <!--This "traditional" process defines the DEFAULT item submission process -->
@@ -240,6 +258,8 @@
             <!--Step will be to Describe the item. -->
             <step id="traditionalpageone-cris"/>
             <step id="traditionalpagetwo"/>
+            <step id="traditionalpagethree-cris-open"/>
+            <step id="traditionalpagethree-cris-collapsed"/>
 
             <!--Step will be to Upload the item -->
             <step id="upload"/>
@@ -259,6 +279,7 @@
 	      <step id="publication_indexing" />
 	      <step id="publication_bibliographic_details" />
 	      <step id="publication_references" />
+	      <step id="detect-duplicate"/>
 	      <step id="upload" />
 	      <step id="license" />
 	    </submission-process>
@@ -291,6 +312,23 @@
         <submission-process name="modeB">
            <step id="onlyTitle"/>
         </submission-process>
+
+        <submission-process name="extractiontestprocess">
+            <step id="collection"/>
+            <step id="traditionalpageone"/>
+            <step id="traditionalpagetwo"/>
+            <step id="upload"/>
+            <step id="extractionstep"/>
+            <step id="license"/>
+            <step id="cclicense"/>
+        </submission-process>
+        
+	    <submission-process name="projectpartners">
+	      <step id="collection" />
+	      <step id="projectpartners" />
+	      <step id="upload" />
+	      <step id="license" />
+	    </submission-process>
     </submission-definitions>
 
 </item-submission>

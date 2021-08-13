@@ -18,7 +18,7 @@ public class ItemAuthorityServiceImpl implements ItemAuthorityService {
         String solrQuery = "{!lucene q.op=AND df=itemauthoritylookup}";
         if (searchTerm != null) {
             String luceneQuery = ClientUtils.escapeQueryChars(searchTerm.toLowerCase()) + "*";
-            
+
             luceneQuery = luceneQuery.replaceAll("\\\\ "," ");
             String subLuceneQuery = luceneQuery.substring(0,
                     luceneQuery.length() - 1);

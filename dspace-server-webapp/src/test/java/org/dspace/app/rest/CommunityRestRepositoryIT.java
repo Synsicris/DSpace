@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -60,10 +61,12 @@ import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
+import org.dspace.builder.ResourcePolicyBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.ItemService;
@@ -71,6 +74,7 @@ import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
@@ -99,13 +103,24 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     private ResourcePolicyService resoucePolicyService;
 
     @Autowired
-    private ItemService itemService;
+    private ConfigurationService configurationService;
 
     @Autowired
     private GroupService groupService;
 
     @Autowired
-    private ConfigurationService configurationService;
+    private ItemService itemService;
+
+    private Community topLevelCommunityA;
+    private Community subCommunityA;
+    private Community communityB;
+    private Community communityC;
+    private Collection collectionA;
+
+    private EPerson topLevelCommunityAAdmin;
+    private EPerson subCommunityAAdmin;
+    private EPerson collectionAdmin;
+    private EPerson submitter;
 
     @Test
     public void createTest() throws Exception {
@@ -396,6 +411,202 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     }
 
     @Test
+    public void findOneTestWithEmbedsNoPageSize() throws Exception {
+        //We turn off the authorization system in order to create the structure as defined below
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        //1. A community-collection structure with one parent community with 10 sub-communities
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+        Community child0 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 0")
+                                           .build();
+        Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 1")
+                                           .build();
+        Community child2 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 2")
+                                           .build();
+        Community child3 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 3")
+                                           .build();
+        Community child4 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 4")
+                                           .build();
+        Community child5 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 5")
+                                           .build();
+        Community child6 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 6")
+                                           .build();
+        Community child7 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 7")
+                                           .build();
+        Community child8 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 8")
+                                           .build();
+        Community child9 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 9")
+                                           .build();
+
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/communities/" + parentCommunity.getID())
+                                    .param("embed", "subcommunities"))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", CommunityMatcher.matchCommunity(parentCommunity)))
+                   .andExpect(
+                           jsonPath("$._embedded.subcommunities._embedded.subcommunities", Matchers.containsInAnyOrder(
+                                   CommunityMatcher.matchCommunity(child0),
+                                   CommunityMatcher.matchCommunity(child1),
+                                   CommunityMatcher.matchCommunity(child2),
+                                   CommunityMatcher.matchCommunity(child3),
+                                   CommunityMatcher.matchCommunity(child4),
+                                   CommunityMatcher.matchCommunity(child5),
+                                   CommunityMatcher.matchCommunity(child6),
+                                   CommunityMatcher.matchCommunity(child7),
+                                   CommunityMatcher.matchCommunity(child8),
+                                   CommunityMatcher.matchCommunity(child9)
+                           )))
+                   .andExpect(jsonPath("$._links.self.href",
+                                       Matchers.containsString("/api/core/communities/" + parentCommunity.getID())))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.size", is(20)))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.totalElements", is(10)));
+    }
+
+    @Test
+    public void findOneTestWithEmbedsWithPageSize() throws Exception {
+        //We turn off the authorization system in order to create the structure as defined below
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        //1. A community-collection structure with one parent community with 10 sub-communities
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+        Community child0 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 0")
+                                           .build();
+        Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 1")
+                                           .build();
+        Community child2 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 2")
+                                           .build();
+        Community child3 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 3")
+                                           .build();
+        Community child4 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 4")
+                                           .build();
+        Community child5 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 5")
+                                           .build();
+        Community child6 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 6")
+                                           .build();
+        Community child7 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 7")
+                                           .build();
+        Community child8 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 8")
+                                           .build();
+        Community child9 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 9")
+                                           .build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/communities/" + parentCommunity.getID())
+                                    .param("embed", "subcommunities")
+                                    .param("embed.size", "subcommunities=5"))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", CommunityMatcher.matchCommunity(parentCommunity)))
+                   .andExpect(
+                           jsonPath("$._embedded.subcommunities._embedded.subcommunities", Matchers.containsInAnyOrder(
+                                   CommunityMatcher.matchCommunity(child0),
+                                   CommunityMatcher.matchCommunity(child1),
+                                   CommunityMatcher.matchCommunity(child2),
+                                   CommunityMatcher.matchCommunity(child3),
+                                   CommunityMatcher.matchCommunity(child4)
+                           )))
+                   .andExpect(jsonPath("$._links.self.href",
+                                       Matchers.containsString("/api/core/communities/" + parentCommunity.getID())))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.size", is(5)))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.totalElements", is(10)));
+    }
+
+    @Test
+    public void findOneTestWithEmbedsWithInvalidPageSize() throws Exception {
+        //We turn off the authorization system in order to create the structure as defined below
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        //1. A community-collection structure with one parent community with 10 sub-communities
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+        Community child0 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 0")
+                                           .build();
+        Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 1")
+                                           .build();
+        Community child2 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 2")
+                                           .build();
+        Community child3 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 3")
+                                           .build();
+        Community child4 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 4")
+                                           .build();
+        Community child5 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 5")
+                                           .build();
+        Community child6 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 6")
+                                           .build();
+        Community child7 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 7")
+                                           .build();
+        Community child8 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 8")
+                                           .build();
+        Community child9 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 9")
+                                           .build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/communities/" + parentCommunity.getID())
+                                    .param("embed", "subcommunities")
+                                    .param("embed.size", "subcommunities=invalidPage"))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", CommunityMatcher.matchCommunity(parentCommunity)))
+                   .andExpect(
+                           jsonPath("$._embedded.subcommunities._embedded.subcommunities", Matchers.containsInAnyOrder(
+                                   CommunityMatcher.matchCommunity(child0),
+                                   CommunityMatcher.matchCommunity(child1),
+                                   CommunityMatcher.matchCommunity(child2),
+                                   CommunityMatcher.matchCommunity(child3),
+                                   CommunityMatcher.matchCommunity(child4),
+                                   CommunityMatcher.matchCommunity(child5),
+                                   CommunityMatcher.matchCommunity(child6),
+                                   CommunityMatcher.matchCommunity(child7),
+                                   CommunityMatcher.matchCommunity(child8),
+                                   CommunityMatcher.matchCommunity(child9)
+                           )))
+                   .andExpect(jsonPath("$._links.self.href",
+                                       Matchers.containsString("/api/core/communities/" + parentCommunity.getID())))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.size", is(20)))
+                   .andExpect(jsonPath("$._embedded.subcommunities.page.totalElements", is(10)));
+    }
+
+    @Test
     public void findAllNoDuplicatesOnMultipleCommunityTitlesTest() throws Exception {
         context.turnOffAuthorisationSystem();
         List<String> titles = Arrays.asList("First title", "Second title", "Third title", "Fourth title");
@@ -566,7 +777,22 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                                                               child1.getHandle())
                        )
                    )))
-                   .andExpect(jsonPath("$._links.self.href", Matchers.containsString("/api/core/communities")))
+                   .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.self.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.next.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$.page.size", is(1)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
+                   .andExpect(jsonPath("$.page.number", is(0)))
+                   .andExpect(jsonPath("$.page.totalElements", is(2)))
         ;
 
         getClient().perform(get("/api/core/communities")
@@ -586,7 +812,20 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                                                               parentCommunity.getHandle())
                        )
                    )))
-                   .andExpect(jsonPath("$._links.self.href", Matchers.containsString("/api/core/communities")))
+                   .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.prev.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.self.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/communities?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
+                   .andExpect(jsonPath("$.page.number", is(1)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
                    .andExpect(jsonPath("$.page.size", is(1)))
                    .andExpect(jsonPath("$.page.totalElements", is(2)))
         ;
@@ -1767,6 +2006,614 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                             .andExpect(status().isBadRequest());
     }
 
+    public void setUpAuthorizedSearch() throws Exception {
+        super.setUp();
+
+        context.turnOffAuthorisationSystem();
+
+        topLevelCommunityAAdmin = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Jhon", "Brown")
+            .withEmail("topLevelCommunityAAdmin@my.edu")
+            .withPassword(password)
+            .build();
+        topLevelCommunityA = CommunityBuilder.createCommunity(context)
+            .withName("The name of this community is topLevelCommunityA")
+            .withAdminGroup(topLevelCommunityAAdmin)
+            .build();
+
+        subCommunityAAdmin = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Jhon", "Brown")
+            .withEmail("subCommunityAAdmin@my.edu")
+            .withPassword(password)
+            .build();
+        subCommunityA = CommunityBuilder.createCommunity(context)
+            .withName("The name of this sub-community is subCommunityA")
+            .withAdminGroup(subCommunityAAdmin)
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+
+        submitter = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Jhon", "Brown")
+            .withEmail("submitter@my.edu")
+            .withPassword(password)
+            .build();
+        collectionAdmin = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Jhon", "Brown")
+            .withEmail("collectionAdmin@my.edu")
+            .withPassword(password)
+            .build();
+        collectionA = CollectionBuilder.createCollection(context, subCommunityA)
+            .withName("The name of this collection is collectionA")
+            .withAdminGroup(collectionAdmin)
+            .withSubmitterGroup(submitter)
+            .build();
+
+        context.restoreAuthSystemState();
+
+        configurationService.setProperty(
+            "org.dspace.app.rest.authorization.AlwaysThrowExceptionFeature.turnoff", "true");
+    }
+
+    @Test
+    public void testAdminAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .withAdminGroup(admin)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        // Verify the site admin gets all communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(topLevelCommunityA.getName(), topLevelCommunityA.getID(),
+                    topLevelCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle()),
+                CommunityMatcher.matchProperties(communityC.getName(), communityC.getID(), communityC.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+    }
+
+    @Test
+    public void testCommunityAdminAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .withAdminGroup(topLevelCommunityAAdmin)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is named topLevelCommunityC")
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(topLevelCommunityAAdmin.getEmail(), password);
+
+        // Verify the community admin gets all the communities he's admin for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(topLevelCommunityA.getName(), topLevelCommunityA.getID(),
+                    topLevelCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubCommunityAdminAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        /**
+         * The Community/Collection structure for this test:
+         *
+         * topLevelCommunityA
+         * ├── subCommunityA
+         * |   └── collectionA
+         * ├── communityB
+         * └── communityC
+         */
+        context.turnOffAuthorisationSystem();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .withAdminGroup(subCommunityAAdmin)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(subCommunityAAdmin.getEmail(), password);
+
+        // Verify the community admin gets all the communities he's admin for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testCollectionAdminAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(collectionAdmin.getEmail(), password);
+
+        // Verify the collection admin doesn't have any matches for communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubmitterAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(submitter.getEmail(), password);
+
+        // Verify the submitter doesn't have any matches for communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubGroupOfAdminGroupAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        GroupBuilder.createGroup(context)
+            .withName("adminSubGroup")
+            .withParent(groupService.findByName(context, Group.ADMIN))
+            .addMember(eperson)
+            .build();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        // Verify the site admins' subgroups members get all communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(topLevelCommunityA.getName(), topLevelCommunityA.getID(),
+                    topLevelCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle()),
+                CommunityMatcher.matchProperties(communityC.getName(), communityC.getID(), communityC.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+    }
+
+    @Test
+    public void testSubGroupOfCommunityAdminGroupAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        GroupBuilder.createGroup(context)
+            .withName("communityAdminSubGroup")
+            .withParent(groupService.findByName(context, "COMMUNITY_" + topLevelCommunityA.getID() + "_ADMIN"))
+            .addMember(eperson)
+            .build();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .build();
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withDspaceObject(communityB)
+            .withAction(Constants.ADMIN)
+            .withGroup(groupService.findByName(context, "COMMUNITY_" + topLevelCommunityA.getID() + "_ADMIN"))
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        // Verify the community admins' subgroup users get all the communities he's admin for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(topLevelCommunityA.getName(), topLevelCommunityA.getID(),
+                    topLevelCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubGroupOfSubCommunityAdminGroupAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        GroupBuilder.createGroup(context)
+            .withName("communityAdminSubGroup")
+            .withParent(groupService.findByName(context, "COMMUNITY_" + subCommunityA.getID() + "_ADMIN"))
+            .addMember(eperson)
+            .build();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withDspaceObject(communityB)
+            .withAction(Constants.ADMIN)
+            .withGroup(groupService.findByName(context, "COMMUNITY_" + subCommunityA.getID() + "_ADMIN"))
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        // Verify the sub-community admins' subgroup users get all the communities he's admin for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(subCommunityA.getName(), subCommunityA.getID(),
+                    subCommunityA.getHandle()),
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
+                CommunityMatcher.matchProperties(communityB.getName(), communityB.getID(), communityB.getHandle())
+            )));
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubGroupOfCollectionAdminGroupAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        GroupBuilder.createGroup(context)
+            .withName("collectionAdminSubGroup")
+            .withParent(groupService.findByName(context, "COLLECTION_" + collectionA.getID() + "_ADMIN"))
+            .addMember(eperson)
+            .build();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        Collection collectionB = CollectionBuilder.createCollection(context, communityB)
+            .withName("collectionB")
+            .build();
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withDspaceObject(collectionB)
+            .withAction(Constants.ADMIN)
+            .withGroup(groupService.findByName(context, "COLLECTION_" + collectionA.getID() + "_ADMIN"))
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        // Verify the collection admins' subgroup members don't have any matches for communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testSubGroupOfSubmitterGroupAuthorizedSearch() throws Exception {
+        setUpAuthorizedSearch();
+
+        context.turnOffAuthorisationSystem();
+        GroupBuilder.createGroup(context)
+            .withName("collectionAdminSubGroup")
+            .withParent(groupService.findByName(context, "COLLECTION_" + collectionA.getID() + "_SUBMIT"))
+            .addMember(eperson)
+            .build();
+        communityB = CommunityBuilder.createCommunity(context)
+            .withName("topLevelCommunityB is a very original name")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        Collection collectionB = CollectionBuilder.createCollection(context, communityB)
+            .withName("collectionB")
+            .build();
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withDspaceObject(collectionB)
+            .withAction(Constants.ADD)
+            .withGroup(groupService.findByName(context, "COLLECTION_" + collectionA.getID() + "_SUBMIT"))
+            .build();
+        communityC = CommunityBuilder.createCommunity(context)
+            .withName("the last community is topLevelCommunityC")
+            .addParentCommunity(context, topLevelCommunityA)
+            .build();
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        // Verify an ePerson in a subgroup of submitter group doesn't have any matches for communities
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify the search only shows dso's which according to the query
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityB.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+
+        // Verify that a query doesn't show dso's which the user doesn't have rights for
+        getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized")
+            .param("query", communityC.getName()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.communities").doesNotExist());
+    }
+
+    @Test
+    public void testAdminAuthorizedSearchUnauthenticated() throws Exception {
+        // Verify a non-authenticated user can't use this function
+        getClient().perform(get("/api/core/communities/search/findAdminAuthorized"))
+            .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    public void findAllSearchTopEmbeddedPaginationTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .withLogo("ThisIsSomeDummyText")
+                                          .build();
+
+        Collection col = CollectionBuilder.createCollection(context, parentCommunity)
+                                          .withName("Collection 1").build();
+
+        Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withName("Collection 2").build();
+
+        CommunityBuilder.createCommunity(context)
+                        .withName("Parent Community 2")
+                        .withLogo("SomeTest").build();
+
+        Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community").build();
+
+        Community child2 = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("Sub Community 2").build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/communities/search/top")
+                   .param("size", "1")
+                   .param("embed", "subcommunities")
+                   .param("embed", "collections")
+                   .param("embed.size", "subcommunities=1")
+                   .param("embed.size", "collections=1"))
+                   .andExpect(status().isOk())
+                   .andExpect(content().contentType(contentType))
+                   .andExpect(jsonPath("$._embedded.communities", Matchers.contains(
+                                       CommunityMatcher.matchCommunity(parentCommunity))))
+                    // Verify subcommunities
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._embedded.subcommunities",
+                              Matchers.contains(CommunityMatcher.matchCommunity(child1))))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._links.self.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/subcommunities?size=1")))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._links.next.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/subcommunities?page=1&size=1")))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._links.last.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/subcommunities?page=1&size=1")))
+                    // Verify collections
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._embedded.collections",
+                              Matchers.contains(CollectionMatcher.matchCollection(col))))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._links.self.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/collections?size=1")))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._links.next.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/collections?page=1&size=1")))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._links.last.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/collections?page=1&size=1")))
+
+                   .andExpect(jsonPath("$._links.self.href",
+                              Matchers.containsString("/api/core/communities/search/top?size=1")))
+                   .andExpect(jsonPath("$._links.first.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=0&size=1")))
+                   .andExpect(jsonPath("$._links.next.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=1&size=1")))
+                   .andExpect(jsonPath("$._links.last.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=1&size=1")))
+                   .andExpect(jsonPath("$.page.size", is(1)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
+                   .andExpect(jsonPath("$.page.totalElements", is(2)));
+
+        getClient().perform(get("/api/core/communities/search/top")
+                   .param("size", "1")
+                   .param("embed", "subcommunities")
+                   .param("embed", "collections")
+                   .param("embed.size", "subcommunities=2")
+                   .param("embed.size", "collections=2"))
+                   .andExpect(status().isOk())
+                   .andExpect(content().contentType(contentType))
+                   .andExpect(jsonPath("$._embedded.communities", Matchers.contains(
+                                       CommunityMatcher.matchCommunity(parentCommunity))))
+                    // Verify subcommunities
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._embedded.subcommunities",
+                              Matchers.containsInAnyOrder(CommunityMatcher.matchCommunity(child1),
+                                                          CommunityMatcher.matchCommunity(child2)
+                                                          )))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.subcommunities._links.self.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/subcommunities?size=2")))
+                    // Verify collections
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._embedded.collections",
+                              Matchers.containsInAnyOrder(CollectionMatcher.matchCollection(col),
+                                                          CollectionMatcher.matchCollection(col2)
+                                                          )))
+                   .andExpect(jsonPath("$._embedded.communities[0]._embedded.collections._links.self.href",
+                              Matchers.containsString("/api/core/communities/" + parentCommunity.getID()
+                                                    + "/collections?size=2")))
+
+                   .andExpect(jsonPath("$._links.self.href",
+                              Matchers.containsString("/api/core/communities/search/top?size=1")))
+                   .andExpect(jsonPath("$._links.first.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=0&size=1")))
+                   .andExpect(jsonPath("$._links.next.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=1&size=1")))
+                   .andExpect(jsonPath("$._links.last.href",
+                              Matchers.containsString("/api/core/communities/search/top?page=1&size=1")))
+                   .andExpect(jsonPath("$.page.size", is(1)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
+                   .andExpect(jsonPath("$.page.totalElements", is(2)));
+    }
+
+
     @Test
     public void cloneCommunityTest() throws Exception {
         context.turnOffAuthorisationSystem();
@@ -1992,6 +2839,151 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     }
 
     @Test
+    public void test99() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Community cloneTarget = CommunityBuilder.createCommunity(context)
+                                                .withName("Community to hold cloned communities").build();
+
+        Community parentCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Parent Community").build();
+
+        Community child1 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 1").build();
+
+        Community child2 = createSubCommunity(context, parentCommunity)
+                                    .withName("Sub Community 2").build();
+
+        Collection col = CollectionBuilder.createCollection(context, child1)
+                                          .withName("Projects").build();
+
+        Item publicItem1 = ItemBuilder.createItem(context, col)
+                                      .withTitle("project_" + parentCommunity.getID().toString() + "_name")
+                                      .build();
+
+        StringBuilder placeholder = new StringBuilder();
+        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
+
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER,
+                                     null, placeholder.toString());
+
+        Item itemAuthor = ItemBuilder.createItem(context, col)
+                                     .withTitle("Michele, Boychuk")
+                                     .build();
+
+        Item itemAuthor2 = ItemBuilder.createItem(context, col)
+                                      .withTitle("Giorgio, Shultz")
+                                      .build();
+
+        Item itemAuthor3 = ItemBuilder.createItem(context, col)
+                                      .withTitle("Tommaso, Gattari")
+                                      .build();
+
+        ItemBuilder.createItem(context, col)
+                   .withTitle("Title item 2")
+                   .withAuthor("Michele, Boychuk", itemAuthor.getID().toString())
+                   .withAuthor("Giorgio, Shultz", itemAuthor2.getID().toString())
+                   .build();
+
+        ItemBuilder.createItem(context, col)
+                   .withTitle("Title item 3")
+                   .withAuthor("Tommaso, Gattari", itemAuthor3.getID().toString())
+                   .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        try {
+            getClient(tokenAdmin).perform(post("/api/core/communities")
+                     .param("projection", "full")
+                     .param("name", "My new Community")
+                     .param("parent", cloneTarget.getID().toString())
+                     .contentType(MediaType.parseMediaType(org.springframework.data.rest.webmvc.RestMediaTypes
+                     .TEXT_URI_LIST_VALUE))
+                     .content("https://localhost:8080/server//api/core/communities/" + parentCommunity.getID()))
+                     .andExpect(status()
+                     .isCreated())
+                     .andDo(result -> idRef
+                             .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
+                     .andExpect(jsonPath("$", Matchers.allOf(
+                             hasJsonPath("$.name", is("My new Community")),
+                             hasJsonPath("$.id", is(idRef.get().toString())),
+                             hasJsonPath("$.id", not(parentCommunity.getID().toString()))
+                             )));
+
+            cloneTarget = context.reloadEntity(cloneTarget);
+            Community subCommunityOfCloneTarget = cloneTarget.getSubcommunities().get(0);
+            assertEquals(subCommunityOfCloneTarget.getID().toString(), idRef.toString());
+            assertEquals("My new Community", subCommunityOfCloneTarget.getName());
+            assertNotEquals(parentCommunity.getID(), idRef.toString());
+            List<Community> communities = subCommunityOfCloneTarget.getSubcommunities();
+            List<Collection> collections = subCommunityOfCloneTarget.getCollections();
+
+            assertEquals(2, communities.size());
+            assertEquals(0, collections.size());
+            Community firstChild = communities.get(0);
+            Community secondChild = communities.get(1);
+            boolean child1Found = StringUtils.equals(firstChild.getName(), child1.getName())
+                                                     || StringUtils.equals(secondChild.getName(), child1.getName());
+            boolean child2Found = StringUtils.equals(firstChild.getName(), child2.getName())
+                                                     || StringUtils.equals(secondChild.getName(), child2.getName());
+            assertTrue(child1Found);
+            assertTrue(child2Found);
+            assertNotEquals(firstChild.getID(), child1.getID());
+            assertNotEquals(firstChild.getID(), child2.getID());
+            assertEquals(1, firstChild.getCollections().size());
+            assertEquals(0, secondChild.getCollections().size());
+            Collection colProject = firstChild.getCollections().get(0);
+            // check that the new cloned collelction has a new items project
+            assertTrue(checkItems(itemService.findAllByCollection(context, colProject)));
+
+        } finally {
+            CommunityBuilder.deleteCommunity(idRef.get());
+        }
+    }
+
+    private boolean checkItems(Iterator<Item> iterator) {
+        Item author1 = null;
+        Item author2 = null;
+        Item author3 = null;
+        Item item1 = null;
+        Item item2 = null;
+        while (iterator.hasNext()) {
+            Item item =  iterator.next();
+            switch (item.getName()) {
+            case "Michele, Boychuk": author1 = item;
+            continue;
+            case "Giorgio, Shultz" : author2 = item;
+            continue;
+            case "Tommaso, Gattari": author3 = item;
+            continue;
+            case "Title item 2" : item1 = item;
+            continue;
+            case "Title item 3" : item2 = item;
+            continue;
+            default:;
+          }
+        }
+        assertNotNull(author1);
+        assertNotNull(author2);
+        assertNotNull(author3);
+        assertNotNull(item1);
+        assertNotNull(item2);
+        List<MetadataValue> valuesItem1 = itemService.getMetadata(item1, "dc", "contributor", "author", Item.ANY);
+        List<MetadataValue> valuesItem2 = itemService.getMetadata(item2, "dc", "contributor", "author", Item.ANY);
+        assertEquals(2, valuesItem1.size());
+        assertEquals(1, valuesItem2.size());
+        boolean author1Found = StringUtils.equals(valuesItem1.get(0).getAuthority(), author1.getID().toString())
+                            || StringUtils.equals(valuesItem1.get(0).getAuthority(), author2.getID().toString());
+        boolean author2Found = StringUtils.equals(valuesItem1.get(1).getAuthority(), author1.getID().toString())
+                            || StringUtils.equals(valuesItem1.get(1).getAuthority(), author2.getID().toString());
+        boolean author3Found = StringUtils.equals(valuesItem2.get(0).getAuthority(), author3.getID().toString());
+        return (author1Found && author2Found && author3Found);
+    }
+
+    @Test
     public void cloneCommunityUnauthorizedTest() throws Exception {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
@@ -2076,7 +3068,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project",
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER,
                                      null, placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -2130,8 +3123,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertTrue(items.hasNext());
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
-                       "project_" + item.getID().toString() + "_item"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                    ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
             // checking the original collection
@@ -2243,7 +3237,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, "dc", "relation", "project", null,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null,
                                      placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -2295,9 +3290,10 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertTrue(items.hasNext());
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(itemService, item, "cris", "workspace", "shared", "project"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget, "dc", "relation", "project",
-                                        "project_" + item.getID().toString() + "_item"));
+            assertTrue(containeMetadata(itemService, item, "cris", "project", "shared", "project"));
+            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                    ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
         } finally {

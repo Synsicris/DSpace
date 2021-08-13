@@ -63,6 +63,33 @@
                         </bean>
                     </list>
                 </entry>
+                <entry key="parentproject">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="parentprojects-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="parentprojects-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
                 <entry key="project">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
@@ -90,33 +117,6 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="subproject">
-                    <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subprojects-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subprojects-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
-                    </list>
-                </entry>
                 <entry key="person">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
@@ -129,23 +129,18 @@
                             <property name="submissionDefinition" value="persons-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="OWNER" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    OWNER
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="persons-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
                         </bean>
                     </list>
                 </entry>
                 <entry key="spinoff">
-                    <list>
+                    <list>    
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
                             <property name="security">
@@ -414,7 +409,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="cooperation_partner">
+                <entry key="cooperationpartner">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="FULL" />
@@ -423,7 +418,7 @@
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="cooperation_partners-edit" />
+                            <property name="submissionDefinition" value="cooperationpartners-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
@@ -432,7 +427,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="cooperation_partners-edit" />
+                            <property name="submissionDefinition" value="cooperationpartners-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -487,33 +482,6 @@
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="events-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
-                    </list>
-                </entry>
-                <entry key="cooperation_event">
-                    <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="cooperation_events-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="cooperation_events-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -865,6 +833,222 @@
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="workpackages-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="projectpartner">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projectpartners-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projectpartners-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="programme">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="programmes-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="programmes-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="subcontractor">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="subcontractors-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="subcontractors-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="product">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="products-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="products-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="funding">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="funding-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="funding-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="call">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="calls-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="calls-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="fundingobjective">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="fundingobjectives-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="fundingobjectives-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="team">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="team-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="team-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>

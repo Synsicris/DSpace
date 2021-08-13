@@ -65,7 +65,7 @@
         <node id="BI28" label="Berücksichtigung in sonstigen politischen Prozessen" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="BI29" label="Sonstiges" selectable="false">
+        <node id="BI29" label="Sonstiges" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

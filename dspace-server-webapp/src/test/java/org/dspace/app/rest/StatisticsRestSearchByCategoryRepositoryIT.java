@@ -14,6 +14,8 @@ import static org.dspace.app.rest.utils.UsageReportUtils.TOP_COUNTRIES_REPORT_ID
 import static org.dspace.app.rest.utils.UsageReportUtils.TOTAL_DOWNLOADS_REPORT_ID;
 import static org.dspace.app.rest.utils.UsageReportUtils.TOTAL_VISITS_PER_MONTH_REPORT_ID;
 import static org.dspace.app.rest.utils.UsageReportUtils.TOTAL_VISITS_REPORT_ID;
+import static org.dspace.app.rest.utils.UsageReportUtils.TOTAL_VISITS_REPORT_ID_RELATION_PERSON_PROJECTS;
+import static org.dspace.app.rest.utils.UsageReportUtils.TOTAL_VISITS_REPORT_ID_RELATION_PERSON_RESEARCHOUTPUTS;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -133,11 +135,11 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
         site = SiteBuilder.createSite(context).build();
         communityCRIS = CommunityBuilder.createCommunity(context).build();
         collectionPeople = CollectionBuilder.createCollection(context, communityCRIS).withName("People")
-                .withRelationshipType("Person").build();
+                .withEntityType("Person").build();
         collectionProjects = CollectionBuilder.createCollection(context, communityCRIS).withName("Projects")
-                .withRelationshipType("Project").build();
+                .withEntityType("Project").build();
         collectionPublications = CollectionBuilder.createCollection(context, communityCRIS).withName("Publications")
-                .withRelationshipType("Publication").build();
+                .withEntityType("Publication").build();
 
         // person 1 has project 1, 2, publication 1
         // person 2 has project 3, publication 1, 2
@@ -362,16 +364,16 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
             .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
                 UsageReportMatcher
                     .matchUsageReport(publicationItem.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(publicationItem, 13))),
+                            TOTAL_VISITS_REPORT_ID, "table", Arrays.asList(getPoint(publicationItem, 13))),
                 UsageReportMatcher
                     .matchUsageReport(publicationItem.getID() + "_" + TOTAL_VISITS_PER_MONTH_REPORT_ID,
-                            TOTAL_VISITS_PER_MONTH_REPORT_ID),
+                            TOTAL_VISITS_PER_MONTH_REPORT_ID, "chart.line"),
                 UsageReportMatcher
                     .matchUsageReport(publicationItem.getID() + "_" + TOP_COUNTRIES_REPORT_ID,
                             TOP_COUNTRIES_REPORT_ID),
                 UsageReportMatcher
                     .matchUsageReport(publicationItem.getID() + "_" + TOP_CITIES_REPORT_ID,
-                            TOP_CITIES_REPORT_ID),
+                            TOP_CITIES_REPORT_ID, "table"),
                 UsageReportMatcher
                     .matchUsageReport(publicationItem.getID() + "_" + TOTAL_DOWNLOADS_REPORT_ID,
                             TOTAL_DOWNLOADS_REPORT_ID, Arrays.asList(getDownloadPoint(bitstreamVisited, 3)))
@@ -626,10 +628,10 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItem(
                 UsageReportMatcher
-                    .matchUsageReport(personItem.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(personItem, 1)))
+                    .matchUsageReport(personItem.getID() + "_" + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_PROJECTS,
+                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(personItem, 7)))
             )));
         getClient(adminToken)
             .perform(get("/api/statistics/usagereports/search/object")
@@ -638,10 +640,12 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItem(
                 UsageReportMatcher
-                    .matchUsageReport(personItem.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(personItem, 1)))
+                                .matchUsageReport(
+                                        personItem.getID() + "_"
+                                                + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_RESEARCHOUTPUTS,
+                                                TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(personItem, 13)))
             )));
         getClient(adminToken)
             .perform(get("/api/statistics/usagereports/search/object")
@@ -650,7 +654,7 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItems(
                 UsageReportMatcher
                     .matchUsageReport(person2Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
                             TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person2Item, 3))),
@@ -671,10 +675,10 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItem(
                 UsageReportMatcher
-                    .matchUsageReport(person2Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person2Item, 3)))
+                    .matchUsageReport(person2Item.getID() + "_" + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_PROJECTS,
+                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person2Item, 0)))
             )));
         getClient(adminToken)
             .perform(get("/api/statistics/usagereports/search/object")
@@ -683,10 +687,10 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
-                UsageReportMatcher
-                    .matchUsageReport(person2Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person2Item, 3)))
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItems(
+                        UsageReportMatcher.matchUsageReport(
+                                person2Item.getID() + "_" + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_RESEARCHOUTPUTS,
+                                TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person2Item, 28)))
             )));
         getClient(adminToken)
             .perform(get("/api/statistics/usagereports/search/object")
@@ -695,7 +699,7 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItems(
                 UsageReportMatcher
                     .matchUsageReport(person3Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
                             TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person3Item, 0))),
@@ -716,10 +720,10 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
-                UsageReportMatcher
-                    .matchUsageReport(person3Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person3Item, 0)))
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItem(
+                        UsageReportMatcher.matchUsageReport(
+                                person3Item.getID() + "_" + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_PROJECTS,
+                                TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person3Item, 0)))
             )));
         getClient(adminToken)
             .perform(get("/api/statistics/usagereports/search/object")
@@ -728,10 +732,10 @@ public class StatisticsRestSearchByCategoryRepositoryIT extends AbstractControll
                     )
             // ** THEN **
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.usagereports", Matchers.containsInAnyOrder(
-                UsageReportMatcher
-                    .matchUsageReport(person3Item.getID() + "_" + TOTAL_VISITS_REPORT_ID,
-                            TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person3Item, 0)))
+            .andExpect(jsonPath("$._embedded.usagereports", Matchers.hasItem(
+                        UsageReportMatcher.matchUsageReport(
+                                person3Item.getID() + "_" + TOTAL_VISITS_REPORT_ID_RELATION_PERSON_RESEARCHOUTPUTS,
+                                TOTAL_VISITS_REPORT_ID, Arrays.asList(getPoint(person3Item, 17)))
             )));
     }
 

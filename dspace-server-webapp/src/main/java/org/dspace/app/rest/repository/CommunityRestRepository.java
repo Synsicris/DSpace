@@ -6,8 +6,6 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.repository;
-
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.dspace.app.rest.Parameter;
 import org.dspace.app.rest.SearchRestMethod;
 import org.dspace.app.rest.exception.DSpaceBadRequestException;
 import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
@@ -47,6 +46,7 @@ import org.dspace.discovery.SearchServiceException;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -204,6 +204,22 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         }
     }
 
+    @PreAuthorize("hasAuthority('AUTHENTICATED')")
+    @SearchRestMethod(name = "findAdminAuthorized")
+    public Page<CommunityRest> findAdminAuthorized (
+        Pageable pageable, @Parameter(value = "query") String query) {
+        try {
+            Context context = obtainContext();
+            List<Community> communities = authorizeService.findAdminAuthorizedCommunity(context, query,
+                Math.toIntExact(pageable.getOffset()),
+                Math.toIntExact(pageable.getPageSize()));
+            long tot = authorizeService.countAdminAuthorizedCommunity(context, query);
+            return converter.toRestPage(communities, pageable, tot , utils.obtainProjection());
+        } catch (SearchServiceException | SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
     @Override
     @PreAuthorize("hasPermission(#id, 'COMMUNITY', 'WRITE')")
     protected void patch(Context context, HttpServletRequest request, String apiCategory, String model, UUID id,
@@ -352,7 +368,8 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         String grants = req.getParameter("grants");
 
         if (StringUtils.isNoneEmpty(grants) &&
-            (!StringUtils.equals(grants, "project") & !StringUtils.equals(grants, "subproject"))) {
+            (!StringUtils.equals(grants, ProjectConstants.PARENTPROJECT) &&
+                    !StringUtils.equals(grants, ProjectConstants.PROJECT))) {
             throw new UnprocessableEntityException("");
         }
 

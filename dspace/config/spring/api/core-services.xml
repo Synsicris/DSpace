@@ -22,6 +22,7 @@
     <bean class="org.dspace.app.util.MetadataExposureServiceImpl"/>
     <bean class="org.dspace.app.util.OpenSearchServiceImpl"/>
     <bean class="org.dspace.app.util.WebAppServiceImpl"/>
+    <bean class="org.dspace.app.util.DSpaceObjectUtilsImpl"/>
 
     <bean class="org.dspace.authenticate.AuthenticationServiceImpl"/>
 
@@ -51,6 +52,7 @@
     <bean class="org.dspace.content.SupervisedItemServiceImpl"/>
     <bean class="org.dspace.content.WorkspaceItemServiceImpl"/>
     <bean class="org.dspace.content.RelationshipServiceImpl"/>
+    <bean class="org.dspace.content.RelationshipPlacesIndexingServiceImpl"/>
     <bean class="org.dspace.content.EntityTypeServiceImpl"/>
     <bean class="org.dspace.content.EntityServiceImpl"/>
     <bean class="org.dspace.content.RelationshipTypeServiceImpl"/>
@@ -63,7 +65,17 @@
     <bean class="org.dspace.content.authority.MetadataAuthorityServiceImpl" lazy-init="true"/>
 
     <bean class="org.dspace.app.profile.ResearcherProfileServiceImpl"/>
-
+    
+    <bean class="org.dspace.app.profile.OrcidMetadataCopyingAction"/>
+    <bean class="org.dspace.app.profile.OrcidProfileEnricher"/>
+    <bean class="org.dspace.content.EasyonlineimportServiceImpl">
+        <constructor-arg>
+		 <map>
+		    <entry key="Project" value-ref="projectEasyLiveImportItemBuilder"/>
+		    <entry key="projectpartner" value-ref="projectPartnersEasyLiveImportItemBuilder"/>
+		 </map>
+		</constructor-arg>
+	</bean>
     <!-- Ensure PluginService is initialized properly via init() method -->
     <bean class="org.dspace.core.LegacyPluginServiceImpl" init-method="init"/>
     <bean class="org.dspace.core.LicenseServiceImpl"/>
@@ -75,9 +87,6 @@
 			</list>
 		</property>
 	</bean>
-
-    <!-- Ensure WorkflowCuratorService is initialized properly via init() method -->
-    <bean class="org.dspace.curate.WorkflowCuratorServiceImpl" init-method="init"/>
 
     <bean class="org.dspace.disseminate.CitationDocumentServiceImpl"/>
 
@@ -148,14 +157,12 @@
     <bean class="org.dspace.layout.service.impl.CrisLayoutTabServiceImpl"/>
     <bean class="org.dspace.layout.service.impl.CrisLayoutBoxServiceImpl"/>
     <bean class="org.dspace.layout.service.impl.CrisLayoutFieldServiceImpl"/>
+    <bean class="org.dspace.layout.service.impl.CrisLayoutMetadataGroupServiceImpl"/>
     <bean class="org.dspace.layout.service.impl.CrisLayoutMetric2BoxServiceImpl"/>
 
     <bean class="org.dspace.layout.service.impl.LayoutSecurityServiceImpl"/>
     <bean class="org.dspace.layout.service.impl.CrisLayoutBoxAccessServiceImpl"/>
     <bean class="org.dspace.layout.service.impl.CrisLayoutTabAccessServiceImpl"/>
-
-    <bean class="org.dspace.app.orcid.service.impl.OrcidQueueServiceImpl" />
-    <bean class="org.dspace.app.orcid.service.impl.OrcidHistoryServiceImpl" />
     
     <bean class="org.dspace.content.security.CrisSecurityServiceImpl" />
 

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="COAR3 2021-05-27">
+  <isComposedBy>
+    <node id="ID001" label="Artikel" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID002" label="wissenschaftlicher Artikel" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID003" label="Softwareartikel" selectable="true">
+            <hasNote>Ein Software-Papier sollte die Begründung für die Entwicklung des Werkzeugs und Einzelheiten des für seine Konstruktion verwendeten Codes enthalten.</hasNote>
+            </node>
+            <node id="ID004" label="Übersichtsartikel" selectable="true">
+            <hasNote>Sekundärquelle, d.h. er wird über andere Artikel geschrieben und berichtet nicht über eigene Originalforschung.</hasNote>
+            </node>
+            <node id="ID005" label="Data Paper" selectable="true">
+            <hasNote>dokumentiert und beschreibt Forschungsdaten, um die Verbreitung und Nachnutzung zu erleichtern. Es informiert über die Datenerhebung, Charakteristiken und Funktionen sowie potenzielle Nachnutzungsmöglichkeiten.</hasNote>
+            </node>
+            <node id="ID006" label="Forschungsartikel" selectable="true">
+            <hasNote>Primärquelle, d.h. er berichtet über die Methoden und Ergebnisse einer von den Autoren durchgeführten Originalstudie.</hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID007" label="Artikel in einer Fachzeitschrift (nicht-wissenschaftlich)" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID008" label="Zeitungsartikel" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID009" label="Bericht / Report" selectable="true">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID010" label="Bericht an Förderorganisation" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID011" label="interner Bericht" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID012" label="Forschungsbericht" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID013" label="Memorandum" selectable="true">
+        <hasNote>Notiz, Merker</hasNote>
+        </node>
+        <node id="ID014" label="Policy report" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID015" label="Projektzusammenfassung (Deliverable)" selectable="true">
+        <hasNote>" Outcome " als Ergebnis eines Projekts, das an einen Kunden (z.B. Geldgeber) geliefert werden soll. Beispiele für ein Ergebnis sind ein Bericht, ein Dokument, ein Arbeitspaket oder jeder andere Baustein eines Gesamtprojekts.</hasNote>
+          <isComposedBy>
+            <node id="ID016" label="Projektkarte" selectable="true">
+            <hasNote>BLE-interner Typ</hasNote>
+            </node>
+            <node id="ID017" label="Praxismerkblatt" selectable="true">
+            <hasNote>BLE-interner Typ</hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID018" label="Technischer Bericht" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID019" label="sonstiger Bericht" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID020" label="Konferenzbeitrag" selectable="true">
+    <hasNote>Ein Beitrag, der für eine Konferenz eingereicht und dem Publikum präsentiert wird. Der Beitrag wird in einem Tagungsband veröffentlicht.</hasNote>
+    </node>
+    <node id="ID021" label="Buchkapitel / Teil einer Monographie" selectable="true">
+    <hasNote>Teil eines Buches oder einer Monographie, i.d.R. mit eigenem Titel oder Nummer</hasNote>
+    </node>
+    <node id="ID022" label="Datensatz" selectable="true">
+    <hasNote>Eine Sammlung von zusammenhängenden Daten, die in einer definierten Struktur kodiert sind.</hasNote>
+    </node>
+    <node id="ID023" label="Bilddokument" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID024" label="Film- / Videodokument" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID025" label="Tondokument" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID026" label="Poster" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID027" label="schriftliche Abschlussarbeit" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID028" label="Dissertation oder Habilitation" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID029" label="Abschlussarbeit (Master)" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID030" label="Abschlussarbeit (Bachelor)" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="ID031" label="Software" selectable="true">
+    <hasNote>Ein Computerprogramm in Quellcode (Text) oder kompilierter Form.</hasNote>
+    </node>
+    <node id="ID032" label="Webseite" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="ID033" label="Gesamtauswahl" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="ID034" label="Interactive resource" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID035" label="Webseite" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID036" label="Bild" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID037" label="Bewegtbild" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID038" label="Video" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID039" label="Einzelbild" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID040" label="Anderes" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID041" label="Software" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID042" label="Forschungssoftware" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID043" label="Workflow" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="ID044" label="Kartographisches Material" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID045" label="Karte" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID046" label="Tondokument" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID047" label="musikalische Komposition" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+        <node id="ID048" label="Text" selectable="true">
+        <hasNote></hasNote>
+          <isComposedBy>
+            <node id="ID049" label="Entscheidungs- oder Urteilsanmerkung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID050" label="Bibliographie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID051" label="Buch" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID052" label="Buchkapitel / Teil einer Monographie" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID053" label="Konferenzveröffentlichung" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID054" label="Tagungsband" selectable="true">
+                <hasNote></hasNote>
+                  <isComposedBy>
+                    <node id="ID055" label="Konferenzbeitrag" selectable="true">
+                    <hasNote></hasNote>
+                    </node>
+                    <node id="ID056" label="Konferenzposter" selectable="true">
+                    <hasNote></hasNote>
+                    </node>
+                  </isComposedBy>
+                </node>
+                <node id="ID057" label="Konferenzbeitrag nicht im Tagungsband" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID058" label="Konferenzposter nicht im Tagungsband" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID059" label="Vorlesung" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID060" label="Brief" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID061" label="Periodikum" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID062" label="Zeitschrift" selectable="true">
+                <hasNote></hasNote>
+                  <isComposedBy>
+                    <node id="ID063" label="Zeitschriftenbeitrag" selectable="true">
+                    <hasNote></hasNote>
+                      <isComposedBy>
+                        <node id="ID064" label="wissenschaftlicher Artikel" selectable="true">
+                        <hasNote></hasNote>
+                          <isComposedBy>
+                            <node id="ID065" label="Data paper" selectable="true">
+                            <hasNote></hasNote>
+                            </node>
+                            <node id="ID066" label="Übersichtsartikel" selectable="true">
+                            <hasNote></hasNote>
+                            </node>
+                            <node id="ID067" label="Forschungsartikel" selectable="true">
+                            <hasNote></hasNote>
+                            </node>
+                            <node id="ID068" label="Corrigendum" selectable="true">
+                            <hasNote></hasNote>
+                            </node>
+                            <node id="ID069" label="Software paper" selectable="true">
+                            <hasNote></hasNote>
+                            </node>
+                          </isComposedBy>
+                        </node>
+                        <node id="ID070" label="Vorwort" selectable="true">
+                        <hasNote></hasNote>
+                        </node>
+                        <node id="ID071" label="Leserbrief" selectable="true">
+                        <hasNote></hasNote>
+                        </node>
+                      </isComposedBy>
+                    </node>
+                  </isComposedBy>
+                    </node>
+                <node id="ID072" label="Zeitung" selectable="true">
+                <hasNote></hasNote>
+                  <isComposedBy>
+                    <node id="ID073" label="Zeitungsartikel" selectable="true">
+                    <hasNote></hasNote>
+                    </node>
+                  </isComposedBy>
+                </node>
+                <node id="ID074" label="Informationszeitschrift" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID075" label="Preprint" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID076" label="Report" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID077" label="Teilbericht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID078" label="interner Bericht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID079" label="Memorandum" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID080" label="anderer Bericht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID081" label="Policy Report" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID082" label="Project deliverable" selectable="true">
+                <hasNote></hasNote>
+                  <isComposedBy>
+                    <node id="ID083" label="Datenmanagementplan" selectable="true">
+                    <hasNote></hasNote>
+                    </node>
+                  </isComposedBy>
+                </node>
+                <node id="ID084" label="Bericht an Förderorganisation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID085" label="Forschungsbericht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID086" label="Technischer Bericht" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID087" label="Expose" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID088" label="Rezension" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID089" label="Buchrezension" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID090" label="Technische Dokumentation" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID091" label="Arbeitspapier / Working paper" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID092" label="schriftliche Abschlussarbeit" selectable="true">
+            <hasNote></hasNote>
+              <isComposedBy>
+                <node id="ID093" label="Bachelorarbeit" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID094" label="Dissertation oder Habilitation" selectable="true">
+                <hasNote></hasNote>
+                </node>
+                <node id="ID095" label="Masterarbeit" selectable="true">
+                <hasNote></hasNote>
+                </node>
+              </isComposedBy>
+            </node>
+            <node id="ID096" label="Musiknotation" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID097" label="Blogbeitrag" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID098" label="Handschrift" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID099" label="Lernunterlagen" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID100" label="klinischer Versuch" selectable="true">
+            <hasNote></hasNote>
+            </node>
+            <node id="ID101" label="klinische Studie" selectable="true">
+            <hasNote></hasNote>
+            </node>
+          </isComposedBy>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

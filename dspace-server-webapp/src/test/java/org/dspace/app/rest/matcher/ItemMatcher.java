@@ -97,7 +97,7 @@ public class ItemMatcher {
             //Check core metadata (the JSON Path expression evaluates to a collection so we have to use contains)
             hasJsonPath("$.metadata", allOf(
                               matchMetadata("dc.title", title),
-                              matchMetadata("cris.workspace.shared", shared),
+                              matchMetadata("cris.project.shared", shared),
                               matchMetadata("cris.policy.group", policyGroup)
                               )),
 

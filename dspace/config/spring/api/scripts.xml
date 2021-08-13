@@ -31,6 +31,11 @@
                   value="org.dspace.curate.CurationCli"/>
     </bean>
 
+    <bean id="submission-forms-migrate" class="org.dspace.submit.migration.SubmissionFormsMigrationCliScriptConfiguration">
+        <property name="description" value="Script for migrating submission forms to DSpace 7"/>
+        <property name="dspaceRunnableClass" value="org.dspace.submit.migration.SubmissionFormsMigration"/>
+    </bean>
+
     <bean id="metadata-deletion" class="org.dspace.app.bulkedit.MetadataDeletionCliScriptConfiguration">
         <property name="description" value="Delete all the values of the specified metadata field"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.bulkedit.MetadataDeletionCli"/>
@@ -61,6 +66,10 @@
         <property name="dspaceRunnableClass" value="org.dspace.metrics.UpdateCrisMetricsWithExternalSourceCli"/>
     </bean>
 
+    <bean id="store-metrics" class="org.dspace.metrics.StoreViewDownloadsCrisMetricsCliScriptConfiguration">
+        <property name="description" value="Perform the metrics storage"/>
+        <property name="dspaceRunnableClass" value="org.dspace.metrics.StoreViewDownloadsCrisMetricsCli"/>
+    </bean>
     <bean id="update-metrics-in-solr" class="org.dspace.metrics.UpdateCrisMetricsInSolrDocCliScriptConfiguration">
         <property name="description" value="Perform the metrics update in SOLR documents"/>
         <property name="dspaceRunnableClass" value="org.dspace.metrics.UpdateCrisMetricsInSolrDocCli"/>
@@ -74,6 +83,21 @@
     <bean id="import-nbevents" class="org.dspace.app.nbevent.NBEventsCliScriptConfiguration" primary="true">
         <property name="description" value="Import new openAIRE notification broker events"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.nbevent.NBEventsRunnableCli"/>
+    </bean>
+
+    <bean id="import-publications" class="org.dspace.script2externalservices.CreateWorkspaceItemWithExternalSourceCliScriptConfiguration">
+        <property name="description" value="Perform the creating of workspace item using external sources (i.e. Scopus, WebOfScience)"/>
+        <property name="dspaceRunnableClass" value="org.dspace.script2externalservices.CreateWorkspaceItemWithExternalSourceCli"/>
+    </bean>
+
+    <bean id="orcid-bulk-push" class="org.dspace.app.orcid.script.OrcidBulkPushScriptConfiguration">
+        <property name="description" value="Perform the bulk synchronization of all the BATCH configured ORCID entities placed in the ORCID queue"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.orcid.script.OrcidBulkPush"/>
+    </bean>
+
+    <bean id="orcid-bulk-pull" class="org.dspace.app.orcid.script.OrcidBulkPullScriptConfiguration">
+        <property name="description" value="Perform a bulk pull from the ORCID registry for all the profiles with an ORCID id set"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.orcid.script.OrcidBulkPull"/>
     </bean>
 
     <bean id="download-report" class="org.dspace.reports.jasper.DownloadReportFromExternalSourceCliScriptConfiguration">

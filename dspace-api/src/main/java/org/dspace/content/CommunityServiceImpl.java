@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -49,6 +50,7 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
 import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -102,6 +104,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Autowired
     protected InstallItemService installItemService;
 
+    private String matadataToSkip[] = new String[] {
+        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
     protected CommunityServiceImpl() {
         super();
 
@@ -714,20 +718,25 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         throws SQLException, AuthorizeException {
         Assert.notNull(name, "The name of the new community must be provided");
 
+        List<Item> newItems = new ArrayList<Item>();
+        Map<UUID, CloneDTO> oldItem2clonedItem = new HashMap<UUID, CloneDTO>();
         Community newCommunity = create(parent, context);
         UUID rootCommunityUUID = newCommunity.getID();
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, "dc", "relation", "project", null);
+        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name, grants);
+                                      name, grants, newItems, oldItem2clonedItem);
         setCommunityName(context, newCommunity, name);
+        updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
     }
 
     private Community cloneCommunity(Context context, Community communityToClone, Community clone,
-            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants)
+            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem)
             throws SQLException, AuthorizeException {
 
         List<Community> subCommunities = communityToClone.getSubcommunities();
@@ -738,7 +747,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
             cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                           newName, grants);
+                           newName, grants, newItems, oldItem2clonedItem);
         }
 
         for (Collection collection : subCollections) {
@@ -746,27 +755,49 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
             cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
-                                 newName, grants);
+                                 newName, grants,newItems, oldItem2clonedItem);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
         }
 
         return clone;
     }
 
+    private void updateClonedItems(Context context, List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) {
+        for (Item item : newItems) {
+            for (MetadataValue metadataValue : item.getMetadata()) {
+                if (StringUtils.isNotBlank(metadataValue.getAuthority())) {
+                    updateClone(metadataValue, oldItem2clonedItem.get(UUID.fromString(metadataValue.getAuthority())));
+                }
+
+            }
+        }
+    }
+
+    private void updateClone(MetadataValue metadataValue, CloneDTO cloneDTO) {
+        if (Objects.nonNull(cloneDTO)) {
+            metadataValue.setAuthority(cloneDTO.getItemUuid().toString());
+            metadataValue.setValue(cloneDTO.getTitle());
+        }
+    }
+
     private void cloneCollectionItems(Context context, Collection newCollection, Collection collection,
-            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants) throws SQLException {
+            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) throws SQLException {
         Iterator<Item> items = itemService.findAllByCollection(context, collection);
         try {
             while (items.hasNext()) {
                 Item item = items.next();
-                WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, false);
+                WorkspaceItem workspaceItem = workspaceItemService.create(context, newCollection, true);
                 Item newItem = installItemService.installItem(context, workspaceItem);
                 collectionService.addItem(context, newCollection, newItem);
+                cloneMetadata(context, itemService, newItem, item);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
                         replacePlaceholderValue(context, rootCommunityUUID, newItem, newName, grants);
                     }
                 }
+                newItems.add(newItem);
+                oldItem2clonedItem.put(item.getID(), new CloneDTO(newItem.getID(), newItem.getName()));
             }
         } catch (AuthorizeException e) {
             log.error(e.getMessage(), e);
@@ -778,12 +809,14 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community rootCommunity = this.find(context, rootCommunityUUID);
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, rootCommunity, "dc", "relation", "project", null,
+        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_PROJECT_ENTITY.SCHEMA,
+                ProjectConstants.MD_PROJECT_ENTITY.ELEMENT, ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null,
                              relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
-        itemService.addMetadata(context, newItem, "dc", "title", null, null, newName);
+        itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
-            itemService.addMetadata(context, newItem, "cris", "workspace", "shared", null, grants);
+            itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
+                                        Choices.CF_UNSET, 0);
         }
     }
 
@@ -802,9 +835,32 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         List<MetadataValue> metadataValue = dsoToClone.getMetadata();
         for (MetadataValue metadata : metadataValue) {
-            service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                metadata.getQualifier(), null, metadata.getValue());
+            if (isMetadataToSkip(service, target, metadata)) {
+                continue;
+            }
+            if (StringUtils.isNotBlank(metadata.getAuthority())) {
+                service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
+                        metadata.getQualifier(), metadata.getLanguage(), metadata.getValue(), metadata.getAuthority(),
+                        Choices.CF_ACCEPTED);
+            } else {
+                service.addMetadata(context, target, metadata.getSchema(), metadata.getElement(),
+                        metadata.getQualifier(), metadata.getLanguage(), metadata.getValue());
+            }
         }
+    }
+
+    private <T extends DSpaceObject> boolean isMetadataToSkip(DSpaceObjectService<T> service, T target,
+            MetadataValue metadata) {
+        String metadataName = metadata.getSchema() + "." + metadata.getElement();
+        if (StringUtils.isNotBlank(metadata.getQualifier())) {
+            metadataName += "." + metadata.getQualifier();
+        }
+
+        if (Arrays.stream(matadataToSkip).anyMatch(metadataName::equals)) {
+            List<MetadataValue> metadataList = service.getMetadataByMetadataString(target, metadataName);
+            return metadataList.size() > 0;
+        }
+        return false;
     }
 
     private UUID extractItemUuid(String value) {
@@ -815,7 +871,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
             } else {
-                throw new RuntimeException("Metadata value of dc.relation.project : " + value
+                throw new RuntimeException("Metadata value of synsicris.relation.entity_project : " + value
                         + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
             }
         }

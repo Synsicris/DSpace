@@ -125,6 +125,7 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
     public void internalRun() throws Exception {
         context = new Context();
         assignCurrentUserInContext();
+        assignSpecialGroupsInContext();
 
         if (exportFormat == null) {
             throw new IllegalArgumentException("The export format must be provided");
@@ -271,7 +272,8 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
 
             String name = searchFilter.getIndexFieldName();
 
-            DiscoverFilterQuery filterQuery = searchService.toFilterQuery(context, name, filterOperator, filterValue);
+            DiscoverFilterQuery filterQuery = searchService.toFilterQuery(context, name, filterOperator, filterValue,
+                    discoveryConfiguration);
             if (filterQuery != null) {
                 filterQueries.add(filterQuery.getFilterQuery());
             }
@@ -318,16 +320,11 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
     }
 
     private String getDefaultSortDirection(DiscoverySortConfiguration searchSortConfiguration) {
-        return searchSortConfiguration.getDefaultSortOrder().toString();
+        return searchSortConfiguration.getSortFields().iterator().next().getDefaultSortOrder().toString();
     }
 
     private String getDefaultSortField(DiscoverySortConfiguration searchSortConfiguration) {
-        String sortBy = "score";
-        if (searchSortConfiguration != null && searchSortConfiguration.getDefaultSort() != null) {
-            DiscoverySortFieldConfiguration defaultSort = searchSortConfiguration.getDefaultSort();
-            sortBy = defaultSort.getMetadataField();
-        }
-        return sortBy;
+        return searchSortConfiguration.getSortFields().iterator().next().getMetadataField();
     }
 
     private Map<String, String> parseSearchFilters() {
@@ -354,6 +351,12 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
         if (uuid != null) {
             EPerson ePerson = EPersonServiceFactory.getInstance().getEPersonService().find(context, uuid);
             context.setCurrentUser(ePerson);
+        }
+    }
+
+    private void assignSpecialGroupsInContext() throws SQLException {
+        for (UUID uuid : handler.getSpecialGroups()) {
+            context.setSpecialGroup(uuid);
         }
     }
 

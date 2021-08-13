@@ -12,6 +12,7 @@ import static org.dspace.content.MetadataSchemaEnum.DC;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -368,6 +369,35 @@ public interface DSpaceObjectService<T extends DSpaceObject> {
                              String lang, String value) throws SQLException;
 
     /**
+     * Add a single metadata value at the given place position.
+     *
+     * @param context    DSpace context
+     * @param dso        DSpaceObject
+     * @param schema     the schema for the metadata field. <em>Must</em> match
+     *                   the <code>name</code> of an existing metadata schema.
+     * @param element    the metadata element name
+     * @param qualifier  the metadata qualifier, or <code>null</code> for
+     *                   unqualified
+     * @param lang       the ISO639 language code, optionally followed by an underscore
+     *                   and the ISO3166 country code. <code>null</code> means the
+     *                   value has no language (for example, a date).
+     * @param value      the value to add.
+     * @param authority  the external authority key for this value (or null)
+     * @param confidence the authority confidence (default 0)
+     * @param place      the metadata position
+     * @return the MetadataValue added ot the object
+     * @throws SQLException if database error
+     */
+    public MetadataValue addMetadata(Context context, T dso, String schema, String element, String qualifier,
+                           String lang, String value, String authority, int confidence, int place) throws SQLException;
+
+    default public MetadataValue addMetadataInPlaceSecured(Context context, T dso, String schema, String element,
+        String qualifier, String lang, String value, String authority, int confidence, int place, Integer securityValue)
+        throws SQLException {
+        return null;
+    }
+
+    /**
      * Add a single metadata field. This is appended to existing
      * values. Use <code>clearMetadata</code> to remove values.
      *
@@ -510,6 +540,9 @@ public interface DSpaceObjectService<T extends DSpaceObject> {
     void replaceMetadata(Context context, T dso, String schema, String element, String qualifier, String lang,
                          String value, String authority, int confidence, int index) throws SQLException;
 
+    void replaceSecuredMetadata(Context context, T dso, String schema, String element, String qualifier, String lang,
+        String value, String authority, int confidence, int index, Integer securityLevel) throws SQLException;
+
     void moveMetadata(Context context, T dso, String schema, String element, String qualifier, int from, int to)
         throws SQLException;
 
@@ -525,4 +558,16 @@ public interface DSpaceObjectService<T extends DSpaceObject> {
      * @param dso   DSpaceObject whose metadata has been modified
      */
     public void setMetadataModified(T dso);
+
+    default public List<MetadataValue> addSecuredMetadata(Context context, T dso, String schema, String element,
+        String qualifier, String lang, String value, String authority, int confidence, Integer securityLevel)
+        throws SQLException {
+        return Collections.emptyList();
+    }
+
+    default void addAndShiftRightSecuredMetadata(Context context, T dso, String schema, String element,
+        String qualifier, String lang, String value, String authority, int confidence, int index, Integer securitylevel)
+        throws SQLException {
+
+    }
 }

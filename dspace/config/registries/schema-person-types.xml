@@ -136,4 +136,11 @@
         <scope_note>International Standard Name Identifier</scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>person</schema>
+        <element>personadmin</element>
+        <qualifier>email</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
 </dspace-dc-types>

@@ -1,0 +1,166 @@
+<dspace-dc-types>
+
+    <dspace-header>
+        <title>Synsicris Types</title>
+    </dspace-header>
+
+    <dc-schema>
+        <name>synsicris</name>
+        <namespace>https://schema.org/synsicris</namespace>
+    </dc-schema>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>entity_project</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>parentproject</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>type</element>
+        <qualifier>easy-import</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>description</element>
+        <qualifier>workplan</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>address</element>
+        <qualifier>addressStreetnamenumber</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>address</element>
+        <qualifier>addressPostcode</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>address</element>
+        <qualifier>addressCity</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>orgunits</element>
+        <qualifier>email</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>orgunits</element>
+        <qualifier>phone</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>type</element>
+        <qualifier>legalform</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>identifier</element>
+        <qualifier>registernumber</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personleader</element>
+        <qualifier>degree</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personleader</element>
+        <qualifier>phone</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personleader</element>
+        <qualifier>email</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
+        <qualifier>degree</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
+        <qualifier>phone</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personleader</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
+        <qualifier></qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personleader</element>
+        <qualifier>gender</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
+        <qualifier>gender</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>type</element>
+        <qualifier>orgform</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>agrovoc</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+</dspace-dc-types>

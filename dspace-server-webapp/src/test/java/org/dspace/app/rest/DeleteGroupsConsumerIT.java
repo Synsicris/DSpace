@@ -78,7 +78,7 @@ public class DeleteGroupsConsumerIT extends AbstractControllerIntegrationTest {
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "workspace", "shared", null, "project");
+        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, "project");
 
         subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();

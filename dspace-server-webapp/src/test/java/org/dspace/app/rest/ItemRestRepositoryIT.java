@@ -9,10 +9,21 @@ package org.dspace.app.rest;
 
 import static com.jayway.jsonpath.JsonPath.read;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static org.dspace.app.matcher.OrcidQueueMatcher.matches;
+import static org.dspace.app.orcid.OrcidOperation.DELETE;
+import static org.dspace.app.profile.OrcidEntitySyncPreference.ALL;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadataDoesNotExist;
+import static org.dspace.builder.OrcidHistoryBuilder.createOrcidHistory;
+import static org.dspace.builder.OrcidQueueBuilder.createOrcidQueue;
 import static org.dspace.core.Constants.WRITE;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,7 +35,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,29 +47,44 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.CharEncoding;
+import org.dspace.app.orcid.OrcidHistory;
+import org.dspace.app.orcid.OrcidQueue;
+import org.dspace.app.orcid.service.OrcidHistoryService;
+import org.dspace.app.orcid.service.OrcidQueueService;
 import org.dspace.app.rest.matcher.BitstreamMatcher;
+import org.dspace.app.rest.matcher.BundleMatcher;
 import org.dspace.app.rest.matcher.CollectionMatcher;
 import org.dspace.app.rest.matcher.HalMatcher;
 import org.dspace.app.rest.matcher.ItemMatcher;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.model.MetadataRest;
 import org.dspace.app.rest.model.MetadataValueRest;
+import org.dspace.app.rest.model.patch.AddOperation;
 import org.dspace.app.rest.model.patch.Operation;
 import org.dspace.app.rest.model.patch.ReplaceOperation;
+import org.dspace.app.rest.repository.ItemRestRepository;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.app.rest.test.MetadataPatchSuite;
 import org.dspace.builder.BitstreamBuilder;
+import org.dspace.builder.BundleBuilder;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
+import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
+import org.dspace.builder.RelationshipBuilder;
+import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.ResourcePolicyBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Bitstream;
+import org.dspace.content.Bundle;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.EntityType;
 import org.dspace.content.Item;
+import org.dspace.content.Relationship;
+import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.CollectionService;
 import org.dspace.eperson.EPerson;
@@ -71,6 +99,19 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private CollectionService collectionService;
+
+    @Autowired
+    private OrcidQueueService orcidQueueService;
+
+    @Autowired
+    private OrcidHistoryService orcidHistoryService;
+
+    private Item publication1;
+    private Item author1;
+    private Item author2;
+    RelationshipType isAuthorOfPublication;
+    private Relationship relationship1;
+    private Relationship relationship2;
 
     @Test
     public void findAllTest() throws Exception {
@@ -193,8 +234,21 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
                                        "Public item 3", "2016-02-13")
                            )
                    )))
-                   .andExpect(jsonPath("$._links.self.href",
-                           Matchers.containsString("/api/core/items")))
+                   .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.self.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.next.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$.page.size", is(2)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
+                   .andExpect(jsonPath("$.page.number", is(0)))
+                   .andExpect(jsonPath("$.page.totalElements", is(3)));
         ;
 
         getClient(token).perform(get("/api/core/items")
@@ -213,9 +267,21 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
                                    "Public item 2", "2016-02-13")
                        )
                    )))
-                   .andExpect(jsonPath("$._links.self.href",
-                           Matchers.containsString("/api/core/items")))
+                   .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.prev.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=0"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.self.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=2"))))
+                   .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
+                           Matchers.containsString("/api/core/items?"),
+                           Matchers.containsString("page=1"), Matchers.containsString("size=2"))))
                    .andExpect(jsonPath("$.page.size", is(2)))
+                   .andExpect(jsonPath("$.page.number", is(1)))
+                   .andExpect(jsonPath("$.page.totalPages", is(2)))
                    .andExpect(jsonPath("$.page.totalElements", is(3)))
         ;
     }
@@ -1214,7 +1280,7 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void deleteOneArchivedTest() throws Exception {
+    public void deleteOneArchivedTestAsSystemAdmin() throws Exception {
         context.turnOffAuthorisationSystem();
 
         //** GIVEN **
@@ -1267,8 +1333,164 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
                    .andExpect(status().is(404));
 
         //Trying to get deleted item bitstream should fail with 404
-        getClient().perform(get("/api/core/biststreams/" + bitstream.getID()))
+        // NOTE: it currently does not work without an admin token
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        getClient(adminToken).perform(get("/api/core/bitstreams/" + bitstream.getID()))
                    .andExpect(status().is(404));
+    }
+
+    @Test
+    public void deleteOneArchivedTestAsCollectionAdmin() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        // A collection administrator
+        EPerson col1Admin = EPersonBuilder.createEPerson(context)
+            .withCanLogin(true)
+            .withEmail("col1admin@email.com")
+            .withPassword(password)
+            .withNameInMetadata("Col1", "Admin")
+            .build();
+
+        // A community with one collection.
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection col1 = CollectionBuilder
+            .createCollection(context, parentCommunity)
+            .withName("Collection 1")
+            .withAdminGroup(col1Admin)
+            .build();
+
+        // One public item, one workspace item and one template item.
+        Item publicItem = ItemBuilder.createItem(context, col1)
+            .withTitle("Public item 1")
+            .withIssueDate("2017-10-17")
+            .withAuthor("Smith, Donald").withAuthor("Doe, John")
+            .withSubject("ExtraEntry")
+            .build();
+
+        //Add a bitstream to an item
+        String bitstreamContent = "ThisIsSomeDummyText";
+        Bitstream bitstream = null;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream = BitstreamBuilder.
+                createBitstream(context, publicItem, is)
+                .withName("Bitstream1")
+                .withMimeType("text/plain")
+                .build();
+        }
+
+        context.restoreAuthSystemState();
+        // Check publicItem creation
+        getClient().perform(get("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().isOk());
+
+        // Check publicItem bitstream creation (shuold be stored in bundle)
+        getClient().perform(get("/api/core/items/" + publicItem.getID() + "/bundles"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$._links.self.href", Matchers
+                .containsString("/api/core/items/" + publicItem.getID() + "/bundles")));
+
+        String token = getAuthToken(col1Admin.getEmail(), password);
+
+        //Delete public item
+        getClient(token).perform(delete("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().is(204));
+
+        //Trying to get deleted item should fail with 404
+        getClient().perform(get("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().is(404));
+
+        //Trying to get deleted item bitstream should fail with 404
+        // NOTE: it currently does not work without an admin token
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        getClient(adminToken).perform(get("/api/core/bitstreams/" + bitstream.getID()))
+            .andExpect(status().is(404));
+    }
+
+    @Test
+    public void deleteOneArchivedTestAsOtherCollectionAdmin() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        // two collection administrators
+        EPerson col1Admin = EPersonBuilder.createEPerson(context)
+            .withCanLogin(true)
+            .withEmail("col1admin@email.com")
+            .withPassword(password)
+            .withNameInMetadata("Col1", "Admin")
+            .build();
+
+        EPerson col2Admin = EPersonBuilder.createEPerson(context)
+            .withCanLogin(true)
+            .withEmail("col2admin@email.com")
+            .withPassword(password)
+            .withNameInMetadata("Col2", "Admin")
+            .build();
+
+        // A community with two collections.
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection col1 = CollectionBuilder
+            .createCollection(context, parentCommunity)
+            .withName("Collection 1")
+            .withAdminGroup(col1Admin)
+            .build();
+        CollectionBuilder
+            .createCollection(context, parentCommunity)
+            .withName("Collection 2")
+            .withAdminGroup(col2Admin)
+            .build();
+
+        // One public item, one workspace item and one template item in the first collection.
+        Item publicItem = ItemBuilder.createItem(context, col1)
+            .withTitle("Public item 1")
+            .withIssueDate("2017-10-17")
+            .withAuthor("Smith, Donald").withAuthor("Doe, John")
+            .withSubject("ExtraEntry")
+            .build();
+
+        //Add a bitstream to an item in the first collection
+        String bitstreamContent = "ThisIsSomeDummyText";
+        Bitstream bitstream = null;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream = BitstreamBuilder.
+                createBitstream(context, publicItem, is)
+                .withName("Bitstream1")
+                .withMimeType("text/plain")
+                .build();
+        }
+
+        context.restoreAuthSystemState();
+
+        // Check publicItem creation
+        getClient().perform(get("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().isOk());
+
+        // Check publicItem bitstream creation (should be stored in bundle)
+        getClient().perform(get("/api/core/items/" + publicItem.getID() + "/bundles"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$._links.self.href", Matchers
+                .containsString("/api/core/items/" + publicItem.getID() + "/bundles")));
+
+        // the admin of collection 2 will try to delete an item of collection 1
+        String token = getAuthToken(col2Admin.getEmail(), password);
+
+        // trying to delete the public item should fail
+        getClient(token).perform(delete("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().isForbidden());
+
+        // the item should still exist
+        getClient().perform(get("/api/core/items/" + publicItem.getID()))
+            .andExpect(status().isOk());
+
+        // the bitstream should still exist
+        getClient().perform(get("/api/core/bitstreams/" + bitstream.getID()))
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -2740,5 +2962,999 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     }
 
+    @Test
+    public void testEntityTypePerson() throws Exception {
+        context.turnOffAuthorisationSystem();
+        EntityType person = EntityTypeBuilder.createEntityTypeBuilder(context, "Person").build();
+        Community community = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection collection = CollectionBuilder.createCollection(context, community).withName("Collection").build();
+        Item item = ItemBuilder.createItem(context, collection)
+            .withTitle("Author1")
+            .withIssueDate("2017-10-17")
+            .withAuthor("Smith, Donald")
+            .withPersonIdentifierLastName("Smith")
+            .withPersonIdentifierFirstName("Donald")
+            .withEntityType("Person")
+            .build();
+        context.restoreAuthSystemState();
+
+        String ePersonToken = getAuthToken(eperson.getEmail(), password);
+        getClient(ePersonToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Person")));
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        getClient(adminToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Person")));
+
+        getClient().perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Person")));
+    }
+
+    @Test
+    public void testEntityTypePublication() throws Exception {
+        context.turnOffAuthorisationSystem();
+        EntityType publication = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        Community community = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection collection = CollectionBuilder.createCollection(context, community).withName("Collection").build();
+        Item item = ItemBuilder.createItem(context, collection)
+            .withTitle("Publication1")
+            .withAuthor("Testy, TEst")
+            .withIssueDate("2015-01-01")
+            .withEntityType("Publication")
+            .build();
+        context.restoreAuthSystemState();
+
+        String ePersonToken = getAuthToken(eperson.getEmail(), password);
+        getClient(ePersonToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Publication")));
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        getClient(ePersonToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Publication")));
+
+        getClient().perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Publication")));
+    }
+
+    @Test
+    public void testEntityTypeNull() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Community community = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection collection = CollectionBuilder.createCollection(context, community).withName("Collection").build();
+        Item item = ItemBuilder.createItem(context, collection)
+            .withTitle("Unclassified item")
+            .withAuthor("Testy, TEst")
+            .withIssueDate("2015-01-01")
+            .build();
+        context.restoreAuthSystemState();
+
+        String ePersonToken = getAuthToken(eperson.getEmail(), password);
+        getClient(ePersonToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is(emptyOrNullString())));
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        getClient(adminToken).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is(emptyOrNullString())));
+
+        getClient().perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is(emptyOrNullString())));
+    }
+
+    @Test
+    public void testEntityTypeModification() throws Exception {
+        context.turnOffAuthorisationSystem();
+        EntityType publication = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        Community community = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+        Collection collection = CollectionBuilder.createCollection(context, community).withName("Collection").build();
+        Item item = ItemBuilder.createItem(context, collection)
+            .withTitle("Publication1")
+            .withAuthor("Testy, TEst")
+            .withIssueDate("2015-01-01")
+            .build();
+        context.restoreAuthSystemState();
+
+        // Verify there is no entityType yet
+        String token = getAuthToken(admin.getEmail(), password);
+        getClient(token).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is(emptyOrNullString())));
+
+        // Modify the entityType and verify the response already contains this modification
+        List<Operation> ops = new ArrayList<>();
+        List<Map<String, String>> values = new ArrayList<>();
+        Map<String, String> value = new HashMap<>();
+        value.put("value", "Publication");
+        values.add(value);
+        AddOperation addOperation = new AddOperation("/metadata/dspace.entity.type", values);
+        ops.add(addOperation);
+        String patchBody = getPatchContent(ops);
+        getClient(token).perform(patch("/api/core/items/" + item.getID())
+                .content(patchBody)
+                .contentType(contentType))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Publication")));
+
+        // Verify this modification is permanent
+        getClient(token).perform(get("/api/core/items/" + item.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+            .andExpect(jsonPath("$.entityType", is("Publication")));
+    }
+
+    @Test
+    public void findOneTestWithEmbedsWithNoPageSize() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+                                                 .withName("Collection")
+                                                 .build();
+
+        Item item = ItemBuilder.createItem(context, collection).withTitle("Item").build();
+
+        Bundle bundle0 = BundleBuilder.createBundle(context, item).withName("Bundle 0").build();
+        Bundle bundle1 = BundleBuilder.createBundle(context, item).withName("Bundle 1").build();
+        Bundle bundle2 = BundleBuilder.createBundle(context, item).withName("Bundle 2").build();
+        Bundle bundle3 = BundleBuilder.createBundle(context, item).withName("Bundle 3").build();
+        Bundle bundle4 = BundleBuilder.createBundle(context, item).withName("Bundle 4").build();
+        Bundle bundle5 = BundleBuilder.createBundle(context, item).withName("Bundle 5").build();
+        Bundle bundle6 = BundleBuilder.createBundle(context, item).withName("Bundle 6").build();
+        Bundle bundle7 = BundleBuilder.createBundle(context, item).withName("Bundle 7").build();
+        Bundle bundle8 = BundleBuilder.createBundle(context, item).withName("Bundle 8").build();
+        Bundle bundle9 = BundleBuilder.createBundle(context, item).withName("Bundle 9").build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/items/" + item.getID())
+                                    .param("embed", "bundles"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+        .andExpect(jsonPath("$._embedded.bundles._embedded.bundles",Matchers.containsInAnyOrder(
+            BundleMatcher.matchProperties(bundle0.getName(), bundle0.getID(), bundle0.getHandle(), bundle0.getType()),
+            BundleMatcher.matchProperties(bundle1.getName(), bundle1.getID(), bundle1.getHandle(), bundle1.getType()),
+            BundleMatcher.matchProperties(bundle2.getName(), bundle2.getID(), bundle2.getHandle(), bundle2.getType()),
+            BundleMatcher.matchProperties(bundle3.getName(), bundle3.getID(), bundle3.getHandle(), bundle3.getType()),
+            BundleMatcher.matchProperties(bundle4.getName(), bundle4.getID(), bundle4.getHandle(), bundle4.getType()),
+            BundleMatcher.matchProperties(bundle5.getName(), bundle5.getID(), bundle5.getHandle(), bundle5.getType()),
+            BundleMatcher.matchProperties(bundle6.getName(), bundle6.getID(), bundle6.getHandle(), bundle6.getType()),
+            BundleMatcher.matchProperties(bundle7.getName(), bundle7.getID(), bundle7.getHandle(), bundle7.getType()),
+            BundleMatcher.matchProperties(bundle8.getName(), bundle8.getID(), bundle8.getHandle(), bundle8.getType()),
+            BundleMatcher.matchProperties(bundle9.getName(), bundle9.getID(), bundle9.getHandle(), bundle9.getType())
+        )))
+        .andExpect(jsonPath("$._links.self.href", Matchers.containsString("/api/core/items/" + item.getID())))
+        .andExpect(jsonPath("$._embedded.bundles.page.size", is(20)))
+        .andExpect(jsonPath("$._embedded.bundles.page.totalElements", is(10)));
+    }
+
+    @Test
+    public void findOneTestWithEmbedsWithPageSize() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+                                                 .withName("Collection")
+                                                 .build();
+
+        Item item = ItemBuilder.createItem(context, collection).withTitle("Item").build();
+
+        Bundle bundle0 = BundleBuilder.createBundle(context, item).withName("Bundle 0").build();
+        Bundle bundle1 = BundleBuilder.createBundle(context, item).withName("Bundle 1").build();
+        Bundle bundle2 = BundleBuilder.createBundle(context, item).withName("Bundle 2").build();
+        Bundle bundle3 = BundleBuilder.createBundle(context, item).withName("Bundle 3").build();
+        Bundle bundle4 = BundleBuilder.createBundle(context, item).withName("Bundle 4").build();
+        Bundle bundle5 = BundleBuilder.createBundle(context, item).withName("Bundle 5").build();
+        Bundle bundle6 = BundleBuilder.createBundle(context, item).withName("Bundle 6").build();
+        Bundle bundle7 = BundleBuilder.createBundle(context, item).withName("Bundle 7").build();
+        Bundle bundle8 = BundleBuilder.createBundle(context, item).withName("Bundle 8").build();
+        Bundle bundle9 = BundleBuilder.createBundle(context, item).withName("Bundle 9").build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/items/" + item.getID())
+                                    .param("embed", "bundles")
+                           .param("embed.size", "bundles=5"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+        .andExpect(jsonPath("$._embedded.bundles._embedded.bundles",Matchers.containsInAnyOrder(
+            BundleMatcher.matchProperties(bundle0.getName(), bundle0.getID(), bundle0.getHandle(), bundle0.getType()),
+            BundleMatcher.matchProperties(bundle1.getName(), bundle1.getID(), bundle1.getHandle(), bundle1.getType()),
+            BundleMatcher.matchProperties(bundle2.getName(), bundle2.getID(), bundle2.getHandle(), bundle2.getType()),
+            BundleMatcher.matchProperties(bundle3.getName(), bundle3.getID(), bundle3.getHandle(), bundle3.getType()),
+            BundleMatcher.matchProperties(bundle4.getName(), bundle4.getID(), bundle4.getHandle(), bundle4.getType())
+        )))
+        .andExpect(jsonPath("$._links.self.href", Matchers.containsString("/api/core/items/" + item.getID())))
+        .andExpect(jsonPath("$._embedded.bundles.page.size", is(5)))
+        .andExpect(jsonPath("$._embedded.bundles.page.totalElements", is(10)));
+    }
+
+
+    @Test
+    public void findOneTestWithEmbedsWithInvalidPageSize() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+                                                 .withName("Collection")
+                                                 .build();
+
+        Item item = ItemBuilder.createItem(context, collection).withTitle("Item").build();
+
+        Bundle bundle0 = BundleBuilder.createBundle(context, item).withName("Bundle 0").build();
+        Bundle bundle1 = BundleBuilder.createBundle(context, item).withName("Bundle 1").build();
+        Bundle bundle2 = BundleBuilder.createBundle(context, item).withName("Bundle 2").build();
+        Bundle bundle3 = BundleBuilder.createBundle(context, item).withName("Bundle 3").build();
+        Bundle bundle4 = BundleBuilder.createBundle(context, item).withName("Bundle 4").build();
+        Bundle bundle5 = BundleBuilder.createBundle(context, item).withName("Bundle 5").build();
+        Bundle bundle6 = BundleBuilder.createBundle(context, item).withName("Bundle 6").build();
+        Bundle bundle7 = BundleBuilder.createBundle(context, item).withName("Bundle 7").build();
+        Bundle bundle8 = BundleBuilder.createBundle(context, item).withName("Bundle 8").build();
+        Bundle bundle9 = BundleBuilder.createBundle(context, item).withName("Bundle 9").build();
+
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/items/" + item.getID())
+                                    .param("embed", "bundles")
+                                    .param("embed.size", "bundles=invalidPage"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+        .andExpect(jsonPath("$._embedded.bundles._embedded.bundles",Matchers.containsInAnyOrder(
+            BundleMatcher.matchProperties(bundle0.getName(), bundle0.getID(), bundle0.getHandle(), bundle0.getType()),
+            BundleMatcher.matchProperties(bundle1.getName(), bundle1.getID(), bundle1.getHandle(), bundle1.getType()),
+            BundleMatcher.matchProperties(bundle2.getName(), bundle2.getID(), bundle2.getHandle(), bundle2.getType()),
+            BundleMatcher.matchProperties(bundle3.getName(), bundle3.getID(), bundle3.getHandle(), bundle3.getType()),
+            BundleMatcher.matchProperties(bundle4.getName(), bundle4.getID(), bundle4.getHandle(), bundle4.getType()),
+            BundleMatcher.matchProperties(bundle5.getName(), bundle5.getID(), bundle5.getHandle(), bundle5.getType()),
+            BundleMatcher.matchProperties(bundle6.getName(), bundle6.getID(), bundle6.getHandle(), bundle6.getType()),
+            BundleMatcher.matchProperties(bundle7.getName(), bundle7.getID(), bundle7.getHandle(), bundle7.getType()),
+            BundleMatcher.matchProperties(bundle8.getName(), bundle8.getID(), bundle8.getHandle(), bundle8.getType()),
+            BundleMatcher.matchProperties(bundle9.getName(), bundle9.getID(), bundle9.getHandle(), bundle9.getType())
+        )))
+        .andExpect(jsonPath("$._links.self.href", Matchers.containsString("/api/core/items/" + item.getID())))
+        .andExpect(jsonPath("$._embedded.bundles.page.size", is(20)))
+        .andExpect(jsonPath("$._embedded.bundles.page.totalElements", is(10)));
+}
+
+    @Test
+    public void findOneTestWithMultiLevelEmbedsWithNoPageSize() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+                                                 .withName("Collection")
+                                                 .build();
+
+        Item item = ItemBuilder.createItem(context, collection).withTitle("Item").build();
+
+        Bundle bundle0 = BundleBuilder.createBundle(context, item).withName("Bundle 0").build();
+
+        String bitstreamContent = "ThisIsSomeDummyText";
+
+        Bitstream bitstream0;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream0 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream0")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream1;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream1 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream1")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream2;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream2 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream2")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream3;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream3 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream3")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream4;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream4 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream4")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream5;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream5 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream5")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream6;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream6 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream6")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream7;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream7 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream7")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream8;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream8 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream8")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream9;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream9 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream9")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/items/" + item.getID())
+                                    .param("embed", "bundles/bitstreams"))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles", Matchers.containsInAnyOrder(
+                           BundleMatcher.matchProperties(bundle0.getName(), bundle0.getID(), bundle0.getHandle(),
+                                                         bundle0.getType())
+                   )))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]._embedded.bitstreams" +
+                                               "._embedded.bitstreams",
+                                    Matchers.containsInAnyOrder(
+                                            BitstreamMatcher.matchProperties(bitstream0),
+                                            BitstreamMatcher.matchProperties(bitstream1),
+                                            BitstreamMatcher.matchProperties(bitstream2),
+                                            BitstreamMatcher.matchProperties(bitstream3),
+                                            BitstreamMatcher.matchProperties(bitstream4),
+                                            BitstreamMatcher.matchProperties(bitstream5),
+                                            BitstreamMatcher.matchProperties(bitstream6),
+                                            BitstreamMatcher.matchProperties(bitstream7),
+                                            BitstreamMatcher.matchProperties(bitstream8),
+                                            BitstreamMatcher.matchProperties(bitstream9)
+                                    )))
+                   .andExpect(
+                           jsonPath("$._links.self.href", Matchers.containsString("/api/core/items/" + item.getID())))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]." +
+                                               "_embedded.bitstreams.page.size", is(20)))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]" +
+                                               "._embedded.bitstreams.page.totalElements",
+                                       is(10)));
+    }
+
+    @Test
+    public void findOneTestWithMultiLevelEmbedsWithPageSize() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+                                                 .withName("Collection")
+                                                 .build();
+
+        Item item = ItemBuilder.createItem(context, collection).withTitle("Item").build();
+
+        Bundle bundle0 = BundleBuilder.createBundle(context, item).withName("Bundle 0").build();
+
+        String bitstreamContent = "ThisIsSomeDummyText";
+
+        Bitstream bitstream0;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream0 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream0")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream1;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream1 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream1")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream2;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream2 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream2")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream3;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream3 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream3")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream4;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream4 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream4")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream5;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream5 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream5")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream6;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream6 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream6")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream7;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream7 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream7")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream8;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream8 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream8")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        Bitstream bitstream9;
+        try (InputStream is = IOUtils.toInputStream(bitstreamContent, CharEncoding.UTF_8)) {
+            bitstream9 = BitstreamBuilder.createBitstream(context, bundle0, is)
+                                         .withName("Bitstream9")
+                                         .withMimeType("text/plain")
+                                         .build();
+        }
+        context.restoreAuthSystemState();
+
+        getClient().perform(get("/api/core/items/" + item.getID())
+                                    .param("embed", "bundles/bitstreams")
+                                    .param("embed.size", "bundles/bitstreams=5"))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", ItemMatcher.matchItemProperties(item)))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles", Matchers.containsInAnyOrder(
+                           BundleMatcher.matchProperties(bundle0.getName(), bundle0.getID(), bundle0.getHandle(),
+                                                         bundle0.getType())
+                   )))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]._embedded.bitstreams" +
+                                               "._embedded.bitstreams",
+                                    Matchers.containsInAnyOrder(
+                                            BitstreamMatcher.matchProperties(bitstream0),
+                                            BitstreamMatcher.matchProperties(bitstream1),
+                                            BitstreamMatcher.matchProperties(bitstream2),
+                                            BitstreamMatcher.matchProperties(bitstream3),
+                                            BitstreamMatcher.matchProperties(bitstream4)
+                                    )))
+                   .andExpect(
+                           jsonPath("$._links.self.href", Matchers.containsString("/api/core/items/" + item.getID())))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]" +
+                                               "._embedded.bitstreams.page.size", is(5)))
+                   .andExpect(jsonPath("$._embedded.bundles._embedded.bundles[0]" +
+                                               "._embedded.bitstreams.page.totalElements",
+                                       is(10)));
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest() throws Exception {
+        initPublicationAuthorsRelationships();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(get("/api/core/relationships/" + relationship1.getID()))
+                        .andExpect(status().is(200));
+        getClient(token).perform(delete("/api/core/relationships/" + relationship1.getID()))
+                        .andExpect(status().is(400));
+        //Both relationships still exist
+        getClient(token).perform(get("/api/core/relationships/" + relationship1.getID()))
+                .andExpect(status().is(200));
+        getClient(token).perform(get("/api/core/relationships/" + relationship2.getID()))
+                .andExpect(status().is(200));
+
+        //Delete public item
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID()))
+                        .andExpect(status().is(204));
+        //The item has been deleted
+        getClient(token).perform(get("/api/core/items/" + publication1.getID()))
+                        .andExpect(status().is(404));
+        //The relationships have been deleted
+        getClient(token).perform(get("/api/core/relationships/" + relationship1.getID()))
+                .andExpect(status().is(404));
+        getClient(token).perform(get("/api/core/relationships/" + relationship2.getID()))
+                .andExpect(status().is(404));
+
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_null() throws Exception {
+        initPublicationAuthorsRelationships();
+        String token = getAuthToken(admin.getEmail(), password);
+
+        //Delete public item with copyVirtualMetadata null
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID()))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) doesn't still have the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_relationshiptypeid_isAuthorOfPublication()
+        throws Exception {
+        initPublicationAuthorsRelationships();
+        String token = getAuthToken(admin.getEmail(), password);
+
+        // Delete public item with copyVirtualMetadata isAuthorOfPublication relationship id
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID())
+            .param(ItemRestRepository.REQUESTPARAMETER_COPYVIRTUALMETADATA,
+                String.valueOf(isAuthorOfPublication.getID())))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) still has the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_relationshiptypeid_other() throws Exception {
+        initPublicationAuthorsRelationships();
+        String token = getAuthToken(admin.getEmail(), password);
+        context.turnOffAuthorisationSystem();
+
+        EntityType journalIssueEntityType = EntityTypeBuilder.createEntityTypeBuilder(context, "JournalIssue").build();
+        EntityType journalVolumeEntityType =
+            EntityTypeBuilder.createEntityTypeBuilder(context, "JournalVolume").build();
+
+        RelationshipType isJournalVolumeOfIssueRelationshipType =
+            RelationshipTypeBuilder.createRelationshipTypeBuilder(context, journalIssueEntityType,
+                journalVolumeEntityType, "isIssueOfJournalVolume", "isJournalVolumeOfIssue", 2, null, 0,
+                null).withCopyToLeft(false).withCopyToRight(true).build();
+        context.restoreAuthSystemState();
+
+        // Delete public item with copyVirtualMetadata id of relationship neither item has
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID())
+            .param(ItemRestRepository.REQUESTPARAMETER_COPYVIRTUALMETADATA,
+                String.valueOf(isJournalVolumeOfIssueRelationshipType.getID())))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) doesn't still have the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_all() throws Exception {
+        initPublicationAuthorsRelationships();
+        String token = getAuthToken(admin.getEmail(), password);
+
+        //Delete public item with copyVirtualMetadata = all
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID())
+            .param(ItemRestRepository.REQUESTPARAMETER_COPYVIRTUALMETADATA, ItemRestRepository.COPYVIRTUAL_ALL))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) now still has the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_configured_withCopyToRightTrueConfigured()
+        throws Exception {
+        initPublicationAuthorsRelationships();
+        String token = getAuthToken(admin.getEmail(), password);
+
+        //Delete public item with copyVirtualMetadata = configured
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID())
+            .param(ItemRestRepository.REQUESTPARAMETER_COPYVIRTUALMETADATA, ItemRestRepository.COPYVIRTUAL_CONFIGURED))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) now still has the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']" +
+                                            "[0].value", is(String.valueOf(publication1.getID()))));
+    }
+
+    @Test
+    public void deleteItemWithMinRelationshipsTest_copyVirtualMetadata_configured_withCopyToRightFalseConfigured()
+        throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        //1. A community with one collection.
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+        Collection col1 = CollectionBuilder
+            .createCollection(context, parentCommunity).withName("Collection 1").build();
+
+        author1 = ItemBuilder.createItem(context, col1)
+                             .withTitle("Author1")
+                             .withIssueDate("2017-10-17")
+                             .withAuthor("Smith, Donald")
+                             .withPersonIdentifierLastName("Smith")
+                             .withPersonIdentifierFirstName("Donald")
+                             .withEntityType("Person")
+                             .build();
+
+        author2 = ItemBuilder.createItem(context, col1)
+                             .withTitle("Author2")
+                             .withIssueDate("2016-02-13")
+                             .withAuthor("Smith, Maria")
+                             .withEntityType("Person")
+                             .build();
+
+        publication1 = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Publication1")
+                                  .withAuthor("Testy, TEst")
+                                  .withIssueDate("2015-01-01")
+                                  .withEntityType("Publication")
+                                  .build();
+
+        EntityType publication = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType person = EntityTypeBuilder.createEntityTypeBuilder(context, "Person").build();
+
+        isAuthorOfPublication = RelationshipTypeBuilder
+            .createRelationshipTypeBuilder(context, publication, person, "isAuthorOfPublication",
+                "isPublicationOfAuthor", 2, null, 0,
+                null).withCopyToLeft(false).withCopyToRight(false).build();
+
+        relationship1 = RelationshipBuilder
+            .createRelationshipBuilder(context, publication1, author1, isAuthorOfPublication).build();
+        relationship2 = RelationshipBuilder
+            .createRelationshipBuilder(context, publication1, author2, isAuthorOfPublication).build();
+
+        context.restoreAuthSystemState();
+        String token = getAuthToken(admin.getEmail(), password);
+
+        //Delete public item with copyVirtualMetadata = configured
+        getClient(token).perform(delete("/api/core/items/" + publication1.getID())
+            .param(ItemRestRepository.REQUESTPARAMETER_COPYVIRTUALMETADATA, ItemRestRepository.COPYVIRTUAL_CONFIGURED))
+                        .andExpect(status().is(204));
+        // The non-deleted item of the relationships the delete item had (other sides) now still has the
+        // relationship Metadata
+        getClient(token).perform(get("/api/core/items/" + author1.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+        getClient(token).perform(get("/api/core/items/" + author2.getID()))
+                        .andExpect(status().is(200))
+                        .andExpect(jsonPath("$.metadata['relation.isPublicationOfAuthor']").doesNotExist());
+    }
+
+    @Test
+    public void testDeletionOfOrcidOwner() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+
+        Collection profileCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Profiles")
+            .withEntityType("Person")
+            .build();
+
+        Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Publications")
+            .withEntityType("Publication")
+            .build();
+
+        Collection projectCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Projects")
+            .withEntityType("Project")
+            .build();
+
+        Item profile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("0000-1111-2222-3333")
+            .withOrcidAccessToken("ab4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .build();
+
+        Item publication = ItemBuilder.createItem(context, publicationCollection)
+            .withTitle("Test publication")
+            .build();
+
+        Item project = ItemBuilder.createItem(context, projectCollection)
+            .withTitle("Test project")
+            .build();
+
+        createOrcidQueue(context, profile, publication).build();
+        createOrcidQueue(context, profile, project).build();
+        createOrcidHistory(context, profile, publication).build();
+        createOrcidHistory(context, profile, publication).build();
+        createOrcidHistory(context, profile, project).build();
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(delete("/api/core/items/" + profile.getID()))
+            .andExpect(status().is(204));
+
+        assertThat(orcidQueueService.findAll(context), empty());
+        assertThat(orcidHistoryService.findAll(context), empty());
+
+    }
+
+    @Test
+    public void testDeletionOfPublicationToBeSynchronizedWithOrcid() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+
+        Collection profileCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Profiles")
+            .withEntityType("Person")
+            .build();
+
+        Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Publications")
+            .withEntityType("Publication")
+            .build();
+
+        Item firstProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("0000-1111-2222-3333")
+            .withOrcidAccessToken("ab4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .withOrcidSynchronizationPublicationsPreference(ALL)
+            .build();
+
+        Item secondProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("4444-1111-2222-3333")
+            .withOrcidAccessToken("bb4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .build();
+
+        Item thirdProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("5555-1111-2222-3333")
+            .withOrcidAccessToken("cb4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .withOrcidSynchronizationPublicationsPreference(ALL)
+            .build();
+
+        Item publication = ItemBuilder.createItem(context, publicationCollection)
+            .withTitle("Test publication")
+            .build();
+
+        createOrcidQueue(context, firstProfile, publication).build();
+        createOrcidQueue(context, secondProfile, publication).build();
+
+        List<OrcidHistory> historyRecords = new ArrayList<OrcidHistory>();
+        historyRecords.add(createOrcidHistory(context, firstProfile, publication).build());
+        historyRecords.add(createOrcidHistory(context, firstProfile, publication).withPutCode("12345").build());
+        historyRecords.add(createOrcidHistory(context, secondProfile, publication).build());
+        historyRecords.add(createOrcidHistory(context, secondProfile, publication).withPutCode("67891").build());
+        historyRecords.add(createOrcidHistory(context, thirdProfile, publication).withPutCode("98765").build());
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(delete("/api/core/items/" + publication.getID()))
+            .andExpect(status().is(204));
+
+        List<OrcidQueue> orcidQueueRecords = orcidQueueService.findAll(context);
+        assertThat(orcidQueueRecords, hasSize(2));
+        assertThat(orcidQueueRecords, hasItem(matches(firstProfile, null, "Publication", "12345", DELETE)));
+        assertThat(orcidQueueRecords, hasItem(matches(thirdProfile, null, "Publication", "98765", DELETE)));
+
+        for (OrcidHistory historyRecord : historyRecords) {
+            historyRecord = context.reloadEntity(historyRecord);
+            assertThat(historyRecord, notNullValue());
+            assertThat(historyRecord.getEntity(), nullValue());
+        }
+    }
+
+    @Test
+    public void testDeletionOfFundingToBeSynchronizedWithOrcid() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community")
+            .build();
+
+        Collection profileCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Profiles")
+            .withEntityType("Person")
+            .build();
+
+        Collection fundingCollection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withName("Fundings")
+            .withEntityType("Funding")
+            .build();
+
+        Item firstProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("0000-1111-2222-3333")
+            .withOrcidAccessToken("ab4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .withOrcidSynchronizationFundingsPreference(ALL)
+            .build();
+
+        Item secondProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("4444-1111-2222-3333")
+            .withOrcidAccessToken("bb4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .build();
+
+        Item thirdProfile = ItemBuilder.createItem(context, profileCollection)
+            .withTitle("Test User")
+            .withCrisOwner(eperson)
+            .withOrcidIdentifier("5555-1111-2222-3333")
+            .withOrcidAccessToken("cb4d18a0-8d9a-40f1-b601-a417255c8d20")
+            .withOrcidSynchronizationFundingsPreference(ALL)
+            .build();
+
+        Item funding = ItemBuilder.createItem(context, fundingCollection)
+            .withTitle("Test funding")
+            .build();
+
+        createOrcidQueue(context, firstProfile, funding).build();
+        createOrcidQueue(context, secondProfile, funding).build();
+
+        List<OrcidHistory> historyRecords = new ArrayList<OrcidHistory>();
+        historyRecords.add(createOrcidHistory(context, firstProfile, funding).build());
+        historyRecords.add(createOrcidHistory(context, firstProfile, funding).withPutCode("12345").build());
+        historyRecords.add(createOrcidHistory(context, secondProfile, funding).build());
+        historyRecords.add(createOrcidHistory(context, secondProfile, funding).withPutCode("67891").build());
+        historyRecords.add(createOrcidHistory(context, thirdProfile, funding).build());
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(delete("/api/core/items/" + funding.getID()))
+            .andExpect(status().is(204));
+
+        List<OrcidQueue> orcidQueueRecords = orcidQueueService.findAll(context);
+        assertThat(orcidQueueRecords, hasSize(1));
+        assertThat(orcidQueueRecords, hasItem(matches(firstProfile, null, "Funding", "12345", DELETE)));
+
+        for (OrcidHistory historyRecord : historyRecords) {
+            historyRecord = context.reloadEntity(historyRecord);
+            assertThat(historyRecord, notNullValue());
+            assertThat(historyRecord.getEntity(), nullValue());
+        }
+
+    }
+
+    private void initPublicationAuthorsRelationships() throws SQLException {
+        context.turnOffAuthorisationSystem();
+
+        //** GIVEN **
+        //1. A community with one collection.
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+        Collection col1 = CollectionBuilder
+            .createCollection(context, parentCommunity).withName("Collection 1").build();
+
+        author1 = ItemBuilder.createItem(context, col1)
+                             .withTitle("Author1")
+                             .withIssueDate("2017-10-17")
+                             .withAuthor("Smith, Donald")
+                             .withPersonIdentifierLastName("Smith")
+                             .withPersonIdentifierFirstName("Donald")
+                             .withEntityType("Person")
+                             .build();
+
+        author2 = ItemBuilder.createItem(context, col1)
+                             .withTitle("Author2")
+                             .withIssueDate("2016-02-13")
+                             .withAuthor("Smith, Maria")
+                             .withEntityType("Person")
+                             .build();
+
+        publication1 = ItemBuilder.createItem(context, col1)
+                                  .withTitle("Publication1")
+                                  .withAuthor("Testy, TEst")
+                                  .withIssueDate("2015-01-01")
+                                  .withEntityType("Publication")
+                                  .build();
+
+        EntityType publication = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType person = EntityTypeBuilder.createEntityTypeBuilder(context, "Person").build();
+
+        isAuthorOfPublication = RelationshipTypeBuilder
+            .createRelationshipTypeBuilder(context, publication, person, "isAuthorOfPublication",
+                "isPublicationOfAuthor", 2, null, 0,
+                null).withCopyToLeft(false).withCopyToRight(true).build();
+
+        relationship1 = RelationshipBuilder
+            .createRelationshipBuilder(context, publication1, author1, isAuthorOfPublication).build();
+        relationship2 = RelationshipBuilder
+            .createRelationshipBuilder(context, publication1, author2, isAuthorOfPublication).build();
+
+        context.restoreAuthSystemState();
+    }
 
 }

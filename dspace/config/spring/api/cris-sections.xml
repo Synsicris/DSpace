@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
-    default-lazy-init="true">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
 
     <bean class="org.dspace.layout.service.impl.CrisLayoutSectionServiceImpl" >
         <property name="componentMap">
@@ -37,8 +37,8 @@
                             </bean>
                             <bean class="org.dspace.layout.CrisLayoutTopComponent">
                                 <property name="discoveryConfigurationName" value="researchoutputs" />
-                                <property name="sortField" value="dc.title" />
-                                <property name="order" value="asc" />
+                                <property name="sortField" value="metric.view" />
+                                <property name="order" value="desc" />
                                 <property name="style" value="col-md-6"/>
                             </bean>
                         </list>
@@ -74,7 +74,7 @@
                         </list>
                     </list>
                 </entry>
-				<entry key="researcherprofiles">
+                <entry key="researcherprofiles">
                     <list>
                         <list>
                             <bean class="org.dspace.layout.CrisLayoutBrowseComponent">
@@ -99,7 +99,61 @@
                         </list>
                     </list>
                 </entry>
-                <entry key="orgunits">
+                <entry key="site">
+                    <list>
+                        <list>
+                            <bean class="org.dspace.layout.CrisLayoutSearchComponent">
+                                <property name="discoveryConfigurationName" value="site" />
+                                <property name="style" value="col-md-12"/>
+                                <property name="searchType" value="basic"/>
+                                <property name="displayTitle" value="false"/>
+                            </bean>
+                        </list>
+                        <list>
+                            <bean class="org.dspace.layout.CrisLayoutCountersComponent">
+                                <property name="style" value="col-md-12 py-4"/>
+                                <property name="counterSettingsList">
+                                    <list>
+                                        <bean class="org.dspace.layout.CrisLayoutCountersComponent.CounterSettings">
+                                            <property name="discoveryConfigurationName" value="researchoutputs"/>
+                                            <property name="label" value="publications"/>
+                                            <property name="icon" value="fas fa-file-alt fa-3x"/>
+                                            <property name="link" value="/explore/researchoutputs"/>
+                                        </bean>
+                                        <bean class="org.dspace.layout.CrisLayoutCountersComponent.CounterSettings">
+                                            <property name="discoveryConfigurationName" value="project_funding"/>
+                                            <property name="label" value="project_funding"/>
+                                            <property name="icon" value="fas fa-cogs fa-3x"/>
+                                            <property name="link" value="/explore/fundings_and_projects"/>
+                                        </bean>
+                                        <bean class="org.dspace.layout.CrisLayoutCountersComponent.CounterSettings">
+                                            <property name="discoveryConfigurationName" value="person"/>
+                                            <property name="label" value="rprofiles"/>
+                                            <property name="icon" value="fas fa-users fa-3x"/>
+                                            <property name="link" value="/explore/researcherprofiles"/>
+                                        </bean>
+                                    </list>
+                                </property>
+                            </bean>
+
+                        </list>
+                        <list>
+                            <bean class="org.dspace.layout.CrisLayoutTopComponent">
+                                <property name="discoveryConfigurationName" value="homePageTopItems" />
+                                <property name="sortField" value="dc.date.accessioned" />
+                                <property name="order" value="desc" />
+                                <property name="style" value="col-md-6"/>
+                            </bean>
+                            <bean class="org.dspace.layout.CrisLayoutTopComponent">
+                                <property name="discoveryConfigurationName" value="homePageTopItems" />
+                                <property name="sortField" value="metric.view" />
+                                <property name="order" value="desc" />
+                                <property name="style" value="col-md-6"/>
+                            </bean>
+                        </list>
+                    </list>
+                </entry>
+                <!--<entry key="orgunits">
                     <list>
                         <list>
                             <bean class="org.dspace.layout.CrisLayoutBrowseComponent">
@@ -146,7 +200,7 @@
                             </bean>
                         </list>
                     </list>
-                </entry>
+                </entry>-->
             </map>
         </property>
     </bean>

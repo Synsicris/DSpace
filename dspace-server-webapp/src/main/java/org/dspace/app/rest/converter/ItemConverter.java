@@ -9,12 +9,17 @@ package org.dspace.app.rest.converter;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.model.MetadataValueList;
@@ -25,16 +30,19 @@ import org.dspace.app.util.DCInputsReaderException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataField;
-import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.MetadataSecurityEvaluation;
+import org.dspace.content.service.MetadataValueService;
 import org.dspace.core.Context;
 import org.dspace.discovery.IndexableObject;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.layout.CrisLayoutBox;
 import org.dspace.layout.CrisLayoutField;
+import org.dspace.layout.CrisLayoutFieldMetadata;
+import org.dspace.layout.CrisMetadataGroup;
 import org.dspace.layout.LayoutSecurity;
 import org.dspace.layout.service.CrisLayoutBoxAccessService;
 import org.dspace.layout.service.CrisLayoutBoxService;
@@ -56,6 +64,9 @@ public class ItemConverter
     @Autowired
     private ItemService itemService;
 
+    @Resource(name = "securityLevelsMap")
+    private final Map<String, MetadataSecurityEvaluation> securityLevelsMap = new HashMap<>();
+
     @Autowired
     private CrisLayoutBoxService crisLayoutBoxService;
 
@@ -73,6 +84,8 @@ public class ItemConverter
 
     @Autowired
     private RequestService requestService;
+    @Autowired
+    private MetadataValueService metadataValueService;
 
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(ItemConverter.class);
 
@@ -83,6 +96,12 @@ public class ItemConverter
         item.setDiscoverable(obj.isDiscoverable());
         item.setWithdrawn(obj.isWithdrawn());
         item.setLastModified(obj.getLastModified());
+
+        List<MetadataValue> entityTypes =
+            itemService.getMetadata(obj, "dspace", "entity", "type", Item.ANY, false);
+        if (CollectionUtils.isNotEmpty(entityTypes) && StringUtils.isNotBlank(entityTypes.get(0).getValue())) {
+            item.setEntityType(entityTypes.get(0).getValue());
+        }
 
         return item;
     }
@@ -101,8 +120,7 @@ public class ItemConverter
         List<MetadataValue> fullList = itemService.getMetadata(obj, Item.ANY, Item.ANY, Item.ANY, Item.ANY, true);
 
         List<MetadataValue> returnList = new LinkedList<>();
-        String entityType = itemService.getMetadataFirstValue(obj, MetadataSchemaEnum.RELATIONSHIP.getName(),
-                "type", null, Item.ANY);
+        String entityType = itemService.getMetadataFirstValue(obj, "dspace", "entity", "type", Item.ANY);
         try {
             List<CrisLayoutBox> boxes;
             if (context != null) {
@@ -120,7 +138,15 @@ public class ItemConverter
             for (MetadataValue metadataValue : fullList) {
                 MetadataField metadataField = metadataValue.getMetadataField();
                 if (checkMetadataFieldVisibility(context, boxes, obj, metadataField)) {
-                    returnList.add(metadataValue);
+                    if (metadataValue.getSecurityLevel() != null) {
+                        MetadataSecurityEvaluation metadataSecurityEvaluation =
+                            mapBetweenSecurityLevelAndClassSecurityLevel( metadataValue.getSecurityLevel());
+                        if (metadataSecurityEvaluation.allowMetadataFieldReturn(context, obj ,metadataField)) {
+                            returnList.add(metadataValue);
+                        }
+                    } else {
+                        returnList.add(metadataValue);
+                    }
                 }
             }
         } catch (SQLException e ) {
@@ -131,8 +157,7 @@ public class ItemConverter
 
     public boolean checkMetadataFieldVisibility(Context context, Item item,
             MetadataField metadataField) throws SQLException {
-        String entityType = itemService.getMetadataFirstValue(item, MetadataSchemaEnum.RELATIONSHIP.getName(), "type",
-                null, Item.ANY);
+        String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
         List<CrisLayoutBox> boxes = crisLayoutBoxService.findEntityBoxes(context, entityType, 1000, 0);
         return checkMetadataFieldVisibility(context, boxes, item, metadataField);
     }
@@ -228,13 +253,22 @@ public class ItemConverter
         for (CrisLayoutBox box : boxes) {
             List<CrisLayoutField> crisLayoutFields = box.getLayoutFields();
             for (CrisLayoutField field : crisLayoutFields) {
-                if (field.getMetadataField().equals(metadataField)
-                    && box.getSecurity() != LayoutSecurity.PUBLIC.getValue()) {
-                    boxesWithMetadataField.add(box);
+                if (field instanceof CrisLayoutFieldMetadata) {
+                    checkField(metadataField, boxesWithMetadataField, box, field.getMetadataField());
+                    for (CrisMetadataGroup metadataGroup : field.getCrisMetadataGroupList()) {
+                        checkField(metadataField, boxesWithMetadataField, box, metadataGroup.getMetadataField());
+                    }
                 }
             }
         }
         return boxesWithMetadataField;
+    }
+
+    private void checkField(MetadataField metadataField, List<CrisLayoutBox> boxesWithMetadataField, CrisLayoutBox box,
+            MetadataField field) {
+        if (field.equals(metadataField) && box.getSecurity() != LayoutSecurity.PUBLIC.getValue()) {
+            boxesWithMetadataField.add(box);
+        }
     }
 
     private boolean isPublicMetadataField(MetadataField metadataField, List<MetadataField> allPublicMetadata) {
@@ -252,7 +286,9 @@ public class ItemConverter
             if (box.getSecurity() == LayoutSecurity.PUBLIC.getValue()) {
                 List<CrisLayoutField> crisLayoutFields = box.getLayoutFields();
                 for (CrisLayoutField field : crisLayoutFields) {
-                    publicMetadata.add(field.getMetadataField());
+                    if (field instanceof CrisLayoutFieldMetadata) {
+                        publicMetadata.add(field.getMetadataField());
+                    }
                 }
             }
         }
@@ -272,5 +308,9 @@ public class ItemConverter
     @Override
     public boolean supportsModel(IndexableObject idxo) {
         return idxo.getIndexedObject() instanceof Item;
+    }
+
+    public MetadataSecurityEvaluation mapBetweenSecurityLevelAndClassSecurityLevel(int securityValue) {
+        return securityLevelsMap.get(securityValue + "");
     }
 }

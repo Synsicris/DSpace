@@ -19,6 +19,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
@@ -26,7 +27,7 @@ import org.dspace.utils.DSpace;
 /**
  * The purpose of this consumer is to check if the user
  * who created the workspaceitem belongs to the subProject groups,
- * if yes in the metadata 'cris.workspace.shared' it is written <subproject>,
+ * if yes in the metadata 'cris.project.shared' it is written <subproject>,
  * otherwise it is written <project>.
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
@@ -65,8 +66,15 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                 if (itemsAlreadyProcessed.contains(item)) {
                     return;
                 }
-                if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "workspace", "shared",null))
-                    && Objects.nonNull(workspaceItemService.findByItem(context, item))) {
+
+                String sharedValue = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
+                if (StringUtils.equals(sharedValue, ProjectConstants.SHARED) ||
+                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER) ||
+                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER_PROGRAMME)) {
+                    return;
+                }
+                if (StringUtils.isNotBlank(sharedValue) &&
+                    Objects.nonNull(workspaceItemService.findByItem(context, item))) {
                     projectConsumerService.checkGrants(context, submitter, item);
                 }
                 itemsAlreadyProcessed.add(item);

@@ -213,8 +213,8 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
         return addMetadataValue(MetadataSchemaEnum.DC.getName(),"description", "abstract", subject);
     }
 
-    public WorkspaceItemBuilder withRelationshipType(final String relationshipType) {
-        return addMetadataValue("relationship", "type", null, relationshipType);
+    public WorkspaceItemBuilder withEntityType(final String entityType) {
+        return addMetadataValue("dspace", "entity", "type", entityType);
     }
 
     public WorkspaceItemBuilder withCrisSourceId(String sourceId) {
@@ -238,7 +238,7 @@ public class WorkspaceItemBuilder extends AbstractBuilder<WorkspaceItem, Workspa
     }
 
     public WorkspaceItemBuilder withSharedProject(String shared) {
-        return addMetadataValue("cris", "workspace", "shared", shared);
+        return addMetadataValue("cris", "project", "shared", shared);
     }
 
     public WorkspaceItemBuilder withPolicyGroup(String value) {

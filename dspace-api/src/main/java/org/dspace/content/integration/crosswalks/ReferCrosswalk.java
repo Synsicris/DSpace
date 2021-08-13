@@ -63,6 +63,7 @@ import org.dspace.discovery.configuration.DiscoveryConfiguration;
 import org.dspace.discovery.configuration.DiscoveryConfigurationService;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.services.ConfigurationService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
@@ -77,7 +78,7 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
 
     private static Logger log = Logger.getLogger(ReferCrosswalk.class);
 
-    private static final Pattern FIELD_PATTERN = Pattern.compile("@[a-zA-Z0-9\\-.*]+(\\(.*\\))?@");
+    private static final Pattern FIELD_PATTERN = Pattern.compile("@(.*)@");
 
     @Autowired
     private ConfigurationService configurationService;
@@ -297,7 +298,11 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
 
             List<String> metadataValues = getMetadataValuesForLine(context, templateLine, item);
             for (String metadataValue : metadataValues) {
-                appendLine(lines, templateLine, metadataValue);
+                if (PLACEHOLDER_PARENT_METADATA_VALUE.equals(metadataValue)) {
+                    appendLine(lines, templateLine, StringUtils.EMPTY);
+                } else if (isNotBlank(metadataValue)) {
+                    appendLine(lines, templateLine, metadataValue);
+                }
             }
         }
     }
@@ -424,15 +429,16 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
         return itemService.getMetadataByMetadataString(item, metadataField.replaceAll("-", ".")).stream()
             .map(MetadataValue::getAuthority)
             .filter(Objects::nonNull)
-            .map(authority -> findById(context, authority))
+            .filter(authority -> UUIDUtils.fromString(authority) != null)
+            .map(authority -> findById(context, UUIDUtils.fromString(authority)))
             .filter(Objects::nonNull)
             .iterator();
     }
 
     private Iterator<Item> findByRelation(Context context, Item item, String relationName) {
-        String entityType = itemService.getMetadataFirstValue(item, "relationship", "type", null, Item.ANY);
+        String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
         if (entityType == null) {
-            log.warn("The item with id " + item.getID() + " has no relationship.type. No related items is found.");
+            log.warn("The item with id " + item.getID() + " has no dspace.entity.type. No related items is found.");
             return emptyIterator();
         }
 
@@ -475,17 +481,17 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
         }
     }
 
-    private Item findById(Context context, String id) {
+    private Item findById(Context context, UUID id) {
         try {
-            return itemService.findByIdOrLegacyId(context, id);
+            return itemService.find(context, id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private boolean hasExpectedEntityType(Item item) {
-        String relationshipType = itemService.getMetadataFirstValue(item, "relationship", "type", null, Item.ANY);
-        return Objects.equals(relationshipType, entityType);
+        String itemEntityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+        return Objects.equals(itemEntityType, entityType);
     }
 
     public void setConverter(Converter<String, String> converter) {

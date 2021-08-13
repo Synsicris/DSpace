@@ -12,28 +12,7 @@
     <dc-type>
         <schema>workingplan</schema>
         <element>relation</element>
-        <qualifier>parent</qualifier>
-        <scope_note></scope_note>
-    </dc-type>
-
-    <dc-type>
-        <schema>workingplan</schema>
-        <element>relation</element>
         <qualifier>step</qualifier>
-        <scope_note></scope_note>
-    </dc-type>
-    
-    <dc-type>
-        <schema>workingplan</schema>
-        <element>responsible</element>
-        <qualifier></qualifier>
-        <scope_note></scope_note>
-    </dc-type>
-
-    <dc-type>
-        <schema>workingplan</schema>
-        <element>step</element>
-        <qualifier>status</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
@@ -41,5 +20,12 @@
         <schema>workingplan</schema>
         <element>place</element>
         <scope_note></scope_note>
+    </dc-type>
+      
+    <dc-type>
+        <schema>workingplan</schema>
+        <element>link</element>
+        <qualifier>status</qualifier>
+        <scope_note>link status</scope_note>
     </dc-type>
 </dspace-dc-types>

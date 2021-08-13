@@ -9,6 +9,7 @@ package org.dspace.app.rest.utils;
 
 import static java.lang.Integer.parseInt;
 import static java.util.stream.Collectors.toList;
+import static org.dspace.app.rest.utils.URLUtils.urlIsPrefixOf;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 import java.beans.IntrospectionException;
@@ -24,6 +25,8 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,9 +44,13 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dspace.app.rest.converter.ConverterService;
 import org.dspace.app.rest.exception.PaginationException;
 import org.dspace.app.rest.exception.RepositoryNotFoundException;
@@ -51,6 +58,7 @@ import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.CommunityRest;
 import org.dspace.app.rest.model.CrisLayoutBoxRest;
 import org.dspace.app.rest.model.CrisMetricsRest;
+import org.dspace.app.rest.model.EasyOnlineImportRest;
 import org.dspace.app.rest.model.LinkRest;
 import org.dspace.app.rest.model.LinksRest;
 import org.dspace.app.rest.model.OrcidHistoryRest;
@@ -95,6 +103,8 @@ import org.springframework.hateoas.Link;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  * Collection of utility methods
@@ -104,12 +114,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class Utils {
 
-    private static final Logger log = Logger.getLogger(Utils.class);
+    private static final Logger log = LogManager.getLogger(Utils.class);
 
     /**
      * The default page size, if unspecified in the request.
      */
-    private static final int DEFAULT_PAGE_SIZE = 20;
+    public static final int DEFAULT_PAGE_SIZE = 20;
 
     /**
      * The maximum number of embed levels to allow.
@@ -249,9 +259,11 @@ public class Utils {
      *
      * @param apiCategory
      * @param modelPlural
-     * @return
+     * @return the requested repository.
+     * @throws RepositoryNotFoundException passed through.
      */
-    public DSpaceRestRepository getResourceRepository(String apiCategory, String modelPlural) {
+    public DSpaceRestRepository getResourceRepository(String apiCategory, String modelPlural)
+            throws RepositoryNotFoundException {
         String model = makeSingular(modelPlural);
         return getResourceRepositoryByCategoryAndModel(apiCategory, model);
     }
@@ -262,9 +274,11 @@ public class Utils {
      *
      * @param apiCategory
      * @param modelSingular
-     * @return
+     * @return the requested repository.
+     * @throws RepositoryNotFoundException if no such repository can be found.
      */
-    public DSpaceRestRepository getResourceRepositoryByCategoryAndModel(String apiCategory, String modelSingular) {
+    public DSpaceRestRepository getResourceRepositoryByCategoryAndModel(String apiCategory, String modelSingular)
+            throws RepositoryNotFoundException {
         try {
             return applicationContext.getBean(apiCategory + "." + modelSingular, DSpaceRestRepository.class);
         } catch (NoSuchBeanDefinitionException e) {
@@ -272,6 +286,10 @@ public class Utils {
         }
     }
 
+    /**
+     * Find the names of all {@link DSpaceRestRepository} implementations.
+     * @return the names of all repository types.
+     */
     public String[] getRepositories() {
         return applicationContext.getBeanNamesForType(DSpaceRestRepository.class);
     }
@@ -315,6 +333,9 @@ public class Utils {
         if (StringUtils.equals(modelPlural, "categories")) {
             return UsageReportCategoryRest.NAME;
         }
+        if (StringUtils.equals(modelPlural, "easyonlineimports")) {
+            return EasyOnlineImportRest.NAME;
+        }
         return modelPlural.replaceAll("s$", "");
     }
 
@@ -348,8 +369,8 @@ public class Utils {
     }
 
     /**
-     * Build the canonical representation of a metadata key in DSpace. I.e.
-     * <schema>.<element>[.<qualifier>]
+     * Build the canonical representation of a metadata key in DSpace.  I.e.
+     * {@code <schema>.<element>[.<qualifier>]}
      *
      * @param schema
      * @param element
@@ -457,6 +478,7 @@ public class Utils {
      * It will then look through all the DSpaceObjectServices to try and match this UUID to a DSpaceObject.
      * If one is found, this DSpaceObject is added to the List of DSpaceObjects that we will return.
      * @param context   The relevant DSpace context
+     * @param list      The interesting UUIDs.
      * @return          The resulting list of DSpaceObjects that we parsed out of the request
      */
     public List<DSpaceObject> constructDSpaceObjectList(Context context, List<String> list) {
@@ -591,8 +613,10 @@ public class Utils {
             projections.add(converter.getProjection(projectionName));
         }
 
+
         if (!embedRels.isEmpty()) {
-            projections.add(new EmbedRelsProjection(embedRels));
+            Set<String> embedSizes = new HashSet<>(getValues(servletRequest, "embed.size"));
+            projections.add(new EmbedRelsProjection(embedRels, embedSizes));
         }
 
         if (projections.isEmpty()) {
@@ -720,7 +744,8 @@ public class Utils {
             Method method = requireMethod(linkRepository.getClass(), linkRest.method());
             Object contentId = getContentIdForLinkMethod(resource.getContent(), method);
             try {
-                Object linkedObject = method.invoke(linkRepository, null, contentId, null, projection);
+                Object linkedObject = method.invoke(linkRepository, null, contentId,
+                                                    projection.getPagingOptions(rel, resource, oldLinks), projection);
                 resource.embedResource(rel, wrapForEmbedding(resource, linkedObject, link, oldLinks));
             } catch (InvocationTargetException e) {
                 // This will be thrown from the LinkRepository if a Resource has been requested that'll try to embed
@@ -743,6 +768,7 @@ public class Utils {
     /**
      * Adds embeds (if the maximum embed level has not been exceeded yet) for all properties annotated with
      * {@code @LinkRel} or whose return types are {@link RestAddressableModel} subclasses.
+     * @param resource the resource to be so augmented.
      */
     public void embedMethodLevelRels(HALResource<? extends RestAddressableModel> resource) {
         if (resource.getContent().getEmbedLevel() == EMBED_MAX_LEVELS) {
@@ -960,26 +986,45 @@ public class Utils {
     */
     public BaseObjectRest getBaseObjectRestFromUri(Context context, String uri) throws SQLException {
         String dspaceUrl = configurationService.getProperty("dspace.server.url");
-        // first check if the uri could be valid
-        if (!StringUtils.startsWith(uri, dspaceUrl)) {
-            throw new IllegalArgumentException("the supplied uri is not valid: " + uri);
+
+        // Convert strings to URL objects.
+        // Do this early to check that inputs are well-formed.
+        URL dspaceUrlObject;
+        URL requestUrlObject;
+        try {
+            dspaceUrlObject = new URL(dspaceUrl);
+            requestUrlObject = new URL(uri);
+        } catch (MalformedURLException ex) {
+            throw new IllegalArgumentException(
+                    String.format("Configuration '%s' or request '%s' is malformed", dspaceUrl, uri));
         }
-        // extract from the uri the category, model and id components
-        // they start after the dspaceUrl/api/{apiCategory}/{apiModel}/{id}
-        String[] uriParts = uri.substring(dspaceUrl.length() + (dspaceUrl.endsWith("/") ? 0 : 1) + "api/".length())
-                .split("/", 3);
+
+        // Check whether the URI could be valid.
+        if (!urlIsPrefixOf(dspaceUrl, uri)) {
+            throw new IllegalArgumentException("the supplied uri is not ours: " + uri);
+        }
+
+        // Extract from the URI the category, model and id components.
+        // They start after the dspaceUrl/api/{apiCategory}/{apiModel}/{id}
+        int dspacePathLength = StringUtils.split(dspaceUrlObject.getPath(), '/').length;
+        String[] requestPath = StringUtils.split(requestUrlObject.getPath(), '/');
+        String[] uriParts = Arrays.copyOfRange(requestPath, dspacePathLength,
+                requestPath.length);
+        if ("api".equalsIgnoreCase(uriParts[0])) {
+            uriParts = Arrays.copyOfRange(uriParts, 1, uriParts.length);
+        }
         if (uriParts.length != 3) {
-            throw new IllegalArgumentException("the supplied uri is not valid: " + uri);
+            throw new IllegalArgumentException("the supplied uri lacks required path elements: " + uri);
         }
 
         DSpaceRestRepository repository;
         try {
             repository = getResourceRepository(uriParts[0], uriParts[1]);
             if (!(repository instanceof ReloadableEntityObjectRepository)) {
-                throw new IllegalArgumentException("the supplied uri is not valid: " + uri);
+                throw new IllegalArgumentException("the supplied uri is not for the right type of repository: " + uri);
             }
         } catch (RepositoryNotFoundException e) {
-            throw new IllegalArgumentException("the supplied uri is not valid: " + uri, e);
+            throw new IllegalArgumentException("the repository for the URI '" + uri + "' was not found", e);
         }
 
         Serializable pk;
@@ -987,7 +1032,7 @@ public class Utils {
             // cast the string id in the uriParts to the real pk class
             pk = castToPKClass((ReloadableEntityObjectRepository) repository, uriParts[2]);
         } catch (Exception e) {
-            throw new IllegalArgumentException("the supplied uri is not valid: " + uri, e);
+            throw new IllegalArgumentException("the supplied uri could not be cast to a Primary Key class: " + uri, e);
         }
         try {
             // disable the security as we only need to retrieve the object to further process the authorization
@@ -996,5 +1041,13 @@ public class Utils {
         } finally {
             context.restoreAuthSystemState();
         }
+    }
+
+    public static Document extractDocument(MultipartFile multipartFile)
+            throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(multipartFile.getInputStream());
     }
 }

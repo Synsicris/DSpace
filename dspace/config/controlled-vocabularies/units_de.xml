@@ -71,7 +71,7 @@
         <node id="UI38" label="Produktivitätssteigerung" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="UI39" label="Erzielter Marktanteil" selectable="false">
+        <node id="UI39" label="Erzielter Marktanteil" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

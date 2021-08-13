@@ -175,10 +175,9 @@ public class PackageUtils {
      * @throws SQLException
      */
     public static void addRelationshipMetadata(Context context, Collection parent, Item item) throws SQLException {
-        String r = collectionService.getMetadata(parent, MetadataSchemaEnum.RELATIONSHIP.getName());
-        if (r != null) {
-            itemService.setMetadataSingleValue(context, item, MetadataSchemaEnum.RELATIONSHIP.getName(),
-                    "type", null, null, r);
+        String entitType = collectionService.getMetadata(parent, "dspace.entity.type");
+        if (entitType != null) {
+            itemService.setMetadataSingleValue(context, item, "dspace", "entity", "type", null, entitType);
         }
     }
 

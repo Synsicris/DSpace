@@ -7,6 +7,7 @@
  */
 package org.dspace.administer;
 
+import static org.dspace.content.Item.ANY;
 import static org.dspace.content.MetadataSchemaEnum.CRIS;
 import static org.dspace.content.service.DSpaceObjectService.MD_COPYRIGHT_TEXT;
 import static org.dspace.content.service.DSpaceObjectService.MD_INTRODUCTORY_TEXT;
@@ -54,6 +55,7 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.CrisConstants;
@@ -123,6 +125,8 @@ public class StructBuilder {
             = EPersonServiceFactory.getInstance().getGroupService();
     protected static AuthorizeService authorizeService
             = AuthorizeServiceFactory.getInstance().getAuthorizeService();
+    protected static ItemService itemService
+            = ContentServiceFactory.getInstance().getItemService();
     /**
      * Default constructor
      */
@@ -301,6 +305,7 @@ public class StructBuilder {
         collectionMap.put("license", MD_LICENSE);
         collectionMap.put("provenance", MD_PROVENANCE_DESCRIPTION);
         collectionMap.put("policy-group", null);
+        collectionMap.put("item-template", null);
 
         Element[] elements = new Element[]{};
         try {
@@ -404,8 +409,7 @@ public class StructBuilder {
             element.addContent(new Element("provenance")
                     .setText(value.getValue()));
         }
-        String entityType = collectionService.getMetadataFirstValue(collection,
-                MetadataSchemaEnum.RELATIONSHIP.getName(), "type", null, Item.ANY);
+        String entityType = collectionService.getMetadataFirstValue(collection, "dspace", "entity", "type", Item.ANY);
         if (StringUtils.isNotBlank(entityType)) {
             element.addContent(new Element("entity-type").setText(entityType));
         }
@@ -542,11 +546,11 @@ public class StructBuilder {
         for (int i = 0; i < communities.getLength(); i++) {
             Node n = communities.item(i);
             NodeList name = XPathAPI.selectNodeList(n, "name");
-            if (name.getLength() != 1) {
+            if (name.getLength() < 1) {
                 String pos = Integer.toString(i + 1);
                 err.append("-The level ").append(level)
                         .append(" community in position ").append(pos)
-                        .append(" does not contain exactly one name field.\n");
+                        .append(" does not contain any name field.\n");
                 trip = true;
             }
 
@@ -591,11 +595,11 @@ public class StructBuilder {
         for (int i = 0; i < collections.getLength(); i++) {
             Node n = collections.item(i);
             NodeList name = XPathAPI.selectNodeList(n, "name");
-            if (name.getLength() != 1) {
+            if (name.getLength() < 1) {
                 String pos = Integer.toString(i + 1);
                 err.append("-The level ").append(level)
                         .append(" collection in position ").append(pos)
-                        .append(" does not contain exactly one name field.\n");
+                        .append(" does not contain any name field.\n");
                 trip = true;
             }
         }
@@ -690,6 +694,27 @@ public class StructBuilder {
     }
 
     /**
+     * Create an item template for a collection
+     *
+     * @param context         the context of the request
+     * @param node            the Node element that contains information for creating item template
+     * @param collection      the collection for which create the item template
+     * @throws SQLException, AuthorizeException, TransformerException
+     */
+    private static void handleItemTemplate(Context context, Node node, Collection collection)
+            throws SQLException, AuthorizeException, TransformerException {
+        collectionService.createTemplateItem(context, collection);
+        Item templateItem = collection.getTemplateItem();
+        NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
+        for (int i = 0; i < metadataList.getLength(); i++) {
+            String metadataName = getAttributeValue(metadataList.item(i), "name");
+            String metadatavalue = getStringValue(metadataList.item(i));
+            String[] elements = MetadataFieldName.parse(metadataName);
+            itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue);
+        }
+    }
+
+    /**
      * Return the int value for the resource policy by string value
      *
      * @param policyType the string value to convert
@@ -770,8 +795,9 @@ public class StructBuilder {
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
                         } else {
-                            communityService.setMetadataSingleValue(context, community,
-                                entry.getValue(), null, getStringValue(nl.item(j)));
+                            communityService.addMetadata(context, community,
+                                    entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }
                 }
@@ -796,10 +822,16 @@ public class StructBuilder {
             // we want to move it or make it switchable later
             element.setAttribute("identifier", community.getHandle());
 
-            Element nameElement = new Element("name");
-            nameElement.setText(communityService.getMetadataFirstValue(
-                    community, CommunityService.MD_NAME, Item.ANY));
-            element.addContent(nameElement);
+            List<MetadataValue> nameList = communityService.getMetadataByMetadataString(community,
+                    CommunityService.MD_NAME.toString());
+            for (MetadataValue name : nameList) {
+                Element nameElement = new Element("name");
+                nameElement.setText(name.getValue());
+                if (StringUtils.isNotBlank(name.getLanguage())) {
+                    nameElement.setAttribute("language", name.getLanguage());
+                }
+                element.addContent(nameElement);
+            }
 
             String fieldValue;
 
@@ -896,9 +928,12 @@ public class StructBuilder {
                             policyGroupName = getStringValue(nl.item(j));
                             handleResourcePolicyGroup(context, policyGroupName, policyType, collection, toDelete);
                             toDelete = false;
+                        } else if (entry.getKey().equals("item-template")) {
+                            handleItemTemplate(context, nl.item(j), collection);
                         } else {
-                            collectionService.setMetadataSingleValue(context, collection,
-                                entry.getValue(), null, getStringValue(nl.item(j)));
+                            collectionService.addMetadata(context, collection,
+                                entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }
                 }
@@ -908,10 +943,16 @@ public class StructBuilder {
 
             element.setAttribute("identifier", collection.getHandle());
 
-            Element nameElement = new Element("name");
-            nameElement.setText(collectionService.getMetadataFirstValue(collection,
-                    CollectionService.MD_NAME, Item.ANY));
-            element.addContent(nameElement);
+            List<MetadataValue> nameList = collectionService.getMetadataByMetadataString(collection,
+                    CollectionService.MD_NAME.toString());
+            for (MetadataValue name : nameList) {
+                Element nameElement = new Element("name");
+                nameElement.setText(name.getValue());
+                if (StringUtils.isNotBlank(name.getLanguage())) {
+                    nameElement.setAttribute("language", name.getLanguage());
+                }
+                element.addContent(nameElement);
+            }
 
             String fieldValue;
 
@@ -963,9 +1004,7 @@ public class StructBuilder {
                 element.addContent(sidebarElement);
             }
 
-            String entityType = collectionService.getMetadataFirstValue(collection,
-                    MetadataSchemaEnum.RELATIONSHIP.getName(),
-                    "type", null, Item.ANY);
+            String entityType = collectionService.getMetadataFirstValue(collection, "dspace", "entity", "type", ANY);
             if (StringUtils.isNotBlank(entityType)) {
                 element.addContent(new Element("entity-type").setText(entityType));
             }

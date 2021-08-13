@@ -8,6 +8,7 @@
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
@@ -29,6 +31,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,9 +42,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
-
-    private static final String PROJECT = "project";
-    private static final String SUBPROJECT = "subproject";
 
     @Autowired
     private ItemService itemService;
@@ -60,29 +60,39 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     public void processItem(Context context, EPerson currentUser, Item item) {
         try {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
-                String shared = itemService.getMetadataFirstValue(item, "cris", "workspace", "shared", Item.ANY);
+                String shared = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
                 Community projectCommunity = getProjectCommunity(context, item);
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }
                 switch (shared) {
-                    case PROJECT :
+                    case ProjectConstants.PARENTPROJECT :
+                    case ProjectConstants.OWNING_PROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
                         }
                         break;
-                    case SUBPROJECT:
-                        Community subProject = getSubProjectCommunity(projectCommunity);
-                        if (Objects.isNull(subProject)) {
+                    case ProjectConstants.PROJECT:
+                        Community project = getSubProjectCommunity(projectCommunity);
+                        if (Objects.isNull(project)) {
                             throw new RuntimeException("It was not possible to find the subProject Community");
                         }
-                        List<Community> subCommunities = subProject.getSubcommunities();
+                        List<Community> subCommunities = project.getSubcommunities();
                         for (Community community : subCommunities) {
                             if (setPolicyGroup(context, item, currentUser, community)) {
                                 return;
                             }
                         }
+                        break;
+                    case ProjectConstants.SHARED:
+                        setPolicyGroup(context, item, configurationService.getProperty("project.creation.group"));
+                        break;
+                    case ProjectConstants.FUNDER:
+                        setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
+                        break;
+                    case ProjectConstants.FUNDER_PROGRAMME:
+                        setPolicyGroup(context,item,configurationService.getProperty("project.funder_programme.group"));
                         break;
                     default:
                         return;
@@ -93,16 +103,43 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
-    private Community getProjectCommunity(Context context, Item item) throws SQLException {
+    private void setPolicyGroup(Context context, Item item, String groupUuid) throws SQLException {
+        Group group = groupService.find(context, UUID.fromString(groupUuid));
+        if (Objects.nonNull(group)) {
+            itemService.replaceMetadata(context, item, "cris", "policy", "group", null, group.getName(),
+                        groupUuid, Choices.CF_ACCEPTED, 0);
+        } else {
+            log.error("It was not possible to find the group with uuid : " + groupUuid);
+        }
+    }
+
+    @Override
+    public Community getProjectCommunity(Context context, Item item) throws SQLException {
+        Community parentProjectCommunity = null;
+        Collection owningCollection = null;
+        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
+
         WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
         if (Objects.nonNull(workspaceItem)) {
-            return workspaceItem.getCollection().getCommunities().get(0);
+            owningCollection = workspaceItem.getCollection();
+        } else {
+            if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+                // the item is a template item
+                return null;
+            }
+            owningCollection = item.getOwningCollection();
         }
-        if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+
+        if (owningCollection == null) {
             // the item is a template item
             return null;
         }
-        return item.getCollections().get(0).getCommunities().get(0);
+
+        parentProjectCommunity = owningCollection.getCommunities().get(0);
+        while (Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
+            parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
+        }
+        return parentProjectCommunity;
     }
 
     private Community getSubProjectCommunity(Community projectCommunity) {
@@ -142,18 +179,19 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
-                List<MetadataValue> values = communityService.getMetadataByMetadataString(subprojectCommunity,
-                        "dc.relation.project");
+                List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
+                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                        ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
-                        itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
+                        itemService.replaceMetadata(context, item, "cris", "project", "shared",
                                                        null, defaultValue, null, Choices.CF_UNSET, 0);
                     }
                 }
             } else {
-                itemService.replaceMetadata(context, item, "cris", "workspace", "shared",
-                                            null, PROJECT, null, Choices.CF_UNSET, 0);
+                itemService.replaceMetadata(context, item, "cris", "project", "shared",
+                                            null, ProjectConstants.PARENTPROJECT, null, Choices.CF_UNSET, 0);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,7 +206,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(projectItem)) {
                 return null;
             }
-            return itemService.getMetadataFirstValue(projectItem, "cris", "workspace", "shared", Item.ANY);
+            return itemService.getMetadataFirstValue(projectItem, "cris", "project", "shared", Item.ANY);
         }
         return null;
     }
@@ -182,9 +220,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         if (subprojects.size() > 0) {
             return subprojects.get(0);
         } else {
-            return null;    
+            return null;
         }
-        
     }
 
     @Override
@@ -209,6 +246,21 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
         }
         return subprojects;
+    }
+
+    @Override
+    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+        if (values.isEmpty()) {
+            return null;
+        }
+        String uuid = values.get(0).getAuthority();
+        if (StringUtils.isNotBlank(uuid)) {
+            // item that rappresent Project community
+            Item projectItem = itemService.find(context, UUID.fromString(uuid));
+            return getProjectCommunity(context, projectItem);
+        }
+        return null;
     }
 
 }

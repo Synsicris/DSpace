@@ -55,7 +55,6 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowItem;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -64,7 +63,6 @@ import org.junit.Test;
  * @author Luca Giamminonni (luca.giamminonni at 4science.it)
  *
  */
-@Ignore
 public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
 
     private static final String CRIS_CONSUMER = CrisConsumer.CONSUMER_NAME;
@@ -678,7 +676,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             Item person = ItemBuilder.createItem(context, collection)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withTitle("Walter White")
                 .withOrcidIdentifier("0000-0002-9079-593X")
                 .build();
@@ -734,7 +732,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             createCollection(context, community)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withAdminGroup(eperson)
                 .build();
 
@@ -792,7 +790,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             Item person = ItemBuilder.createItem(context, collection)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withTitle("Walter White")
                 .withOrcidIdentifier("0000-0002-9079-593X")
                 .build();
@@ -848,7 +846,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
             context.turnOffAuthorisationSystem();
 
             createCollection(context, community)
-                .withRelationshipType("Person")
+                .withEntityType("Person")
                 .withAdminGroup(eperson)
                 .build();
 
@@ -1292,7 +1290,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
         context.turnOffAuthorisationSystem();
 
         createCollection(context, community)
-            .withRelationshipType("Person")
+            .withEntityType("Person")
             .withAdminGroup(eperson)
             .build();
 
@@ -1375,6 +1373,8 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
     private void resetConsumers(String[] consumers) {
         ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
         configService.setProperty("event.dispatcher.default.consumers", consumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
     }
 
     private Item findItemByMetadata(String schema, String element, String qualifier, String value) throws Exception {

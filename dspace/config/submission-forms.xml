@@ -542,7 +542,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
+          <dc-qualifier>partner-wp</dc-qualifier>
           <label>Responsible Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -628,7 +628,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
+          <dc-qualifier>partner-wp</dc-qualifier>
           <label>Responsible Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -910,7 +910,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please formulate a clear and easily understandable title, because this will be displayed in overviews.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -1408,7 +1408,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Inventor(s)</label>
-          <input-type>group</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-4</style>
@@ -1437,16 +1437,6 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
           <type-bind>patent</type-bind>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Issuer</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>The issuer of the patent: the patent office</hint>
         </field>
       </row>
       <row>
@@ -2371,7 +2361,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>personleader</dc-element>
           <dc-qualifier>gender</dc-qualifier>
           <label>Gender</label>
-          <input-type>onebox</input-type>
+          <input-type value-pairs-name="gender">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
@@ -2431,7 +2421,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>personadmin</dc-element>
           <dc-qualifier>gender</dc-qualifier>
           <label>Gender</label>
-          <input-type>onebox</input-type>
+          <input-type value-pairs-name="gender">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
@@ -3520,6 +3510,16 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>reference-year-performance</dc-qualifier>
           <label>Reference year</label>
@@ -3533,7 +3533,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>annual-sales</dc-qualifier>
-          <label>Annual sales (EUR)</label>
+          <label>Annual sales</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3549,16 +3549,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -3655,21 +3645,22 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Select the type.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>registertype</dc-qualifier>
-          <label>Register type</label>
-          <input-type value-pairs-name="register_type">dropdown</input-type>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <label>Spin-off form</label>
+          <input-type value-pairs-name="spinoff_form">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint>Select the type of register (for companies, cooperatives, partnerships or associations).</hint>
+          <hint />
+          <type-bind>ascompany</type-bind>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>orgunits</dc-element>
@@ -3681,6 +3672,17 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">register-court</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>orgunits</dc-element>
+          <dc-qualifier>registertype</dc-qualifier>
+          <label>Register type</label>
+          <input-type value-pairs-name="register_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3715,7 +3717,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-8</style>
           <hint />
-          <type-bind>Transfer spin-off,  Competence spin-off</type-bind>
+          <type-bind>Transfer,  Competence</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
         <field>
@@ -3728,7 +3730,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-8</style>
           <hint />
-          <type-bind>Assosiation</type-bind>
+          <type-bind>asassosiation</type-bind>
         </field>
       </row>
       <row>
@@ -5153,14 +5155,13 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressLocality</dc-qualifier>
+          <dc-element>description</dc-element>
           <label>Contact information for inquiries</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Because both contact persons and web addresses can easily change, please provide contact information as detailed as possible.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -5283,7 +5284,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>type</dc-element>
           <label>Type of expected societal impact (selection determines subsequent queries)</label>
           <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>The selection of the type of expected impact determines further queries. (For ecological effects, the "ecological area" is queried, for all other effects, the "actor group" affected).</hint>
@@ -5744,7 +5745,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Authors</label>
-          <input-type>group</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint>Enter the names of the authors of this item.</hint>
@@ -5758,7 +5759,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <label>Date of Issue</label>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
-          <required>You must enter at least the year.</required>
+          <required />
           <style>col-md-6</style>
           <hint>Please give the date of previous publication or public distribution. You can leave out the day and/or month if they aren't applicable.</hint>
         </field>
@@ -6910,16 +6911,22 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="spinoff_type" dc-term="spinoff_type">
       <pair>
+        <displayed-value>as a company</displayed-value>
+        <stored-value>ascompany</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>as an assosiation</displayed-value>
+        <stored-value>asassosiation</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="spinoff_form" dc-term="spinoff_form">
+      <pair>
         <displayed-value>Transfer spin-off (Application of research results and methods)</displayed-value>
-        <stored-value>Transfer spin-off</stored-value>
+        <stored-value>Transfer</stored-value>
       </pair>
       <pair>
         <displayed-value>Competence spin-off (Application of acquired personal skills and competences)</displayed-value>
-        <stored-value>Competence spin-off</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Assosiation</displayed-value>
-        <stored-value>Assosiation</stored-value>
+        <stored-value>Competence</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="register_type" dc-term="register_type">
@@ -6958,7 +6965,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Work on the further development</stored-value>
       </pair>
       <pair>
-        <displayed-value>Transfer of the project results into practice</displayed-value>
+        <displayed-value>Transfer of the project results into practice (no publications)</displayed-value>
         <stored-value>Transfer into practice</stored-value>
       </pair>
       <pair>
@@ -7368,12 +7375,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dataset</displayed-value>
-        <stored-value>Product</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Publication</displayed-value>
         <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Dataset</displayed-value>
+        <stored-value>Product</stored-value>
       </pair>
       <pair>
         <displayed-value>Object or material</displayed-value>

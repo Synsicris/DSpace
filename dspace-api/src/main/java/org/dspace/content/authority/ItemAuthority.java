@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.solr.client.solrj.SolrClient;
@@ -238,11 +238,11 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             SolrQuery solrQuery = new SolrQuery();
             solrQuery.setQuery("*:*");
             solrQuery.addFilterQuery("search.resourceid:" + key);
-    
+
             customAuthorityFilters.stream()
                 .flatMap(caf -> caf.getFilterQueries(entityTypes[0]).stream())
                 .forEach(solrQuery::addFilterQuery);
-    
+
             try {
                 QueryResponse queryResponse = solr.query(solrQuery);
                 List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults());
@@ -250,9 +250,9 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
                     log.warn("No documents found for key=" + key);
                     return new HashMap<String, String>();
                 }
-    
+
                 return choiceList.iterator().next().extras;
-    
+
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }

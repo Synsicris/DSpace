@@ -31,6 +31,7 @@ public class LinkedEntityMetadataElementItemCompilePlugin implements XOAIExtensi
     // dc.contributor.author -> (crisitem.author.orcid, person.identifier.orcid)
     private Map<String, Map<String, String>> mapping;
 
+
     @Override
     public Metadata additionalMetadata(Context context, Metadata metadata, Item item) {
         try {

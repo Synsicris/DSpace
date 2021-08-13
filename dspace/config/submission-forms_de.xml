@@ -542,7 +542,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
+          <dc-qualifier>partner-wp</dc-qualifier>
           <label>Verantwortliche Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -628,7 +628,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
+          <dc-qualifier>partner-wp</dc-qualifier>
           <label>Verantwortliche Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -910,7 +910,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, mit der Angabe von Anzahl, Art und Thema.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -1311,7 +1311,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art des Schutzrechts</label>
+          <label>Art</label>
           <input-type value-pairs-name="patent_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1322,18 +1322,18 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>patentuse</dc-qualifier>
-          <label>Form der geplanten Verwertung</label>
+          <label>Form der geplanten Nutzung</label>
           <input-type value-pairs-name="patent_use">list</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Bitte wählen Sie aus, in welcher Form eine Verwertung vorgesehen ist.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>patentuse</dc-qualifier>
-          <label>Erläuterung zur Verwertung</label>
+          <label>Erläuterung zur Nutzung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1353,7 +1353,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>Geben Sie bitte die Anmeldenummer aus dem Formular zu der Registrierung beim Patentamt ein.</hint>
+          <hint>Geben Sie bitte die Anmeldenummer aus dem Registrierungs-Formular des Patentamtes ein.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1364,17 +1364,17 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>dcterms</dc-schema>
           <dc-element>rightsHolder</dc-element>
-          <label>Inhaber</label>
+          <label>Inhaber:in</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Bitte übertragen sie die Name(n) aus dem Anmeldeformular.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -1384,7 +1384,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>patentno</dc-qualifier>
-          <label>Patentummer</label>
+          <label>Patentnummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1406,8 +1406,8 @@
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
-          <label>Erfinder</label>
-          <input-type>group</input-type>
+          <label>Erfinder:in(nen)</label>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-4</style>
@@ -1419,7 +1419,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>ipc</dc-qualifier>
-          <label>IPC-Klasse(n)</label>
+          <label>IPC-Klasse</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1436,16 +1436,6 @@
           <style>col-md-4</style>
           <hint />
           <type-bind>patent</type-bind>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Herausgeber</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Herausgeber ist das Europäische Patentamt</hint>
         </field>
       </row>
       <row>
@@ -1481,7 +1471,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Hier können Sie den Link zu der Veröffentlichung beim Europäischen Patentamt angeben</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -2369,7 +2359,7 @@
           <dc-element>personleader</dc-element>
           <dc-qualifier>gender</dc-qualifier>
           <label>Geschlecht</label>
-          <input-type>onebox</input-type>
+          <input-type value-pairs-name="gender">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
@@ -2429,7 +2419,7 @@
           <dc-element>personadmin</dc-element>
           <dc-qualifier>gender</dc-qualifier>
           <label>Geschlecht</label>
-          <input-type>onebox</input-type>
+          <input-type value-pairs-name="gender">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
@@ -3492,7 +3482,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Zugehöriger Projektpartner</label>
+          <label>Ausgründende Organisation(en)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3503,7 +3493,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>relation-to-orgunit</dc-qualifier>
-          <label>Beschreibung der Zugehörigkeit</label>
+          <label>Beschreibung der Zusammenarbeit zwischen Ausgründung und ausgründender Organisation</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3514,6 +3504,16 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
     </form>
     <form name="spinoffs_result_performance-synsicris-date-reference-year-performance">
       <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
@@ -3546,16 +3546,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <required />
           <style>col-md-4</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
-          <hint>Bitte erläutern Sie kurz die wirtschaftliche Entwicklung und wichtige inhaltliche Arbeitsschwerpunkte.</hint>
         </field>
       </row>
     </form>
@@ -3647,7 +3637,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art der Ausgründung</label>
+          <label>Form der Ausgründung</label>
           <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3655,6 +3645,30 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>subject</dc-element>
+          <label>Schwerpunkt</label>
+          <input-type value-pairs-name="spinoff_form">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>ascompany</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>orgunits</dc-element>
+          <dc-qualifier>registercourt</dc-qualifier>
+          <label>Ort des zuständiges Gerichts</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <vocabulary closed="true">register-court</vocabulary>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>orgunits</dc-element>
@@ -3664,19 +3678,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Wählen Sie das passende Register.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>registercourt</dc-qualifier>
-          <label>Registergericht</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Wählen Sie den Ort des zuständigen Registergerichts aus.</hint>
-          <vocabulary closed="true">register-court</vocabulary>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3687,14 +3689,14 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Tragen Sie hier die Registernummer ein.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>organisation</dc-schema>
           <dc-element>foundingDate</dc-element>
-          <label>Datum der Eintragung im Register</label>
+          <label>Datum der Eintragung</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3710,21 +3712,21 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
-          <hint>Wählen Sie den Wirtschaftszweig bitte so spezifisch wie möglich.</hint>
-          <type-bind>Transfer spin-off,  Competence spin-off</type-bind>
+          <hint />
+          <type-bind>Transfer,  Competence</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
-          <label>Vereinszweck lt Satzung</label>
+          <label>Vereinszwecke lt Satzung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
           <hint />
-          <type-bind>Assosiation</type-bind>
+          <type-bind>asassosiation</type-bind>
         </field>
       </row>
       <row>
@@ -3779,7 +3781,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Webseite</label>
+          <label>Homepage</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3791,11 +3793,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Zugehörige Forschungsorganisation</label>
+          <label>Organisation(en), von der ausgehend das Unternehmen oder der Verein gegründet wurde</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Bitte wählen Sie die Forschungsorganisation, aus welcher die Gründung erfolgt.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -3905,7 +3907,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-9</style>
-          <hint>Bitte beschreiben Sie die geplante(n) Arbeit(en) und machen Sie, wenn möglich, Angaben zur Finanzierung.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -5132,14 +5134,14 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="physicalobjects_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte wählen Sie einen Typ, in den sich das Objekt am ehesten einordnen lässt.</hint>
+          <hint>Bitte wählen Sie einen Typ, dem sich das Objekt am ehesten zuordnen lässt:</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Kurze Beschreibung des Gegenstandes oder Materials</label>
+          <label>Kurze Beschreibung des Objetes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5162,14 +5164,13 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressLocality</dc-qualifier>
+          <dc-element>description</dc-element>
           <label>Kontaktinformationen für Anfragen</label>
-          <input-type>onebox</input-type>
+          <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Da sich sowohl Ansprechpersonen als auch Web-Adressen leicht ändern können, geben Sie bitte die Kontaktinformationen so ausführlich wie möglich an.</hint>
+          <hint>Sie können z. B. Ansprechperson mit Telefonnummer und E-Mail angeben oder eine allgemeine E-Mailadresse in dieses Feld kopieren.</hint>
         </field>
       </row>
       <row>
@@ -5177,7 +5178,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>access</dc-qualifier>
-          <label>Zugänglichkeit z. B. für Besichtigungen</label>
+          <label>Besteht eine öffentliche Zugänglichkeit, z. B. für Besichtigungen?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5193,7 +5194,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Beispiel: Link zu einer Sammlung oder zur Website der Einrichtung, in welcher der Gegenstand oder das Material aufbewahrt wird.</hint>
+          <hint>Zum Beispiel Homepage der Sammlung oder Einrichtung, in welcher das Objekt aufbewahrt wird.</hint>
         </field>
       </row>
     </form>
@@ -5292,7 +5293,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-element>type</dc-element>
           <label>Art</label>
           <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>Je nach Auswahl erscheinen nachfolgend unterschiedliche Eingabefelder.</hint>
@@ -5731,7 +5732,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="dataset_types">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Nichts einzutragen. Hinweis für Administratoren, diese Metadaten können mit dem Vorlagenelement komplett ausgeblendet werden</hint>
+          <hint>Nichts einzutragen.</hint>
         </field>
       </row>
       <row>
@@ -5750,11 +5751,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
-          <label>Autor(en)</label>
-          <input-type>group</input-type>
+          <label>Autor:in</label>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Geben Sie die Autoren in der Reihenfolge an, wie sie angegeben sind. Die Angabe enthält: Nachname, Vorname [d. h. Smith, Josh oder Smith, J.].</hint>
+          <hint>Geben Sie die Autor:innen in der Reihenfolge an, wie sie angegeben sind. Die Angabe enthält: Nachname, Vorname.</hint>
         </field>
       </row>
       <row>
@@ -5785,7 +5786,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
-          <label>Zusammenfassung/Abstract</label>
+          <label>Zusammenfassung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -6917,16 +6918,22 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="spinoff_type" dc-term="spinoff_type">
       <pair>
+        <displayed-value>als Unternehmen</displayed-value>
+        <stored-value>ascompany</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>als Verein</displayed-value>
+        <stored-value>asassosiation</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="spinoff_form" dc-term="spinoff_form">
+      <pair>
         <displayed-value>Transfer-Spin-off (Anwendung von Forschungsergebnissen und Methoden)</displayed-value>
-        <stored-value>Transfer spin-off</stored-value>
+        <stored-value>Transfer</stored-value>
       </pair>
       <pair>
         <displayed-value>Kompetenz-Spin-off (Anwendung angeeigneter personenbezogener Fähigkeiten und Kompetenzen)</displayed-value>
-        <stored-value>Competence spin-off</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Verein</displayed-value>
-        <stored-value>Assosiation</stored-value>
+        <stored-value>Competence</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="register_type" dc-term="register_type">
@@ -6965,7 +6972,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Work on the further development</stored-value>
       </pair>
       <pair>
-        <displayed-value>Transfer der Projektergebnisse in die Praxis</displayed-value>
+        <displayed-value>Transfer der Projektergebnisse in die Praxis (keine Veröffentlichungen)</displayed-value>
         <stored-value>Transfer into practice</stored-value>
       </pair>
       <pair>
@@ -7375,12 +7382,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsdaten</displayed-value>
-        <stored-value>Product</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Veröffentlichung</displayed-value>
         <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
       </pair>
       <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>

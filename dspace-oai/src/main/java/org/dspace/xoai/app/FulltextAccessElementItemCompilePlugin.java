@@ -27,7 +27,6 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.xoai.util.ItemUtils;
 
-
 /**
  * XOAIExtensionItemCompilePlugin to calculate access right to the item
  * according to the COAR vocabulary / OpenAIRE requirement <code>
@@ -77,8 +76,9 @@ public class FulltextAccessElementItemCompilePlugin implements XOAIExtensionItem
                                     coarURI = "http://purl.org/coar/access_right/c_f1cf";
                                     euTermURI = "info:eu-repo/semantics/embargoedAccess";
                                     accessName = "embargoed access";
-                                    embargoEndDate = embargoEndDate == null ? rp.getEndDate()
-                                        : (embargoEndDate.after(rp.getEndDate()) ? rp.getEndDate() : embargoEndDate);
+                                    embargoEndDate = embargoEndDate == null ?
+                                            rp.getEndDate() :
+                                            (embargoEndDate.after(rp.getEndDate()) ? rp.getEndDate() : embargoEndDate);
                                 }
                             }
                         } else if (embargoEndDate == null) {

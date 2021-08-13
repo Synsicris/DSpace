@@ -16,12 +16,12 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="upload" mandatory="true">
+    <step-definition id="upload" mandatory="true" opened="false">
       <heading>submit.progressbar.upload</heading>
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
     </step-definition>
-    <step-definition id="license" mandatory="true">
+    <step-definition id="license" mandatory="true" opened="false">
       <heading>submit.progressbar.license</heading>
       <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
       <type>license</type>
@@ -42,7 +42,7 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="orgunits" mandatory="true" opened="false">
+    <step-definition id="orgunits" mandatory="true">
       <heading>submit.progressbar.describe.orgunits</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
@@ -67,7 +67,7 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="funding" mandatory="true" opened="false">
+    <step-definition id="funding" mandatory="true">
       <heading>submit.progressbar.describe.funding</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
@@ -97,7 +97,7 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="persons" mandatory="true" opened="false">
+    <step-definition id="persons" mandatory="true">
       <heading>submit.progressbar.describe.persons</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
@@ -122,7 +122,7 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="plan_publications" mandatory="true" opened="false">
+    <step-definition id="plan_publications" mandatory="true">
       <heading>submit.progressbar.describe.plan_publications</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
@@ -404,14 +404,12 @@
       <step id="patents" />
       <step id="patents_result" />
       <step id="patents_result_import" />
-      <step id="upload" />
       <step id="statusacc2" />
     </submission-process>
     <submission-process name="patents-edit">
       <step id="patents" />
       <step id="patents_result" />
       <step id="patents_result_import" />
-      <step id="upload" />
       <step id="statusacc2" />
     </submission-process>
     <submission-process name="orgunits">

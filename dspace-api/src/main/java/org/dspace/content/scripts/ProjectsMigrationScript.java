@@ -129,6 +129,7 @@ public class ProjectsMigrationScript extends
         List<Collection> projectCollections = new ArrayList<Collection>();
         for (Community project : projectCommunity.getSubcommunities()) {
             try {
+                System.out.println("Process project " + project.getName());
                 projectCollections = new ArrayList<Collection>();
                 scopedRoles = new HashMap<>();
     
@@ -156,19 +157,23 @@ public class ProjectsMigrationScript extends
                         checkCollectionWorkspaceItems(projectCollection, project, projectItem);
                         checkCollectionItems(projectCollection, project, scopedRoles, projectItem);
                     } catch (Exception e) {
-                        log.error(e.getMessage());
+                        log.error("Error project " + project.getName() + " collection " + projectCollection.getID()
+                        + e.getStackTrace());
                         continue;
                     }
                 }
                 // Step 4 : Print errors
-                System.out.println("List of items which have not been deposited for the community with uuid:"
-                                   + project.getID().toString());
-                for (UUID uuid : errorDeposit) {
-                    System.out.println(" ->: " + uuid.toString());
+                if (errorDeposit.size() > 0) {
+                    System.out.println("List of items which have not been deposited for the community with uuid:"
+                                       + project.getID().toString());
+                    for (UUID uuid : errorDeposit) {
+                        System.out.println(" ->: " + uuid.toString());
+                    }
                 }
                 errorDeposit.clear();
+                System.out.println("Done project " + project.getName());
             } catch (Exception e) {
-                log.error(e.getMessage());
+                log.error("Error project " + project.getName() + e.getStackTrace());
                 errorDeposit.clear();
                 continue;
             }
@@ -406,6 +411,13 @@ public class ProjectsMigrationScript extends
 
         } else {
             adminGroup = groupService.findByName(context, newAdminName.toString());
+            if (Objects.isNull(adminGroup)) {
+                adminGroup = groupService.create(context);
+                
+                groupService.setName(adminGroup, newAdminName.toString());
+                groupService.update(context, adminGroup);
+                groupService.addMember(context, adminGroup, context.getCurrentUser());
+            }
         }
         scopedRoles.put("project_template_admin_group", adminGroup);
         
@@ -488,7 +500,7 @@ public class ProjectsMigrationScript extends
                     continue;
                 }
                 service.clearMetadata(context, target, metadata.getSchema(), metadata.getElement(),
-                        metadata.getQualifier(), metadata.getLanguage());
+                        metadata.getQualifier(), null);
             } 
         }
         for (MetadataValue metadata : dsoToClone.getMetadata()) {
@@ -530,6 +542,9 @@ public class ProjectsMigrationScript extends
                     String value = metadata.getValue();
                     String authority = metadata.getAuthority();
                     int confidence = metadata.getConfidence();
+                    if (metadata.getMetadataField().toString('.').equals("synsicris.​subject.​agrovoc")) {
+                        continue;
+                    }
                     if (metadata.getMetadataField().toString('.').equals("cris.policy.group")) {
                         value = scopedRoles.get("project_template_members_group").getName();
                         authority = scopedRoles.get("project_template_members_group").getID().toString();

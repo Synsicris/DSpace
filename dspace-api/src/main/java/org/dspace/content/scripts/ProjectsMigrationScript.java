@@ -158,7 +158,7 @@ public class ProjectsMigrationScript extends
                         checkCollectionItems(projectCollection, project, scopedRoles, projectItem);
                     } catch (Exception e) {
                         log.error("Error project " + project.getName() + " collection " + projectCollection.getID()
-                        + e.getStackTrace());
+                        + e.getMessage());
                         continue;
                     }
                 }
@@ -173,7 +173,7 @@ public class ProjectsMigrationScript extends
                 errorDeposit.clear();
                 System.out.println("Done project " + project.getName());
             } catch (Exception e) {
-                log.error("Error project " + project.getName() + e.getStackTrace());
+                log.error("Error project " + project.getName() + e.getMessage());
                 errorDeposit.clear();
                 continue;
             }

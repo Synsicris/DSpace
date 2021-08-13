@@ -9,8 +9,8 @@ package org.dspace.content.template.generator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.dspace.content.Community;
 import org.dspace.content.Item;
@@ -26,18 +26,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Implementation of {@link TemplateValueGenerator} that generates a value related to
- * the current parentproject/project item.
- * <p>
- * Syntax is: ###CURRENTPROJECT.[parentproject|project]###, so for example
- * ###CURRENTPROJECT.parentproject### will set metadata with value of item that represent
- * the parentproject entity.
+ * Implementation of {@link TemplateValueGenerator} that copies the Agrovoc keywords
+ * from the parent project's item template
  *
- * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
+ * @author Davide Negretti (davide.negretti at 4science.it)
  */
-public class CurrentProjectGenerator extends AbstractGenerator {
+public class AgrovocKeywordsGenerator extends AbstractGenerator {
 
-    private static final Logger log = LoggerFactory.getLogger(CurrentProjectGenerator.class);
+    private static final Logger log = LoggerFactory.getLogger(AgrovocKeywordsGenerator.class);
 
     @Autowired
     private CommunityService communityService;
@@ -45,7 +41,7 @@ public class CurrentProjectGenerator extends AbstractGenerator {
     @Autowired
     private ItemService itemService;
 
-    public CurrentProjectGenerator() {
+    public AgrovocKeywordsGenerator() {
     }
 
     @Override
@@ -62,33 +58,26 @@ public class CurrentProjectGenerator extends AbstractGenerator {
                 default:
                     throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);
             }
-            return Arrays.asList(getProjectEntityByCommunity(context, projectCommunity));
+            Item item = getProjectItem(context, projectCommunity);
+            List<MetadataValue> values = itemService.getMetadata(item,
+                    ProjectConstants.MD_AGROVOC.SCHEMA, ProjectConstants.MD_AGROVOC.ELEMENT,
+                    ProjectConstants.MD_AGROVOC.QUALIFIER, null);
+
+            return values.stream().map(value -> new MetadataValueVO(value)).collect(Collectors.toList());
+
         } catch (Exception e) {
-            log.error("Error while evaluating resource policies for collection {}: {}",
-                templateItem.getTemplateItemOf().getID(), e.getMessage(), e);
+            log.error("Error while retreiving Agrovoc keywords for {}: {}",
+                    templateItem.getTemplateItemOf().getID(), e.getMessage(), e);
             return new ArrayList<MetadataValueVO>();
         }
+
     }
 
-    private MetadataValueVO getProjectEntityByCommunity(Context context, Community projectCommunity) {
-        if (projectCommunity == null) {
-            return new MetadataValueVO("");
-        }
+    private Item getProjectItem(Context context, Community projectCommunity) throws SQLException {
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
                 ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
                 ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
-        if (values.isEmpty()) {
-            return new MetadataValueVO("");
-        } else {
-            MetadataValue value = values.get(0);
-            try {
-                Item itemProject = itemService.find(context, UUIDUtils.fromString(value.getAuthority()));
-                return new MetadataValueVO(itemProject.getName(), UUIDUtils.toString(itemProject.getID()),
-                        value.getConfidence());
-            } catch (SQLException e) {
-                return new MetadataValueVO("");
-            }
-
-        }
+        return itemService.find(context, UUIDUtils.fromString(values.get(0).getAuthority()));
     }
+
 }

@@ -21,12 +21,6 @@
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
     </step-definition>
-    <step-definition id="license" mandatory="true" opened="false">
-      <heading>submit.progressbar.license</heading>
-      <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
-      <type>license</type>
-      <scope visibilityOutside="read-only">submission</scope>
-    </step-definition>
     <step-definition id="patents" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -475,14 +469,12 @@
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications" />
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />

@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COAR 2021-05-03">
+<node id="ResourceTypeGenres" label="COAR 2021-08-18">
   <isComposedBy>
     <node id="c_3e5aa" label="Artikel (Zeitschriftenbeitrag)" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="c_6501" label="wissenschaftlicher Artikel" selectable="true">
         <hasNote>Beitrag in einer wissenschaftlichen Zeitschrift</hasNote>
-          <isComposedBy>
-            <node id="c_7bab" label="Softwareartikel" selectable="true">
-            <hasNote>Ein Software-Papier sollte die Begründung für die Entwicklung des Werkzeugs und Einzelheiten des für seine Konstruktion verwendeten Codes enthalten.</hasNote>
-            </node>
-            <node id="c_dcae04bc" label="Übersichtsartikel" selectable="true">
-            <hasNote>Sekundärquelle, d.h. er wird über andere Artikel geschrieben und berichtet nicht über eigene Originalforschung.</hasNote>
-            </node>
-            <node id="c_beb9" label="Data Paper" selectable="true">
-            <hasNote>Es werden Forschungsdaten dokumentiert und beschrieben, um die Verbreitung und Nachnutzung zu erleichtern. Es informiert über die Datenerhebung, Charakteristiken und Funktionen sowie potenzielle Nachnutzungsmöglichkeiten.</hasNote>
-            </node>
-            <node id="c_2df8fbb1" label="Forschungsartikel" selectable="true">
-            <hasNote>Primärquelle, d.h. er berichtet über die Methoden und Ergebnisse einer von den Autoren durchgeführten Originalstudie.</hasNote>
-            </node>
-          </isComposedBy>
         </node>
         <node id="c_3e5a" label="Artikel in einer Fachzeitschrift (nicht-wissenschaftlich)" selectable="true">
         <hasNote>Beitrag in einem nicht-wissenschaftlichen
@@ -36,28 +22,8 @@ Periodikum</hasNote>
         <node id="c_18hj" label="Bericht an Förderorganisation" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="c_18ww" label="interner Bericht" selectable="true">
-        <hasNote></hasNote>
-        </node>
-        <node id="c_18ws" label="Forschungsbericht" selectable="true">
-        <hasNote></hasNote>
-        </node>
-        <node id="c_18wz" label="Memorandum" selectable="true">
-        <hasNote>Mitteilung, Notiz</hasNote>
-        </node>
         <node id="c_186u" label="Policy report" selectable="true">
         <hasNote></hasNote>
-        </node>
-        <node id="c_18op" label="Projektzusammenfassung (Deliverable)" selectable="true">
-        <hasNote>" Outcome " als Ergebnis eines Projekts, das an einen Kunden (z.B. Geldgeber) geliefert werden soll. Beispiele für ein Ergebnis sind ein Bericht, ein Dokument, ein Arbeitspaket oder jeder andere Baustein eines Gesamtprojekts.</hasNote>
-          <isComposedBy>
-            <node id="c_ab21" label="Projektkarte" selectable="true">
-            <hasNote>Kurze Projektbeschreibung für die Bundesanstalt für Ernährung und Landwirtschaft (BLE)</hasNote>
-            </node>
-            <node id="c_ab22" label="Praxismerkblatt" selectable="true">
-            <hasNote>Forschungsergebnisse aus dem BOELN als Merkblatt mit Empfehlungen für die Beratung und Praxis (BLE)</hasNote>
-            </node>
-          </isComposedBy>
         </node>
         <node id="c_18gh" label="Technischer Bericht" selectable="true">
         <hasNote></hasNote>
@@ -73,13 +39,13 @@ Periodikum</hasNote>
     <node id="c_3248" label="Buchkapitel / Teil einer Monographie" selectable="true">
     <hasNote>Teil eines Buches oder einer Monographie, i. d. R. mit eigenem Titel oder Nummer</hasNote>
     </node>
-    <node id="c_ecc8" label="Bilddokument / Einzelbild" selectable="true">
+    <node id="c_ecc8" label="Bild" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="c_8a7e" label="Film- / Videodokument" selectable="true">
+    <node id="c_8a7e" label="Film / Video" selectable="true">
     <hasNote></hasNote>
     </node>
-    <node id="c_18cc" label="Tondokument" selectable="true">
+    <node id="c_18cc" label="Tonaufnahme" selectable="true">
     <hasNote></hasNote>
     </node>
     <node id="c_18co" label="Poster" selectable="true">
@@ -106,7 +72,7 @@ Periodikum</hasNote>
     <hasNote>Eine durch einen URL (Uniform Resource Locator) bezeichnete Präsenz im WWW, unter
 der Webseiten für Zugriff und Nutzung  gespeichert sind</hasNote>
     </node>
-    <node id="c_1843" label="Andere Dokumententypen" selectable="false">
+    <node id="c_1843" label="Weitere Typen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="c_8042" label="Arbeitspapier / Working paper" selectable="true">
@@ -144,29 +110,11 @@ in einer wissenschaftlichen Zeitschrift oder als Teil eines Buches erscheinen</h
         <node id="c_8544" label="Vorlesung" selectable="true">
         <hasNote>Vorlesung oder Präsentation anlässlich einer akademischen Veranstaltung, ausgeschlossen sind Konferenzvorträge</hasNote>
         </node>
-        <node id="c_393c" label="Workflow" selectable="true">
-        <hasNote>Protokollierte Abfolge zusammenhängender Schritte, die automatisiert werden können und eine zuverlässig wiederholbare Abfolge von Operationen angeben, z. B. eine in-silico-Untersuchung, die Informationen aus einer Reihe von Bioinformatik-Datenbanken extrahiert und verarbeitet</hasNote>
-        </node>
-        <node id="c_baaf" label="Exposee" selectable="true">
-        <hasNote>Skizze zu einem Forschungsprojekt, das einen Antrag auf Förderung dieser Forschung zum Ziel hat</hasNote>
-        </node>
         <node id="c_12cc" label="kartografisches Material" selectable="true">
         <hasNote>z. B. Luft-, See- und Himmelskarten; Atlanten; Globen; Blockdiagramme; Schnitte; Luftbilder mit kartographischem Zweck; Vogelperspektiven (Kartenansichten) usw.</hasNote>
         </node>
-        <node id="c_7877" label="klinische Studie" selectable="true">
+        <node id="c_0040" label="Sonstiges" selectable="true">
         <hasNote></hasNote>
-        </node>
-        <node id="c_cb28" label="klinischer Versuch" selectable="true">
-        <hasNote></hasNote>
-        </node>
-        <node id="c_b239" label="Editorial (Vorwort/Nachwort)" selectable="true">
-        <hasNote>z. B.  Meinung oder Position des/der Chefredakteurs/en einer (akademischen) Zeitschrift in Bezug auf ein aktuelles politisches, soziales, kulturelles oder berufliches Thema</hasNote>
-        </node>
-        <node id="c_efa0" label="Rezension" selectable="true">
-        <hasNote>Überblick zu veröffentlichten Arbeiten anderer</hasNote>
-        </node>
-        <node id="c_0040" label="Manuskript" selectable="true">
-        <hasNote>Handschrift</hasNote>
         </node>
       </isComposedBy>
     </node>

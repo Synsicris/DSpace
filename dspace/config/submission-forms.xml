@@ -1098,6 +1098,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint>If applicable, the volume of the publishing channel where this publication appeared.</hint>
+          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_186u, coar:c_5794, coar:c_3248, coar:c_86bc, coar:c_2f33, coar:c_f744, coar:c_0640</type-bind>
         </field>
         <field>
           <dc-schema>oaire</dc-schema>
@@ -1109,6 +1110,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint>If applicable, the issue of the publishing channel where this publication appeared.</hint>
+          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_186u, coar:c_5794, coar:c_f744, coar:c_0640</type-bind>
         </field>
         <field>
           <dc-schema>oaire</dc-schema>
@@ -3565,9 +3567,8 @@ it, please select a type and enter the actual number or code.</hint>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>registertype</dc-qualifier>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Register type</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3690,6 +3691,18 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Related organisation</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>relation-to-orgunit</dc-qualifier>
+          <label>Description of the relation to the research organisation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>

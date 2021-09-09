@@ -3561,9 +3561,8 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>registertype</dc-qualifier>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Registerart</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3688,6 +3687,18 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>true</repeatable>
           <required />
           <hint>Organisation(en), von der ausgehend das Unternehmen oder der Verein gegründet wurde</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>relation-to-orgunit</dc-qualifier>
+          <label>Beschreibung der Zusammenarbeit zwischen Ausgründung und ausgründender Organisation(en)</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>

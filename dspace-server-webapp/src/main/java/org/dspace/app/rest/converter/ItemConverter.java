@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -31,10 +32,8 @@ import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataValue;
-import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.MetadataSecurityEvaluation;
-import org.dspace.content.service.MetadataValueService;
 import org.dspace.core.Context;
 import org.dspace.discovery.IndexableObject;
 import org.dspace.eperson.EPerson;
@@ -74,9 +73,6 @@ public class ItemConverter
     private AuthorizeService authorizeService;
 
     @Autowired
-    private ChoiceAuthorityService cas;
-
-    @Autowired
     GroupService groupService;
 
     @Autowired
@@ -84,8 +80,6 @@ public class ItemConverter
 
     @Autowired
     private RequestService requestService;
-    @Autowired
-    private MetadataValueService metadataValueService;
 
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(ItemConverter.class);
 
@@ -121,7 +115,14 @@ public class ItemConverter
 
         List<MetadataValue> returnList = new LinkedList<>();
         String entityType = itemService.getMetadataFirstValue(obj, "dspace", "entity", "type", Item.ANY);
+
         try {
+
+            if (obj.isWithdrawn() && (Objects.isNull(context) ||
+                Objects.isNull(context.getCurrentUser()) || !authorizeService.isAdmin(context))) {
+                return new MetadataValueList(new ArrayList<MetadataValue>());
+            }
+
             List<CrisLayoutBox> boxes;
             if (context != null) {
                 boxes = crisLayoutBoxService.findEntityBoxes(context, entityType, 1000, 0);

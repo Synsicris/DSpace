@@ -47,6 +47,7 @@ import org.dspace.core.I18nUtil;
 import org.dspace.core.LogManager;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.eperson.service.SubscribeService;
 import org.dspace.event.Event;
 import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
@@ -91,6 +92,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     protected SiteService siteService;
     @Autowired(required = true)
     protected IdentifierService identifierService;
+    @Autowired(required = true)
+    protected SubscribeService subscribeService;
 
     @Autowired
     protected ResourcePolicyService resourcePolicyService;
@@ -215,7 +218,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             throws MissingResourceException, SQLException {
         if (field.equals(MD_NAME) && (value == null || value.trim().equals(""))) {
             try {
-                value = I18nUtil.getMessage("org.dspace.workflow.WorkflowManager.untitled");
+                value = I18nUtil.getMessage("org.dspace.content.untitled");
             } catch (MissingResourceException e) {
                 value = "Untitled";
             }
@@ -238,12 +241,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
     @Override
     public Bitstream setLogo(Context context, Community community, InputStream is)
-        throws AuthorizeException, IOException, SQLException {
+            throws AuthorizeException, IOException, SQLException {
         // Check authorisation
         // authorized to remove the logo when DELETE rights
         // authorized when canEdit
         if (!((is == null) && authorizeService.authorizeActionBoolean(
-            context, community, Constants.DELETE))) {
+                context, community, Constants.DELETE))) {
             canEdit(context, community);
         }
 
@@ -251,7 +254,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Bitstream oldLogo = community.getLogo();
         if (oldLogo != null) {
             log.info(LogManager.getHeader(context, "remove_logo",
-                                          "community_id=" + community.getID()));
+                    "community_id=" + community.getID()));
             community.setLogo(null);
             bitstreamService.delete(context, oldLogo);
         }
@@ -263,12 +266,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             // now create policy for logo bitstream
             // to match our READ policy
             List<ResourcePolicy> policies = authorizeService
-                .getPoliciesActionFilter(context, community, Constants.READ);
+                    .getPoliciesActionFilter(context, community, Constants.READ);
             authorizeService.addPolicies(context, policies, newLogo);
 
             log.info(LogManager.getHeader(context, "set_logo",
-                                          "community_id=" + community.getID() + "logo_bitstream_id="
-                                              + newLogo.getID()));
+                    "community_id=" + community.getID() + "logo_bitstream_id="
+                            + newLogo.getID()));
         }
 
         return community.getLogo();

@@ -757,9 +757,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             Collection newCollection = collectionService.create(context, clone);
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
-            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
-                                 newName, grants,newItems, oldItem2clonedItem);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
+            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
+                    newName, grants,newItems, oldItem2clonedItem);
         }
 
         return clone;

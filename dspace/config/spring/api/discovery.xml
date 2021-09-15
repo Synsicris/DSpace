@@ -128,6 +128,10 @@
                 <entry key="RELATION.parentproject.Project" value-ref="relationParentProjectProjectsConfiguration"/>
                 <!-- Synsicris Project Related items -->
                 <entry key="RELATION.Project.exploitationplan" value-ref="relationProjectExploitationplansConfiguration"/>
+                <!-- Synsicris Person Browse items -->
+                <entry key="BROWSE.Person.latestParentProjectsPreparation" value-ref="browsePersonLatestParentProjectsPreparationConfiguration"/>
+                <entry key="BROWSE.Person.latestParentProjectsImplementation" value-ref="browsePersonLatestParentProjectsImplementationConfiguration"/>
+                <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
              
                 
                 
@@ -834,6 +838,105 @@
         </property>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
+    </bean>
+
+    <bean id="browsePersonLatestParentProjectsPreparationConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <property name="id" value="personLatestParentProjectsPreparation"/>
+        <!-- Which sidebar facets are to be displayed -->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <!-- The search filters which can be used on the discovery search page -->
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find communities-->
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation"</value>
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortLastModified" />
+                        <ref bean="sortTitle" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="browsePersonLatestParentProjectsImplementationConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <property name="id" value="personLatestParentProjectsImplementation"/>
+        <!-- Which sidebar facets are to be displayed -->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <!-- The search filters which can be used on the discovery search page -->
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find communities-->
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation"</value>
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortLastModified" />
+                        <ref bean="sortTitle" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="browsePersonLatestParentProjectsCompletedConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <property name="id" value="personLatestParentProjectsCompleted"/>
+        <!-- Which sidebar facets are to be displayed -->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <!-- The search filters which can be used on the discovery search page -->
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterParentProjectStatus"/>
+            </list>
+        </property>
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find communities-->
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed</value>
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortLastModified" />
+                        <ref bean="sortTitle" />
+                    </list>
+                </property>
+            </bean>
+        </property>
     </bean>
 
     <!--The workspace configuration settings for discovery -->
@@ -4642,6 +4745,24 @@
         <property name="metadataFields">
             <list>
                 <value>cris.policy.group</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterEasyOnlineType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="easyOnlineType" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.easy-import</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterParentProjectStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="parentProjectStatus" />
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.project.status</value>
             </list>
         </property>
     </bean>

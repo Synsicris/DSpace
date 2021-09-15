@@ -2022,12 +2022,22 @@
           <style>col-md-6</style>
           <hint>Das Akronym wird verwendet, um die Beteiligung der Organisation in Arbeiten und Aktiviäten des Projektes leicht zuordnen zu können.</hint>
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>easy-import</dc-qualifier>
+          <label>Ausführende Stelle im offiziellen Antrag (easy-online)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <style>col-md-6</style>
+          <hint>Diese Angabe dient dazu, den Import und die Aktualisierung korrekt durchzuführen.</hint>
+        </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
           <label>Tätigkeitsbereich</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
@@ -2058,18 +2068,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>easy-import</dc-qualifier>
-          <label>Ausführende Stelle im offiziellen Antrag (easy-online)</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Diese Angabe dient dazu, den Import und die Aktualisierung korrekt durchzuführen.</hint>
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -3561,8 +3560,9 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>orgunits</dc-element>
+          <dc-qualifier>registertype</dc-qualifier>
           <label>Registerart</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3687,18 +3687,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>true</repeatable>
           <required />
           <hint>Organisation(en), von der ausgehend das Unternehmen oder der Verein gegründet wurde</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>relation-to-orgunit</dc-qualifier>
-          <label>Beschreibung der Zusammenarbeit zwischen Ausgründung und ausgründender Organisation(en)</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
         </field>
       </row>
     </form>
@@ -6598,32 +6586,16 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
-        <displayed-value>beantragt</displayed-value>
-        <stored-value>requested</stored-value>
+        <displayed-value>in Vorbereitung</displayed-value>
+        <stored-value>In preparation</stored-value>
       </pair>
       <pair>
-        <displayed-value>in Druchführung</displayed-value>
-        <stored-value>running</stored-value>
+        <displayed-value>laufend</displayed-value>
+        <stored-value>In implementation</stored-value>
       </pair>
       <pair>
-        <displayed-value>gestrichen</displayed-value>
-        <stored-value>canceled</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>in Erweiterung</displayed-value>
-        <stored-value>in extension</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>beendet</displayed-value>
-        <stored-value>finished</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>vollständig abgeschlossen</displayed-value>
-        <stored-value>completed</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>untersucht</displayed-value>
-        <stored-value>examined</stored-value>
+        <displayed-value>abgeschlossen</displayed-value>
+        <stored-value>Completed</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="project_team_role" dc-term="project_team_role">
@@ -6752,7 +6724,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>non-profit</stored-value>
       </pair>
       <pair>
-        <displayed-value>KMU</displayed-value>
+        <displayed-value>KMU - kleine und mittelständische Unternehmen</displayed-value>
         <stored-value>SME</stored-value>
       </pair>
       <pair>
@@ -7352,7 +7324,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Media</stored-value>
       </pair>
       <pair>
-        <displayed-value>Weitere Wirtschaftliche Tätigkeiten</displayed-value>
+        <displayed-value>Wirtschaftliche Tätigkeiten</displayed-value>
         <stored-value>Economy</stored-value>
       </pair>
       <pair>
@@ -7424,10 +7396,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>GR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Großunternehmen</displayed-value>
-        <stored-value>GR</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Kleine und mittlere Unternehmen (KMU)</displayed-value>
         <stored-value>KM</stored-value>
       </pair>
@@ -7436,7 +7404,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>MI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Öffentliche institutionen und Untrnehmen</displayed-value>
+        <displayed-value>Öffentliche Institutionen und Unternehmen</displayed-value>
         <stored-value>OE</stored-value>
       </pair>
       <pair>

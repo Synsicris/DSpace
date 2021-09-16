@@ -237,6 +237,8 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         switch (boxType.toUpperCase()) {
             case "HELP":
                 return hasHelpBoxContent(box, values);
+            case "BROWSE":
+                return hasBrowseBoxContent(box, values);
             case "RELATION":
                 return hasRelationBoxContent(box, values);
             case "METRICS":
@@ -281,6 +283,11 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean hasHelpBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The relation box has no associated content
+        return true;
+    }
+
+    private boolean hasBrowseBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
         // The relation box has no associated content
         return true;
     }

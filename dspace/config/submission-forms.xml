@@ -935,7 +935,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
         <field>
@@ -946,7 +946,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-7</style>
+          <style>col-md-12</style>
           <hint>Enter the affiliation of the author as stated on the publication.</hint>
         </field>
       </row>
@@ -1098,7 +1098,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint>If applicable, the volume of the publishing channel where this publication appeared.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_186u, coar:c_5794, coar:c_3248, coar:c_86bc, coar:c_2f33, coar:c_f744, coar:c_0640</type-bind>
         </field>
         <field>
           <dc-schema>oaire</dc-schema>
@@ -1110,7 +1109,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint>If applicable, the issue of the publishing channel where this publication appeared.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_186u, coar:c_5794, coar:c_f744, coar:c_0640</type-bind>
         </field>
         <field>
           <dc-schema>oaire</dc-schema>
@@ -2025,12 +2023,22 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-6</style>
           <hint />
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>easy-import</dc-qualifier>
+          <label>Executing Organisation in the official proposal (easy-online)</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <style>col-md-6</style>
+          <hint />
+        </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
           <label>Societal area of the organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
@@ -2062,18 +2070,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <hint>If the item has any identification numbers or codes associated with
 it, please select a type and enter the actual number or code.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>easy-import</dc-qualifier>
-          <label>Executing Organisation in the official proposal (easy-online)</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -3432,20 +3429,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="spinoffs_result-synsicris-relation-partner">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>partner</dc-qualifier>
-          <label>Related organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
     <form name="spinoffs_result_performance-synsicris-date-reference-year-performance">
       <row>
         <field>
@@ -3581,8 +3564,9 @@ it, please select a type and enter the actual number or code.</hint>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>orgunits</dc-element>
+          <dc-qualifier>registertype</dc-qualifier>
           <label>Register type</label>
           <input-type value-pairs-name="register_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3616,15 +3600,13 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>snysicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>focus</dc-qualifier>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Spin-off type</label>
           <input-type value-pairs-name="spinoff_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>Section A (HRA), Section B (HRB), Cooperative Registry, Partnership Registry</type-bind>
         </field>
       </row>
       <row>
@@ -3636,22 +3618,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
           <hint />
-          <type-bind>Section A (HRA), Section B (HRB), Cooperative Registry, Partnership Registry</type-bind>
           <vocabulary closed="true">nace</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>purpose</dc-qualifier>
-          <label>Purpose</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-12</style>
-          <hint />
-          <type-bind>Registry of Associations</type-bind>
         </field>
       </row>
       <row>
@@ -3718,21 +3686,9 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Related orgunit</label>
-          <input-type>inline-group</input-type>
+          <label>Related organisation</label>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>relation-to-orgunit</dc-qualifier>
-          <label>Description of the relation to the research organisation</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -4992,7 +4948,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>team</dc-qualifier>
+          <dc-qualifier>person</dc-qualifier>
           <label>Laureate</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -6623,32 +6579,16 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="project_status" dc-term="project_status">
       <pair>
-        <displayed-value>requested</displayed-value>
-        <stored-value>requested</stored-value>
+        <displayed-value>In preparation</displayed-value>
+        <stored-value>In preparation</stored-value>
       </pair>
       <pair>
-        <displayed-value>running</displayed-value>
-        <stored-value>running</stored-value>
+        <displayed-value>In implementation</displayed-value>
+        <stored-value>In implementation</stored-value>
       </pair>
       <pair>
-        <displayed-value>canceled</displayed-value>
-        <stored-value>canceled</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>in extension</displayed-value>
-        <stored-value>in extension</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>finished</displayed-value>
-        <stored-value>finished</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>completed</displayed-value>
-        <stored-value>completed</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>examined</displayed-value>
-        <stored-value>examined</stored-value>
+        <displayed-value>Completed</displayed-value>
+        <stored-value>Completed</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="project_team_role" dc-term="project_team_role">
@@ -6839,11 +6779,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="spinoff_type" dc-term="spinoff_type">
       <pair>
-        <displayed-value>Application of research results and methods</displayed-value>
+        <displayed-value>Transfer Spin-off</displayed-value>
         <stored-value>Transfer</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application of acquired personal skills and competences</displayed-value>
+        <displayed-value>Competence Spin-off</displayed-value>
         <stored-value>Competence</stored-value>
       </pair>
     </value-pairs>
@@ -7213,12 +7153,12 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_1_task_type" dc-term="impactpathway_step_type_1_task_type">
       <pair>
-        <displayed-value>State of knowledge / problem definition</displayed-value>
-        <stored-value>stateofart</stored-value>
-      </pair>
-      <pair>
         <displayed-value>External condition</displayed-value>
         <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>State of knowledge / problem definition</displayed-value>
+        <stored-value>stateofart</stored-value>
       </pair>
       <pair>
         <displayed-value>Gender reflection</displayed-value>
@@ -7239,12 +7179,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research result</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>(Intermediate) result / problem</displayed-value>
+        <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
-        <stored-value>unexpected_result</stored-value>
+        <displayed-value>Research result</displayed-value>
+        <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>Others</displayed-value>
@@ -7267,11 +7207,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
-        <displayed-value>Purpose of a group of exchange and transfer activities</displayed-value>
+        <displayed-value>Target for interaction and transfer</displayed-value>
         <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <displayed-value>(Intermediate) result / problem</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
@@ -7327,7 +7267,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <displayed-value>(Intermediate) result / problem</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
@@ -7377,7 +7317,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Media</stored-value>
       </pair>
       <pair>
-        <displayed-value>Further economic activities</displayed-value>
+        <displayed-value>Economic activities</displayed-value>
         <stored-value>Economy</stored-value>
       </pair>
       <pair>
@@ -7443,10 +7383,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Education</displayed-value>
         <stored-value>BI</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Large enterprises</displayed-value>
-        <stored-value>GR</stored-value>
       </pair>
       <pair>
         <displayed-value>Large enterprises</displayed-value>

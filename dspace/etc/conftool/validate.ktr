@@ -2035,6 +2035,22 @@
               <mask/>
             </value>
           </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>TYPE</leftvalue>
+            <function>&lt;></function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>BROWSE</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
         </conditions>
       </condition>
     </compare>

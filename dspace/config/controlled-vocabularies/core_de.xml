@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="CORE 2021-09-21">
+  <isComposedBy>
+    <node id="COR_1" label="Ausbau/ Unterstützung Ökolandbau" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_2" label="Bildung" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_3" label="Erzeugung erneuerbarer Energien" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_4" label="Einhaltung von Menschenrechten und sozialer
+Standards entlang (globaler) Wertschöpfungsketten" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_5" label="Effiziente Energienutzung" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_6" label="Entwicklung alternativer Antriebstechnologien und Kraftstoffe" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_7" label="Effiziente Nutzung von Ressourcen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_8" label="Erhalt und Schutz biologischer Vielfalt" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_9" label="Erhalt ländlicher Räume als attraktive Wirtschafts- und Lebensräume" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_10" label="Geschlechtergerechtigkeit" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_11" label="Integrierte Stadtentwicklung" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_12" label="Klimaneutralität" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_13" label="Herstellung umwelt- und sozialverträglicher Produkte" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_14" label="Kreislaufwirtschaft: Rückführung nicht mehr genutzter Stoffe aus Konsum und Stoffe" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_15" label="Minimierung Fossiler Energieträger" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_16" label="Naturschutz" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_17" label="Nutzung von nachwachsenden Rohstoffen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_18" label="Reduktion von Emissionen (Ausstoß von Schadstoffen)" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_19" label="Reduktion von Immissionen (Einwirkung von Schadstoffen auf Menschen oder Ökosysteme)" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_20" label="Reduzierung Flächenverbrauch" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_21" label="Reduzierung/Vermeidung von Abfällen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_22" label="Schutz menschlicher Gesundheit" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_23" label="Schutz von Ökosystemen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_24" label="Senkung des Energieverbrauchs" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_25" label="Soziale Teilhabe" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_26" label="Technologische Innovationen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_27" label="Treibhausgasneutrale Energieerzeugung" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_28" label="Versorgungssicherheit" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_29" label="Verantwortungsvolle Entsorgung von Abfällen" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_30" label="Wiederverwertung/ Recycling" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_31" label="Sonstiges - ökologisch" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_32" label="Sonstiges - ökonomisch" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_33" label="Sonstiges - sozial-kulturell" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COR_34" label="Sonstiges - governance" selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

@@ -155,17 +155,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
     </form>
     <form name="impact_pathway_step_type_2_task_form">
       <row>
@@ -189,17 +178,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
         </field>
       </row>
     </form>
@@ -227,17 +205,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
     </form>
     <form name="impact_pathway_step_type_2_task_objective_edit_form">
       <row>
@@ -249,17 +216,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
         </field>
       </row>
     </form>
@@ -287,17 +243,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
     </form>
     <form name="impact_pathway_step_type_3_task_objective_form">
       <row>
@@ -323,17 +268,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
     </form>
     <form name="impact_pathway_step_type_3_task_objective_edit_form">
       <row>
@@ -345,17 +279,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
         </field>
       </row>
     </form>
@@ -383,17 +306,6 @@
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
-        </field>
-      </row>
     </form>
     <form name="impact_pathway_step_type_5_task_form">
       <row>
@@ -417,17 +329,6 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
         </field>
       </row>
     </form>
@@ -500,18 +401,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -586,18 +476,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3356,65 +3235,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>role</dc-qualifier>
-          <label>Rolle im Projekt</label>
-          <input-type value-pairs-name="project_team_role">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>qualification</dc-qualifier>
-          <label>Qualifizierungsabsichten</label>
-          <input-type value-pairs-name="project_team_qualification">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>jobproportion</dc-qualifier>
-          <label>Ungefährer Stellenanteil</label>
-          <input-type value-pairs-name="job_proportion">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>team</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Beginn der Arbeit im Projekt - wenn vom Projektstart mehr als 2 Monate abweichend</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>team</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>Ende der Arbeit im Projekt - wenn vom Projektende mehr als 2 Monate abweichend</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>projectpartner</dc-qualifier>
           <label>Projektpartner</label>
@@ -3855,7 +3675,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie nur zusätzliche Aspekte, die nicht innerhalb des Arbeitspakets abgedeckt sind.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3929,7 +3749,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Bitte beschreiben Sie den Meilenstein.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4714,7 +4534,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -4725,7 +4545,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="frequency">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-5</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -4736,7 +4556,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="period_project">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-5</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -4765,7 +4585,18 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-8</style>
+          <style>col-md-12</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>event</dc-qualifier>
+          <label>Bezeichnung/Titel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
           <hint />
         </field>
         <field>
@@ -4776,7 +4607,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-3</style>
           <hint />
         </field>
         <field>
@@ -4787,7 +4618,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-3</style>
           <hint />
         </field>
         <field>
@@ -4797,7 +4628,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-3</style>
           <hint />
         </field>
         <field>
@@ -4807,7 +4638,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-3</style>
           <hint>Eine ungefähre Angabe reicht aus.</hint>
         </field>
         <field>
@@ -4818,7 +4649,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-6</style>
           <hint>Es sind keine Adressangaben erforderlich.</hint>
         </field>
         <field>
@@ -4829,20 +4660,9 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">countries</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>event</dc-qualifier>
-          <label>Bezeichnung/Titel</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-8</style>
-          <hint />
         </field>
       </row>
     </form>
@@ -5236,6 +5056,152 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         </field>
       </row>
     </form>
+    <form name="pot_societalimpact_new">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung des Wirkungspotenzials</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung des Wirkungspotenzials</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Charakterisieren Sie das Wirkungspotenzial, indem Sie mindestens eine und höchstens drei Zeilen mit Informationen anlegen.</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="pot_societalimpact_new-dc-type">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Kernelement der Nachhaltigkeit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">core</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform</dc-qualifier>
+          <label>Adressierter Transformationsbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>positive-direction</dc-qualifier>
+          <label>Wirkungsintensität</label>
+          <input-type value-pairs-name="impact_positive">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>pos</dc-qualifier>
+          <label>Erläuterung des Umfangs / Ausmaßes der erwarteten Wirkung in diesem Kernelement</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="pot_societalimpact_new_neg">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type-n</dc-element>
+          <label>Charakterisieren Sie eventuelle Nebenwirkungen, indem Sie beliebig viele Zeilen mit Informationen anlegen.</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="pot_societalimpact_new_neg-synsicris-type-n">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type-n</dc-element>
+          <label>Kernelement der Nachhaltigkeit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">core</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform-n</dc-qualifier>
+          <label>Adressierter Transformationsbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>negative-direction</dc-qualifier>
+          <label>Intensität Nebenwirkungen</label>
+          <input-type value-pairs-name="impact_negative">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>neg</dc-qualifier>
+          <label>Erläuterung des Umfangs / Ausmaßes der negativen Nebenwirkung in diesem Kernelement</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="conditions">
       <row>
         <field>
@@ -5499,6 +5465,30 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required />
           <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="ia_objectives">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -6526,7 +6516,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Meeting</stored-value>
       </pair>
       <pair>
-        <displayed-value>Vortrag / Präsentation (Beiträge zu Fach-tagung/Konferenz/Kongress bitte nicht hier, sondern in Veröffentlichung erfassen)</displayed-value>
+        <displayed-value>Vortrag / Präsentation (Beiträge zu Fachtagung/Konferenz/Kongress nicht hier, sondern in Veröffentlichung erfassen)</displayed-value>
         <stored-value>Presentation</stored-value>
       </pair>
       <pair>
@@ -6540,7 +6530,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Non-scientific (specialist) meeting/conference/congress</stored-value>
       </pair>
       <pair>
-        <displayed-value>Wissenschaftliche (Fach-)Tagung/Konferenz/Kongress</displayed-value>
+        <displayed-value>Wissenschaftliche (Fach-)Tagung/Konferenz/Kongress (Beiträge dazu nicht hier, sondern in Veröffentlichung erfassen)</displayed-value>
         <stored-value>Scientific (professional) meeting/conference/congress</stored-value>
       </pair>
       <pair>
@@ -6596,60 +6586,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       <pair>
         <displayed-value>abgeschlossen</displayed-value>
         <stored-value>Completed</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="project_team_role" dc-term="project_team_role">
-      <pair>
-        <displayed-value>Mitarbeitende mit Leitungs- und Entscheidungspositionen im Projekt (einschließlich Koordinator* oder Sprecherpositionen in Konsortien)</displayed-value>
-        <stored-value>leading and decision-making position</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Wissenschaftliche Mitarbeiter/in (normalerweise TVöD/TV-L E12-E15)</displayed-value>
-        <stored-value>research associate</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Technisch-administratives Personal (normalerweise TVöD/TV-L E1-E11)</displayed-value>
-        <stored-value>technical-administrative personnel</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Andere Beschäftigte mit einem erheblichen Beschäftigungsumfang (keine studentischen Hilfskräfte)</displayed-value>
-        <stored-value>others</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="project_team_qualification" dc-term="project_team_qualification">
-      <pair>
-        <displayed-value>Promotionsstudierende</displayed-value>
-        <stored-value>PhD applicants</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Post-Doc-Phase</displayed-value>
-        <stored-value>Post-doc phase</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>derzeit keine</displayed-value>
-        <stored-value>currently none</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="job_proportion" dc-term="job_proportion">
-      <pair>
-        <displayed-value>10 - 20 %</displayed-value>
-        <stored-value>10 - 20 %</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>20 - 40 %</displayed-value>
-        <stored-value>20 - 40 %</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>40 - 60 %</displayed-value>
-        <stored-value>40 - 60 %</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>60 - 80 %</displayed-value>
-        <stored-value>60 - 80 %</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>80 - 100 %</displayed-value>
-        <stored-value>80 - 100 %</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="gender" dc-term="gender">
@@ -7215,7 +7151,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
         <displayed-value>Ziel für Interaktion und Transfer</displayed-value>
-        <stored-value>proj_objective</stored-value>
+        <stored-value>ia_objective</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen-) Ergebnis / Problem</displayed-value>
@@ -7454,6 +7390,42 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       <pair>
         <displayed-value>International (z. B. WTO, UN, WHO)</displayed-value>
         <stored-value>International (e.g. WTO, UN, WHO)</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impact_positive" dc-term="impact_positive">
+      <pair>
+        <displayed-value>(+++) sehr positiv</displayed-value>
+        <stored-value>very positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(++) positiv</displayed-value>
+        <stored-value>positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(+) leicht positiv</displayed-value>
+        <stored-value>slightly positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(?) noch nicht einschätzbar</displayed-value>
+        <stored-value>not yet assessable</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="impact_negative" dc-term="impact_negative">
+      <pair>
+        <displayed-value>(---) sehr negativ</displayed-value>
+        <stored-value>very negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(--) negativ</displayed-value>
+        <stored-value>negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(-) leicht negativ</displayed-value>
+        <stored-value>slightly negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(?) noch nicht einschätzbar</displayed-value>
+        <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="societalimpact" dc-term="societalimpact">
@@ -7748,10 +7720,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>task</stored-value>
       </pair>
       <pair>
-        <displayed-value>Meilenstein</displayed-value>
-        <stored-value>milestone</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
@@ -7766,6 +7734,10 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Meilenstein</displayed-value>
+        <stored-value>milestone</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="patent_type" dc-term="patent_type">

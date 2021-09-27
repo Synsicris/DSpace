@@ -98,6 +98,7 @@
                 <entry key="RELATION.OrgUnit.projects" value-ref="relationOrgunitProjectsConfiguration"/>
                 <entry key="RELATION.OrgUnit.organizations" value-ref="relationOrgunitOrgunitsConfiguration"/>
                 <!-- Synsicris Parent Project Related items -->
+                <entry key="RELATION.parentproject.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
                 <entry key="RELATION.parentproject.application" value-ref="relationParentProjectApplicationsConfiguration"/>
                 <entry key="RELATION.parentproject.award" value-ref="relationParentProjectAwardsConfiguration"/>
                 <entry key="RELATION.parentproject.contribution_fundingprogramme" value-ref="relationParentProjectContributionsfundingprogrammeConfiguration"/>
@@ -1362,6 +1363,30 @@
 
     <!-- SYNSICRIS entities related to a parentproject -->
 
+    <bean id="relationParentProjectMultipleEntitiesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:subcontractor OR entityType_keyword:cooperationpartner)</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="relationParentProjectApplicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1385,7 +1410,6 @@
             </list>
         </property>
     </bean>
-    
     
     <bean id="relationParentProjectAwardsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->

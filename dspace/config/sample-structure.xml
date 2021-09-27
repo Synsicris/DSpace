@@ -321,6 +321,27 @@
       </item-template>
     </collection>
     <collection>
+      <name language="en">Expected societal impacts (Version 2)</name>
+      <name language="de">Erwartete gesellschaftliche Wirkungen (Version 2)</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>pot_societalimpact2</entity-type>
+      <submission-type>pot_societalimpact2</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="synsicris.relation.entity_project">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">parentproject</metadata>
+      </item-template>
+    </collection>
+    <collection>
       <name language="en">External conditions</name>
       <name language="de">Rahmenbedingungen</name>
       <description />

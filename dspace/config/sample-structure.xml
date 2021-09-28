@@ -156,7 +156,7 @@
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
         <item-template>
-	      <metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
 	      <metadata name="cris.project.shared">owningproject</metadata>
 	    </item-template>
@@ -189,7 +189,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-        <metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -210,7 +210,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -231,7 +231,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -252,7 +252,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -273,7 +273,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -294,7 +294,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -315,7 +315,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -336,7 +336,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -357,7 +357,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -379,7 +379,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -400,7 +400,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -421,7 +421,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -442,7 +442,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
@@ -464,7 +464,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -485,7 +485,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -506,7 +506,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -527,7 +527,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -548,7 +548,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -569,7 +569,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -590,7 +590,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -611,7 +611,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       	<metadata name="synsicris.type.easy-import">No</metadata>
@@ -653,7 +653,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -674,7 +674,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -695,7 +695,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -716,7 +716,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -737,7 +737,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -758,7 +758,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -779,7 +779,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -800,7 +800,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -821,7 +821,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -842,7 +842,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       </item-template>
@@ -863,7 +863,7 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">parentproject</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
@@ -955,8 +955,8 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.relation.entity_project">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
+      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
       </item-template>
     </collection>
@@ -976,8 +976,8 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.entity_parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.relation.entity_project">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
+      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       </item-template>
     </collection>
     <collection>

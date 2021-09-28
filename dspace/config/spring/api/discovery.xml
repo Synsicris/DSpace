@@ -1382,7 +1382,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:subcontractor OR entityType_keyword:cooperationpartner)</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:subcontractor OR entityType_keyword:cooperationpartner)</value>
             </list>
         </property>
     </bean>
@@ -1406,7 +1406,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:application</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:application</value>
             </list>
         </property>
     </bean>
@@ -1430,7 +1430,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:award</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:award</value>
             </list>
         </property>
     </bean>
@@ -1453,7 +1453,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:contribution_fundingprogramme</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:contribution_fundingprogramme</value>
             </list>
         </property>
     </bean>
@@ -1477,7 +1477,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:cooperationpartner</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:cooperationpartner</value>
             </list>
         </property>
     </bean>
@@ -1501,7 +1501,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ethic</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ethic</value>
             </list>
         </property>
     </bean>
@@ -1525,7 +1525,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
             </list>
         </property>
     </bean>
@@ -1549,7 +1549,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:pot_societalimpact</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:pot_societalimpact</value>
             </list>
         </property>
     </bean>
@@ -1573,7 +1573,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:condition</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:condition</value>
             </list>
         </property>
     </bean>
@@ -1597,7 +1597,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Funding</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Funding</value>
             </list>
         </property>
     </bean>
@@ -1648,7 +1648,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:gender</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:gender</value>
             </list>
         </property>
     </bean>
@@ -1672,7 +1672,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationidea</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationidea</value>
             </list>
         </property>
     </bean>
@@ -1696,7 +1696,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:milestone</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:milestone</value>
             </list>
         </property>
     </bean>
@@ -1719,7 +1719,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:step</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:step</value>
             </list>
         </property>
     </bean>
@@ -1743,7 +1743,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:physical_object</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:physical_object</value>
             </list>
         </property>
     </bean>
@@ -1767,7 +1767,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:other</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:other</value>
             </list>
         </property>
     </bean>
@@ -1791,7 +1791,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Patent</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Patent</value>
             </list>
         </property>
     </bean>
@@ -1815,7 +1815,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:plan_publication</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:plan_publication</value>
             </list>
         </property>
     </bean>
@@ -1839,7 +1839,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:process_event</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:process_event</value>
             </list>
         </property>
     </bean>
@@ -1863,7 +1863,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:proj_objective</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:proj_objective</value>
             </list>
         </property>
     </bean>
@@ -1887,7 +1887,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Publication</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Publication</value>
             </list>
         </property>
     </bean>
@@ -1912,7 +1912,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Product</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Product</value>
             </list>
         </property>
     </bean>
@@ -1936,7 +1936,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:research_result</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:research_result</value>
             </list>
         </property>
     </bean>
@@ -1960,7 +1960,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationpotential</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationpotential</value>
             </list>
         </property>
     </bean>
@@ -1984,7 +1984,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:spinoff</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:spinoff</value>
             </list>
         </property>
     </bean>
@@ -2008,7 +2008,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:stateofart</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:stateofart</value>
             </list>
         </property>
     </bean>
@@ -2032,7 +2032,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
             </list>
         </property>
     </bean>
@@ -2081,7 +2081,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:targetgroup</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:targetgroup</value>
             </list>
         </property>
     </bean>
@@ -2105,7 +2105,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:task</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:task</value>
             </list>
         </property>
     </bean>
@@ -2129,7 +2129,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:team</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:team</value>
             </list>
         </property>
     </bean>
@@ -2153,7 +2153,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:unexpected_result</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:unexpected_result</value>
             </list>
         </property>
     </bean>
@@ -2177,7 +2177,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:workpackage</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:workpackage</value>
             </list>
         </property>
     </bean>
@@ -2201,7 +2201,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
             </list>
         </property>
     </bean>
@@ -2273,7 +2273,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.entity_parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exploitationplan</value>
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exploitationplan</value>
             </list>
         </property>
     </bean>

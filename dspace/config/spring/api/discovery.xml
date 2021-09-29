@@ -35,7 +35,7 @@
 	<bean id="solrServiceIndexRelationshipsPlugin" class="org.dspace.discovery.SolrServiceIndexRelationshipsPlugin"/>
     <bean id="solrServiceHiddenRelationsRestrictionPlugin" class="org.dspace.discovery.SolrServiceHiddenRelationsRestrictionPlugin"/>
     <bean id="solrServiceMetricsIndexPlugin" class="org.dspace.discovery.SolrServiceMetricsIndexPlugin"/>
-
+    <bean id="SolrServiceIndexSubprojectCommunityPlugin" class="org.dspace.discovery.SolrServiceIndexSubprojectCommunityPlugin" scope="prototype"/>
 
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
 
@@ -148,6 +148,7 @@
                 <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
                 <entry key="editCollection" value-ref="editCollectionConfiguration"/>
                 <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
+                <entry key="subprojectCommunity" value-ref="subprojectCommunityConfiguration"/>
                 <!-- Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_task_type" value-ref="impactpathwayStepType2TaskTypeConfiguration"/>
@@ -224,6 +225,19 @@
                 <!--Only find communities-->
                 <value>search.resourcetype:Community</value>
                 <value>search.resourceid:${project.parent-community-id}</value>                
+            </list>
+        </property>
+    </bean>
+    
+    <!--The project community configuration settings for discovery-->
+    <bean id="subprojectCommunityConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="commonConfiguration">
+        <property name="id" value="editCommunityConfiguration"/>
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find communities-->
+                <value>search.resourcetype:Community</value>
+                <value>dc.title:${project.subproject-community-name}</value>
+                <value>search.subprojectCommunity:true</value>               
             </list>
         </property>
     </bean>

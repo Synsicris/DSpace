@@ -170,10 +170,17 @@
         <scope_note></scope_note>
     </dc-type>
     
-        <dc-type>
+    <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
         <qualifier>partner-wp</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subproject</element>
+        <qualifier>community</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

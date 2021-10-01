@@ -298,6 +298,7 @@
     <!-- Dynamic field used to store the relation metadata as a keywordFilter -->
     <dynamicField name="relation.*" type="keywordFilter" indexed="true" stored="true" omitNorms="true" multiValued="true"/>
     <field name="search.entitytype" type="string" indexed="true" stored="true" required="false" />
+    <field name="search.subprojectCommunity" type="string" indexed="true" stored="true" required="false" />
 
  	<!--Dynamic field used to store metadata for projection-->
     <dynamicField name="*_stored" type="dspaceMetadataProjection" indexed="false" stored="true" multiValued="true"/>

@@ -221,6 +221,16 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="pot_societalimpact_new" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.pot_societalimpact_new</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="pot_societalimpact_new_neg" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.pot_societalimpact_new_neg</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="conditions" mandatory="true">
       <heading>submit.progressbar.describe.conditions</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -243,6 +253,11 @@
     </step-definition>
     <step-definition id="ethics_reflection" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.ethics_reflection</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="ia_objectives" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.ia_objectives</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -608,6 +623,16 @@
       <step id="pot_societalimpact" />
       <step id="statusacc3" />
     </submission-process>
+    <submission-process name="pot_societalimpact_new">
+      <step id="pot_societalimpact_new" />
+      <step id="pot_societalimpact_new_neg" />
+      <step id="statusacc3" />
+    </submission-process>
+    <submission-process name="pot_societalimpact_new-edit">
+      <step id="pot_societalimpact_new" />
+      <step id="pot_societalimpact_new_neg" />
+      <step id="statusacc3" />
+    </submission-process>
     <submission-process name="conditions">
       <step id="conditions" />
       <step id="statusacc1" />
@@ -635,6 +660,12 @@
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
+    </submission-process>
+    <submission-process name="ia_objectives">
+      <step id="ia_objectives" />
+    </submission-process>
+    <submission-process name="ia_objectives-edit">
+      <step id="ia_objectives" />
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="proj_objectives" />

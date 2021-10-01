@@ -218,6 +218,17 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="impact_pathway_step_type_3_task_form">
       <row>
@@ -278,6 +289,17 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>

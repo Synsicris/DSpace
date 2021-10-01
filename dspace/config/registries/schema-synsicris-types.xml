@@ -184,4 +184,9 @@
         <scope_note></scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>title</element>
+        <scope_note></scope_note>
+    </dc-type>
 </dspace-dc-types>

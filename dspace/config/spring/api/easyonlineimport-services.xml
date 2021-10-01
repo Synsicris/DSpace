@@ -21,7 +21,7 @@
                 </entry>
                 <entry 
                     key-ref="project-Thema"
-                    value-ref= "dc.title">
+                    value-ref= "synsicris.title">
                 </entry>
                 <entry 
                     key-ref="project-fremd_Thema"
@@ -144,6 +144,10 @@
 
     <bean id="dc.title" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="dc.title"/>
+    </bean>
+    
+    <bean id="synsicris.title" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.title"/>
     </bean>
 
     <bean id="dc.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">

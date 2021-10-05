@@ -433,11 +433,13 @@
       <step id="parentprojects" />
       <step id="agrovoc_keywords_parentproject" />
       <step id="parentprojects_calc" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="parentprojects-edit">
       <step id="parentprojects" />
       <step id="agrovoc_keywords_parentproject" />
       <step id="parentprojects_calc" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="projects">
       <step id="projects" />

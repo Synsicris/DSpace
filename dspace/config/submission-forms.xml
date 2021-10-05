@@ -771,6 +771,17 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>File type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Personal picture, logo, main article, etc.</hint>
+        </field>
+      </row>
     </form>
     <form name="agrovoc_keywords_parentproject">
       <row>

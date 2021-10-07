@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NACE 2021-03-24">
+<node id="ResourceTypeGenres" label="NACE 2021-10-07">
   <isComposedBy>
-    <node id="A" label="LAND- UND FORSTWIRTSCHAFT, FISCHEREI" selectable="true">
+    <node id="A" label="Land- und Forstwirtschaft, Fischerei" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="01" label="Landwirtschaft, Jagd und damit verbundene Tätigkeiten" selectable="true">
@@ -203,7 +203,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="B" label="BERGBAU UND GEWINNUNG VON STEINEN UND ERDEN" selectable="true">
+    <node id="B" label="Bergbau und Gewinnung von Steinen und Erden" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="05" label="Kohlenbergbau" selectable="true">
@@ -328,7 +328,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="C" label="VERARBEITENDES GEWERBE/HERSTELLUNG VON WAREN" selectable="true">
+    <node id="C" label="Verarbeitendes Gewerbe/Herstellung von Waren" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="10" label="Herstellung von Nahrungs- und Futtermitteln" selectable="true">
@@ -1618,7 +1618,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="D" label="ENERGIEVERSORGUNG" selectable="true">
+    <node id="D" label="Energieversorgung" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="35" label="Energieversorgung" selectable="true">
@@ -1667,7 +1667,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="E" label="WASSERVERSORGUNG; ABWASSER- UND ABFALLENTSORGUNG UND BESEITIGUNG VON UMWELTVERSCHMUTZUNGEN" selectable="true">
+    <node id="E" label="Wasserversorgung; Abwasser- und Abfallentsorgung und Beseitigung von Umweltverschmutzungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="36" label="Wasserversorgung" selectable="true">
@@ -1749,7 +1749,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="F" label="BAUGEWERBE/BAU" selectable="true">
+    <node id="F" label="Baugewerbe/Bau" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="41" label="Hochbau" selectable="true">
@@ -1880,7 +1880,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="G" label="HANDEL; INSTANDHALTUNG UND REPARATUR VON KRAFTFAHRZEUGEN" selectable="true">
+    <node id="G" label="Handel; Instandhaltung und Reparatur von Kraftfahrzeugen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="45" label="Handel mit Kraftfahrzeugen; Instandhaltung und Reparatur von Kraftfahrzeugen" selectable="true">
@@ -2278,7 +2278,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="H" label="VERKEHR UND LAGEREI" selectable="true">
+    <node id="H" label="Verkehr und Lagerei" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="49" label="Landverkehr und Transport in Rohrfernleitungen" selectable="true">
@@ -2452,7 +2452,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="I" label="GASTGEWERBE/BEHERBERGUNG UND GASTRONOMIE" selectable="true">
+    <node id="I" label="Gastgewerbe/Beherbergung und Gastronomie" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="55" label="Beherbergung" selectable="true">
@@ -2526,7 +2526,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="J" label="INFORMATION UND KOMMUNIKATION" selectable="true">
+    <node id="J" label="Information und Kommunikation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="58" label="Verlagswesen" selectable="true">
@@ -2704,7 +2704,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="K" label="ERBRINGUNG VON FINANZ- UND VERSICHERUNGSDIENSTLEISTUNGEN" selectable="true">
+    <node id="K" label="Erbringung von Finanz- und Versicherungsdienstleistungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="64" label="Erbringung von Finanzdienstleistungen" selectable="true">
@@ -2828,7 +2828,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="L" label="GRUNDSTÜCKS- UND WOHNUNGSWESEN" selectable="true">
+    <node id="L" label="Grundstücks- und Wohnungswesen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="68" label="Grundstücks- und Wohnungswesen" selectable="true">
@@ -2865,7 +2865,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="M" label="ERBRINGUNG VON FREIBERUFLICHEN, WISSENSCHAFTLICHEN UND TECHNISCHEN DIENSTLEISTUNGEN" selectable="true">
+    <node id="M" label="Erbringung von Freiberuflichen, wissenschaftlichen und technischen Dienstleistungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="69" label="Rechts- und Steuerberatung, Wirtschaftsprüfung" selectable="true">
@@ -3037,7 +3037,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="N" label="ERBRINGUNG VON SONSTIGEN WIRTSCHAFTLICHEN DIENSTLEISTUNGEN" selectable="true">
+    <node id="N" label="Erbringung von sonstigen wirtschaftlichen Dienstleistungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="77" label="Vermietung von beweglichen Sachen" selectable="true">
@@ -3266,7 +3266,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="O" label="ÖFFENTLICHE VERWALTUNG, VERTEIDIGUNG; SOZIALVERSICHERUNG" selectable="true">
+    <node id="O" label="Öffentliche Verwaltung, Verteidigung; Sozialversicherung" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="84" label="Öffentliche Verwaltung, Verteidigung; Sozialversicherung" selectable="true">
@@ -3318,7 +3318,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="P" label="ERZIEHUNG UND UNTERRICHT" selectable="true">
+    <node id="P" label="Erziehung und Unterricht" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="85" label="Erziehung und Unterricht" selectable="true">
@@ -3391,7 +3391,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="Q" label="GESUNDHEITS- UND SOZIALWESEN" selectable="true">
+    <node id="Q" label="Gesundheits- und Sozialwesen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="86" label="Gesundheitswesen" selectable="true">
@@ -3492,7 +3492,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="R" label="KUNST, UNTERHALTUNG UND ERHOLUNG" selectable="true">
+    <node id="R" label="Kunst, Unterhaltung und Erholung" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="90" label="Kreative, künstlerische und unterhaltende Tätigkeiten" selectable="true">
@@ -3587,7 +3587,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="S" label="ERBRINGUNG VON SONSTIGEN DIENSTLEISTUNGEN" selectable="true">
+    <node id="S" label="Erbringung von sonstigen Dienstleistungen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="94" label="Interessenvertretungen sowie kirchliche und sonstige religiöse Vereinigungen (ohne Sozialwesen und Sport)" selectable="true">
@@ -3694,7 +3694,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="T" label="PRIVATE HAUSHALTE MIT HAUSPERSONAL; HERSTELLUNG VON WAREN UND ERBRINGUNG VON DIENSTLEISTUNGEN DURCH PRIVATE HAUSHALTE FÜR DEN EIGENBEDARF OHNE AUSGEPRÄGTEN SCHWERPUNKT" selectable="true">
+    <node id="T" label="Private Haushalte mit Hauspersonal; Herstellung von Waren und Erbringung von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="97" label="Private Haushalte mit Hauspersonal" selectable="true">
@@ -3733,7 +3733,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="U" label="EXTERRITORIALE ORGANISATIONEN UND KÖRPERSCHAFTEN" selectable="true">
+    <node id="U" label="Exterritoriale Organisationen und Körperschaften" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="99" label="Exterritoriale Organisationen und Körperschaften" selectable="true">

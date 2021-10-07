@@ -444,12 +444,10 @@
     <submission-process name="projects">
       <step id="projects" />
       <step id="projects_import" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="projects-edit">
       <step id="projects" />
       <step id="projects_import" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="funding">
       <step id="funding" />

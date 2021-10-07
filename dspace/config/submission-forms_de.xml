@@ -793,7 +793,7 @@
           <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Wenn Sie Schlagworte eingeben, bekommen Sie Vorschläge zur Auswahl.</hint>
+          <hint />
           <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
@@ -808,7 +808,7 @@
           <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Wenn Sie Schlagworte eingeben, bekommen Sie Vorschläge zur Auswahl.</hint>
+          <hint />
           <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
@@ -1342,21 +1342,22 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>acronym</dc-element>
-          <label>Akronym</label>
+          <label>Akronym/Kurzname</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <style>col-md-3</style>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
+          <label>Titel des Verbundprojektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <style>col-md-9</style>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
         </field>
       </row>
@@ -1377,11 +1378,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Förderbereich</label>
+          <label>Förderbereich/Bekanntmachung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
+          <required />
+          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call.</hint>
         </field>
       </row>
       <row>
@@ -1389,11 +1390,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Koordinierendes Teilprojekt</label>
+          <label>Welches Teilprojekt koordiniert den Verbund?</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Wählen Sie bitte das Teilprojekt aus, welches das Verbundprojekt koordiniert.</hint>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -1448,7 +1449,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>fundingParent</dc-element>
-          <label>Fördermaßnahme</label>
+          <label>Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1460,7 +1461,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Förderbereich</label>
+          <label>Förderbereich/Bekanntmachung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1471,7 +1472,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
-          <label>Zuwendung gesamt</label>
+          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1481,7 +1482,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Zuwendung Personal</label>
+          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1492,7 +1493,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>budget</dc-qualifier>
-          <label>Gesamtsumme des Vorhabens</label>
+          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1515,13 +1516,23 @@
     <form name="projects">
       <row>
         <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Name der Organisation und Kurztitel des Teilprojekts</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>internalid</dc-element>
           <label>Förderkennzeichen des Teilprojektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -1587,9 +1598,9 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
+          <label>Titel des Teilprojektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1601,7 +1612,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Bezeichnung in Englisch</label>
+          <label>Titel in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1637,7 +1648,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
-          <label>Projektbeschreibung aus easy-online</label>
+          <label>Projektbeschreibung aus easy-Online</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1649,7 +1660,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>workplan</dc-qualifier>
-          <label>Arbeitsplan aus easy-online</label>
+          <label>Arbeitsplan aus easy-Online</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1842,7 +1853,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
-          <label>Zuwendung gesamt für Teilprojekt</label>
+          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1853,7 +1864,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Zuwendung Personal für Teilprojekt</label>
+          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1864,7 +1875,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>budget</dc-qualifier>
-          <label>Gesamtsumme des Teilprojektes</label>
+          <label>Gesamtvolumen des Teilprojektes (Zuwendung &amp; Eigenmittel)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1938,7 +1949,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>easy-import</dc-qualifier>
-          <label>Ausführende Stelle im offiziellen Antrag (easy-online)</label>
+          <label>Ausführende Stelle im offiziellen Antrag (easy-Online)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1950,11 +1961,11 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <label>Tätigkeitsbereich</label>
+          <label>Tätigkeitsbereich Ihrer Organisationseinheit</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Liste umfasst eine grobe Strukturierung, von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind.</hint>
+          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
         </field>
       </row>
       <row>
@@ -2144,7 +2155,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>recipient-stats</dc-qualifier>
-          <label>profi Empfängerstatistik</label>
+          <label>Empfängerstatistik (wird aus profi importiert)</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2205,7 +2216,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Zugehöriges Projekt</label>
+          <label>Zugehöriges Projekt (wird automatisch eingetragen)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2463,6 +2474,7 @@
           <required />
           <style>col-md-6</style>
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -2474,7 +2486,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Das Akronym wird verwendet, um die Beteiligung des Kooperationspartners an Arbeiten und Aktivitäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
       </row>
       <row>
@@ -2495,20 +2507,7 @@
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Akteursgruppe(n)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
           <label>Gesellschaftsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
@@ -2710,6 +2709,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -2721,7 +2721,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Das Akronym wird verwendet, um die Beteiligung des Unterauftragnehmers an Arbeiten und Aktivitäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2740,20 +2740,7 @@
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Entsprechende Akteursgruppe(n)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
           <label>Gesellschaftsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
@@ -2835,6 +2822,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>submit</readonly>
         </field>
       </row>
     </form>
@@ -3160,7 +3148,7 @@
           <dc-element>email</dc-element>
           <label>E-Mail</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -3170,11 +3158,11 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Persönliche Seite(n)</label>
+          <label>Website(s) zu meiner Person (z.B. Personenseite meiner Organisation, persönliche Homepage, Researchgate, LinkedIn Twitter, Facebook)</label>
           <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Durch die Verlinkung mit aktuellen Personenseiten verbessern Sie Ihre Sichtbarkeit und Erreichbarkeit.</hint>
+          <hint>Durch die Verlinkung verbessern Sie Ihre Sichtbarkeit und Erreichbarkeit.</hint>
         </field>
       </row>
       <row>
@@ -3186,7 +3174,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Dieser Eintrag ermöglicht einen Publikations-Alert und -Import, sowie
+          <hint>Dieser Eintrag ermöglicht einen Publikations-Alert und Import sowie
 eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt haben.</hint>
         </field>
       </row>
@@ -3199,7 +3187,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Dieser Eintrag ermöglicht zukünftige Funktionen im Bereich Publikationen.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -3211,7 +3199,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Dieser Eintrag ermöglicht zukünftige Funktionen im Bereich Publikationen.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -4973,7 +4961,8 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <input-type value-pairs-name="targetgroup_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen.</hint>
+          <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen. 
+Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
         </field>
       </row>
       <row>
@@ -4981,13 +4970,26 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Bitte wählen Sie aus</label>
+          <label>Wirtschaftszweig</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
           <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>enterprise-size</dc-qualifier>
+          <label>Unternehmensgröße</label>
+          <input-type value-pairs-name="enterprise_size">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
         </field>
       </row>
       <row>
@@ -5304,7 +5306,8 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Beschäftigt sich das Projekt mit Problemstellungen, bei denen Unterschiede zwischen den Geschlechtern eine Rolle spielen, z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind oder unterschiedlich an der Verursachung oder Lösung beteiligt sind?</hint>
+          <hint>Beschäftigt sich das Projekt mit Problemstellungen, bei denen Unterschiede zwischen den Geschlechtern eine Rolle spielen? 
+Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind oder unterschiedlich an der Verursachung oder Lösung beteiligt sind.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5328,7 +5331,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Haben Sie im Forschungsstand geschlechterspezifische Erkenntnisse hinzugezogen, wie z. B. Nutzerverhalten nach Geschlecht, Literatur, die Geschlechteraspekte der Fragestellung behandelt, oder Genderstudies?</hint>
+          <hint>Haben Sie im Forschungsstand geschlechterspezifische Erkenntnisse hinzugezogen? Z. B. Geschlechtsspezifisches Verhalten, Unterschiede der Lebensverhältnisse oder auch Literatur wie Genderstudies.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5400,12 +5403,36 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>z. B. Förderung von Frauen in Spitzenpositionen, Vereinbarkeit von Beruf und Familie (flexible Arbeitszeiten, Homeoffice, institutionell unterstützte Kinderbetreuung), Chancengleichheit bei der Qualifizierung, Unterstützung für die Teilnehme an Tagungen oder Umgang mit ungleichem Verhältnis von Männern und Frauen in bestimmten Branchen (Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
+          <hint>Z. B. Förderung von Frauen in Spitzenpositionen, Vereinbarkeit von Beruf und Familie (flexible Arbeitszeiten, Homeoffice, institutionell unterstützte Kinderbetreuung), Chancengleichheit bei der Qualifizierung, Unterstützung für die Teilnahme an Tagungen oder Bemühungen um ein ausgeglichenes Verhältnis von Männern und Frauen im Projekt bei der Stellenbesetzung. (Nennen Sie bitte nur Maßnahmen, die über die geltenden rechtlichen Regelungen zur Einstellung von Personal hinausgehen.)</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>project</dc-qualifier>
+          <label>Erläuterung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>balance</dc-qualifier>
+          <label>Konnte im Projekt ein ausgeglichenes Geschlechterverhältnis bei den Beschäftigten erzielt werden? Berücksichtigen Sie dabei den Stellenumfang der Beschäftigten.</label>
+          <input-type value-pairs-name="gender_balance">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Ein ausgeglichenes Geschlechterverhältnis im Projekt unter den Beschäftigten zu erzielen kann z. B. in Themengebieten schwierig sein, in denen ungleich viele Frauen oder Männer arbeiten.</hint>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>balance</dc-qualifier>
           <label>Erläuterung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5427,17 +5454,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen (nicht erforderlich)</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben.</hint>
-        </field>
-      </row>
     </form>
     <form name="ethics_reflection-dc-type">
       <row>
@@ -5455,12 +5471,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>aspect</dc-qualifier>
-          <label>Beschreibung der Maßnahmen</label>
+          <label>Vorgehensweise im Projekt für einen angemessenen Umgang mit dem ausgewählten ethischen Aspekt</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Reflexion (oben im Text).</hint>
+          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Beschreibung der Vorgehensweise (oben im Text).</hint>
         </field>
       </row>
     </form>
@@ -5469,7 +5485,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Auswahl relevanter ethischer Aspekte und Beschreibung von Maßnahmen zum angemessenen Umgang damit</label>
+          <label>Auswahl relevanter ethischer Aspekte und Beschreibung der Vorgehensweise im Projekt für den angemessenen Umgang</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5482,22 +5498,11 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Kernaussage zu den relevanten ethischen Aspekten</label>
+          <label>Kernaussage zum Vorgehen</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Formulieren Sie zum Abschluss bitte eine Kernaussage zur ethischen Reflexion. Diese wird in Übersichten angezeigt. Wenn ethische Aspekte eine Relevanz für die Durchführung und Wirkung des Projektes haben, übernehmen Sie den Eintrag bitte in die 1. Säule (Hintergrund) des Impact Pathway.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen (nicht erforderlich)</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben.</hint>
         </field>
       </row>
     </form>
@@ -7347,6 +7352,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <stored-value>Research</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="enterprise_size" dc-term="enterprise_size">
+      <pair>
+        <displayed-value>Vorwiegend kleine- und mittelständische Unternehmen</displayed-value>
+        <stored-value>SME</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vorwiegend Großunternehmen</displayed-value>
+        <stored-value>Company</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Nicht spezifiziert</displayed-value>
+        <stored-value>Not specified</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="recipient_stats" dc-term="recipient_stats">
       <pair>
         <displayed-value>Noch nicht bekannt</displayed-value>
@@ -7697,6 +7716,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
       <pair>
         <displayed-value>Nein</displayed-value>
         <stored-value>No</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="gender_balance" dc-term="gender_balance">
+      <pair>
+        <displayed-value>Ja, das Geschlechterverhältnis ist ausgeglichen (mindestens 40/60)</displayed-value>
+        <stored-value>Yes</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Nein – der Anteil der beschäftigten Frauen ist größer als 60 %</displayed-value>
+        <stored-value>No - women &gt; 60%.</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Nein – der Anteil der beschäftigten Männer ist größer als 60 %</displayed-value>
+        <stored-value>No - men &gt; 60%.</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="ethics" dc-term="ethics">

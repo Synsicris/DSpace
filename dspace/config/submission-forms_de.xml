@@ -625,18 +625,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -661,18 +650,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -697,18 +675,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -733,18 +700,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Sie können dieses Feld nutzen, um weitergehende Überlegungen festzuhalten. Auf der Detailseite des Eintrages erscheint die Notiz dann im Feld „Beschreibung“ und kann dort weiterbearbeitet werden.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -775,11 +731,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>File type</label>
-          <input-type>onebox</input-type>
+          <label>Dateityp</label>
+          <input-type value-pairs-name="file_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Personal picture, logo, main article, etc.</hint>
+          <hint>Die Auswahl des Dateityps bestimmt die Form der Darstellung auf den Benutzerseiten.</hint>
         </field>
       </row>
     </form>
@@ -1552,18 +1508,6 @@
     <form name="projects_import">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>parentproject</dc-qualifier>
-          <label>Verbundprojekt</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>crispj</dc-schema>
           <dc-element>partnerou</dc-element>
           <label>Projektpartner</label>
@@ -1959,7 +1903,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Tätigkeitsbereich Ihrer Organisationseinheit</label>
           <input-type value-pairs-name="sector_type">list</input-type>
@@ -2076,7 +2020,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
       <row>
@@ -2425,7 +2369,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
       <row>
@@ -2506,7 +2450,7 @@
     <form name="cooperationpartners">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Gesellschaftsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
@@ -2661,7 +2605,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
       <row>
@@ -2739,7 +2683,7 @@
     <form name="subcontractors">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Gesellschaftsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
@@ -2822,7 +2766,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>submit</readonly>
         </field>
       </row>
     </form>
@@ -2917,7 +2860,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
       <row>
@@ -3028,9 +2971,8 @@
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>sector</dc-qualifier>
           <label>Gesellschaftsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
@@ -3198,69 +3140,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <label>Researcher ID</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="team">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>person</dc-qualifier>
-          <label>Personensuche</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>team</dc-element>
-          <dc-qualifier>gender</dc-qualifier>
-          <label>Geschlecht</label>
-          <input-type value-pairs-name="gender">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>team</dc-element>
-          <dc-qualifier>degree</dc-qualifier>
-          <label>Akademischer Abschluss</label>
-          <input-type value-pairs-name="person_degree">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>destatis</dc-qualifier>
-          <label>Disziplin / Fachgebiet</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">destatis</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>projectpartner</dc-qualifier>
-          <label>Projektpartner</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -3503,7 +3382,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <required />
           <style>col-md-2</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
       <row>
@@ -4471,7 +4350,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
     </form>
@@ -4683,7 +4562,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">countries2</vocabulary>
         </field>
       </row>
     </form>
@@ -4710,7 +4589,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <label>Ziel des Förderprogramms</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
         </field>
       </row>
@@ -5091,12 +4970,12 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact_new">
+    <form name="exp_societalimpact">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Wirkungspotenzials</label>
+          <label>Bezeichnung der erwarteten Wirkung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5107,7 +4986,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung des Wirkungspotenzials</label>
+          <label>Beschreibung der erwarteten Wirkung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5118,7 +4997,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Charakterisieren Sie das Wirkungspotenzial, indem Sie mindestens eine und höchstens drei Zeilen mit Informationen anlegen.</label>
+          <label>Erwartete Wirkung charakterisieren mit max. 3 Kernelementen und Transformationsbereichen</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5126,7 +5005,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact_new-dc-type">
+    <form name="exp_societalimpact-dc-type">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5175,12 +5054,12 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact_new_neg">
+    <form name="exp_societalimpact_neg">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type-n</dc-element>
-          <label>Charakterisieren Sie eventuelle Nebenwirkungen, indem Sie beliebig viele Zeilen mit Informationen anlegen.</label>
+          <label>Charakterisierung der eventuellen Nebenwirkungen durch Auswahl aller betroffenen Kernelemente und Transformationsbereiche</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5188,7 +5067,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact_new_neg-synsicris-type-n">
+    <form name="exp_societalimpact_neg-synsicris-type-n">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5217,7 +5096,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>negative-direction</dc-qualifier>
-          <label>Intensität Nebenwirkungen</label>
+          <label>Wirkungsintensität-negativ</label>
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5228,7 +5107,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>neg</dc-qualifier>
-          <label>Erläuterung des Umfangs / Ausmaßes der negativen Nebenwirkung in diesem Kernelement</label>
+          <label>Erläuterung des Umfangs der negativen Nebenwirkung in diesem Kernelement</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5789,7 +5668,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <label>Förderndes Ressort/Ministerium bzw. Träger</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -5869,7 +5748,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <label>Zugehöriges Programm / Fördermaßnahme</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -5964,7 +5843,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <label>Zugehöriger Call / Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -6192,6 +6071,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(andere Sprache)</displayed-value>
         <stored-value>other</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="file_type" dc-term="file_type">
+      <pair>
+        <displayed-value>Logo</displayed-value>
+        <stored-value>logo</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Persönliches Foto</displayed-value>
+        <stored-value>personal picture</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Anhang</displayed-value>
+        <stored-value>file(s)</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="project_types" dc-term="project_types">
@@ -7277,6 +7170,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (neu)</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
       <pair>
@@ -7446,37 +7343,37 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impact_positive" dc-term="impact_positive">
       <pair>
-        <displayed-value>(+++) sehr positiv</displayed-value>
-        <stored-value>very positive</stored-value>
+        <displayed-value>[+++] stark</displayed-value>
+        <stored-value>strong positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>(++) positiv</displayed-value>
-        <stored-value>positive</stored-value>
+        <displayed-value>[++] mittel</displayed-value>
+        <stored-value>medium positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>(+) leicht positiv</displayed-value>
+        <displayed-value>[+] gering</displayed-value>
         <stored-value>slightly positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>(?) noch nicht einschätzbar</displayed-value>
+        <displayed-value>[?] noch nicht einschätzbar</displayed-value>
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impact_negative" dc-term="impact_negative">
       <pair>
-        <displayed-value>(---) sehr negativ</displayed-value>
-        <stored-value>very negative</stored-value>
+        <displayed-value>[---]  stark</displayed-value>
+        <stored-value>strong negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>(--) negativ</displayed-value>
-        <stored-value>negative</stored-value>
+        <displayed-value>[--] mittel</displayed-value>
+        <stored-value>medium negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>(-) leicht negativ</displayed-value>
+        <displayed-value>[--] gering</displayed-value>
         <stored-value>slightly negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>(?) noch nicht einschätzbar</displayed-value>
+        <displayed-value>[?] noch nicht einschätzbar</displayed-value>
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
@@ -7721,15 +7618,15 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     <value-pairs value-pairs-name="gender_balance" dc-term="gender_balance">
       <pair>
         <displayed-value>Ja, das Geschlechterverhältnis ist ausgeglichen (mindestens 40/60)</displayed-value>
-        <stored-value>Yes</stored-value>
+        <stored-value>balanced gender ratio</stored-value>
       </pair>
       <pair>
         <displayed-value>Nein – der Anteil der beschäftigten Frauen ist größer als 60 %</displayed-value>
-        <stored-value>No - women &gt; 60%.</stored-value>
+        <stored-value>proportion of women above 60 %</stored-value>
       </pair>
       <pair>
         <displayed-value>Nein – der Anteil der beschäftigten Männer ist größer als 60 %</displayed-value>
-        <stored-value>No - men &gt; 60%.</stored-value>
+        <stored-value>proportion of men above 60 %</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="ethics" dc-term="ethics">
@@ -8286,8 +8183,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>done</stored-value>
       </pair>
       <pair>
-        <displayed-value>Entfernt</displayed-value>
-        <stored-value>removed</stored-value>
+        <displayed-value>Gestrichen</displayed-value>
+        <stored-value>canceled</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col45" dc-term="stat_col45">
@@ -8308,8 +8205,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>archieved</stored-value>
       </pair>
       <pair>
-        <displayed-value>Entfernt</displayed-value>
-        <stored-value>removed</stored-value>
+        <displayed-value>Gestrichen</displayed-value>
+        <stored-value>canceled</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col6" dc-term="stat_col6">
@@ -8322,8 +8219,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>new</stored-value>
       </pair>
       <pair>
-        <displayed-value>Entfernt</displayed-value>
-        <stored-value>removed</stored-value>
+        <displayed-value>Gestrichen</displayed-value>
+        <stored-value>canceled</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="common_iso_countries" dc-term="common_iso_countries">

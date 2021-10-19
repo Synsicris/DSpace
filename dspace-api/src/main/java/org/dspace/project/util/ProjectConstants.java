@@ -27,7 +27,7 @@ public class ProjectConstants {
     public static final String PROJECT = "project";
 
     public static final String PARENTPROJECT = "parentproject";
-    
+
     public static final String PROJECT_ENTITY = "Project";
 
     public static final String PARENTPROJECT_ENTITY = "parentproject";

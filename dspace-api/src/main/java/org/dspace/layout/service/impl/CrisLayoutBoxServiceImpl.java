@@ -297,7 +297,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         // The relation box has no associated content
         return true;
     }
-    
+
     private boolean hasImpactPathwaysBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
         // The relation box has no associated content
         return true;

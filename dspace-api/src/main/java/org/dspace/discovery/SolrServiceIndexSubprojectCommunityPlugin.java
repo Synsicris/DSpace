@@ -38,7 +38,6 @@ public class SolrServiceIndexSubprojectCommunityPlugin implements SolrServiceInd
             Community comm = ((IndexableCommunity) idxObj).getIndexedObject();
             if (comm != null) {
                 String metadata = communityService.getMetadata(comm, "synsicris.subproject.community");
-                
                 if (StringUtils.isNotBlank(metadata)) {
                     document.addField("search.subprojectCommunity", metadata);
                 }

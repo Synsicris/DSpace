@@ -18,6 +18,8 @@ import org.dspace.app.profile.OrcidEntitySyncPreference;
 import org.dspace.app.profile.OrcidProfileSyncPreference;
 import org.dspace.app.profile.OrcidSynchronizationMode;
 import org.dspace.app.profile.ResearcherProfile;
+import org.dspace.app.profile.ResearcherProfileVisibility;
+import org.dspace.app.profile.service.ResearcherProfileService;
 import org.dspace.app.rest.model.ResearcherProfileRest;
 import org.dspace.app.rest.model.ResearcherProfileRest.OrcidSynchronizationRest;
 import org.dspace.app.rest.projection.Projection;
@@ -36,13 +38,16 @@ import org.springframework.stereotype.Component;
 public class ResearcherProfileConverter implements DSpaceConverter<ResearcherProfile, ResearcherProfileRest> {
 
     @Autowired
+    private ResearcherProfileService researcherProfileService;
+    @Autowired
     private OrcidSynchronizationService orcidSynchronizationService;
 
     @Override
     public ResearcherProfileRest convert(ResearcherProfile profile, Projection projection) {
         ResearcherProfileRest researcherProfileRest = new ResearcherProfileRest();
 
-        researcherProfileRest.setVisible(profile.isVisible());
+        ResearcherProfileVisibility visibility = researcherProfileService.getVisibility(profile);
+        researcherProfileRest.setVisibility(visibility);
         researcherProfileRest.setId(profile.getId());
         researcherProfileRest.setProjection(projection);
 

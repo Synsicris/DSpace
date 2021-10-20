@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.util.DCInput;
@@ -570,6 +571,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
     private boolean isLinkableToAnEntityWithEntityType(ChoiceAuthority choiceAuthority, String entityType) {
 
         return choiceAuthority instanceof LinkableEntityAuthority
-            && entityType.equals(((LinkableEntityAuthority) choiceAuthority).getLinkedEntityType());
+            && ArrayUtils.contains(((LinkableEntityAuthority) choiceAuthority).getLinkedEntityType(), entityType);
+
     }
 }

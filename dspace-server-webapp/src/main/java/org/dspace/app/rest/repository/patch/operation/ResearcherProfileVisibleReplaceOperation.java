@@ -8,8 +8,10 @@
 package org.dspace.app.rest.repository.patch.operation;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 import org.dspace.app.profile.ResearcherProfile;
+import org.dspace.app.profile.ResearcherProfileVisibility;
 import org.dspace.app.profile.service.ResearcherProfileService;
 import org.dspace.app.rest.exception.RESTAuthorizationException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
@@ -37,19 +39,19 @@ public class ResearcherProfileVisibleReplaceOperation extends PatchOperation<Res
     /**
      * Path in json body of patch that uses this operation.
      */
-    public static final String OPERATION_VISIBLE_CHANGE = "/visible";
+    public static final String OPERATION_VISIBLE_CHANGE = "/visibility";
 
     @Override
     public ResearcherProfile perform(Context context, ResearcherProfile profile, Operation operation)
         throws SQLException {
 
         Object value = operation.getValue();
-        if (value == null | !(value instanceof Boolean)) {
-            throw new UnprocessableEntityException("The /visible value must be a boolean (true|false)");
+        if (Objects.isNull(value)) {
+            throw new UnprocessableEntityException("The /visible value must match one of (public|internal|private)");
         }
-
+        ResearcherProfileVisibility visibility = ResearcherProfileVisibility.valueOf(value.toString());
         try {
-            researcherProfileService.changeVisibility(context, profile, (boolean) value);
+            researcherProfileService.changeVisibility(context, profile,  visibility);
         } catch (AuthorizeException e) {
             throw new RESTAuthorizationException("Unauthorized user for profile visibility change");
         }

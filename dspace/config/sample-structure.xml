@@ -22,9 +22,12 @@
       <submission-type>calls</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">project_funder_programme_group</policy-group>
+      <policy-group rpType="read">project_submitters_group</policy-group>
 	  <policy-group rpType="add">project_funder_programme_group</policy-group>
       <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_submitters_group</policy-group>
       <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -42,9 +45,12 @@
       <submission-type>fundingobjectives</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">project_funder_programme_group</policy-group>
+      <policy-group rpType="read">project_submitters_group</policy-group>
 	  <policy-group rpType="add">project_funder_programme_group</policy-group>
       <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_submitters_group</policy-group>
       <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -94,9 +100,12 @@
       <submission-type>programmes</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">project_funder_programme_group</policy-group>
+      <policy-group rpType="read">project_submitters_group</policy-group>
 	  <policy-group rpType="add">project_funder_programme_group</policy-group>
       <policy-group rpType="item_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="item_read">project_submitters_group</policy-group>
       <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
+      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>

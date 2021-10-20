@@ -22,9 +22,9 @@
 				<value>cooperationpartner</value>
 				<value>ethic</value>
 				<value>Event</value>
+				<value>Funding</value>
 				<value>pot_societalimpact</value>
 				<value>condition</value>
-				<value>funding</value>
 				<value>gender</value>
 				<value>innovationidea</value>
 				<value>milestone</value>
@@ -55,4 +55,13 @@
             </list>
         </property>
     </bean>
+
+    <bean id="fundingObjectiveAuthorityFilter" class="org.dspace.content.authority.FundingObjectiveAuthorityFilter">
+        <property name="supportedEntities">
+            <list>
+            	<value>fundingobjective</value>
+            </list>
+        </property>
+    </bean>
+    
 </beans>

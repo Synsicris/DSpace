@@ -8,6 +8,7 @@
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 import org.dspace.content.Community;
 import org.dspace.content.Item;
@@ -33,5 +34,7 @@ public interface ProjectConsumerService {
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
+    
+    public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;
 
 }

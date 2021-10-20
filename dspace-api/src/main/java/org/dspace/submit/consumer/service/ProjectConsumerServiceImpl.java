@@ -24,6 +24,7 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
@@ -33,6 +34,7 @@ import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -55,6 +57,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private AuthorizeService authorizeService;
     @Autowired
     private CommunityService communityService;
+    @Autowired
+    private CollectionService collectionService;
 
     @Override
     public void processItem(Context context, EPerson currentUser, Item item) {
@@ -250,17 +254,61 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.SCHEMA,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.ELEMENT,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.QUALIFIER, null);
         if (values.isEmpty()) {
             return null;
         }
         String uuid = values.get(0).getAuthority();
         if (StringUtils.isNotBlank(uuid)) {
-            // item that rappresent Project community
+            // item that represent Project community
             Item projectItem = itemService.find(context, UUID.fromString(uuid));
             return getProjectCommunity(context, projectItem);
         }
         return null;
+    }
+    
+    @Override
+    public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException {
+        Item projectItem = null;
+        List<Community> communities;
+
+        try {
+            Collection collection = collectionService.find(context, collectionUUID);
+            communities = collection.getCommunities();
+        } catch (SQLException e) {
+            log.error("Error while trying to extract communities for collection {}: {}", collectionUUID.toString(),
+                    e.getMessage());
+            return projectItem;
+        }
+
+        if (Objects.isNull(communities)) {
+            return projectItem;
+        }
+        if (communities.size() != 1) {
+            log.warn("Collection {} has {} communities, unable to proceed", collectionUUID.toString(),
+                communities.size());
+            return projectItem;
+        }
+        
+        List<MetadataValue> values = communityService.getMetadata(communities.get(0),
+                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
+                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+        
+        if (values.size() != 1) {
+            log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),
+                    values.size());
+            return projectItem;
+        }
+        
+        String itemUUID = values.get(0).getAuthority();
+        if (StringUtils.isBlank(itemUUID)) {
+            log.warn("Communitiy {} has no project items, unable to proceed", communities.get(0).getID().toString());
+            return projectItem;
+        }
+        
+        return itemService.find(context, UUIDUtils.fromString(itemUUID));
     }
 
 }

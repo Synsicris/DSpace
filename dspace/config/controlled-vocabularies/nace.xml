@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NACE 2021-03-24">
+<node id="ResourceTypeGenres" label="NACE 2021-10-07">
   <isComposedBy>
-    <node id="A" label="AGRICULTURE, FORESTRY AND FISHING" selectable="true">
+    <node id="A" label="Agriculture, Forestry and Fishing" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="01" label="Crop and animal production, hunting and related service activities" selectable="true">
@@ -203,7 +203,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="B" label="MINING AND QUARRYING" selectable="true">
+    <node id="B" label="Mining and Quarrying" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="05" label="Mining of coal and lignite" selectable="true">
@@ -328,7 +328,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="C" label="MANUFACTURING" selectable="true">
+    <node id="C" label="Manufacturing" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="10" label="Manufacture of food products" selectable="true">
@@ -1618,7 +1618,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="D" label="ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY" selectable="true">
+    <node id="D" label="Electricity, Gas, Steam and Air Conditioning Supply" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="35" label="Electricity, gas, steam and air conditioning supply" selectable="true">
@@ -1667,7 +1667,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="E" label="WATER SUPPLY; SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES" selectable="true">
+    <node id="E" label="Water Supply; Sewerage, Waste Management and Remediation Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="36" label="Water collection, treatment and supply" selectable="true">
@@ -1749,7 +1749,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="F" label="CONSTRUCTION" selectable="true">
+    <node id="F" label="Construction" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="41" label="Construction of buildings" selectable="true">
@@ -1880,7 +1880,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="G" label="WHOLESALE AND RETAIL TRADE; REPAIR OF MOTOR VEHICLES AND MOTORCYCLES" selectable="true">
+    <node id="G" label="Wholesale and Retail Trade; Repair of Motor Vehicles and Motorcycles" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="45" label="Wholesale and retail trade and repair of motor vehicles and motorcycles" selectable="true">
@@ -2278,7 +2278,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="H" label="TRANSPORTATION AND STORAGE" selectable="true">
+    <node id="H" label="Transportation and Storage" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="49" label="Land transport and transport via pipelines" selectable="true">
@@ -2452,7 +2452,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="I" label="ACCOMMODATION AND FOOD SERVICE ACTIVITIES" selectable="true">
+    <node id="I" label="Accommodation and Food Service Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="55" label="Accommodation" selectable="true">
@@ -2526,7 +2526,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="J" label="INFORMATION AND COMMUNICATION" selectable="true">
+    <node id="J" label="Information and Communication" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="58" label="Publishing activities" selectable="true">
@@ -2704,7 +2704,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="K" label="FINANCIAL AND INSURANCE ACTIVITIES" selectable="true">
+    <node id="K" label="Financial and Insurance Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="64" label="Financial service activities, except insurance and pension funding" selectable="true">
@@ -2828,7 +2828,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="L" label="REAL ESTATE ACTIVITIES" selectable="true">
+    <node id="L" label="Real Estate Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="68" label="Real estate activities" selectable="true">
@@ -2865,7 +2865,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="M" label="PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES" selectable="true">
+    <node id="M" label="Professional, Scientific and Technical Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="69" label="Legal and accounting activities" selectable="true">
@@ -3037,7 +3037,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="N" label="ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES" selectable="true">
+    <node id="N" label="Administrative and Support Service Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="77" label="Rental and leasing activities" selectable="true">
@@ -3266,7 +3266,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="O" label="PUBLIC ADMINISTRATION AND DEFENCE; COMPULSORY SOCIAL SECURITY" selectable="true">
+    <node id="O" label="Public Administration and Defence; Compulsory Social Security" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="84" label="Public administration and defence; compulsory social security" selectable="true">
@@ -3318,7 +3318,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="P" label="EDUCATION" selectable="true">
+    <node id="P" label="Education" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="85" label="Education" selectable="true">
@@ -3391,7 +3391,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="Q" label="HUMAN HEALTH AND SOCIAL WORK ACTIVITIES" selectable="true">
+    <node id="Q" label="Human Health and Social Work Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="86" label="Human health activities" selectable="true">
@@ -3492,7 +3492,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="R" label="ARTS, ENTERTAINMENT AND RECREATION" selectable="true">
+    <node id="R" label="Arts, Entertainment and Recreation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="90" label="Creative, arts and entertainment activities" selectable="true">
@@ -3587,7 +3587,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="S" label="OTHER SERVICE ACTIVITIES" selectable="true">
+    <node id="S" label="Other Service Activities" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="94" label="Activities of membership organisations" selectable="true">
@@ -3694,7 +3694,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="T" label="ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS; UNDIFFERENTIATED GOODS- AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE" selectable="true">
+    <node id="T" label="Activities of Households as Employers; Undifferentiated Goods- and Services-Producing Activities of Households for Own Use" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="97" label="Activities of households as employers of domestic personnel" selectable="true">
@@ -3733,7 +3733,7 @@
         </node>
       </isComposedBy>
             </node>
-    <node id="U" label="ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES" selectable="true">
+    <node id="U" label="Activities of Extraterritorial Organisations and Bodies" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="99" label="Activities of extraterritorial organisations and bodies" selectable="true">

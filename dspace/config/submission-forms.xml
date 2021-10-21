@@ -1415,18 +1415,6 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>call</dc-qualifier>
-          <label>Call / funding area</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>is imported from the information of the subprojects</hint>
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
           <label>Grant total</label>
@@ -4211,7 +4199,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>type</dc-element>
           <label>Type of the event/interaction</label>
           <input-type value-pairs-name="event_type">dropdown</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>

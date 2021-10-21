@@ -1414,18 +1414,6 @@
       </row>
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>call</dc-qualifier>
-          <label>Förderbereich/Bekanntmachung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
           <label>Zuwendung Gesamt vom Fördermittelgeber</label>
@@ -4221,7 +4209,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-element>type</dc-element>
           <label>Art der Veranstaltung</label>
           <input-type value-pairs-name="event_type">dropdown</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>

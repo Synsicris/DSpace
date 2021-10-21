@@ -20,7 +20,7 @@
         <entry key="dc.relation.cooperation-partner" value-ref="dc.relation.cooperation-partnerMigrate"/>
         <entry key="dc.relation.related-targetgroup" value-ref="dc.relation.related-targetgroupMigrate"/>
         <entry key="dc.relation.targetgroup" value-ref="dc.relation.targetgroupMigrate"/>
-        <entry key="impactpathway.relation.parent" value-ref="impactpathway.relation.parentMigrate"/>
+        <!-- <entry key="impactpathway.relation.parent" value-ref="impactpathway.relation.parentMigrate"/> -->
         <entry key="workingplan.relation.parent" value-ref="workingplan.relation.parentMigrate"/>
         <entry key="workingplan.responsible" value-ref="workingplan.responsibleMigrate"/>
         <entry key="workingplan.step.status" value-ref="workingplan.step.statusMigrate"/>
@@ -103,7 +103,26 @@
         <entry key="dc.type.quantifier-own" value-ref="dc.type.quantifier-ownMigrate"/>
         <entry key="dc.type.researchquestion" value-ref="dc.type.researchquestionMigrate"/>
         <entry key="dc.type.stateofart" value-ref="dc.type.stateofartMigrate"/>
+        <entry key="synsicris.relation.entity_project" value-ref="synsicris.relation.entity_projectMigrate"/>
+        
     </util:map>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrate" id="synsicris.relation.entity_projectMigrate">
+	    <property name="actions">
+	        <list>
+	            <ref bean="synsicris.relation.entity_projectMigrateAction"/>
+	        </list>
+	    </property>
+    </bean>
+
+    <bean class="org.dspace.content.scripts.MetadataMigrateAction" id="synsicris.relation.entity_projectMigrateAction">
+        <property name="action" value="remove" />
+        <property name="entityType" value="ALL" />
+    </bean>
+    
+    <bean id="synsicris.relation.parentproject" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.relation.parentproject"/>
+    </bean>
 
     <bean class="org.dspace.content.scripts.MetadataMigrate" id="dc.type.stateofartMigrate">
 	    <property name="actions">

@@ -27,7 +27,7 @@ public class ProjectConstants {
     public static final String PROJECT = "project";
 
     public static final String PARENTPROJECT = "parentproject";
-    
+
     public static final String PROJECT_ENTITY = "Project";
 
     public static final String PARENTPROJECT_ENTITY = "parentproject";
@@ -35,7 +35,18 @@ public class ProjectConstants {
     public static final MetadataFieldName MD_PROJECT_ENTITY =
                     new MetadataFieldName("synsicris", "relation", "entity_project");
 
+    public static final MetadataFieldName MD_PARENTPROJECT_RELATION =
+            new MetadataFieldName("synsicris", "relation", "parentproject");
+
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
+
+    public static final MetadataFieldName MD_RELATION_CALL = new MetadataFieldName("synsicris", "relation", "call");
+
+   
+    public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME = new MetadataFieldName("synsicris",
+            "relation","programme");
+    public static final MetadataFieldName MD_RELATION_CALLTOPROGRAMME = new MetadataFieldName("oairecerif",
+            "fundingParent");
 
     /**
      * Default constructor

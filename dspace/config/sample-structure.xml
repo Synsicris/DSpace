@@ -817,27 +817,6 @@
       </item-template>
     </collection>
     <collection>
-      <name language="en">Team members</name>
-      <name language="de">Teammitglieder</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>team</entity-type>
-      <submission-type>team</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
       <name language="en">(Intermediate) results / problems that causes change</name>
       <name language="de">(Zwischen-) Ergebnisse / Probleme, die Veränderungen bewirken</name>
       <description />

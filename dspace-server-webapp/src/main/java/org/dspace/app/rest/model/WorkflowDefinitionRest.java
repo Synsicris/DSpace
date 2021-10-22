@@ -21,11 +21,11 @@ import org.dspace.app.rest.RestResourceController;
     @LinkRest(
         name = WorkflowDefinitionRest.COLLECTIONS_MAPPED_TO,
         method = "getCollections"
-    ),
+        ),
     @LinkRest(
         name = WorkflowDefinitionRest.STEPS,
         method = "getSteps"
-    )
+        )
 })
 public class WorkflowDefinitionRest extends BaseObjectRest<String> {
 

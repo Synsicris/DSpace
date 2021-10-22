@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import org.dspace.app.profile.ResearcherProfile;
+import org.dspace.app.profile.ResearcherProfileVisibility;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.core.Context;
 import org.dspace.discovery.SearchServiceException;
@@ -65,13 +66,13 @@ public interface ResearcherProfileService {
     /**
      * Changes the visibility of the given profile using the given new visible value
      *
-     * @param context the relevant DSpace Context.
-     * @param profile the researcher profile to update
-     * @param visible the visible value to set
+     * @param context     the relevant DSpace Context.
+     * @param profile     the researcher profile to update
+     * @param visibility  the visibility value to set
      * @throws SQLException
      * @throws AuthorizeException
      */
-    public void changeVisibility(Context context, ResearcherProfile profile, boolean visible)
+    public void changeVisibility(Context context, ResearcherProfile profile, ResearcherProfileVisibility visibility)
         throws AuthorizeException, SQLException;
 
     /**
@@ -83,4 +84,12 @@ public interface ResearcherProfileService {
      */
     ResearcherProfile claim(Context context, EPerson ePerson, URI uri)
         throws SQLException, AuthorizeException, SearchServiceException;
+
+    /**
+     * Check the visibility of the profile
+     * 
+     * @param profile  the researcher profile
+     * @return         current visibility of profile
+     */
+    public ResearcherProfileVisibility getVisibility(ResearcherProfile profile);
 }

@@ -18,7 +18,7 @@ import org.dspace.app.rest.RestResourceController;
     @LinkRest(
         name = WorkflowItemRest.STEP,
         method = "getStep"
-    )
+        )
 })
 public class WorkflowItemRest extends AInprogressSubmissionRest {
     public static final String NAME = "workflowitem";

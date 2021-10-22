@@ -127,7 +127,6 @@ public class StructBuilder {
             = AuthorizeServiceFactory.getInstance().getAuthorizeService();
     protected static ItemService itemService
             = ContentServiceFactory.getInstance().getItemService();
-    
     public static final MetadataFieldName MD_SUBPROJECT_COMMUNITY
             = new MetadataFieldName("synsicris", "subproject", "community");
 

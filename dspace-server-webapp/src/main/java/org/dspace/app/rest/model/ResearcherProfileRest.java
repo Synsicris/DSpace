@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import org.dspace.app.profile.ResearcherProfileVisibility;
 import org.dspace.app.rest.RestResourceController;
 
 /**
@@ -34,21 +35,13 @@ public class ResearcherProfileRest extends BaseObjectRest<UUID> {
     public static final String ITEM = "item";
     public static final String EPERSON = "eperson";
 
-    private boolean visible;
+    private ResearcherProfileVisibility visibility;
 
     @JsonInclude(Include.NON_NULL)
     private String orcid;
 
     @JsonInclude(Include.NON_NULL)
     private OrcidSynchronizationRest orcidSynchronization;
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 
     public OrcidSynchronizationRest getOrcidSynchronization() {
         return orcidSynchronization;
@@ -129,6 +122,14 @@ public class ResearcherProfileRest extends BaseObjectRest<UUID> {
             this.fundingsPreference = fundingsPreference;
         }
 
+    }
+
+    public ResearcherProfileVisibility getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(ResearcherProfileVisibility visibility) {
+        this.visibility = visibility;
     }
 
 }

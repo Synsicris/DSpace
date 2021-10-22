@@ -165,20 +165,19 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
             return;
         }
 
+        Group internalGroup = getInternalGroup(context);
+        Group anonymous = groupService.findByName(context, ANONYMOUS);
         switch (visibility.name()) {
             case "PUBLIC" :
-                Group anonymous = groupService.findByName(context, ANONYMOUS);
                 authorizeService.addPolicy(context, profile.getItem(), READ, anonymous);
                 break;
             case "INTERNAL":
-                Group internalGroup = getInternalGroup(context);
+                authorizeService.removeGroupPolicies(context, profile.getItem(), anonymous);
                 if (Objects.nonNull(internalGroup)) {
                     authorizeService.addPolicy(context, profile.getItem(), READ, internalGroup);
                 }
                 break;
             case "PRIVATE":
-                anonymous = groupService.findByName(context, ANONYMOUS);
-                internalGroup = getInternalGroup(context);
                 authorizeService.removeGroupPolicies(context, profile.getItem(), anonymous);
                 authorizeService.removeGroupPolicies(context, profile.getItem(), internalGroup);
                 break;

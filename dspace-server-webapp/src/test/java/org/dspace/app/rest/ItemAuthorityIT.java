@@ -473,9 +473,7 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
        context.restoreAuthSystemState();
 
        String token = getAuthToken(eperson.getEmail(), password);
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
-                       .param("filter", "Title")
-                       .param("exact", "false"))
+       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries"))
                        .andExpect(status().isOk())
                        .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
                            ItemAuthorityMatcher.matchItemAuthorityProperties(
@@ -484,6 +482,26 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
                                   item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
                            )))
                        .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
+       
+       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
+               .param("filter", "Project")
+               .param("exact", "false"))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                   ItemAuthorityMatcher.matchItemAuthorityProperties(
+                          item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry")
+                   )))
+               .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
+       
+       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
+               .param("filter", "Funding")
+               .param("exact", "false"))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                   ItemAuthorityMatcher.matchItemAuthorityProperties(
+                           item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
+                   )))
+               .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
     }
 
     @Override

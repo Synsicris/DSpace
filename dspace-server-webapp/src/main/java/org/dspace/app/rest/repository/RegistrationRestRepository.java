@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.mail.MessagingException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -204,6 +205,11 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
         if (ePerson != null) {
             registrationRest.setUser(ePerson.getID());
         }
+        List<String> groupNames = registrationData.getGroups()
+                .stream().map(Group::getName).collect(Collectors.toList());
+        registrationRest.setGroupNames(groupNames);
+        registrationRest.setGroups(registrationData
+                .getGroups().stream().map(Group::getID).collect(Collectors.toList()));
         return registrationRest;
     }
 }

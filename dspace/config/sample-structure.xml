@@ -645,6 +645,7 @@
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">owningproject</metadata>      	
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
+      	<metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
     </collection>
     <collection>

@@ -3390,7 +3390,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3498,7 +3498,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpactt)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

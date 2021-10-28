@@ -5851,7 +5851,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <vocabulary>sdg</vocabulary>
+          <vocabulary closed="true">sdg</vocabulary>
         </field>
       </row>
       <row>
@@ -5885,7 +5885,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Veränderung seit der Antragstellung</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col1">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5899,7 +5899,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Veränderung seit der Antragstellung</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col23">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5913,7 +5913,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Veränderung seit der Antragstellung</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col45">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5927,7 +5927,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Veränderung seit der Antragstellung</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col6">list</input-type>
           <repeatable>false</repeatable>
           <required />

@@ -5860,7 +5860,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <vocabulary>sdg</vocabulary>
+          <vocabulary closed="true">sdg</vocabulary>
         </field>
       </row>
       <row>
@@ -5894,7 +5894,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Change since proposal</label>
+          <label>Veränderung seit der Antragstellung</label>
           <input-type value-pairs-name="stat_col1">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5908,7 +5908,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Change since proposal</label>
+          <label>Veränderung seit der Antragstellung</label>
           <input-type value-pairs-name="stat_col23">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5922,7 +5922,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Change since proposal</label>
+          <label>Veränderung seit der Antragstellung</label>
           <input-type value-pairs-name="stat_col45">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5936,7 +5936,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Change since proposal</label>
+          <label>Veränderung seit der Antragstellung</label>
           <input-type value-pairs-name="stat_col6">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7123,7 +7123,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
       <pair>
-        <displayed-value>Kooperation / Partizipation / Austauschptozess</displayed-value>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
         <stored-value>process_event</stored-value>
       </pair>
       <pair>
@@ -7195,11 +7195,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung Var. x)</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (neu)</displayed-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
         <stored-value>exp_societalimpact</stored-value>
       </pair>
     </value-pairs>

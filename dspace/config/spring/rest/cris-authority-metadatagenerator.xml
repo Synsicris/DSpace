@@ -38,6 +38,103 @@
         <property name="qualifier" value="name"/>
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="dc_title"/>
+        <property name="schema" value="dc"/>
+        <property name="element" value="title"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_address_addressStreetnamenumber"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="address"/>
+        <property name="qualifier" value="addressStreetnamenumber"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_address_addressPostcode"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="address"/>
+        <property name="qualifier" value="addressPostcode"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_address_addressCity"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="address"/>
+        <property name="qualifier" value="addressCity"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_address_addressPostbox"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="address"/>
+        <property name="qualifier" value="addressPostbox"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_address_addressCountry"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="address"/>
+        <property name="qualifier" value="addressCountry"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="oairecerif_identifier_url"/>
+        <property name="schema" value="oairecerif"/>
+        <property name="element" value="identifier"/>
+        <property name="qualifier" value="url"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_orgunits_email"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="orgunits"/>
+        <property name="qualifier" value="email"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_orgunits_phone"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="orgunits"/>
+        <property name="qualifier" value="phone"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="organization_identifier"/>
+        <property name="schema" value="organization"/>
+        <property name="element" value="identifier"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_type_orgform"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="type"/>
+        <property name="qualifier" value="orgform"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
 
      <bean id="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator" 
     	class="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator">

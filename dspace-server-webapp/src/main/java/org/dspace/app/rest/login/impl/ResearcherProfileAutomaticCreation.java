@@ -63,7 +63,7 @@ public class ResearcherProfileAutomaticCreation implements PostLoggedInAction {
 
         try {
             claimProfile(context, currentUser);
-        } catch (SQLException | AuthorizeException | SearchServiceException e) {
+        } catch (SQLException | AuthorizeException | SearchServiceException | IllegalStateException e) {
             LOGGER.error("An error occurs during the profile claim by email", e);
         }
 

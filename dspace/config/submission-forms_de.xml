@@ -1916,6 +1916,19 @@
       </row>
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Politikebene(n) der Organisationseinheit</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Public institutions</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>organization</dc-schema>
           <dc-element>identifier</dc-element>
           <label>Organisations-ID</label>
@@ -2478,6 +2491,19 @@
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Politikebene(n) der Organisationseinheit</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Public institutions</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>cooperation</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
           <label>Startdatum (wenn abweichend von der Projektlaufzeit)</label>
@@ -2711,6 +2737,19 @@
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Politikebene(n) der Organisationseinheit</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Public institutions</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>cooperation</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
           <label>Startdatum (wenn abweichend von der Projektlaufzeit)</label>
@@ -2743,8 +2782,6 @@
           <required />
           <hint>Welchen Beitrag leistet die Kooperation zum Projekt? Was ist das Ziel der Kooperation?</hint>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
@@ -2994,6 +3031,19 @@
           <hint />
           <type-bind>Research</type-bind>
           <vocabulary closed="true">destatis</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Politikebene(n) der Organisationseinheit</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Public institutions</type-bind>
         </field>
       </row>
     </form>
@@ -3967,17 +4017,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Notizen/Beschreibung (nicht erforderlich)</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Notizen, die Sie ggf. vorgenommen haben, wenn Sie diesen Eintrag im IPW angelegt haben. Nutzen Sie dieses Feld bei Bedarf für ergänzende Beschreibungen zu Aspekten, die nachfolgend nicht abgefragt werden.</hint>
         </field>
       </row>
       <row>
@@ -5817,10 +5856,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-element>type</dc-element>
           <dc-qualifier>sdg</dc-qualifier>
           <label>Zugehöriges SDG</label>
-          <input-type value-pairs-name="sdg">dropdown</input-type>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <vocabulary>sdg</vocabulary>
         </field>
       </row>
       <row>
@@ -5854,7 +5894,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col1">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5868,7 +5908,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col23">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5882,7 +5922,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col45">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5896,7 +5936,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
+          <label>Change since proposal</label>
           <input-type value-pairs-name="stat_col6">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -6353,7 +6393,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="period_project" dc-term="period_project">
       <pair>
-        <displayed-value>gesamter Projektlzeitraum</displayed-value>
+        <displayed-value>gesamter Projektzeitraum</displayed-value>
         <stored-value>entire project</stored-value>
       </pair>
       <pair>
@@ -7465,76 +7505,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>weltweite ökologische Folgen</displayed-value>
         <stored-value>International environmental impacts</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="sdg" dc-term="sdg">
-      <pair>
-        <displayed-value>SDG 1: Armut in all ihren Formen und überall beenden</displayed-value>
-        <stored-value>SDG 1</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 2: Den Hunger beenden, Nahrungsmittelsicherheit und -schutz, verbesserte Ernährungssyteme und eine ökologisch nachaltige Landwirtschaft erreichen.</displayed-value>
-        <stored-value>SDG 2</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 3: Ein gesundes Leben für alle Menschen jeden Alters gewährleisten und ihr körperliches, geistiges und seelisches Wohlergehen fördern.</displayed-value>
-        <stored-value>SDG 3</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 4</displayed-value>
-        <stored-value>SDG 4</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 5</displayed-value>
-        <stored-value>SDG 5</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 6</displayed-value>
-        <stored-value>SDG 6</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 7</displayed-value>
-        <stored-value>SDG 7</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 8</displayed-value>
-        <stored-value>SDG 8</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 9</displayed-value>
-        <stored-value>SDG 9</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 10</displayed-value>
-        <stored-value>SDG 10</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 11</displayed-value>
-        <stored-value>SDG 11</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 12</displayed-value>
-        <stored-value>SDG 12</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 13</displayed-value>
-        <stored-value>SDG 13</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 14</displayed-value>
-        <stored-value>SDG 14</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 15</displayed-value>
-        <stored-value>SDG 15</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 16</displayed-value>
-        <stored-value>SDG 16</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>SDG 17</displayed-value>
-        <stored-value>SDG 17</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">

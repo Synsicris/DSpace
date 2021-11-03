@@ -1875,7 +1875,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Das Akronym wird verwendet, um die Beteiligung der Organisation in Arbeiten und Aktiviäten des Projektes leicht zuordnen zu können.</hint>
+          <hint>Das Akronym wird verwendet, um die Beteiligung der Organisation in Arbeiten und Aktiviäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2116,7 +2116,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
+          <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
           <type-bind>Economy</type-bind>
           <vocabulary closed="true">nace</vocabulary>
         </field>
@@ -2295,7 +2295,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>orgunit</dc-qualifier>
-          <label>Suche der kooperierenden Organisation</label>
+          <label>Suche des Kooperationspartners</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2306,7 +2306,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name der Organisation</label>
+          <label>Name des Kooperationspartners</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -2426,7 +2426,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>acronym</dc-element>
-          <label>Akronym oder Kurzname der Organisation</label>
+          <label>Akronym oder Kurzname des Kooperationspartners</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2453,11 +2453,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Gesellschaftsbereich der Organisation</label>
+          <label>Tätigkeitsbereich des Kooperationspartners</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Auswahl des Gesellschaftsbereiches hat Einfluss auf die nachfolgenden Abfragen des Formulars.</hint>
+          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
         </field>
       </row>
       <row>
@@ -2465,7 +2465,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig der Organisation</label>
+          <label>Wirtschaftszweig des Kooperationspartners</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2493,7 +2493,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>political</dc-qualifier>
-          <label>Politikebene(n) der Organisationseinheit</label>
+          <label>Politikebene(n) des Kooperationspartners</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2544,7 +2544,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>orgunit</dc-qualifier>
-          <label>Suche der kooperierenden Organisation</label>
+          <label>Suchen des Unterauftragnehmers</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2555,7 +2555,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name der Organisation</label>
+          <label>Name des Unterauftragnehmers</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -2674,7 +2674,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>acronym</dc-element>
-          <label>Akronym oder Kurzname der Organisation</label>
+          <label>Akronym oder Kurzname des Unterauftragnehmers</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2699,11 +2699,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Gesellschaftsbereich der Organisation</label>
+          <label>Tätigkeitsbereich des Unterauftragnehmers</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Auswahl des Gesellschaftsbereiches hat Einfluss auf die nachfolgenden Abfragen des Formulars.</hint>
+          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
         </field>
       </row>
       <row>
@@ -2711,7 +2711,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig der Organisation</label>
+          <label>Wirtschaftszweig des Unterauftragnehmers</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2739,7 +2739,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>political</dc-qualifier>
-          <label>Politikebene(n) der Organisationseinheit</label>
+          <label>Politikebene(n) des Unterauftragnehmers</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4257,7 +4257,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung/TItel</label>
+          <label>Bezeichnung/Titel</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -4776,7 +4776,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Kurze Beschreibung des Objetes</label>
+          <label>Kurze Beschreibung des Objektes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4942,7 +4942,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-element>type</dc-element>
           <label>Art</label>
           <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>Je nach Auswahl erscheinen nachfolgend unterschiedliche Eingabefelder.</hint>
@@ -6001,7 +6001,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Use by owner</stored-value>
       </pair>
       <pair>
-        <displayed-value>über Lizenvergabe (Patentinhaber überträgt einem anderen die vertraglich geregelte Nutzung, im Gegenzug erhält er Lizenzgebühren.)</displayed-value>
+        <displayed-value>über Lizenzvergabe (Patentinhaber überträgt einem anderen die vertraglich geregelte Nutzung, im Gegenzug erhält er Lizenzgebühren.)</displayed-value>
         <stored-value>Licensing</stored-value>
       </pair>
       <pair>
@@ -7195,7 +7195,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung Var. x)</displayed-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
       <pair>

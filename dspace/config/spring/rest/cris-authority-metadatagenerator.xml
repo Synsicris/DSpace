@@ -46,7 +46,15 @@
         <property name="element" value="title"/>
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
-     
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="dc_type"/>
+        <property name="schema" value="dc"/>
+        <property name="element" value="type"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
      <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
         <property name="authorityName" value="OrgUnitMasterAuthority"/>
         <property name="relatedInputformMetadata" value="synsicris_address_addressStreetnamenumber"/>
@@ -85,8 +93,8 @@
      
      <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
         <property name="authorityName" value="OrgUnitMasterAuthority"/>
-        <property name="relatedInputformMetadata" value="synsicris_address_addressCountry"/>
-        <property name="schema" value="synsicris"/>
+        <property name="relatedInputformMetadata" value="organization_address_addressCountry"/>
+        <property name="schema" value="organization"/>
         <property name="element" value="address"/>
         <property name="qualifier" value="addressCountry"/>
         <property name="singleResultOnAggregate" value="false"/>
@@ -121,9 +129,46 @@
 
      <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
         <property name="authorityName" value="OrgUnitMasterAuthority"/>
-        <property name="relatedInputformMetadata" value="organization_identifier"/>
+        <property name="relatedInputformMetadata" value="organization_identifier_crossrefid"/>
         <property name="schema" value="organization"/>
         <property name="element" value="identifier"/>
+        <property name="qualifier" value="crossrefid"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="organization_identifier_ror"/>
+        <property name="schema" value="organization"/>
+        <property name="element" value="identifier"/>
+        <property name="qualifier" value="ror"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="organization_identifier_isni"/>
+        <property name="schema" value="organization"/>
+        <property name="element" value="identifier"/>
+        <property name="qualifier" value="isni"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="organization_identifier_rin"/>
+        <property name="schema" value="organization"/>
+        <property name="element" value="identifier"/>
+        <property name="qualifier" value="rin"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="organization_identifier_GenericID"/>
+        <property name="schema" value="organization"/>
+        <property name="element" value="identifier"/>
+        <property name="qualifier" value="GenericID"/>
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
 
@@ -133,6 +178,24 @@
         <property name="schema" value="synsicris"/>
         <property name="element" value="type"/>
         <property name="qualifier" value="orgform"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_subject_nace"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="subject"/>
+        <property name="qualifier" value="nace"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="OrgUnitMasterAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_subject_destatis"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="subject"/>
+        <property name="qualifier" value="destatis"/>
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
 

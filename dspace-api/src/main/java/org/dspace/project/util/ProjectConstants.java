@@ -31,6 +31,8 @@ public class ProjectConstants {
     public static final String PROJECT_ENTITY = "Project";
 
     public static final String PARENTPROJECT_ENTITY = "parentproject";
+    
+    public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
     public static final MetadataFieldName MD_PROJECT_ENTITY =
                     new MetadataFieldName("synsicris", "relation", "entity_project");

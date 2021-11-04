@@ -4833,7 +4833,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please formulate a a clear and distinguishabel title. This is imortent because the title is displayed in all interactions to which this stakeholder group is assigned.</hint>
+          <hint>Please formulate a clear and distinguishabel title. This is imortent because the title is displayed in all interactions to which this stakeholder group is assigned.</hint>
         </field>
       </row>
       <row>
@@ -4932,7 +4932,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-element>type</dc-element>
           <label>Type of expected societal impact (selection determines subsequent queries)</label>
           <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
           <hint>The selection of the type of expected impact determines further queries. (For ecological effects, the "ecological area" is queried, for all other effects, the "actor group" affected).</hint>

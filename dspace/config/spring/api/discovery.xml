@@ -3498,7 +3498,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpactt)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

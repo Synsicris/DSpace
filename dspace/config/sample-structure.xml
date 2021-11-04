@@ -948,6 +948,8 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+	    <metadata name="cris.project.shared">owningproject</metadata>
       	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
@@ -969,6 +971,8 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+	    <metadata name="cris.project.shared">owningproject</metadata>
       	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       </item-template>

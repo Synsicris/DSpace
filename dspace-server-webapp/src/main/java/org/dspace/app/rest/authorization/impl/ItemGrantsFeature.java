@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest.authorization.impl;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,7 +66,7 @@ public class ItemGrantsFeature implements AuthorizationFeature {
 
         if (StringUtils.equals(object.getType(), ItemRest.NAME)) {
             Item item = getItem(context, object);
-            if (isSharedOrFunder(context, item)) {
+            if (isSharedOrFunder(context, item) || isForbbidenEntityType(context, item)) {
                 return false;
             }
             EPerson submitter = item.getSubmitter();
@@ -100,6 +101,13 @@ public class ItemGrantsFeature implements AuthorizationFeature {
              (StringUtils.equals(value, ProjectConstants.SHARED) ||
               StringUtils.equals(value, ProjectConstants.FUNDER) ||
               StringUtils.equals(value, ProjectConstants.FUNDER_PROGRAMME));
+    }
+
+    private boolean isForbbidenEntityType(Context context, Item item) {
+        String entiyType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+        
+        return StringUtils.isNotBlank(entiyType) &&
+                Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
     }
 
     private boolean isAdminMemberOfSubProject(Context context, Community community, EPerson submitter)

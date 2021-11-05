@@ -103,7 +103,6 @@ public class FundingObjectiveAuthorityFilter extends CustomAuthorityFilter {
                     }
                     
                 }
-                System.out.println(filterQuery);
             }
         } catch (SQLException e) {
             log.error("Error while trying to retrieve call conditions for collection {}: {}", collectionId,

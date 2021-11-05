@@ -20,7 +20,7 @@ import org.dspace.xmlworkflow.storedcomponents.PoolTask;
     @LinkRest(
         name = PoolTaskRest.STEP,
         method = "getStep"
-    )
+        )
 })
 public class PoolTaskRest extends BaseObjectRest<Integer> {
     public static final String NAME = "pooltask";

@@ -56,6 +56,7 @@ import org.dspace.app.orcid.client.OrcidClient;
 import org.dspace.app.orcid.model.OrcidTokenResponseDTO;
 import org.dspace.app.orcid.service.OrcidQueueService;
 import org.dspace.app.orcid.webhook.OrcidWebhookServiceImpl;
+import org.dspace.app.profile.ResearcherProfileVisibility;
 import org.dspace.app.rest.model.MetadataValueRest;
 import org.dspace.app.rest.model.patch.AddOperation;
 import org.dspace.app.rest.model.patch.Operation;
@@ -66,6 +67,7 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
+import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.OrcidQueueBuilder;
 import org.dspace.content.Collection;
@@ -190,7 +192,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(true)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$.orcid").doesNotExist())
             .andExpect(jsonPath("$.orcidSynchronization").doesNotExist())
@@ -234,7 +236,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(true)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$", matchLinks("http://localhost/api/cris/profiles/" + id, "item", "eperson")));
 
@@ -300,7 +302,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$", matchLinks("http://localhost/api/cris/profiles/" + id, "item", "eperson")));
 
@@ -343,7 +345,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$", matchLinks("http://localhost/api/cris/profiles/" + id, "item", "eperson")));
 
@@ -369,7 +371,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$", matchLinks("http://localhost/api/cris/profiles/" + id, "item", "eperson")));
     }
@@ -408,14 +410,14 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")));
 
         getClient(authToken).perform(post("/api/cris/profiles/")
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isConflict())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")));
 
     }
@@ -612,7 +614,16 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
      * @throws Exception
      */
     @Test
-    public void testPatchToChangeVisibleAttribute() throws Exception {
+    public void testPatchToChangeVisibilityAttribute() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group internalGroup = GroupBuilder.createGroup(context)
+                                          .withName("Internal Group")
+                                          .build();
+
+        configurationService.setProperty("project.creation.group", internalGroup.getID());
+
+        context.restoreAuthSystemState();
 
         String id = user.getID().toString();
         String authToken = getAuthToken(user.getEmail(), password);
@@ -620,37 +631,38 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(authToken).perform(post("/api/cris/profiles/")
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
 
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
 
         // change the visibility to true
-        List<Operation> operations = asList(new ReplaceOperation("/visible", true));
+        List<Operation> operations = asList(new ReplaceOperation("/visibility",
+                ResearcherProfileVisibility.PUBLIC.name()));
 
         getClient(authToken).perform(patch("/api/cris/profiles/{id}", id)
             .content(getPatchContent(operations))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
 
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
 
         // change the visibility to false
-        operations = asList(new ReplaceOperation("/visible", false));
+        operations = asList(new ReplaceOperation("/visibility", ResearcherProfileVisibility.PRIVATE.name()));
 
         getClient(authToken).perform(patch("/api/cris/profiles/{id}", id)
             .content(getPatchContent(operations))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
 
         getClient(authToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
 
     }
 
@@ -661,7 +673,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
      * @throws Exception
      */
     @Test
-    public void testPatchToChangeVisibleAttributeWithoutOwnUser() throws Exception {
+    public void testPatchToChangeVisibilityAttributeWithoutOwnUser() throws Exception {
 
         String id = user.getID().toString();
 
@@ -671,13 +683,13 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(userToken).perform(post("/api/cris/profiles/")
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
 
         getClient(userToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk());
 
         // try to change the visibility to true
-        List<Operation> operations = asList(new ReplaceOperation("/visible", true));
+        List<Operation> operations = asList(new ReplaceOperation("/visibility", true));
 
         getClient(anotherUserToken).perform(patch("/api/cris/profiles/{id}", id)
             .content(getPatchContent(operations))
@@ -686,7 +698,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
 
         getClient(userToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(false)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())));
     }
 
     /**
@@ -696,7 +708,16 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
      * @throws Exception
      */
     @Test
-    public void testPatchToChangeVisibleAttributeWithAdmin() throws Exception {
+    public void testPatchToChangeVisibilityAttributeWithAdmin() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group internalGroup = GroupBuilder.createGroup(context)
+                                          .withName("Internal Group")
+                                          .build();
+
+        configurationService.setProperty("project.creation.group", internalGroup.getID());
+
+        context.restoreAuthSystemState();
 
         String id = user.getID().toString();
 
@@ -712,17 +733,18 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .andExpect(status().isOk());
 
         // change the visibility to true
-        List<Operation> operations = asList(new ReplaceOperation("/visible", true));
+        List<Operation> operations = asList(new ReplaceOperation("/visibility",
+                                                ResearcherProfileVisibility.PUBLIC.name()));
 
         getClient(adminToken).perform(patch("/api/cris/profiles/{id}", id)
             .content(getPatchContent(operations))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
 
         getClient(userToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
     }
 
     /**
@@ -733,6 +755,15 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
      */
     @Test
     public void testPatchToChangeVisibilityOfProfileCreatedByAnAdmin() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group internalGroup = GroupBuilder.createGroup(context)
+                                          .withName("Internal Group")
+                                          .build();
+
+        configurationService.setProperty("project.creation.group", internalGroup.getID());
+
+        context.restoreAuthSystemState();
 
         String id = user.getID().toString();
 
@@ -748,17 +779,18 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .andExpect(status().isOk());
 
         // change the visibility to true
-        List<Operation> operations = asList(new ReplaceOperation("/visible", true));
+        List<Operation> operations = asList(new ReplaceOperation("/visibility",
+                                                ResearcherProfileVisibility.PUBLIC.name()));
 
         getClient(userToken).perform(patch("/api/cris/profiles/{id}", id)
             .content(getPatchContent(operations))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
 
         getClient(userToken).perform(get("/api/cris/profiles/{id}", id))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.visible", is(true)));
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PUBLIC.name())));
     }
 
     /**
@@ -978,7 +1010,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(ePersonId.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")));
 
         getClient(authToken).perform(get("/api/cris/profiles/{id}", ePersonId))
@@ -1476,7 +1508,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$.orcid").doesNotExist())
             .andExpect(jsonPath("$.orcidSynchronization").doesNotExist());
@@ -1657,7 +1689,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$.orcid").doesNotExist())
             .andExpect(jsonPath("$.orcidSynchronization").doesNotExist());
@@ -1750,7 +1782,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$.orcid").doesNotExist())
             .andExpect(jsonPath("$.orcidSynchronization").doesNotExist());
@@ -1799,7 +1831,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$.orcid").doesNotExist())
             .andExpect(jsonPath("$.orcidSynchronization").doesNotExist());
@@ -1906,7 +1938,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                     .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-                .andExpect(jsonPath("$.visible", is(false)))
+                .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
                 .andExpect(jsonPath("$.type", is("profile")))
                 .andExpect(jsonPath("$.orcid").doesNotExist())
                 .andExpect(jsonPath("$.orcidSynchronization").doesNotExist());
@@ -2104,9 +2136,6 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
 
     @Test
     public void claimForNotAllowedEntityType() throws Exception {
-        String id = user.getID().toString();
-        String name = user.getName();
-
         context.turnOffAuthorisationSystem();
 
         final Collection publications = CollectionBuilder.createCollection(context, parentCommunity)
@@ -2159,7 +2188,8 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
 
         getClient(authToken).perform(post("/api/cris/profiles/").contentType(MediaType.APPLICATION_JSON_VALUE))
                             .andExpect(status().isCreated()).andExpect(jsonPath("$.id", is(id.toString())))
-                            .andExpect(jsonPath("$.visible", is(false))).andExpect(jsonPath("$.type", is("profile")));
+                            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
+                            .andExpect(jsonPath("$.type", is("profile")));
 
         getClient(authToken)
             .perform(post("/api/cris/profiles/").contentType(TEXT_URI_LIST)
@@ -2176,7 +2206,8 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
 
         getClient(authToken).perform(post("/api/cris/profiles/").contentType(MediaType.APPLICATION_JSON_VALUE))
                             .andExpect(status().isCreated()).andExpect(jsonPath("$.id", is(id.toString())))
-                            .andExpect(jsonPath("$.visible", is(false))).andExpect(jsonPath("$.type", is("profile")));
+                            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.name())))
+                            .andExpect(jsonPath("$.type", is("profile")));
 
         getClient(authToken)
             .perform(post("/api/cris/profiles/").contentType(TEXT_URI_LIST)

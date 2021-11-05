@@ -21,12 +21,6 @@
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
     </step-definition>
-    <step-definition id="license" mandatory="true" opened="false">
-      <heading>submit.progressbar.license</heading>
-      <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
-      <type>license</type>
-      <scope visibilityOutside="read-only">submission</scope>
-    </step-definition>
     <step-definition id="patents" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -227,6 +221,16 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="exp_societalimpact" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.exp_societalimpact</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="exp_societalimpact_neg" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.exp_societalimpact_neg</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="conditions" mandatory="true">
       <heading>submit.progressbar.describe.conditions</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -249,6 +253,11 @@
     </step-definition>
     <step-definition id="ethics_reflection" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.ethics_reflection</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="ia_objectives" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.ia_objectives</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -362,11 +371,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="team" mandatory="true">
-      <heading>submit.progressbar.describe.team</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="tests" mandatory="true">
       <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -424,21 +428,21 @@
       <step id="parentprojects" />
       <step id="agrovoc_keywords_parentproject" />
       <step id="parentprojects_calc" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="parentprojects-edit">
       <step id="parentprojects" />
       <step id="agrovoc_keywords_parentproject" />
       <step id="parentprojects_calc" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="projects">
       <step id="projects" />
       <step id="projects_import" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="projects-edit">
       <step id="projects" />
       <step id="projects_import" />
-      <step id="upload" />
     </submission-process>
     <submission-process name="funding">
       <step id="funding" />
@@ -475,14 +479,12 @@
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications" />
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="license" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />
@@ -616,6 +618,16 @@
       <step id="pot_societalimpact" />
       <step id="statusacc3" />
     </submission-process>
+    <submission-process name="exp_societalimpact">
+      <step id="exp_societalimpact" />
+      <step id="exp_societalimpact_neg" />
+      <step id="statusacc3" />
+    </submission-process>
+    <submission-process name="exp_societalimpact-edit">
+      <step id="exp_societalimpact" />
+      <step id="exp_societalimpact_neg" />
+      <step id="statusacc3" />
+    </submission-process>
     <submission-process name="conditions">
       <step id="conditions" />
       <step id="statusacc1" />
@@ -643,6 +655,12 @@
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
+    </submission-process>
+    <submission-process name="ia_objectives">
+      <step id="ia_objectives" />
+    </submission-process>
+    <submission-process name="ia_objectives-edit">
+      <step id="ia_objectives" />
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="proj_objectives" />
@@ -739,12 +757,6 @@
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />
-    </submission-process>
-    <submission-process name="team">
-      <step id="team" />
-    </submission-process>
-    <submission-process name="team-edit">
-      <step id="team" />
     </submission-process>
     <submission-process name="tests">
       <step id="tests" />

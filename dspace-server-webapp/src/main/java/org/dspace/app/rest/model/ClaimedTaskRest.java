@@ -19,7 +19,7 @@ import org.dspace.app.rest.RestResourceController;
     @LinkRest(
         name = ClaimedTaskRest.STEP,
         method = "getStep"
-    )
+        )
 })
 public class ClaimedTaskRest extends BaseObjectRest<Integer> {
     public static final String NAME = "claimedtask";

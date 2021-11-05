@@ -22,6 +22,7 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,6 +56,13 @@ public class CanMakeEasyOnlineImportFeature implements AuthorizationFeature {
                 return true;
             }
             Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
+
+            String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+            if (!entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+                // import is available only for project entity
+                return false;
+            }
+
             List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
             if (values.isEmpty()) {
                 return false;

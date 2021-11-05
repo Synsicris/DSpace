@@ -237,6 +237,8 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         switch (boxType.toUpperCase()) {
             case "HELP":
                 return hasHelpBoxContent(box, values);
+            case "BROWSE":
+                return hasBrowseBoxContent(box, values);
             case "RELATION":
                 return hasRelationBoxContent(box, values);
             case "METRICS":
@@ -246,6 +248,12 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasOrcidSyncBoxContent(context, box, values);
             case "ORCID_AUTHORIZATIONS":
                 return hasOrcidAuthorizationsBoxContent(context, box, values);
+            case "IMPACTPATHWAYS":
+                return hasImpactPathwaysBoxContent(box, values);
+            case "WORKINGPLAN":
+                return hasWorkingPlanBoxContent(box, values);
+            case "EXPLOITATIONPLAN":
+                return hasExploitationPlanBoxContent(box, values);
             case "METADATA":
             default:
                 return hasMetadataBoxContent(box, values);
@@ -284,6 +292,27 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         // The relation box has no associated content
         return true;
     }
+
+    private boolean hasBrowseBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The relation box has no associated content
+        return true;
+    }
+
+    private boolean hasImpactPathwaysBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The relation box has no associated content
+        return true;
+    }
+
+    private boolean hasWorkingPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The relation box has no associated content
+        return true;
+    }
+
+    private boolean hasExploitationPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The relation box has no associated content
+        return true;
+    }
+
 
     protected boolean hasMetricsBoxContent(Context context, CrisLayoutBox box, UUID itemUuid) {
         if (box.getMetric2box().isEmpty()) {

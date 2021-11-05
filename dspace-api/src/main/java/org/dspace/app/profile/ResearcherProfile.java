@@ -6,10 +6,6 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.profile;
-
-import static org.dspace.core.Constants.READ;
-import static org.dspace.eperson.Group.ANONYMOUS;
-
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -50,12 +46,6 @@ public class ResearcherProfile {
 
     public String getFullName() {
         return crisOwner.getValue();
-    }
-
-    public boolean isVisible() {
-        return item.getResourcePolicies().stream()
-            .filter(policy -> policy.getGroup() != null)
-            .anyMatch(policy -> READ == policy.getAction() && ANONYMOUS.equals(policy.getGroup().getName()));
     }
 
     public Item getItem() {

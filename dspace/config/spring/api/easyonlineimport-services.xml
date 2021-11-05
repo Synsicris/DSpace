@@ -21,7 +21,7 @@
                 </entry>
                 <entry 
                     key-ref="project-Thema"
-                    value-ref= "dc.title">
+                    value-ref= "synsicris.title">
                 </entry>
                 <entry 
                     key-ref="project-fremd_Thema"
@@ -108,7 +108,7 @@
                 </entry>
                 <entry 
                     key-ref="partner-Email_PA"
-                    value-ref="person.personadmin.email">
+                    value-ref="synsicris.personadmin.email">
                 </entry>
                 <entry 
                     key-ref="partner-NameAndVorname_PL"
@@ -129,7 +129,11 @@
                 <entry 
                     key-ref="partner-KmuAndMittelstand"
                     value-ref="synsicris.type.orgform">
-                </entry>                                        
+                </entry>
+                <entry 
+                    key-ref="partner-AmtsgerichtHWK"
+                    value-ref="synsicris.title.registercourt">
+                </entry>                                          
 			</map>
 		</constructor-arg>
 	</bean>
@@ -140,6 +144,10 @@
 
     <bean id="dc.title" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="dc.title"/>
+    </bean>
+    
+    <bean id="synsicris.title" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.title"/>
     </bean>
 
     <bean id="dc.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
@@ -190,6 +198,10 @@
         <constructor-arg value="synsicris.type.legalform"/>
     </bean>
 
+    <bean id="synsicris.title.registercourt" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.title.registercourt"/>
+    </bean>
+
     <bean id="synsicris.identifier.registernumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="synsicris.identifier.registernumber"/>
     </bean>
@@ -214,8 +226,8 @@
         <constructor-arg value="synsicris.personadmin.phone"/>
     </bean>
 
-    <bean id="person.personadmin.email" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
-        <constructor-arg value="person.personadmin.email"/>
+    <bean id="synsicris.personadmin.email" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.personadmin.email"/>
     </bean>
 
     <bean id="synsicris.personleader" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
@@ -314,6 +326,10 @@
 
     <bean id="partner-Email_PL" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PL/xf:Maske_Ansprechpartner_PL/xf:Einzelposition/xf:Email_PL/text()" />
+    </bean>
+
+    <bean id="partner-AmtsgerichtHWK" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:AmtsgerichtHWK/text()" />
     </bean>
 
     <bean id="partner-akad_Grad_PA" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">

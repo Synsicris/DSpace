@@ -158,22 +158,43 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
     }
 
     @Override
-    public void changeVisibility(Context context, ResearcherProfile profile, boolean visible)
+    public void changeVisibility(Context context, ResearcherProfile profile, ResearcherProfileVisibility visibility)
         throws AuthorizeException, SQLException {
 
-        if (profile.isVisible() == visible) {
+        if (this.getVisibility(profile).equals(visibility)) {
             return;
         }
 
-        Item item = profile.getItem();
+        Group internalGroup = getInternalGroup(context);
         Group anonymous = groupService.findByName(context, ANONYMOUS);
-
-        if (visible) {
-            authorizeService.addPolicy(context, item, READ, anonymous);
-        } else {
-            authorizeService.removeGroupPolicies(context, item, anonymous);
+        switch (visibility.name()) {
+            case "PUBLIC" :
+                authorizeService.addPolicy(context, profile.getItem(), READ, anonymous);
+                break;
+            case "INTERNAL":
+                authorizeService.removeGroupPolicies(context, profile.getItem(), anonymous);
+                if (Objects.nonNull(internalGroup)) {
+                    authorizeService.addPolicy(context, profile.getItem(), READ, internalGroup);
+                }
+                break;
+            case "PRIVATE":
+                authorizeService.removeGroupPolicies(context, profile.getItem(), anonymous);
+                authorizeService.removeGroupPolicies(context, profile.getItem(), internalGroup);
+                break;
+            default:
         }
+    }
 
+    private Group getInternalGroup(Context context) throws SQLException {
+        String uuid = configurationService.getProperty("project.creation.group");
+        if (StringUtils.isBlank(uuid)) {
+            throw new RuntimeException("The property 'project.creation.group' must be configured!");
+        }
+        Group internalGroup = groupService.find(context, UUID.fromString(uuid));
+        if (Objects.isNull(internalGroup)) {
+            throw new RuntimeException("The 'Internal Group' was not found!");
+        }
+        return internalGroup;
     }
 
     @Override
@@ -311,4 +332,32 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
         return configurationService.getProperty("researcher-profile.type", "Person");
     }
 
+    @Override
+    public ResearcherProfileVisibility getVisibility(ResearcherProfile profile) {
+        if (isPublic(profile)) {
+            return ResearcherProfileVisibility.PUBLIC;
+        }
+        if (isInternal(profile)) {
+            return ResearcherProfileVisibility.INTERNAL;
+        }
+        return ResearcherProfileVisibility.PRIVATE;
+    }
+
+    private boolean isPublic(ResearcherProfile profile) {
+        return profile.getItem().getResourcePolicies().stream()
+                                                      .filter(policy -> Objects.nonNull(policy.getGroup()))
+                                                      .anyMatch(policy -> READ == policy.getAction() &&
+                                                                ANONYMOUS.equals(policy.getGroup().getName()));
+    }
+
+    private boolean isInternal(ResearcherProfile profile) {
+        String uuid = configurationService.getProperty("project.creation.group");
+        if (StringUtils.isBlank(uuid)) {
+            return false;
+        }
+        return profile.getItem().getResourcePolicies().stream()
+                                                      .filter(policy -> Objects.nonNull(policy.getGroup()))
+                                                      .anyMatch(policy -> READ == policy.getAction() &&
+                                                                uuid.equals(policy.getGroup().getID().toString()));
+    }
 }

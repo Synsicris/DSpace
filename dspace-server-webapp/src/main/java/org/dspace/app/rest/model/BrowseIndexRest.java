@@ -22,11 +22,11 @@ import org.dspace.app.rest.RestResourceController;
     @LinkRest(
             name = BrowseIndexRest.ITEMS,
             method = "listBrowseItems"
-    ),
+            ),
     @LinkRest(
             name = BrowseIndexRest.ENTRIES,
             method = "listBrowseEntries"
-    )
+            )
 })
 public class BrowseIndexRest extends BaseObjectRest<String> {
     private static final long serialVersionUID = -4870333170249999559L;

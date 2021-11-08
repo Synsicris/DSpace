@@ -198,6 +198,14 @@
         <property name="qualifier" value="destatis"/>
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="FundingObjectiveAuthority"/>
+        <property name="relatedInputformMetadata" value="dc_title"/>
+        <property name="schema" value="dc"/>
+        <property name="element" value="title"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
 
      <bean id="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator" 
     	class="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator">

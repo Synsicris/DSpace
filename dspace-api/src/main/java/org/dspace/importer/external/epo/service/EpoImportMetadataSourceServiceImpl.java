@@ -372,7 +372,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     private Integer countDocument(String bearer, String query) {
         if (StringUtils.isBlank(bearer)) {
-            return null;
+            return 0;
         }
         try {
             HttpClient client = HttpClientBuilder.create().build();
@@ -401,7 +401,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        return null;
+        return 0;
     }
     private List<EpoDocumentId> searchDocumentIds(String bearer, String query, int start, int count) {
         List<EpoDocumentId> results = new ArrayList<EpoDocumentId>();

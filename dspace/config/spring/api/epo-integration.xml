@@ -96,7 +96,7 @@
     
     <bean id="epoApplicationNumberContrib" class="org.dspace.importer.external.metadatamapping.contributor.EpoIdMetadataContributor">
         <property name="field" ref="epo.dc.identifier.applicationnumber" />
-        <property name="query" value="//ns:application-reference/document-id[@document-id-type=&quot;original&quot;]/doc-number"/>
+        <property name="query" value="//ns:application-reference/ns:document-id[@document-id-type=&quot;original&quot;]"/>
         <property name="prefixToNamespaceMapping" ref="nsEpoPrefixToNamespaceMapping"/>
     </bean>
     <bean id="epo.dc.identifier.applicationnumber" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">

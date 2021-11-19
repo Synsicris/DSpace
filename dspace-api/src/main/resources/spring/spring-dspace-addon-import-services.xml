@@ -181,8 +181,8 @@
         <property name="consumerKey" value="${epo.consumerKey}" />
         <property name="consumerSecret" value="${epo.consumerSecretKey}" />
         <!-- date filed mapped metadata, see epo-integration.xml -->
-        <property name="dateFiled" ref="epo.dc.date.filed" />
-        <property name="applicationNumber" ref="epo.dc.identifier.applicationnumber" />
+        <property name="dateFiled" ref="epo.synsicris.date.filled" />
+        <property name="applicationNumber" ref="epo.synsicris.identifier.applicationnumber" />
     </bean>
     <bean id="epoMetadataFieldMapping"
           class="org.dspace.importer.external.epo.service.EpoFieldMapping">

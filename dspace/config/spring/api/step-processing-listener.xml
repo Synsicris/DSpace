@@ -47,7 +47,17 @@
                         <ref bean="epoLiveImportDataProvider" />
                     </list>
                 </entry>
+                <entry key="synsicris.identifier.applicationnumber">
+                    <list>
+                        <ref bean="epoLiveImportDataProvider" />
+                    </list>
+                </entry>
                 <entry key="dcterms.dateSubmitted">
+                    <list>
+                        <ref bean="epoLiveImportDataProvider" />
+                    </list>
+                </entry>
+                <entry key="synsicris.date.filled">
                     <list>
                         <ref bean="epoLiveImportDataProvider" />
                     </list>

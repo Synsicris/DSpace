@@ -222,7 +222,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <label>Beschreibung des wissenschaftlich-technischen Arbeitsziels</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -296,7 +296,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <label>Beschreibung des Ziels für Interaktion und Transfer</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -372,22 +372,23 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Bitte wählen Sie ein Ziel des Förderprogramms aus</label>
+          <label>Bitte wählen Sie ein Förderziel aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Kopieren Sie das ausgewählte Ziel aus dem Förderprogramm bitte in dieses Feld. Zukünftig werden die förderpolitischen Ziele des Programms in einer Auswahlliste bereitgestellt.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung für den Beitrag des Projektes</label>
+          <label>Anzeige des ausgewählten Förderziels</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
+          <required />
+          <hint>Dieses Feld wird aus technischen Gründen angezeigt. Eingaben sind nicht möglich.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -1526,6 +1527,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1609,6 +1611,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1621,6 +1624,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1633,6 +1637,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1645,6 +1650,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1657,6 +1663,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1669,6 +1676,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1681,6 +1689,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1693,6 +1702,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1705,6 +1715,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1717,6 +1728,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1729,6 +1741,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1741,6 +1754,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1753,6 +1767,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -1875,7 +1890,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Das Akronym wird verwendet, um die Beteiligung der Organisation in Arbeiten und Aktiviäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
+          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2071,6 +2086,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2082,6 +2098,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2093,6 +2110,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2106,6 +2124,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2118,6 +2137,7 @@
           <style>col-md-6</style>
           <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
           <type-bind>Economy</type-bind>
+          <readonly>all</readonly>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2131,6 +2151,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2142,6 +2163,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <readonly>all</readonly>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
@@ -2154,6 +2176,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2166,6 +2189,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2181,6 +2205,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2192,6 +2217,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2202,6 +2228,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2215,6 +2242,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2226,6 +2254,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2241,6 +2270,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2252,6 +2282,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2262,6 +2293,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2275,6 +2307,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2286,6 +2319,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2431,7 +2465,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Das Akronym wird verwendet, um die Beteiligung des Kooperationspartners an Arbeiten und Aktivitäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
+          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
       </row>
       <row>
@@ -2679,7 +2713,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Das Akronym wird verwendet, um die Beteiligung des Unterauftragnehmers an Arbeiten und Aktivitäten des Projektes leicht zuordnen zu können. Es kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
+          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4613,7 +4647,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Ziel des Förderprogramms</label>
+          <label>Bitte wählen Sie ein Förderziel aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4624,11 +4658,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Beitrag des Projektes</label>
+          <label>Anzeige des ausgewählten Förderziels</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
+          <required />
+          <hint>Dieses Feld wird aus technischen Gründen angezeigt. Eingaben sind nicht möglich.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -4681,7 +4716,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
-          <label>Höhe des Preisgeldes (EUR)</label>
+          <label>Höhe des Preisgeldes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5328,7 +5363,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>balance</dc-qualifier>
-          <label>Konnte im Projekt ein ausgeglichenes Geschlechterverhältnis bei den Beschäftigten erzielt werden? Berücksichtigen Sie dabei den Stellenumfang der Beschäftigten.</label>
+          <label>6) Konnte im Projekt ein ausgeglichenes Geschlechterverhältnis bei den Beschäftigten erzielt werden? Berücksichtigen Sie dabei den Stellenumfang der Beschäftigten.</label>
           <input-type value-pairs-name="gender_balance">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5408,7 +5443,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
-          <hint>Formulieren Sie zum Abschluss bitte eine Kernaussage zur ethischen Reflexion. Diese wird in Übersichten angezeigt. Wenn ethische Aspekte eine Relevanz für die Durchführung und Wirkung des Projektes haben, übernehmen Sie den Eintrag bitte in die 1. Säule (Hintergrund) des Impact Pathway.</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -6619,7 +6654,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>non-profit</stored-value>
       </pair>
       <pair>
-        <displayed-value>KMU - kleine und mittelständische Unternehmen</displayed-value>
+        <displayed-value>KMU - kleine und mittlere Unternehmen</displayed-value>
         <stored-value>SME</stored-value>
       </pair>
       <pair>
@@ -7279,7 +7314,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="enterprise_size" dc-term="enterprise_size">
       <pair>
-        <displayed-value>Vorwiegend kleine- und mittelständische Unternehmen</displayed-value>
+        <displayed-value>Vorwiegend kleine- und mittlere Unternehmen</displayed-value>
         <stored-value>SME</stored-value>
       </pair>
       <pair>

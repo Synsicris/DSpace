@@ -383,12 +383,12 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title of the project's contribution to the selected funding policy objective</label>
+          <label>Display of the selected  funding policy objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please formulate a short content-related statement.</hint>
-          <visibility>workflow</visibility>
+          <required />
+          <hint>This field is displayed for technical reasons. Entries are not possible.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2088,7 +2088,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2100,7 +2100,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2112,7 +2112,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2126,7 +2126,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2139,7 +2139,7 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-6</style>
           <hint />
           <type-bind>Economy</type-bind>
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2153,7 +2153,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2165,7 +2165,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
@@ -2178,7 +2178,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2191,7 +2191,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2207,7 +2207,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2219,7 +2219,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2230,7 +2230,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-8</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2244,7 +2244,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2256,7 +2256,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2272,7 +2272,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2284,7 +2284,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2295,7 +2295,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-8</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2309,7 +2309,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2321,7 +2321,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -4638,7 +4638,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Funding programme objective</label>
+          <label>Funding policy objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4649,12 +4649,12 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title of the contribution</label>
+          <label>Display of the selected  funding policy objective</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please formulate a clear and distinguishable title. This is important because the Title is displayed in overviews.</hint>
-          <visibility>workflow</visibility>
+          <required />
+          <hint>This field is displayed for technical reasons. Entries are not possible.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>

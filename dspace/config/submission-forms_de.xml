@@ -372,7 +372,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Bitte wählen Sie ein Ziel des Förderprogramms aus</label>
+          <label>Bitte wählen Sie ein Förderziel aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -383,12 +383,12 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung für den Beitrag des Projektes</label>
+          <label>Anzeige des ausgewählten Förderziels</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Formulieren Sie bitte eine eindeutige und leicht verständliche Bezeichnung, weil diese in Übersichten angezeigt wird.</hint>
-          <visibility>workflow</visibility>
+          <required />
+          <hint>Dieses Feld wird aus technischen Gründen angezeigt. Eingaben sind nicht möglich.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2086,7 +2086,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2098,7 +2098,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2110,7 +2110,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2124,7 +2124,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2137,7 +2137,7 @@
           <style>col-md-6</style>
           <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
           <type-bind>Economy</type-bind>
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2151,7 +2151,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2163,7 +2163,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
           <vocabulary closed="true">register-court</vocabulary>
         </field>
         <field>
@@ -2176,7 +2176,7 @@
           <required />
           <style>col-md-4</style>
           <hint>Angaben nur für Unternehmen</hint>
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2189,7 +2189,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2205,7 +2205,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2217,7 +2217,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2228,7 +2228,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2242,7 +2242,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2254,7 +2254,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -2270,7 +2270,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2282,7 +2282,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2293,7 +2293,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2307,7 +2307,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2319,7 +2319,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <readonly>submit</readonly>
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -4647,7 +4647,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>fundingobjective</dc-qualifier>
-          <label>Ziel des Förderprogramms</label>
+          <label>Bitte wählen Sie ein Förderziel aus</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4658,12 +4658,12 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Bezeichnung des Beitrag des Projektes</label>
+          <label>Anzeige des ausgewählten Förderziels</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-          <visibility>workflow</visibility>
+          <required />
+          <hint>Dieses Feld wird aus technischen Gründen angezeigt. Eingaben sind nicht möglich.</hint>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>

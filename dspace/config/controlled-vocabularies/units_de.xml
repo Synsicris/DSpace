@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="UNITS 2021-02-02">
+<node id="ResourceTypeGenres" label="UNITS 2021-11-03">
   <isComposedBy>
     <node id="UI10" label="Anzahl der Nutzer/Anwendungsfälle der Lösung / Änderung / Innovation ..." selectable="false">
     <hasNote></hasNote>
@@ -13,7 +13,7 @@
         <node id="UI13" label="Betriebe/Unternehmen - KMU" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="UI14" label="Betriebe/Unternehmen - large" selectable="true">
+        <node id="UI14" label="Großbetriebe/Großunternehmen" selectable="true">
         <hasNote></hasNote>
         </node>
         <node id="UI15" label="öffentliche Einrichtungen" selectable="true">

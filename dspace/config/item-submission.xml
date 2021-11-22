@@ -396,6 +396,12 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="extractionstep" mandatory="true">
+      <heading>submit.progressbar.ExtractMetadataStep</heading>
+      <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
+      <type>extract</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="impact_pathway">
@@ -409,12 +415,14 @@
       <step id="patents_result" />
       <step id="patents_result_import" />
       <step id="statusacc2" />
+      <step id="extractionstep" />
     </submission-process>
     <submission-process name="patents-edit">
       <step id="patents" />
       <step id="patents_result" />
       <step id="patents_result_import" />
       <step id="statusacc2" />
+      <step id="extractionstep" />
     </submission-process>
     <submission-process name="orgunits">
       <step id="orgunits" />
@@ -479,12 +487,14 @@
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
+      <step id="extractionstep" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications" />
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
+      <step id="extractionstep" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />
@@ -699,12 +709,14 @@
       <step id="projectpartners_import" />
       <step id="projectpartners_import_lead" />
       <step id="projectpartners_import_leadadmin" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="projectpartners-edit">
       <step id="projectpartners" />
       <step id="projectpartners_import" />
       <step id="projectpartners_import_lead" />
       <step id="projectpartners_import_leadadmin" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="cooperationpartners">
       <step id="cooperationpartners_orgunit" />

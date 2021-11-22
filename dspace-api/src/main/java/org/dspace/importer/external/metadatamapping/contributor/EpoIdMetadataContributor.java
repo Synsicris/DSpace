@@ -277,7 +277,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
             } else if (EPODOC.equals(documentIdType)) {
                 return docNumber + ((kind != null) ? kind : "");
             } else {
-                return "";
+                return docNumber;
             }
         }
 
@@ -287,7 +287,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
             } else if (DOCDB.equals(documentIdType)) {
                 return documentIdType + ":" + country + "." + docNumber + "." + kind;
             } else {
-                return "";
+                return documentIdType + ":" + docNumber;
             }
         }
 

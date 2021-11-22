@@ -7726,11 +7726,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>Editable by all project members</displayed-value>
+        <displayed-value>Bearbeitungsrecht für alle Mitglieder des Verbundprojektes</displayed-value>
         <stored-value>parentproject</stored-value>
       </pair>
       <pair>
-        <displayed-value>Editable by only sub-project members</displayed-value>
+        <displayed-value>Bearbeitungsrecht nur für Mitglieder des Teilprojektes</displayed-value>
         <stored-value>project</stored-value>
       </pair>
     </value-pairs>

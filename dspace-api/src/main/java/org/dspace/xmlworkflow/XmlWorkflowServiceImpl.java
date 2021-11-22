@@ -651,7 +651,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         installItemService.installItem(context, wfi);
 
         //Notify
-        notifyOfArchive(context, item, collection);
+        // notifyOfArchive(context, item, collection);
 
         //Clear any remaining workflow metadata
         itemService

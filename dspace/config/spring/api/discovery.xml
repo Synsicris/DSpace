@@ -678,7 +678,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterType" />
+                <!-- <ref bean="searchFilterType" /> -->
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -687,7 +687,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterType" />
+                <!-- <ref bean="searchFilterType" /> -->
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -989,7 +989,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterType" />
+                <!-- <ref bean="searchFilterType" /> -->
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -998,7 +998,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterType" />
+                <!-- <ref bean="searchFilterType" /> -->
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -1525,7 +1525,42 @@
     </bean>
     
     <bean id="relationParentProjectEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
+        <!--Which sidebar facets are to be displayed-->
+<!--         <property name="sidebarFacets">
+            <list>
+                <ref bean="graphEventByType" />
+                <ref bean="graphEventByPurpose" />
+                <ref bean="graphEventByPartner" />
+                <ref bean="graphEventByTargetGroup" />
+                <ref bean="graphEventByStartDate" />
+                <ref bean="graphEventByDuration" />
+                <ref bean="graphEventByParticipant"/>
+                <ref bean="searchFilterType"/>
+                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchsynsicrisrelationpartner" />
+                <ref bean="searchsynsicrisrelationtargetgroup" />
+                <ref bean="searchoairecerifeventcountry" />
+            </list>
+        </property> -->
+        <!--The search filters which can be used on the discovery search page-->
+<!--         <property name="searchFilters">
+            <list>
+                <ref bean="graphEventByType" />
+                <ref bean="graphEventByPurpose" />
+                <ref bean="graphEventByPartner" />
+                <ref bean="graphEventByTargetGroup" />
+                <ref bean="graphEventByStartDate" />
+                <ref bean="graphEventByDuration" />
+                <ref bean="graphEventByParticipant"/>
+                <ref bean="searchFilterType"/>
+                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchsynsicrisrelationpartner" />
+                <ref bean="searchsynsicrisrelationtargetgroup" />
+                <ref bean="searchoairecerifeventcountry" />
+            </list>
+        </property> -->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <!--<property name="defaultSort" ref="sortDateIssued"/>-->
@@ -1547,6 +1582,70 @@
             </list>
         </property>
     </bean>
+    
+<!--     <bean id="relationParentProjectEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        Which sidebar facets are to be displayed
+        <property name="sidebarFacets">
+            <list>
+            
+            <ref bean="graphPublicationByType" />
+                <ref bean="graphEventByType" />
+                <ref bean="graphEventByPurpose" />
+                <ref bean="graphEventByPartner" />
+                <ref bean="graphEventByTargetGroup" />
+                <ref bean="graphEventByStartDate" />
+                <ref bean="graphEventByDuration" />
+                <ref bean="graphEventByParticipant"/>
+                <ref bean="searchFilterType"/>
+                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchsynsicrisrelationpartner" />
+                <ref bean="searchsynsicrisrelationtargetgroup" />
+                <ref bean="searchoairecerifeventcountry" />
+            </list>
+        </property>
+        The search filters which can be used on the discovery search page
+        <property name="searchFilters">
+            <list>
+            <ref bean="graphPublicationByType" />
+                <ref bean="graphEventByType" />
+                <ref bean="graphEventByPurpose" />
+                <ref bean="graphEventByPartner" />
+                <ref bean="graphEventByTargetGroup" />
+                <ref bean="graphEventByStartDate" />
+                <ref bean="graphEventByDuration" />
+                <ref bean="graphEventByParticipant"/>
+                <ref bean="searchFilterType"/>
+                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchsynsicrisrelationpartner" />
+                <ref bean="searchsynsicrisrelationtargetgroup" />
+                <ref bean="searchoairecerifeventcountry" />
+            </list>
+        </property>
+
+        The sort filters for the discovery search
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <property name="defaultSort" ref="sortDateIssued"/>
+                DefaultSortOrder can either be desc or asc (desc is default)
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration
+        <property name="defaultFilterQueries">
+            <list>
+                Only find related items. The placeholder {0} will be replaced with scope (UUID of item)
+                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
+            </list>
+        </property>
+    </bean> -->
 
     <bean id="relationParentProjectPotsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -1937,7 +2036,24 @@
     </bean>
     
     <bean id="relationParentProjectPublicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="graphPublicationByType" />
+                <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterOrgUnit" />
+                <ref bean="searchFilterType" />
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+                <ref bean="graphPublicationByType" />
+                <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterOrgUnit" />
+                <ref bean="searchFilterType" />
+            </list>
+        </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <!--<property name="defaultSort" ref="sortDateIssued"/>-->
@@ -2149,8 +2265,9 @@
                 queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>_query_:"'{'!join from=synsicris.relation.parentproject_authority to=synsicris.relation.parentproject_authority'}'search.resourceid:{0}" AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
+                <!--To keep as example of solr join query, it search for the same value of synsicris.relation.parentproject -->
+                <!-- <value>_query_:"'{'!join from=synsicris.relation.parentproject_authority to=synsicris.relation.parentproject_authority'}'search.resourceid:{0}" AND search.resourcetype:Item AND entityType_keyword:projectpartner</value> -->
+                <value>(synsicris.relation.project_authority:{0} OR dc.relation.project_authority:{0}) AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
             </list>
         </property>
     </bean>
@@ -4988,6 +5105,142 @@
         <property name="exposeTotalElements" value="true" />
     </bean>
 
+    <bean id="graphEventByType" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventtype" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphEventByPurpose" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventpurpose" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.purpose</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphEventByPartner" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventpartner" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.partner</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphEventByTargetGroup" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventtarget" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.targetgroup</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphEventByStartDate" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="sortOrderSidebar" value="VALUE"/>
+        <property name="indexFieldName" value="grapheventdate" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="true" />
+		<!-- force solr to reverse its order, as it is by value this mean descending
+			(by COUNT is descending by default so the inverse flag would make it ascending) -->
+        <property name="inverseDirection" value="true" />
+        <!-- force to return 0 count buckets for years between the range -->
+        <property name="fillDateGaps" value="true" />
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.event.startDate</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+    
+    <bean id="graphEventByDuration" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventduration" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.duration</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+    
+    <bean id="graphEventByParticipant" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="grapheventparticipant" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.participantnumber</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
     <bean id="searchFilterTaskType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="entityTaskType"/>
         <property name="metadataFields">
@@ -4998,6 +5251,52 @@
         <property name="facetLimit" value="20"/>
         <property name="sortOrderSidebar" value="COUNT"/>
         <property name="sortOrderFilterPage" value="COUNT"/>
+    </bean>
+
+
+    <bean id="searchsynsicristypeproject-contribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicristypeproject-contribution" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.project-contribution</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicristypepurpose" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.purpose</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisrelationpartner" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.partner</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisrelationtargetgroup" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.targetgroup</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="oairecerifeventcountry" />
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.event.country</value>
+            </list>
+        </property>
     </bean>
 
     <bean id="searchFilterStepId" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">

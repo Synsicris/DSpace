@@ -10,6 +10,7 @@ package org.dspace.app.rest.repository;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.external.service.ExternalDataService;
+import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,6 +57,10 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
     private EntityTypeService entityTypeService;
     @Autowired
     private CollectionService collectionService;
+    @Autowired
+    private CommunityService communityService;
+    @Autowired
+    private ConfigurationService configurationService;
     @Autowired
     private ExternalDataService externalDataService;
     @Autowired(required = true)
@@ -176,8 +182,13 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
         QueryResponse qResp = searchService.getSolrSearchCore().getSolr().query(sQuery);
         FacetField ff = qResp.getFacetField("search.entitytype");
         if (ff != null) {
+            String[] entitiesToSkip = configurationService.getArrayProperty("project.entity-name.to-skip",
+                    new String[] {});
             for (Count c : ff.getValues()) {
-                types.add(c.getName());
+                if (Arrays.stream(entitiesToSkip).noneMatch(c.getName()::equals)) {
+                    types.add(c.getName());    
+                }
+                
             }
         }
         return types;

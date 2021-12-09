@@ -1525,8 +1525,9 @@
     </bean>
     
     <bean id="relationParentProjectEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
-<!--         <property name="sidebarFacets">
+        <property name="sidebarFacets">
             <list>
                 <ref bean="graphEventByType" />
                 <ref bean="graphEventByPurpose" />
@@ -1536,15 +1537,15 @@
                 <ref bean="graphEventByDuration" />
                 <ref bean="graphEventByParticipant"/>
                 <ref bean="searchFilterType"/>
-                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypeprojectcontribution" />
                 <ref bean="searchsynsicristypepurpose" />
                 <ref bean="searchsynsicrisrelationpartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchoairecerifeventcountry" />
             </list>
-        </property> -->
+        </property>
         <!--The search filters which can be used on the discovery search page-->
-<!--         <property name="searchFilters">
+        <property name="searchFilters">
             <list>
                 <ref bean="graphEventByType" />
                 <ref bean="graphEventByPurpose" />
@@ -1554,13 +1555,13 @@
                 <ref bean="graphEventByDuration" />
                 <ref bean="graphEventByParticipant"/>
                 <ref bean="searchFilterType"/>
-                <ref bean="searchsynsicristypeproject-contribution" />
+                <ref bean="searchsynsicristypeprojectcontribution" />
                 <ref bean="searchsynsicristypepurpose" />
                 <ref bean="searchsynsicrisrelationpartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchoairecerifeventcountry" />
             </list>
-        </property> -->
+        </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <!--<property name="defaultSort" ref="sortDateIssued"/>-->
@@ -1582,70 +1583,6 @@
             </list>
         </property>
     </bean>
-    
-<!--     <bean id="relationParentProjectEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        Which sidebar facets are to be displayed
-        <property name="sidebarFacets">
-            <list>
-            
-            <ref bean="graphPublicationByType" />
-                <ref bean="graphEventByType" />
-                <ref bean="graphEventByPurpose" />
-                <ref bean="graphEventByPartner" />
-                <ref bean="graphEventByTargetGroup" />
-                <ref bean="graphEventByStartDate" />
-                <ref bean="graphEventByDuration" />
-                <ref bean="graphEventByParticipant"/>
-                <ref bean="searchFilterType"/>
-                <ref bean="searchsynsicristypeproject-contribution" />
-                <ref bean="searchsynsicristypepurpose" />
-                <ref bean="searchsynsicrisrelationpartner" />
-                <ref bean="searchsynsicrisrelationtargetgroup" />
-                <ref bean="searchoairecerifeventcountry" />
-            </list>
-        </property>
-        The search filters which can be used on the discovery search page
-        <property name="searchFilters">
-            <list>
-            <ref bean="graphPublicationByType" />
-                <ref bean="graphEventByType" />
-                <ref bean="graphEventByPurpose" />
-                <ref bean="graphEventByPartner" />
-                <ref bean="graphEventByTargetGroup" />
-                <ref bean="graphEventByStartDate" />
-                <ref bean="graphEventByDuration" />
-                <ref bean="graphEventByParticipant"/>
-                <ref bean="searchFilterType"/>
-                <ref bean="searchsynsicristypeproject-contribution" />
-                <ref bean="searchsynsicristypepurpose" />
-                <ref bean="searchsynsicrisrelationpartner" />
-                <ref bean="searchsynsicrisrelationtargetgroup" />
-                <ref bean="searchoairecerifeventcountry" />
-            </list>
-        </property>
-
-        The sort filters for the discovery search
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <property name="defaultSort" ref="sortDateIssued"/>
-                DefaultSortOrder can either be desc or asc (desc is default)
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration
-        <property name="defaultFilterQueries">
-            <list>
-                Only find related items. The placeholder {0} will be replaced with scope (UUID of item)
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
-            </list>
-        </property>
-    </bean> -->
 
     <bean id="relationParentProjectPotsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -5253,14 +5190,19 @@
         <property name="sortOrderFilterPage" value="COUNT"/>
     </bean>
 
-
-    <bean id="searchsynsicristypeproject-contribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
-        <property name="indexFieldName" value="synsicristypeproject-contribution" />
+    <bean id="searchsynsicristypeprojectcontribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicristypeprojectcontribution" />
         <property name="metadataFields">
             <list>
                 <value>synsicris.type.project-contribution</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
     <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
@@ -5270,6 +5212,12 @@
                 <value>synsicris.type.purpose</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
     <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
@@ -5279,6 +5227,12 @@
                 <value>synsicris.relation.partner</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
     <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
@@ -5288,6 +5242,12 @@
                 <value>synsicris.relation.targetgroup</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
     <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
@@ -5297,6 +5257,12 @@
                 <value>oairecerif.event.country</value>
             </list>
         </property>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
     <bean id="searchFilterStepId" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">

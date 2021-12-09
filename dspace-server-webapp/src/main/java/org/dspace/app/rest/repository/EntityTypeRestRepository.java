@@ -21,11 +21,14 @@ import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.params.FacetParams;
+import org.dspace.app.rest.Parameter;
 import org.dspace.app.rest.SearchRestMethod;
 import org.dspace.app.rest.model.EntityTypeRest;
 import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.service.CollectionService;
+import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.EntityTypeService;
 import org.dspace.core.Context;
 import org.dspace.discovery.SearchService;
@@ -34,6 +37,7 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.external.service.ExternalDataService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -90,10 +94,11 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
     }
 
     @SearchRestMethod(name = "findAllByAuthorizedCollection")
-    public Page<EntityTypeRest> findAllByAuthorizedCollection(Pageable pageable) {
+    public Page<EntityTypeRest> findAllByAuthorizedCollection(Pageable pageable,
+            @Parameter(value = "scope") String scope) {
         try {
             Context context = obtainContext();
-            List<String> types = getSubmitAuthorizedTypes(context);
+            List<String> types = getSubmitAuthorizedTypes(context, scope);
             List<EntityType> entityTypes = types.stream().map(type -> {
                 if (StringUtils.isBlank(type)) {
                     return null;
@@ -111,10 +116,11 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
     }
 
     @SearchRestMethod(name = "findAllByAuthorizedExternalSource")
-    public Page<EntityTypeRest> findAllByAuthorizedExternalSource(Pageable pageable) {
+    public Page<EntityTypeRest> findAllByAuthorizedExternalSource(Pageable pageable, 
+            @Parameter(value = "scope") String scope) {
         try {
             Context context = obtainContext();
-            List<String> types = getSubmitAuthorizedTypes(context);
+            List<String> types = getSubmitAuthorizedTypes(context, scope);
             List<EntityType> entityTypes = types.stream()
                     .filter(x -> externalDataService.getExternalDataProvidersForEntityType(x).size() > 0)
                     .map(type -> {
@@ -134,7 +140,7 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
             throw new RuntimeException(e.getMessage(), e);
         }
     }
-    private List<String> getSubmitAuthorizedTypes(Context context)
+    private List<String> getSubmitAuthorizedTypes(Context context, String scope)
             throws SQLException, SolrServerException, IOException {
         List<String> types = new ArrayList<>();
         StringBuilder query = new StringBuilder();
@@ -155,6 +161,12 @@ public class EntityTypeRestRepository extends DSpaceRestRepository<EntityTypeRes
         }
 
         SolrQuery sQuery = new SolrQuery(query.toString());
+        if (StringUtils.isNotBlank(scope) && UUIDUtils.fromString(scope) != null) {
+            Community scopeDSO = communityService.find(context, UUIDUtils.fromString(scope));
+            if (scopeDSO != null) {
+                sQuery.addFilterQuery("location:m" + scopeDSO.getID());
+            }
+        }
         sQuery.addFilterQuery("search.resourcetype:" + IndexableCollection.TYPE);
         sQuery.setRows(0);
         sQuery.addFacetField("search.entitytype");

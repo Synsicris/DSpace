@@ -20,6 +20,7 @@ import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.content.Collection;
+import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.service.EntityTypeService;
 import org.hamcrest.Matchers;
@@ -212,6 +213,69 @@ public class EntityTypeRestRepositoryIT extends AbstractEntityIntegrationTest {
         }
     }
 
+    @Test
+    public void findAllByAuthorizedCollectionWithScope() throws Exception {
+        Community parentCommunity2 = null;
+        try {
+            context.turnOffAuthorisationSystem();
+
+            //** GIVEN **
+            //1. A community-collection structure with one parent community with sub-community and one collection.
+            parentCommunity = CommunityBuilder.createCommunity(context)
+                .withName("Parent Community")
+                .build();
+            
+            parentCommunity2 = CommunityBuilder.createCommunity(context)
+                    .withName("Parent Community2")
+                    .build();
+            Collection col1 =
+                CollectionBuilder.createCollection(context, parentCommunity)
+                        .withEntityType("JournalIssue")
+                        .withSubmitterGroup(eperson)
+                        .withName("Collection 1")
+                        .build();
+            Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
+                    .withEntityType("Publication")
+                    .withSubmitterGroup(eperson)
+                     .withName("Collection 2")
+                    .build();
+            Collection col3 = CollectionBuilder.createCollection(context, parentCommunity2)
+                    .withEntityType("Project")
+                    .withSubmitterGroup(eperson)
+                    .withName("Collection 3")
+                    .build();
+            Collection col4 = CollectionBuilder.createCollection(context, parentCommunity2)
+                    .withEntityType("Journal")
+                    .withSubmitterGroup(eperson)
+                    .withName("Collection 4")
+                    .build();
+
+            context.restoreAuthSystemState();
+
+
+            context.setCurrentUser(eperson);
+            String token = getAuthToken(eperson.getEmail(), password);
+            getClient(token).perform(get("/api/core/entitytypes/search/findAllByAuthorizedCollection")
+                    .param("scope", parentCommunity2.getID().toString()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.entitytypes", containsInAnyOrder(
+                    EntityTypeMatcher.matchEntityTypeEntry(entityTypeService.findByEntityType(context, "Project")),
+                    EntityTypeMatcher.matchEntityTypeEntry(entityTypeService.findByEntityType(context, "Journal"))
+                )))
+                .andExpect(jsonPath("$._embedded.entitytypes", Matchers.not(containsInAnyOrder(
+                    EntityTypeMatcher
+                        .matchEntityTypeEntry(entityTypeService.findByEntityType(context, "JournalIssue")),
+                    EntityTypeMatcher.matchEntityTypeEntry(entityTypeService.findByEntityType(context, "Publication"))
+                ))));
+        } finally {
+            CommunityBuilder.deleteCommunity(parentCommunity.getID());
+            if (parentCommunity2 != null) {
+                CommunityBuilder.deleteCommunity(parentCommunity2.getID());
+            }
+        }
+    }
+
+            
     @Test
     public void findAllPaginationTest() throws Exception {
         getClient().perform(get("/api/core/entitytypes")

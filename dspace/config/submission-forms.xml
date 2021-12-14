@@ -804,8 +804,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
-          <hint />
+          <hint>Enter the names of the authors of this item in the form Lastname, Firstname [i.e. Smith, Josh or Smith, J].</hint>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -815,7 +814,6 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
           <hint>Enter the affiliation of the author as stated on the publication.</hint>
         </field>
       </row>
@@ -862,7 +860,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Author(s)</label>
-          <input-type>inline-group</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -889,6 +887,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>Optionally enter the publisher here.</hint>
+          <type-bind>coar:c_3248, coar:c_5794</type-bind>
         </field>
       </row>
       <row>
@@ -1035,7 +1034,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Enter appropriate subject keywords or phrases.</hint>
-          <vocabulary closed="true">agrovoc</vocabulary>
+          <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
       <row>

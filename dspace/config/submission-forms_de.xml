@@ -804,7 +804,6 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
           <hint>Geben Sie die Namen in der Reihenfolge an, wie sie auf der Veröffentlichung angegeben sind mit Nachname, Vorname.</hint>
         </field>
         <field>
@@ -815,7 +814,6 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -861,7 +859,7 @@
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Autor:in(nen)</label>
-          <input-type>inline-group</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -883,11 +881,12 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
-          <label>Verlag</label>
+          <label>Verlag/Herausgeber</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>coar:c_3248, coar:c_5794</type-bind>
         </field>
       </row>
       <row>
@@ -1034,7 +1033,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Mit Schlagworten beschreiben Sie den Inhalt des Dokumentes. Verwenden Sie für jedes Schlagwort ein eigenes Feld.</hint>
-          <vocabulary closed="true">agrovoc</vocabulary>
+          <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -7432,7 +7431,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>medium negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[--] gering</displayed-value>
+        <displayed-value>[-] gering</displayed-value>
         <stored-value>slightly negative</stored-value>
       </pair>
       <pair>

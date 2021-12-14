@@ -127,7 +127,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 collectionService.addItem(context, projectPartnerCollection, newItem);
                 itemService.replaceMetadata(context, newItem, "synsicris", "type", "easy-import", null, "Yes", null,
                                             Choices.CF_UNSET, 0);
-                itemService.replaceMetadata(context, newItem, "dc", "relation", "project", null, item.getName(),
+                itemService.replaceMetadata(context, newItem, "synsicris", "relation", "project", null, item.getName(),
                                             item.getID().toString(), Choices.CF_ACCEPTED, 0);
                 newItem = context.reloadEntity(newItem);
                 easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));

@@ -184,8 +184,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
                 List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
-                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                        ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+                        ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                        ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
@@ -254,9 +254,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.SCHEMA,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.ELEMENT,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.QUALIFIER, null);
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.schema,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.element,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
@@ -293,8 +293,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         
         List<MetadataValue> values = communityService.getMetadata(communities.get(0),
-                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
         
         if (values.size() != 1) {
             log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),

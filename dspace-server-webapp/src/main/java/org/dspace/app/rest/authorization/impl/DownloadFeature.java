@@ -6,7 +6,6 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.authorization.impl;
-
 import java.sql.SQLException;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
@@ -21,8 +20,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * The download bitstream feature. It can be used to verify if a bitstream can be downloaded.
- *
  * Authorization is granted if the current user has READ permissions on the given bitstream.
+ * 
+ * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component
 @AuthorizationFeatureDocumentation(name = DownloadFeature.NAME,
@@ -35,7 +35,9 @@ public class DownloadFeature implements AuthorizationFeature {
     private AuthorizeServiceRestUtil authorizeServiceRestUtil;
 
     @Override
+    @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
+
         if (object instanceof BitstreamRest) {
             return authorizeServiceRestUtil.authorizeActionBoolean(context, object, DSpaceRestPermission.READ);
         }
@@ -48,4 +50,5 @@ public class DownloadFeature implements AuthorizationFeature {
             BitstreamRest.CATEGORY + "." + BitstreamRest.NAME,
         };
     }
+
 }

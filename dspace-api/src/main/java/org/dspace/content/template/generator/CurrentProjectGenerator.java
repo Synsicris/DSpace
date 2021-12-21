@@ -75,8 +75,8 @@ public class CurrentProjectGenerator extends AbstractGenerator {
             return new MetadataValueVO("");
         }
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
-                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
         if (values.isEmpty()) {
             return new MetadataValueVO("");
         } else {

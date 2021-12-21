@@ -32,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
  */
-public class ProjectAuthorityFilter extends CustomAuthorityFilter {
+public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
 
     private static final Logger log = LoggerFactory.getLogger(ProjectAuthorityFilter.class);
 
@@ -42,6 +42,7 @@ public class ProjectAuthorityFilter extends CustomAuthorityFilter {
     @Autowired
     public ProjectAuthorityFilter(RequestService requestService,
                                    CollectionService collectionService) {
+        super(List.of());
         this.requestService = requestService;
         this.collectionService = collectionService;
     }

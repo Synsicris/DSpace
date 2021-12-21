@@ -8,6 +8,7 @@
 package org.dspace.content.integration.crosswalks.script;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.dspace.discovery.configuration.DiscoverySortFunctionConfiguration.SORT_FUNCTION;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -44,6 +45,8 @@ import org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration;
 import org.dspace.discovery.configuration.DiscoverySearchFilter;
 import org.dspace.discovery.configuration.DiscoverySortConfiguration;
 import org.dspace.discovery.configuration.DiscoverySortFieldConfiguration;
+import org.dspace.discovery.configuration.DiscoverySortFunctionConfiguration;
+import org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet;
 import org.dspace.discovery.indexobject.IndexableCollection;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.indexobject.IndexableItem;
@@ -229,7 +232,7 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
         discoverQuery.setMaxResults(QUERY_PAGINATION_SIZE);
         discoverQuery.addFilterQueries(getFilterQueries(discoveryConfiguration));
         discoverQuery.addFilterQueries("search.entitytype:" + entityType);
-        configureSorting(discoverQuery, discoveryConfiguration);
+        configureSorting(discoverQuery, discoveryConfiguration, scope);
 
         return discoverQuery;
     }
@@ -271,6 +274,9 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
             String filterOperator = StringUtils.substringAfterLast(value, FILTER_OPERATOR_SEPARATOR);
 
             String name = searchFilter.getIndexFieldName();
+            if (searchFilter instanceof MultiLanguageDiscoverSearchFilterFacet) {
+                name = context.getCurrentLocale().getLanguage() + "_" + name;
+            }
 
             DiscoverFilterQuery filterQuery = searchService.toFilterQuery(context, name, filterOperator, filterValue,
                     discoveryConfiguration);
@@ -282,7 +288,8 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
         return filterQueries.toArray(new String[filterQueries.size()]);
     }
 
-    private void configureSorting(DiscoverQuery discoverQuery, DiscoveryConfiguration discoveryConfiguration) {
+    private void configureSorting(DiscoverQuery discoverQuery, DiscoveryConfiguration discoveryConfiguration,
+        IndexableObject<?, ?> scopeObject) {
 
         String sortBy = null;
         String sortOrder = null;
@@ -295,10 +302,10 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
         DiscoverySortConfiguration searchSortConfiguration = discoveryConfiguration.getSearchSortConfiguration();
 
         if (sortBy == null) {
-            sortBy = getDefaultSortField(searchSortConfiguration);
+            sortBy = searchSortConfiguration.getDefaultSortField();
         }
         if (sortOrder == null) {
-            sortOrder = getDefaultSortDirection(searchSortConfiguration);
+            sortOrder = searchSortConfiguration.getDefaultSortDirection();
         }
 
         DiscoverySortFieldConfiguration fieldConfig = searchSortConfiguration.getSortFieldConfiguration(sortBy);
@@ -307,7 +314,7 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
             throw new IllegalArgumentException(sortBy + " is not a valid sort field");
         }
 
-        String sortField = searchService.toSortFieldIndex(fieldConfig.getMetadataField(), fieldConfig.getType());
+        String sortField = calculateSortField(fieldConfig, scopeObject);
 
         if ("asc".equalsIgnoreCase(sortOrder)) {
             discoverQuery.setSortField(sortField, DiscoverQuery.SORT_ORDER.asc);
@@ -319,12 +326,14 @@ public class BulkItemExport extends DSpaceRunnable<BulkItemExportScriptConfigura
 
     }
 
-    private String getDefaultSortDirection(DiscoverySortConfiguration searchSortConfiguration) {
-        return searchSortConfiguration.getSortFields().iterator().next().getDefaultSortOrder().toString();
-    }
+    private String calculateSortField(DiscoverySortFieldConfiguration sortFieldConfig,
+        IndexableObject<?, ?> scopeObject) {
 
-    private String getDefaultSortField(DiscoverySortConfiguration searchSortConfiguration) {
-        return searchSortConfiguration.getSortFields().iterator().next().getMetadataField();
+        if (SORT_FUNCTION.equals(sortFieldConfig.getType()) && scopeObject != null) {
+            return ((DiscoverySortFunctionConfiguration) sortFieldConfig).getFunction(scopeObject.getID());
+        }
+
+        return searchService.toSortFieldIndex(sortFieldConfig.getMetadataField(), sortFieldConfig.getType());
     }
 
     private Map<String, String> parseSearchFilters() {

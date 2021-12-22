@@ -556,6 +556,18 @@
     <form name="exploitation_plan_step_type_1_form">
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Sind Schutzrechtsanmelungen angestrebt oder Schutzrechte bereits erteilt?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <label>Beschreibung</label>
@@ -4455,7 +4467,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
-          <label>Wozu dient die Veranstaltung? (maximal 5 Punkte auswählen)</label>
+          <label>Wozu dient die Kooperation/Partizipation/Austauschprozess? (maximal 5 Punkte auswählen)</label>
           <input-type value-pairs-name="event_purpose">list</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5207,7 +5219,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>influence</dc-qualifier>
           <label>Einfluss der Rahmenbedingung auf die Wirkung des Projektes</label>
           <input-type value-pairs-name="influence_conditions">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
           <hint />
@@ -7743,96 +7755,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
-        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
-        <stored-value>innovationidea</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
         <stored-value>step</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
-        <stored-value>spinoff</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>application</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Auszeichnung</displayed-value>
-        <stored-value>award</stored-value>
       </pair>
       <pair>
         <displayed-value>Rahmenbedingung</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Geplante Veröffentlichungen</displayed-value>
-        <stored-value>plan_publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veröffentlichung</displayed-value>
-        <stored-value>Publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Forschungsdaten</displayed-value>
-        <stored-value>Product</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gegenstand oder Material</displayed-value>
-        <stored-value>physical_object</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Forschungsergebnis</displayed-value>
-        <stored-value>research_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(Zwischen-) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
-        <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
-        <stored-value>process_event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veranstaltung</displayed-value>
-        <stored-value>Event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeitspaket</displayed-value>
-        <stored-value>workpackage</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Aufgabe</displayed-value>
-        <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilenstein</displayed-value>
-        <stored-value>milestone</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Projektziel</displayed-value>
-        <stored-value>proj_objective</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethische Reflexion</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
-        <stored-value>stateofart</stored-value>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
+        <stored-value>spinoff</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>
@@ -7845,10 +7781,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>innovationpotential</stored-value>
       </pair>
       <pair>
-        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
-        <stored-value>innovationidea</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
         <stored-value>step</stored-value>
       </pair>
@@ -7857,36 +7789,36 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>spinoff</stored-value>
       </pair>
       <pair>
+        <displayed-value>Rahmenbedingung</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>application</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
+        <stored-value>pot_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
         <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
       </pair>
       <pair>
-        <displayed-value>Rahmenbedingung</displayed-value>
-        <stored-value>condition</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>other</stored-value>
       </pair>
       <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veröffentlichung</displayed-value>
-        <stored-value>Publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Forschungsdaten</displayed-value>
-        <stored-value>Product</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Gegenstand oder Material</displayed-value>
-        <stored-value>physical_object</stored-value>
       </pair>
       <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
@@ -7895,6 +7827,14 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung</displayed-value>
+        <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gegenstand oder Material</displayed-value>
+        <stored-value>physical_object</stored-value>
       </pair>
       <pair>
         <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
@@ -7911,70 +7851,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilenstein</displayed-value>
-        <stored-value>milestone</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Projektziel</displayed-value>
-        <stored-value>proj_objective</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethische Reflexion</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
-        <stored-value>stateofart</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
-        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
-        <stored-value>innovationidea</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
-        <stored-value>step</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
-        <stored-value>spinoff</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>application</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Rahmenbedingung</displayed-value>
-        <stored-value>condition</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
       </pair>
@@ -7991,6 +7871,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
+        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
@@ -8005,52 +7889,14 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Veranstaltung</displayed-value>
         <stored-value>Event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeitspaket</displayed-value>
-        <stored-value>workpackage</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Aufgabe</displayed-value>
-        <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilenstein</displayed-value>
-        <stored-value>milestone</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Projektziel</displayed-value>
-        <stored-value>proj_objective</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethische Reflexion</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
-        <stored-value>stateofart</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>
         <stored-value>other</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
         <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
-        <stored-value>innovationidea</stored-value>
       </pair>
       <pair>
         <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
@@ -8065,32 +7911,38 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Rahmenbedingung</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
         <stored-value>pot_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Geplante Veröffentlichungen</displayed-value>
-        <stored-value>plan_publication</stored-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Veröffentlichung</displayed-value>
-        <stored-value>Publication</stored-value>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsdaten</displayed-value>
-        <stored-value>Product</stored-value>
+        <displayed-value>Arbeitspaket</displayed-value>
+        <stored-value>workpackage</stored-value>
       </pair>
       <pair>
-        <displayed-value>Gegenstand oder Material</displayed-value>
-        <stored-value>physical_object</stored-value>
+        <displayed-value>Aufgabe</displayed-value>
+        <stored-value>task</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
+      <pair>
+        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
@@ -8101,44 +7953,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
-        <stored-value>process_event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veranstaltung</displayed-value>
-        <stored-value>Event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeitspaket</displayed-value>
-        <stored-value>workpackage</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Aufgabe</displayed-value>
-        <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Meilenstein</displayed-value>
-        <stored-value>milestone</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Projektziel</displayed-value>
-        <stored-value>proj_objective</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
         <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethische Reflexion</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
-        <stored-value>stateofart</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>

@@ -3873,7 +3873,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff OR entityType_keyword:other)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -3926,7 +3926,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:other OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -3979,7 +3979,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:other OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->
@@ -4032,7 +4032,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND -(entityType_keyword:Project) AND -(entityType_keyword:parentproject) AND -(entityType_keyword:impactpathway) AND -(entityType_keyword:impactpathwaystep) AND -(entityType_keyword:exploitationplan) AND -(entityType_keyword:exploitationplanstep)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:other)</value>
             </list>
         </property>
         <!-- The configuration for the recent submissions -->

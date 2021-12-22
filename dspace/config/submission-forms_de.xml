@@ -4467,7 +4467,7 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>purpose</dc-qualifier>
-          <label>Wozu dient die Veranstaltung? (maximal 5 Punkte auswählen)</label>
+          <label>Wozu dient die Kooperation/Partizipation/Austauschprozess? (maximal 5 Punkte auswählen)</label>
           <input-type value-pairs-name="event_purpose">list</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5219,7 +5219,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>influence</dc-qualifier>
           <label>Einfluss der Rahmenbedingung auf die Wirkung des Projektes</label>
           <input-type value-pairs-name="influence_conditions">list</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
           <hint />

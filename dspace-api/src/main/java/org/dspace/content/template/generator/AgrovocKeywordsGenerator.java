@@ -60,8 +60,8 @@ public class AgrovocKeywordsGenerator extends AbstractGenerator {
             }
             Item item = getProjectItem(context, projectCommunity);
             List<MetadataValue> values = itemService.getMetadata(item,
-                    ProjectConstants.MD_AGROVOC.SCHEMA, ProjectConstants.MD_AGROVOC.ELEMENT,
-                    ProjectConstants.MD_AGROVOC.QUALIFIER, null);
+                    ProjectConstants.MD_AGROVOC.schema, ProjectConstants.MD_AGROVOC.element,
+                    ProjectConstants.MD_AGROVOC.qualifier, null);
 
             return values.stream().map(value -> new MetadataValueVO(value)).collect(Collectors.toList());
 
@@ -75,8 +75,8 @@ public class AgrovocKeywordsGenerator extends AbstractGenerator {
 
     private Item getProjectItem(Context context, Community projectCommunity) throws SQLException {
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
-                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
         return itemService.find(context, UUIDUtils.fromString(values.get(0).getAuthority()));
     }
 

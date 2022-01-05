@@ -35,8 +35,8 @@
 	<bean id="solrServiceIndexRelationshipsPlugin" class="org.dspace.discovery.SolrServiceIndexRelationshipsPlugin"/>
     <bean id="solrServiceHiddenRelationsRestrictionPlugin" class="org.dspace.discovery.SolrServiceHiddenRelationsRestrictionPlugin"/>
     <bean id="solrServiceMetricsIndexPlugin" class="org.dspace.discovery.SolrServiceMetricsIndexPlugin"/>
+    <bean id="solrServiceCrisValuePairsIndexPlugin" class="org.dspace.discovery.SolrServiceValuePairsIndexPlugin"/>
     <bean id="SolrServiceIndexSubprojectCommunityPlugin" class="org.dspace.discovery.SolrServiceIndexSubprojectCommunityPlugin" scope="prototype"/>
-
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
 
     <!-- Additional indexing plugin make filtering by has content in original bundle (like pdf's, images) posible via SOLR -->
@@ -134,7 +134,7 @@
                 <entry key="RELATION.parentproject.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
                 <entry key="RELATION.parentproject.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
                 <entry key="RELATION.parentproject.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
-                <entry key="RELATION.parentproject.Project" value-ref="relationParentProjectProjectsConfiguration"/>                
+                <entry key="RELATION.parentproject.Project" value-ref="relationParentProjectProjectsConfiguration"/>
                 <!-- Synsicris Project Related items -->
                 <entry key="RELATION.Project.exploitationplan" value-ref="relationProjectExploitationplansConfiguration"/>
                 <entry key="RELATION.Project.Funding" value-ref="relationProjectFundingsConfiguration"/>
@@ -145,12 +145,13 @@
                 <entry key="BROWSE.Person.latestParentProjectsPreparation" value-ref="browsePersonLatestParentProjectsPreparationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsImplementation" value-ref="browsePersonLatestParentProjectsImplementationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
-             
-                
-                
+
+
+
                 <!-- Edit Configurations -->
                 <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
                 <entry key="editCollection" value-ref="editCollectionConfiguration"/>
+                <entry key="lucky-search" value-ref="lucky"/>
                 <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
                 <entry key="subprojectCommunity" value-ref="subprojectCommunityConfiguration"/>
                 <!-- Impact pathway -->
@@ -228,11 +229,11 @@
             <list>
                 <!--Only find communities-->
                 <value>search.resourcetype:Community</value>
-                <value>search.resourceid:${project.parent-community-id}</value>                
+                <value>search.resourceid:${project.parent-community-id}</value>
             </list>
         </property>
     </bean>
-    
+
     <!--The project community configuration settings for discovery-->
     <bean id="subprojectCommunityConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="commonConfiguration">
         <property name="id" value="editCommunityConfiguration"/>
@@ -241,7 +242,7 @@
                 <!--Only find communities-->
                 <value>search.resourcetype:Community</value>
                 <value>dc.title:${project.subproject-community-name}</value>
-                <value>search.subprojectCommunity:true</value>               
+                <value>search.subprojectCommunity:true</value>
             </list>
         </property>
     </bean>
@@ -266,6 +267,87 @@
                 <value>search.resourcetype:Collection</value>
             </list>
         </property>
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dspace.entity.type"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="person.identifier.jobtitle"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="project.identifier.name"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <!-- By default, full text snippets are disabled, as snippets of embargoed/restricted bitstreams
+                             may appear in search results when the Item is public. See DS-3498
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="project.identifier.status"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="orgunit.identifier.name"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="orgunit.identifier.description"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        -->
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
     </bean>
 
     <!--The configuration settings for discovery of withdrawn and indiscoverable items (admin only)-->
@@ -379,8 +461,6 @@
         </property>
         <property name="moreLikeThisConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
-                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
-                the metadata fields below-->
                 <property name="similarityMetadataFields">
                     <list>
                         <value>dc.title</value>
@@ -513,8 +593,6 @@
         </property>
         <property name="moreLikeThisConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
-                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
-                the metadata fields below-->
                 <property name="similarityMetadataFields">
                     <list>
                         <value>dc.title</value>
@@ -564,6 +642,8 @@
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterEntityType"/>
+                <ref bean="searchFilterLanguage" />
+                <ref bean="searchFilterTypes" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -587,6 +667,8 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterLanguage" />
+                <ref bean="searchFilterTypes" />
             </list>
         </property>
         <!--The sort filters for the discovery search (same as defaultConfiguration above)-->
@@ -1199,7 +1281,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>'{'!join from=search.resourceid to=projectinvestigators_authority fromIndex=search'}'person.affiliation.name_authority:{0}</value>
+                <value>'{'!join from=search.resourceid to=projectinvestigators_authority fromIndex=${solr.multicorePrefix}search'}'person.affiliation.name_authority:{0}</value>
             </list>
         </property>
     </bean>
@@ -1249,7 +1331,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>'{'!join from=search.resourceid to=author_authority fromIndex=search'}'person.affiliation.name_authority:{0}</value>
+                <value>'{'!join from=search.resourceid to=author_authority fromIndex=${solr.multicorePrefix}search'}'person.affiliation.name_authority:{0}</value>
             </list>
         </property>
     </bean>
@@ -1428,7 +1510,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectAwardsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1523,7 +1605,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
@@ -1607,7 +1689,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectExpsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1681,7 +1763,7 @@
             </list>
         </property>
     </bean>
-    
+
     <!-- fundings related to a project -->
     <bean id="relationProjectFundingsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -1706,9 +1788,9 @@
             </list>
         </property>
     </bean>
-    
-    
-    
+
+
+
     <bean id="relationParentProjectGendersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1732,7 +1814,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectInnovationideasConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1947,7 +2029,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectIaObjectivesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1971,7 +2053,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectPublicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
@@ -2013,7 +2095,7 @@
         </property>
     </bean>
 
-    
+
     <bean id="relationParentProjectProductsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -2157,7 +2239,7 @@
             </list>
         </property>
     </bean>
-    
+
     <!-- subcontractors related to a project -->
     <bean id="relationProjectSubcontractorsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -2328,7 +2410,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectProjectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -2352,7 +2434,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationParentProjectProjectpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -2376,7 +2458,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationProjectExploitationplansConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -2400,7 +2482,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="publication" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
         <property name="id" value="publication"/>
         <property name="indexAlways" value="true"/>
@@ -3692,7 +3774,7 @@
                 <ref bean="searchFilterTaskType"/>
                 <ref bean="searchFilterTitle"/>
                 <ref bean="searchFilterWorkingplanLinkStatus"/>
-                
+
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -3750,7 +3832,7 @@
                 <ref bean="searchFilterTaskType"/>
                 <ref bean="searchFilterTitle"/>
                 <ref bean="searchFilterWorkingplanLinkStatus"/>
-                
+
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -3886,7 +3968,7 @@
                 <property name="useAsHomePage" value="false"/>
             </bean>
         </property>
-        <!-- Default result per page --> 
+        <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
@@ -3939,7 +4021,7 @@
                 <property name="useAsHomePage" value="false"/>
             </bean>
         </property>
-        <!-- Default result per page --> 
+        <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
@@ -3992,7 +4074,7 @@
                 <property name="useAsHomePage" value="false"/>
             </bean>
         </property>
-        <!-- Default result per page --> 
+        <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
@@ -4045,7 +4127,7 @@
                 <property name="useAsHomePage" value="false"/>
             </bean>
         </property>
-        <!-- Default result per page --> 
+        <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
@@ -4531,6 +4613,25 @@
         <property name="indexFieldName" value="itemtype" />
         <property name="splitter" value="::" />
         <property name="onlyLastNodeRelevant" value="true" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterLanguage" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="language" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.language.iso</value>
+                <value>person.knowsLanguage</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="types" />
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
@@ -5139,7 +5240,7 @@
         <property name="exposeMore" value="true" />
         <property name="exposeTotalElements" value="true" />
     </bean>
-    
+
     <bean id="graphEventByDuration" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
     	<property name="facetLimit" value="10"/>
         <property name="indexFieldName" value="grapheventduration" />
@@ -5158,7 +5259,7 @@
         <property name="exposeMore" value="true" />
         <property name="exposeTotalElements" value="true" />
     </bean>
-    
+
     <bean id="graphEventByParticipant" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
     	<property name="facetLimit" value="10"/>
         <property name="indexFieldName" value="grapheventparticipant" />
@@ -5273,7 +5374,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="searchFilterWorkingplanLinkStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="workingplanLinkStatus" />
         <property name="metadataFields">
@@ -5514,6 +5615,68 @@
             </list>
         </property>
     </bean>
+    <bean id="lucky" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+        <property name="indexAlways" value="true"/>
+        <!-- filter queries for lucky configuration-->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item</value>
+            </list>
+        </property>
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle"/>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!-- empty list of facets-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterOrcid" />
+                <ref bean="searchFilterDoi" />
+                <ref bean="searchFilterLegacyId" />
+            </list>
+        </property>
+    </bean>
+    <bean id="searchFilterOrcid" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="orcid"/>
+        <property name="metadataFields">
+            <list>
+                <value>person.identifier.orcid</value>
+            </list>
+        </property>
+        <property name="isOpenByDefault" value="true"/>
+        <property name="pageSize" value="10"/>
+    </bean>
+    <bean id="searchFilterLegacyId" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="legacy-id"/>
+        <property name="metadataFields">
+            <list>
+                <value>cris.legacyId</value>
+            </list>
+        </property>
+        <property name="isOpenByDefault" value="true"/>
+        <property name="pageSize" value="10"/>
+    </bean>
+    <bean id="searchFilterDoi" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="doi"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.doi</value>
+            </list>
+        </property>
+        <property name="isOpenByDefault" value="true"/>
+        <property name="pageSize" value="10"/>
+    </bean>
 
     <bean id="sortWorkingplanPlace" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="workingplan.place"/>
@@ -5524,18 +5687,18 @@
         <property name="metadataField" value="synsicris.type.status"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
-    
+
     <bean id="sortWorkingplanOrganization" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="synsicris.relation.partner"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
-    
+
     <bean id="sortWorkingplanDateStart" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="dc.date.start"/>
         <property name="type" value="date"/>
         <property name="defaultSortOrder" value="asc"/>
     </bean>
-    
+
     <bean id="sortWorkingplanDateEnd" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="dc.date.end"/>
         <property name="type" value="date"/>

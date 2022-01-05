@@ -800,7 +800,7 @@ public class StructBuilder {
                             toDelete = false;
                         } else {
                             communityService.addMetadata(context, community,
-                                    entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                    entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
                                     getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }
@@ -936,7 +936,7 @@ public class StructBuilder {
                             handleItemTemplate(context, nl.item(j), collection);
                         } else {
                             collectionService.addMetadata(context, collection,
-                                entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
+                                entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
                                 getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
                         }
                     }

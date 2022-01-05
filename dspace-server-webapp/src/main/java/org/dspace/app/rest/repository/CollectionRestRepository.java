@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.SortedMap;
 import java.util.UUID;
 import javax.servlet.ServletInputStream;
@@ -208,33 +209,38 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
         }
     }
 
-    @SearchRestMethod(name = "findSubmitAuthorizedByEntityType")
-    public Page<CollectionRest> findSubmitAuthorizedByEntityType(
-            @Parameter(value = "query") String query,
-            @Parameter(value = "entityType", required = true) String entityTypeLabel,
-            Pageable pageable)
-           throws SearchServiceException {
-        try {
-            Context context = obtainContext();
-            EntityType entityType = this.entityTypeService.findByEntityType(context, entityTypeLabel);
-            if (entityType == null) {
-                throw new ResourceNotFoundException("There was no entityType found with label: " + entityTypeLabel);
-            }
-            List<Collection> collections = cs.findCollectionsWithSubmit(query, context, null, entityTypeLabel,
-                                              Math.toIntExact(pageable.getOffset()),
-                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
-            int tot = cs.countCollectionsWithSubmit(query, context, null, entityTypeLabel);
-            return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
-    }
+
+    /**
+     * Finds all the collections administered by a specific user and entity type
+     * @deprecated
+     * Please use {@link CollectionRestRepository#findAdminAuthorizedByEntityType
+     * @param query  query to be executed
+     * @param entityTypeLabel entity type
+     * @param pageable  pageable
+     * @return Page<CollectionRest>
+     * @throws SearchServiceException An exception that provides information of solr search access errors.
+     */
+    @Deprecated
     @SearchRestMethod(name = "findAdministeredByEntityType")
     public Page<CollectionRest> findAdministeredByEntityType(
             @Parameter(value = "query") String query,
             @Parameter(value = "entityType", required = true) String entityTypeLabel,
             Pageable pageable)
-            throws SearchServiceException {
+            throws RuntimeException {
+        try {
+            return findAdminAuthorizedByEntityType(query, entityTypeLabel, pageable);
+        } catch (SQLException | SearchServiceException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+
+    @SearchRestMethod(name = "findAdminAuthorizedByEntityType")
+    public Page<CollectionRest> findAdminAuthorizedByEntityType(
+            @Parameter(value = "query") String query,
+            @Parameter(value = "entityType", required = true) String entityTypeLabel,
+            Pageable pageable)
+            throws SearchServiceException, SQLException {
         try {
             Context context = obtainContext();
             EntityType entityType = this.entityTypeService.findByEntityType(context, entityTypeLabel);
@@ -242,60 +248,66 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
                 throw new ResourceNotFoundException("There was no entityType found with label: " + entityTypeLabel);
             }
             List<Collection> collections = cs.findCollectionsAdministeredByEntityType(
-                    query,entityTypeLabel, context,
+                    query, entityTypeLabel, context,
                     Math.toIntExact(pageable.getOffset()),
                     Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
             int tot = cs.countCollectionsAdministeredByEntityType(query, entityTypeLabel, context);
             return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage(), e);
+            throw new SQLException(e.getMessage(), e);
+        } catch (SearchServiceException e) {
+            throw new SearchServiceException(e.getMessage(), e);
         }
     }
-    @SearchRestMethod(name = "findSubmitAuthorizedByCommunityAndEntityType")
-    public Page<CollectionRest> findSubmitAuthorizedByCommunityAndEntityType(
+
+    @SearchRestMethod(name = "findAllVisibleSectionsInTopBar")
+    public Page<CollectionRest> findAllVisibleSectionsInTopBar(
             @Parameter(value = "query") String query,
-            @Parameter(value = "uuid", required = true) UUID communityUuid,
             @Parameter(value = "entityType", required = true) String entityTypeLabel,
-            Pageable pageable) {
+            Pageable pageable)
+            throws SearchServiceException, SQLException {
         try {
             Context context = obtainContext();
             EntityType entityType = this.entityTypeService.findByEntityType(context, entityTypeLabel);
             if (entityType == null) {
                 throw new ResourceNotFoundException("There was no entityType found with label: " + entityTypeLabel);
             }
-            Community com = communityService.find(context, communityUuid);
-            if (com == null) {
-                throw new ResourceNotFoundException(
-                    CommunityRest.CATEGORY + "." + CommunityRest.NAME + " with id: " + communityUuid + " not found");
-            }
-            List<Collection> collections = cs.findCollectionsWithSubmit(query, context, com, entityTypeLabel,
-                                              Math.toIntExact(pageable.getOffset()),
-                                              Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
-            int tot = cs.countCollectionsWithSubmit(query, context, com, entityTypeLabel);
+            List<Collection> collections = cs.findCollectionsAdministeredByEntityType(
+                    query, entityTypeLabel, context,
+                    Math.toIntExact(pageable.getOffset()),
+                    Math.toIntExact(pageable.getOffset() + pageable.getPageSize()));
+            int tot = cs.countCollectionsAdministeredByEntityType(query, entityTypeLabel, context);
             return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
-        } catch (SQLException | SearchServiceException e) {
-            throw new RuntimeException(e.getMessage(), e);
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage(), e);
+        } catch (SearchServiceException e) {
+            throw new SearchServiceException(e.getMessage(), e);
         }
     }
 
+    /**
+     * Finds all the collections administered by a specific user
+     * @deprecated
+     * use the  method {@link CollectionRestRepository#findAdminAuthorized(Pageable, String)} instead.
+     * @param query  query to be executed
+     * @param pageable  pageable
+     * @return Page<CollectionRest>
+     * @throws SearchServiceException An exception that provides information of solr search access errors.
+     */
+    @Deprecated
     @SearchRestMethod(name = "findAdministered")
     @PreAuthorize("isAuthenticated()")
     public Page<CollectionRest> findAdministered(@Parameter(value = "query") String query,
-        Pageable pageable) throws SearchServiceException {
-        try {
-            Context context = obtainContext();
-
-            List<Collection> collections = cs.findCollectionsAdministered(query, context,
-                Math.toIntExact(pageable.getOffset()),
-                Math.toIntExact(pageable.getPageSize()));
-
-            int tot = cs.countCollectionsAdministered(query, context);
-            return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
+                                                 Pageable pageable) throws SearchServiceException {
+        return findAdminAuthorized(pageable, query);
     }
-
+    /**
+     * Finds all the collections administered by a specific user
+     * @param query  query to be executed
+     * @param pageable  pageable
+     * @return Page<CollectionRest>
+     * @throws RuntimeException exception that can be SearchServiceException or SQLException.
+     */
     @PreAuthorize("hasAuthority('AUTHENTICATED')")
     @SearchRestMethod(name = "findAdminAuthorized")
     public Page<CollectionRest> findAdminAuthorized (
@@ -308,6 +320,78 @@ public class CollectionRestRepository extends DSpaceObjectRestRepository<Collect
             long tot = authorizeService.countAdminAuthorizedCollection(context, query);
             return converter.toRestPage(collections, pageable, tot , utils.obtainProjection());
         } catch (SearchServiceException | SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns Collections for which the current user has 'submit' privileges.
+     *
+     * @param  query                  The query used in the lookup
+     * @param  entityTypeLabel        The EntityType label object that will be used
+     *                                to limit the returned collection to those
+     *                                related to given entity type
+     * @param  pageable               The pagination information
+     * @return
+     * @throws SearchServiceException If search error
+     */
+    @SearchRestMethod(name = "findSubmitAuthorizedByEntityType")
+    public Page<CollectionRest> findSubmitAuthorizedByEntityType(
+        @Parameter(value = "query") String query,
+        @Parameter(value = "entityType", required = true) String entityTypeLabel,
+        Pageable pageable)
+        throws SearchServiceException {
+        try {
+            Context context = obtainContext();
+            EntityType entityType = this.entityTypeService.findByEntityType(context, entityTypeLabel);
+            if (entityType == null) {
+                throw new ResourceNotFoundException("There was no entityType found with label: " + entityTypeLabel);
+            }
+            List<Collection> collections = cs.findCollectionsWithSubmit(query, context, null, entityTypeLabel,
+                Math.toIntExact(pageable.getOffset()),
+                Math.toIntExact(pageable.getPageSize()));
+            int tot = cs.countCollectionsWithSubmit(query, context, null, entityTypeLabel);
+            return converter.toRestPage(collections, pageable, tot, utils.obtainProjection());
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns Collections for which the current user has 'submit' privileges
+     * limited by parent community.
+     *
+     * @param  query           The query used in the lookup
+     * @param  communityUuid   UUID of the parent community
+     * @param  entityTypeLabel The EntityType label object that will be used to
+     *                         limit the returned collection to those related to
+     *                         given entity type
+     * @param  pageable        The pagination information
+     * @return
+     */
+    @SearchRestMethod(name = "findSubmitAuthorizedByCommunityAndEntityType")
+    public Page<CollectionRest> findSubmitAuthorizedByCommunityAndEntityType(
+        @Parameter(value = "query") String query,
+        @Parameter(value = "uuid", required = true) UUID communityUuid,
+        @Parameter(value = "entityType", required = true) String entityTypeLabel,
+        Pageable pageable) {
+        try {
+            Context context = obtainContext();
+            EntityType entityType = entityTypeService.findByEntityType(context, entityTypeLabel);
+            if (Objects.isNull(entityType)) {
+                throw new ResourceNotFoundException("There was no entityType found with label: " + entityTypeLabel);
+            }
+            Community community = communityService.find(context, communityUuid);
+            if (Objects.isNull(community)) {
+                throw new ResourceNotFoundException(
+                    CommunityRest.CATEGORY + "." + CommunityRest.NAME + " with id: " + communityUuid + " not found");
+            }
+            List<Collection> collections = cs.findCollectionsWithSubmit(query, context, community, entityTypeLabel,
+                Math.toIntExact(pageable.getOffset()),
+                Math.toIntExact(pageable.getPageSize()));
+            int total = cs.countCollectionsWithSubmit(query, context, community, entityTypeLabel);
+            return converter.toRestPage(collections, pageable, total, utils.obtainProjection());
+        } catch (SQLException | SearchServiceException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }

@@ -23,6 +23,7 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.InProgressSubmission;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
@@ -37,7 +38,9 @@ import org.dspace.discovery.indexobject.IndexableInProgressSubmission;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.discovery.indexobject.IndexableWorkflowItem;
 import org.dspace.discovery.indexobject.IndexableWorkspaceItem;
+import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  * Implementation of {@link ItemSearcher} and {@link ItemReferenceResolver} to
@@ -56,6 +59,9 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
 
     @Autowired
     private ChoiceAuthorityService choiceAuthorityService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     private final String metadata;
 
@@ -120,7 +126,7 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
 
     private void resolveReferences(Context context, List<MetadataValue> metadataValues, Item item)
         throws SQLException, AuthorizeException {
-
+        final boolean isValueToUpdate = checkWhetherTitleNeedsToBeSet();
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
 
         List<String> authorities = metadataValues.stream()
@@ -135,10 +141,17 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
 
             itemWithReference.getMetadata().stream()
                 .filter(metadataValue -> authorities.contains(metadataValue.getAuthority()))
-                .forEach(metadataValue -> metadataValue.setAuthority(item.getID().toString()));
+                .forEach(metadataValue -> setReferences(metadataValue, item, isValueToUpdate));
 
             itemService.update(context, itemWithReference);
         }
+    }
+
+    /**
+     * @return whether Title metadata needs to be updated
+     */
+    private boolean checkWhetherTitleNeedsToBeSet() {
+        return configurationService.getBooleanProperty("cris.item-reference-resolution.override-metadata-value");
     }
 
     private Iterator<ReloadableEntity<?>> findItemsToResolve(Context context, List<String> authorities,
@@ -160,6 +173,15 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
 
         return new DiscoverResultIterator<ReloadableEntity<?>, Serializable>(context, discoverQuery, false);
 
+    }
+
+    private void setReferences(MetadataValue metadataValue, Item item, boolean isValueToUpdate) {
+        metadataValue.setAuthority(item.getID().toString());
+        metadataValue.setConfidence(Choices.CF_ACCEPTED);
+        String newMetadataValue = itemService.getMetadata(item, "dc.title");
+        if (isValueToUpdate && StringUtils.isNotBlank(newMetadataValue)) {
+            metadataValue.setValue(newMetadataValue);
+        }
     }
 
     @SuppressWarnings("unchecked")

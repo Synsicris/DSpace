@@ -196,32 +196,32 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean hasRelationBoxContent(Context context, CrisLayoutBox box, Item item) {
-        Iterator<Item> relatedItems = searchConfigurationUtilsService.findByRelation(context, item, box.getShortname());
-        return relatedItems.hasNext();
+        // The relation box is shown also without result
+        return true;
     }
 
     private boolean hasHelpBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
-        // The relation box has no associated content
+        // The box has no associated content
         return true;
     }
 
     private boolean hasBrowseBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
-        // The relation box has no associated content
+        // The box has no associated content
         return true;
     }
 
     private boolean hasImpactPathwaysBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
-        // The relation box has no associated content
+        // The box has no associated content
         return true;
     }
 
     private boolean hasWorkingPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
-        // The relation box has no associated content
+        // The box has no associated content
         return true;
     }
 
     private boolean hasExploitationPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
-        // The relation box has no associated content
+        // The box has no associated content
         return true;
     }
 

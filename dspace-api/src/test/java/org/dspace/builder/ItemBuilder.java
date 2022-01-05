@@ -15,8 +15,11 @@ import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dspace.app.profile.OrcidEntitySyncPreference;
 import org.dspace.app.profile.OrcidProfileSyncPreference;
 import org.dspace.app.profile.OrcidSynchronizationMode;
@@ -42,6 +45,7 @@ import org.dspace.eperson.Group;
  * @author Raf Ponsaerts (raf dot ponsaerts at atmire dot com)
  */
 public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
+    private static final Logger log = LogManager.getLogger(ItemBuilder.class);
 
     private boolean withdrawn = false;
     private boolean inArchive = false;
@@ -170,6 +174,34 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, MetadataSchemaEnum.DC.getName(), "description", "provenance", provenanceData);
     }
 
+    public ItemBuilder enableIIIF() {
+        return addMetadataValue(item, "dspace", "iiif", "enabled", "true");
+    }
+
+    public ItemBuilder disableIIIF() {
+        return addMetadataValue(item, "dspace", "iiif", "enabled", "false");
+    }
+
+    public ItemBuilder enableIIIFSearch() {
+        return addMetadataValue(item, "iiif", "search", "enabled", "true");
+    }
+
+    public ItemBuilder withIIIFViewingHint(String hint) {
+        return addMetadataValue(item, "iiif", "viewing", "hint", hint);
+    }
+
+    public ItemBuilder withIIIFCanvasNaming(String naming) {
+        return addMetadataValue(item, "iiif", "canvas", "naming", naming);
+    }
+
+    public ItemBuilder withIIIFCanvasWidth(int i) {
+        return addMetadataValue(item, "iiif", "image", "width", String.valueOf(i));
+    }
+
+    public ItemBuilder withIIIFCanvasHeight(int i) {
+        return addMetadataValue(item, "iiif", "image", "height", String.valueOf(i));
+    }
+
     public ItemBuilder withMetadata(final String schema, final String element, final String qualifier,
                                     final String value) {
         return addMetadataValue(item, schema, element, qualifier, value);
@@ -220,6 +252,12 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withOrcidIdentifier(String orcid) {
         return addMetadataValue(item, "person", "identifier", "orcid", orcid);
+    }
+
+    public ItemBuilder withLegacyId(String legacyId) {
+
+        return addMetadataValue(item, "cris", "legacyId", null, legacyId);
+
     }
 
     public ItemBuilder withOrcidAccessToken(String accessToken) {
@@ -476,6 +514,10 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withType(String type) {
         return addMetadataValue(item, "dc", "type", null, type);
+    }
+
+    public ItemBuilder withType(String type, String authority) {
+        return addMetadataValue(item, "dc", "type", null, null, type, authority, 600);
     }
 
     public ItemBuilder withLanguage(String language) {
@@ -800,7 +842,6 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         try {
             installItemService.installItem(context, workspaceItem, this.handle);
             itemService.update(context, item);
-
             //Check if we need to make this item private. This has to be done after item install.
             if (readerGroup != null) {
                 setOnlyReadPermission(workspaceItem.getItem(), readerGroup, null);
@@ -820,6 +861,29 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         }
     }
 
+
+    public Item buildWithLastModifiedDate(Date lastModifiedDate) {
+        try {
+            installItemService.installItem(context, workspaceItem, this.handle);
+            itemService.updateLastModifiedDate(context, item, lastModifiedDate);
+            //Check if we need to make this item private. This has to be done after item install.
+            if (readerGroup != null) {
+                setOnlyReadPermission(workspaceItem.getItem(), readerGroup, null);
+            }
+
+            if (withdrawn) {
+                itemService.withdraw(context, item);
+            }
+            if (inArchive) {
+                item.setArchived(inArchive);
+            }
+            context.dispatchEvents();
+            indexingService.commit();
+            return item;
+        } catch (Exception e) {
+            return handleException(e);
+        }
+    }
     @Override
     public void cleanup() throws Exception {
         try (Context c = new Context()) {

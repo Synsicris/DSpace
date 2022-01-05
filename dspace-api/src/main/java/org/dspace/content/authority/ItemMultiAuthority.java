@@ -9,6 +9,7 @@ package org.dspace.content.authority;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,7 +36,7 @@ import org.dspace.utils.DSpace;
  * 
  * @author Mykhaylo Boychuk (4Science.it)
  */
-public class ItemMultiAuthority implements ChoiceAuthority {
+public class ItemMultiAuthority implements LinkableEntityAuthority {
     private static final Logger log = Logger.getLogger(ItemAuthority.class);
 
     private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
@@ -98,7 +99,7 @@ public class ItemMultiAuthority implements ChoiceAuthority {
         }
 
         customAuthorityFilters.stream()
-            .flatMap(caf -> caf.getFilterQueries(entityType).stream())
+            .flatMap(caf -> caf.getFilterQueries(this, entityType).stream())
             .forEach(solrQuery::addFilterQuery);
 
         try {
@@ -159,4 +160,15 @@ public class ItemMultiAuthority implements ChoiceAuthority {
     public String getPluginInstanceName() {
         return authorityName;
     }
+
+    @Override
+    public String[] getLinkedEntityType() {
+        return configurationService.getArrayProperty("cris.ItemAuthority." + field + ".entityType");
+    }
+
+    @Override
+    public Map<String, String> getExternalSource() {
+        return Map.of();
+    }
+
 }

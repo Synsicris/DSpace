@@ -43,9 +43,8 @@ public interface ItemService
     public Thumbnail getThumbnail(Context context, Item item, boolean requireOriginal) throws SQLException;
 
     /**
-     * Create a new item, with a new internal ID. This method is not public,
-     * since items need to be created as workspace items. Authorisation is the
-     * responsibility of the caller.
+     * Create a new item, with a new internal ID. Authorization is done
+     * inside of this method.
      *
      * @param context       DSpace context object
      * @param workspaceItem in progress workspace item
@@ -54,6 +53,19 @@ public interface ItemService
      * @throws AuthorizeException if authorization error
      */
     public Item create(Context context, WorkspaceItem workspaceItem) throws SQLException, AuthorizeException;
+
+    /**
+     * Create a new item, with a provided ID. Authorisation is done
+     * inside of this method.
+     *
+     * @param context DSpace context object
+     * @param workspaceItem in progress workspace item
+     * @param uuid the pre-determined UUID to assign to the new item
+     * @return the newly created item
+     * @throws SQLException if database error
+     * @throws AuthorizeException if authorization error
+     */
+    public Item create(Context context, WorkspaceItem workspaceItem, UUID uuid) throws SQLException, AuthorizeException;
 
     /**
      * Create an empty template item for this collection. If one already exists,
@@ -762,5 +774,30 @@ public interface ItemService
      * @return         the entity type as string, if any
      */
     public String getEntityType(Item item);
+
+    /**
+     * Find all the items in the archive or not with a given authority key value in LIKE format.
+     * 
+     * @param context         DSpace context object
+     * @param likeAuthority   value that will be used with operator LIKE on field
+     *                        authority, it's possible to enter '%' to improve
+     *                        searching
+     * @param inArchive       true for archived items, null for all items (archived and not)
+     * @return
+     * @throws SQLException   if database error
+     */
+    public Iterator<Item> findByLikeAuthorityValue(Context context, String likeAuthority,
+            Boolean inArchive) throws SQLException;
+
+    /**
+     * Find all the items matching the given list of ids.
+     *
+     * @param context         DSpace context object
+     * @param ids             ids list that will be used with operator IN on field uuid
+     *
+     * @return
+     * @throws SQLException   if database error
+     */
+    Iterator<Item> findByIds(Context context, List<String> ids) throws SQLException;
 
 }

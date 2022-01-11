@@ -7742,20 +7742,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Solution/ change/ innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
+        <displayed-value>Application of a solution / change / innovation</displayed-value>
+        <stored-value>application</stored-value>
       </pair>
       <pair>
         <displayed-value>External condition</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application of a solution / change / innovation</displayed-value>
-        <stored-value>application</stored-value>
+        <displayed-value>Solution/ change/ innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Next step and cooperation</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Spin-off (incl. association)</displayed-value>
@@ -7800,16 +7800,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
-        <displayed-value>Award</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Planned Publications</displayed-value>
         <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication</displayed-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Research result</displayed-value>
@@ -7818,10 +7814,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Publication</displayed-value>
-        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Object or material</displayed-value>
@@ -7843,6 +7835,14 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Award</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Others</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
@@ -7858,16 +7858,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Product</stored-value>
       </pair>
       <pair>
+        <displayed-value>Research result</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Object or material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Award or prize</displayed-value>
-        <stored-value>award</stored-value>
+        <displayed-value>Next step and cooperation</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research result</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>Award or prize</displayed-value>
+        <stored-value>award</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
@@ -7882,16 +7886,8 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Solution/ change/ innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Spin-off (incl. association)</displayed-value>
@@ -7925,6 +7921,10 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Others</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
@@ -7936,16 +7936,16 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>step</stored-value>
       </pair>
       <pair>
+        <displayed-value>Contributions to funding programme objectives</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
         <displayed-value>Others</displayed-value>

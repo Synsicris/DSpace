@@ -7751,20 +7751,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
-        <stored-value>step</stored-value>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
       </pair>
       <pair>
         <displayed-value>Rahmenbedingung</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>application</stored-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
@@ -7809,16 +7809,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung</displayed-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
@@ -7827,10 +7823,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veröffentlichung</displayed-value>
-        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
@@ -7852,6 +7844,14 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Auszeichnung</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
@@ -7867,16 +7867,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Product</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
-        <stored-value>award</stored-value>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnis</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <stored-value>award</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
@@ -7891,16 +7895,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
-        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
@@ -7934,6 +7930,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
@@ -7945,16 +7945,16 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>step</stored-value>
       </pair>
       <pair>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>

@@ -2202,7 +2202,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
         </field>
       </row>
     </form>

@@ -46,7 +46,7 @@ public class DefaultItemVersionProvider extends AbstractVersionProvider implemen
     protected IdentifierService identifierService;
 
     @Override
-    public Item createNewItemAndAddItInWorkspace(Context context, Item nativeItem) {
+    public Item createNewItem(Context context, Item nativeItem) {
         try {
             WorkspaceItem workspaceItem = workspaceItemService.create(context, nativeItem.getOwningCollection(), false);
             Item itemNew = workspaceItem.getItem();
@@ -90,7 +90,7 @@ public class DefaultItemVersionProvider extends AbstractVersionProvider implemen
     }
 
     @Override
-    public Item updateItemState(Context c, Item itemNew, Item previousItem) {
+    public Item updateItemState(Context c, Item itemNew, Item previousItem, Version version) {
         try {
             copyMetadata(c, itemNew, previousItem);
             createBundlesAndAddBitstreams(c, itemNew, previousItem);

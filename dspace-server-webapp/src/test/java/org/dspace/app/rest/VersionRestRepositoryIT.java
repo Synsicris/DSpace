@@ -48,23 +48,27 @@ import org.dspace.builder.BundleBuilder;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
+import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.ItemBuilder;
+import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.VersionBuilder;
 import org.dspace.builder.WorkflowItemBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Bundle;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
-import org.dspace.content.service.InstallItemService;
-import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.eperson.EPerson;
+import org.dspace.identifier.DOI;
+import org.dspace.identifier.dao.DOIDAO;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.service.VersioningService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.hamcrest.Matchers;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,13 +96,10 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
     private ConfigurationService configurationService;
 
     @Autowired
-    private InstallItemService installItemService;
-
-    @Autowired
-    private WorkspaceItemService workspaceItemService;
-
-    @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
+
+    @Autowired
+    private DOIDAO doiDao;
 
     @Before
     public void setup() throws SQLException, AuthorizeException {
@@ -114,7 +115,17 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity)
                                            .withName("Sub Community")
                                            .build();
-        Collection col1 = CollectionBuilder.createCollection(context, child1).withName("Collection 1").build();
+        Collection col1 = CollectionBuilder.createCollection(context, child1)
+            .withName("Collection 1")
+            .withEntityType("Publication")
+            .build();
+
+        EntityType publicationType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+
+        RelationshipTypeBuilder
+            .createRelationshipTypeBuilder(context, publicationType, publicationType,
+                "isVersionOf", "hasVersion", 0, 1, 0, null)
+            .build();
 
         //2. Three public items that are readable by Anonymous with different subjects
         item = ItemBuilder.createItem(context, col1)
@@ -125,6 +136,16 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                           .build();
 
         version = VersionBuilder.createVersion(context, item, "Fixing some typos").build();
+        context.restoreAuthSystemState();
+    }
+
+    @After
+    public void after() throws SQLException {
+        context.turnOffAuthorisationSystem();
+        List<DOI> dois = doiDao.findAll(context, DOI.class);
+        for (DOI doi : dois) {
+            doiDao.delete(context, doi);
+        }
         context.restoreAuthSystemState();
     }
 
@@ -210,12 +231,6 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         configurationService.setProperty("versioning.item.history.include.submitter", true);
 
     }
-    @Test
-    public void findOneUnauthorizedTest() throws Exception {
-
-        getClient().perform(get("/api/versioning/versions/" + version.getID()))
-                   .andExpect(status().isUnauthorized());
-    }
 
     @Test
     public void findOneForbiddenTest() throws Exception {
@@ -247,11 +262,6 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     @Test
     public void versionForItemTest() throws Exception {
-
-        context.turnOffAuthorisationSystem();
-        WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, version.getItem());
-        installItemService.installItem(context, workspaceItem);
-        context.restoreAuthSystemState();
         getClient().perform(get("/api/core/items/" + version.getItem().getID() + "/version"))
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$", Matchers.is(VersionMatcher.matchEntry(version))));
@@ -285,6 +295,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -326,6 +337,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -397,6 +409,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
                                           .withSubmitterGroup(admin)
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -415,23 +428,6 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         String adminToken = getAuthToken(admin.getEmail(), password);
 
         // item that linked last version is not archived
-        getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
-
-        // retrieve the workspace item
-        getClient(adminToken).perform(get("/api/submission/workspaceitems/search/item")
-                             .param("uuid", String.valueOf(lastVersionItem.getID())))
-                             .andExpect(status().isOk())
-                             .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-        // submit the workspaceitem to complete the deposit
-        getClient(adminToken).perform(post(BASE_REST_SERVER_URL + "/api/workflow/workflowitems")
-                             .content("/api/submission/workspaceitems/" + idRef.get())
-                             .contentType(textUriContentType))
-                             .andExpect(status().isCreated());
-
-        // now the item is archived
         getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
@@ -464,6 +460,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -486,31 +483,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
-        // item that linked last version is not archived
-        getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
-
-        // if there is item not archived, we can not create new version
-        getClient(adminToken).perform(post("/api/versioning/versions")
-                             .param("summary", "check first version")
-                             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
-                             .content("/api/core/items/" + item.getID()))
-                             .andExpect(status().isUnprocessableEntity());
-
-        // retrieve the workspace item
-        getClient(adminToken).perform(get("/api/submission/workspaceitems/search/item")
-                             .param("uuid", String.valueOf(lastVersionItem.getID())))
-                             .andExpect(status().isOk())
-                             .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-        // submit the workspaceitem to complete the deposit
-        getClient(adminToken).perform(post(BASE_REST_SERVER_URL + "/api/workflow/workflowitems")
-                             .content("/api/submission/workspaceitems/" + idRef.get())
-                             .contentType(textUriContentType))
-                             .andExpect(status().isCreated());
-
-        // now the item is archived
+        // item that linked last version is archived
         getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
@@ -538,19 +511,20 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         context.turnOffAuthorisationSystem();
 
         parentCommunity = CommunityBuilder.createCommunity(context)
-                                          .withName("Parent Community")
-                                          .build();
+            .withName("Parent Community")
+            .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test")
-                                          .build();
+            .withName("Collection test")
+            .withEntityType("Publication")
+            .build();
 
         Item item = ItemBuilder.createItem(context, col)
-                               .withTitle("Public test item")
-                               .withIssueDate("2021-03-20")
-                               .withAuthor("Doe, John")
-                               .withSubject("ExtraEntry")
-                               .build();
+            .withTitle("Public test item")
+            .withIssueDate("2021-03-20")
+            .withAuthor("Doe, John")
+            .withSubject("ExtraEntry")
+            .build();
 
         Version v = VersionBuilder.createVersion(context, item, "test summary").build();
         Item item2 = v.getItem();
@@ -559,26 +533,23 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         String adminToken = getAuthToken(admin.getEmail(), password);
 
-        // check that the item is deposited
         getClient(adminToken).perform(get("/api/core/items/" + item.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.uuid", Matchers.is(item.getID().toString())))
-                             .andExpect(jsonPath("$.withdrawn", Matchers.is(false)))
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.uuid", Matchers.is(item.getID().toString())))
+            .andExpect(jsonPath("$.withdrawn", Matchers.is(false)))
+            .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
-        // check that the item2 is not deposited yet
         getClient(adminToken).perform(get("/api/core/items/" + item2.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.uuid", Matchers.is(item2.getID().toString())))
-                             .andExpect(jsonPath("$.withdrawn", Matchers.is(false)))
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.uuid", Matchers.is(item2.getID().toString())))
+            .andExpect(jsonPath("$.withdrawn", Matchers.is(false)))
+            .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
-        // we can not create a new version because the item2 is in submission
         getClient(adminToken).perform(post("/api/versioning/versions")
-                             .param("summary", "check first version")
-                             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
-                             .content("/api/core/items/" + item.getID()))
-                             .andExpect(status().isUnprocessableEntity());
+            .param("summary", "check first version")
+            .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+            .content("/api/core/items/" + item.getID()))
+            .andExpect(status().isCreated());
     }
 
     @Test
@@ -648,6 +619,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Collection col = CollectionBuilder.createCollection(context, rootCommunity)
                                           .withName("Collection 1")
                                           .withSubmitterGroup(eperson)
+                                          .withEntityType("Publication")
                                           .build();
 
         Item itemA = ItemBuilder.createItem(context, col)
@@ -882,7 +854,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -931,7 +904,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -979,7 +953,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -1041,7 +1016,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -1076,7 +1052,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -1111,7 +1088,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                                .withTitle("Public test item")
@@ -1147,6 +1125,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -1181,7 +1160,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                                .withTitle("Public test item")
@@ -1214,7 +1194,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                           .build();
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                          .withName("Collection test").build();
+                                          .withName("Collection test")
+                                          .withEntityType("Publication").build();
 
         Item item = ItemBuilder.createItem(context, col)
                           .withTitle("Public test item")
@@ -1250,6 +1231,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection title")
                                           .withAdminGroup(eperson)
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -1310,6 +1292,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, subCommunityA)
                                           .withName("Collection title")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -1411,6 +1394,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
                                           .withSubmitterGroup(admin)
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -1429,24 +1413,6 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         Integer versionID = v2.getID();
         Item versionItem = v2.getItem();
 
-        // item that linked last version is not archived
-        getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
-
-        // retrieve the workspace item
-        getClient(adminToken).perform(get("/api/submission/workspaceitems/search/item")
-                             .param("uuid", String.valueOf(lastVersionItem.getID())))
-                             .andExpect(status().isOk())
-                             .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-        // submit the workspaceitem to complete the deposit
-        getClient(adminToken).perform(post(BASE_REST_SERVER_URL + "/api/workflow/workflowitems")
-                             .content("/api/submission/workspaceitems/" + idRef.get())
-                             .contentType(textUriContentType))
-                             .andExpect(status().isCreated());
-
-        // now the item is archived
         getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
@@ -1481,6 +1447,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, parentCommunity)
                                           .withName("Collection test")
+                                          .withEntityType("Publication")
                                           .build();
 
         Item item = ItemBuilder.createItem(context, col)
@@ -1506,32 +1473,14 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
-        // item that linked last version is not archived
-        getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
-
-        // retrieve the workspace item
-        getClient(adminToken).perform(get("/api/submission/workspaceitems/search/item")
-                             .param("uuid", String.valueOf(lastVersionItem.getID())))
-                             .andExpect(status().isOk())
-                             .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-        // submit the workspaceitem to complete the deposit
-        getClient(adminToken).perform(post(BASE_REST_SERVER_URL + "/api/workflow/workflowitems")
-                             .content("/api/submission/workspaceitems/" + idRef.get())
-                             .contentType(textUriContentType))
-                             .andExpect(status().isCreated());
-
-        // now the last version item is archived
         getClient(adminToken).perform(get("/api/core/items/" + lastVersionItem.getID()))
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
-        // the first version item is not archived, but is not in ProgressSubmission
+
         getClient(adminToken).perform(get("/api/core/items/" + item.getID()))
                              .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.inArchive", Matchers.is(false)));
+                             .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
 
         // check authorization that first version is possible to delete
         getClient(adminToken).perform(get("/api/authz/authorizations/" + admin2ItemA.getID()))
@@ -1550,6 +1499,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         Collection col = CollectionBuilder.createCollection(context, rootCommunity)
                                           .withName("Collection 1")
+                                          .withEntityType("Publication")
                                           .withSubmitterGroup(eperson)
                                           .build();
 

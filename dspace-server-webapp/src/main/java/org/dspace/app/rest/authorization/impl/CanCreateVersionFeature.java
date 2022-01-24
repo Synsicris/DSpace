@@ -77,12 +77,12 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
     }
 
     private boolean isMemberOfProjectAdminGroup(Context context, Item item, EPerson currentUser) throws SQLException {
-        Community projectCommunity = projectConsumerService.getParentCommunityByProjectItem(context, item);
+        Community projectCommunity = projectConsumerService.getProjectCommunity(context, item);
         if (projectCommunity == null) {
             return false;
         }
 
-        String adminGroupName = "project_" + projectCommunity + "_admin_group";
+        String adminGroupName = "project_" + projectCommunity.getID() + "_admin_group";
         Group adminGroup = groupService.findByName(context, adminGroupName);
         if (adminGroup == null) {
             return false;

@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 
 import org.apache.commons.collections4.IteratorUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
@@ -45,7 +45,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     public static final String VERSION_RELATIONSHIP = "isVersionOf";
 
-    public static final String VERSION_REFERENCE_PREFIX = "VERSION";
+    public static final String UNIQUE_ID_REFERENCE_PREFIX = "UNIQUE-ID";
 
     @Autowired
     private ItemCorrectionService correctionService;
@@ -67,7 +67,15 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Override
     public Item createNewItem(Context context, Item item) {
-        return createItemCopy(context, item);
+        context.turnOffAuthorisationSystem();
+        try {
+            WorkspaceItem workspaceItem = createWorkspaceItemCopy(context, item);
+            return installItemService.installItem(context, workspaceItem);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            context.restoreAuthSystemState();
+        }
     }
 
     @Override
@@ -77,14 +85,25 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             return itemNew;
         }
 
-        addIdAndVersionMetadata(context, itemNew, version);
+        String uniqueIdMetadataValue = composeUniqueId(previousItem.getID().toString(), version);
+        addUniqueIdMetadata(context, itemNew, uniqueIdMetadataValue);
+
         replaceAuthoritiesWithWillBeReferenced(context, itemNew, version);
 
-        if (isNotParentProject(previousItem)) {
-            return itemNew;
+        updateItem(context, itemNew);
+
+        if (isParentProject(previousItem)) {
+            createNewProjectVersion(context, previousItem, version);
         }
 
-        Iterator<Item> itemIterator = findItemsOfProject(context, previousItem);
+        return itemNew;
+
+    }
+
+    private void createNewProjectVersion(Context context, Item projectItem, Version version) {
+
+        Iterator<Item> itemIterator = findItemsOfProject(context, projectItem);
+
         while (itemIterator.hasNext()) {
 
             Item item = itemIterator.next();
@@ -93,18 +112,21 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
                 continue;
             }
 
-            Version cascadeVersion = versioningService.createNewVersion(context, item);
-
-            if (cascadeVersion.getVersionNumber() != version.getVersionNumber()) {
-                throw new IllegalStateException(
-                    "The version number created for the item " + item.getID() + " (" + cascadeVersion.getVersionNumber()
-                        + ") is different to the parent project version number (" + version.getVersionNumber() + ")");
-            }
+            versioningService.createNewVersion(context, item);
 
         }
 
-        return itemNew;
+    }
 
+    private void updateItem(Context context, Item item) {
+        context.turnOffAuthorisationSystem();
+        try {
+            itemService.update(context, item);
+        } catch (SQLException | AuthorizeException e) {
+            throw new RuntimeException(e);
+        } finally {
+            context.restoreAuthSystemState();
+        }
     }
 
     private boolean isVersionItem(Context context, Item item) {
@@ -119,7 +141,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     private Iterator<Item> findItemsOfProject(Context context, Item projectItem) {
         try {
 
-            Community projectCommunity = projectConsumerService.getParentCommunityByProjectItem(context, projectItem);
+            Community projectCommunity = projectConsumerService.getProjectCommunity(context, projectItem);
             if (projectCommunity == null) {
                 return IteratorUtils.emptyIterator();
             }
@@ -142,22 +164,12 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         return !configurationService.getBooleanProperty("versioning.project-version-provider.cascade-enabled", true);
     }
 
-    private Item createItemCopy(Context context, Item item) {
-        try {
-            WorkspaceItem workspaceItem = createWorkspaceItemCopy(context, item);
-            return installItemService.installItem(context, workspaceItem);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private WorkspaceItem createWorkspaceItemCopy(Context context, Item item) throws Exception {
         return correctionService.createWorkspaceItemAndRelationshipByItem(context, item.getID(), VERSION_RELATIONSHIP);
     }
 
-    private void addIdAndVersionMetadata(Context context, Item item, Version version) {
+    private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {
         try {
-            String metadataValue = composeUniqueId(item.getID().toString(), version);
             itemService.addMetadata(context, item, "synsicris", "uniqueid", null, null, metadataValue);
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
@@ -172,22 +184,13 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     }
 
     private boolean isNotSharedReference(Context context, String authority) {
-
         Item item = find(context, authority);
-        if (item == null) {
-            return false;
-        }
-
-        return isNotSharedItem(context, item);
+        return item != null ? isNotSharedItem(context, item) : false;
     }
 
     private boolean isNotSharedItem(Context context, Item item) {
 
-        String sharedCommunityName = configurationService.getProperty("shared.community-name");
-
-        if (StringUtils.isEmpty(sharedCommunityName)) {
-            return true;
-        }
+        String sharedCommunityName = configurationService.getProperty("shared.community-name", "Shared");
 
         try {
             return itemService.getCommunities(context, item).stream()
@@ -195,19 +198,20 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }
+
     }
 
     private void replaceAuthorityWithWillBeReferenced(MetadataValue metadataValue, Version version) {
         String uniqueId = composeUniqueId(metadataValue.getAuthority(), version);
-        metadataValue.setAuthority(REFERENCE + VERSION_REFERENCE_PREFIX + "::" + uniqueId);
+        metadataValue.setAuthority(REFERENCE + UNIQUE_ID_REFERENCE_PREFIX + "::" + uniqueId);
     }
 
     private String composeUniqueId(String itemId, Version version) {
         return itemId + "_" + version.getVersionNumber();
     }
 
-    private boolean isNotParentProject(Item item) {
-        return !projectConsumerService.isParentProjectItem(item);
+    private boolean isParentProject(Item item) {
+        return projectConsumerService.isParentProjectItem(item);
     }
 
     private Item find(Context context, String id) {

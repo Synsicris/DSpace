@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -116,12 +117,31 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
             return null;
         }
 
-        IndexableObject indexableObject = indexableObjects.get(0);
+        return convertToItems(indexableObjects)
+            .filter(item -> hasMetadataValue(item, metadata, searchParam))
+            .findFirst()
+            .orElse(null);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private Stream<Item> convertToItems(List<IndexableObject> indexableObjects) {
+        return indexableObjects.stream()
+            .map(this::convertToItem);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private Item convertToItem(IndexableObject indexableObject) {
         if (indexableObject instanceof IndexableItem) {
             return ((IndexableItem) indexableObject).getIndexedObject();
         } else {
             return ((IndexableInProgressSubmission) indexableObject).getIndexedObject().getItem();
         }
+    }
+
+    private boolean hasMetadataValue(Item item, String metadataField, String value) {
+        return itemService.getMetadataByMetadataString(item, metadataField).stream()
+            .filter(metadataValue -> metadataField.equals(metadataValue.getMetadataField().toString('.')))
+            .anyMatch(metadataValue -> value.equals(metadataValue.getValue()));
     }
 
     private void resolveReferences(Context context, List<MetadataValue> metadataValues, Item item)

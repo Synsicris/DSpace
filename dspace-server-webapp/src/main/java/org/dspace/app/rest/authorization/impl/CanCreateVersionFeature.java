@@ -6,6 +6,9 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.authorization.impl;
+
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
@@ -64,7 +67,7 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
 
         Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
-        if (!projectConsumerService.isParentProjectItem(item)) {
+        if (!projectConsumerService.isParentProjectItem(item) || isVersionItem(item)) {
             return false;
         }
 
@@ -89,6 +92,10 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
         }
 
         return groupService.isMember(context, currentUser, adminGroup);
+    }
+
+    private boolean isVersionItem(Item item) {
+        return isNotEmpty(itemService.getMetadataFirstValue(item, "synsicris", "uniqueid", null, Item.ANY));
     }
 
     @Override

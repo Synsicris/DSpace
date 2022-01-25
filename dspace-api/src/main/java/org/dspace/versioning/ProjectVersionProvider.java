@@ -108,7 +108,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
             Item item = itemIterator.next();
 
-            if (isVersionItem(context, item) || projectConsumerService.isParentProjectItem(item)) {
+            if (isVersionItem(item) || projectConsumerService.isParentProjectItem(item)) {
                 continue;
             }
 
@@ -129,7 +129,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         }
     }
 
-    private boolean isVersionItem(Context context, Item item) {
+    private boolean isVersionItem(Item item) {
         return isNotEmpty(itemService.getMetadataFirstValue(item, "synsicris", "uniqueid", null, Item.ANY));
     }
 

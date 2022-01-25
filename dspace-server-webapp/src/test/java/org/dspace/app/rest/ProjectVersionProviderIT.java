@@ -9,6 +9,7 @@ package org.dspace.app.rest;
 
 import static java.lang.String.join;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
+import static org.dspace.app.matcher.ResourcePolicyMatcher.matches;
 import static org.dspace.project.util.ProjectConstants.PARENTPROJECT_ENTITY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -24,12 +25,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
+import org.dspace.authorize.ResourcePolicy;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
+import org.dspace.builder.ResourcePolicyBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
@@ -39,6 +42,7 @@ import org.dspace.content.Relationship;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.RelationshipService;
+import org.dspace.core.Constants;
 import org.dspace.event.factory.EventServiceFactory;
 import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
@@ -365,6 +369,55 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             hasItem(with("synsicris.uniqueid", firstPerson.getID().toString() + "_2")));
 
         assertThat(findOneByRelationship(secondPerson.getItem(), personIsVersionOf), nullValue());
+    }
+
+    @Test
+    public void testProjectVersioningWithResourcePoliciesCopy() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item person = ItemBuilder.createItem(context, persons)
+            .withTitle("Person")
+            .build();
+
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withUser(eperson)
+            .withPolicyType(ResourcePolicy.TYPE_INHERITED)
+            .withDspaceObject(person)
+            .withName("Test resource policy 1")
+            .withAction(Constants.READ)
+            .build();
+
+        ResourcePolicyBuilder.createResourcePolicy(context)
+            .withUser(admin)
+            .withPolicyType(ResourcePolicy.TYPE_CUSTOM)
+            .withDspaceObject(person)
+            .withName("Test resource policy 2")
+            .withAction(Constants.READ)
+            .build();
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        getClient(token).perform(post("/api/versioning/versions")
+            .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+            .content("/api/core/items/" + parentProject.getID()))
+            .andExpect(status().isCreated());
+
+        Item personV2 = findOneByRelationship(person, personIsVersionOf);
+        assertThat(personV2.isArchived(), is(true));
+        assertThat(personV2.getOwningCollection(), is(persons));
+        assertThat(personV2, notNullValue());
+        assertThat(personV2.getMetadata(), hasItem(with("dc.title", "Person")));
+        assertThat(personV2.getMetadata(),
+            hasItem(with("synsicris.uniqueid", person.getID().toString() + "_2")));
+
+        List<ResourcePolicy> resourcePolicies = personV2.getResourcePolicies();
+        assertThat(resourcePolicies, hasSize(2));
+        assertThat(resourcePolicies, hasItem(matches(Constants.READ, admin, ResourcePolicy.TYPE_CUSTOM)));
+        assertThat(resourcePolicies, hasItem(matches(Constants.READ, eperson, ResourcePolicy.TYPE_INHERITED)));
+
     }
 
     private Community createCommunity(String name) {

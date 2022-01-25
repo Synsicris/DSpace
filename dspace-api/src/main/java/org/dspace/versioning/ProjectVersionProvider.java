@@ -13,9 +13,12 @@ import static org.dspace.authority.service.AuthorityValueService.REFERENCE;
 
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.authorize.ResourcePolicy;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.Item;
@@ -34,6 +37,7 @@ import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.DiscoverResultItemIterator;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.indexobject.IndexableItem;
+import org.dspace.eperson.Group;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
@@ -180,19 +184,39 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     }
 
     private WorkspaceItem createWorkspaceItemCopy(Context context, Item item) throws Exception {
+
         WorkspaceItem workspaceItem = workspaceItemService.create(context, item.getOwningCollection(), false);
 
-        RelationshipType relationshipType = findRelationshipType(context, item, VERSION_RELATIONSHIP);
+        createIsVersionOfRelationship(context,workspaceItem.getItem(), item );
+        copyMetadata(context, workspaceItem.getItem(), item);
+        createBundlesAndAddBitstreams(context, workspaceItem.getItem(), item);
+        copyResourcePolicies(context, workspaceItem.getItem(), item);
+
+        return workspaceItem;
+
+    }
+
+    private void createIsVersionOfRelationship(Context context, Item newItem, Item previousItem)
+        throws SQLException, AuthorizeException {
+        RelationshipType relationshipType = findRelationshipType(context, previousItem, VERSION_RELATIONSHIP);
         if (relationshipType == null) {
             throw new IllegalArgumentException("No relationship type found for " + VERSION_RELATIONSHIP);
         }
+        relationshipService.create(context, newItem, previousItem, relationshipType, false);
+    }
 
-        relationshipService.create(context, workspaceItem.getItem(), item, relationshipType, false);
+    private void copyResourcePolicies(Context context, Item newItem, Item previousItem) throws Exception {
 
-        copyMetadata(context, workspaceItem.getItem(), item);
-        createBundlesAndAddBitstreams(context, workspaceItem.getItem(), item);
+        List<ResourcePolicy> policies = authorizeService.getPolicies(context, previousItem).stream()
+            .filter(policy -> isNotRelatedToAnonymousGroup(policy))
+            .collect(Collectors.toList());
 
-        return workspaceItem;
+        authorizeService.addPolicies(context, policies, newItem);
+
+    }
+
+    private boolean isNotRelatedToAnonymousGroup(ResourcePolicy policy) {
+        return policy.getGroup() == null || !policy.getGroup().getName().equals(Group.ANONYMOUS);
     }
 
     private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {

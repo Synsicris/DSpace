@@ -17,11 +17,17 @@ import java.util.Iterator;
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Community;
+import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.service.EntityTypeService;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.RelationshipService;
+import org.dspace.content.service.RelationshipTypeService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.discovery.DiscoverQuery;
@@ -48,9 +54,6 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     public static final String UNIQUE_ID_REFERENCE_PREFIX = "UNIQUE-ID";
 
     @Autowired
-    private ItemCorrectionService correctionService;
-
-    @Autowired
     private InstallItemService installItemService;
 
     @Autowired
@@ -64,6 +67,18 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Autowired
     protected VersioningService versioningService;
+
+    @Autowired
+    protected WorkspaceItemService workspaceItemService;
+
+    @Autowired
+    protected RelationshipService relationshipService;
+
+    @Autowired
+    protected RelationshipTypeService relationshipTypeService;
+
+    @Autowired
+    protected EntityTypeService entityTypeService;
 
     @Override
     public Item createNewItem(Context context, Item item) {
@@ -165,7 +180,19 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     }
 
     private WorkspaceItem createWorkspaceItemCopy(Context context, Item item) throws Exception {
-        return correctionService.createWorkspaceItemAndRelationshipByItem(context, item.getID(), VERSION_RELATIONSHIP);
+        WorkspaceItem workspaceItem = workspaceItemService.create(context, item.getOwningCollection(), false);
+
+        RelationshipType relationshipType = findRelationshipType(context, item, VERSION_RELATIONSHIP);
+        if (relationshipType == null) {
+            throw new IllegalArgumentException("No relationship type found for " + VERSION_RELATIONSHIP);
+        }
+
+        relationshipService.create(context, workspaceItem.getItem(), item, relationshipType, false);
+
+        copyMetadata(context, workspaceItem.getItem(), item);
+        createBundlesAndAddBitstreams(context, workspaceItem.getItem(), item);
+
+        return workspaceItem;
     }
 
     private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {
@@ -212,6 +239,19 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private boolean isParentProject(Item item) {
         return projectConsumerService.isParentProjectItem(item);
+    }
+
+    private RelationshipType findRelationshipType(Context context, Item item, String relationship)
+        throws SQLException, IllegalArgumentException {
+
+        EntityType type = entityTypeService.findByItem(context, item);
+        if (type == null) {
+            return null;
+        }
+
+        return relationshipTypeService.findByLeftwardOrRightwardTypeName(context, relationship).stream()
+            .filter(relationshipType -> type.equals(relationshipType.getLeftType())).findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Relationship type " + relationship + " does not exist"));
     }
 
     private Item find(Context context, String id) {

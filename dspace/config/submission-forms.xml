@@ -1046,7 +1046,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Enter appropriate subject keywords or phrases.</hint>
-          <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -2202,6 +2201,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>

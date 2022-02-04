@@ -168,7 +168,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
-        List<Community> subCommunities = projectCommunity.getSubcommunities();
+        List<Community> subCommunities = new ArrayList<>();
+        subCommunities.addAll(projectCommunity.getSubcommunities());
+        subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
             if (StringUtils.equals(subprojectName, community.getName())) {
                 return community;

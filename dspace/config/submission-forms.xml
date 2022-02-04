@@ -3,6 +3,20 @@
 
 <input-forms>
   <form-definitions>
+    <form name="edit_grants">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Grants</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_form">
       <row>
         <field>

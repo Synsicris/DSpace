@@ -3,9 +3,14 @@
 
 <item-submission>
   <submission-map>
-    <name-map collection-handle="default" submission-name="impact_pathway" />
+    <name-map collection-handle="default" submission-name="edit_grants" />
   </submission-map>
   <step-definitions>
+    <step-definition id="edit_grants" mandatory="true">
+      <heading>submit.progressbar.describe.edit_grants</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="impact_pathway_form" mandatory="true">
       <heading>submit.progressbar.describe.impact_pathway_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -462,6 +467,9 @@
     </step-definition>
   </step-definitions>
   <submission-definitions>
+    <submission-process name="edit_grants">
+      <step id="edit_grants" />
+    </submission-process>
     <submission-process name="impact_pathway">
       <step id="impact_pathway_form" />
     </submission-process>

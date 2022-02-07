@@ -146,9 +146,31 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return parentProjectCommunity;
     }
 
+
+    @Override
+    public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
+            throws SQLException {
+        if (Objects.isNull(projectCommunity)) {
+            return null;
+        }
+        String template;
+        switch (role) {
+            case ProjectConstants.MEMBERS_ROLE:
+                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;;
+                break;
+            default:
+                template = ProjectConstants.ADMIN_GROUP_TEMPLATE;
+                break;
+        }
+        String groupName = String.format(template, projectCommunity.getID().toString());
+        return groupService.findByName(context, groupName);
+    }
+    
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
-        List<Community> subCommunities = projectCommunity.getSubcommunities();
+        List<Community> subCommunities = new ArrayList<>();
+        subCommunities.addAll(projectCommunity.getSubcommunities());
+        subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
             if (StringUtils.equals(subprojectName, community.getName())) {
                 return community;

@@ -28,6 +28,7 @@ import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -186,7 +187,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                                                  .append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
         boolean isAdmin = authorizeService.isAdmin(context);
-        boolean isCommunityAdmin = authorizeService.isAdmin(context, community);
+        boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),

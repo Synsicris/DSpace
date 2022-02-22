@@ -14,6 +14,7 @@ import static org.dspace.authority.service.AuthorityValueService.REFERENCE;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,6 +33,7 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.discovery.DiscoverQuery;
@@ -39,10 +41,13 @@ import org.dspace.discovery.DiscoverResultItemIterator;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
 import org.dspace.versioning.service.VersioningService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -53,6 +58,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public class ProjectVersionProvider extends AbstractVersionProvider implements ItemVersionProvider {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectVersionProvider.class);
 
     public static final String VERSION_RELATIONSHIP = "isVersionOf";
 
@@ -84,6 +91,9 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Autowired
     protected EntityTypeService entityTypeService;
+
+    @Autowired
+    protected GroupService groupService;
 
     @Override
     public Item createNewItem(Context context, Item item) {
@@ -217,6 +227,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         copyMetadata(context, workspaceItem.getItem(), item);
         createBundlesAndAddBitstreams(context, workspaceItem.getItem(), item);
         copyResourcePolicies(context, workspaceItem.getItem(), item);
+        addFunderGroupIfConfigured(context, workspaceItem.getItem());
 
         return workspaceItem;
 
@@ -251,6 +262,20 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private boolean isNotRelatedToAnonymousGroup(ResourcePolicy policy) {
         return policy.getGroup() == null || !policy.getGroup().getName().equals(Group.ANONYMOUS);
+    }
+
+    private void addFunderGroupIfConfigured(Context context, Item item) throws SQLException, AuthorizeException {
+        UUID funderGroupId = UUIDUtils.fromString(configurationService.getProperty("project.funder_programme.group"));
+        if (funderGroupId == null) {
+            return;
+        }
+
+        Group funderGroup = groupService.find(context, funderGroupId);
+        if (funderGroup == null) {
+            LOGGER.warn("No funder group found by id: " + funderGroupId);
+        }
+
+        authorizeService.addPolicy(context, item, Constants.READ, funderGroup);
     }
 
     private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {

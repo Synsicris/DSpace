@@ -44,6 +44,7 @@ import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.core.Constants;
+import org.dspace.eperson.Group;
 import org.dspace.event.factory.EventServiceFactory;
 import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
@@ -69,6 +70,9 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
     @Autowired
     private VersioningService versioningService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     private Community joinProjects;
 
@@ -448,6 +452,41 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, admin, ResourcePolicy.TYPE_CUSTOM)));
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, eperson, ResourcePolicy.TYPE_INHERITED)));
 
+    }
+
+    @Test
+    public void testProjectVersioningWithFunderGroupReadPolicy() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Group funderGroup = GroupBuilder.createGroup(context)
+            .withName("Funder group")
+            .build();
+
+        configurationService.setProperty("project.funder_programme.group", funderGroup.getID());
+
+        Item person = ItemBuilder.createItem(context, persons)
+            .withTitle("Person")
+            .build();
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        getClient(token).perform(post("/api/versioning/versions")
+            .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+            .content("/api/core/items/" + parentProject.getID()))
+            .andExpect(status().isCreated());
+
+        Item personV2 = findOneByRelationship(person, personIsVersionOf);
+        assertThat(personV2.isArchived(), is(true));
+        assertThat(personV2.getOwningCollection(), is(persons));
+        assertThat(personV2, notNullValue());
+        assertThat(personV2.getMetadata(), hasItem(with("dc.title", "Person")));
+        assertThat(personV2.getMetadata(),
+            hasItem(with("synsicris.uniqueid", person.getID().toString() + "_2")));
+
+        assertThat(personV2.getResourcePolicies(), hasItem(matches(Constants.READ, funderGroup, null)));
     }
 
     private Community createCommunity(String name) {

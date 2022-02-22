@@ -128,7 +128,7 @@
 
     <bean class="org.dspace.versioning.VersionHistoryServiceImpl"/>
 
-    <bean class="org.dspace.metadataSecurity.MetadataSecurityService"/>
+    <bean class="org.dspace.content.security.MetadataSecurityServiceImpl"/>
     <bean class="org.dspace.metricsSecurity.BoxMetricsLayoutConfigurationService"/>
 
     <!-- Configurable workflow services -->
@@ -175,6 +175,11 @@
     <bean class="org.dspace.authenticate.oidc.impl.OidcClientImpl" />
     <bean class="org.dspace.layout.script.service.impl.CrisLayoutToolValidatorImpl"/>
     <bean class="org.dspace.layout.script.service.impl.CrisLayoutToolParserImpl"/>
+    
+    <bean class="org.dspace.statistics.LoginStatisticsServiceImpl" />
+
+    <bean class="org.dspace.statistics.WorkflowStatisticsServiceImpl" />
+
 
     <bean class="org.dspace.submit.consumer.service.ProjectConsumerServiceImpl" />
 

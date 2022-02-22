@@ -28,6 +28,7 @@ import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -146,9 +147,31 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return parentProjectCommunity;
     }
 
+
+    @Override
+    public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
+            throws SQLException {
+        if (Objects.isNull(projectCommunity)) {
+            return null;
+        }
+        String template;
+        switch (role) {
+            case ProjectConstants.MEMBERS_ROLE:
+                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;;
+                break;
+            default:
+                template = ProjectConstants.ADMIN_GROUP_TEMPLATE;
+                break;
+        }
+        String groupName = String.format(template, projectCommunity.getID().toString());
+        return groupService.findByName(context, groupName);
+    }
+    
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
-        List<Community> subCommunities = projectCommunity.getSubcommunities();
+        List<Community> subCommunities = new ArrayList<>();
+        subCommunities.addAll(projectCommunity.getSubcommunities());
+        subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
             if (StringUtils.equals(subprojectName, community.getName())) {
                 return community;
@@ -164,7 +187,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                                                  .append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
         boolean isAdmin = authorizeService.isAdmin(context);
-        boolean isCommunityAdmin = authorizeService.isAdmin(context, community);
+        boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),

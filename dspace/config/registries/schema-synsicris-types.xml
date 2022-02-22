@@ -196,4 +196,25 @@
         <scope_note></scope_note>
     </dc-type>
     
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>common-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>projectpartner</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>team</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
 </dspace-dc-types>

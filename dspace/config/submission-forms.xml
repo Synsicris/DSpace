@@ -3,6 +3,20 @@
 
 <input-forms>
   <form-definitions>
+    <form name="edit_grants">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Grants</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_form">
       <row>
         <field>
@@ -128,6 +142,117 @@
           <required>mandatory</required>
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>fundingobjective</dc-qualifier>
+          <label>Select funding programme objective</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parent</dc-qualifier>
+          <label>Link to impact pathway</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Link to impact pathway task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_link_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>outcome</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>Outcome Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>bidirectional</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>bidirectional Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -403,7 +528,7 @@
         </field>
       </row>
     </form>
-    <form name="working_plan_workpackage_form">
+    <form name="working_plan_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -439,6 +564,8 @@
           <hint />
           <visibility>workflow</visibility>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -477,8 +604,46 @@
           <visibility>workflow</visibility>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
     </form>
-    <form name="working_plan_workpackage_step_form">
+    <form name="working_plan_step_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -550,6 +715,143 @@
           <required />
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="working_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Enter the start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>Enter the end date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partner-wp</dc-qualifier>
+          <label>Responsible Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
         </field>
       </row>
     </form>
@@ -713,6 +1015,69 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>exploitationplan</dc-qualifier>
+          <label>Relation exploitation plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Are applications for property rights being considered or have property rights already been granted?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -1046,7 +1411,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint>Enter appropriate subject keywords or phrases.</hint>
-          <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -7742,20 +8106,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Solution/ change/ innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
+        <displayed-value>Application of a solution / change / innovation</displayed-value>
+        <stored-value>application</stored-value>
       </pair>
       <pair>
         <displayed-value>External condition</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application of a solution / change / innovation</displayed-value>
-        <stored-value>application</stored-value>
+        <displayed-value>Solution/ change/ innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Next step and cooperation</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Spin-off (incl. association)</displayed-value>
@@ -7800,16 +8164,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
-        <displayed-value>Award</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Planned Publications</displayed-value>
         <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication</displayed-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Research result</displayed-value>
@@ -7818,10 +8178,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Publication</displayed-value>
-        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Object or material</displayed-value>
@@ -7843,6 +8199,14 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Award</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Others</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
@@ -7858,16 +8222,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Product</stored-value>
       </pair>
       <pair>
+        <displayed-value>Research result</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Object or material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Award or prize</displayed-value>
-        <stored-value>award</stored-value>
+        <displayed-value>Next step and cooperation</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research result</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>Award or prize</displayed-value>
+        <stored-value>award</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
@@ -7882,16 +8250,8 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Solution/ change/ innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Spin-off (incl. association)</displayed-value>
@@ -7925,6 +8285,10 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Others</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
@@ -7936,16 +8300,16 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>step</stored-value>
       </pair>
       <pair>
+        <displayed-value>Contributions to funding programme objectives</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
         <displayed-value>Others</displayed-value>
@@ -8028,11 +8392,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value />
       </pair>
       <pair>
-        <displayed-value>Afghanistan</displayed-value>
+        <displayed-value>Afganistán</displayed-value>
         <stored-value>AF</stored-value>
       </pair>
       <pair>
-        <displayed-value>Åland Islands</displayed-value>
+        <displayed-value>Islas de Åland</displayed-value>
         <stored-value>AX</stored-value>
       </pair>
       <pair>
@@ -8044,7 +8408,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>DZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>American Samoa</displayed-value>
+        <displayed-value>Samoa Americana</displayed-value>
         <stored-value>AS</stored-value>
       </pair>
       <pair>
@@ -8056,15 +8420,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>AO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Anguilla</displayed-value>
+        <displayed-value>Anguila</displayed-value>
         <stored-value>AI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Antarctica</displayed-value>
+        <displayed-value>Antártida</displayed-value>
         <stored-value>AQ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Antigua and Barbuda</displayed-value>
+        <displayed-value>Antigua y Barbuda</displayed-value>
         <stored-value>AG</stored-value>
       </pair>
       <pair>
@@ -8088,16 +8452,16 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>AT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Azerbaijan</displayed-value>
+        <displayed-value>Azerbayán</displayed-value>
         <stored-value>AZ</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Bahrain</displayed-value>
-        <stored-value>BH</stored-value>
       </pair>
       <pair>
         <displayed-value>Bahamas</displayed-value>
         <stored-value>BS</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bahrein</displayed-value>
+        <stored-value>BH</stored-value>
       </pair>
       <pair>
         <displayed-value>Bangladesh</displayed-value>
@@ -8108,59 +8472,59 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>BB</stored-value>
       </pair>
       <pair>
-        <displayed-value>Belarus</displayed-value>
+        <displayed-value>Bielorrusia</displayed-value>
         <stored-value>BY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Belgium</displayed-value>
+        <displayed-value>Bélgica</displayed-value>
         <stored-value>BE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Belize</displayed-value>
+        <displayed-value>Belice</displayed-value>
         <stored-value>BZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Benin</displayed-value>
+        <displayed-value>Benín</displayed-value>
         <stored-value>BJ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bermuda</displayed-value>
+        <displayed-value>Islas Bermudas</displayed-value>
         <stored-value>BM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bhutan</displayed-value>
+        <displayed-value>Bhután</displayed-value>
         <stored-value>BT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bolivia, Plurinational State of</displayed-value>
+        <displayed-value>Bolivia</displayed-value>
         <stored-value>BO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bonaire, Sint Eustatius and Saba</displayed-value>
+        <displayed-value>Bonaire, San Eustaquio y Saba</displayed-value>
         <stored-value>BQ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bosnia and Herzegovina</displayed-value>
+        <displayed-value>Bosnia y Herzegovina</displayed-value>
         <stored-value>BA</stored-value>
       </pair>
       <pair>
-        <displayed-value>Botswana</displayed-value>
+        <displayed-value>Botsuana</displayed-value>
         <stored-value>BW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bouvet Island</displayed-value>
+        <displayed-value>Isla Bouvet</displayed-value>
         <stored-value>BV</stored-value>
       </pair>
       <pair>
-        <displayed-value>Brazil</displayed-value>
+        <displayed-value>Brasil</displayed-value>
         <stored-value>BR</stored-value>
       </pair>
       <pair>
-        <displayed-value>British Indian Ocean Territory</displayed-value>
+        <displayed-value>Territorio Británico del Océano Índico</displayed-value>
         <stored-value>IO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Brunei Darussalam</displayed-value>
+        <displayed-value>Brunéi</displayed-value>
         <stored-value>BN</stored-value>
       </pair>
       <pair>
@@ -8176,27 +8540,27 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>BI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Cambodia</displayed-value>
-        <stored-value>KH</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cameroon</displayed-value>
-        <stored-value>CM</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Canada</displayed-value>
-        <stored-value>CA</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cape Verde</displayed-value>
+        <displayed-value>Cabo Verde</displayed-value>
         <stored-value>CV</stored-value>
       </pair>
       <pair>
-        <displayed-value>Cayman Islands</displayed-value>
+        <displayed-value>Camboya</displayed-value>
+        <stored-value>KH</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Camerún</displayed-value>
+        <stored-value>CM</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Canadá</displayed-value>
+        <stored-value>CA</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Islas Caimán</displayed-value>
         <stored-value>KY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Central African Republic</displayed-value>
+        <displayed-value>República Centroafricana</displayed-value>
         <stored-value>CF</stored-value>
       </pair>
       <pair>
@@ -8212,11 +8576,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>CN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Christmas Island</displayed-value>
+        <displayed-value>Isla de Navidad</displayed-value>
         <stored-value>CX</stored-value>
       </pair>
       <pair>
-        <displayed-value>Cocos (Keeling) Islands</displayed-value>
+        <displayed-value>Islas Cocos (Keeling)</displayed-value>
         <stored-value>CC</stored-value>
       </pair>
       <pair>
@@ -8224,19 +8588,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>CO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Comoros</displayed-value>
+        <displayed-value>Comoras</displayed-value>
         <stored-value>KM</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Congo</displayed-value>
+        <stored-value>CD</stored-value>
       </pair>
       <pair>
         <displayed-value>Congo</displayed-value>
         <stored-value>CG</stored-value>
       </pair>
       <pair>
-        <displayed-value>Congo, the Democratic Republic of the</displayed-value>
-        <stored-value>CD</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Cook Islands</displayed-value>
+        <displayed-value>Islas Cook</displayed-value>
         <stored-value>CK</stored-value>
       </pair>
       <pair>
@@ -8244,11 +8608,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>CR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Côte d'Ivoire</displayed-value>
+        <displayed-value>Costa de Marfil</displayed-value>
         <stored-value>CI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Croatia</displayed-value>
+        <displayed-value>Croacia</displayed-value>
         <stored-value>HR</stored-value>
       </pair>
       <pair>
@@ -8256,23 +8620,23 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>CU</stored-value>
       </pair>
       <pair>
-        <displayed-value>Curaçao</displayed-value>
+        <displayed-value>Curazao</displayed-value>
         <stored-value>CW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Cyprus</displayed-value>
+        <displayed-value>Chipre</displayed-value>
         <stored-value>CY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Czech Republic</displayed-value>
+        <displayed-value>República Checa</displayed-value>
         <stored-value>CZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Denmark</displayed-value>
+        <displayed-value>Dinamarca</displayed-value>
         <stored-value>DK</stored-value>
       </pair>
       <pair>
-        <displayed-value>Djibouti</displayed-value>
+        <displayed-value>Yibuti</displayed-value>
         <stored-value>DJ</stored-value>
       </pair>
       <pair>
@@ -8280,7 +8644,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>DM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Dominican Republic</displayed-value>
+        <displayed-value>República Dominicana</displayed-value>
         <stored-value>DO</stored-value>
       </pair>
       <pair>
@@ -8288,7 +8652,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>EC</stored-value>
       </pair>
       <pair>
-        <displayed-value>Egypt</displayed-value>
+        <displayed-value>Egipto</displayed-value>
         <stored-value>EG</stored-value>
       </pair>
       <pair>
@@ -8296,7 +8660,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>SV</stored-value>
       </pair>
       <pair>
-        <displayed-value>Equatorial Guinea</displayed-value>
+        <displayed-value>Guinea Ecuatorial</displayed-value>
         <stored-value>GQ</stored-value>
       </pair>
       <pair>
@@ -8308,43 +8672,43 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>EE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ethiopia</displayed-value>
+        <displayed-value>Etiopía</displayed-value>
         <stored-value>ET</stored-value>
       </pair>
       <pair>
-        <displayed-value>Falkland Islands (Malvinas)</displayed-value>
+        <displayed-value>Islas Malvinas</displayed-value>
         <stored-value>FK</stored-value>
       </pair>
       <pair>
-        <displayed-value>Faroe Islands</displayed-value>
+        <displayed-value>Islas Feroe</displayed-value>
         <stored-value>FO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Fiji</displayed-value>
+        <displayed-value>Fiyi</displayed-value>
         <stored-value>FJ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Finland</displayed-value>
+        <displayed-value>Finlandia</displayed-value>
         <stored-value>FI</stored-value>
       </pair>
       <pair>
-        <displayed-value>France</displayed-value>
+        <displayed-value>Francia</displayed-value>
         <stored-value>FR</stored-value>
       </pair>
       <pair>
-        <displayed-value>French Guiana</displayed-value>
+        <displayed-value>Guayana Francesa</displayed-value>
         <stored-value>GF</stored-value>
       </pair>
       <pair>
-        <displayed-value>French Polynesia</displayed-value>
+        <displayed-value>Polinesia Francesa</displayed-value>
         <stored-value>PF</stored-value>
       </pair>
       <pair>
-        <displayed-value>French Southern Territories</displayed-value>
+        <displayed-value>Territorios Australes y Antárticas Franceses</displayed-value>
         <stored-value>TF</stored-value>
       </pair>
       <pair>
-        <displayed-value>Gabon</displayed-value>
+        <displayed-value>Gabón</displayed-value>
         <stored-value>GA</stored-value>
       </pair>
       <pair>
@@ -8356,7 +8720,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>GE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Germany</displayed-value>
+        <displayed-value>Alemania</displayed-value>
         <stored-value>DE</stored-value>
       </pair>
       <pair>
@@ -8368,19 +8732,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>GI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Greece</displayed-value>
+        <displayed-value>Grecia</displayed-value>
         <stored-value>GR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Greenland</displayed-value>
+        <displayed-value>Groenlandia</displayed-value>
         <stored-value>GL</stored-value>
       </pair>
       <pair>
-        <displayed-value>Grenada</displayed-value>
+        <displayed-value>Granada</displayed-value>
         <stored-value>GD</stored-value>
       </pair>
       <pair>
-        <displayed-value>Guadeloupe</displayed-value>
+        <displayed-value>Guadalupe</displayed-value>
         <stored-value>GP</stored-value>
       </pair>
       <pair>
@@ -8408,15 +8772,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>GY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Haiti</displayed-value>
+        <displayed-value>Haití</displayed-value>
         <stored-value>HT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Heard Island and McDonald Islands</displayed-value>
+        <displayed-value>Islas Heard y McDonald</displayed-value>
         <stored-value>HM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Holy See (Vatican City State)</displayed-value>
+        <displayed-value>Ciudad del Vaticano</displayed-value>
         <stored-value>VA</stored-value>
       </pair>
       <pair>
@@ -8424,15 +8788,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>HN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Hong Kong</displayed-value>
+        <displayed-value>Hong kong</displayed-value>
         <stored-value>HK</stored-value>
       </pair>
       <pair>
-        <displayed-value>Hungary</displayed-value>
+        <displayed-value>Hungría</displayed-value>
         <stored-value>HU</stored-value>
       </pair>
       <pair>
-        <displayed-value>Iceland</displayed-value>
+        <displayed-value>Islandia</displayed-value>
         <stored-value>IS</stored-value>
       </pair>
       <pair>
@@ -8444,19 +8808,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>ID</stored-value>
       </pair>
       <pair>
-        <displayed-value>Iran, Islamic Republic of</displayed-value>
+        <displayed-value>Irán</displayed-value>
         <stored-value>IR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Iraq</displayed-value>
+        <displayed-value>Irak</displayed-value>
         <stored-value>IQ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ireland</displayed-value>
+        <displayed-value>Irlanda</displayed-value>
         <stored-value>IE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Isle of Man</displayed-value>
+        <displayed-value>Isla de Man</displayed-value>
         <stored-value>IM</stored-value>
       </pair>
       <pair>
@@ -8464,7 +8828,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>IL</stored-value>
       </pair>
       <pair>
-        <displayed-value>Italy</displayed-value>
+        <displayed-value>Italia</displayed-value>
         <stored-value>IT</stored-value>
       </pair>
       <pair>
@@ -8472,7 +8836,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>JM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Japan</displayed-value>
+        <displayed-value>Japón</displayed-value>
         <stored-value>JP</stored-value>
       </pair>
       <pair>
@@ -8480,15 +8844,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>JE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Jordan</displayed-value>
+        <displayed-value>Jordania</displayed-value>
         <stored-value>JO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Kazakhstan</displayed-value>
+        <displayed-value>Kazajistán</displayed-value>
         <stored-value>KZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Kenya</displayed-value>
+        <displayed-value>Kenia</displayed-value>
         <stored-value>KE</stored-value>
       </pair>
       <pair>
@@ -8496,11 +8860,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>KI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Korea, Democratic People's Republic of</displayed-value>
+        <displayed-value>Corea del Norte</displayed-value>
         <stored-value>KP</stored-value>
       </pair>
       <pair>
-        <displayed-value>Korea, Republic of</displayed-value>
+        <displayed-value>Corea del Sur</displayed-value>
         <stored-value>KR</stored-value>
       </pair>
       <pair>
@@ -8508,23 +8872,23 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>KW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Kyrgyzstan</displayed-value>
+        <displayed-value>Kirgizstán</displayed-value>
         <stored-value>KG</stored-value>
       </pair>
       <pair>
-        <displayed-value>Lao People's Democratic Republic</displayed-value>
+        <displayed-value>Laos</displayed-value>
         <stored-value>LA</stored-value>
       </pair>
       <pair>
-        <displayed-value>Latvia</displayed-value>
+        <displayed-value>Letonia</displayed-value>
         <stored-value>LV</stored-value>
       </pair>
       <pair>
-        <displayed-value>Lebanon</displayed-value>
+        <displayed-value>Líbano</displayed-value>
         <stored-value>LB</stored-value>
       </pair>
       <pair>
-        <displayed-value>Lesotho</displayed-value>
+        <displayed-value>Lesoto</displayed-value>
         <stored-value>LS</stored-value>
       </pair>
       <pair>
@@ -8532,7 +8896,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>LR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Libya</displayed-value>
+        <displayed-value>Libia</displayed-value>
         <stored-value>LY</stored-value>
       </pair>
       <pair>
@@ -8540,11 +8904,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>LI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Lithuania</displayed-value>
+        <displayed-value>Lituania</displayed-value>
         <stored-value>LT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Luxembourg</displayed-value>
+        <displayed-value>Luxemburgo</displayed-value>
         <stored-value>LU</stored-value>
       </pair>
       <pair>
@@ -8552,7 +8916,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Macedonia, the Former Yugoslav Republic of</displayed-value>
+        <displayed-value>Macedônia</displayed-value>
         <stored-value>MK</stored-value>
       </pair>
       <pair>
@@ -8564,11 +8928,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Malaysia</displayed-value>
+        <displayed-value>Malasia</displayed-value>
         <stored-value>MY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Maldives</displayed-value>
+        <displayed-value>Islas Maldivas</displayed-value>
         <stored-value>MV</stored-value>
       </pair>
       <pair>
@@ -8580,11 +8944,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Marshall Islands</displayed-value>
+        <displayed-value>Islas Marshall</displayed-value>
         <stored-value>MH</stored-value>
       </pair>
       <pair>
-        <displayed-value>Martinique</displayed-value>
+        <displayed-value>Martinica</displayed-value>
         <stored-value>MQ</stored-value>
       </pair>
       <pair>
@@ -8592,7 +8956,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Mauritius</displayed-value>
+        <displayed-value>Mauricio</displayed-value>
         <stored-value>MU</stored-value>
       </pair>
       <pair>
@@ -8600,19 +8964,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>YT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Mexico</displayed-value>
+        <displayed-value>México</displayed-value>
         <stored-value>MX</stored-value>
       </pair>
       <pair>
-        <displayed-value>Micronesia, Federated States of</displayed-value>
+        <displayed-value>Micronesia</displayed-value>
         <stored-value>FM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Moldova, Republic of</displayed-value>
+        <displayed-value>Moldavia</displayed-value>
         <stored-value>MD</stored-value>
       </pair>
       <pair>
-        <displayed-value>Monaco</displayed-value>
+        <displayed-value>Mónaco</displayed-value>
         <stored-value>MC</stored-value>
       </pair>
       <pair>
@@ -8628,7 +8992,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MS</stored-value>
       </pair>
       <pair>
-        <displayed-value>Morocco</displayed-value>
+        <displayed-value>Marruecos</displayed-value>
         <stored-value>MA</stored-value>
       </pair>
       <pair>
@@ -8636,7 +9000,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>MZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Myanmar</displayed-value>
+        <displayed-value>Birmania</displayed-value>
         <stored-value>MM</stored-value>
       </pair>
       <pair>
@@ -8652,15 +9016,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>NP</stored-value>
       </pair>
       <pair>
-        <displayed-value>Netherlands</displayed-value>
+        <displayed-value>Países Bajos</displayed-value>
         <stored-value>NL</stored-value>
       </pair>
       <pair>
-        <displayed-value>New Caledonia</displayed-value>
+        <displayed-value>Nueva Caledonia</displayed-value>
         <stored-value>NC</stored-value>
       </pair>
       <pair>
-        <displayed-value>New Zealand</displayed-value>
+        <displayed-value>Nueva Zelanda</displayed-value>
         <stored-value>NZ</stored-value>
       </pair>
       <pair>
@@ -8680,23 +9044,23 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>NU</stored-value>
       </pair>
       <pair>
-        <displayed-value>Norfolk Island</displayed-value>
+        <displayed-value>Isla Norfolk</displayed-value>
         <stored-value>NF</stored-value>
       </pair>
       <pair>
-        <displayed-value>Northern Mariana Islands</displayed-value>
+        <displayed-value>Islas Marianas del Norte</displayed-value>
         <stored-value>MP</stored-value>
       </pair>
       <pair>
-        <displayed-value>Norway</displayed-value>
+        <displayed-value>Noruega</displayed-value>
         <stored-value>NO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Oman</displayed-value>
+        <displayed-value>Omán</displayed-value>
         <stored-value>OM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Pakistan</displayed-value>
+        <displayed-value>Pakistán</displayed-value>
         <stored-value>PK</stored-value>
       </pair>
       <pair>
@@ -8704,15 +9068,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>PW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Palestine, State of</displayed-value>
+        <displayed-value>Palestina</displayed-value>
         <stored-value>PS</stored-value>
       </pair>
       <pair>
-        <displayed-value>Panama</displayed-value>
+        <displayed-value>Panamá</displayed-value>
         <stored-value>PA</stored-value>
       </pair>
       <pair>
-        <displayed-value>Papua New Guinea</displayed-value>
+        <displayed-value>Papúa Nueva Guinea</displayed-value>
         <stored-value>PG</stored-value>
       </pair>
       <pair>
@@ -8720,19 +9084,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>PY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Peru</displayed-value>
+        <displayed-value>Perú</displayed-value>
         <stored-value>PE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Philippines</displayed-value>
+        <displayed-value>Filipinas</displayed-value>
         <stored-value>PH</stored-value>
       </pair>
       <pair>
-        <displayed-value>Pitcairn</displayed-value>
+        <displayed-value>Islas Pitcairn</displayed-value>
         <stored-value>PN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Poland</displayed-value>
+        <displayed-value>Polonia</displayed-value>
         <stored-value>PL</stored-value>
       </pair>
       <pair>
@@ -8748,47 +9112,47 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>QA</stored-value>
       </pair>
       <pair>
-        <displayed-value>Réunion</displayed-value>
+        <displayed-value>Reunión</displayed-value>
         <stored-value>RE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Romania</displayed-value>
+        <displayed-value>Rumanía</displayed-value>
         <stored-value>RO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Russian Federation</displayed-value>
+        <displayed-value>Rusia</displayed-value>
         <stored-value>RU</stored-value>
       </pair>
       <pair>
-        <displayed-value>Rwanda</displayed-value>
+        <displayed-value>Ruanda</displayed-value>
         <stored-value>RW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Barthélemy</displayed-value>
+        <displayed-value>San Bartolomé</displayed-value>
         <stored-value>BL</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Helena, Ascension and Tristan da Cunha</displayed-value>
+        <displayed-value>Santa Elena</displayed-value>
         <stored-value>SH</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Kitts and Nevis</displayed-value>
+        <displayed-value>San Cristóbal y Nieves</displayed-value>
         <stored-value>KN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Lucia</displayed-value>
+        <displayed-value>Santa Lucía</displayed-value>
         <stored-value>LC</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Martin (French part)</displayed-value>
+        <displayed-value>San Martín (Francia)</displayed-value>
         <stored-value>MF</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Pierre and Miquelon</displayed-value>
+        <displayed-value>San Pedro y Miquelón</displayed-value>
         <stored-value>PM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saint Vincent and the Grenadines</displayed-value>
+        <displayed-value>San Vicente y las Granadinas</displayed-value>
         <stored-value>VC</stored-value>
       </pair>
       <pair>
@@ -8800,11 +9164,11 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>SM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sao Tome and Principe</displayed-value>
+        <displayed-value>Santo Tomé y Príncipe</displayed-value>
         <stored-value>ST</stored-value>
       </pair>
       <pair>
-        <displayed-value>Saudi Arabia</displayed-value>
+        <displayed-value>Arabia Saudita</displayed-value>
         <stored-value>SA</stored-value>
       </pair>
       <pair>
@@ -8820,27 +9184,27 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>SC</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sierra Leone</displayed-value>
+        <displayed-value>Sierra Leona</displayed-value>
         <stored-value>SL</stored-value>
       </pair>
       <pair>
-        <displayed-value>Singapore</displayed-value>
+        <displayed-value>Singapur</displayed-value>
         <stored-value>SG</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sint Maarten (Dutch part)</displayed-value>
+        <displayed-value>Sint Maarten (parte neerlandesa)</displayed-value>
         <stored-value>SX</stored-value>
       </pair>
       <pair>
-        <displayed-value>Slovakia</displayed-value>
+        <displayed-value>Eslovaquia</displayed-value>
         <stored-value>SK</stored-value>
       </pair>
       <pair>
-        <displayed-value>Slovenia</displayed-value>
+        <displayed-value>Eslovenia</displayed-value>
         <stored-value>SI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Solomon Islands</displayed-value>
+        <displayed-value>Islas Salomón</displayed-value>
         <stored-value>SB</stored-value>
       </pair>
       <pair>
@@ -8848,71 +9212,71 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>SO</stored-value>
       </pair>
       <pair>
-        <displayed-value>South Africa</displayed-value>
+        <displayed-value>Sudáfrica</displayed-value>
         <stored-value>ZA</stored-value>
       </pair>
       <pair>
-        <displayed-value>South Georgia and the South Sandwich Islands</displayed-value>
+        <displayed-value>Islas Georgias del Sur y Sandwich del Sur</displayed-value>
         <stored-value>GS</stored-value>
       </pair>
       <pair>
-        <displayed-value>South Sudan</displayed-value>
+        <displayed-value>Sudán del Sur</displayed-value>
         <stored-value>SS</stored-value>
       </pair>
       <pair>
-        <displayed-value>Spain</displayed-value>
+        <displayed-value>España</displayed-value>
         <stored-value>ES</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sri Lanka</displayed-value>
+        <displayed-value>Sri lanka</displayed-value>
         <stored-value>LK</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sudan</displayed-value>
+        <displayed-value>Sudán</displayed-value>
         <stored-value>SD</stored-value>
       </pair>
       <pair>
-        <displayed-value>Suriname</displayed-value>
+        <displayed-value>Surinám</displayed-value>
         <stored-value>SR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Svalbard and Jan Mayen</displayed-value>
+        <displayed-value>Svalbard y Jan Mayen</displayed-value>
         <stored-value>SJ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Swaziland</displayed-value>
+        <displayed-value>Swazilandia</displayed-value>
         <stored-value>SZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sweden</displayed-value>
+        <displayed-value>Suecia</displayed-value>
         <stored-value>SE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Switzerland</displayed-value>
+        <displayed-value>Suiza</displayed-value>
         <stored-value>CH</stored-value>
       </pair>
       <pair>
-        <displayed-value>Syrian Arab Republic</displayed-value>
+        <displayed-value>Siria</displayed-value>
         <stored-value>SY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Taiwan, Province of China</displayed-value>
+        <displayed-value>Taiwán</displayed-value>
         <stored-value>TW</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tajikistan</displayed-value>
+        <displayed-value>Tadjikistán</displayed-value>
         <stored-value>TJ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tanzania, United Republic of</displayed-value>
+        <displayed-value>Tanzania</displayed-value>
         <stored-value>TZ</stored-value>
       </pair>
       <pair>
-        <displayed-value>Thailand</displayed-value>
+        <displayed-value>Tailandia</displayed-value>
         <stored-value>TH</stored-value>
       </pair>
       <pair>
-        <displayed-value>Timor-Leste</displayed-value>
+        <displayed-value>Timor Oriental</displayed-value>
         <stored-value>TL</stored-value>
       </pair>
       <pair>
@@ -8928,23 +9292,23 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>TO</stored-value>
       </pair>
       <pair>
-        <displayed-value>Trinidad and Tobago</displayed-value>
+        <displayed-value>Trinidad y Tobago</displayed-value>
         <stored-value>TT</stored-value>
       </pair>
       <pair>
-        <displayed-value>Tunisia</displayed-value>
+        <displayed-value>Tunez</displayed-value>
         <stored-value>TN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Turkey</displayed-value>
+        <displayed-value>Turquía</displayed-value>
         <stored-value>TR</stored-value>
       </pair>
       <pair>
-        <displayed-value>Turkmenistan</displayed-value>
+        <displayed-value>Turkmenistán</displayed-value>
         <stored-value>TM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Turks and Caicos Islands</displayed-value>
+        <displayed-value>Islas Turcas y Caicos</displayed-value>
         <stored-value>TC</stored-value>
       </pair>
       <pair>
@@ -8956,31 +9320,31 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>UG</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ukraine</displayed-value>
+        <displayed-value>Ucrania</displayed-value>
         <stored-value>UA</stored-value>
       </pair>
       <pair>
-        <displayed-value>United Arab Emirates</displayed-value>
+        <displayed-value>Emiratos Árabes Unidos</displayed-value>
         <stored-value>AE</stored-value>
       </pair>
       <pair>
-        <displayed-value>United Kingdom</displayed-value>
+        <displayed-value>Reino Unido</displayed-value>
         <stored-value>GB</stored-value>
       </pair>
       <pair>
-        <displayed-value>United States</displayed-value>
-        <stored-value>US</stored-value>
+        <displayed-value>Islas Ultramarinas Menores de Estados Unidos</displayed-value>
+        <stored-value>UM</stored-value>
       </pair>
       <pair>
-        <displayed-value>United States Minor Outlying Islands</displayed-value>
-        <stored-value>UM</stored-value>
+        <displayed-value>Estados Unidos de América</displayed-value>
+        <stored-value>US</stored-value>
       </pair>
       <pair>
         <displayed-value>Uruguay</displayed-value>
         <stored-value>UY</stored-value>
       </pair>
       <pair>
-        <displayed-value>Uzbekistan</displayed-value>
+        <displayed-value>Uzbekistán</displayed-value>
         <stored-value>UZ</stored-value>
       </pair>
       <pair>
@@ -8988,27 +9352,27 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>VU</stored-value>
       </pair>
       <pair>
-        <displayed-value>Venezuela, Bolivarian Republic of</displayed-value>
+        <displayed-value>Venezuela</displayed-value>
         <stored-value>VE</stored-value>
       </pair>
       <pair>
-        <displayed-value>Viet Nam</displayed-value>
+        <displayed-value>Vietnam</displayed-value>
         <stored-value>VN</stored-value>
       </pair>
       <pair>
-        <displayed-value>Virgin Islands, British</displayed-value>
+        <displayed-value>Islas Vírgenes Británicas</displayed-value>
         <stored-value>VG</stored-value>
       </pair>
       <pair>
-        <displayed-value>Virgin Islands, U.S.</displayed-value>
+        <displayed-value>Islas Vírgenes de los Estados Unidos</displayed-value>
         <stored-value>VI</stored-value>
       </pair>
       <pair>
-        <displayed-value>Wallis and Futuna</displayed-value>
+        <displayed-value>Wallis y Futuna</displayed-value>
         <stored-value>WF</stored-value>
       </pair>
       <pair>
-        <displayed-value>Western Sahara</displayed-value>
+        <displayed-value>Sahara Occidental</displayed-value>
         <stored-value>EH</stored-value>
       </pair>
       <pair>
@@ -9020,7 +9384,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>ZM</stored-value>
       </pair>
       <pair>
-        <displayed-value>Zimbabwe</displayed-value>
+        <displayed-value>Zimbabue</displayed-value>
         <stored-value>ZW</stored-value>
       </pair>
     </value-pairs>

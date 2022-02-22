@@ -3,6 +3,20 @@
 
 <input-forms>
   <form-definitions>
+    <form name="edit_grants">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Grants</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_form">
       <row>
         <field>
@@ -128,6 +142,117 @@
           <required>Pflichtangabe</required>
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>fundingobjective</dc-qualifier>
+          <label>Select funding programme objective</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parent</dc-qualifier>
+          <label>Link to impact pathway</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Link to impact pathway task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_link_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>outcome</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>Outcome Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>bidirectional</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>bidirectional Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -403,7 +528,7 @@
         </field>
       </row>
     </form>
-    <form name="working_plan_workpackage_form">
+    <form name="working_plan_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -439,6 +564,8 @@
           <hint />
           <visibility>workflow</visibility>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -477,8 +604,46 @@
           <visibility>workflow</visibility>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
     </form>
-    <form name="working_plan_workpackage_step_form">
+    <form name="working_plan_step_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -550,6 +715,143 @@
           <required />
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="working_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Startdatum</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>Enddatum</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partner-wp</dc-qualifier>
+          <label>Verantwortliche Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
         </field>
       </row>
     </form>
@@ -713,6 +1015,69 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>exploitationplan</dc-qualifier>
+          <label>Relation exploitation plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation exploitation plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Sind Schutzrechtsanmelungen angestrebt oder Schutzrechte bereits erteilt?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -1045,7 +1410,6 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Mit Schlagworten beschreiben Sie den Inhalt des Dokumentes. Verwenden Sie für jedes Schlagwort ein eigenes Feld.</hint>
-          <vocabulary>agrovoc</vocabulary>
         </field>
       </row>
       <row>
@@ -7737,11 +8101,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>Bearbeitungsrecht für alle Mitglieder des Verbundprojektes</displayed-value>
+        <displayed-value>A: Unbeschränkte Bearbeitungsrechte für alle Mitglieder des Verbundprojektes</displayed-value>
         <stored-value>parentproject</stored-value>
       </pair>
       <pair>
-        <displayed-value>Bearbeitungsrecht nur für Mitglieder des Teilprojektes</displayed-value>
+        <displayed-value>B: Bearbeitungsrechte beschränkt auf Mitglieder des Teilprojektes</displayed-value>
         <stored-value>project</stored-value>
       </pair>
     </value-pairs>
@@ -7751,20 +8115,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Patent</stored-value>
       </pair>
       <pair>
-        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
-        <stored-value>step</stored-value>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
       </pair>
       <pair>
         <displayed-value>Rahmenbedingung</displayed-value>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
-        <stored-value>application</stored-value>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
@@ -7809,16 +8173,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung</displayed-value>
+        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
@@ -7827,10 +8187,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Veröffentlichung</displayed-value>
-        <stored-value>Publication</stored-value>
       </pair>
       <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
@@ -7852,6 +8208,14 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Auszeichnung</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
       <pair>
@@ -7867,16 +8231,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Product</stored-value>
       </pair>
       <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Gegenstand oder Material</displayed-value>
         <stored-value>physical_object</stored-value>
       </pair>
       <pair>
-        <displayed-value>Auszeichnung oder Preis</displayed-value>
-        <stored-value>award</stored-value>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Forschungsergebnis</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <stored-value>award</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
@@ -7891,16 +8259,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
         <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
-        <stored-value>step</stored-value>
       </pair>
       <pair>
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
@@ -7934,6 +8294,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Sonstiges</displayed-value>
+        <stored-value>other</stored-value>
+      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
@@ -7945,16 +8309,16 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>step</stored-value>
       </pair>
       <pair>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
       <pair>
         <displayed-value>Sonstiges</displayed-value>

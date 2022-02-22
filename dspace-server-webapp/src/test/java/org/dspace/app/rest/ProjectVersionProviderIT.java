@@ -15,6 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -209,6 +210,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(firstPersonV2.getOwningCollection(), is(persons));
         assertThat(firstPersonV2, notNullValue());
         assertThat(firstPersonV2.getMetadata(), hasItem(with("dc.title", "First Person")));
+        assertThat(firstPersonV2.getMetadata(), not(hasItem(with("synsicris.isLastVersion", "true"))));
         assertThat(firstPersonV2.getMetadata(),
             hasItem(with("synsicris.uniqueid", firstPerson.getID().toString() + "_2")));
 
@@ -217,6 +219,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(secondPersonV2.getOwningCollection(), is(persons));
         assertThat(secondPersonV2, notNullValue());
         assertThat(secondPersonV2.getMetadata(), hasItem(with("dc.title", "Second Person")));
+        assertThat(secondPersonV2.getMetadata(), not(hasItem(with("synsicris.isLastVersion", "true"))));
         assertThat(secondPersonV2.getMetadata(),
             hasItem(with("synsicris.uniqueid", secondPerson.getID().toString() + "_2")));
 
@@ -225,6 +228,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(publicationV2.getOwningCollection(), is(publications));
         assertThat(publicationV2, notNullValue());
         assertThat(publicationV2.getMetadata(), hasItem(with("dc.title", "Publication")));
+        assertThat(publicationV2.getMetadata(), not(hasItem(with("synsicris.isLastVersion", "true"))));
         assertThat(publicationV2.getMetadata(),
             hasItem(with("synsicris.uniqueid", publication.getID().toString() + "_2")));
         assertThat(publicationV2.getMetadata(),
@@ -237,6 +241,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(subPublicationV2.getOwningCollection(), is(subPublications));
         assertThat(subPublicationV2, notNullValue());
         assertThat(subPublicationV2.getMetadata(), hasItem(with("dc.title", "Sub publication")));
+        assertThat(subPublicationV2.getMetadata(), not(hasItem(with("synsicris.isLastVersion", "true"))));
         assertThat(subPublicationV2.getMetadata(),
             hasItem(with("synsicris.uniqueid", subPublication.getID().toString() + "_2")));
         assertThat(subPublicationV2.getMetadata(),
@@ -252,6 +257,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(parentProjectV2.getMetadata(), hasItem(with("dc.title", "Test project")));
         assertThat(parentProjectV2.getMetadata(),
             hasItem(with("synsicris.uniqueid", parentProject.getID().toString() + "_2")));
+        assertThat(parentProjectV2.getMetadata(), hasItem(with("synsicris.isLastVersion", "true")));
 
         assertThat(getVersionNumber(firstPersonV2), is(2));
         assertThat(getVersionNumber(secondPersonV2), is(2));
@@ -301,6 +307,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(publicationV2.getMetadata(),
             hasItem(with("dc.contributor.author", "Person", personV2.getID().toString(), 600)));
 
+        Item parentProjectV2 = findOneByRelationship(parentProject, parentProjectIsVersionOf);
+        assertThat(parentProjectV2.isArchived(), is(true));
+        assertThat(parentProjectV2.getOwningCollection(), is(parentProject.getOwningCollection()));
+        assertThat(parentProjectV2.getMetadata(), hasItem(with("dc.title", "Test project")));
+        assertThat(parentProjectV2.getMetadata(),
+            hasItem(with("synsicris.uniqueid", parentProject.getID().toString() + "_2")));
+        assertThat(parentProjectV2.getMetadata(), hasItem(with("synsicris.isLastVersion", "true")));
+
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
@@ -333,10 +347,26 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(publicationV3.getMetadata(),
             hasItem(with("dc.contributor.author", "Person", personV3.getID().toString(), 600)));
 
+        List<Item> prjVersions = findByRelationship(parentProject, parentProjectIsVersionOf);
+        assertThat(prjVersions, hasSize(2));
+
+        Item parentProjectV3 = prjVersions.get(0).equals(parentProjectV2) ? prjVersions.get(1) : prjVersions.get(0);
+        assertThat(parentProjectV3.isArchived(), is(true));
+        assertThat(parentProjectV3.getOwningCollection(), is(parentProject.getOwningCollection()));
+        assertThat(parentProjectV3.getMetadata(), hasItem(with("dc.title", "Test project")));
+        assertThat(parentProjectV3.getMetadata(),
+            hasItem(with("synsicris.uniqueid", parentProject.getID().toString() + "_3")));
+        assertThat(parentProjectV3.getMetadata(), hasItem(with("synsicris.isLastVersion", "true")));
+
+        parentProjectV2 = context.reloadEntity(parentProjectV2);
+        assertThat(parentProjectV2.getMetadata(), not(hasItem(with("synsicris.isLastVersion", "true"))));
+
         assertThat(getVersionNumber(personV2), is(2));
         assertThat(getVersionNumber(personV3), is(3));
         assertThat(getVersionNumber(publicationV2), is(2));
         assertThat(getVersionNumber(publicationV3), is(3));
+        assertThat(getVersionNumber(parentProjectV2), is(2));
+        assertThat(getVersionNumber(parentProjectV3), is(3));
     }
 
     @Test

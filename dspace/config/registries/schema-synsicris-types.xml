@@ -195,6 +195,12 @@
         <element>uniqueid</element>
         <scope_note></scope_note>
     </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>isLastVersion</element>
+        <scope_note></scope_note>
+    </dc-type>
     
     <dc-type>
         <schema>synsicris</schema>

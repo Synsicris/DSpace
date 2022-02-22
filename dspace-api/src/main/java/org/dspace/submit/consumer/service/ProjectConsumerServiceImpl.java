@@ -166,7 +166,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String groupName = String.format(template, projectCommunity.getID().toString());
         return groupService.findByName(context, groupName);
     }
-    
+
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
         List<Community> subCommunities = new ArrayList<>();

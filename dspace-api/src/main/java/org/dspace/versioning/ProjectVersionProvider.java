@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.authorize.AuthorizeException;
@@ -109,14 +110,39 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
         replaceAuthoritiesWithWillBeReferenced(context, itemNew, version);
 
-        updateItem(context, itemNew);
-
         if (isParentProject(previousItem)) {
+            markAsLastVersion(context, itemNew, previousItem);
             createNewProjectVersion(context, previousItem, version);
         }
 
+        updateItem(context, itemNew);
+
         return itemNew;
 
+    }
+
+    private void markAsLastVersion(Context context, Item newItem, Item previousItem) {
+        findAllVersions(context, previousItem).forEach(item -> removeIsLastVersionMarker(context, item));
+        setIsLastVersionMetadata(context, newItem);
+    }
+
+    private Stream<Item> findAllVersions(Context context, Item item) {
+        try {
+            RelationshipType versionRelationship = getVersionRelationship(context, item);
+            return relationshipService.findByItemAndRelationshipType(context, item, versionRelationship).stream()
+                .map(relationship -> relationship.getLeftItem());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void removeIsLastVersionMarker(Context context, Item item) {
+        try {
+            List<MetadataValue> values = itemService.getMetadataByMetadataString(item, "synsicris.isLastVersion");
+            itemService.removeMetadataValues(context, item, values);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
     }
 
     private void createNewProjectVersion(Context context, Item projectItem, Version version) {
@@ -198,11 +224,19 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private void createIsVersionOfRelationship(Context context, Item newItem, Item previousItem)
         throws SQLException, AuthorizeException {
-        RelationshipType relationshipType = findRelationshipType(context, previousItem, VERSION_RELATIONSHIP);
+        RelationshipType relationshipType = getVersionRelationship(context, previousItem);
+        relationshipService.create(context, newItem, previousItem, relationshipType, false);
+    }
+
+    private RelationshipType getVersionRelationship(Context context, Item item)
+        throws IllegalArgumentException, SQLException {
+
+        RelationshipType relationshipType = findRelationshipType(context, item, VERSION_RELATIONSHIP);
         if (relationshipType == null) {
             throw new IllegalArgumentException("No relationship type found for " + VERSION_RELATIONSHIP);
         }
-        relationshipService.create(context, newItem, previousItem, relationshipType, false);
+
+        return relationshipType;
     }
 
     private void copyResourcePolicies(Context context, Item newItem, Item previousItem) throws Exception {
@@ -222,6 +256,14 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {
         try {
             itemService.addMetadata(context, item, "synsicris", "uniqueid", null, null, metadataValue);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    private void setIsLastVersionMetadata(Context context, Item item) {
+        try {
+            itemService.setMetadataSingleValue(context, item, "synsicris", "isLastVersion", null, null, "true");
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }

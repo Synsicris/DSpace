@@ -2378,6 +2378,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2450,6 +2451,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -2606,6 +2608,7 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -2671,6 +2674,7 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -7300,7 +7304,7 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Rediness Level</displayed-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
         <stored-value>SRL</stored-value>
       </pair>
       <pair>

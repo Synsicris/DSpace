@@ -2376,6 +2376,7 @@
           <required />
           <style>col-md-2</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2448,6 +2449,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -2604,6 +2606,7 @@
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -2669,6 +2672,7 @@
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -7309,7 +7313,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Rediness Level</displayed-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
         <stored-value>SRL</stored-value>
       </pair>
       <pair>

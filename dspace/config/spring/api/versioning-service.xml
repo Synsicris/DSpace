@@ -15,9 +15,7 @@
           autowire="byType"
           scope="singleton">
        <property name="provider">
-           <!-- Default Item Versioning Provider, defines behavior for replicating
-                Item, Metadata, Budles and Bitstreams. Autowired at this time. -->
-           <bean class="org.dspace.versioning.DefaultItemVersionProvider">
+           <bean class="org.dspace.versioning.ProjectVersionProvider">
                <property name="ignoredMetadataFields">
                    <set>
                        <value>dc.date.accessioned</value>

@@ -166,7 +166,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String groupName = String.format(template, projectCommunity.getID().toString());
         return groupService.findByName(context, groupName);
     }
-    
+
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
         List<Community> subCommunities = new ArrayList<>();
@@ -291,7 +291,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         return null;
     }
-    
+
     @Override
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException {
         Item projectItem = null;
@@ -314,24 +314,29 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 communities.size());
             return projectItem;
         }
-        
+
         List<MetadataValue> values = communityService.getMetadata(communities.get(0),
                 ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
                 ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
-        
+
         if (values.size() != 1) {
             log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),
                     values.size());
             return projectItem;
         }
-        
+
         String itemUUID = values.get(0).getAuthority();
         if (StringUtils.isBlank(itemUUID)) {
             log.warn("Communitiy {} has no project items, unable to proceed", communities.get(0).getID().toString());
             return projectItem;
         }
-        
+
         return itemService.find(context, UUIDUtils.fromString(itemUUID));
+    }
+
+    @Override
+    public boolean isParentProjectItem(Item item) {
+        return ProjectConstants.PARENTPROJECT_ENTITY.equals(itemService.getEntityType(item));
     }
 
 }

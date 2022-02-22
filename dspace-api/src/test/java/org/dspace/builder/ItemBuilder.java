@@ -775,6 +775,10 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, "synsicris", "type", "easy-import", value);
     }
 
+    public ItemBuilder withUniqueId(String value) {
+        return setMetadataSingleValue(item, "synsicris", "uniqueid", null, value);
+    }
+
     /**
      * Withdrawn the item under build. Please note that an user need to be loggedin the context to avoid NPE during the
      * creation of the provenance metadata

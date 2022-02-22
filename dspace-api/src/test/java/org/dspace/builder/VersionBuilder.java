@@ -48,7 +48,7 @@ public class VersionBuilder extends AbstractBuilder<Version, VersioningService> 
                 this.version = getService().createNewVersion(context, item);
             }
         } catch (Exception e) {
-            log.error("Error in VersionBuilder.create(..), error: ", e);
+            throw new RuntimeException(e);
         }
         return this;
     }
@@ -60,7 +60,7 @@ public class VersionBuilder extends AbstractBuilder<Version, VersioningService> 
             context.dispatchEvents();
             indexingService.commit();
         } catch (Exception e) {
-            log.error("Error in VersionBuilder.build(), error: ", e);
+            throw new RuntimeException(e);
         }
         return version;
     }
@@ -94,8 +94,12 @@ public class VersionBuilder extends AbstractBuilder<Version, VersioningService> 
         indexingService.commit();
     }
 
-    public static void delete(Integer id)
-            throws SQLException, IOException, SearchServiceException {
+    public static void delete(Integer id) throws SQLException, IOException, SearchServiceException {
+
+        if (id == null) {
+            return;
+        }
+
         try (Context context = new Context()) {
             context.turnOffAuthorisationSystem();
             Version version = versioningService.getVersion(context, id);

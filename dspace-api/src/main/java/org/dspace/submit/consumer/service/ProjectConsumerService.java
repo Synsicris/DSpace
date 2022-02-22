@@ -35,8 +35,10 @@ public interface ProjectConsumerService {
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
-    
+
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;
+
+    public boolean isParentProjectItem(Item item);
 
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
             throws SQLException;

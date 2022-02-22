@@ -13,23 +13,27 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
+import org.dspace.app.rest.authorization.AuthorizationFeature;
+import org.dspace.app.rest.authorization.AuthorizationFeatureService;
+import org.dspace.app.rest.authorization.AuthorizationRestUtil;
+import org.dspace.app.rest.authorization.impl.CanCreateVersionFeature;
+import org.dspace.app.rest.authorization.impl.ItemCorrectionFeature;
 import org.dspace.app.rest.converter.ConverterService;
 import org.dspace.app.rest.exception.DSpaceBadRequestException;
+import org.dspace.app.rest.exception.RESTAuthorizationException;
 import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
+import org.dspace.app.rest.model.BaseObjectRest;
+import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.model.VersionRest;
 import org.dspace.app.rest.model.patch.Operation;
 import org.dspace.app.rest.model.patch.Patch;
 import org.dspace.app.rest.repository.handler.service.UriListHandlerService;
 import org.dspace.authorize.AuthorizeException;
-import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
-import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
-import org.dspace.eperson.EPerson;
-import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.VersionHistory;
 import org.dspace.versioning.service.VersionHistoryService;
@@ -55,13 +59,7 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(VersionRestRepository.class);
 
     @Autowired
-    private ItemService itemService;
-
-    @Autowired
-    private ConfigurationService configurationService;
-
-    @Autowired
-    private AuthorizeService authorizeService;
+    private AuthorizationFeatureService authorizationFeatureService;
 
     @Autowired
     private VersioningService versioningService;
@@ -77,6 +75,9 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
 
     @Autowired
     private WorkspaceItemService workspaceItemService;
+
+    @Autowired
+    private AuthorizationRestUtil authorizationRestUtil;
 
     @SuppressWarnings("rawtypes")
     @Autowired(required = true)
@@ -110,20 +111,9 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
             throw new UnprocessableEntityException("The given URI list could not be properly parsed to one result");
         }
 
-        boolean hasEntityType = StringUtils.isNotBlank(itemService.
-                                getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY));
-        boolean isBlockEntity = configurationService.getBooleanProperty("versioning.block.entity", true);
-
-        EPerson submitter = item.getSubmitter();
-        boolean isAdmin = authorizeService.isAdmin(context);
-        boolean canCreateVersion = configurationService.getBooleanProperty("versioning.submitterCanCreateNewVersion");
-
-        if (!isAdmin && !(canCreateVersion && Objects.equals(submitter, context.getCurrentUser()))) {
-            throw new AuthorizeException("The logged user doesn't have the rights to create a new version.");
-        }
-        if (hasEntityType  && isBlockEntity) {
-            throw new AuthorizeException("You are trying to create a new version for an entity" +
-                                         " which is blocked by the configuration");
+        AuthorizationFeature authorizationFeature = authorizationFeatureService.find(CanCreateVersionFeature.NAME);
+        if (!authorizationFeature.isAuthorized(context, findItemRestById(context, item.getID().toString()))) {
+            throw new RESTAuthorizationException("Versioning not allowed");
         }
 
         WorkflowItem workflowItem = null;
@@ -152,7 +142,7 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
     }
 
     @Override
-    @PreAuthorize("@versioningSecurity.isEnableVersioning() && hasPermission(#versionId, 'version', 'ADMIN')")
+    @PreAuthorize("denyAll()")
     protected void patch(Context context, HttpServletRequest request, String apiCategory, String model,
                          Integer versionId, Patch patch) throws AuthorizeException, SQLException {
         for (Operation operation : patch.getOperations()) {
@@ -202,6 +192,11 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
     @Override
     public Class<Integer> getPKClass() {
         return Integer.class;
+    }
+
+    private BaseObjectRest<?> findItemRestById(Context context, String itemId) throws SQLException {
+        String objectId = ItemCorrectionFeature.NAME + "_" + ItemRest.CATEGORY + "." + ItemRest.NAME + "_" + itemId;
+        return authorizationRestUtil.getObject(context, objectId);
     }
 
 }

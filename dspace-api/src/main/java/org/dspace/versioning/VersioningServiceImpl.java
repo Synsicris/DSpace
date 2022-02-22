@@ -45,10 +45,10 @@ public class VersioningServiceImpl implements VersioningService {
     @Autowired(required = true)
     protected WorkflowItemService workflowItemService;
 
-    private DefaultItemVersionProvider provider;
+    private ItemVersionProvider provider;
 
     @Autowired(required = true)
-    public void setProvider(DefaultItemVersionProvider provider) {
+    public void setProvider(ItemVersionProvider provider) {
         this.provider = provider;
     }
 
@@ -82,13 +82,13 @@ public class VersioningServiceImpl implements VersioningService {
                 createVersion(c, vh, item, "", versionDate);
             }
             // Create new Item
-            Item itemNew = provider.createNewItemAndAddItInWorkspace(c, item);
+            Item itemNew = provider.createNewItem(c, item);
 
             // create new version
             Version version = createVersion(c, vh, itemNew, summary, new Date());
 
             // Complete any update of the Item and new Identifier generation that needs to happen
-            provider.updateItemState(c, itemNew, item);
+            provider.updateItemState(c, itemNew, item, version);
 
             return version;
         } catch (Exception e) {

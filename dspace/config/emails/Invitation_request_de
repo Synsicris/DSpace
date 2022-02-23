@@ -1,0 +1,15 @@
+## Email sent to DSpace users when they are invited to join a new project.
+##
+## Parameters: {0} is expanded to a special URL
+##
+## See org.dspace.core.Email for information on the format of this file.
+##
+#set($subject = 'Invitation Request')
+Um die Registrierung für ein neues Projekt abzuschließen, klicken Sie bitte auf den Link:
+
+  ${params[0]}
+
+Wenn Sie Hilfe mit Ihren Account benötigen, senden Sie bitte eine Mail
+${config.get("mail.admin")}.
+
+Ihr SynSICRIS-Team

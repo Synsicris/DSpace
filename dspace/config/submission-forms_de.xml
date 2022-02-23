@@ -1691,6 +1691,7 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -1763,6 +1764,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -1797,6 +1799,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2376,7 +2379,6 @@
           <required />
           <style>col-md-2</style>
           <hint />
-          <validation>/[^a-ü,.]/img</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2449,7 +2451,6 @@
           <required />
           <style>col-md-6</style>
           <hint />
-          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -2606,7 +2607,6 @@
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
-          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -2672,7 +2672,6 @@
           <style>col-md-8</style>
           <hint />
           <readonly>all</readonly>
-          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>

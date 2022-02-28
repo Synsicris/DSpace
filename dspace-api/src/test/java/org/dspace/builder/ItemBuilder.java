@@ -753,6 +753,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, "dcterms", "dateAccepted", null, dateAccepted);
     }
 
+    public ItemBuilder withCustomUrl(String url) {
+        return setMetadataSingleValue(item, "cris", "customurl", null, url);
+    }
+
+    public ItemBuilder withOldCustomUrl(String url) {
+        return addMetadataValue(item, "cris", "customurl", "old", url);
+    }
+
     public ItemBuilder withSharedProject(String shared) {
         return addMetadataValue(item, "cris", "project", "shared", shared);
     }

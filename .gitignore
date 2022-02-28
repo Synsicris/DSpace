@@ -45,3 +45,6 @@ nb-configuration.xml
 
 ##Ignore JRebel project configuration
 rebel.xml
+
+# files designated as old
+*.old

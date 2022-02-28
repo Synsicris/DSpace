@@ -1691,6 +1691,7 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -1763,6 +1764,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -1797,6 +1799,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -7309,7 +7312,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Rediness Level</displayed-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
         <stored-value>SRL</stored-value>
       </pair>
       <pair>

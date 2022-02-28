@@ -5291,7 +5291,7 @@
         <property name="sortOrderFilterPage" value="COUNT"/>
     </bean>
 
-    <bean id="searchsynsicristypeprojectcontribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicristypeprojectcontribution" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicristypeprojectcontribution" />
         <property name="metadataFields">
             <list>
@@ -5306,7 +5306,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicristypepurpose" />
         <property name="metadataFields">
             <list>
@@ -5321,7 +5321,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisrelationpartner" />
         <property name="metadataFields">
             <list>
@@ -5336,7 +5336,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisrelationtargetgroup" />
         <property name="metadataFields">
             <list>
@@ -5351,7 +5351,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="oairecerifeventcountry" />
         <property name="metadataFields">
             <list>

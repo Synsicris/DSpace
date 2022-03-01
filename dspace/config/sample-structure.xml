@@ -630,6 +630,10 @@
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
       	<metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
+      <item>
+        <metadata name="dc.title">project_item_name</metadata>
+        <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::001">Workingplan</metadata>
+      </item>
     </collection>
     <collection>
       <name language="en">Publications</name>
@@ -864,6 +868,10 @@
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
 	      <metadata name="cris.project.shared">owningproject</metadata>
 	    </item-template>
+        <item>
+            <metadata name="dc.title">Workingplan</metadata>
+            <metadata name="synsicris.struct-builder.identifier">001</metadata>
+        </item>
       </collection>
   </community>
   <community>
@@ -904,7 +912,7 @@
         <sidebar />
         <license />
         <entity-type>exploitationplanstep</entity-type>
-        <submission-type>exploitation_plan_step</submission-type>
+        <submission-type>exploitation_plan_step_form</submission-type>
         <policy-group rpType="admin">project_template_admin_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -915,6 +923,22 @@
 	      <metadata name="cris.project.shared">project</metadata>
 	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
         </item-template>
+        <item>
+            <metadata name="dc.title">step_type_1</metadata>
+            <metadata name="synsicris.struct-builder.identifier">exp_step_1</metadata>
+        </item>
+        <item>
+            <metadata name="dc.title">step_type_2</metadata>
+            <metadata name="synsicris.struct-builder.identifier">exp_step_2</metadata>
+        </item>
+        <item>
+            <metadata name="dc.title">step_type_3</metadata>
+            <metadata name="synsicris.struct-builder.identifier">exp_step_3</metadata>
+        </item>
+        <item>
+            <metadata name="dc.title">step_type_4</metadata>
+            <metadata name="synsicris.struct-builder.identifier">exp_step_4</metadata>
+        </item>
       </collection>
       <collection>
         <name>Exploitation plan</name>
@@ -924,7 +948,7 @@
         <sidebar />
         <license />
         <entity-type>exploitationplan</entity-type>
-        <submission-type>exploitation_plan</submission-type>
+        <submission-type>exploitation_plan_form</submission-type>
         <policy-group rpType="admin">project_template_admin_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -937,6 +961,14 @@
 	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
       	  <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
         </item-template>
+        <item>
+            <metadata name="dc.title">exploitation_plan</metadata>
+            <metadata name="synsicris.struct-builder.identifier">exp_001</metadata>
+            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_1">step_type_1</metadata>
+            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_2">step_type_2</metadata>
+            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_3">step_type_3</metadata>
+            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_4">step_type_4</metadata>
+        </item>
       </collection>
     </community>
     <collection>
@@ -1029,6 +1061,10 @@
         <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
       	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
       </item-template>
+      <item>
+        <metadata name="dc.title">project_item_name</metadata>
+        <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
+      </item>
     </collection>
   </community>
 </import_structure>

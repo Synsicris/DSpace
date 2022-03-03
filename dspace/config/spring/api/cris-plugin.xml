@@ -112,6 +112,7 @@
 				<entry key="URL" value-ref="itemSearcherByURL"/>
 				<entry key="LEGACY-ID" value-ref="itemSearcherByLegacyId"/>
                 <entry key="UNIQUE-ID" value-ref="itemSearcherByUniqueId"/>
+                <entry key="SB-ID" value-ref="itemSearcherByStructBuilderId"/>
 			</map>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -153,7 +154,12 @@
         <constructor-arg value="synsicris.uniqueid"></constructor-arg>
         <constructor-arg value="UNIQUE-ID"></constructor-arg>
     </bean>
-	
+    
+    <bean class="org.dspace.authority.service.impl.ItemSearcherByMetadata" name="itemSearcherByStructBuilderId">
+        <constructor-arg value="synsicris.struct-builder.identifier"></constructor-arg>
+        <constructor-arg value="SB-ID"></constructor-arg>
+    </bean>
+    
 	<bean class="org.dspace.authority.service.impl.ItemSearchServiceImpl" name="org.dspace.authority.service.ItemSearchService"/>
 	<bean class="org.dspace.authority.service.impl.ItemReferenceResolverServiceImpl" name="org.dspace.authority.service.ItemReferenceResolverService"/>
 	

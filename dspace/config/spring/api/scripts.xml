@@ -129,6 +129,11 @@
         <property name="dspaceRunnableClass" value="org.dspace.content.enhancer.script.ItemEnhancerScript"/>
     </bean>
 
+    <bean id="filter-media" class="org.dspace.app.mediafilter.MediaFilterScriptConfiguration">
+        <property name="description" value="Perform the media filtering to extract full text from documents and to create thumbnails"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.mediafilter.MediaFilterScript"/>
+    </bean>
+
     <bean id="download-report" class="org.dspace.reports.jasper.DownloadReportFromExternalSourceCliScriptConfiguration">
         <property name="description" value="Perform the download of report using external source"/>
         <property name="dspaceRunnableClass" value="org.dspace.reports.jasper.DownloadReportFromExternalSourceCli"/>

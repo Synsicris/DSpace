@@ -7,28 +7,38 @@
  */
 package org.dspace.administer;
 
+import static org.dspace.app.matcher.MetadataValueMatcher.with;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.AbstractIntegrationTest;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
+import org.dspace.content.Item;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.ItemService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,6 +71,8 @@ public class StructBuilderIT
             = ContentServiceFactory.getInstance().getCommunityService();
     private static final CollectionService collectionService
             = ContentServiceFactory.getInstance().getCollectionService();
+    private static final ItemService itemService
+            = ContentServiceFactory.getInstance().getItemService();
 
     public StructBuilderIT() {
     }
@@ -252,6 +264,63 @@ public class StructBuilderIT
         }
         // Test for *significant* differences.
         assertFalse("Output does not match input.", myDiff.hasDifferences());
+    }
+
+    @Test
+    public void testItemCreation() throws Exception {
+
+        String resourcePath = "./target/testing/dspace/assetstore/struct-builder/struct-with-items.xml";
+
+        // Run the method under test and collect its output.
+        ByteArrayOutputStream outputDocument = new ByteArrayOutputStream();
+
+        context.setDispatcher("cris-default");
+        context.turnOffAuthorisationSystem();
+        try (FileInputStream input = new FileInputStream(resourcePath)) {
+            StructBuilder.importStructure(context, input, outputDocument);
+            context.commit();
+        } finally {
+            context.restoreAuthSystemState();
+        }
+
+        List<Community> communities = communityService.findAll(context);
+        assertThat(communities, hasSize(1));
+
+        Community community = communities.get(0);
+        assertThat(community.getName(), is("CRIS"));
+
+        List<Collection> collections = community.getCollections();
+        assertThat(collections, hasSize(2));
+
+        Collection publications = null;
+        Collection projects = null;
+        if (collections.get(0).getName().equals("Publication")) {
+            publications = collections.get(0);
+            projects = collections.get(1);
+        } else {
+            publications = collections.get(1);
+            projects = collections.get(0);
+        }
+
+        Item project = getSingleItem(projects);
+        assertThat(project.getMetadata(), hasItem(with("dc.title", "Test project")));
+        assertThat(project.getMetadata(), hasItem(with("synsicris.struct-builder.identifier", "001")));
+
+        Item publication = getSingleItem(publications);
+
+        assertThat(publication.getMetadata(), hasItem(with("dc.title", "Test publication")));
+        assertThat(publication.getMetadata(),
+            hasItem(with("dc.relation.project", "Test project", project.getID().toString(), 0, 600)));
+        assertThat(publication.getMetadata(),
+            hasItem(with("dc.relation.project", "Another project", "will be referenced::SB-ID::002", 1, -1)));
+
+    }
+
+    private Item getSingleItem(Collection collection) throws SQLException {
+        Iterator<Item> iterator = itemService.findByCollection(context, collection);
+        List<Item> items = IteratorUtils.toList(iterator);
+        assertThat(items, hasSize(1));
+        return items.get(0);
     }
 
     /**

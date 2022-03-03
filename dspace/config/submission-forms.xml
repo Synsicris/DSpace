@@ -1692,6 +1692,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -1764,6 +1765,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint>Calculated from the start and end date of the project</hint>
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -1798,6 +1800,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>is calculated from the data of the subprojects</hint>
+          <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -7300,7 +7303,7 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Rediness Level</displayed-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
         <stored-value>SRL</stored-value>
       </pair>
       <pair>

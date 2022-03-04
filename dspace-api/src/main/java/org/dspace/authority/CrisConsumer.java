@@ -14,11 +14,11 @@ import static org.dspace.content.MetadataSchemaEnum.CRIS;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,7 +73,7 @@ public class CrisConsumer implements Consumer {
 
     private static Logger log = LogManager.getLogger(CrisConsumer.class);
 
-    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
+    private Set<Item> itemsToProcess = new HashSet<Item>();
 
     private ChoiceAuthorityService choiceAuthorityService;
 
@@ -116,18 +116,11 @@ public class CrisConsumer implements Consumer {
     public void consume(Context context, Event event) throws Exception {
 
         Item item = (Item) event.getSubject(context);
-        if (item == null || itemsAlreadyProcessed.contains(item) || !item.isArchived()) {
+        if (item == null || itemsToProcess.contains(item) || !item.isArchived()) {
             return;
         }
 
-        itemsAlreadyProcessed.add(item);
-
-        context.turnOffAuthorisationSystem();
-        try {
-            consumeItem(context, item);
-        } finally {
-            context.restoreAuthSystemState();
-        }
+        itemsToProcess.add(item);
 
     }
 
@@ -154,13 +147,24 @@ public class CrisConsumer implements Consumer {
                 continue;
             }
 
+            String crisSourceId = generateCrisSourceId(metadata);
+
             String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
-            if (Objects.isNull(entityTypes) || entityTypes.length == 0) {
+            if (ArrayUtils.isEmpty(entityTypes)) {
                 log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+
+                Item relatedItem = itemSearchService.search(context, crisSourceId);
+
+                if (relatedItem != null) {
+                    metadata.setAuthority(relatedItem.getID().toString());
+                    metadata.setConfidence(Choices.CF_ACCEPTED);
+                }
+
                 continue;
+
             }
+
             for (String entityType : entityTypes) {
-                String crisSourceId = generateCrisSourceId(metadata);
 
                 Item relatedItem = itemSearchService.search(context, crisSourceId, entityType);
                 boolean relatedItemAlreadyPresent = relatedItem != null;
@@ -211,7 +215,18 @@ public class CrisConsumer implements Consumer {
 
     @Override
     public void end(Context context) throws Exception {
-        itemsAlreadyProcessed.clear();
+
+        for (Item item : itemsToProcess) {
+
+            context.turnOffAuthorisationSystem();
+            try {
+                consumeItem(context, item);
+            } finally {
+                context.restoreAuthSystemState();
+            }
+
+        }
+        itemsToProcess.clear();
     }
 
     private String getFieldKey(MetadataValue metadata) {

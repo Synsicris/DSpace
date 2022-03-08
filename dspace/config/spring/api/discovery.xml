@@ -36,7 +36,10 @@
     <bean id="solrServiceHiddenRelationsRestrictionPlugin" class="org.dspace.discovery.SolrServiceHiddenRelationsRestrictionPlugin"/>
     <bean id="solrServiceMetricsIndexPlugin" class="org.dspace.discovery.SolrServiceMetricsIndexPlugin"/>
     <bean id="solrServiceCrisValuePairsIndexPlugin" class="org.dspace.discovery.SolrServiceValuePairsIndexPlugin"/>
+    <bean id="solrServiceCustomUrlIndexPlugin" class="org.dspace.discovery.SolrServiceCustomUrlIndexPlugin"/>
     <bean id="SolrServiceIndexSubprojectCommunityPlugin" class="org.dspace.discovery.SolrServiceIndexSubprojectCommunityPlugin" scope="prototype"/>
+
+
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
 
     <!-- Additional indexing plugin make filtering by has content in original bundle (like pdf's, images) posible via SOLR -->
@@ -979,7 +982,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation"</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation" AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1012,7 +1015,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation"</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation" AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1045,7 +1048,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -3797,7 +3800,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3850,7 +3853,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -5291,7 +5294,7 @@
         <property name="sortOrderFilterPage" value="COUNT"/>
     </bean>
 
-    <bean id="searchsynsicristypeprojectcontribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicristypeprojectcontribution" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicristypeprojectcontribution" />
         <property name="metadataFields">
             <list>
@@ -5306,7 +5309,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicristypepurpose" />
         <property name="metadataFields">
             <list>
@@ -5321,7 +5324,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicrisrelationpartner" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisrelationpartner" />
         <property name="metadataFields">
             <list>
@@ -5336,7 +5339,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchsynsicrisrelationtargetgroup" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisrelationtargetgroup" />
         <property name="metadataFields">
             <list>
@@ -5351,7 +5354,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchoairecerifeventcountry" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="oairecerifeventcountry" />
         <property name="metadataFields">
             <list>

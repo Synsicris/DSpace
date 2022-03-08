@@ -189,6 +189,18 @@
         <element>title</element>
         <scope_note></scope_note>
     </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>uniqueid</element>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>isLastVersion</element>
+        <scope_note></scope_note>
+    </dc-type>
     
     <dc-type>
         <schema>synsicris</schema>
@@ -210,4 +222,26 @@
         <qualifier>team</qualifier>
         <scope_note></scope_note>
     </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>struct-builder</element>
+        <qualifier>identifier</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>workingplan</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>exploitationplan</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
 </dspace-dc-types>

@@ -196,7 +196,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="projects-edit" />
@@ -223,7 +223,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="persons-edit" />
@@ -300,7 +300,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="publications-edit" />
@@ -355,7 +355,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="plan_publications-edit" />
@@ -479,7 +479,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="steps-edit" />
@@ -534,7 +534,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="innovationideas-edit" />
@@ -589,7 +589,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="tasks-edit" />
@@ -823,7 +823,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="cooperationpartners-edit" />
@@ -864,7 +864,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="unexpected_results-edit" />
@@ -919,7 +919,7 @@
                             <property name="name" value="FULL" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    ITEM_ADMIN
+                                    ADMIN
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="events-edit" />
@@ -1858,6 +1858,33 @@
                             <property name="groups">
                                 <list>
                                     <value>synsicris.common-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="workingplan">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="workpackages-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
                                 </list>
                             </property>
                         </bean>

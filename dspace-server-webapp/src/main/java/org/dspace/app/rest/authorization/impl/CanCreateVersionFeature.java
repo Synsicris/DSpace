@@ -6,21 +6,26 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.authorization.impl;
+
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
 
-import org.apache.commons.lang.StringUtils;
 import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.ItemRest;
-import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.eperson.Group;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
+import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,41 +45,57 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
     private ConfigurationService configurationService;
 
     @Autowired
-    private AuthorizeService authorizeService;
+    private GroupService groupService;
 
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private ProjectConsumerService projectConsumerService;
+
     @Override
     @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
-        if (object instanceof ItemRest) {
-            if (!configurationService.getBooleanProperty("versioning.enabled", true)) {
-                return false;
-            }
-            EPerson currentUser = context.getCurrentUser();
-            if (Objects.isNull(currentUser)) {
-                return false;
-            }
-            Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
-            if (Objects.nonNull(item)) {
-                // The property versioning.block.entity is used to disable versioning for items with EntityType
-                boolean isBlockEntity = configurationService.getBooleanProperty("versioning.block.entity", true);
-                boolean hasEntityType = StringUtils.isNotBlank(itemService.
-                                        getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY));
-                if (isBlockEntity && hasEntityType) {
-                    return false;
-                }
-                if (authorizeService.isAdmin(context, item)) {
-                    return true;
-                }
-                if (configurationService.getBooleanProperty("versioning.submitterCanCreateNewVersion")) {
-                    EPerson submitter = item.getSubmitter();
-                    return Objects.nonNull(submitter) && currentUser.getID().equals(submitter.getID());
-                }
-            }
+
+        if (!(object instanceof ItemRest)) {
+            return false;
         }
-        return false;
+
+        if (!configurationService.getBooleanProperty("versioning.enabled", true)) {
+            return false;
+        }
+
+        Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
+
+        if (!projectConsumerService.isParentProjectItem(item) || isVersionItem(item)) {
+            return false;
+        }
+
+        EPerson currentUser = context.getCurrentUser();
+        if (Objects.isNull(currentUser)) {
+            return false;
+        }
+
+        return isMemberOfProjectAdminGroup(context, item, currentUser);
+    }
+
+    private boolean isMemberOfProjectAdminGroup(Context context, Item item, EPerson currentUser) throws SQLException {
+        Community projectCommunity = projectConsumerService.getProjectCommunity(context, item);
+        if (projectCommunity == null) {
+            return false;
+        }
+
+        String adminGroupName = "project_" + projectCommunity.getID() + "_admin_group";
+        Group adminGroup = groupService.findByName(context, adminGroupName);
+        if (adminGroup == null) {
+            return false;
+        }
+
+        return groupService.isMember(context, currentUser, adminGroup);
+    }
+
+    private boolean isVersionItem(Item item) {
+        return isNotEmpty(itemService.getMetadataFirstValue(item, "synsicris", "uniqueid", null, Item.ANY));
     }
 
     @Override

@@ -753,6 +753,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, "dcterms", "dateAccepted", null, dateAccepted);
     }
 
+    public ItemBuilder withCustomUrl(String url) {
+        return setMetadataSingleValue(item, "cris", "customurl", null, url);
+    }
+
+    public ItemBuilder withOldCustomUrl(String url) {
+        return addMetadataValue(item, "cris", "customurl", "old", url);
+    }
+
     public ItemBuilder withSharedProject(String shared) {
         return addMetadataValue(item, "cris", "project", "shared", shared);
     }
@@ -773,6 +781,10 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withEasyImport(String value) {
         return addMetadataValue(item, "synsicris", "type", "easy-import", value);
+    }
+
+    public ItemBuilder withUniqueId(String value) {
+        return setMetadataSingleValue(item, "synsicris", "uniqueid", null, value);
     }
 
     /**

@@ -70,7 +70,8 @@ public class SolrServiceHiddenRelationsRestrictionPlugin implements SolrServiceS
                                                .orElseGet(() -> fromProperties(discoveryQuery));
 
         if (StringUtils.isBlank(scope) || currentUserIsScopeOrAdmin(scope, context)
-                || !discoveryQuery.getDiscoveryConfigurationName().startsWith("RELATION.")) {
+            || discoveryQuery.getDiscoveryConfigurationName() == null
+            || !discoveryQuery.getDiscoveryConfigurationName().startsWith("RELATION.")) {
             return;
         }
 

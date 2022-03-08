@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import_structure>
+    <community>
+        <name>CRIS</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <collection>
+            <name>Project</name>
+            <entity-type>Project</entity-type>
+            <item>
+                <metadata name="dc.title">Test project</metadata>
+                <metadata name="synsicris.struct-builder.identifier">001</metadata>
+            </item>
+        </collection>
+        <collection>
+            <name>Publication</name>
+            <entity-type>Publication</entity-type>
+            <item>
+                <metadata name="dc.title">Test publication</metadata>
+                <metadata name="dc.relation.project" authority="will be referenced::SB-ID::001">Test project</metadata>
+                <metadata name="dc.relation.project" authority="will be referenced::SB-ID::002">Another project</metadata>
+            </item>
+        </collection>
+    </community>
+</import_structure>

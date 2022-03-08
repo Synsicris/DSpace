@@ -491,8 +491,10 @@
     <submission-process name="working_plan-edit_form">
       <step id="working_plan-edit_form" />
     </submission-process>
-    <submission-process name="exploitation_plan_step">
+    <submission-process name="exploitation_plan_form">
       <step id="exploitation_plan_form" />
+    </submission-process>
+    <submission-process name="exploitation_plan_step_form">
       <step id="exploitation_plan_step_form" />
     </submission-process>
     <submission-process name="exploitation_plan-edit_form">

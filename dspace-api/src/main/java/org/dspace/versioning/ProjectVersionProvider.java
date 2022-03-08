@@ -126,6 +126,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         }
 
         updateItem(context, itemNew);
+        itemNew.setLastModified(previousItem.getLastModified());
 
         return itemNew;
 

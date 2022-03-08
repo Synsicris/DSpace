@@ -613,4 +613,17 @@
             <min>0</min>
         </rightCardinality>
     </type>
+    <type>
+        <leftType>workingplan</leftType>
+        <rightType>workingplan</rightType>
+        <leftwardType>isVersionOf</leftwardType>
+        <rightwardType>hasVersion</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+    </type>
 </relationships>

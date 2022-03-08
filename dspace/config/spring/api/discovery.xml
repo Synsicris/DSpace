@@ -982,7 +982,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation"</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation" AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1015,7 +1015,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation"</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation" AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1048,7 +1048,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed</value>
+                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -3800,7 +3800,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3853,7 +3853,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

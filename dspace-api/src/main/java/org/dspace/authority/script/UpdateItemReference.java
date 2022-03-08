@@ -9,6 +9,7 @@ package org.dspace.authority.script;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -107,7 +108,7 @@ public class UpdateItemReference
             }
 
             String fieldKey = getFieldKey(metadata);
-            String entityType = choiceAuthorityService.getLinkedEntityType(fieldKey)[0];
+            String[] entityTypeList = choiceAuthorityService.getLinkedEntityType(fieldKey);
             String [] providerAndId = getProviderAndId(authority);
 
             if (Objects.nonNull(providerAndId)) {
@@ -115,7 +116,9 @@ public class UpdateItemReference
                 if (Objects.nonNull(searchedItem)) {
                     String searchedItemEntityType = itemService.getMetadataFirstValue(searchedItem,
                             "dspace", "entity", "type", Item.ANY);
-                    if (StringUtils.equals(entityType, searchedItemEntityType)) {
+                    boolean contains = Arrays.stream(entityTypeList).anyMatch(searchedItemEntityType::equals);
+                    
+                    if (contains || entityTypeList.length == 0) {
                         setReferences(metadata, searchedItem, checkWhetherTitleNeedsToBeSet());
                         referencesResolved.add("The starting item with uuid: " + item.getID() + " and reference value "
                                 + providerAndId[1] + ":" + providerAndId[2] + " was resolved for item with uuid: "
@@ -124,7 +127,7 @@ public class UpdateItemReference
                         referencesNotResolved.add("The item with uuid: " + item.getID() + " and reference value: "
                                 + authority + " on metadata " + fieldKey
                                 + " was not risolved, because the linked EntityType and EntityType of referenced item("
-                                + searchedItem.getID() + ") are different (" + entityType + ", "
+                                + searchedItem.getID() + ") are different (" + entityTypeList[0] + ", "
                                 + searchedItemEntityType + ")");
                     }
                     context.uncacheEntity(searchedItem);

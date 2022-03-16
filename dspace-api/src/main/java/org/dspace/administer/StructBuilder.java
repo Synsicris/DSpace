@@ -832,9 +832,11 @@ public class StructBuilder {
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
                         } else {
-                            communityService.addMetadata(context, community,
-                                    entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
-                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            if (getStringValue(nl.item(j)) != null) {
+                                communityService.addMetadata(context, community,
+                                        entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
+                                        getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            }
                         }
                     }
                 }
@@ -970,9 +972,11 @@ public class StructBuilder {
                         } else if (entry.getKey().equals("item")) {
                             handleItem(context, nl.item(j), collection);
                         } else {
-                            collectionService.addMetadata(context, collection,
-                                entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
-                                getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            if (getStringValue(nl.item(j)) != null) {
+                                collectionService.addMetadata(context, collection,
+                                    entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
+                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            }
                         }
                     }
                 }

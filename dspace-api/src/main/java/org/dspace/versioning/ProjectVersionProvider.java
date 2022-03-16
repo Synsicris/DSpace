@@ -213,6 +213,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 

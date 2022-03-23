@@ -40,7 +40,7 @@ nb-configuration.xml
 /dspace/config/local.*.cfg
 !/dspace/config/local.cfg.EXAMPLE
 
-##Mac noise
+## macOS noise
 .DS_Store
 
 ##Ignore JRebel project configuration
@@ -50,5 +50,9 @@ rebel.xml
 ## Ignore jenv configuration
 .java-version
 
-# files designated as old
+## files designated as old/backup
 *.old
+*_old
+*.backup
+*_backup
+

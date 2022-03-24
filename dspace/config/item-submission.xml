@@ -661,6 +661,7 @@
       <step id="milestones" />
       <step id="statusacc2" />
       <step id="working_plan_form" />
+      <step id="working_plan_step_form" />
     </submission-process>
     <submission-process name="milestones-edit">
       <step id="milestones" />

@@ -83,8 +83,12 @@ public class CurrentProjectGenerator extends AbstractGenerator {
             MetadataValue value = values.get(0);
             try {
                 Item itemProject = itemService.find(context, UUIDUtils.fromString(value.getAuthority()));
-                return new MetadataValueVO(itemProject.getName(), UUIDUtils.toString(itemProject.getID()),
+                if (itemProject != null) {
+                    return new MetadataValueVO(itemProject.getName(), UUIDUtils.toString(itemProject.getID()),
                         value.getConfidence());
+                } else {
+                    return new MetadataValueVO(""); 
+                }
             } catch (SQLException e) {
                 return new MetadataValueVO("");
             }

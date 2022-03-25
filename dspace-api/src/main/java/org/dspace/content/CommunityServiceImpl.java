@@ -111,7 +111,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     protected InstallItemService installItemService;
 
     private String matadataToSkip[] = new String[] {
-        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
+        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type",
+        "synsicris.struct-builder.identifier" };
     protected CommunityServiceImpl() {
         super();
 
@@ -751,6 +752,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         List<Item> newItems = new ArrayList<Item>();
         Map<UUID, CloneDTO> oldItem2clonedItem = new HashMap<UUID, CloneDTO>();
         Community newCommunity = create(parent, context);
+        setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
         String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.schema,
@@ -758,7 +760,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
-        setCommunityName(context, newCommunity, name);
+//        setCommunityName(context, newCommunity, name);
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;

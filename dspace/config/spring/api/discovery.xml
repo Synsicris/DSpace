@@ -5244,7 +5244,7 @@
                 <value>synsicris.duration</value>
             </list>
         </property>
-        <property name="graphType" value="bar" />
+        <property name="graphType" value="bar.horizontal" />
         <property name="exposeMissing" value="true" />
         <property name="exposeMore" value="true" />
         <property name="exposeTotalElements" value="true" />

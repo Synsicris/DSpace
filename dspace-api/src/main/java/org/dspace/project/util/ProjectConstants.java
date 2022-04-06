@@ -51,7 +51,8 @@ public class ProjectConstants {
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 
     public static final MetadataFieldName MD_RELATION_CALL = new MetadataFieldName("synsicris", "relation", "call");
-
+    
+    public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
    
     public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME = new MetadataFieldName("synsicris",
             "relation","programme");

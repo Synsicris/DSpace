@@ -55,13 +55,18 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
             Context context = Optional.ofNullable(currentRequest.getServletRequest())
                 .map(rq -> (Context) rq.getAttribute("dspace.context")).orElseGet(Context::new);
 
-            return Optional.ofNullable(currentRequest.getHttpServletRequest())
+            List<String> filters = new ArrayList<>(Optional.ofNullable(currentRequest.getHttpServletRequest())
                 .map(hsr -> hsr.getParameter("collection"))
                 .filter(StringUtils::isNotBlank)
                 .map(collectionId -> collectionsFilter(collectionId, context))
                 .filter(StringUtils::isNotBlank)
                 .map(Collections::singletonList)
-                .orElseGet(Collections::emptyList);
+                .orElseGet(Collections::emptyList));
+            
+            // exclude item versions from the authority search
+            filters.add("-synsicris.uniqueid:*");
+
+            return filters;
         } else {
             return new ArrayList<String>();
         }

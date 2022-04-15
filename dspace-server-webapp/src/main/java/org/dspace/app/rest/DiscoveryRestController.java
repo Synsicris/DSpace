@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.rest.converter.ConverterService;
+import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.link.HalLinkService;
 import org.dspace.app.rest.model.FacetConfigurationRest;
 import org.dspace.app.rest.model.FacetResultsRest;
@@ -53,6 +54,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class DiscoveryRestController implements InitializingBean {
 
     private static final Logger log = LogManager.getLogger();
+
+    private static final String SOLR_PARSE_ERROR_CLASS = "org.apache.solr.search.SyntaxError";
 
     @Autowired
     protected Utils utils;
@@ -152,13 +155,22 @@ public class DiscoveryRestController implements InitializingBean {
 
         String queryDecoded = StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
         //Get the Search results in JSON format
-        SearchResultsRest searchResultsRest = discoveryRestRepository.getSearchObjects(queryDecoded, dsoTypes, dsoScope,
+        try {
+            SearchResultsRest searchResultsRest = discoveryRestRepository.getSearchObjects(queryDecoded, dsoTypes, dsoScope,
                 configuration, searchFilters, page, utils.obtainProjection());
 
-        //Convert the Search JSON results to paginated HAL resources
-        SearchResultsResource searchResultsResource = new SearchResultsResource(searchResultsRest, utils, page);
-        halLinkService.addLinks(searchResultsResource, page);
-        return searchResultsResource;
+            //Convert the Search JSON results to paginated HAL resources
+            SearchResultsResource searchResultsResource = new SearchResultsResource(searchResultsRest, utils, page);
+            halLinkService.addLinks(searchResultsResource, page);
+            return searchResultsResource;
+        } catch (IllegalArgumentException e) {
+            boolean isParsingException = e.getMessage().contains(SOLR_PARSE_ERROR_CLASS);
+            if (isParsingException) {
+                throw new UnprocessableEntityException(e.getMessage());
+            } else {
+                throw e;
+            }
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/facets")
@@ -201,14 +213,28 @@ public class DiscoveryRestController implements InitializingBean {
                           + ", page: " + Objects.toString(page));
         }
 
-        String queryDecoded = StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
-        FacetResultsRest facetResultsRest = discoveryRestRepository
-            .getFacetObjects(facetName, prefix, queryDecoded, dsoTypes, dsoScope, configuration, searchFilters, page);
+        try {
+            String queryDecoded = StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
+            FacetResultsRest facetResultsRest = discoveryRestRepository
+                .getFacetObjects(facetName, prefix, queryDecoded, dsoTypes, dsoScope, configuration, searchFilters, page);
 
-        FacetResultsResource facetResultsResource = converter.toResource(facetResultsRest);
+            FacetResultsResource facetResultsResource = converter.toResource(facetResultsRest);
 
-        halLinkService.addLinks(facetResultsResource, page);
-        return facetResultsResource;
+            halLinkService.addLinks(facetResultsResource, page);
+            return facetResultsResource;
+        } catch (Exception e) {
+            boolean isParsingException = e.getMessage().contains(SOLR_PARSE_ERROR_CLASS);
+            /*
+             * We unfortunately have to do a string comparison to locate the source of the error, as Solr only sends
+             * back a generic exception, and the org.apache.solr.search.SyntaxError is only available as plain text
+             * in the error message.
+             */
+            if (isParsingException) {
+                throw new UnprocessableEntityException(e.getMessage());
+            } else {
+                throw e;
+            }
+        }
     }
 
 }

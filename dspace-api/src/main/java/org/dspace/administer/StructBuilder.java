@@ -52,10 +52,13 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.CrisConstants;
@@ -127,6 +130,10 @@ public class StructBuilder {
             = AuthorizeServiceFactory.getInstance().getAuthorizeService();
     protected static ItemService itemService
             = ContentServiceFactory.getInstance().getItemService();
+    protected static WorkspaceItemService workspaceItemService
+            = ContentServiceFactory.getInstance().getWorkspaceItemService();
+    protected static InstallItemService installItemService
+            = ContentServiceFactory.getInstance().getInstallItemService();
     public static final MetadataFieldName MD_SUBPROJECT_COMMUNITY
             = new MetadataFieldName("synsicris", "subproject", "community");
 
@@ -310,6 +317,7 @@ public class StructBuilder {
         collectionMap.put("provenance", MD_PROVENANCE_DESCRIPTION);
         collectionMap.put("policy-group", null);
         collectionMap.put("item-template", null);
+        collectionMap.put("item", null);
 
         Element[] elements = new Element[]{};
         try {
@@ -698,6 +706,31 @@ public class StructBuilder {
     }
 
     /**
+     * Create an item for a collection
+     *
+     * @param  context       the context of the request
+     * @param  node          the Node element that contains information for creating
+     *                       item template
+     * @param  collection    the collection for which create the item
+     * @throws SQLException, AuthorizeException, TransformerException
+     */
+    private static void handleItem(Context context, Node node, Collection collection)
+        throws SQLException, AuthorizeException, TransformerException {
+        WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, true);
+        Item templateItem = installItemService.installItem(context, workspaceItem);
+        NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
+        for (int i = 0; i < metadataList.getLength(); i++) {
+            String metadataName = getAttributeValue(metadataList.item(i), "name");
+            String metadatavalue = getStringValue(metadataList.item(i));
+            String authority = getAttributeValue(metadataList.item(i), "authority");
+            int confidence = StringUtils.isNotBlank(authority) ? 600 : -1;
+            String[] elements = MetadataFieldName.parse(metadataName);
+            itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue,
+                authority, confidence);
+        }
+    }
+
+    /**
      * Create an item template for a collection
      *
      * @param context         the context of the request
@@ -799,9 +832,11 @@ public class StructBuilder {
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
                         } else {
-                            communityService.addMetadata(context, community,
-                                    entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
-                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            if (getStringValue(nl.item(j)) != null) {
+                                communityService.addMetadata(context, community,
+                                        entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
+                                        getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            }
                         }
                     }
                 }
@@ -934,10 +969,14 @@ public class StructBuilder {
                             toDelete = false;
                         } else if (entry.getKey().equals("item-template")) {
                             handleItemTemplate(context, nl.item(j), collection);
+                        } else if (entry.getKey().equals("item")) {
+                            handleItem(context, nl.item(j), collection);
                         } else {
-                            collectionService.addMetadata(context, collection,
-                                entry.getValue().SCHEMA, entry.getValue().ELEMENT, entry.getValue().QUALIFIER,
-                                getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            if (getStringValue(nl.item(j)) != null) {
+                                collectionService.addMetadata(context, collection,
+                                    entry.getValue().schema, entry.getValue().element, entry.getValue().qualifier,
+                                    getAttributeValue(nl.item(j), "language"), getStringValue(nl.item(j)));
+                            }
                         }
                     }
                 }

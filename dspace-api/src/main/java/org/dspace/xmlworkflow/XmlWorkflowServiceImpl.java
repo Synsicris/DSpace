@@ -31,6 +31,7 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.Bundle;
 import org.dspace.content.Collection;
 import org.dspace.content.DCDate;
+import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.MetadataValue;
@@ -46,7 +47,7 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.Email;
 import org.dspace.core.I18nUtil;
-import org.dspace.core.LogManager;
+import org.dspace.core.LogHelper;
 import org.dspace.curate.service.XmlWorkflowCuratorService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -54,7 +55,7 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
 import org.dspace.handle.service.HandleService;
 import org.dspace.services.ConfigurationService;
-import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.services.EventService;
 import org.dspace.usage.UsageWorkflowEvent;
 import org.dspace.workflow.WorkflowException;
 import org.dspace.xmlworkflow.factory.XmlWorkflowFactory;
@@ -131,6 +132,8 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
     protected ConfigurationService configurationService;
     @Autowired(required = true)
     protected XmlWorkflowCuratorService xmlWorkflowCuratorService;
+    @Autowired(required = true)
+    protected EventService eventService;
 
     protected XmlWorkflowServiceImpl() {
 
@@ -346,7 +349,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         // current step cannot be completed and we must exit immediately.
         if (!xmlWorkflowCuratorService.doCuration(context, wfi)) {
             // don't proceed - either curation tasks queued, or item rejected
-            log.info(LogManager.getHeader(context, "start_workflow",
+            log.info(LogHelper.getHeader(context, "start_workflow",
                     "workflow_item_id=" + wfi.getID()
                             + ",item_id=" + wfi.getItem().getID()
                             + ",collection_id=" + wfi.getCollection().getID()
@@ -357,7 +360,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
 
         // Activate the step.
         firstActionConfig.getProcessingAction().activate(context, wfi);
-        log.info(LogManager.getHeader(context, "start_workflow",
+        log.info(LogHelper.getHeader(context, "start_workflow",
                 firstActionConfig.getProcessingAction()
                         + " workflow_item_id=" + wfi.getID()
                         + "item_id=" + wfi.getItem().getID()
@@ -367,7 +370,8 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         recordStart(context, wfi.getItem(), firstActionConfig.getProcessingAction());
 
         //Fire an event !
-        logWorkflowEvent(context, firstStep.getWorkflow().getID(), null, null, wfi, null, firstStep, firstActionConfig);
+        logWorkflowEvent(context, firstStep.getWorkflow().getID(), null, null, true,
+            wfi, wfi.getItem().getSubmitter(), firstStep, firstActionConfig, false);
 
         //If we don't have a UI then execute the action.
         if (!firstActionConfig.requiresUI()) {
@@ -395,7 +399,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         // current step cannot be completed and we must exit immediately.
         if (!xmlWorkflowCuratorService.doCuration(c, wi)) {
             // don't proceed - either curation tasks queued, or item rejected
-            log.info(LogManager.getHeader(c, "advance_workflow",
+            log.info(LogHelper.getHeader(c, "advance_workflow",
                     "workflow_item_id=" + wi.getID()
                             + ",item_id=" + wi.getItem().getID()
                             + ",collection_id=" + wi.getCollection().getID()
@@ -420,7 +424,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
                 throw new AuthorizeException("You are not allowed to to perform this task.");
             }
         } catch (WorkflowConfigurationException e) {
-            log.error(LogManager.getHeader(c, "error while executing state",
+            log.error(LogHelper.getHeader(c, "error while executing state",
                     "workflow:  " + workflow.getID()
                             + " action: " + currentActionConfig.getId()
                             + " workflowItemId: " + workflowItemId), e);
@@ -531,65 +535,86 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
             } finally {
                 if ((nextStep != null && currentStep != null && nextActionConfig != null)
                         || (wfi.getItem().isArchived() && currentStep != null)) {
+
                     logWorkflowEvent(c, currentStep.getWorkflow().getID(), currentStep.getId(),
-                                     currentActionConfig.getId(), wfi, user, nextStep, nextActionConfig);
+                        currentActionConfig.getId(), currentActionConfig.requiresUI(), wfi, user, nextStep,
+                        nextActionConfig, false);
+
                 }
             }
 
         }
 
-        log.error(LogManager.getHeader(c, "Invalid step outcome", "Workflow item id: " + wfi.getID()));
+        log.error(LogHelper.getHeader(c, "Invalid step outcome", "Workflow item id: " + wfi.getID()));
         throw new WorkflowException("Invalid step outcome");
     }
 
-    protected void logWorkflowEvent(Context c, String workflowId, String previousStepId, String previousActionConfigId,
-                                    XmlWorkflowItem wfi, EPerson actor, Step newStep,
-                                    WorkflowActionConfig newActionConfig) throws SQLException {
-        try {
-            //Fire an event so we can log our action !
-            Item item = wfi.getItem();
-            Collection myCollection = wfi.getCollection();
-            String workflowStepString = null;
+    protected void logWorkflowEvent(Context c, String workflowId, String previousStepId, String previousActionId,
+        boolean previousActionRequiresUI, XmlWorkflowItem wfi, EPerson actor, Step newStep,
+        WorkflowActionConfig newActionConfig, boolean rejected) {
 
-            List<EPerson> currentEpersonOwners = new ArrayList<>();
-            List<Group> currentGroupOwners = new ArrayList<>();
-            //These are only null if our item is sent back to the submission
-            if (newStep != null && newActionConfig != null) {
-                workflowStepString = workflowId + "." + newStep.getId() + "." + newActionConfig.getId();
-
-                //Retrieve the current owners of the task
-                List<ClaimedTask> claimedTasks = claimedTaskService.find(c, wfi, newStep.getId());
-                List<PoolTask> pooledTasks = poolTaskService.find(c, wfi);
-                for (PoolTask poolTask : pooledTasks) {
-                    if (poolTask.getEperson() != null) {
-                        currentEpersonOwners.add(poolTask.getEperson());
-                    } else {
-                        currentGroupOwners.add(poolTask.getGroup());
-                    }
-                }
-                for (ClaimedTask claimedTask : claimedTasks) {
-                    currentEpersonOwners.add(claimedTask.getOwner());
-                }
-            }
-            String previousWorkflowStepString = null;
-            if (previousStepId != null && previousActionConfigId != null) {
-                previousWorkflowStepString = workflowId + "." + previousStepId + "." + previousActionConfigId;
-            }
-
-            //Fire our usage event !
-            UsageWorkflowEvent usageWorkflowEvent = new UsageWorkflowEvent(c, item, wfi, workflowStepString,
-                                                                           previousWorkflowStepString, myCollection,
-                                                                           actor);
-
-            usageWorkflowEvent.setEpersonOwners(currentEpersonOwners.toArray(new EPerson[currentEpersonOwners.size()]));
-            usageWorkflowEvent.setGroupOwners(currentGroupOwners.toArray(new Group[currentGroupOwners.size()]));
-
-            DSpaceServicesFactory.getInstance().getEventService().fireEvent(usageWorkflowEvent);
-        } catch (SQLException e) {
-            //Catch all errors we do not want our workflow to crash because the logging threw an exception
-            log.error(LogManager.getHeader(c, "Error while logging workflow event", "Workflow Item: " + wfi.getID()),
-                      e);
+        if (newActionConfig == null) {
+            newStep = null;
         }
+
+        String currentStep = null;
+        if (newStep != null) {
+            currentStep = newStep.getId();
+        } else {
+            currentStep = rejected ? WORKSPACE_STEP : ITEM_STEP;
+        }
+
+        String currentAction = null;
+        if (newActionConfig != null) {
+            currentAction = newActionConfig.getId();
+        } else {
+            currentAction = rejected ? REJECT_ACTION : APPROVE_ACTION;
+        }
+
+        UsageWorkflowEvent workflowEvent = new UsageWorkflowEvent(c, wfi);
+        workflowEvent.setActor(actor);
+        workflowEvent.setWorkflow(workflowId);
+        workflowEvent.setCurrentWorkflowAction(currentAction);
+        workflowEvent.setCurrentWorkflowStep(currentStep);
+        workflowEvent.setOwners(getCurrentTaskOwners(c, wfi, newStep));
+        workflowEvent.setPreviousWorkflowStep(previousStepId != null ? previousStepId : SUBMIT_STEP);
+        workflowEvent.setPreviousWorkflowAction(previousActionId != null ? previousActionId : SUBMIT_ACTION);
+        workflowEvent.setPreviousActionRequiresUI(previousActionRequiresUI);
+
+        eventService.fireEvent(workflowEvent);
+    }
+
+    private List<DSpaceObject> getCurrentTaskOwners(Context c, XmlWorkflowItem wfi, Step newStep) {
+
+        if (newStep == null) {
+            return List.of();
+        }
+
+        List<DSpaceObject> owners = new ArrayList<>();
+
+        try {
+
+            List<ClaimedTask> claimedTasks = claimedTaskService.find(c, wfi, newStep.getId());
+            List<PoolTask> pooledTasks = poolTaskService.find(c, wfi);
+
+            for (PoolTask poolTask : pooledTasks) {
+                if (poolTask.getEperson() != null) {
+                    owners.add(poolTask.getEperson());
+                } else {
+                    owners.add(poolTask.getGroup());
+                }
+            }
+
+            for (ClaimedTask claimedTask : claimedTasks) {
+                owners.add(claimedTask.getOwner());
+            }
+
+            return owners;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     protected WorkflowActionConfig processNextStep(Context c, EPerson user, Workflow workflow,
@@ -644,7 +669,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         // Remove (if any) the workflowItemroles for this item
         workflowItemRoleService.deleteForWorkflowItem(context, wfi);
 
-        log.info(LogManager.getHeader(context, "archive_item", "workflow_item_id="
+        log.info(LogHelper.getHeader(context, "archive_item", "workflow_item_id="
             + wfi.getID() + "item_id=" + item.getID() + "collection_id="
             + collection.getID()));
 
@@ -659,7 +684,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         itemService.update(context, item);
 
         // Log the event
-        log.info(LogManager.getHeader(context, "install_item", "workflow_item_id="
+        log.info(LogHelper.getHeader(context, "install_item", "workflow_item_id="
             + wfi.getID() + ", item_id=" + item.getID() + "handle=FIXME"));
 
         return item;
@@ -709,8 +734,8 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
                 email.send();
             }
         } catch (MessagingException e) {
-            log.warn(LogManager.getHeader(context, "notifyOfArchive",
-                    "cannot email user" + " item_id=" + item.getID()));
+            log.warn(LogHelper.getHeader(context, "notifyOfArchive",
+                    "cannot email user" + " item_id=" + item.getID()), e);
         }
     }
 
@@ -742,9 +767,9 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
                 email.send();
             }
         } catch (MessagingException e) {
-            log.warn(LogManager.getHeader(c, "notifyOfCuration",
+            log.warn(LogHelper.getHeader(c, "notifyOfCuration",
                     "cannot email users of workflow_item_id " + wi.getID()
-                            + ":  " + e.getMessage()));
+                            + ":  " + e.getMessage()), e);
         }
     }
 
@@ -1010,7 +1035,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         xmlWorkflowItemService.deleteWrapper(context, wi);
         // Now delete the item
         itemService.delete(context, myitem);
-        log.info(LogManager.getHeader(context, "delete_workflow", "workflow_item_id="
+        log.info(LogHelper.getHeader(context, "delete_workflow", "workflow_item_id="
                 + workflowID + "item_id=" + itemID
                 + "collection_id=" + collID + "eperson_id="
                 + e.getID()));
@@ -1069,12 +1094,12 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
 
         // notify that it's been rejected
         notifyOfReject(context, wi, e, rejection_message);
-        log.info(LogManager.getHeader(context, "reject_workflow", "workflow_item_id="
+        log.info(LogHelper.getHeader(context, "reject_workflow", "workflow_item_id="
             + wi.getID() + "item_id=" + wi.getItem().getID()
             + "collection_id=" + wi.getCollection().getID() + "eperson_id="
             + e.getID()));
 
-        logWorkflowEvent(context, workflowID, currentStepId, currentActionConfigId, wi, e, null, null);
+        logWorkflowEvent(context, workflowID, currentStepId, currentActionConfigId, true, wi, e, null, null, true);
 
         context.restoreAuthSystemState();
         return wsi;
@@ -1093,7 +1118,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         // convert into personal workspace
         WorkspaceItem wsi = returnToWorkspace(c, wi);
 
-        log.info(LogManager.getHeader(c, "abort_workflow", "workflow_item_id="
+        log.info(LogHelper.getHeader(c, "abort_workflow", "workflow_item_id="
             + wi.getID() + "item_id=" + wsi.getItem().getID()
             + "collection_id=" + wi.getCollection().getID() + "eperson_id="
             + e.getID()));
@@ -1149,7 +1174,7 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
         workspaceItemService.update(c, workspaceItem);
 
         //myitem.update();
-        log.info(LogManager.getHeader(c, "return_to_workspace",
+        log.info(LogHelper.getHeader(c, "return_to_workspace",
                                       "workflow_item_id=" + wfi.getID() + "workspace_item_id="
                                           + workspaceItem.getID()));
 
@@ -1227,10 +1252,10 @@ public class XmlWorkflowServiceImpl implements XmlWorkflowService {
             }
         } catch (Exception ex) {
             // log this email error
-            log.warn(LogManager.getHeader(c, "notify_of_reject",
+            log.warn(LogHelper.getHeader(c, "notify_of_reject",
                     "cannot email user" + " eperson_id" + e.getID()
                     + " eperson_email" + e.getEmail()
-                    + " workflow_item_id" + wi.getID()));
+                    + " workflow_item_id" + wi.getID()), ex);
         }
     }
 

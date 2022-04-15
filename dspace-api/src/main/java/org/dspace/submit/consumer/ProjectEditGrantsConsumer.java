@@ -15,6 +15,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
@@ -39,7 +40,11 @@ public class ProjectEditGrantsConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        if (event.getEventType() == Event.MODIFY_METADATA) {
+        
+        String policyMetadata = ProjectConstants.MD_POLICY_SHARED.toString().replaceAll("\\.", "_");
+
+        if (event.getEventType() == Event.MODIFY_METADATA && event.getDetail() != null &&
+            event.getDetail().contains(policyMetadata)) {
             EPerson currentUser = context.getCurrentUser();
             if (Objects.isNull(currentUser)) {
                 return;

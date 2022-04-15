@@ -18,9 +18,9 @@ import org.dspace.core.Context;
  * @author Ben Bosman (ben at atmire dot com)
  */
 public interface ItemVersionProvider {
-    public Item createNewItemAndAddItInWorkspace(Context c, Item item);
+    public Item createNewItem(Context c, Item item);
 
     public void deleteVersionedItem(Context c, Version versionToDelete, VersionHistory history) throws SQLException;
 
-    public Item updateItemState(Context c, Item itemNew, Item previousItem);
+    public Item updateItemState(Context c, Item itemNew, Item previousItem, Version version);
 }

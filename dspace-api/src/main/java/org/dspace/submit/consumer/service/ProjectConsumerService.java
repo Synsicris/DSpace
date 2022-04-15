@@ -14,6 +14,7 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.eperson.Group;
 
 /**
 *
@@ -34,7 +35,12 @@ public interface ProjectConsumerService {
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
-    
+
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;
+
+    public boolean isParentProjectItem(Item item);
+
+    public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
+            throws SQLException;
 
 }

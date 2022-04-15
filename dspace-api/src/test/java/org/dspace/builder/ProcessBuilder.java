@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.dspace.authorize.AuthorizeException;
@@ -60,6 +61,11 @@ public class ProcessBuilder extends AbstractBuilder<Process, ProcessService> {
         return this;
     }
 
+    public ProcessBuilder withCreationTime(Date creationTime) {
+        process.setCreationTime(creationTime);
+        return this;
+    }
+
     public ProcessBuilder withStartAndEndTime(String startTime, String endTime) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         process.setStartTime(simpleDateFormat.parse(startTime));
@@ -70,6 +76,7 @@ public class ProcessBuilder extends AbstractBuilder<Process, ProcessService> {
     @Override
     public void cleanup() throws Exception {
         try (Context c = new Context()) {
+            c.setDispatcher("noindex");
             c.turnOffAuthorisationSystem();
             // Ensure object and any related objects are reloaded before checking to see what needs cleanup
             process = c.reloadEntity(process);

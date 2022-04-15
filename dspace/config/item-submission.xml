@@ -3,9 +3,14 @@
 
 <item-submission>
   <submission-map>
-    <name-map collection-handle="default" submission-name="impact_pathway" />
+    <name-map collection-handle="default" submission-name="edit_grants" />
   </submission-map>
   <step-definitions>
+    <step-definition id="edit_grants" mandatory="true">
+      <heading>submit.progressbar.describe.edit_grants</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="impact_pathway_form" mandatory="true">
       <heading>submit.progressbar.describe.impact_pathway_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -15,6 +20,64 @@
       <heading>submit.progressbar.describe.impact_pathway_step_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
+    </step-definition>
+    <step-definition id="impact_pathway_task_form" mandatory="true">
+      <heading>submit.progressbar.describe.impact_pathway_task_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="impact_pathway-edit_form" mandatory="true">
+      <heading>submit.progressbar.describe.impact_pathway-edit_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="impact_pathway-edit_link_form" mandatory="true">
+      <heading>submit.progressbar.describe.impact_pathway-edit_link_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="working_plan_form" mandatory="true">
+      <heading>submit.progressbar.describe.working_plan_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="working_plan_step_form" mandatory="true">
+      <heading>submit.progressbar.describe.working_plan_step_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="working_plan-edit_form" mandatory="true">
+      <heading>submit.progressbar.describe.working_plan-edit_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="exploitation_plan_form" mandatory="true">
+      <heading>submit.progressbar.describe.exploitation_plan_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="exploitation_plan_step_form" mandatory="true">
+      <heading>submit.progressbar.describe.exploitation_plan_step_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="exploitation_plan_task_form" mandatory="true">
+      <heading>submit.progressbar.describe.exploitation_plan_task_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="exploitation_plan-edit_form" mandatory="true">
+      <heading>submit.progressbar.describe.exploitation_plan-edit_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step-definition>
     <step-definition id="upload" mandatory="true" opened="false">
       <heading>submit.progressbar.upload</heading>
@@ -404,11 +467,38 @@
     </step-definition>
   </step-definitions>
   <submission-definitions>
+    <submission-process name="edit_grants">
+      <step id="edit_grants" />
+    </submission-process>
     <submission-process name="impact_pathway">
       <step id="impact_pathway_form" />
     </submission-process>
     <submission-process name="impact_pathway_step">
       <step id="impact_pathway_step_form" />
+    </submission-process>
+    <submission-process name="impact_pathway-edit_form">
+      <step id="impact_pathway-edit_form" />
+    </submission-process>
+    <submission-process name="impact_pathway-edit_link_form">
+      <step id="impact_pathway-edit_link_form" />
+    </submission-process>
+    <submission-process name="working_plan_form">
+      <step id="working_plan_form" />
+    </submission-process>
+    <submission-process name="working_plan_step_form">
+      <step id="working_plan_step_form" />
+    </submission-process>
+    <submission-process name="working_plan-edit_form">
+      <step id="working_plan-edit_form" />
+    </submission-process>
+    <submission-process name="exploitation_plan_form">
+      <step id="exploitation_plan_form" />
+    </submission-process>
+    <submission-process name="exploitation_plan_step_form">
+      <step id="exploitation_plan_step_form" />
+    </submission-process>
+    <submission-process name="exploitation_plan-edit_form">
+      <step id="exploitation_plan-edit_form" />
     </submission-process>
     <submission-process name="patents">
       <step id="patents" />
@@ -416,6 +506,8 @@
       <step id="patents_result_import" />
       <step id="statusacc2" />
       <step id="extractionstep" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="patents-edit">
       <step id="patents" />
@@ -473,6 +565,8 @@
       <step id="spinoffs_result_performance" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="spinoffs-edit">
       <step id="spinoffs" />
@@ -488,6 +582,8 @@
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
       <step id="extractionstep" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="publications" />
@@ -499,6 +595,9 @@
     <submission-process name="plan_publications">
       <step id="plan_publications" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_step_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="plan_publications-edit">
       <step id="plan_publications" />
@@ -507,6 +606,8 @@
     <submission-process name="awards">
       <step id="awards" />
       <step id="upload" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="awards-edit">
       <step id="awards" />
@@ -515,6 +616,8 @@
     <submission-process name="steps">
       <step id="steps" />
       <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="steps-edit">
       <step id="steps" />
@@ -523,6 +626,8 @@
     <submission-process name="innovationideas">
       <step id="innovationideas" />
       <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="innovationideas-edit">
       <step id="innovationideas" />
@@ -532,6 +637,9 @@
       <step id="workpackages" />
       <step id="workpackages_result" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="workpackages-edit">
       <step id="workpackages" />
@@ -541,6 +649,9 @@
     <submission-process name="tasks">
       <step id="tasks" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_step_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="tasks-edit">
       <step id="tasks" />
@@ -549,6 +660,8 @@
     <submission-process name="milestones">
       <step id="milestones" />
       <step id="statusacc2" />
+      <step id="working_plan_form" />
+      <step id="working_plan_step_form" />
     </submission-process>
     <submission-process name="milestones-edit">
       <step id="milestones" />
@@ -556,6 +669,7 @@
     </submission-process>
     <submission-process name="stateofart">
       <step id="stateofart" />
+      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="stateofart-edit">
       <step id="stateofart" />
@@ -563,6 +677,8 @@
     <submission-process name="contribution_fundingprogramme">
       <step id="contribution_fundingprogramme" />
       <step id="statusacc4" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme-edit">
       <step id="contribution_fundingprogramme" />
@@ -571,6 +687,8 @@
     <submission-process name="unexpected_results">
       <step id="unexpected_results" />
       <step id="unexpected_results_publication" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="unexpected_results-edit">
       <step id="unexpected_results" />
@@ -581,6 +699,9 @@
       <step id="events_result" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_step_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="events-edit">
       <step id="events" />
@@ -594,6 +715,9 @@
       <step id="process_events_date" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_step_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="process_events-edit">
       <step id="process_events" />
@@ -606,6 +730,9 @@
       <step id="physical_objects" />
       <step id="physical_objects_result" />
       <step id="statusacc2" />
+      <step id="impact_pathway_task_form" />
+      <step id="working_plan_step_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="physical_objects-edit">
       <step id="physical_objects" />
@@ -623,6 +750,8 @@
     <submission-process name="pot_societalimpact">
       <step id="pot_societalimpact" />
       <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="pot_societalimpact-edit">
       <step id="pot_societalimpact" />
@@ -632,6 +761,8 @@
       <step id="exp_societalimpact" />
       <step id="exp_societalimpact_neg" />
       <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="exp_societalimpact-edit">
       <step id="exp_societalimpact" />
@@ -641,6 +772,8 @@
     <submission-process name="conditions">
       <step id="conditions" />
       <step id="statusacc1" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="conditions-edit">
       <step id="conditions" />
@@ -650,6 +783,7 @@
       <step id="gender_reflection" />
       <step id="gender" />
       <step id="statusacc1" />
+      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="gender-edit">
       <step id="gender_reflection" />
@@ -660,6 +794,7 @@
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
+      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="ethics-edit">
       <step id="ethics_reflection" />
@@ -668,12 +803,14 @@
     </submission-process>
     <submission-process name="ia_objectives">
       <step id="ia_objectives" />
+      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="ia_objectives-edit">
       <step id="ia_objectives" />
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="proj_objectives" />
+      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="proj_objectives-edit">
       <step id="proj_objectives" />
@@ -681,6 +818,8 @@
     <submission-process name="products">
       <step id="products" />
       <step id="products_references" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="products-edit">
       <step id="products" />
@@ -736,6 +875,8 @@
     </submission-process>
     <submission-process name="research_results">
       <step id="research_results" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="research_results-edit">
       <step id="research_results" />
@@ -746,6 +887,8 @@
       <step id="innovationpotentials_regional_scope" />
       <step id="innovationpotentials_srl_trl" />
       <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="innovationpotentials-edit">
       <step id="innovationpotentials" />
@@ -758,6 +901,8 @@
       <step id="applications" />
       <step id="applications_quant" />
       <step id="upload" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="applications-edit">
       <step id="applications" />
@@ -766,6 +911,8 @@
     </submission-process>
     <submission-process name="others">
       <step id="others" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />

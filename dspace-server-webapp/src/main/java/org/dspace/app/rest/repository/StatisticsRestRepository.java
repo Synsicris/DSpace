@@ -27,6 +27,7 @@ import org.dspace.core.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
@@ -44,16 +45,16 @@ public class StatisticsRestRepository extends DSpaceRestRepository<UsageReportRe
     }
 
     @Override
-    @PreAuthorize("hasPermission(#uuidObjectReportId, 'usagereport', 'READ')")
-    public UsageReportRest findOne(Context context, String uuidObjectReportId) {
-        UUID uuidObject = UUID.fromString(StringUtils.substringBefore(uuidObjectReportId, "_"));
-        String reportId = StringUtils.substringAfter(uuidObjectReportId, "_");
+    @PreAuthorize("hasPermission(#id, 'usagereport', 'READ')")
+    public UsageReportRest findOne(Context context, String id) {
+        UUID uuidObject = UUID.fromString(StringUtils.substringBefore(id, "_"));
+        String reportId = StringUtils.substringAfter(id, "_");
 
         UsageReportRest usageReportRest = null;
         try {
             DSpaceObject dso = dspaceObjectUtil.findDSpaceObject(context, uuidObject);
             if (dso == null) {
-                return null;
+                throw new ResourceNotFoundException("No DSO found with uuid: " + uuidObject);
             }
             usageReportRest = usageReportUtils.createUsageReport(context, dso, reportId);
 
@@ -75,7 +76,7 @@ public class StatisticsRestRepository extends DSpaceRestRepository<UsageReportRe
             Context context = obtainContext();
             DSpaceObject dso = dspaceObjectUtil.findDSpaceObject(context, uuid);
             if (dso == null) {
-                return null;
+                throw new ResourceNotFoundException("No DSO found with uuid: " + uuid);
             }
             if (category != null && !usageReportUtils.categoryExists(dso, category)) {
                 throw new IllegalArgumentException("The specified category doesn't exists: " + category);

@@ -25,7 +25,7 @@ import org.dspace.app.rest.exception.DSpaceBadRequestException;
 import org.dspace.app.rest.exception.InvalidSearchRequestException;
 import org.dspace.app.rest.parameter.SearchFilter;
 import org.dspace.core.Context;
-import org.dspace.core.LogManager;
+import org.dspace.core.LogHelper;
 import org.dspace.discovery.DiscoverFacetField;
 import org.dspace.discovery.DiscoverFilterQuery;
 import org.dspace.discovery.DiscoverHitHighlightingField;
@@ -42,6 +42,7 @@ import org.dspace.discovery.configuration.DiscoverySearchFilterFacet;
 import org.dspace.discovery.configuration.DiscoverySortConfiguration;
 import org.dspace.discovery.configuration.DiscoverySortFieldConfiguration;
 import org.dspace.discovery.configuration.DiscoverySortFunctionConfiguration;
+import org.dspace.discovery.configuration.MultiLanguageDiscoverySearchFilter;
 import org.dspace.discovery.indexobject.factory.IndexFactory;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.InitializingBean;
@@ -245,7 +246,7 @@ public class DiscoverQueryBuilder implements InitializingBean {
                 queryArgs.addYearRangeFacet(facet, facetYearRange);
 
             } catch (Exception e) {
-                log.error(LogManager.getHeader(context, "Error in Discovery while setting up date facet range",
+                log.error(LogHelper.getHeader(context, "Error in Discovery while setting up date facet range",
                                                "date facet: " + facet), e);
             }
 
@@ -255,7 +256,11 @@ public class DiscoverQueryBuilder implements InitializingBean {
             // "show more" url
             int facetLimit = pageSize + 1;
             //This should take care of the sorting for us
-            queryArgs.addFacetField(new DiscoverFacetField(facet.getIndexFieldName(), facet.getType(), facetLimit,
+            String indexFieldName = facet.getIndexFieldName();
+            if (facet instanceof MultiLanguageDiscoverySearchFilter) {
+                indexFieldName = context.getCurrentLocale().getLanguage() + "_" + indexFieldName;
+            }
+            queryArgs.addFacetField(new DiscoverFacetField(indexFieldName, facet.getType(), facetLimit,
                     facet.getSortOrderSidebar(), StringUtils.trimToNull(prefix),
                     facet.exposeMore(), facet.exposeMissing(), facet.exposeTotalElements(), facet.fillDateGaps(),
                     facet.inverseDirection()));
@@ -334,10 +339,10 @@ public class DiscoverQueryBuilder implements InitializingBean {
 
         //Load defaults if we did not receive values
         if (sortBy == null) {
-            sortBy = getDefaultSortField(searchSortConfiguration);
+            sortBy = searchSortConfiguration.getDefaultSortField();
         }
         if (sortOrder == null) {
-            sortOrder = getDefaultSortDirection(searchSortConfiguration, sortOrder);
+            sortOrder = searchSortConfiguration.getDefaultSortDirection();
         }
 
         //Update Discovery query
@@ -373,28 +378,6 @@ public class DiscoverQueryBuilder implements InitializingBean {
 
     private boolean isConfigured(String sortBy, DiscoverySortConfiguration searchSortConfiguration) {
         return Objects.nonNull(searchSortConfiguration.getSortFieldConfiguration(sortBy));
-    }
-
-    private String getDefaultSortDirection(DiscoverySortConfiguration searchSortConfiguration, String sortOrder) {
-        if (Objects.nonNull(searchSortConfiguration.getSortFields()) &&
-            !searchSortConfiguration.getSortFields().isEmpty()) {
-            sortOrder = searchSortConfiguration.getSortFields().get(0).getDefaultSortOrder().name();
-        }
-        return sortOrder;
-    }
-
-    private String getDefaultSortField(DiscoverySortConfiguration searchSortConfiguration) {
-        String sortBy;// Attempt to find the default one, if none found we use SCORE
-        sortBy = "score";
-        if (Objects.nonNull(searchSortConfiguration.getSortFields()) &&
-            !searchSortConfiguration.getSortFields().isEmpty()) {
-            DiscoverySortFieldConfiguration defaultSort = searchSortConfiguration.getSortFields().get(0);
-            if (StringUtils.isBlank(defaultSort.getMetadataField())) {
-                return sortBy;
-            }
-            sortBy = defaultSort.getMetadataField();
-        }
-        return sortBy;
     }
 
     private void configurePagination(Pageable page, DiscoverQuery queryArgs) {
@@ -433,8 +416,13 @@ public class DiscoverQueryBuilder implements InitializingBean {
                     throw new DSpaceBadRequestException(searchFilter.getName() + " is not a valid search filter");
                 }
 
+                String field = filter.getIndexFieldName();
+                if (filter instanceof MultiLanguageDiscoverySearchFilter) {
+                    field = context.getCurrentLocale().getLanguage() + "_" + field;
+                }
+
                 DiscoverFilterQuery filterQuery = searchService.toFilterQuery(context,
-                                                                              filter.getIndexFieldName(),
+                                                                              field,
                                                                               searchFilter.getOperator(),
                                                                               searchFilter.getValue(),
                                                                               discoveryConfiguration);

@@ -91,6 +91,19 @@ public class ProjectsMigrationScript extends
     private AuthorizeService authorizeService;
     
     private Map<String, MetadataMigrate> metadataMigrationMap;
+    
+    private Collection projectPartnersColl = null;
+    private Collection subprojectPartnersColl = null;
+    private Collection jointProjectsColl = null;
+    private Collection subprojectsColl = null;
+    private Collection workingPlanColl = null;
+    private Group parentProjectAdminGroup = null;
+    private Group parentProjectMemberGroup = null;
+    
+    private Integer errors = 0;
+    private List<String> errorMsgs = new ArrayList<String>();
+    
+    private boolean migrateMetadata = false;
 
 
     private String matadataToSkip[] = new String[] {
@@ -131,13 +144,19 @@ public class ProjectsMigrationScript extends
         }
         Community projectTemplateCommunity = getCommunityByProperty("project.template-id");
         Map<String, Group> scopedRoles = new HashMap<>();
-        List<Collection> projectCollections = new ArrayList<Collection>();
-        
+        List<Collection> projectCollections = new ArrayList<Collection>();        
         EPerson coordinator = epersonService.find(context, UUIDUtils.fromString("77e03ec3-e0bb-42c5-8622-006bde576c70")); 
-        
+        errors = 0;
         for (Community project : projectCommunity.getSubcommunities()) {
             try {
                 System.out.println("Process project " + project.getName());
+//                if (!project.getName().contains("BC-InStink")) {
+//                    continue;
+//                }
+                projectPartnersColl = null;
+                parentProjectAdminGroup = null;
+                parentProjectMemberGroup = null;
+                workingPlanColl = null;
                 projectCollections = new ArrayList<Collection>();
                 scopedRoles = new HashMap<>();
                 boolean hasSubproject = hasSubproject(project);
@@ -146,7 +165,7 @@ public class ProjectsMigrationScript extends
                 }
     
                 // rename groups
-                renameGroup(project, scopedRoles, coordinator);
+                renameGroup(project, scopedRoles, coordinator, false);
     
                 clonePolicies(context, project, projectTemplateCommunity, scopedRoles, true);
     
@@ -158,20 +177,21 @@ public class ProjectsMigrationScript extends
                 cleanProjects(project, entities2collection.keySet());
 
                 // check project collections, add itemTemplate, deposite workspaceItems
-                checkProjectCollection(project, entities2collection, scopedRoles, projectCollections);
+                checkProjectCollection(project, entities2collection, scopedRoles, projectCollections, false);
     
     
-                Item projectItem = createProjectItem(project, false);
+                Item projectItem = createProjectItem(project, scopedRoles, false);
+                
+                processWorkingplan(workingPlanColl, projectItem);
     
                 // fix workspaceitems and items metadata
-                System.out.println("Collectio to process : " + projectCollections.size());
+                System.out.println("Collections to process : " + projectCollections.size());
                 for (Collection projectCollection : projectCollections) {
                     try {
                         checkCollectionWorkspaceItems(projectCollection, project, projectItem);
-                        checkCollectionItems(projectCollection, project, scopedRoles, projectItem);
+                        checkCollectionItems(projectCollection, project, scopedRoles, projectItem, null);
                     } catch (Exception e) {
-                        log.error("Error project " + project.getName() + " collection " + projectCollection.getID()
-                        + e.getMessage());
+                        printError(e, "Error project " + project.getName() + " collection " + projectCollection.getID());
                         continue;
                     }
                 }
@@ -179,6 +199,9 @@ public class ProjectsMigrationScript extends
                 if (hasSubproject) {
                     migrateSubprojects(project, getSubprojectCommunity(project), projectItem);
                 }
+                System.out.println("Deleting collection " + projectPartnersColl.getID().toString());
+                collectionService.delete(context, projectPartnersColl);
+
                 // Step 4 : Print errors
                 if (errorDeposit.size() > 0) {
                     System.out.println("List of items which have not been deposited for the community with uuid:"
@@ -190,13 +213,35 @@ public class ProjectsMigrationScript extends
                 errorDeposit.clear();
                 System.out.println("Done project " + project.getName());
             } catch (Exception e) {
-                log.error("Error project " + project.getName() + e.getMessage());
+                printError(e, "Error project " + project.getName());
                 errorDeposit.clear();
                 continue;
             }
         }
+        System.out.println("Script ended with " + errors + " errors");
+        for (String errMsg : errorMsgs) {
+            System.out.println(errMsg + "\n");
+        }
         context.complete();
         context.restoreAuthSystemState();
+    }
+
+    private void processWorkingplan(Collection targetCollection, Item projectItem)
+            throws SQLException, AuthorizeException {      
+        Iterator<Item> items = itemService.findAllByCollection(context, targetCollection);
+        if (!items.hasNext()) {
+
+            WorkspaceItem workspaceItem = wsItemService.create(context, targetCollection, true);
+            Item wpItem = installItemService.installItem(context, workspaceItem);
+            collectionService.addItem(context, targetCollection, wpItem);
+            itemService.addMetadata(context, wpItem, "dc", "title", null, null, "Workingplan",
+                    null, Choices.CF_UNSET);
+            // add synsicris.relation.workingplan to item project
+            itemService.replaceMetadata(context, projectItem, "synsicris", "relation", "workingplan",
+                    null, "Workingplan", wpItem.getID().toString(), Choices.CF_ACCEPTED, 0);
+            System.out.println("Workingplan entity created " + wpItem.getID().toString());
+        }
+
     }
 
     private boolean hasSubproject(Community parentProject) {
@@ -229,53 +274,96 @@ public class ProjectsMigrationScript extends
         return null;
     }
 
-    private void migrateSubprojects(Community parentProject, Community subprojects, Item projectItem) throws Exception {
+    private void migrateSubprojects(Community parentProject, Community subprojects, Item projectItem)
+            throws Exception {
         Map<String, Collection> entities2collection = getCollectionsEntityOfSubprojectTemplate();  
         if (Objects.isNull(subprojects)) {
             throw new RuntimeException("The ProjectCommunity has not been found,"
                                      + " check the propery : project.parent-community-id");
         }
 
-        Community emptySubprojectComm = getEmptySubprojectCommunity(parentProject);
-        if (!Objects.isNull(emptySubprojectComm)) {
-            communityService.delete(context, emptySubprojectComm);
-        }
+//        Community emptySubprojectComm = getEmptySubprojectCommunity(parentProject);
+//        if (!Objects.isNull(emptySubprojectComm)) {
+//            communityService.delete(context, emptySubprojectComm);
+//        }
 
         Map<String, Group> scopedRoles = new HashMap<>();
         List<Collection> projectCollections;
         Item subprojectItem = null;
+        Collection firstSubprojectProjectPartnerColl = null;
+        List<Item> unprocessedProjectPartnerItems = new ArrayList<Item>();
         for (Community subproject : subprojects.getSubcommunities()) {
-            
+            System.out.println("Process subproject " + subproject.getName());
+            subprojectPartnersColl = null;
+            subprojectsColl = null;
             projectCollections = new ArrayList<Collection>();
 
             // Step 1 : rename groups
-            renameGroup(subproject, scopedRoles, null);
+            renameGroup(subproject, scopedRoles, null, true);
 
             // Step 2: check project collection, if exist some collection that not exist in
             // project-template will be deleted
             cleanProjects(subproject, entities2collection.keySet());
 
             // Step 3 : check project collections, add itemTemplate, deposite workspaceItems
-            checkProjectCollection(subproject, entities2collection, scopedRoles, projectCollections);
+            checkProjectCollection(subproject, entities2collection, scopedRoles, projectCollections, true);
            
-            subprojectItem = createProjectItem(subproject, true);
+            subprojectItem = createProjectItem(subproject, scopedRoles, true);
+            
+            if (firstSubprojectProjectPartnerColl == null) {
+                firstSubprojectProjectPartnerColl = subprojectPartnersColl;
+            }
+
+            // migrate project partner entities
+            processProjectPartnerCollection(subprojectPartnersColl, subprojectItem, unprocessedProjectPartnerItems);
             
             for (Collection subprojectCollection : projectCollections) {
-                if (subprojectCollection.getName().equals("Exploitation plan")) {
-                    Iterator<Item> itemIterator = itemService.findAllByCollection(context, subprojectCollection);
-                    while (itemIterator.hasNext()) {
-                        Item targetItem = itemIterator.next();
-
-                        itemService.replaceMetadata(context, targetItem, "synsicris", "relation",
-                                "parentproject", null, projectItem.getName(), projectItem.getID().toString(),
-                                Choices.CF_ACCEPTED, 0);
-                        itemService.replaceMetadata(context, targetItem, "synsicris", "relation",
-                                "project", null, subprojectItem.getName(), subprojectItem.getID().toString(),
-                                Choices.CF_ACCEPTED, 0);
-                    }
+                try {
+                    checkCollectionWorkspaceItems(subprojectCollection, parentProject, projectItem);
+                    checkCollectionItems(subprojectCollection, parentProject, scopedRoles, projectItem, subprojectItem);
+                } catch (Exception e) {
+                    printError(e, "Error subproject " + subproject.getName() + " collection " +
+                            subprojectCollection.getID());
+                    continue;
                 }
             }
+
+//            for (Collection subprojectCollection : projectCollections) {
+//                if (subprojectCollection.getName().equals("Exploitation plan")) {
+//                    Iterator<Item> itemIterator = itemService.findAllByCollection(context, subprojectCollection);
+//                    while (itemIterator.hasNext()) {
+//                        Item targetItem = itemIterator.next();
+//                        // add synsicris.common-policy.group if not existing
+//                        itemService.replaceMetadata(context, targetItem, "synsicris", "common-policy",
+//                                "group", null, parentProjectMemberGroup.getName(),
+//                                parentProjectMemberGroup.getID().toString(), Choices.CF_ACCEPTED, 0);
+//                        itemService.replaceMetadata(context, targetItem, "synsicris", "relation",
+//                                "parentproject", null, projectItem.getName(), projectItem.getID().toString(),
+//                                Choices.CF_ACCEPTED, 0);
+//                        itemService.replaceMetadata(context, targetItem, "synsicris", "relation",
+//                                "project", null, subprojectItem.getName(), subprojectItem.getID().toString(),
+//                                Choices.CF_ACCEPTED, 0);
+//                    }
+//                }
+//            }
             
+        }
+        
+        if (unprocessedProjectPartnerItems.size() > 0) {
+            System.out.println("Processing unresolved project partner entities");
+            for (Item item : unprocessedProjectPartnerItems) {
+                try {
+                    itemService.move(context, item, projectPartnersColl, firstSubprojectProjectPartnerColl, true);
+                    System.out.println("Moved Item " + item.getID().toString()
+                            + " to the collection " + firstSubprojectProjectPartnerColl.getID().toString());
+                } catch (Exception ex) {
+                    printError(ex, "Error moving Item " + item.getID().toString()
+                            + " to the collection " + firstSubprojectProjectPartnerColl.getID().toString());
+                    continue;
+                }
+            }
+            context.reloadEntity(projectPartnersColl);
+            context.reloadEntity(firstSubprojectProjectPartnerColl);
         }
         
 
@@ -311,23 +399,40 @@ public class ProjectsMigrationScript extends
                 processCommunity(newComm, project, templateComm, false);
                 System.out.println("create new community "+ templateComm.getName() + templateComm.getID());
             } catch (SQLException | AuthorizeException e) {
-                log.error(e.getMessage());
+                printError(e, "Erro creating new community "+ templateComm.getName() + templateComm.getID());
             }
         }
     }
     
     private void checkProjectCollection(Community project, Map<String, Collection> entities2templateCollection,
-            Map<String, Group> scopedRoles, List<Collection> projectCollections) throws SQLException, AuthorizeException {
+            Map<String, Group> scopedRoles, List<Collection> projectCollections, boolean isSubproject)
+            throws SQLException, AuthorizeException {
 
         Map<String, Collection> map = new HashMap<String, Collection>(entities2templateCollection);
 
         for (Collection projectCollection : project.getCollections()) {
-            System.out.println("Process collection " + projectCollection.getID());
-            Collection templateCollection = map.get(projectCollection.getEntityType());
-            clonePolicies(context, projectCollection, templateCollection, scopedRoles, true);
-            processCollection(projectCollection, project, templateCollection, true);
-            map.remove(projectCollection.getEntityType());
-            projectCollections.add(projectCollection);
+            try {
+                if (!isSubproject && projectCollection.getName().equals("Project partners")) {
+                    continue;
+                }
+
+                System.out.println("Process collection " + projectCollection.getName()
+                    + " " + projectCollection.getID());
+                Collection templateCollection = map.get(projectCollection.getEntityType());
+                clonePolicies(context, projectCollection, templateCollection, scopedRoles, true);
+                processCollection(projectCollection, project, templateCollection, true);
+                map.remove(projectCollection.getEntityType());
+                projectCollections.add(projectCollection);
+                if (!isSubproject && projectCollection.getName().equals("Joint projects")) {
+                    jointProjectsColl = projectCollection;
+                }
+                if (isSubproject && projectCollection.getName().equals("Subprojects")) {
+                    subprojectsColl = projectCollection;
+                }
+            } catch (Exception e) {
+                printError(e, "Error checking collection " + projectCollection.getName() + " "
+                        + projectCollection.getID().toString());
+            }
         }
 
         for (Collection templateCollection : map.values()) {
@@ -335,10 +440,18 @@ public class ProjectsMigrationScript extends
                 Collection newCollection = collectionService.create(context, project);
                 clonePolicies(context, newCollection, templateCollection, scopedRoles, true);
                 processCollection(newCollection, project, templateCollection, false);
-                System.out.println("create new collection " + newCollection.getID());
+                if (!isSubproject && newCollection.getName().equals("Workingplan")) {
+                    workingPlanColl = newCollection;
+                }
+
+                if (isSubproject && newCollection.getName().equals("Project partners")) {
+                    subprojectPartnersColl = newCollection;
+                }
+                System.out.println("created new collection " + newCollection.getName()
+                    + " " + newCollection.getID());
                 projectCollections.add(newCollection);
             } catch (SQLException | AuthorizeException e) {
-                log.error(e.getMessage());
+                printError(e, "Error create new collection with template " + templateCollection.getName());
             }
         }
         context.reloadEntity(project);
@@ -348,7 +461,6 @@ public class ProjectsMigrationScript extends
         try {
             List<WorkspaceItem> workspaceItems = wsItemService.findByCollection(context, collection);
             System.out.println("Collection " + collection.getID() + " wsi " + workspaceItems.size());
-            
             Item itemTemplate = collection.getTemplateItem();
             Item item = null;
             String wsiID = null;
@@ -362,19 +474,20 @@ public class ProjectsMigrationScript extends
                     item = workspaceItem.getItem();
                     // migrateItemMetadata(item, collection.getEntityType(), itemTemplate);
                 } catch (SQLException e) {
-                    log.error("Error depositing workspaceItem " + wsiID
+                    printError(e, "Error depositing workspaceItem " + wsiID
                             + " within the collection " + collection.getID().toString());
                     continue;
                 }
             }
         } catch (SQLException e) {
-            log.error(e.getMessage());
+            printError(e, "Error checkCollectionWorkspaceItems " + " within the collection "
+                        + collection.getID().toString());
         }
     }
 
 
-    private void checkCollectionItems(Collection collection, Community project, Map<String, Group> scopedRoles,
-            Item projectItem) {
+    private void checkCollectionItems(Collection collection, Community parentproject, Map<String, Group> scopedRoles,
+            Item projectItem, Item subprojectItem) {
         try {
             Iterator<Item> items = itemService.findAllByCollection(context, collection);
             Item itemTemplate = collection.getTemplateItem();
@@ -383,46 +496,68 @@ public class ProjectsMigrationScript extends
                 Item item = items.next();
                 itemID = item.getID().toString();
                 try {
-                    addSubmitterToProjectGroup(project, item);
-                    migrateItemMetadata(item, collection.getEntityType(), itemTemplate, scopedRoles, projectItem);
+                    addSubmitterToProjectGroup(parentproject, item);
+                    migrateItemMetadata(item, collection.getEntityType(), itemTemplate, scopedRoles, projectItem,
+                            subprojectItem);
                 } catch (SQLException e) {
-                    log.error("Error processing Item " + itemID
+                    printError(e, "Error processing Item " + itemID
                             + " within the collection " + collection.getID().toString());
                     continue;
                 }
             }
         } catch (SQLException e) {
-            log.error(e.getMessage());
+            printError(e, "Error checkCollectionItems " + " within the collection "
+                        + collection.getID().toString());
         }
         
         
     }
 
-    private Item createProjectItem(Community project, boolean isSubproject) throws SQLException, AuthorizeException {
+    private Item createProjectItem(Community project, Map<String, Group> scopedRoles, boolean isSubproject) throws SQLException, AuthorizeException {
         
-        Item projectItem;
+        Item projectItem = null;
+        Iterator<Item> projectsItems;
+        if (isSubproject) {
+            projectsItems = itemService.findAllByCollection(context, subprojectsColl);
+        } else {
+            projectsItems = itemService.findAllByCollection(context, jointProjectsColl);
+        }
+
         List<MetadataValue> projectMetadataList = communityService.getMetadataByMetadataString(project,
                 "synsicris.relation.entity_project");
         if (projectMetadataList.size() > 0 && StringUtils.isNotBlank(projectMetadataList.get(0).getAuthority())) {
             MetadataValue projectMetadata = projectMetadataList.get(0);
             UUID uuid = UUIDUtils.fromString(projectMetadata.getAuthority());
             projectItem = itemService.find(context, uuid);
-        } else {
-            Collection parentProjectColl = null;
-            String entitTypeToFind = isSubproject ? "Project" : "parentproject";
-            for (Collection coll : project.getCollections()) {
-                if (coll.getEntityType().equals(entitTypeToFind)) {
-                    parentProjectColl = coll;
-                    break;
+        }
+        if (Objects.isNull(projectItem)) {
+            if (projectsItems.hasNext()) {
+                projectItem = projectsItems.next();
+                System.out.println("Restored lost item project " + projectItem.getID().toString() + " for project " +
+                        project.getName());
+            } else {
+                Collection parentProjectColl = null;
+                String entitTypeToFind = isSubproject ? "Project" : "parentproject";
+                for (Collection coll : project.getCollections()) {
+                    if (coll.getEntityType().equals(entitTypeToFind)) {
+                        parentProjectColl = coll;
+                        break;
+                    }
                 }
+                WorkspaceItem workspaceItem = wsItemService.create(context, parentProjectColl, true);
+                projectItem = installItemService.installItem(context, workspaceItem);
+                collectionService.addItem(context, parentProjectColl, projectItem);
+                itemService.addMetadata(context, projectItem, "dc", "title", null, null, project.getName(),
+                        null, Choices.CF_UNSET);
+                System.out.println("Created new item project " + projectItem.getID().toString() + " for project " +
+                        project.getName());
             }
-            WorkspaceItem workspaceItem = wsItemService.create(context, parentProjectColl, true);
-            projectItem = installItemService.installItem(context, workspaceItem);
-            collectionService.addItem(context, parentProjectColl, projectItem);
-            itemService.addMetadata(context, projectItem, "dc", "title", null, null, project.getName(),
-                    null, Choices.CF_UNSET);
-            communityService.addMetadata(context, project, "synsicris", "relation", "entity_project", null, project.getName(),
-                    projectItem.getID().toString(), Choices.CF_ACCEPTED);
+
+            authorizeService.removeAllPolicies(context, projectItem);
+            authorizeService.addPolicy(context, projectItem, 0, scopedRoles.get("project_template_members_group"));
+
+            communityService.replaceMetadata(context, project, "synsicris", "relation", "entity_project", null,
+                    project.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         }
         return projectItem; 
     }
@@ -432,7 +567,7 @@ public class ProjectsMigrationScript extends
             System.out.println("Deposit workspaceitem " + workspaceItem.getID().toString());
             installItemService.installItem(context, workspaceItem);
         } catch (SQLException | AuthorizeException e) {
-            log.error(e.getMessage());
+            printError(e, "Error Depositing workspaceitem " + workspaceItem.getID().toString());
             errorDeposit.add(workspaceItem.getItem().getID());
         }
     }
@@ -465,7 +600,7 @@ public class ProjectsMigrationScript extends
                 }
             }
         } catch (SQLException | AuthorizeException e) {
-            log.error(e.getMessage());
+            printError(e, "Error addTemplateItem");
         }
     }
 
@@ -478,6 +613,60 @@ public class ProjectsMigrationScript extends
         //}
     }
 
+    private void processProjectPartnerCollection(Collection targetCollection, Item subprojectItem,
+            List<Item> unprocessedProjectPartnerItems) throws SQLException {
+        if (projectPartnersColl != null && targetCollection.getName().equals("Project partners")) {
+
+            Iterator<Item> items = null;
+            try {
+                items = itemService.findAllByCollection(context, projectPartnersColl);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            String itemID = null;
+            if (items != null) {
+                while (items.hasNext()) {
+                    Item item = items.next();
+                    itemID = item.getID().toString();
+                    try {
+                        List<MetadataValue> mList = itemService.getMetadata(item, "dc", "relation", "project",
+                                null);
+                        String relationProject = (mList != null && mList.size() > 0) ?
+                                mList.get(0).getAuthority() : null;
+                        if (relationProject != null && relationProject.equals(subprojectItem.getID().toString())) {
+                            int index = unprocessedProjectPartnerItems.indexOf(item);
+                            if(index != -1) {
+                                unprocessedProjectPartnerItems.remove(index);
+                            }                            
+
+                            try {
+                                itemService.move(context, item, projectPartnersColl, targetCollection, true);
+                                System.out.println("Moved Item " + itemID
+                                        + " to the collection " + targetCollection.getID().toString());
+                            } catch (AuthorizeException | IOException ex) {
+                                printError(ex, "Error moving Item " + itemID
+                                        + " to the collection " + targetCollection.getID().toString());
+                                continue;
+                            }
+                        } else {
+                            if (!unprocessedProjectPartnerItems.contains(item)) {
+                                unprocessedProjectPartnerItems.add(item);
+                            }
+                        }
+                        
+                    } catch (SQLException e) {
+                        printError(e, "Error processing Item " + itemID
+                                + " within the collection " + targetCollection.getID().toString());
+                        continue;
+                    }
+                }
+                context.reloadEntity(projectPartnersColl);
+                context.reloadEntity(targetCollection);
+            }
+        }
+
+    }
 
     private void processCommunity(Community projectCommunity, Community project, Community templateCommunity,
             boolean clear) throws SQLException {
@@ -496,16 +685,20 @@ public class ProjectsMigrationScript extends
     private void deleteCollectionIfNotExistInTemplate(Collection collection, Set<String> entities) {
         if (!entities.contains(collection.getEntityType())) {
             try {
-                System.out.println("Delete collection " + collection.getID());
-                collectionService.delete(context, collection);
+                if (collection.getName().equals("Project partners")) {
+                    projectPartnersColl = collection;
+                } else {
+                    System.out.println("Delete collection " + collection.getID());
+                    collectionService.delete(context, collection);
+                }
             } catch (SQLException | AuthorizeException | IOException e) {
-                log.error(e.getMessage());
+                printError(e, "Error deleteCollectionIfNotExistInTemplate " + collection.getID().toString());
             }
         }
     }
 
-    private void renameGroup(Community community, Map<String, Group> scopedRoles, EPerson coordinator)
-            throws SQLException, AuthorizeException {
+    private void renameGroup(Community community, Map<String, Group> scopedRoles, EPerson coordinator,
+            boolean isSubproject) throws SQLException, AuthorizeException {
         String submitterGroupId = configurationService.getProperty("project.creation.group");
         Group submitterGroup = groupService.findByIdOrLegacyId(context, submitterGroupId);
         
@@ -527,7 +720,7 @@ public class ProjectsMigrationScript extends
             adminGroup = groupService.findByName(context, newAdminName.toString());
             if (Objects.isNull(adminGroup)) {
                 adminGroup = groupService.create(context);
-                
+
                 groupService.setName(adminGroup, newAdminName.toString());
                 groupService.update(context, adminGroup);
                 groupService.addMember(context, adminGroup, context.getCurrentUser());
@@ -536,8 +729,11 @@ public class ProjectsMigrationScript extends
         if (!Objects.isNull(coordinator)) {
             groupService.addMember(context, adminGroup, coordinator);
         }
+        if (!isSubproject) {
+            parentProjectAdminGroup = adminGroup;
+        }
         scopedRoles.put("project_template_admin_group", adminGroup);
-        
+
         StringBuilder memberGroupName = new StringBuilder("project_")
                                                   .append(community.getID().toString())
                                                   .append("_members_group");
@@ -554,10 +750,14 @@ public class ProjectsMigrationScript extends
                 groupService.addMember(context, submitterGroup, member);
             }
         }
-        
+
         if (!Objects.isNull(coordinator)) {
             groupService.addMember(context, adminGroup, coordinator);
             groupService.addMember(context, newMemberGroup, coordinator);
+        }
+
+        if (!isSubproject) {
+            parentProjectMemberGroup = newMemberGroup;
         }
 
         scopedRoles.put("project_template_members_group", newMemberGroup);
@@ -664,59 +864,112 @@ public class ProjectsMigrationScript extends
         }
     }
 
+    private boolean hasMetadata(Item targetItem, MetadataValue metadata) {
+        if (targetItem == null) {
+            return false;
+        }
+        
+        List<MetadataValue> mList = itemService.getMetadataByMetadataString(targetItem,
+                metadata.getMetadataField().toString('.'));
+        
+        return mList != null && mList.size() > 0;
+    }
+
+    private void printError(Exception e, String errMsg) {
+        errors++;
+        errorMsgs.add(errMsg + " Exception Error: " + e.getMessage());
+        log.error(errMsg + " Exception Error: " + e.getMessage());
+    }
+
     private void migrateItemMetadata(Item targetItem, String entityType, Item templateItem, 
-            Map<String, Group> scopedRoles, Item projectItem) throws SQLException {
+            Map<String, Group> scopedRoles, Item projectItem, Item subprojectItem) throws SQLException {
         if (!Objects.isNull(targetItem)) {
-            System.out.println("Migrate Item " + targetItem.getID());
             String itemEntityType = itemService.getMetadataFirstValue(targetItem, "dspace", "entity", "type", null);
+//            if (StringUtils.isNotBlank(itemEntityType) && itemEntityType.equals("workingplan")) {
+//                System.out.println("debug");
+//            }
+            System.out.println("Migrate Item " + targetItem.getID() + " with type " + itemEntityType);
             if (StringUtils.isBlank(itemEntityType) || !itemEntityType.equals(entityType)) {
+                System.out.println("replace metadata dspace.entity.type" + " item id: " + targetItem.getID().toString());
                 itemService.replaceMetadata(context, targetItem, "dspace", "entity", "type", null,
                         entityType, null, Choices.CF_UNSET, 0);
             }
             if (!Objects.isNull(templateItem)) {
                 List<MetadataValue> templateMetadata = templateItem.getMetadata();
                 for (MetadataValue metadata : templateMetadata) {
-                    String value = metadata.getValue();
-                    String authority = metadata.getAuthority();
-                    int confidence = metadata.getConfidence();
-                    if (metadata.getMetadataField().toString('.').equals("synsicris.​subject.​agrovoc")) {
+                    try {
+                        String value = metadata.getValue();
+                        String authority = metadata.getAuthority();
+                        int confidence = metadata.getConfidence();
+                        if (metadata.getMetadataField().toString('.').equals("synsicris.​subject.​agrovoc")) {
+                            continue;
+                        }
+                        if (metadata.getMetadataField().toString('.').equals("cris.project.shared")
+                                && hasMetadata(targetItem, metadata)) {                            
+                            continue;
+                        }
+                        if (metadata.getMetadataField().toString('.').equals("cris.policy.group")) {                            
+                            if (hasMetadata(targetItem, metadata) && 
+                                    !itemService.getMetadataByMetadataString(targetItem, metadata.getMetadataField().toString('.'))
+                                        .get(0).getValue().contains("GROUP_POLICY_PLACEHOLDER")
+                                    ) {
+                                continue;
+                            }
+
+                            value = scopedRoles.get("project_template_members_group").getName();
+                            authority = scopedRoles.get("project_template_members_group").getID().toString();
+                            confidence = Choices.CF_ACCEPTED;
+                        }
+                        if (metadata.getMetadataField().toString('.').equals("synsicris.relation.parentproject")) {
+                            value = projectItem.getName();
+                            authority = projectItem.getID().toString();
+                            confidence = Choices.CF_ACCEPTED;
+                        }
+                        if (metadata.getMetadataField().toString('.').equals("synsicris.relation.project")) {
+                            value = subprojectItem.getName();
+                            authority = subprojectItem.getID().toString();
+                            confidence = Choices.CF_ACCEPTED;
+                        }
+                        if (metadata.getMetadataField().toString('.').equals("synsicris.common-policy.group")) {
+                            value = parentProjectMemberGroup.getName();
+                            authority = parentProjectMemberGroup.getID().toString();
+                            confidence = Choices.CF_ACCEPTED;
+                        }
+                        System.out.println("replace metadata " + metadata.getMetadataField().toString('.') +  " place " +
+                                metadata.getPlace() + " item id: " + targetItem.getID().toString());
+                        itemService.replaceMetadata(context, targetItem, metadata.getSchema(), metadata.getElement(),
+                                metadata.getQualifier(), metadata.getLanguage(), value, authority,
+                                confidence, metadata.getPlace());
+                    } catch (Exception e) {
+                        printError(e, "Error migrating metadata " + metadata.getMetadataField().toString('.')
+                                + " for item " + targetItem.getID().toString());
                         continue;
                     }
-                    if (metadata.getMetadataField().toString('.').equals("cris.policy.group")) {
-                        value = scopedRoles.get("project_template_members_group").getName();
-                        authority = scopedRoles.get("project_template_members_group").getID().toString();
-                        confidence = Choices.CF_ACCEPTED;
-                    }
-                    if (metadata.getMetadataField().toString('.').equals("synsicris.relation.parentproject")) {
-                        value = projectItem.getName();
-                        authority = projectItem.getID().toString();
-                        confidence = Choices.CF_ACCEPTED;
-                    }
-                    itemService.replaceMetadata(context, targetItem, metadata.getSchema(), metadata.getElement(),
-                            metadata.getQualifier(), metadata.getLanguage(), value, authority,
-                            confidence, metadata.getPlace());
+                    
                 }
             }
             
-            List<MetadataValue> itemMetadata = targetItem.getMetadata();
-            List<MetadataField> metadataFields = new ArrayList<MetadataField>();
-            for (MetadataValue metadata : itemMetadata) {
-                if (!metadataFields.contains(metadata.getMetadataField())) {
-                    metadataFields.add(metadata.getMetadataField());
+            if (migrateMetadata) {
+                List<MetadataValue> itemMetadata = targetItem.getMetadata();
+                List<MetadataField> metadataFields = new ArrayList<MetadataField>();
+                for (MetadataValue metadata : itemMetadata) {
+                    if (!metadataFields.contains(metadata.getMetadataField())) {
+                        metadataFields.add(metadata.getMetadataField());
+                    }
                 }
-            }
-            
-            
-            for (MetadataField metadataField : metadataFields) {
-                try {
-                    System.out.println("process " + metadataField.toString('.') + " item " + targetItem.getID());
-                    migrateMetadata(targetItem, entityType, metadataField);
-                } catch (SQLException e) {
-                    log.error("Error migrating metadata " + metadataField.toString('.')
-                            + "for item " + targetItem.getID().toString());
-                    continue;
+                
+                
+                for (MetadataField metadataField : metadataFields) {
+                    try {
+                        System.out.println("process " + metadataField.toString('.') + " item " + targetItem.getID());
+                        migrateMetadata(targetItem, entityType, metadataField);
+                    } catch (SQLException e) {
+                        printError(e, "Error migrating metadata " + metadataField.toString('.')
+                        + "for item " + targetItem.getID().toString());
+                        continue;
+                    }
+    
                 }
-
             }
         }
     }

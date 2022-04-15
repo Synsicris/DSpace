@@ -28,6 +28,7 @@ import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -146,9 +147,31 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return parentProjectCommunity;
     }
 
+
+    @Override
+    public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
+            throws SQLException {
+        if (Objects.isNull(projectCommunity)) {
+            return null;
+        }
+        String template;
+        switch (role) {
+            case ProjectConstants.MEMBERS_ROLE:
+                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;;
+                break;
+            default:
+                template = ProjectConstants.ADMIN_GROUP_TEMPLATE;
+                break;
+        }
+        String groupName = String.format(template, projectCommunity.getID().toString());
+        return groupService.findByName(context, groupName);
+    }
+
     private Community getSubProjectCommunity(Community projectCommunity) {
         String subprojectName =  configurationService.getProperty("project.subproject-community-name");
-        List<Community> subCommunities = projectCommunity.getSubcommunities();
+        List<Community> subCommunities = new ArrayList<>();
+        subCommunities.addAll(projectCommunity.getSubcommunities());
+        subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
             if (StringUtils.equals(subprojectName, community.getName())) {
                 return community;
@@ -164,7 +187,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                                                  .append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
         boolean isAdmin = authorizeService.isAdmin(context);
-        boolean isCommunityAdmin = authorizeService.isAdmin(context, community);
+        boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
@@ -184,8 +207,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
             if (Objects.nonNull(subprojectCommunity)) {
                 List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
-                        ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                        ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
+                        ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                        ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
@@ -254,9 +277,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.SCHEMA,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.ELEMENT,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.QUALIFIER, null);
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.schema,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.element,
+                ProjectConstants.MD_PARENTPROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
@@ -268,7 +291,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         return null;
     }
-    
+
     @Override
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException {
         Item projectItem = null;
@@ -291,24 +314,29 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 communities.size());
             return projectItem;
         }
-        
+
         List<MetadataValue> values = communityService.getMetadata(communities.get(0),
-                ProjectConstants.MD_PROJECT_ENTITY.SCHEMA, ProjectConstants.MD_PROJECT_ENTITY.ELEMENT,
-                ProjectConstants.MD_PROJECT_ENTITY.QUALIFIER, null);
-        
+                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
+                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+
         if (values.size() != 1) {
             log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),
                     values.size());
             return projectItem;
         }
-        
+
         String itemUUID = values.get(0).getAuthority();
         if (StringUtils.isBlank(itemUUID)) {
             log.warn("Communitiy {} has no project items, unable to proceed", communities.get(0).getID().toString());
             return projectItem;
         }
-        
+
         return itemService.find(context, UUIDUtils.fromString(itemUUID));
+    }
+
+    @Override
+    public boolean isParentProjectItem(Item item) {
+        return ProjectConstants.PARENTPROJECT_ENTITY.equals(itemService.getEntityType(item));
     }
 
 }

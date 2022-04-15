@@ -3,6 +3,20 @@
 
 <input-forms>
   <form-definitions>
+    <form name="edit_grants">
+      <row>
+        <field>
+          <dc-schema>cris</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>shared</dc-qualifier>
+          <label>Grants</label>
+          <input-type value-pairs-name="item_shared">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_form">
       <row>
         <field>
@@ -128,6 +142,117 @@
           <required>mandatory</required>
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>fundingobjective</dc-qualifier>
+          <label>Select funding programme objective</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parent</dc-qualifier>
+          <label>Link to impact pathway</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Link to impact pathway task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="impact_pathway-edit_link_form">
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>outcome</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>Outcome Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>impactpathway</dc-schema>
+          <dc-element>bidirectional</dc-element>
+          <dc-qualifier>link</dc-qualifier>
+          <label>bidirectional Link</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -403,7 +528,7 @@
         </field>
       </row>
     </form>
-    <form name="working_plan_workpackage_form">
+    <form name="working_plan_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -439,6 +564,8 @@
           <hint />
           <visibility>workflow</visibility>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -477,8 +604,46 @@
           <visibility>workflow</visibility>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
     </form>
-    <form name="working_plan_workpackage_step_form">
+    <form name="working_plan_step_form">
       <row>
         <field>
           <dc-schema>dspace</dc-schema>
@@ -550,6 +715,143 @@
           <required />
           <hint />
           <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="working_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>start</dc-qualifier>
+          <label>Enter the start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>end</dc-qualifier>
+          <label>Enter the end date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>partner-wp</dc-qualifier>
+          <label>Responsible Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="stat_col23">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>place</dc-element>
+          <label>Place</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>workingplan</dc-schema>
+          <dc-element>link</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Link status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
         </field>
       </row>
     </form>
@@ -713,6 +1015,69 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="exploitation_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>exploitationplan</dc-qualifier>
+          <label>Relation exploitation plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>exploitationplan</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Are applications for property rights being considered or have property rights already been granted?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>
@@ -1327,6 +1692,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -1399,6 +1765,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint>Calculated from the start and end date of the project</hint>
+          <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
       <row>
@@ -1433,6 +1800,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>is calculated from the data of the subprojects</hint>
+          <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6935,7 +7303,7 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Rediness Level</displayed-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
         <stored-value>SRL</stored-value>
       </pair>
       <pair>

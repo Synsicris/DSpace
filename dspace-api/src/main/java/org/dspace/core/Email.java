@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
@@ -47,6 +48,9 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.MethodInvocationException;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
 import org.apache.velocity.runtime.resource.util.StringResourceRepository;
 import org.dspace.services.ConfigurationService;
@@ -307,6 +311,7 @@ public class Email {
         // Get the mail configuration properties
         String from = config.getProperty("mail.from.address");
         boolean disabled = config.getBooleanProperty("mail.server.disabled", false);
+        String[] fixedRecipients = config.getArrayProperty("mail.server.fixedRecipient");
 
         // If no character set specified, attempt to retrieve a default
         if (charset == null) {
@@ -320,13 +325,18 @@ public class Email {
         MimeMessage message = new MimeMessage(session);
 
         // Set the recipients of the message
-        for (String recipient : recipients) {
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        }
+        if (disabled && fixedRecipients.length > 0) {
+            for (String recipient : fixedRecipients) {
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            }
+        } else {
+            for (String recipient : recipients) {
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            }
 
-        // Set the CC addresses of the message
-        for (String ccAddress : ccAddresses) {
-            message.addRecipient(Message.RecipientType.CC, new InternetAddress(ccAddress));
+            for (String ccAddress : ccAddresses) {
+                message.addRecipient(Message.RecipientType.CC, new InternetAddress(ccAddress));
+            }
         }
 
         // Format the mail message body
@@ -351,8 +361,31 @@ public class Email {
         }
 
         StringWriter writer = new StringWriter();
-        template.merge(vctx, writer);
+        try {
+            template.merge(vctx, writer);
+        } catch (MethodInvocationException | ParseErrorException
+                | ResourceNotFoundException ex) {
+            LOG.error("Template not merged:  {}", ex.getMessage());
+            throw new MessagingException("Template not merged", ex);
+        }
+
         String fullMessage = writer.toString();
+
+        if (disabled && fixedRecipients.length > 0) {
+            fullMessage += "\n===REAL RECIPIENT===\n";
+
+            for (String r : recipients) {
+                fullMessage += r + "\n";
+            }
+
+            if (!ccAddresses.isEmpty()) {
+                fullMessage += "\n===REAL RECIPIENT (cc)===\n";
+
+                for (String c : ccAddresses) {
+                    fullMessage += c + "\n";
+                }
+            }
+        }
 
         // Set some message header fields
         Date date = new Date();
@@ -429,6 +462,10 @@ public class Email {
             StringBuilder text = new StringBuilder(
                 "Message not sent due to mail.server.disabled:\n");
 
+            if (fixedRecipients.length > 0) {
+                text.append(String.format("Sending to fixedRecipient instead: %s\n", Arrays.toString(fixedRecipients)));
+            }
+
             Enumeration<String> headers = message.getAllHeaderLines();
             while (headers.hasMoreElements()) {
                 text.append(headers.nextElement()).append('\n');
@@ -443,6 +480,10 @@ public class Email {
             }
 
             text.append('\n').append(fullMessage);
+
+            if (fixedRecipients.length > 0) {
+                Transport.send(message);
+            }
 
             LOG.info(text.toString());
         } else {
@@ -588,7 +629,7 @@ public class Email {
     /**
      * @author arnaldo
      */
-    public class InputStreamDataSource implements DataSource {
+    public static class InputStreamDataSource implements DataSource {
         private final String name;
         private final String contentType;
         private final ByteArrayOutputStream baos;
@@ -629,7 +670,7 @@ public class Email {
      * Wrap ConfigurationService to prevent templates from modifying
      * the configuration.
      */
-    public class UnmodifiableConfigurationService {
+    public static class UnmodifiableConfigurationService {
         private final ConfigurationService configurationService;
 
         /**

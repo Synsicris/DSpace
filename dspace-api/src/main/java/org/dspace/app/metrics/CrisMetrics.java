@@ -7,9 +7,7 @@
  */
 package org.dspace.app.metrics;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.dspace.content.Item;
+import org.dspace.content.DSpaceObject;
 import org.dspace.core.ReloadableEntity;
 
 /**
@@ -45,9 +43,9 @@ public class CrisMetrics  implements ReloadableEntity<Integer> {
 
     private Date endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "resource_id")
-    protected Item resource;
+    protected DSpaceObject resource;
 
     private boolean last;
 
@@ -116,12 +114,12 @@ public class CrisMetrics  implements ReloadableEntity<Integer> {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public Item getResource() {
+    public DSpaceObject getResource() {
         return resource;
     }
 
-    public void setResource(Item resource) {
-        this.resource = resource;
+    public void setResource(DSpaceObject dSpaceObject) {
+        this.resource = dSpaceObject;
     }
 
     public String getRemark() {

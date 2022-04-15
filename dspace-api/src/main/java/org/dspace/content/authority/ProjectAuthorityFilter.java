@@ -32,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
  */
-public class ProjectAuthorityFilter extends CustomAuthorityFilter {
+public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
 
     private static final Logger log = LoggerFactory.getLogger(ProjectAuthorityFilter.class);
 
@@ -42,6 +42,7 @@ public class ProjectAuthorityFilter extends CustomAuthorityFilter {
     @Autowired
     public ProjectAuthorityFilter(RequestService requestService,
                                    CollectionService collectionService) {
+        super(List.of());
         this.requestService = requestService;
         this.collectionService = collectionService;
     }
@@ -54,13 +55,18 @@ public class ProjectAuthorityFilter extends CustomAuthorityFilter {
             Context context = Optional.ofNullable(currentRequest.getServletRequest())
                 .map(rq -> (Context) rq.getAttribute("dspace.context")).orElseGet(Context::new);
 
-            return Optional.ofNullable(currentRequest.getHttpServletRequest())
+            List<String> filters = new ArrayList<>(Optional.ofNullable(currentRequest.getHttpServletRequest())
                 .map(hsr -> hsr.getParameter("collection"))
                 .filter(StringUtils::isNotBlank)
                 .map(collectionId -> collectionsFilter(collectionId, context))
                 .filter(StringUtils::isNotBlank)
                 .map(Collections::singletonList)
-                .orElseGet(Collections::emptyList);
+                .orElseGet(Collections::emptyList));
+            
+            // exclude item versions from the authority search
+            filters.add("-synsicris.uniqueid:*");
+
+            return filters;
         } else {
             return new ArrayList<String>();
         }

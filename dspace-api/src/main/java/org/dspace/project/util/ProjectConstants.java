@@ -32,6 +32,14 @@ public class ProjectConstants {
 
     public static final String PARENTPROJECT_ENTITY = "parentproject";
     
+    public static final String ADMIN_ROLE = "admin";
+    
+    public static final String ADMIN_GROUP_TEMPLATE = "project_%s_admin_group";
+    
+    public static final String MEMBERS_ROLE = "members";
+
+    public static final String MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";
+    
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
     public static final MetadataFieldName MD_PROJECT_ENTITY =
@@ -43,7 +51,8 @@ public class ProjectConstants {
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 
     public static final MetadataFieldName MD_RELATION_CALL = new MetadataFieldName("synsicris", "relation", "call");
-
+    
+    public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
    
     public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME = new MetadataFieldName("synsicris",
             "relation","programme");

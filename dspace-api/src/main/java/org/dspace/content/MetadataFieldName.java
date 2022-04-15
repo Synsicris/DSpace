@@ -8,6 +8,7 @@
 package org.dspace.content;
 
 import java.util.Arrays;
+import java.util.Objects;
 import javax.annotation.Nonnull;
 
 /**
@@ -17,13 +18,13 @@ import javax.annotation.Nonnull;
  */
 public class MetadataFieldName {
     /** Name of the metadata schema which defines this field.  Never null. */
-    public final String SCHEMA;
+    public final String schema;
 
     /** Element name of this field.  Never null. */
-    public final String ELEMENT;
+    public final String element;
 
     /** Qualifier name of this field.  May be {@code null}. */
-    public final String QUALIFIER;
+    public final String qualifier;
 
     /**
      * Initialize a tuple of (schema, element, qualifier) to name a metadata field.
@@ -40,9 +41,9 @@ public class MetadataFieldName {
             throw new NullPointerException("Element must not be null.");
         }
 
-        SCHEMA = schema;
-        ELEMENT = element;
-        QUALIFIER = qualifier;
+        this.schema = schema;
+        this.element = element;
+        this.qualifier = qualifier;
     }
 
     /**
@@ -59,9 +60,9 @@ public class MetadataFieldName {
             throw new NullPointerException("Element must not be null.");
         }
 
-        SCHEMA = schema;
-        ELEMENT = element;
-        QUALIFIER = null;
+        this.schema = schema;
+        this.element = element;
+        qualifier = null;
     }
 
     /**
@@ -79,9 +80,9 @@ public class MetadataFieldName {
             throw new IllegalArgumentException("Element must not be null.");
         }
 
-        SCHEMA = schema.getName();
-        ELEMENT = element;
-        QUALIFIER = qualifier;
+        this.schema = schema.getName();
+        this.element = element;
+        this.qualifier = qualifier;
     }
 
     /**
@@ -98,9 +99,9 @@ public class MetadataFieldName {
             throw new IllegalArgumentException("Element must not be null.");
         }
 
-        SCHEMA = schema.getName();
-        ELEMENT = element;
-        QUALIFIER = null;
+        this.schema = schema.getName();
+        this.element = element;
+        qualifier = null;
     }
 
     /**
@@ -110,9 +111,9 @@ public class MetadataFieldName {
      */
     public MetadataFieldName(@Nonnull String name) {
         String[] elements = parse(name);
-        SCHEMA = elements[0];
-        ELEMENT = elements[1];
-        QUALIFIER = elements[2];
+        schema = elements[0];
+        element = elements[1];
+        qualifier = elements[2];
     }
 
     /**
@@ -138,18 +139,41 @@ public class MetadataFieldName {
 
     /**
      * Format a dotted-atoms representation of this field name.
-     * @return SCHEMA.ELEMENT.QUALIFIER
+     * @return schema.element.qualifier
      */
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder(32);
-        buffer.append(SCHEMA)
+        buffer.append(schema)
                 .append('.')
-                .append(ELEMENT);
-        if (null != QUALIFIER) {
+                .append(element);
+        if (null != qualifier) {
             buffer.append('.')
-                    .append(QUALIFIER);
+                    .append(qualifier);
         }
         return buffer.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(element, qualifier, schema);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        MetadataFieldName other = (MetadataFieldName) obj;
+        return Objects.equals(element, other.element) && Objects.equals(qualifier, other.qualifier)
+                && Objects.equals(schema, other.schema);
+    }
+
+
 }

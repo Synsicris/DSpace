@@ -38,9 +38,15 @@ public abstract class AbstractGenerator implements TemplateValueGenerator {
 
     protected Community getParentProjectCommunity(Item templateItem) throws SQLException {
         Community projectCommunity = getProjectCommunity(templateItem);
-        Community parentProjectCommunity = projectCommunity.getParentCommunities().get(0)
-                .getParentCommunities().get(0);
-        return parentProjectCommunity;
+        Community parentCommunity = projectCommunity.getParentCommunities().get(0);
+        
+        String parentCommId = configurationService.getProperty("project.parent-community-id", null);
+        
+        if (parentCommunity.getID().toString().equals(parentCommId)) {
+            return projectCommunity;
+        } else {
+            return parentCommunity.getParentCommunities().get(0);
+        }
     }
 
 }

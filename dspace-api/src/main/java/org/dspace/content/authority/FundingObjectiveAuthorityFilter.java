@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
  */
-public class FundingObjectiveAuthorityFilter extends CustomAuthorityFilter {
+public class FundingObjectiveAuthorityFilter extends EntityTypeAuthorityFilter {
 
     private static final Logger log = LoggerFactory.getLogger(FundingObjectiveAuthorityFilter.class);
 
@@ -47,6 +47,7 @@ public class FundingObjectiveAuthorityFilter extends CustomAuthorityFilter {
     @Autowired
     public FundingObjectiveAuthorityFilter(RequestService requestService, CollectionService collectionService,
             ProjectConsumerService projectService, ItemService itemService) {
+        super(List.of());
         this.requestService = requestService;
         this.collectionService = collectionService;
         this.projectService = projectService;
@@ -83,8 +84,8 @@ public class FundingObjectiveAuthorityFilter extends CustomAuthorityFilter {
 
             if (projectItem != null) {
                 List<MetadataValue> values = itemService.getMetadata(projectItem,
-                        ProjectConstants.MD_RELATION_CALL.SCHEMA, ProjectConstants.MD_RELATION_CALL.ELEMENT,
-                        ProjectConstants.MD_RELATION_CALL.QUALIFIER, null);
+                        ProjectConstants.MD_RELATION_CALL.schema, ProjectConstants.MD_RELATION_CALL.element,
+                        ProjectConstants.MD_RELATION_CALL.qualifier, null);
                 
                 for (MetadataValue value : values) {
                     if (StringUtils.isNotBlank(value.getAuthority())) {
@@ -120,9 +121,9 @@ public class FundingObjectiveAuthorityFilter extends CustomAuthorityFilter {
                 
                 if (callItem != null) {
                     List<MetadataValue> values = itemService.getMetadata(callItem,
-                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.SCHEMA,
-                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.ELEMENT,
-                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.QUALIFIER, null);
+                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.schema,
+                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.element,
+                            ProjectConstants.MD_RELATION_CALLTOPROGRAMME.qualifier, null);
                     
                     for (MetadataValue value : values) {
                         if (StringUtils.isNotBlank(value.getAuthority())) {

@@ -19,7 +19,6 @@ import org.dspace.content.DSpaceObject;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.core.Context;
 import org.dspace.handle.service.HandleService;
-import org.dspace.identifier.doi.DOIIdentifierNotApplicableException;
 import org.dspace.identifier.service.IdentifierService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -72,8 +71,8 @@ public class IdentifierServiceImpl implements IdentifierService {
                 if (!StringUtils.isEmpty(identifier)) {
                     service.reserve(context, dso, identifier);
                 }
-            } catch (DOIIdentifierNotApplicableException e) {
-                log.warn("DOI Identifier not reserved (inapplicable): " + e.getMessage());
+            } catch (IdentifierNotApplicableException e) {
+                log.warn("Identifier not reserved (inapplicable): " + e.getMessage());
             }
         }
         //Update our item
@@ -88,8 +87,8 @@ public class IdentifierServiceImpl implements IdentifierService {
             if (service.supports(identifier)) {
                 try {
                     service.reserve(context, dso, identifier);
-                } catch (DOIIdentifierNotApplicableException e) {
-                    log.warn("DOI Identifier not reserved (inapplicable): " + e.getMessage());
+                } catch (IdentifierNotApplicableException e) {
+                    log.warn("Identifier not reserved (inapplicable): " + e.getMessage());
                 }
             }
         }
@@ -105,8 +104,8 @@ public class IdentifierServiceImpl implements IdentifierService {
         for (IdentifierProvider service : providers) {
             try {
                 service.register(context, dso);
-            } catch (DOIIdentifierNotApplicableException e) {
-                log.warn("DOI Identifier not registered (inapplicable): " + e.getMessage());
+            } catch (IdentifierNotApplicableException e) {
+                log.warn("Identifier not registered (inapplicable): " + e.getMessage());
             }
         }
         //Update our item / collection / community
@@ -124,8 +123,8 @@ public class IdentifierServiceImpl implements IdentifierService {
                 try {
                     service.register(context, object, identifier);
                     registered = true;
-                } catch (DOIIdentifierNotApplicableException e) {
-                    log.warn("DOI Identifier not registered (inapplicable): " + e.getMessage());
+                } catch (IdentifierNotApplicableException e) {
+                    log.warn("Identifier not registered (inapplicable): " + e.getMessage());
                 }
             }
         }
@@ -151,9 +150,8 @@ public class IdentifierServiceImpl implements IdentifierService {
                                  + "Identifier for " + contentServiceFactory.getDSpaceObjectService(dso)
                                                                             .getTypeText(dso) + ", "
                                  + dso.getID().toString() + ".");
-                    log.debug(ex.getMessage(), ex);
                 } catch (IdentifierException e) {
-                    log.error(e.getMessage(), e);
+                    log.error(e);
                 }
             }
         }
@@ -163,6 +161,8 @@ public class IdentifierServiceImpl implements IdentifierService {
     @Override
     public List<String> lookup(Context context, DSpaceObject dso) {
         List<String> identifiers = new ArrayList<>();
+        // Attempt to lookup DSO's identifiers using every available provider
+        // TODO: We may want to eventually limit providers based on DSO type, as not every provider supports every DSO
         for (IdentifierProvider service : providers) {
             try {
                 String result = service.lookup(context, dso);
@@ -178,13 +178,14 @@ public class IdentifierServiceImpl implements IdentifierService {
                     identifiers.add(result);
                 }
             } catch (IdentifierNotFoundException ex) {
-                log.info(service.getClass().getName() + " doesn't find an "
+                // This IdentifierNotFoundException is NOT logged by default, as some providers do not apply to
+                // every DSO (e.g. DOIs usually don't apply to EPerson objects). So it is expected some may fail lookup.
+                log.debug(service.getClass().getName() + " doesn't find an "
                              + "Identifier for " + contentServiceFactory.getDSpaceObjectService(dso)
                                                                         .getTypeText(dso) + ", "
                              + dso.getID().toString() + ".");
-                log.debug(ex.getMessage(), ex);
             } catch (IdentifierException ex) {
-                log.error(ex.getMessage(), ex);
+                log.error(ex);
             }
         }
 
@@ -229,7 +230,6 @@ public class IdentifierServiceImpl implements IdentifierService {
                     log.info(service.getClass().getName() + " cannot resolve "
                                  + "Identifier " + identifier + ": identifier not "
                                  + "found.");
-                    log.debug(ex.getMessage(), ex);
                 } catch (IdentifierException ex) {
                     log.error(ex.getMessage(), ex);
                 }

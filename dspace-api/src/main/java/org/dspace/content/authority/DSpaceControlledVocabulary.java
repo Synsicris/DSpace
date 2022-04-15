@@ -32,7 +32,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 /**
- * ChoiceAuthority source that reads the JSPUI-style hierarchical vocabularies
+ * ChoiceAuthority source that reads the hierarchical vocabularies
  * from {@code ${dspace.dir}/config/controlled-vocabularies/*.xml} and turns
  * them into autocompleting authorities.
  *
@@ -79,6 +79,11 @@ public class DSpaceControlledVocabulary extends SelfNamedPlugin implements Hiera
 
     public DSpaceControlledVocabulary() {
         super();
+    }
+
+    @Override
+    public boolean isPublic() {
+        return true;
     }
 
     @Override
@@ -212,16 +217,19 @@ public class DSpaceControlledVocabulary extends SelfNamedPlugin implements Hiera
 
     @Override
     public String getLabel(String key, String locale) {
+        init();
         return getNodeLabel(key, this.suggestHierarchy, locale);
     }
 
     @Override
     public String getValue(String key, String locale) {
+        init();
         return getNodeLabel(key, this.storeHierarchy, locale);
     }
 
     @Override
     public Choice getChoice(String authKey, String locale) {
+        init();
         Node node;
         try {
             node = getNode(authKey, locale);
@@ -265,6 +273,7 @@ public class DSpaceControlledVocabulary extends SelfNamedPlugin implements Hiera
 
     @Override
     public Integer getPreloadLevel() {
+        init();
         return preloadLevel;
     }
 

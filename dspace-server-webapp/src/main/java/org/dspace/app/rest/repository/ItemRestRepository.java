@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +23,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.dspace.app.customurl.CustomUrlService;
+import org.dspace.app.rest.Parameter;
+import org.dspace.app.rest.SearchRestMethod;
+import org.dspace.app.rest.authorization.impl.EditMetadataFeature;
 import org.dspace.app.rest.converter.MetadataConverter;
 import org.dspace.app.rest.exception.DSpaceBadRequestException;
 import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
+import org.dspace.app.rest.model.AuthorizationRest;
 import org.dspace.app.rest.model.BundleRest;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.model.patch.Patch;
@@ -45,11 +51,13 @@ import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
+import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
@@ -93,14 +101,20 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
     RelationshipTypeService relationshipTypeService;
 
     @Autowired
+    EditMetadataFeature editMetadataFeature;
+
+    @Autowired
     private UriListHandlerService uriListHandlerService;
+
+    @Autowired
+    private CustomUrlService customUrlService;
 
     public ItemRestRepository(ItemService dsoService) {
         super(dsoService);
     }
 
     @Override
-    @PreAuthorize("hasPermission(#id, 'ITEM', 'STATUS') || hasPermission(#id, 'ITEM', 'READ')")
+    @PreAuthorize("hasPermission(#id, 'ITEM', 'READ') || hasPermission(#id, 'ITEM', 'STATUS')")
     public ItemRest findOne(Context context, UUID id) {
         Item item = null;
         try {
@@ -136,9 +150,13 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
     }
 
     @Override
-    @PreAuthorize("hasPermission(#uuid, 'ITEM', 'WRITE')")
+    @PreAuthorize("hasPermission(#id, 'ITEM', 'WRITE')")
     protected void patch(Context context, HttpServletRequest request, String apiCategory, String model, UUID id,
                          Patch patch) throws AuthorizeException, SQLException {
+        Item item = itemService.find(context, id);
+        if (!editMetadataFeature.isAuthorized(context, converter.toRest(item, utils.obtainProjection()))) {
+            throw new AccessDeniedException("Current user not authorized for this operation");
+        }
         patchDSpaceObject(apiCategory, model, id, patch);
     }
 
@@ -317,7 +335,9 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
         } catch (IOException e1) {
             throw new UnprocessableEntityException("Error parsing request body", e1);
         }
-
+        if (!editMetadataFeature.isAuthorized(context, itemRest)) {
+            throw new AccessDeniedException("Current user not authorized for this operation");
+        }
         Item item = itemService.find(context, uuid);
         if (item == null) {
             throw new ResourceNotFoundException(apiCategory + "." + model + " with id: " + uuid + " not found");
@@ -365,4 +385,43 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
         Item item = uriListHandlerService.handle(context, req, stringList, Item.class);
         return converter.toRest(item, utils.obtainProjection());
     }
+
+
+    @SearchRestMethod(name = "findAllById")
+    public Page<AuthorizationRest> findAllById(@Parameter(value = "id", required = true) List<String> ids,
+            Pageable pageable) throws SQLException {
+
+        Context context = obtainContext();
+
+        List<Item> items = new ArrayList<Item>();
+
+        itemService.findByIds(context, ids).forEachRemaining(items::add);
+
+        return converter.toRestPage(items, pageable, items.size(), utils.obtainProjection());
+    }
+
+    @SearchRestMethod(name = "findByCustomURL")
+    public ItemRest findByCustomUrl(@Parameter(value = "q", required = true) String customUrl) {
+        return findItemByUuidOrCustomUrl(obtainContext(), customUrl)
+            .map(item -> (ItemRest) converter.toRest(item, utils.obtainProjection()))
+            .orElse(null);
+    }
+
+    private Optional<Item> findItemByUuidOrCustomUrl(Context context, String customUrl) {
+
+        UUID uuid = UUIDUtils.fromString(customUrl);
+        if (uuid != null) {
+
+            try {
+                return Optional.ofNullable(itemService.find(context, uuid));
+            } catch (SQLException e) {
+                throw new SQLRuntimeException(e);
+            }
+
+        }
+
+        return customUrlService.findItemByCustomUrl(context, customUrl);
+
+    }
+
 }

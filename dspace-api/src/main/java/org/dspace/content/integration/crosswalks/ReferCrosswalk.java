@@ -8,7 +8,6 @@
 package org.dspace.content.integration.crosswalks;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.apache.commons.collections4.iterators.EmptyIterator.emptyIterator;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.dspace.core.CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE;
 
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,15 +52,11 @@ import org.dspace.content.integration.crosswalks.evaluators.ConditionEvaluatorMa
 import org.dspace.content.integration.crosswalks.model.TemplateLine;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualField;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapper;
+import org.dspace.content.security.service.MetadataSecurityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
-import org.dspace.discovery.DiscoverQuery;
-import org.dspace.discovery.DiscoverResultIterator;
-import org.dspace.discovery.configuration.DiscoveryConfiguration;
-import org.dspace.discovery.configuration.DiscoveryConfigurationService;
-import org.dspace.discovery.indexobject.IndexableItem;
-import org.dspace.metadataSecurity.MetadataSecurityService;
+import org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +82,7 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
     private ItemService itemService;
 
     @Autowired
-    private DiscoveryConfigurationService searchConfigurationService;
+    private DiscoveryConfigurationUtilsService searchConfigurationUtilsService;
 
     @Autowired
     private VirtualFieldMapper virtualFieldMapper;
@@ -316,17 +310,17 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
     }
 
     private List<String> getMetadataValuesForLine(Context context, TemplateLine line, Item item) {
+
         if (line.isVirtualField()) {
             VirtualField virtualField = virtualFieldMapper.getVirtualField(line.getVirtualFieldName());
             String[] values = virtualField.getMetadata(context, item, line.getField());
             return values != null ? Arrays.asList(values) : Collections.emptyList();
-        } else {
-            List<MetadataValue> metadataValues = itemService.getMetadataByMetadataString(item, line.getField());
-            return metadataSecurityService.getPermissionFilteredMetadata(context, item, metadataValues)
-                                          .stream()
-                                          .map(MetadataValue::getValue)
-                                          .collect(Collectors.toList());
         }
+
+        return metadataSecurityService.getPermissionFilteredMetadataValues(context, item, line.getField()).stream()
+            .map(MetadataValue::getValue)
+            .collect(Collectors.toList());
+
     }
 
     private void handleMetadataGroup(Context context, Item item, Iterator<TemplateLine> iterator, String groupName,
@@ -424,7 +418,7 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
             return findByAuthorities(context, item, relationName);
         }
 
-        return findByRelation(context, item, relationName);
+        return searchConfigurationUtilsService.findByRelation(context, item, relationName);
     }
 
     private boolean isMetadataField(String relationName) {
@@ -439,36 +433,6 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
             .map(authority -> findById(context, UUIDUtils.fromString(authority)))
             .filter(Objects::nonNull)
             .iterator();
-    }
-
-    private Iterator<Item> findByRelation(Context context, Item item, String relationName) {
-        String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-        if (entityType == null) {
-            log.warn("The item with id " + item.getID() + " has no dspace.entity.type. No related items is found.");
-            return emptyIterator();
-        }
-
-        DiscoveryConfiguration discoveryConfiguration = findDiscoveryConfiguration(entityType, relationName);
-        if (discoveryConfiguration == null) {
-            log.warn("No discovery configuration found for relation " + relationName + " for item with id "
-                + item.getID() + " and type " + entityType + ". No related items is found.");
-            return emptyIterator();
-        }
-
-        DiscoverQuery discoverQuery = new DiscoverQuery();
-        discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
-        discoverQuery.setDiscoveryConfigurationName(discoveryConfiguration.getId());
-        List<String> defaultFilterQueries = discoveryConfiguration.getDefaultFilterQueries();
-        for (String defaultFilterQuery : defaultFilterQueries) {
-            discoverQuery.addFilterQueries(MessageFormat.format(defaultFilterQuery, item.getID()));
-        }
-
-        return new DiscoverResultIterator<Item, UUID>(context, discoverQuery);
-    }
-
-    private DiscoveryConfiguration findDiscoveryConfiguration(String entityType, String relationName) {
-        String configurationName = "RELATION." + entityType + "." + relationName;
-        return searchConfigurationService.getDiscoveryConfigurationByName(configurationName);
     }
 
     private void appendLine(List<String> lines, TemplateLine line, String value) {

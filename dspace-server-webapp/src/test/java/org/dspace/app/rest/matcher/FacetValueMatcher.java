@@ -12,6 +12,7 @@ import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -108,6 +109,32 @@ public class FacetValueMatcher {
             hasJsonPath("$._links.search.href", containsString("api/discover/search/objects")),
             hasJsonPath("$._links.search.href", containsString("f." + facetName + "=" + label + ",equals"))
         );
+    }
+
+    public static Matcher<? super Object> entryLanguage(String label) {
+        return allOf(
+            hasJsonPath("$.label", is(label)),
+            hasJsonPath("$.type", is("discover")),
+            hasJsonPath("$._links.search.href", containsString("api/discover/search/objects")),
+            hasJsonPath("$._links.search.href", containsString("f.language="))
+        );
+    }
+
+    public static Matcher<? super Object> entryTypes(String label, String authorityKey) {
+        return allOf(
+            hasJsonPath("$.label", is(label)),
+            hasJsonPath("$.authorityKey", is(authorityKey)),
+            hasJsonPath("$.type", is("discover")),
+            hasJsonPath("$._links.search.href", containsString("api/discover/search/objects"))
+        );
+    }
+
+    public static Matcher<? super Object> entryTypes(String label) {
+        return allOf(
+            hasJsonPath("$.label", is(label)),
+            hasJsonPath("$.authorityKey", nullValue()),
+            hasJsonPath("$.type", is("discover")),
+            hasJsonPath("$._links.search.href", containsString("api/discover/search/objects")));
     }
 
 }

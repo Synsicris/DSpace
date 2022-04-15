@@ -888,7 +888,7 @@
         <item-template>
 	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">owningproject</metadata>
+	      <metadata name="cris.project.shared">parentproject</metadata>
 	    </item-template>
         <item>
             <metadata name="dc.title">Workingplan</metadata>

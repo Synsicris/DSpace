@@ -207,6 +207,28 @@
     <form name="impact_pathway-edit_form">
       <row>
         <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Geben Sie einen Namen für den neuen Impact Pathway ein.</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>impactpathway</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>parent</dc-qualifier>
@@ -1033,6 +1055,17 @@
       </row>
     </form>
     <form name="exploitation_plan-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>

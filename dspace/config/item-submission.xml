@@ -459,6 +459,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="comments" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.comments</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="extractionstep" mandatory="true">
       <heading>submit.progressbar.ExtractMetadataStep</heading>
       <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
@@ -916,6 +921,12 @@
     </submission-process>
     <submission-process name="others-edit">
       <step id="others" />
+    </submission-process>
+    <submission-process name="comments">
+      <step id="comments" />
+    </submission-process>
+    <submission-process name="comments-edit">
+      <step id="comments" />
     </submission-process>
     <submission-process name="tests">
       <step id="tests" />

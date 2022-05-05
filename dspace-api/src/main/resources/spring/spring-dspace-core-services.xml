@@ -88,6 +88,9 @@
                     <bean class="org.dspace.content.template.generator.CurrentProjectGroupGenerator" />
                 </entry>
                 <entry key="agrovockeywords" value-ref="agrovocKeywordsGenerator" />
+                <entry key="currentresearcherprofile">
+                    <bean class="org.dspace.content.template.generator.CurrentResearcherProfileGenerator" />
+                </entry>
             </map>
         </constructor-arg>
     </bean>

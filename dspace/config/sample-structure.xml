@@ -34,6 +34,26 @@
       </item-template>
     </collection>
     <collection>
+      <name language="en">Comments</name>
+      <name language="de">Comments</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>Comment</entity-type>
+      <submission-type>comments</submission-type>
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="read">project_submitters_group</policy-group>
+	  <policy-group rpType="add">project_submitters_group</policy-group>
+      <policy-group rpType="item_read">project_submitters_group</policy-group>
+      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <item-template>
+      	<metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
+      	<metadata name="synsicris.date.creation">###DATE###</metadata>
+      </item-template>
+    </collection>
+    <collection>
       <name language="en">Funding objectives</name>
       <name language="de">Förderziele</name>
       <description />

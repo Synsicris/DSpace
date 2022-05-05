@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.content.Item;
@@ -72,7 +73,7 @@ public class DateValueGenerator implements TemplateValueGenerator {
 
         String[] params = StringUtils.split(extraParams, "\\.");
         final Date date = new Date();
-        if (params.length == 1) {
+        if (!Objects.isNull(params) && params.length == 1) {
             DateFormat df = new SimpleDateFormat(params[0]);
             return df.format(date);
         }

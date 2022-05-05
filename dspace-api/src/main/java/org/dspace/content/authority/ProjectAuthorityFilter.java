@@ -20,7 +20,9 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.service.CollectionService;
 import org.dspace.core.Context;
+import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
+import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.services.model.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,11 +40,13 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
 
     private final RequestService requestService;
     private final CollectionService collectionService;
+    private final ConfigurationService config;
 
     @Autowired
     public ProjectAuthorityFilter(RequestService requestService,
                                    CollectionService collectionService) {
         super(List.of());
+        this.config = DSpaceServicesFactory.getInstance().getConfigurationService();
         this.requestService = requestService;
         this.collectionService = collectionService;
     }
@@ -78,6 +82,7 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
 
         try {
             Collection collection = collectionService.find(context, UUID.fromString(collectionId));
+            System.out.println(collection.getName());
             communities = collection.getCommunities();
         } catch (SQLException e) {
             log.error("Error while trying to extract communities for collection {}: {}", collectionId, e.getMessage());
@@ -92,6 +97,11 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
                 communities.size());
             return "";
         }
-        return "location.comm:" + communities.get(0).getID();
+        if (communities.get(0).getName().equals("Shared")) {
+            String parentProjectsCommunityId = config.getProperty("project.parent-community-id");
+            return "location.comm:" + parentProjectsCommunityId;
+        } else {
+            return "location.comm:" + communities.get(0).getID();
+        }
     }
 }

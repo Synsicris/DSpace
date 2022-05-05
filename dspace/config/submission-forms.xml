@@ -6381,6 +6381,90 @@ it, please enter the types and the actual numbers or codes.</hint>
         </field>
       </row>
     </form>
+    <form name="comments">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title of the comment</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type of comment</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>reminder</dc-qualifier>
+          <label>Date for reminder</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Comment</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>creation</dc-qualifier>
+          <label>Written at</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>creator</dc-element>
+          <label>Written by</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>item</dc-qualifier>
+          <label>Related item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="tests">
       <row>
         <field>

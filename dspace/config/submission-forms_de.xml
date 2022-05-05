@@ -6390,6 +6390,90 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         </field>
       </row>
     </form>
+    <form name="comments">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung / Kurztitel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Art des Kommentars</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>reminder</dc-qualifier>
+          <label>Datum für eine automatische Erinnerung</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Kommentar</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>creation</dc-qualifier>
+          <label>Geschrieben am</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>creator</dc-element>
+          <label>Geschrieben von</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>item</dc-qualifier>
+          <label>Zugehöriger Eintrag</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="tests">
       <row>
         <field>

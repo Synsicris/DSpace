@@ -151,6 +151,8 @@
                 <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
                 <entry key="RELATION.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
 
+				<entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
+
                 <!-- Edit Configurations -->
                 <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
                 <entry key="editCollection" value-ref="editCollectionConfiguration"/>

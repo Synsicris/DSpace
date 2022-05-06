@@ -82,7 +82,6 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
 
         try {
             Collection collection = collectionService.find(context, UUID.fromString(collectionId));
-            System.out.println(collection.getName());
             communities = collection.getCommunities();
         } catch (SQLException e) {
             log.error("Error while trying to extract communities for collection {}: {}", collectionId, e.getMessage());

@@ -52,7 +52,7 @@ public class CurrentResearcherProfileGenerator implements TemplateValueGenerator
             return new ArrayList<MetadataValueVO>();
         }
         if (!Objects.isNull(rp)) {
-            return Arrays.asList(new MetadataValueVO(rp.getFullName(), rp.getId().toString()));
+            return Arrays.asList(new MetadataValueVO(rp.getFullName(), rp.getItem().getID().toString()));
         } else {
             return new ArrayList<MetadataValueVO>(); 
         }

@@ -6403,6 +6403,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">comment</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>

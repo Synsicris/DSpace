@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="COMMENT 2022-05-06">
+  <isComposedBy>
+    <node id="COM11" label="checked" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM12" label="Internal consultation required" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM13" label="Exchange with Project required" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM14" label="Revision required PN" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM15" label="Other task" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM16" label="Relevant for knowledge transfer" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM17" label="Positive example" selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

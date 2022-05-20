@@ -2472,6 +2472,7 @@
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
+                    	<ref bean="sortLastCommentCreated" />
                         <ref bean="sortTitle" />
                         <ref bean="sortLastModified" />
                     </list>
@@ -2496,6 +2497,7 @@
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
+                    	<ref bean="sortLastCommentCreated" />
                         <ref bean="sortTitle" />
                         <ref bean="sortLastModified" />
                     </list>
@@ -5483,6 +5485,12 @@
 
     <bean id="sortLastModified" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
 		<property name="metadataField" value="lastModified" />
+		<property name="type" value="date" />
+        <property name="defaultSortOrder" value="desc"/>
+	</bean>
+
+	<bean id="sortLastCommentCreated" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+		<property name="metadataField" value="synsicris.date.creation" />
 		<property name="type" value="date" />
         <property name="defaultSortOrder" value="desc"/>
 	</bean>

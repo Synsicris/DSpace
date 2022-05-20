@@ -6412,6 +6412,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <required />
           <style>col-md-6</style>
           <hint />
+          <vocabulary closed="true">comment</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>

@@ -9,6 +9,28 @@
     <bean class="org.dspace.content.edit.service.impl.EditItemModeServiceImpl">
         <property name="editModesMap">
             <map>
+            	<entry key="comment">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FULL" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="comments-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="OWNER" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    OWNER
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="comments-edit" />
+                        </bean>
+                    </list>
+                </entry>
                 <entry key="impactpathway">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">

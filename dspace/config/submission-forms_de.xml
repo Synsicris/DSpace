@@ -6448,7 +6448,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6459,7 +6459,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -6472,6 +6472,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>

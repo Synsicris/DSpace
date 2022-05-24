@@ -100,6 +100,7 @@
                 <entry key="RELATION.OrgUnit.people" value-ref="relationOrgunitPersonsConfiguration"/>
                 <entry key="RELATION.OrgUnit.projects" value-ref="relationOrgunitProjectsConfiguration"/>
                 <entry key="RELATION.OrgUnit.organizations" value-ref="relationOrgunitOrgunitsConfiguration"/>
+
                 <!-- Synsicris Parent Project Related items -->
                 <entry key="RELATION.parentproject.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
                 <entry key="RELATION.parentproject.application" value-ref="relationParentProjectApplicationsConfiguration"/>
@@ -137,29 +138,62 @@
                 <entry key="RELATION.parentproject.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
                 <entry key="RELATION.parentproject.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
                 <entry key="RELATION.parentproject.Project" value-ref="relationParentProjectProjectsConfiguration"/>
-                <entry key="RELATION.parentproject.comment" value-ref="relationItemCommentsConfiguration"/>
+
                 <!-- Synsicris Project Related items -->
                 <entry key="RELATION.Project.exploitationplan" value-ref="relationProjectExploitationplansConfiguration"/>
                 <entry key="RELATION.Project.Funding" value-ref="relationProjectFundingsConfiguration"/>
                 <entry key="RELATION.Project.subcontractor" value-ref="relationProjectSubcontractorsConfiguration"/>
-                <entry key="RELATION.Project.subcontractor" value-ref="relationProjectSubcontractorsConfiguration"/>
                 <entry key="RELATION.Project.projectpartner" value-ref="relationProjectProjectpartnersConfiguration"/>
                 <entry key="RELATION.Project.comment" value-ref="relationItemCommentsConfiguration"/>
+
                 <!-- Synsicris Person Browse items -->
                 <entry key="BROWSE.Person.latestParentProjectsPreparation" value-ref="browsePersonLatestParentProjectsPreparationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsImplementation" value-ref="browsePersonLatestParentProjectsImplementationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
                 <entry key="RELATION.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
 
-				<entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
+                <!-- Synsicris Project comments configuration -->
+                <entry key="RELATION.parentproject.comment" value-ref="relationItemCommentsConfiguration"/>
+				<entry key="RELATION.application.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.award.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.contribution_fundingprogramme.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.ethic.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.pot_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.exp_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.condition.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.gender.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.innovationidea.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.milestone.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.step.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.physical_object.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.other.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Patent.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.plan_publication.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.process_event.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.proj_objective.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.ia_objective.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Publication.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Product.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.research_result.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.innovationpotential.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.spinoff.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.stateofart.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.subcontractor.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.targetgroup.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.task.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.unexpected_result.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.workpackage.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.impactpathway.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.exploitationplan.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.subcontractor.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
 
-                <!-- Edit Configurations -->
-                <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
-                <entry key="editCollection" value-ref="editCollectionConfiguration"/>
-                <entry key="lucky-search" value-ref="lucky"/>
-                <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
-                <entry key="subprojectCommunity" value-ref="subprojectCommunityConfiguration"/>
-                <!-- Impact pathway -->
+                <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_task_type" value-ref="impactpathwayStepType2TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_objective_task_type" value-ref="impactpathwayStepType2ObjectiveTaskTypeConfiguration"/>
@@ -169,15 +203,26 @@
                 <entry key="impactpathway_step_type_5_task_type" value-ref="impactpathwayStepType5TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_6_task_type" value-ref="impactpathwayStepType6TaskTypeConfiguration"/>
                 <entry key="allImpactPathways" value-ref="allImpactPathwaysConfiguration"/>
-                <!-- Working plan -->
+
+                <!-- Synsicris Project Working plan -->
                 <entry key="allLinkedWorkingPlanObj" value-ref="allLinkedWorkingPlanObjConfiguration"/>
                 <entry key="allUnlinkedWorkingPlanObj" value-ref="allUnlinkedWorkingPlanObjConfiguration"/>
                 <entry key="workpackageSteps" value-ref="workpackageStepsConfiguration"/>
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
+                
+                <!-- Synsicris Project Exploitation plan -->
                 <entry key="exploitation_plan_step_type_1_task_type" value-ref="exploitationPlanStepType1TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_2_task_type" value-ref="exploitationPlanStepType2TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_3_task_type" value-ref="exploitationPlanStepType3TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_4_task_type" value-ref="exploitationPlanStepType4TaskTypeConfiguration"/>
+
+                <!-- Edit Configurations -->
+                <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
+                <entry key="editCollection" value-ref="editCollectionConfiguration"/>
+                <entry key="lucky-search" value-ref="lucky"/>
+                <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
+                <entry key="subprojectCommunity" value-ref="subprojectCommunityConfiguration"/>
+
             </map>
         </property>
         <property name="toIgnoreMetadataFields">
@@ -2472,6 +2517,7 @@
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
+                    	<ref bean="sortLastCommentCreated" />
                         <ref bean="sortTitle" />
                         <ref bean="sortLastModified" />
                     </list>
@@ -2496,6 +2542,7 @@
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
+                    	<ref bean="sortLastCommentCreated" />
                         <ref bean="sortTitle" />
                         <ref bean="sortLastModified" />
                     </list>
@@ -5483,6 +5530,12 @@
 
     <bean id="sortLastModified" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
 		<property name="metadataField" value="lastModified" />
+		<property name="type" value="date" />
+        <property name="defaultSortOrder" value="desc"/>
+	</bean>
+
+	<bean id="sortLastCommentCreated" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+		<property name="metadataField" value="synsicris.date.creation" />
 		<property name="type" value="date" />
         <property name="defaultSortOrder" value="desc"/>
 	</bean>

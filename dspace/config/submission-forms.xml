@@ -6439,7 +6439,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6450,7 +6450,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -6463,6 +6463,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>

@@ -210,6 +210,7 @@
                 <entry key="workpackageSteps" value-ref="workpackageStepsConfiguration"/>
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
                 <entry key="searchProjectsForFunder" value-ref="searchProjectsForFunderConfiguration" />
+                <entry key="searchAllProjectForFunder" value-ref="searchAllProjectForFunderConfiguration" />
                 
                 <!-- Synsicris Project Exploitation plan -->
                 <entry key="exploitation_plan_step_type_1_task_type" value-ref="exploitationPlanStepType1TaskTypeConfiguration"/>
@@ -1116,23 +1117,24 @@
     <bean id="allProjectItemsConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype">
+        <property name="indexAlways" value="true"/>
         <property name="id" value="allProjectItems" />
         <!--Which sidebar facets are to be displayed -->
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <!-- <ref bean="searchFilterType" /> -->
-                <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
         <property name="searchFilters">
             <list>
-                <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <!-- <ref bean="searchFilterType" /> -->
-                <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1191,6 +1193,7 @@
     <bean id="searchProjectsForFunderConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype">
+        <property name="indexAlways" value="true"/>
         <property name="id" value="searchProjectsForFunder" />
         <!--Which sidebar facets are to be displayed -->
         <property name="sidebarFacets">
@@ -1203,8 +1206,6 @@
                 <ref bean="searchFilterProjectEndDate" />
                 <ref bean="searchFilterSynsicrisSubjectNace" />
                 <ref bean="searchFilterSynsicrisSubjectDestatis" />
-                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
-                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
@@ -1218,8 +1219,6 @@
                 <ref bean="searchFilterProjectEndDate" />
                 <ref bean="searchFilterSynsicrisSubjectNace" />
                 <ref bean="searchFilterSynsicrisSubjectDestatis" />
-                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
-                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1239,39 +1238,29 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>search.resourcetype:Item</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:parentproject AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan</value>
             </list>
         </property>
         <!--Default result per page  -->
         <property name="defaultRpp" value="10" />
-        <property name="hitHighlightingConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
-                <property name="metadataFields">
-                    <list>
-                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
-                            <property name="field" value="dc.title"/>
-                            <property name="snippets" value="5"/>
-                        </bean>
-                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
-                            <property name="field" value="dc.contributor.author"/>
-                            <property name="snippets" value="5"/>
-                        </bean>
-                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
-                            <property name="field" value="dc.description.abstract"/>
-                            <property name="maxSize" value="250"/>
-                            <property name="snippets" value="2"/>
-                        </bean>
-                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
-                            <property name="field" value="fulltext"/>
-                            <property name="maxSize" value="250"/>
-                            <property name="snippets" value="2"/>
-                        </bean>
-                    </list>
-                </property>
-            </bean>
-        </property>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
+    </bean>
+
+    <!--The workspace configuration settings for discovery -->
+    <bean id="searchAllProjectForFunderConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="searchProjectsForFunderConfiguration">
+        <property name="id" value="searchAllProjectForFunder" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:parentproject</value>
+            </list>
+        </property>
     </bean>
 
     <!-- Inverse Relations -->
@@ -4807,6 +4796,7 @@
 
     <bean id="searchFilterTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="types" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
@@ -5586,8 +5576,9 @@
         </property>
     </bean>
 
-    <bean id="searchFilterParentProjectStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterParentProjectStatus" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="parentProjectStatus" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>oairecerif.project.status</value>
@@ -5597,6 +5588,7 @@
 
     <bean id="searchFilterFundingParent" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="fundingParent" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>oairecerif.fundingParent</value>
@@ -5606,6 +5598,7 @@
     
     <bean id="searchFilterSynsicrisRelationCall" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="synsicrisRelationCall" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.relation.call</value>
@@ -5631,8 +5624,9 @@
         </property>
     </bean>
     
-    <bean id="searchFilterSynsicrisSubjectNace" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisSubjectNace" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisSubjectNace" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.subject.nace</value>
@@ -5640,8 +5634,9 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisSubjectDestatis" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisSubjectDestatis" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisSubjectDestatis" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.subject.destatis</value>
@@ -5649,8 +5644,9 @@
         </property>
     </bean>
     
-    <bean id="searchFilterSynsicrisTypeProjectContribution" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeProjectContribution" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeProjectContribution" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.type.project-contribution</value>

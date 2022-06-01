@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.1"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-	xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
-	exclude-result-prefixes="fo">
+								xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+								xmlns:fo="http://www.w3.org/1999/XSL/Format"
+								xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
+								exclude-result-prefixes="fo">
 	
-	<xsl:param name="imageDir" />
-	
+	<!-- path needs to be given with single hyphens otherwise the path is interpreted 
+		   as XPath element --> 
+	<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template'"/>
+
+	<!--#########################################################################-->
+  <!-- MAIN PAGE -->	
+	<!--#########################################################################-->
+
 	<xsl:template match="cerif:Project">	
 		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
@@ -23,14 +29,16 @@
 				</fo:simple-page-master>
 			</fo:layout-master-set>
 
-		<!-- START PAGE -->
-
+		<!-- PAGE SEQUENCE -->
 			<fo:page-sequence master-reference="simpleA4">
 				<fo:flow flow-name="xsl-region-body">
 
 				  <!-- title -->
-		      <fo:block margin-bottom="5mm" padding="2mm">
-						<fo:block font-size="26pt" font-weight="bold" text-align="center" >
+		      <fo:block margin-bottom="5mm" 
+					          padding="2mm">
+						<fo:block font-size="26pt" 
+						          font-weight="bold" 
+											text-align="center" >
 							<xsl:value-of select="cerif:Title" />
 						</fo:block>
 					</fo:block>
@@ -63,20 +71,35 @@
 				    <xsl:with-param name="label" select="'Involved stakeholders'" />
 				    <xsl:with-param name="values" select="cerif:Stakeholder" />
 			    </xsl:call-template>
-				    
+
+					<!-- add icon -->
+					<xsl:call-template name="information-icon">
+						<xsl:with-param name="values" select="cerif:Stakeholder" />
+					</xsl:call-template>
+
+					<!-- add table -->
+					<xsl:call-template name="test-table">
+						<xsl:with-param name="values" select="cerif:Stakeholder" />
+					</xsl:call-template>
+
 				</fo:flow>
 			</fo:page-sequence>
+
 		</fo:root>
 	</xsl:template>
 
-	<!-- PRINT STYLES -->
+	<!--#########################################################################-->
+  <!-- USED TEMPLATES -->	
+	<!--#########################################################################-->
+
 	<!-- key: value -->
 	<xsl:template name = "print-value" >
 	  <xsl:param name = "label" />
 	  <xsl:param name = "value" />
 
 	  <xsl:if test="$value">
-		  <fo:block font-size="10pt" margin-top="2mm">
+		  <fo:block font-size="10pt" 
+			        	margin-top="2mm">
 
 				<fo:inline font-weight="bold" text-align="right" >
 					<xsl:value-of select="$label" /> 
@@ -124,15 +147,17 @@
 
 		<xsl:if test="$values"> <!-- do only if there are values -->
 
-			<fo:block font-size="10pt" margin-top="2mm">
-				<fo:inline font-weight="bold" text-align="right"  >
+			<fo:block font-size="10pt" 
+			          margin-top="2mm">
+				<fo:inline font-weight="bold" 
+				           text-align="right"  >
 					<xsl:value-of select="$label" /> 
 				</fo:inline >
 
 				<xsl:text>: </xsl:text>
 			</fo:block>
 
-			<fo:list-block>
+			<fo:list-block font-size="10pt">
 				<xsl:for-each select="$values">
 					<fo:list-item>
 
@@ -152,6 +177,101 @@
 
   </xsl:template>	
 
+	<!-- information icon -->	
+	<xsl:template name = "information-icon" >
+		<xsl:param name = "values" />
+		<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'/','information-icon.png')" />
+
+		<fo:block text-align="left"
+							margin-top="10mm">
+			<xsl:text>Image file: </xsl:text>
+			<fo:inline font-weight="bold" text-align="right"  >
+				<xsl:value-of select="$imageFile" /> 
+			</fo:inline >
+		</fo:block>
+
+		<fo:block text-align="left">
+			<xsl:text>Counting (multiplied): </xsl:text>
+			<fo:inline font-weight="bold" text-align="right"  >
+				<xsl:value-of select="count($values)*3" /> 
+			</fo:inline >
+		</fo:block>
+
+		<fo:block text-align="left" 
+		          font-size="10pt" 
+							margin-top="2mm">
+			<xsl:text>This is an icon</xsl:text>
+
+			<fo:external-graphic content-height="20" 
+													 content-width="20"
+												 	 scaling="uniform">
+
+				<xsl:attribute name="src">
+					<xsl:value-of select="$imageFile" />
+				</xsl:attribute>														
+
+			</fo:external-graphic>
+
+		</fo:block>	
+  </xsl:template>	
+
+	<!-- table -->	
+	<xsl:template name = "test-table" >
+		<xsl:param name = "values" />
+
+		<fo:block text-align="left"
+							margin-top="10mm">
+			<xsl:text>This is a table: </xsl:text>
+		</fo:block>
+
+		<fo:block>
+			<fo:table table-layout="fixed" width="100%" border-style="solid" border-width="thick">
+				<fo:table-column column-width="20%"/>
+				<fo:table-column column-width="80%"/>
+
+				<fo:table-header background-color="#1a8cff" color="#ffffff">
+					<fo:table-cell border-width="thin" border-style="solid">
+						<fo:block text-align="center" font-weight="bold">ID</fo:block>
+					</fo:table-cell>
+					<fo:table-cell border-width="thin" border-style="solid">
+						<fo:block text-align="center" font-weight="bold">Value</fo:block>
+					</fo:table-cell>
+				</fo:table-header>
+
+				<fo:table-body>					
+					<fo:table-row>
+						<fo:table-cell border-width="thin" border-style="solid">
+							<fo:block text-align="center">1</fo:block>
+						</fo:table-cell>
+
+						<fo:table-cell border-width="thin" border-style="solid">
+							<fo:block text-align="center">ABC</fo:block>
+						</fo:table-cell>
+					</fo:table-row>
+
+					<xsl:for-each select="$values">
+						<fo:table-row>
+
+							<fo:table-cell border-width="thin" border-style="solid">
+								<fo:block text-align="center">
+									<xsl:number value="position()+1" format="1" /> <!-- counting via xsl:number--> 
+								</fo:block>
+							</fo:table-cell>
+	
+							<fo:table-cell border-width="thin" border-style="solid">
+								<fo:block text-align="center">
+									<xsl:value-of select="current()" />
+								</fo:block>
+							</fo:table-cell>
+	
+						</fo:table-row>
+					</xsl:for-each>					
+
+				</fo:table-body>
+
+			</fo:table>
+		</fo:block>	
+	</xsl:template>	
 
 	<!-- section title with horizontal ruler -->	
 	<xsl:template name = "section-title" >

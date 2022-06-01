@@ -656,6 +656,7 @@
       <submission-type>parentprojects</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="read">project_funder_programme_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>

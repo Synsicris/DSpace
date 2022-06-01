@@ -66,7 +66,7 @@
 				<entry key="collection-xls" value-ref="xlsCrosswalkCollection"></entry>
 
 				<entry key="parentproject-pdf" value-ref="pdfCrosswalkParentProject"></entry>
-				<entry key="process_event-pdf" value-ref="pdfCrosswalkProcessEvent"></entry>
+				<!-- <entry key="process_event-pdf" value-ref="pdfCrosswalkProcessEvent"></entry> -->
 			</map>
 		</constructor-arg>
 	</bean>
@@ -489,7 +489,7 @@
 	</bean>
 
 	<!-- report template for process events -->	
-	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProcessEventCerifXml">
+<!-- 	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProcessEventCerifXml">
 		<property name="templateFileName" value="crosswalks/template/process_event-cerif-xml.template"/>
 		<property name="mimeType" value="application/xml; charset=UTF-8"/>
 		<property name="fileName" value="process_event.xml"/>
@@ -499,13 +499,13 @@
 		<property name="converter" ref="xmlValueConverter" />
 	</bean>
 
-	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProcessEvent">
+ 	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProcessEvent">
 		<property name="templateFileName" value="crosswalks/template/process_event-template.xsl"/>
 		<property name="fileName" value="process_event.pdf"/>
 		<property name="mimeType" value="application/pdf"/>
 		<property name="entityType" value="process_event"/>
 		<property name="referCrosswalk" ref="referCrosswalkProcessEventCerifXml"/>
-	</bean>
+	</bean> -->
 
 	<!-- VIRTUAL FIELDS CONFIGURATION -->
 	

@@ -243,5 +243,33 @@
         <qualifier>exploitationplan</qualifier>
         <scope_note></scope_note>
     </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>creator</element>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>item</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>date</element>
+        <qualifier>creation</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
     
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>date</element>
+        <qualifier>reminder</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 </dspace-dc-types>

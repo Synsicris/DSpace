@@ -168,7 +168,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
                 continue;
             }
 
-            versioningService.createNewVersion(context, item);
+            versioningService.createNewVersion(context, item, version.getSummary());
 
         }
 

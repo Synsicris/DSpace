@@ -8,7 +8,7 @@
 package org.dspace.app.rest.authorization;
 
 import static org.dspace.app.rest.matcher.AuthorizationMatcher.matchAuthorization;
-import static org.dspace.project.util.ProjectConstants.PARENTPROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -71,7 +71,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
             .addMember(eperson)
             .build();
 
-        Collection joinProject = createCollection("Joint projects", PARENTPROJECT_ENTITY, testProject);
+        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
         parentProject = ItemBuilder.createItem(context, joinProject)
             .withTitle("Test project")
             .build();

@@ -755,8 +755,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
         UUID uuidProjectItem = extractItemUuid(stringValue);
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
@@ -841,9 +841,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community rootCommunity = this.find(context, rootCommunityUUID);
         StringBuilder relationPlaceholder = new StringBuilder();
         relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null,
-                             relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
+        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null,
+                             relationPlaceholder.toString(), newName, Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
@@ -898,12 +898,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private UUID extractItemUuid(String value) {
         UUID itemUuid = null;
         if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)$");
+            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)$");
             Matcher matcher = pattern.matcher(value);
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
             } else {
-                throw new RuntimeException("Metadata value of synsicris.relation.entity_project : " + value
+                throw new RuntimeException("Metadata value of synsicris.relation.entity_item : " + value
                         + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
             }
         }
@@ -1029,7 +1029,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     }
 
     private String[] extractName(String groupName) {
-        Pattern pattern = Pattern.compile("^((?:project_|subproject_)).*(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_)).*(_.*)(_group)$");
         Matcher matcher = pattern.matcher(groupName);
         if (matcher.matches()) {
             return new String[] {matcher.group(1),matcher.group(2)};

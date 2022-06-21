@@ -97,8 +97,8 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
             return "";
         }
         if (communities.get(0).getName().equals("Shared")) {
-            String parentProjectsCommunityId = config.getProperty("project.parent-community-id");
-            return "location.comm:" + parentProjectsCommunityId;
+            String projectsCommunityId = config.getProperty("project.parent-community-id");
+            return "location.comm:" + projectsCommunityId;
         } else {
             return "location.comm:" + communities.get(0).getID();
         }

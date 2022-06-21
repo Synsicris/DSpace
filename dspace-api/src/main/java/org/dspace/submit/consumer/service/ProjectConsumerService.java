@@ -26,10 +26,10 @@ public interface ProjectConsumerService {
 
     public void checkGrants(Context context, EPerson currentUser, Item item);
 
-    public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
+    public Community isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
-    public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
+    public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
@@ -38,9 +38,12 @@ public interface ProjectConsumerService {
 
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;
 
-    public boolean isParentProjectItem(Item item);
+    public boolean isProjectItem(Item item);
 
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
+            throws SQLException;
+
+    public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
             throws SQLException;
 
 }

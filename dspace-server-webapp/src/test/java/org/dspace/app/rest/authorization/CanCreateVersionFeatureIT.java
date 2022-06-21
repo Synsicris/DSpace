@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest.authorization;
 
-import static org.dspace.project.util.ProjectConstants.PARENTPROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -81,7 +81,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         createProjectAdminGroup(parentCommunity, projectAdmin);
         context.setCurrentUser(projectAdmin);
@@ -100,7 +100,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         Item item = createItem("Item", collection);
 
@@ -142,7 +142,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         Item item = createItem("Item", collection);
 
@@ -162,7 +162,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         Item item = createItem("Item", collection);
 
@@ -183,7 +183,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         Item item = ItemBuilder.createItem(context, collection)
             .withTitle("Item")
@@ -207,7 +207,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PARENTPROJECT_ENTITY);
+        Collection collection = createCollection("Collection", PROJECT_ENTITY);
 
         Item item = createItem("Item", collection);
 

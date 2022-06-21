@@ -12,14 +12,14 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>entity_project</qualifier>
+        <qualifier>entity_item</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>parentproject</qualifier>
+        <qualifier>funding</qualifier>
         <scope_note></scope_note>
     </dc-type>
     
@@ -179,7 +179,7 @@
     
     <dc-type>
         <schema>synsicris</schema>
-        <element>subproject</element>
+        <element>funding</element>
         <qualifier>community</qualifier>
         <scope_note></scope_note>
     </dc-type>

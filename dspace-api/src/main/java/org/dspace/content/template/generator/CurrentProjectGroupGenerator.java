@@ -31,10 +31,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implementation of {@link TemplateValueGenerator} that generates a value related to
- * the current parentproject/project group.
+ * the current project/funding group.
  * <p>
- * Syntax is: ###CURRENTPROJECT.[parentproject|project].[admin|members]###, so for example
- * ###CURRENTPROJECT.parentproject.admin### will set metadata with value of admin group for the
+ * Syntax is: ###CURRENTPROJECT.[project|funding].[admin|members]###, so for example
+ * ###CURRENTPROJECT.project.admin### will set metadata with value of admin group for the
  * parent project community.
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
@@ -67,11 +67,11 @@ public class CurrentProjectGroupGenerator extends AbstractGenerator {
             }
             
             switch (scope) {
-                case ProjectConstants.PARENTPROJECT:
-                    projectCommunity = getParentProjectCommunity(templateItem);
-                    break;
                 case ProjectConstants.PROJECT:
                     projectCommunity = getProjectCommunity(templateItem);
+                    break;
+                case ProjectConstants.FUNDING:
+                    projectCommunity = getOwningCommunity(templateItem);
                     break;
                 default:
                     throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);

@@ -26,8 +26,8 @@ import org.dspace.utils.DSpace;
 
 /**
  * The purpose of this consumer is to check if the user
- * who created the workspaceitem belongs to the subProject groups,
- * if yes in the metadata 'cris.project.shared' it is written <subproject>,
+ * who created the workspaceitem belongs to the funding groups,
+ * if yes in the metadata 'cris.project.shared' it is written <funding>,
  * otherwise it is written <project>.
  * 
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)

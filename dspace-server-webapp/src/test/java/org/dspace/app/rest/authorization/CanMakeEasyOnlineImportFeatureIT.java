@@ -98,7 +98,7 @@ public class CanMakeEasyOnlineImportFeatureIT extends AbstractControllerIntegrat
                 .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
                 .build();
 
-        configurationService.setProperty("project.subproject-community-name", Projects.getName());
+        configurationService.setProperty("project.funding-community-name", Projects.getName());
 
         canMakeEasyOnlineImportFeature = authorizationFeatureService.find(CanMakeEasyOnlineImportFeature.NAME);
 

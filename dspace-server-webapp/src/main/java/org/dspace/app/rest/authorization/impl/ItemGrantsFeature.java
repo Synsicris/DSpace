@@ -72,13 +72,13 @@ public class ItemGrantsFeature implements AuthorizationFeature {
             EPerson submitter = item.getSubmitter();
             Community project = item.getOwningCollection().getCommunities().get(0);
             if (Objects.nonNull(submitter) && Objects.nonNull(project)) {
-                List<Community> subProjects = projectConsumerService.getAllSubProjectsByUser(context,submitter,project);
-                // to allow edit grants submitter MUST be member of only one subproject within a project
-                if (Objects.isNull(subProjects) || subProjects.size() != 1) {
+                List<Community> fundings = projectConsumerService.getAllFundingsByUser(context,submitter,project);
+                // to allow edit grants submitter MUST be member of only one funding within a project
+                if (Objects.isNull(fundings) || fundings.size() != 1) {
                     return false;
                 }
-                boolean isAdminOfSubProject = isAdminMemberOfSubProject(context, subProjects.get(0), currentUser);
-                if (isAdminOfSubProject || submitter.getID().equals(currentUser.getID())) {
+                boolean isAdminOfFunding = isAdminMemberOfFunding(context, fundings.get(0), currentUser);
+                if (isAdminOfFunding || submitter.getID().equals(currentUser.getID())) {
                     return true;
                 }
             }
@@ -110,13 +110,12 @@ public class ItemGrantsFeature implements AuthorizationFeature {
                 Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
     }
 
-    private boolean isAdminMemberOfSubProject(Context context, Community community, EPerson submitter)
+    private boolean isAdminMemberOfFunding(Context context, Community community, EPerson submitter)
             throws SQLException {
-        StringBuilder memberGroupName = new StringBuilder("project_")
-                                                  .append(community.getID().toString())
-                                                  .append("_admin_group");
-        Group group = groupService.findByName(context, memberGroupName.toString());
-        if (groupService.isMember(context, submitter, group)) {
+
+        Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community,
+                ProjectConstants.ADMIN_ROLE);
+        if (!Objects.isNull(group) && groupService.isMember(context, submitter, group)) {
             return true;
         }
         return false;

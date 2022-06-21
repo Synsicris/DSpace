@@ -2951,8 +2951,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                                      null, placeholder.toString());
 
         Item itemAuthor = ItemBuilder.createItem(context, col)
@@ -3156,8 +3156,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                                      null, placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -3212,8 +3212,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             Item item = items.next();
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
             assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
-                    ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                    ProjectConstants.MD_PROJECT_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
             // checking the original collection
@@ -3325,8 +3325,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null,
                                      placeholder.toString());
 
         context.restoreAuthSystemState();
@@ -3380,8 +3380,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
             assertTrue(containeMetadata(itemService, item, "cris", "project", "shared", "project"));
             assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
-                    ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                    ProjectConstants.MD_PROJECT_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
             assertFalse(items.hasNext());
 
         } finally {

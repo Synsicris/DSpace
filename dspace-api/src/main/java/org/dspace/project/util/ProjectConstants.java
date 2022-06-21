@@ -24,29 +24,33 @@ public class ProjectConstants {
 
     public static final String OWNING_PROJECT = "owningproject";
 
+    public static final String FUNDING = "funding";
+
     public static final String PROJECT = "project";
 
-    public static final String PARENTPROJECT = "parentproject";
+    public static final String FUNDING_ENTITY = "Funding";
 
     public static final String PROJECT_ENTITY = "Project";
-
-    public static final String PARENTPROJECT_ENTITY = "parentproject";
     
     public static final String ADMIN_ROLE = "admin";
     
     public static final String ADMIN_GROUP_TEMPLATE = "project_%s_admin_group";
     
+    public static final String FUNDING_ADMIN_GROUP_TEMPLATE = "funding_%s_admin_group";
+    
     public static final String MEMBERS_ROLE = "members";
 
     public static final String MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";
     
+    public static final String FUNDING_MEMBERS_GROUP_TEMPLATE = "funding_%s_members_group";
+    
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
-    public static final MetadataFieldName MD_PROJECT_ENTITY =
-                    new MetadataFieldName("synsicris", "relation", "entity_project");
+    public static final MetadataFieldName MD_RELATION_ITEM_ENTITY =
+                    new MetadataFieldName("synsicris", "relation", "entity_item");
 
-    public static final MetadataFieldName MD_PARENTPROJECT_RELATION =
-            new MetadataFieldName("synsicris", "relation", "parentproject");
+    public static final MetadataFieldName MD_PROJECT_RELATION =
+            new MetadataFieldName("synsicris", "relation", "project");
 
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 

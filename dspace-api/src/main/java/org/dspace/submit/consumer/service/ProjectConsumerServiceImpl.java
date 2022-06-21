@@ -71,17 +71,17 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                     return;
                 }
                 switch (shared) {
-                    case ProjectConstants.PARENTPROJECT :
+                    case ProjectConstants.PROJECT :
                     case ProjectConstants.OWNING_PROJECT :
                         if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
                         }
                         break;
-                    case ProjectConstants.PROJECT:
-                        Community project = getSubProjectCommunity(projectCommunity);
+                    case ProjectConstants.FUNDING:
+                        Community project = getFundingCommunity(projectCommunity);
                         if (Objects.isNull(project)) {
-                            throw new RuntimeException("It was not possible to find the subProject Community");
+                            throw new RuntimeException("It was not possible to find the funding Community");
                         }
                         List<Community> subCommunities = project.getSubcommunities();
                         for (Community community : subCommunities) {
@@ -120,7 +120,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getProjectCommunity(Context context, Item item) throws SQLException {
-        Community parentProjectCommunity = null;
+        Community projectCommunity = null;
         Collection owningCollection = null;
         String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
 
@@ -140,13 +140,31 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             return null;
         }
 
-        parentProjectCommunity = owningCollection.getCommunities().get(0);
-        while (Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
-            parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
+        projectCommunity = owningCollection.getCommunities().get(0);
+        while (Arrays.stream(commToSkip).anyMatch(projectCommunity.getName()::equals)) {
+            projectCommunity = projectCommunity.getParentCommunities().get(0);
         }
-        return parentProjectCommunity;
+        return projectCommunity;
     }
 
+    @Override
+    public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
+            throws SQLException {
+        if (Objects.isNull(fundingCommunity)) {
+            return null;
+        }
+        String template;
+        switch (role) {
+            case ProjectConstants.MEMBERS_ROLE:
+                template = ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;;
+                break;
+            default:
+                template = ProjectConstants.FUNDING_ADMIN_GROUP_TEMPLATE;
+                break;
+        }
+        String groupName = String.format(template, fundingCommunity.getID().toString());
+        return groupService.findByName(context, groupName);
+    }
 
     @Override
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
@@ -167,13 +185,13 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return groupService.findByName(context, groupName);
     }
 
-    private Community getSubProjectCommunity(Community projectCommunity) {
-        String subprojectName =  configurationService.getProperty("project.subproject-community-name");
+    private Community getFundingCommunity(Community projectCommunity) {
+        String fundingName =  configurationService.getProperty("project.funding-community-name");
         List<Community> subCommunities = new ArrayList<>();
         subCommunities.addAll(projectCommunity.getSubcommunities());
         subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
-            if (StringUtils.equals(subprojectName, community.getName())) {
+            if (StringUtils.equals(fundingName, community.getName())) {
                 return community;
             }
         }
@@ -204,11 +222,12 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(projectCommunity)) {
                 return;
             }
-            Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
-            if (Objects.nonNull(subprojectCommunity)) {
-                List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
-                        ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                        ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+            Community fundingCommunity = isMemberOfFunding(context, currentUser, projectCommunity);
+            if (Objects.nonNull(fundingCommunity)) {
+                List<MetadataValue> values = communityService.getMetadata(fundingCommunity,
+                        ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                        ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                        ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
                 if (CollectionUtils.isNotEmpty(values)) {
                     String defaultValue = getDefaultSharedValueByItemProject(context, values);
                     if (StringUtils.isNoneEmpty(defaultValue)) {
@@ -218,7 +237,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 }
             } else {
                 itemService.replaceMetadata(context, item, "cris", "project", "shared",
-                                            null, ProjectConstants.PARENTPROJECT, null, Choices.CF_UNSET, 0);
+                                            null, ProjectConstants.PROJECT, null, Choices.CF_UNSET, 0);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -239,29 +258,29 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
+    public Community isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
 
-        List<Community> subprojects = getAllSubProjectsByUser(context, ePerson, projectCommunity);
-        // user MUST be member of at least one subproject within a project
-        if (subprojects.size() > 0) {
-            return subprojects.get(0);
+        List<Community> fundings = getAllFundingsByUser(context, ePerson, projectCommunity);
+        // user MUST be member of at least one funding within a project
+        if (fundings.size() > 0) {
+            return fundings.get(0);
         } else {
             return null;
         }
     }
 
     @Override
-    public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
+    public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
-        Community subprojectsParentCommunity = getSubProjectCommunity(projectCommunity);
-        List<Community> subprojects = new ArrayList<Community>();
+        Community fundingsParentCommunity = getFundingCommunity(projectCommunity);
+        List<Community> fundings = new ArrayList<Community>();
 
-        if (Objects.isNull(subprojectsParentCommunity)) {
-            return subprojects;
+        if (Objects.isNull(fundingsParentCommunity)) {
+            return fundings;
         }
 
-        List<Community> subCommunities = subprojectsParentCommunity.getSubcommunities();
+        List<Community> subCommunities = fundingsParentCommunity.getSubcommunities();
         for (Community community : subCommunities) {
             StringBuilder memberGroupName = new StringBuilder("project_")
                                                       .append(community.getID().toString())
@@ -269,17 +288,17 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Group group = groupService.findByName(context, memberGroupName.toString());
             boolean isGroupMember = groupService.isMember(context, ePerson, group);
             if (isGroupMember) {
-                subprojects.add(community);
+                fundings.add(community);
             }
         }
-        return subprojects;
+        return fundings;
     }
 
     @Override
     public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.schema,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.element,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.qualifier, null);
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
+                ProjectConstants.MD_PROJECT_RELATION.element,
+                ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
@@ -316,8 +335,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
 
         List<MetadataValue> values = communityService.getMetadata(communities.get(0),
-                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
 
         if (values.size() != 1) {
             log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),
@@ -335,8 +354,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public boolean isParentProjectItem(Item item) {
-        return ProjectConstants.PARENTPROJECT_ENTITY.equals(itemService.getEntityType(item));
+    public boolean isProjectItem(Item item) {
+        return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
     }
 
 }

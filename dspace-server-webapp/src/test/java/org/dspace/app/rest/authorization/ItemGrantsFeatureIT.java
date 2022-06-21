@@ -129,7 +129,7 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();
 
         ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);
@@ -202,7 +202,7 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();
 
         ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);

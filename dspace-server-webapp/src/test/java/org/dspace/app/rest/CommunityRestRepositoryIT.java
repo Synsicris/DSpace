@@ -70,6 +70,7 @@ import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.ItemService;
@@ -3322,12 +3323,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                       .withTitle("project_" + parentCommunity.getID().toString() + "_name")
                                       .build();
 
-        StringBuilder placeholder = new StringBuilder();
-        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
-
         communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
-                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null,
-                                     placeholder.toString());
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, publicItem1.getName(), publicItem1.getID().toString(), Choices.CF_ACCEPTED, 0);
 
         context.restoreAuthSystemState();
 

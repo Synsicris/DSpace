@@ -192,7 +192,7 @@
       </collection>
     </community>
     <community>
-      <name language="en">Fundings</name>
+      <name language="en">Funding</name>
       <name language="de">Fördermittel</name>
       <description />
       <intro />
@@ -201,6 +201,7 @@
       <funding-comm>true</funding-comm>
 	  <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="remove">project_template_admin_group</policy-group>
+      <policy-group rpType="delete">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
     </community>
     <collection>
@@ -918,8 +919,8 @@
       </collection>
   </community>
   <community>
-    <name language="en">Joint projects</name>
-    <name language="de">Verbundprojekte</name>
+    <name language="en">Projects</name>
+    <name language="de">Projekte</name>
     <description />
     <intro />
     <copyright />
@@ -1083,7 +1084,7 @@
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
       </item-template>
       <item>
-        <metadata name="dc.title">project_item_name</metadata>
+        <metadata name="dc.title">funding_item_name</metadata>
         <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
       </item>
     </collection>

@@ -73,7 +73,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 switch (shared) {
                     case ProjectConstants.PROJECT :
                     case ProjectConstants.OWNING_PROJECT :
-                        if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
+                        if (!setPolicyGroup(context, item, currentUser, projectCommunity, false)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
                         }
@@ -85,7 +85,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                         }
                         List<Community> subCommunities = project.getSubcommunities();
                         for (Community community : subCommunities) {
-                            if (setPolicyGroup(context, item, currentUser, community)) {
+                            if (setPolicyGroup(context, item, currentUser, community, true)) {
                                 return;
                             }
                         }
@@ -198,15 +198,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         return null;
     }
 
-    private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community)
-            throws SQLException {
-        StringBuilder memberGroupName = new StringBuilder("project_")
-                                                 .append(community.getID().toString())
-                                                 .append("_members_group");
+    private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community,
+            boolean isFunding) throws SQLException {
+        StringBuilder memberGroupName = isFunding ? new StringBuilder( "funding_") : new StringBuilder( "project_");
+        memberGroupName.append(community.getID().toString()).append("_members_group");
         Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
         boolean isAdmin = authorizeService.isAdmin(context);
         boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
+
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
                     memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0);

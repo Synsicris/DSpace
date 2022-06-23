@@ -54,6 +54,7 @@ import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
@@ -754,13 +755,16 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community newCommunity = create(parent, context);
         setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
-        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+        String projectCommId = configurationService.getProperty("project.parent-community-id", "");
+        boolean isProject = parent.getID().toString().equals(projectCommId);
+        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, isProject);
+
+        List<MetadataValue> relationMd = this.getMetadata(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
-        UUID uuidProjectItem = extractItemUuid(stringValue);
+        UUID uuidProjectItem = UUIDUtils.fromString(relationMd.get(0).getAuthority());
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
-//        setCommunityName(context, newCommunity, name);
+
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
@@ -839,11 +843,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName,
             String grants) throws SQLException {
         Community rootCommunity = this.find(context, rootCommunityUUID);
-        StringBuilder relationPlaceholder = new StringBuilder();
-        relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
         this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
-                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null,
-                             relationPlaceholder.toString(), newName, Choices.CF_ACCEPTED, 0);
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, newName, newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
@@ -1002,11 +1004,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      * @return a map between the institutional roles and the related scopes for the
      *         institution community
      */
-    private Map<UUID, Group> createScopedRoles(Context context, Community project)
+    private Map<UUID, Group> createScopedRoles(Context context, Community project, boolean isProject)
             throws SQLException, AuthorizeException {
 
         Map<UUID, Group> groupsMap = new HashMap<>();
-        String[] templateGroupsName = configurationService.getArrayProperty("project.template.groups-name");
+        String[] templateGroupsName = isProject ? configurationService.getArrayProperty("project.template.groups-name")
+                : configurationService.getArrayProperty("project.funding-template.groups-name");
         if (templateGroupsName.length > 0) {
             for (int i = 0; i < templateGroupsName.length; i++) {
                 Group templateGroup = groupService.findByName(context, templateGroupsName[i]);

@@ -21,6 +21,7 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
+import org.dspace.project.util.ProjectConstants;
 
 /**
  * Implementation of {@link Consumer} this consumer has the role
@@ -52,10 +53,14 @@ public class DeleteGroupsConsumer implements Consumer {
                 if (communitiesAlreadyProcessed.contains(uuid)) {
                     return;
                 }
-                Group membersGroup = searchGroup(context, uuid, "members");
-                Group adminGroup = searchGroup(context, uuid, "admin");
+                Group membersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, false);
+                Group adminGroup = searchGroup(context, uuid, ProjectConstants.ADMIN_ROLE, false);
+                Group fundingMembersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, true);
+                Group fundingAdminGroup = searchGroup(context, uuid, ProjectConstants.ADMIN_ROLE, true);
                 deleteGroup(context, membersGroup);
                 deleteGroup(context, adminGroup);
+                deleteGroup(context, fundingMembersGroup);
+                deleteGroup(context, fundingAdminGroup);
                 communitiesAlreadyProcessed.add(uuid);
             }
         }
@@ -80,8 +85,8 @@ public class DeleteGroupsConsumer implements Consumer {
     @Override
     public void finish(Context context) throws Exception {}
 
-    private Group searchGroup(Context context, UUID communityUuid, String type) throws SQLException {
-        StringBuilder groupName = new StringBuilder( "project_");
+    private Group searchGroup(Context context, UUID communityUuid, String type, boolean isFunding) throws SQLException {
+        StringBuilder groupName = isFunding ? new StringBuilder( "funding_") : new StringBuilder( "project_");
         groupName.append(communityUuid.toString()).append("_").append(type).append("_group");
         return groupService.findByName(context, groupName.toString());
     }

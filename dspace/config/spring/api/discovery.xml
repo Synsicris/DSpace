@@ -286,7 +286,7 @@
 
     <!--The project community configuration settings for discovery-->
     <bean id="fundingCommunityConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="commonConfiguration">
-        <property name="id" value="editCommunityConfiguration"/>
+        <property name="id" value="fundingCommunityConfiguration"/>
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->

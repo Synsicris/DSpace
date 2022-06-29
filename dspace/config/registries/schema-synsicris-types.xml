@@ -117,6 +117,13 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>personadmin</element>
+        <qualifier>email</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
         <qualifier>degree</qualifier>
         <scope_note></scope_note>
     </dc-type>
@@ -187,6 +194,13 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>title</element>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>title</element>
+        <qualifier>registercourt</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

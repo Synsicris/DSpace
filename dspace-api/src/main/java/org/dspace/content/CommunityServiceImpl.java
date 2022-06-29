@@ -755,13 +755,13 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community newCommunity = create(parent, context);
         setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
-        String projectCommId = configurationService.getProperty("project.parent-community-id", "");
-        boolean isProject = parent.getID().toString().equals(projectCommId);
-        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, isProject);
+        String projectRootCommId = configurationService.getProperty("project.parent-community-id", "");
+        boolean isProject = Objects.nonNull(parent) && parent.getID().toString().equals(projectRootCommId);
+        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, parent, projectRootCommId, isProject);
 
         List<MetadataValue> relationMd = this.getMetadata(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
-        UUID uuidProjectItem = UUIDUtils.fromString(relationMd.get(0).getAuthority());
+        UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
 
@@ -1004,12 +1004,13 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      * @return a map between the institutional roles and the related scopes for the
      *         institution community
      */
-    private Map<UUID, Group> createScopedRoles(Context context, Community project, boolean isProject)
-            throws SQLException, AuthorizeException {
+    private Map<UUID, Group> createScopedRoles(Context context, Community project, Community parent,
+            String projectRootCommunityID, boolean isProject) throws SQLException, AuthorizeException {
 
         Map<UUID, Group> groupsMap = new HashMap<>();
-        String[] templateGroupsName = isProject ? configurationService.getArrayProperty("project.template.groups-name")
-                : configurationService.getArrayProperty("project.funding-template.groups-name");
+        String[] templateGroupsName = (isProject || Objects.isNull(parent)) ?
+                configurationService.getArrayProperty("project.template.groups-name") :
+                    configurationService.getArrayProperty("project.funding-template.groups-name");
         if (templateGroupsName.length > 0) {
             for (int i = 0; i < templateGroupsName.length; i++) {
                 Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
@@ -1028,6 +1029,37 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 }
             }
         }
+        
+        if (!isProject && Objects.nonNull(parent)) {
+            String[] projectGroupsName = configurationService.getArrayProperty("project.template.groups-name");
+            if (projectGroupsName.length > 0) {
+                Community projectComm = parent.getParentCommunities().get(0);
+                if (Objects.nonNull(projectComm) &&
+                    (projectComm.getParentCommunities().get(0).getID().toString().equals(projectRootCommunityID))) {
+                    for (int i = 0; i < projectGroupsName.length; i++) {
+                        Group templateProjectGroup = groupService.findByName(context, projectGroupsName[i]);
+                        if (templateProjectGroup != null && StringUtils.isNotBlank(templateProjectGroup.getName())) {
+                            String[] name_parts = extractName(templateProjectGroup.getName());
+                            if (name_parts.length == 2) {
+                                String roleName = name_parts[0] + projectComm.getID().toString() + name_parts[1] +
+                                        "_group";
+                                Group scopedRole = groupService.findByName(context, roleName);
+                                if (scopedRole != null) {
+                                    groupsMap.put(templateProjectGroup.getID(), scopedRole);
+                                } else {
+                                    throw new RuntimeException("Cannot find projcet community for funding tamplate " + 
+                                            project.getID().toString());
+                                }
+                            } else {
+                                throw new RuntimeException("The group name : " + templateProjectGroup.getName()
+                                + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
+                            }
+                        }
+                    }   
+                }
+            }
+        }
+       
         return groupsMap;
     }
 

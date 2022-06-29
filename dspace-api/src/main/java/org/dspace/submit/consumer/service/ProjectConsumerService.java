@@ -32,7 +32,7 @@ public interface ProjectConsumerService {
     public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
-    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException;
+    public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
 

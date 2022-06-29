@@ -46,7 +46,7 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
 
     private AuthorizationFeature isAdminOfFunding;
 
-    private Item funding;
+    private Item parentProjectEntity;
 
     private Community testProject;
 
@@ -71,8 +71,8 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
             .addMember(eperson)
             .build();
 
-        Collection fundingColl = createCollection("Fundings", ProjectConstants.FUNDING, testProject);
-        funding = ItemBuilder.createItem(context, fundingColl)
+        Collection fundingColl = createCollection("Fundings", ProjectConstants.PROJECT, testProject);
+        parentProjectEntity = ItemBuilder.createItem(context, fundingColl)
             .withTitle("Test funding")
             .build();
 
@@ -83,7 +83,7 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithProjectMember() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(funding, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         String token = getAuthToken(eperson.getEmail(), password);
 
@@ -98,7 +98,7 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithProjectAdmin() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(funding, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
 
@@ -115,7 +115,7 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithOtherUser() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(funding, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         context.turnOffAuthorisationSystem();
         EPerson user = EPersonBuilder.createEPerson(context)
@@ -152,6 +152,7 @@ public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest
 
         Item publication = ItemBuilder.createItem(context, subPublications)
             .withTitle("Publication")
+            .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
             .build();
 
         GroupBuilder.createGroup(context)

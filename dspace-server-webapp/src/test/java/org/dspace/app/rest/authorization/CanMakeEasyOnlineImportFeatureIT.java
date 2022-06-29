@@ -84,13 +84,13 @@ public class CanMakeEasyOnlineImportFeatureIT extends AbstractControllerIntegrat
                                           .withName("subproject A - project A all grants").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectA.getID().toString() + "_members_group")
+                       .withName("funding_" + subprojectA.getID().toString() + "_members_group")
                        .addMember(userA).build();
 
         Collection projects = CollectionBuilder.createCollection(context, subprojectA)
                                                .withName("Projects")
                                                .withSubmitterGroup(subprojectAGroup)
-                                               .withEntityType("Project")
+                                               .withEntityType("Funding")
                                                .build();
 
         Item projectItem = ItemBuilder.createItem(context, projects)

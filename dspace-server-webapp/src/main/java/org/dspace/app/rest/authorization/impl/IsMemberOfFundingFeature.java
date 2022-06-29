@@ -80,7 +80,7 @@ public class IsMemberOfFundingFeature implements AuthorizationFeature {
             return false;
         }
 
-        Group group = projectConsumerService.getProjectCommunityGroupByRole(context, community, getRoleName());
+        Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community, getRoleName());
         return group != null && groupService.isMember(context, group);
 
     }

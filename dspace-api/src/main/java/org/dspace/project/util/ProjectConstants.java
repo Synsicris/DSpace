@@ -31,6 +31,8 @@ public class ProjectConstants {
     public static final String FUNDING_ENTITY = "Funding";
 
     public static final String PROJECT_ENTITY = "Project";
+
+    public static final String PROJECTPARTNER_ENTITY = "projectpartner";
     
     public static final String ADMIN_ROLE = "admin";
     
@@ -51,6 +53,12 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_PROJECT_RELATION =
             new MetadataFieldName("synsicris", "relation", "project");
+    
+    public static final MetadataFieldName MD_FUNDING_RELATION =
+            new MetadataFieldName("synsicris", "relation", "funding");
+    
+    public static final MetadataFieldName MD_EASYIMPORT =
+            new MetadataFieldName("synsicris", "type", "easy-import");
 
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 

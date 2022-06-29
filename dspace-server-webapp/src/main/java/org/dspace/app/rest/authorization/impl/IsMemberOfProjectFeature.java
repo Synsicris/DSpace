@@ -22,6 +22,7 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -74,8 +75,14 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
         if (item == null) {
             throw new IllegalArgumentException("No item found with the given id: " + itemRest.getUuid());
         }
+        Community community;
+        String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+        if (entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+            community = projectConsumerService.getProjectCommunity(context, item);
+        } else {
+            community = projectConsumerService.getProjectCommunityByRelationProject(context, item);
+        }
 
-        Community community = projectConsumerService.getProjectCommunity(context, item);
         if (community == null) {
             return false;
         }

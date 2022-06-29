@@ -52,9 +52,9 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     private ConfigurationService configurationService;
 
     private Community projectsCommunity;
-    private Community subprojectsCommunity;
-    private Community subprojectAComm;
-    private Community subprojectBComm;
+    private Community fundingRootCommunity;
+    private Community fundingAComm;
+    private Community fundingBComm;
     private Collection publicationsCollection;
     @SuppressWarnings("unused")
     private Collection collectionSubProjectA;
@@ -94,28 +94,28 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PROJECT);
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
-        subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
                        .addMember(ePerson1).build();
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectAGroup)
                                                  .withName("Collection Sub Project A").build();
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectB of SubprojectsCommunity").build();
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
                        .addMember(ePerson2).build();
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
         context.restoreAuthSystemState();
@@ -138,7 +138,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
                                       ProjectConstants.PROJECT,
-                                      "project_" + projectsCommunity.getID().toString() + "_members_group")
+                                      projectsCommunityGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -146,7 +146,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    public void createWorkspaceItemWithSubmitterUsing_projectTest() throws Exception {
+    public void createWorkspaceItemWithSubmitterUsing_fundingTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson ePerson1 = EPersonBuilder.createEPerson(context)
@@ -178,32 +178,32 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.FUNDING);
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
-        subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
                        .addMember(ePerson1).build();
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectAGroup)
                                                  .withName("Collection Sub Project A").build();
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectB of SubprojectsCommunity").build();
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
                        .addMember(ePerson2).build();
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
         context.restoreAuthSystemState();
 
         AtomicReference<Integer> idRef1 = new AtomicReference<>();
@@ -224,7 +224,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
                                       ProjectConstants.FUNDING,
-                                      "project_" + subprojectBComm.getID().toString() + "_members_group")
+                                      subprojectBGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -253,33 +253,33 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
-        subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
                        .addMember(admin)
                        .build();
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectAGroup)
                                                  .withName("Collection Sub Project A").build();
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectB of SubprojectsCommunity").build();
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
                        .build();
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectBComm)
+        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingBComm)
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
 
         context.restoreAuthSystemState();
 
@@ -301,7 +301,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
                                       ProjectConstants.FUNDING,
-                                      "project_" + subprojectAComm.getID().toString() + "_members_group")
+                                      subprojectAGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -310,7 +310,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    public void createWorkspaceItemWithAdminOfCommunityUsing_projectTest() throws Exception {
+    public void createWorkspaceItemWithAdminOfCommunityUsing_fundingTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson ePerson1 = EPersonBuilder.createEPerson(context)
@@ -337,35 +337,35 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
-        subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity")
                                           .build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
                        .build();
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
+        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
                                                  .withSubmitterGroup(subprojectAGroup)
                                                  .withName("Collection Sub Project A").build();
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
                                           .withName("Sub ProjectB of SubprojectsCommunity")
                                           .withAdminGroup(ePerson1).build();
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
                        .addMember(ePerson1)
                        .build();
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectBComm)
+        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingBComm)
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
 
         context.restoreAuthSystemState();
 
@@ -387,7 +387,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
                                       ProjectConstants.FUNDING,
-                                      "project_" + subprojectAComm.getID().toString() + "_members_group")
+                                      subprojectBGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -498,7 +498,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
                                           .matchPolicyGroupAndSharedMetadata(
-                                                ProjectConstants.SHARED, sharedGroup.getName())
+                                                ProjectConstants.SHARED, sharedGroup)
                                           )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
@@ -557,7 +557,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
                                           .matchPolicyGroupAndSharedMetadata(
-                                                ProjectConstants.FUNDER, funderGroup.getName())
+                                                ProjectConstants.FUNDER, funderGroup)
                                           )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());

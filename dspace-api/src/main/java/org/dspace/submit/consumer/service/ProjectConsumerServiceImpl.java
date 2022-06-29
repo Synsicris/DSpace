@@ -282,7 +282,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
         List<Community> subCommunities = fundingsParentCommunity.getSubcommunities();
         for (Community community : subCommunities) {
-            StringBuilder memberGroupName = new StringBuilder("project_")
+            StringBuilder memberGroupName = new StringBuilder("funding_")
                                                       .append(community.getID().toString())
                                                       .append("_members_group");
             Group group = groupService.findByName(context, memberGroupName.toString());
@@ -295,7 +295,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
+    public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException {
         List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
                 ProjectConstants.MD_PROJECT_RELATION.element,
                 ProjectConstants.MD_PROJECT_RELATION.qualifier, null);

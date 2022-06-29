@@ -143,7 +143,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
          getClient(tokenEPerson1).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.PROJECT, projectsCommunityGroup.getName())
+                                      ProjectConstants.PROJECT, projectsCommunityGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -242,7 +242,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                  .andExpect(jsonPath("$", Matchers.is(
                                                           WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
                                                                    ProjectConstants.PROJECT,
-                                                                   projectsCommunityGroup.getName())
+                                                                   projectsCommunityGroup)
                                                           )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());

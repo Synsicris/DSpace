@@ -133,7 +133,7 @@
     </collection>
   </community>    
   <community>
-    <name>parent-project-template</name>
+    <name>project-template</name>
     <description />
     <intro />
     <copyright />
@@ -940,6 +940,7 @@
     <policy-group rpType="delete">project_template_admin_group</policy-group>
     <policy-group rpType="delete">funding_template_admin_group</policy-group>
     <policy-group rpType="read">funding_template_members_group</policy-group>
+    <policy-group rpType="read">project_template_members_group</policy-group>
     <community>
       <name>Exploitation plan objects</name>
       <description />
@@ -949,6 +950,7 @@
 	  <policy-group rpType="admin">funding_template_admin_group</policy-group>
       <policy-group rpType="remove">funding_template_admin_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
+      <policy-group rpType="delete">project_template_admin_group</policy-group>
       <collection>
         <name>Exploitation plan steps</name>
         <description />
@@ -1075,7 +1077,9 @@
       <submission-type>funding</submission-type>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">funding_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.admin###</metadata>
       	<metadata name="cris.project.shared">project</metadata>

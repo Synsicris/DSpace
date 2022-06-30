@@ -223,7 +223,7 @@
         <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
         <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -245,7 +245,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -267,7 +267,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -289,7 +289,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -311,7 +311,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -333,7 +333,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -355,7 +355,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -377,7 +377,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -399,7 +399,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -421,7 +421,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -443,7 +443,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -465,7 +465,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -487,7 +487,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
@@ -510,7 +510,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -532,7 +532,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -554,7 +554,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>  
     <collection>
@@ -576,7 +576,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -598,7 +598,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -620,7 +620,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -642,7 +642,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -691,7 +691,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -713,7 +713,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -735,7 +735,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -757,7 +757,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>  
     <collection>
@@ -779,7 +779,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -801,7 +801,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -823,7 +823,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -845,7 +845,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -867,7 +867,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -889,7 +889,7 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
       	<metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
@@ -910,7 +910,7 @@
         <item-template>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">parentproject</metadata>
+	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
         <item>
             <metadata name="dc.title">Workingplan</metadata>

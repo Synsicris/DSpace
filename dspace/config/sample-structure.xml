@@ -967,7 +967,7 @@
         <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
         <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
+	      <metadata name="cris.project.shared">funding</metadata>
 	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
         </item-template>
         <item>
@@ -1003,7 +1003,7 @@
         <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
         <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
+	      <metadata name="cris.project.shared">funding</metadata>
 	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	  <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
@@ -1035,7 +1035,7 @@
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	    <metadata name="cris.project.shared">project</metadata>
+	    <metadata name="cris.project.shared">funding</metadata>
 	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>     	
@@ -1059,14 +1059,14 @@
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	    <metadata name="cris.project.shared">project</metadata>
+	    <metadata name="cris.project.shared">funding</metadata>
 	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
       </item-template>
     </collection>
     <collection>
-      <name language="en">Fundings</name>
+      <name language="en">Funding</name>
       <name language="de">Fördermittel</name>
       <description />
       <intro />
@@ -1082,7 +1082,7 @@
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.admin###</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+      	<metadata name="cris.project.shared">funding</metadata>
         <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="oairecerif.amount.currency">Euro</metadata>

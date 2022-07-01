@@ -470,6 +470,11 @@
       <type>extract</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step-definition>
+    <step-definition id="internalacc" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.internalacc</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="edit_grants">
@@ -704,6 +709,7 @@
       <step id="events_result" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -713,6 +719,7 @@
       <step id="events_result" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="process_events">
       <step id="process_events" />

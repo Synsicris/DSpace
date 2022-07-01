@@ -1291,31 +1291,6 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Publisher</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Optionally enter the publisher here.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>publication</dc-qualifier>
-          <label>Part of</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>The publication where this publication is included. E.g. a book chapter lists here the book, a contribution to a conference lists here the conference proceeding.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>isbn</dc-qualifier>
           <label>ISBN (of the container)</label>
@@ -1349,7 +1324,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint>The journal or serie where this publication has been published.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_ecc8, coar:c_8a7e, coar:c_18cc</type-bind>
         </field>
       </row>
       <row>
@@ -1413,7 +1387,7 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
           <label>Publisher link</label>
@@ -6467,6 +6441,32 @@ it, please enter the types and the actual numbers or codes.</hint>
         </field>
       </row>
     </form>
+    <form name="internalacc">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Task</label>
+          <input-type value-pairs-name="internal_purpose">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Notes</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="tests">
       <row>
         <field>
@@ -9508,6 +9508,16 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Zimbabue</displayed-value>
         <stored-value>ZW</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="internal_purpose" dc-term="internal_purpose">
+      <pair>
+        <displayed-value>Check, Add, Complete</displayed-value>
+        <stored-value>check_and_complete</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Done</displayed-value>
+        <stored-value>done</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

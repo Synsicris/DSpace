@@ -1290,31 +1290,6 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
-          <dc-element>publisher</dc-element>
-          <label>Verlag/Herausgeber</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>publication</dc-qualifier>
-          <label>In Buch (Monographie, Sammelwerk)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Geben Sie hier den Titel ein, in welcher die Veröffentlichung erschienen ist.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>isbn</dc-qualifier>
           <label>ISBN</label>
@@ -1348,7 +1323,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie hier den Titel ein, in welcher die Veröffentlichung erschienen ist.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_ecc8, coar:c_8a7e, coar:c_18cc</type-bind>
         </field>
       </row>
       <row>
@@ -1412,10 +1386,10 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Verlagslink</label>
+          <label>Direktlink</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -6476,6 +6450,32 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         </field>
       </row>
     </form>
+    <form name="internalacc">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Aufgabe</label>
+          <input-type value-pairs-name="internal_purpose">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Notizen</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="tests">
       <row>
         <field>
@@ -9517,6 +9517,16 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Zimbabue</displayed-value>
         <stored-value>ZW</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="internal_purpose" dc-term="internal_purpose">
+      <pair>
+        <displayed-value>Überprüfe, Ändern, Ergänzen</displayed-value>
+        <stored-value>check_and_complete</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erledigt</displayed-value>
+        <stored-value>done</stored-value>
       </pair>
     </value-pairs>
   </form-value-pairs>

@@ -3410,7 +3410,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3464,7 +3464,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3518,7 +3518,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3572,7 +3572,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3626,7 +3626,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3680,7 +3680,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3734,7 +3734,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3788,7 +3788,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3989,7 +3989,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object) AND -relation.isVersionOf:*</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->

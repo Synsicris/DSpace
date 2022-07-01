@@ -1733,7 +1733,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Coordinating project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -1890,7 +1890,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
@@ -1927,6 +1926,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -1943,7 +1943,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>parentproject</dc-qualifier>
+          <dc-qualifier>project</dc-qualifier>
           <label>joint project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2176,6 +2176,8 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
@@ -8319,7 +8321,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>Editable by only sub-project members</displayed-value>
+        <displayed-value>Editable by only funding members</displayed-value>
         <stored-value>funding</stored-value>
       </pair>
     </value-pairs>

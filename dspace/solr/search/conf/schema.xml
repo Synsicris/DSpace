@@ -282,7 +282,7 @@
 
     <!-- used to track entity type of collections -->
     <field name="search.entitytype" type="string" indexed="true" stored="true" required="false" />
-    <field name="search.subprojectCommunity" type="string" indexed="true" stored="true" required="false" />
+    <field name="search.fundingCommunity" type="string" indexed="true" stored="true" required="false" />
 
     <!-- Community and collection hierarchy of the Item of interest (candidate for hierarchical facetting ) -->
     <field name="location" type="lowerCaseSort" indexed="true" stored="true" multiValued="true" required="false" omitNorms="true" />

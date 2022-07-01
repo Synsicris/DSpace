@@ -245,7 +245,7 @@ public class ProjectsMigrationScript extends
     }
 
     private boolean hasSubproject(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
             if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() > 0) {
                 return true;
@@ -255,7 +255,7 @@ public class ProjectsMigrationScript extends
     }
 
     private Community getSubprojectCommunity(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
             if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() > 0) {
                 return subcommunity;
@@ -265,7 +265,7 @@ public class ProjectsMigrationScript extends
     }
     
     private Community getEmptySubprojectCommunity(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
             if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() == 0) {
                 return subcommunity;
@@ -524,7 +524,7 @@ public class ProjectsMigrationScript extends
         }
 
         List<MetadataValue> projectMetadataList = communityService.getMetadataByMetadataString(project,
-                "synsicris.relation.entity_project");
+                "synsicris.relation.entity_item");
         if (projectMetadataList.size() > 0 && StringUtils.isNotBlank(projectMetadataList.get(0).getAuthority())) {
             MetadataValue projectMetadata = projectMetadataList.get(0);
             UUID uuid = UUIDUtils.fromString(projectMetadata.getAuthority());
@@ -556,7 +556,7 @@ public class ProjectsMigrationScript extends
             authorizeService.removeAllPolicies(context, projectItem);
             authorizeService.addPolicy(context, projectItem, 0, scopedRoles.get("project_template_members_group"));
 
-            communityService.replaceMetadata(context, project, "synsicris", "relation", "entity_project", null,
+            communityService.replaceMetadata(context, project, "synsicris", "relation", "entity_item", null,
                     project.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         }
         return projectItem; 
@@ -810,7 +810,7 @@ public class ProjectsMigrationScript extends
 
     private Map<String, Collection> getCollectionsEntityOfSubprojectTemplate() throws SQLException {
         Map<String, Collection>  collectionEntities = new HashMap<String, Collection>();
-        Community projectTemplateCommunity = getCommunityByProperty("subproject.template-id");
+        Community projectTemplateCommunity = getCommunityByProperty("funding.template-id");
         if (Objects.isNull(projectTemplateCommunity)) {
             throw new RuntimeException(
                     "The project-template Community has not been found, check the propery : project.template-id");

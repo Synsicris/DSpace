@@ -1676,7 +1676,7 @@
         </field>
       </row>
     </form>
-    <form name="parentprojects">
+    <form name="projects">
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1687,6 +1687,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <type-bind>Please enter the correct acronym.</type-bind>
         </field>
       </row>
       <row>
@@ -1698,6 +1699,7 @@
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
           <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
@@ -1711,6 +1713,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1738,7 +1741,7 @@
         </field>
       </row>
     </form>
-    <form name="parentprojects_calc">
+    <form name="projects_calc">
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1750,6 +1753,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <type-bind>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1771,6 +1775,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <type-bind>Calculated from the start and end date of the project</type-bind>
           <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
@@ -1784,6 +1789,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1795,6 +1801,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1806,6 +1813,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
           <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
@@ -1818,6 +1826,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1829,6 +1838,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1843,7 +1853,7 @@
         </field>
       </row>
     </form>
-    <form name="projects">
+    <form name="funding">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1852,17 +1862,20 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>internalid</dc-element>
+          <dc-element>funding</dc-element>
+          <dc-qualifier>identifier</dc-qualifier>
           <label>Förderkennzeichen des Teilprojektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -1876,30 +1889,31 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
-    <form name="projects_import">
+    <form name="funding_import">
       <row>
         <field>
-          <dc-schema>crispj</dc-schema>
-          <dc-element>partnerou</dc-element>
-          <label>Projektpartner</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Letztes Änderungsdatum</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Akronym</label>
+          <dc-element>internalid</dc-element>
+          <label>profi-ID des Teilprojektes (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -1910,55 +1924,96 @@
           <input-type value-pairs-name="project_status">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>parentprojectid</dc-element>
+          <label>ID of the joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parentproject</dc-qualifier>
+          <label>Verbundprojekt</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>crispj</dc-schema>
+          <dc-element>partnerou</dc-element>
+          <label>Akronym/Kurzname</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Titel des Verbundprojektes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel des Teilprojektes</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Titel in Englisch</label>
+          <label>Bezeichnung in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Förderbereich/Bekanntmachung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call.</hint>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
-          <label>Startdatum</label>
+          <label>Welches Teilprojekt koordiniert den Verbund?</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
           <dc-qualifier>endDate</dc-qualifier>
-          <label>Enddatum</label>
+          <label>Startdatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -1967,226 +2022,33 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
-          <label>Projektbeschreibung aus easy-Online</label>
+          <label>Enddatum</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>workplan</dc-qualifier>
-          <label>Arbeitsplan aus easy-Online</label>
+          <dc-qualifier>alternative</dc-qualifier>
+          <label>Dauer (Monate)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>histLP</dc-qualifier>
-          <label>Leistungsplansystematik - Code</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
           <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>textLP</dc-qualifier>
-          <label>Leistungsplansystematik - Text</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort</dc-qualifier>
-          <label>Schlagwort Sorter</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort1</dc-qualifier>
-          <label>Schlagwort Sorter 1</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort2</dc-qualifier>
-          <label>Schlagwort Sorter 2</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort3</dc-qualifier>
-          <label>Schlagwort Sorter 3</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort4</dc-qualifier>
-          <label>Schlagwort Sorter 4</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort5</dc-qualifier>
-          <label>Schlagwort Sorter 5</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort6</dc-qualifier>
-          <label>Schlagwort Sorter 6</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort7</dc-qualifier>
-          <label>Schlagwort Sorter 7</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort8</dc-qualifier>
-          <label>Schlagwort Sorter 8</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort9</dc-qualifier>
-          <label>Schlagwort Sorter 9</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort10</dc-qualifier>
-          <label>Schlagwort Sorter 10</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-    </form>
-    <form name="funding">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
-          <label>Teilprojekt</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>funding</dc-element>
-          <dc-qualifier>identifier</dc-qualifier>
-          <label>Förderkennzeichen</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
-          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
-          <input-type>number</input-type>
+          <label>Status</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2196,8 +2058,8 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
-          <input-type>number</input-type>
+          <label>Fördermaßnahme/Förderprogramm</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2207,8 +2069,8 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>budget</dc-qualifier>
-          <label>Gesamtvolumen des Teilprojektes (Zuwendung &amp; Eigenmittel)</label>
-          <input-type>number</input-type>
+          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2218,7 +2080,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>currency</dc-qualifier>
-          <label>Währung</label>
+          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2228,13 +2090,229 @@
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>fundingParent</dc-element>
-          <label>Fördermaßnahme</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>prog</dc-qualifier>
+          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>researchfocus</dc-qualifier>
+          <label>Währung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>research</dc-qualifier>
+          <label>Name der Organisation und Kurztitel des Teilprojekts</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>relevance-development</dc-qualifier>
+          <label>Förderkennzeichen des Teilprojektes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>development-countries</dc-qualifier>
+          <label>Projektseite(n)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace-use</dc-qualifier>
+          <label>Letztes Änderungsdatum</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>histLP</dc-qualifier>
+          <label>profi-ID des Teilprojektes (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>textLP</dc-qualifier>
+          <label>Status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funder</dc-element>
+          <label>ID of the joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>funder</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Verbundprojekt</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <label>Akronym/Kurzname</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Titel des Verbundprojektes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <style>col-md-4</style>
+          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>detail</dc-qualifier>
+          <label>Bezeichnung in Englisch</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort-primary</dc-qualifier>
+          <label>Förderbereich/Bekanntmachung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Welches Teilprojekt koordiniert den Verbund?</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Startdatum</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Enddatum</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>Dauer (Monate)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>Status</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -2243,11 +2321,34 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Förderbereich</label>
+          <label>Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -2256,7 +2357,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>formtype</dc-qualifier>
-          <label>Formulartyp</label>
+          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -8224,11 +8325,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>A: Unbeschränkte Bearbeitungsrechte für alle Mitglieder des Verbundprojektes</displayed-value>
-        <stored-value>parentproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
       <pair>
         <displayed-value>B: Bearbeitungsrechte beschränkt auf Mitglieder des Teilprojektes</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>funding</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

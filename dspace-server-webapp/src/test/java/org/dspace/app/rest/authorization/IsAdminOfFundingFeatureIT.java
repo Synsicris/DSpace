@@ -8,13 +8,12 @@
 package org.dspace.app.rest.authorization;
 
 import static org.dspace.app.rest.matcher.AuthorizationMatcher.matchAuthorization;
-import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.dspace.app.rest.authorization.impl.IsMemberOfProjectFeature;
+import org.dspace.app.rest.authorization.impl.IsAdminOfFundingFeature;
 import org.dspace.app.rest.converter.ItemConverter;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.projection.Projection;
@@ -29,11 +28,12 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
+import org.dspace.project.util.ProjectConstants;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTest {
+public class IsAdminOfFundingFeatureIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private ItemConverter itemConverter;
@@ -44,7 +44,7 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
     @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
-    private AuthorizationFeature isMemberOfProject;
+    private AuthorizationFeature isAdminOfFunding;
 
     private Item parentProjectEntity;
 
@@ -55,25 +55,25 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
 
         context.turnOffAuthorisationSystem();
 
-        isMemberOfProject = authorizationFeatureService.find(IsMemberOfProjectFeature.NAME);
+        isAdminOfFunding = authorizationFeatureService.find(IsAdminOfFundingFeature.NAME);
 
         Community joinProjects = createCommunity("Joint projects");
 
         testProject = createSubCommunity("Test Project", joinProjects);
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_admin_group")
+            .withName("funding_" + testProject.getID() + "_admin_group")
             .addMember(admin)
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_members_group")
+            .withName("funding_" + testProject.getID() + "_members_group")
             .addMember(eperson)
             .build();
 
-        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
-        parentProjectEntity = ItemBuilder.createItem(context, joinProject)
-            .withTitle("Test project")
+        Collection fundingColl = createCollection("Fundings", ProjectConstants.PROJECT, testProject);
+        parentProjectEntity = ItemBuilder.createItem(context, fundingColl)
+            .withTitle("Test funding")
             .build();
 
         context.restoreAuthSystemState();
@@ -87,14 +87,12 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
 
         String token = getAuthToken(eperson.getEmail(), password);
 
-        Authorization expectedAuthorization = new Authorization(eperson, isMemberOfProject, itemRest);
-
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(eperson.getID()))
-            .param("feature", IsMemberOfProjectFeature.NAME))
+            .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
+            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
     }
 
     @Test
@@ -104,12 +102,14 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
 
         String token = getAuthToken(admin.getEmail(), password);
 
+        Authorization expectedAuthorization = new Authorization(admin, isAdminOfFunding, itemRest);
+
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(admin.getID()))
-            .param("feature", IsMemberOfProjectFeature.NAME))
+            .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
+            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(user.getID()))
-            .param("feature", IsMemberOfProjectFeature.NAME))
+            .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
     }
@@ -156,7 +156,7 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + subProject.getID() + "_members_group")
+            .withName("funding_" + subProject.getID() + "_admin_group")
             .addMember(user)
             .build();
 
@@ -168,27 +168,27 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(admin.getID()))
-                .param("feature", IsMemberOfProjectFeature.NAME))
+                .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
-
-        Authorization expectedAuthorization = new Authorization(eperson, isMemberOfProject, itemRest);
 
         getClient(getAuthToken(eperson.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(eperson.getID()))
-                .param("feature", IsMemberOfProjectFeature.NAME))
+                .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
+            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
+
+        Authorization expectedAuthorization = new Authorization(user, isAdminOfFunding, itemRest);
 
         getClient(getAuthToken(user.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(user.getID()))
-                .param("feature", IsMemberOfProjectFeature.NAME))
+                .param("feature", IsAdminOfFundingFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
+            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
 
     }
 

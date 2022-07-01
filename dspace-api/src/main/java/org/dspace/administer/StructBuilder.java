@@ -134,8 +134,8 @@ public class StructBuilder {
             = ContentServiceFactory.getInstance().getWorkspaceItemService();
     protected static InstallItemService installItemService
             = ContentServiceFactory.getInstance().getInstallItemService();
-    public static final MetadataFieldName MD_SUBPROJECT_COMMUNITY
-            = new MetadataFieldName("synsicris", "subproject", "community");
+    public static final MetadataFieldName MD_FUNDING_COMMUNITY
+            = new MetadataFieldName("synsicris", "funding", "community");
 
     /**
      * Default constructor
@@ -301,7 +301,7 @@ public class StructBuilder {
         communityMap.put("intro", MD_INTRODUCTORY_TEXT);
         communityMap.put("copyright", MD_COPYRIGHT_TEXT);
         communityMap.put("sidebar", MD_SIDEBAR_TEXT);
-        communityMap.put("subproject-comm", MD_SUBPROJECT_COMMUNITY);
+        communityMap.put("funding-comm", MD_FUNDING_COMMUNITY);
         communityMap.put("policy-group", null);
 
         collectionMap.put("name", MD_NAME);

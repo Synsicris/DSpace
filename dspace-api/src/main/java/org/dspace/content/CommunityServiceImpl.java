@@ -54,6 +54,7 @@ import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
@@ -754,13 +755,16 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community newCommunity = create(parent, context);
         setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
-        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
-        UUID uuidProjectItem = extractItemUuid(stringValue);
+        String projectRootCommId = configurationService.getProperty("project.parent-community-id", "");
+        boolean isProject = Objects.nonNull(parent) && parent.getID().toString().equals(projectRootCommId);
+        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, parent, projectRootCommId, isProject);
+
+        List<MetadataValue> relationMd = this.getMetadata(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
+        UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
-//        setCommunityName(context, newCommunity, name);
+
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
@@ -839,11 +843,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName,
             String grants) throws SQLException {
         Community rootCommunity = this.find(context, rootCommunityUUID);
-        StringBuilder relationPlaceholder = new StringBuilder();
-        relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null,
-                             relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
+        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, newName, newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
         if (StringUtils.isNoneBlank(grants)) {
@@ -898,12 +900,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private UUID extractItemUuid(String value) {
         UUID itemUuid = null;
         if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)$");
+            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)$");
             Matcher matcher = pattern.matcher(value);
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
             } else {
-                throw new RuntimeException("Metadata value of synsicris.relation.entity_project : " + value
+                throw new RuntimeException("Metadata value of synsicris.relation.entity_item : " + value
                         + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
             }
         }
@@ -1002,11 +1004,13 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      * @return a map between the institutional roles and the related scopes for the
      *         institution community
      */
-    private Map<UUID, Group> createScopedRoles(Context context, Community project)
-            throws SQLException, AuthorizeException {
+    private Map<UUID, Group> createScopedRoles(Context context, Community project, Community parent,
+            String projectRootCommunityID, boolean isProject) throws SQLException, AuthorizeException {
 
         Map<UUID, Group> groupsMap = new HashMap<>();
-        String[] templateGroupsName = configurationService.getArrayProperty("project.template.groups-name");
+        String[] templateGroupsName = (isProject || Objects.isNull(parent)) ?
+                configurationService.getArrayProperty("project.template.groups-name") :
+                    configurationService.getArrayProperty("project.funding-template.groups-name");
         if (templateGroupsName.length > 0) {
             for (int i = 0; i < templateGroupsName.length; i++) {
                 Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
@@ -1025,11 +1029,42 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 }
             }
         }
+        
+        if (!isProject && Objects.nonNull(parent)) {
+            String[] projectGroupsName = configurationService.getArrayProperty("project.template.groups-name");
+            if (projectGroupsName.length > 0) {
+                Community projectComm = parent.getParentCommunities().get(0);
+                if (Objects.nonNull(projectComm) &&
+                    (projectComm.getParentCommunities().get(0).getID().toString().equals(projectRootCommunityID))) {
+                    for (int i = 0; i < projectGroupsName.length; i++) {
+                        Group templateProjectGroup = groupService.findByName(context, projectGroupsName[i]);
+                        if (templateProjectGroup != null && StringUtils.isNotBlank(templateProjectGroup.getName())) {
+                            String[] name_parts = extractName(templateProjectGroup.getName());
+                            if (name_parts.length == 2) {
+                                String roleName = name_parts[0] + projectComm.getID().toString() + name_parts[1] +
+                                        "_group";
+                                Group scopedRole = groupService.findByName(context, roleName);
+                                if (scopedRole != null) {
+                                    groupsMap.put(templateProjectGroup.getID(), scopedRole);
+                                } else {
+                                    throw new RuntimeException("Cannot find projcet community for funding tamplate " + 
+                                            project.getID().toString());
+                                }
+                            } else {
+                                throw new RuntimeException("The group name : " + templateProjectGroup.getName()
+                                + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
+                            }
+                        }
+                    }   
+                }
+            }
+        }
+       
         return groupsMap;
     }
 
     private String[] extractName(String groupName) {
-        Pattern pattern = Pattern.compile("^((?:project_|subproject_)).*(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_)).*(_.*)(_group)$");
         Matcher matcher = pattern.matcher(groupName);
         if (matcher.matches()) {
             return new String[] {matcher.group(1),matcher.group(2)};

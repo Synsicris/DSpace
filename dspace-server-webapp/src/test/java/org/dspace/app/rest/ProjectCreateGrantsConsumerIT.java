@@ -84,7 +84,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.PARENTPROJECT);
+                                ProjectConstants.PROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                          .withName("Sub Projects Community").build();
@@ -111,11 +111,11 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                          .withSubmitterGroup(subprojectBGroup)
                          .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
 
         Item publicItem1 = ItemBuilder.createItem(context, publicationsCollection)
                                       .withTitle("project_" + projectsCommunity.getID().toString() + "_name")
-                                      .withSharedProject(ProjectConstants.PROJECT)
+                                      .withSharedProject(ProjectConstants.FUNDING)
                                       .build();
 
         StringBuilder placeholder = new StringBuilder();
@@ -143,7 +143,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
          getClient(tokenEPerson1).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
                   .andExpect(status().isOk())
                   .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.PARENTPROJECT, projectsCommunityGroup.getName())
+                                      ProjectConstants.PROJECT, projectsCommunityGroup)
                                        )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
@@ -181,7 +181,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.PARENTPROJECT);
+                                ProjectConstants.PROJECT);
 
         Community subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                          .withName("Sub Projects Community").build();
@@ -208,11 +208,11 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                          .withSubmitterGroup(subprojectBGroup)
                          .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
 
         Item publicItem1 = ItemBuilder.createItem(context, publicationsCollection)
                                       .withTitle("project_" + projectsCommunity.getID().toString() + "_name")
-                                      .withSharedProject(ProjectConstants.PROJECT)
+                                      .withSharedProject(ProjectConstants.FUNDING)
                                       .build();
 
         StringBuilder placeholder = new StringBuilder();
@@ -241,8 +241,8 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                  .andExpect(status().isOk())
                                  .andExpect(jsonPath("$", Matchers.is(
                                                           WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                                                   ProjectConstants.PARENTPROJECT,
-                                                                   projectsCommunityGroup.getName())
+                                                                   ProjectConstants.PROJECT,
+                                                                   projectsCommunityGroup)
                                                           )));
         } finally {
             WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());

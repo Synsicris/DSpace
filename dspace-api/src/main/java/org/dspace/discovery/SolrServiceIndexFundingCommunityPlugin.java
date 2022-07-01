@@ -18,14 +18,14 @@ import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * The purpose of this plugin is to index synsicris.subproject.community metadata for community.
+ * The purpose of this plugin is to index synsicris.funding.community metadata for community.
  * 
  * @author Giuseppe Digilio (at 4science.it)
  */
-public class SolrServiceIndexSubprojectCommunityPlugin implements SolrServiceIndexPlugin {
+public class SolrServiceIndexFundingCommunityPlugin implements SolrServiceIndexPlugin {
 
     private static final Logger log = org.apache.logging.log4j.LogManager
-                                                .getLogger(SolrServiceIndexSubprojectCommunityPlugin.class);
+                                                .getLogger(SolrServiceIndexFundingCommunityPlugin.class);
 
     @Autowired(required = true)
     protected AuthorizeService authorizeService;
@@ -37,9 +37,9 @@ public class SolrServiceIndexSubprojectCommunityPlugin implements SolrServiceInd
         if (idxObj instanceof IndexableCommunity) {
             Community comm = ((IndexableCommunity) idxObj).getIndexedObject();
             if (comm != null) {
-                String metadata = communityService.getMetadata(comm, "synsicris.subproject.community");
+                String metadata = communityService.getMetadata(comm, "synsicris.funding.community");
                 if (StringUtils.isNotBlank(metadata)) {
-                    document.addField("search.subprojectCommunity", metadata);
+                    document.addField("search.fundingCommunity", metadata);
                 }
             }
         }

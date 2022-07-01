@@ -104,28 +104,23 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="parentprojects" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.parentprojects</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="parentprojects_calc" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.parentprojects_calc</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="projects" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.projects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="projects_import" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.projects_import</heading>
+    <step-definition id="projects_calc" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.projects_calc</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="funding" mandatory="true">
+    <step-definition id="funding" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.funding</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="funding_import" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.funding_import</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -534,31 +529,21 @@
       <step id="orgunits" />
       <step id="upload" />
     </submission-process>
-    <submission-process name="parentprojects">
-      <step id="parentprojects" />
-      <step id="agrovoc_keywords_parentproject" />
-      <step id="parentprojects_calc" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="parentprojects-edit">
-      <step id="parentprojects" />
-      <step id="agrovoc_keywords_parentproject" />
-      <step id="parentprojects_calc" />
-      <step id="upload" />
-    </submission-process>
     <submission-process name="projects">
       <step id="projects" />
-      <step id="projects_import" />
+      <step id="projects_calc" />
     </submission-process>
     <submission-process name="projects-edit">
       <step id="projects" />
-      <step id="projects_import" />
+      <step id="projects_calc" />
     </submission-process>
     <submission-process name="funding">
       <step id="funding" />
+      <step id="funding_import" />
     </submission-process>
     <submission-process name="funding-edit">
       <step id="funding" />
+      <step id="funding_import" />
     </submission-process>
     <submission-process name="persons">
       <step id="persons" />

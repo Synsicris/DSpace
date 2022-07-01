@@ -1677,7 +1677,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="parentprojects">
+    <form name="projects">
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1687,7 +1687,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <style>col-md-6</style>
-          <hint>Please enter the correct acronym.</hint>
+          <hint />
+          <type-bind>Please enter the correct acronym.</type-bind>
         </field>
       </row>
       <row>
@@ -1698,7 +1699,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
+          <hint />
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
           <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
@@ -1711,7 +1713,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1739,7 +1742,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="parentprojects_calc">
+    <form name="projects_calc">
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1750,7 +1753,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</hint>
+          <hint />
+          <type-bind>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1771,7 +1775,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Calculated from the start and end date of the project</hint>
+          <hint />
+          <type-bind>Calculated from the start and end date of the project</type-bind>
           <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
@@ -1784,7 +1789,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="project_status">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1795,7 +1801,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1806,7 +1813,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>is calculated from the data of the subprojects</hint>
+          <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
           <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
@@ -1818,7 +1826,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>is calculated from the data of the subprojects</hint>
+          <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1829,7 +1838,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint>is calculated from the data of the subprojects</hint>
+          <hint />
+          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1844,7 +1854,7 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="projects">
+    <form name="funding">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -1853,17 +1863,20 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>internalid</dc-element>
-          <label>Subproject ID</label>
+          <dc-element>funding</dc-element>
+          <dc-qualifier>identifier</dc-qualifier>
+          <label>funding identifier of the project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -1872,15 +1885,73 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Project URL</label>
+          <label>Websites of the project</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
     </form>
-    <form name="projects_import">
+    <form name="funding_import">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Last modified</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>profi-ID of the project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>parentprojectid</dc-element>
+          <label>Verbund-Nr (VER_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>parentproject</dc-qualifier>
+          <label>joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>crispj</dc-schema>
@@ -1888,6 +1959,27 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Partner Organization(s)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>title</dc-element>
+          <dc-qualifier>alternative</dc-qualifier>
+          <label>Title in other language</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -1906,49 +1998,12 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="project_status">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>alternative</dc-qualifier>
-          <label>Title in other language</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>project</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
           <label>Start date</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
@@ -1959,7 +2014,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -1973,213 +2028,20 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>workplan</dc-qualifier>
-          <label>Work plan from easy-online</label>
+          <dc-qualifier>alternative</dc-qualifier>
+          <label>Project description (english)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>histLP</dc-qualifier>
-          <label>LP-code</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
           <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>textLP</dc-qualifier>
-          <label>LP-text</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort</dc-qualifier>
-          <label>Sorter</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort1</dc-qualifier>
-          <label>Sorter 1</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort2</dc-qualifier>
-          <label>Sorter 2</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort3</dc-qualifier>
-          <label>Sorter 3</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort4</dc-qualifier>
-          <label>Sorter 4</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort5</dc-qualifier>
-          <label>Sorter 5</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort6</dc-qualifier>
-          <label>Sorter 6</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort7</dc-qualifier>
-          <label>Sorter 7</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort8</dc-qualifier>
-          <label>Sorter 8</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort9</dc-qualifier>
-          <label>Sorter 9</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort10</dc-qualifier>
-          <label>Sorter 10</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-    </form>
-    <form name="funding">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
-          <label>Sub-project</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>funding</dc-element>
-          <dc-qualifier>identifier</dc-qualifier>
-          <label>funding identifier</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
         </field>
       </row>
       <row>
@@ -2187,7 +2049,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
           <label>Grant total sub-project</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2198,7 +2060,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>amount</dc-element>
           <dc-qualifier>grantpersonnel</dc-qualifier>
           <label>Grant for personnel sub-project</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2209,7 +2071,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-element>amount</dc-element>
           <dc-qualifier>budget</dc-qualifier>
           <label>Overall budget of the sub-project (grant and own contribution)</label>
-          <input-type>number</input-type>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2229,14 +2091,230 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>fundingParent</dc-element>
-          <label>Program</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>prog</dc-qualifier>
+          <label>programme classification funding body</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>researchfocus</dc-qualifier>
+          <label>Researchfocus</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>research</dc-qualifier>
+          <label>type of research</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>relevance-development</dc-qualifier>
+          <label>Relevance for development cooperation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>development-countries</dc-qualifier>
+          <label>Relevant countries for development cooperation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace-use</dc-qualifier>
+          <label>Potential application</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <visibility>workflow</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>histLP</dc-qualifier>
+          <label>LP-code</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>textLP</dc-qualifier>
+          <label>LP-text</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funder</dc-element>
+          <label>Funder (ministry)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>funder</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Funder Department (ministry)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <label>Funding body</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Funding body department</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>detail</dc-qualifier>
+          <label>Funding body (detail)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort-primary</dc-qualifier>
+          <label>Keyword Primary-Sorter</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Keywords all Sorter</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Keyword individual</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Title funding call</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>is imported from the information of the subprojects</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>profi-ID funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>profi-ID funding programme</required>
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>Acronym funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -2244,12 +2322,35 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Call / funding area</label>
+          <label>Call</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>profi-ID fundingcall</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>Acronym funding call</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -8215,11 +8316,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
         <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>parentproject</stored-value>
+        <stored-value>project</stored-value>
       </pair>
       <pair>
         <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>project</stored-value>
+        <stored-value>funding</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">

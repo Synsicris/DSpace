@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-
     <!-- Versioning Service Application Interface for DSpace Will be autowired with
          a Versioning Provider present in Spring context.
          Default Item Versioning Provider, defines behavior for replicating
@@ -14,19 +13,26 @@
           class="org.dspace.versioning.VersioningServiceImpl"
           autowire="byType"
           scope="singleton">
-       <property name="provider">
-           <bean class="org.dspace.versioning.ProjectVersionProvider">
-               <property name="ignoredMetadataFields">
-                   <set>
-                       <value>dc.date.accessioned</value>
-                       <value>dc.description.provenance</value>
-                       <value>dspace.entity.type</value>
-                   </set>
-               </property>
-               
-           </bean>
-       </property>
-
+       <property name="provider" ref="projectItemVersionProvider" />
     </bean>
 
+    <bean class="org.dspace.versioning.ProjectVersionProvider" id="projectItemVersionProvider">
+        <property name="ignoredMetadataFields">
+            <set>
+                <value>dc.date.accessioned</value>
+                <value>dc.description.provenance</value>
+                <value>dspace.entity.type</value>
+            </set>
+        </property>
+    </bean>
+    <bean class="org.dspace.versioning.DefaultItemVersionProvider" id="defaultItemVersionProvider">
+        <property name="ignoredMetadataFields">
+            <set>
+                <value>dc.date.accessioned</value>
+                <value>dc.description.provenance</value>
+                <value>dspace.entity.type</value>
+            </set>
+        </property>
+        
+    </bean>
 </beans>

@@ -67,7 +67,7 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
 
         Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
-        if (!projectConsumerService.isParentProjectItem(item) || isVersionItem(item)) {
+        if (!projectConsumerService.isProjectItem(item) || isVersionItem(item)) {
             return false;
         }
 

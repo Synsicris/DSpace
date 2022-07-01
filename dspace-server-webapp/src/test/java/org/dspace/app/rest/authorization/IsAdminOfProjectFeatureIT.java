@@ -8,7 +8,7 @@
 package org.dspace.app.rest.authorization;
 
 import static org.dspace.app.rest.matcher.AuthorizationMatcher.matchAuthorization;
-import static org.dspace.project.util.ProjectConstants.PARENTPROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -46,7 +46,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
     private AuthorizationFeature isAdminOfProject;
 
-    private Item parentProject;
+    private Item parentProjectEntity;
 
     private Community testProject;
 
@@ -70,9 +70,9 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
             .withName("project_" + testProject.getID() + "_members_group")
             .addMember(eperson)
             .build();
-
-        Collection joinProject = createCollection("Joint projects", PARENTPROJECT_ENTITY, testProject);
-        parentProject = ItemBuilder.createItem(context, joinProject)
+        
+        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
+        parentProjectEntity = ItemBuilder.createItem(context, joinProject)
             .withTitle("Test project")
             .build();
 
@@ -83,7 +83,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithProjectMember() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(parentProject, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         String token = getAuthToken(eperson.getEmail(), password);
 
@@ -98,7 +98,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithProjectAdmin() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(parentProject, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
 
@@ -115,7 +115,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testWithOtherUser() throws Exception {
 
-        ItemRest itemRest = itemConverter.convert(parentProject, Projection.DEFAULT);
+        ItemRest itemRest = itemConverter.convert(parentProjectEntity, Projection.DEFAULT);
 
         context.turnOffAuthorisationSystem();
         EPerson user = EPersonBuilder.createEPerson(context)
@@ -152,10 +152,11 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
         Item publication = ItemBuilder.createItem(context, subPublications)
             .withTitle("Publication")
+            .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + subProject.getID() + "_admin_group")
+            .withName("funding_" + subProject.getID() + "_admin_group")
             .addMember(user)
             .build();
 
@@ -163,13 +164,14 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
         ItemRest itemRest = itemConverter.convert(publication, Projection.DEFAULT);
 
+        Authorization expectedAuthorization = new Authorization(admin, isAdminOfProject, itemRest);
         getClient(getAuthToken(admin.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(admin.getID()))
                 .param("feature", IsAdminOfProjectFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
+            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
 
         getClient(getAuthToken(eperson.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
@@ -179,15 +181,13 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
 
-        Authorization expectedAuthorization = new Authorization(user, isAdminOfProject, itemRest);
-
         getClient(getAuthToken(user.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(user.getID()))
                 .param("feature", IsAdminOfProjectFeature.NAME))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
+            .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
 
     }
 

@@ -10,7 +10,7 @@ package org.dspace.app.rest;
 import static java.lang.String.join;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.app.matcher.ResourcePolicyMatcher.matches;
-import static org.dspace.project.util.ProjectConstants.PARENTPROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
@@ -135,14 +135,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         Community subProject = createSubCommunity("sub_001", testSubProjects);
         subPublications = createCollection("Sub Publications", "Publication", subProject);
 
-        Collection joinProject = createCollection("Joint projects", PARENTPROJECT_ENTITY, testProject);
+        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
         parentProject = ItemBuilder.createItem(context, joinProject)
             .withTitle("Test project")
             .build();
 
         publicationIsVersionOf = createIsVersionRelationshipType("Publication");
         personIsVersionOf = createIsVersionRelationshipType("Person");
-        parentProjectIsVersionOf = createIsVersionRelationshipType(PARENTPROJECT_ENTITY);
+        parentProjectIsVersionOf = createIsVersionRelationshipType(PROJECT_ENTITY);
 
         context.restoreAuthSystemState();
 
@@ -160,7 +160,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             .withTitle("Other Publication")
             .build();
 
-        Collection otherJoinProject = createCollection("Joint projects", PARENTPROJECT_ENTITY, otherTestProject);
+        Collection otherJoinProject = createCollection("Joint projects", PROJECT_ENTITY, otherTestProject);
         Item otherParentProject = ItemBuilder.createItem(context, otherJoinProject)
             .withTitle("Test project")
             .build();

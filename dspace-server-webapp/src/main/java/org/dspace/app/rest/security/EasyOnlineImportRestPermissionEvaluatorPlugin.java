@@ -22,6 +22,7 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.EPersonService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
@@ -76,7 +77,9 @@ public class EasyOnlineImportRestPermissionEvaluatorPlugin extends RestObjectPer
             if (Objects.isNull(item)) {
                 return false;
             }
-            List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+            List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
+                    ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
+                    null);
             if (values.isEmpty()) {
                 return false;
             }
@@ -88,7 +91,7 @@ public class EasyOnlineImportRestPermissionEvaluatorPlugin extends RestObjectPer
                 if (Objects.isNull(projectCommunity)) {
                     return false;
                 }
-                if (Objects.nonNull(projectConsumerService.isMemberOfSubProject(context, context.getCurrentUser(),
+                if (Objects.nonNull(projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
                         projectCommunity))) {
                     return true;
                 }

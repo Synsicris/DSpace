@@ -31,10 +31,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implementation of {@link TemplateValueGenerator} that generates a value related to
- * the current parentproject/project group.
+ * the current project/funding group.
  * <p>
- * Syntax is: ###CURRENTPROJECT.[parentproject|project].[admin|members]###, so for example
- * ###CURRENTPROJECT.parentproject.admin### will set metadata with value of admin group for the
+ * Syntax is: ###CURRENTPROJECT.[project|funding].[admin|members]###, so for example
+ * ###CURRENTPROJECT.project.admin### will set metadata with value of admin group for the
  * parent project community.
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
@@ -62,22 +62,25 @@ public class CurrentProjectGroupGenerator extends AbstractGenerator {
             String[] params = StringUtils.split(extraParams, "\\.");
             String scope = params[0];
             String role = "";
+            boolean isFunding;
             if (params.length > 1) {
                 role = params[1];
             }
             
             switch (scope) {
-                case ProjectConstants.PARENTPROJECT:
-                    projectCommunity = getParentProjectCommunity(templateItem);
-                    break;
                 case ProjectConstants.PROJECT:
                     projectCommunity = getProjectCommunity(templateItem);
+                    isFunding = false;
+                    break;
+                case ProjectConstants.FUNDING:
+                    projectCommunity = getOwningCommunity(templateItem);
+                    isFunding = true;
                     break;
                 default:
                     throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);
             }
             
-            return Arrays.asList(getProjectCommunityGroup(context, projectCommunity, role));
+            return Arrays.asList(getProjectCommunityGroup(context, projectCommunity, role, isFunding));
         } catch (Exception e) {
             log.error("Error while evaluating resource policies for collection {}: {}",
                 templateItem.getTemplateItemOf().getID(), e.getMessage(), e);
@@ -85,13 +88,15 @@ public class CurrentProjectGroupGenerator extends AbstractGenerator {
         }
     }
 
-    private MetadataValueVO getProjectCommunityGroup(Context context,  Community projectCommunity, String role) {
-        if (projectCommunity == null) {
+    private MetadataValueVO getProjectCommunityGroup(Context context,  Community community, String role,
+            boolean isFunding) {
+        if (community == null) {
             return new MetadataValueVO("");
         }
 
         try {
-            Group group = projectService.getProjectCommunityGroupByRole(context, projectCommunity, role);
+            Group group = isFunding ? projectService.getFundingCommunityGroupByRole(context, community, role)
+                    : projectService.getProjectCommunityGroupByRole(context, community, role);
             return new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED);
         } catch (SQLException e1) {
             return new MetadataValueVO("");

@@ -98,7 +98,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
 
         Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
                                            .withName("Collection 1")
-                                           .withEntityType("Project")
+                                           .withEntityType("Funding")
                                            .build();
 
         Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
@@ -116,7 +116,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .withTitle("Parent Project Item Title")
                                             .build();
 
-        Item projectItem = ItemBuilder.createItem(context, col1)
+        Item fundingItem = ItemBuilder.createItem(context, col1)
                                   .withTitle("Test Title")
                                   .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
                                   .build();
@@ -132,13 +132,13 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         String tokenAdmin = getAuthToken(admin.getEmail(), password);
         InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
         final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
-        getClient(tokenAdmin).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID())
+        getClient(tokenAdmin).perform(fileUpload("/api/integration/easyonlineimports/" + fundingItem.getID())
                              .file(xmlFile))
                              .andExpect(status().isCreated());
 
-        getClient().perform(get("/api/core/items/" + projectItem.getID()))
+        getClient().perform(get("/api/core/items/" + fundingItem.getID()))
                    .andExpect(status().isOk())
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title",
+                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.title",
                               "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
                             + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
                             + " Projektträger in der Agrarforschung")))
@@ -313,28 +313,28 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                        .withTitle("project A")
                                        .build();
 
-        Community Projects = CommunityBuilder.createSubCommunity(context, projectA)
-                                                         .withName("Projects").build();
+        Community fundingRootComm = CommunityBuilder.createSubCommunity(context, projectA)
+                                                         .withName("Funding").build();
 
-        Community subprojectA = CommunityBuilder.createSubCommunity(context, Projects)
+        Community subprojectA = CommunityBuilder.createSubCommunity(context, fundingRootComm)
                                           .withName("subproject A - project A all grants").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectA.getID().toString() + "_members_group")
+                       .withName("funding_" + subprojectA.getID().toString() + "_members_group")
                        .addMember(ePerson1).build();
 
-        Collection projects = CollectionBuilder.createCollection(context, subprojectA)
-                                               .withName("Projects")
+        Collection Funding = CollectionBuilder.createCollection(context, subprojectA)
+                                               .withName("Funding")
                                                .withSubmitterGroup(subprojectAGroup)
-                                               .withEntityType("Project")
+                                               .withEntityType("Funding")
                                                .build();
 
-        Item projectItem = ItemBuilder.createItem(context, projects)
-                .withTitle("Project Item Title")
+        Item fundingItem = ItemBuilder.createItem(context, Funding)
+                .withTitle("Funding Item Title")
                 .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
                 .build();
 
-        configurationService.setProperty("project.subproject-community-name", Projects.getName());
+        configurationService.setProperty("project.funding-community-name", fundingRootComm.getName());
 
         context.restoreAuthSystemState();
 
@@ -344,14 +344,14 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         String tokenUser = getAuthToken(ePerson1.getEmail(), password);
         InputStream xfile = getClass().getResourceAsStream("SynKassel.xml");
         final MockMultipartFile xmlFile = new MockMultipartFile("file", "SynKassel.xml", "application/xml", xfile);
-        getClient(tokenUser).perform(fileUpload("/api/integration/easyonlineimports/" + projectItem.getID())
+        getClient(tokenUser).perform(fileUpload("/api/integration/easyonlineimports/" + fundingItem.getID())
                             .file(xmlFile))
                          .andExpect(status().isCreated())
                          .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.created.[0]")));
 
-        getClient().perform(get("/api/core/items/" + projectItem.getID()))
+        getClient().perform(get("/api/core/items/" + fundingItem.getID()))
                    .andExpect(status().isOk())
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title",
+                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.title",
                               "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
                             + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
                             + " Projektträger in der Agrarforschung")))
@@ -392,10 +392,10 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                        .andExpect(jsonPath("$.metadata", matchMetadata("dc.title", "disy Informationssysteme GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.identifier.url", "www.disy.net")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("organization.address.addressCountry",
-                                                                       "COUNTRIES 2021-03-05::D::Deutschland")))
+                                                                       "Deutschland")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("organization.parentOrganization",
                                                                        "disy Informationssysteme GmbH")))
-                       .andExpect(jsonPath("$.metadata", matchMetadata("person.personadmin.email",
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personadmin.email",
                                                                        "andreas.abecker@disy.net")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressCity", "Karlsruhe")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressPostcode", "76131")))
@@ -422,7 +422,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.legalform", "GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.orgform", "SME")));
         } finally {
-            ItemBuilder.deleteItem(UUID.fromString(idRef1.get()));
+            if (idRef1.get() != null) {
+                ItemBuilder.deleteItem(UUID.fromString(idRef1.get()));
+            }
         }
     }
 

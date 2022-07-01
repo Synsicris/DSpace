@@ -120,7 +120,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
         replaceAuthoritiesWithWillBeReferenced(context, itemNew, version);
 
-        if (isParentProject(previousItem)) {
+        if (isProject(previousItem)) {
             markAsLastVersion(context, itemNew, previousItem);
             createNewProjectVersion(context, previousItem, version);
         }
@@ -164,7 +164,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
             Item item = itemIterator.next();
 
-            if (isVersionItem(item) || projectConsumerService.isParentProjectItem(item)) {
+            if (isVersionItem(item) || projectConsumerService.isProjectItem(item)) {
                 continue;
             }
 
@@ -330,8 +330,8 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         return itemId + "_" + version.getVersionNumber();
     }
 
-    private boolean isParentProject(Item item) {
-        return projectConsumerService.isParentProjectItem(item);
+    private boolean isProject(Item item) {
+        return projectConsumerService.isProjectItem(item);
     }
 
     private RelationshipType findRelationshipType(Context context, Item item, String relationship)

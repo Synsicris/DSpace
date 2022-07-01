@@ -70,6 +70,7 @@ import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.ItemService;
@@ -2833,6 +2834,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         Community cloneTarget = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities")
                                                 .build();
+        configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
         Community parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
 
         Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity).withName("Sub Community 1")
@@ -2931,6 +2933,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         context.turnOffAuthorisationSystem();
         Community cloneTarget = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities").build();
+        configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
 
         Community parentCommunity = CommunityBuilder.createCommunity(context)
                                                     .withName("Parent Community").build();
@@ -2951,8 +2954,8 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         StringBuilder placeholder = new StringBuilder();
         placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
 
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier,
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                                      null, placeholder.toString());
 
         Item itemAuthor = ItemBuilder.createItem(context, col)
@@ -3136,6 +3139,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         context.turnOffAuthorisationSystem();
         Community cloneTarget = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities").build();
+        configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
 
         Community parentCommunity = CommunityBuilder.createCommunity(context)
                                                     .withName("Parent Community").build();
@@ -3153,12 +3157,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                       .withTitle("project_" + parentCommunity.getID().toString() + "_name")
                                       .build();
 
-        StringBuilder placeholder = new StringBuilder();
-        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
-
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier,
-                                     null, placeholder.toString());
+        communityService.replaceMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, publicItem1.getName(), publicItem1.getID().toString(), Choices.CF_ACCEPTED, 0);
 
         context.restoreAuthSystemState();
 
@@ -3210,10 +3211,10 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             Iterator<Item> items = itemService.findAllByCollection(context, colProject);
             assertTrue(items.hasNext());
             Item item = items.next();
-            assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
-                    ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                    ProjectConstants.MD_PROJECT_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
+            assertTrue(containMetadata(itemService, item, "dc", "title", null, "My new Community"));
+            assertTrue(containMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, "My new Community", item.getID().toString()));
             assertFalse(items.hasNext());
 
             // checking the original collection
@@ -3301,9 +3302,11 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     @Test
     public void cloneCommunityWithGrantsValueTest() throws Exception {
         context.turnOffAuthorisationSystem();
+        
         Community cloneTarget = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities")
                                                 .build();
+        configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
 
         Community parentCommunity = CommunityBuilder.createCommunity(context)
                                                     .withName("Parent Community")
@@ -3322,12 +3325,9 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                       .withTitle("project_" + parentCommunity.getID().toString() + "_name")
                                       .build();
 
-        StringBuilder placeholder = new StringBuilder();
-        placeholder.append("project_").append(publicItem1.getID().toString()).append("_item");
-
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null,
-                                     placeholder.toString());
+        communityService.replaceMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, publicItem1.getName(), publicItem1.getID().toString(), Choices.CF_ACCEPTED, 0);
 
         context.restoreAuthSystemState();
 
@@ -3373,15 +3373,15 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
             assertEquals(1, firstChild.getCollections().size());
             assertEquals(0, secondChild.getCollections().size());
             Collection colProject = firstChild.getCollections().get(0);
-            // check that the new cloned collelction has a new item project
+            // check that the new cloned collection has a new item project
             Iterator<Item> items = itemService.findAllByCollection(context, colProject);
             assertTrue(items.hasNext());
             Item item = items.next();
-            assertTrue(containeMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containeMetadata(itemService, item, "cris", "project", "shared", "project"));
-            assertTrue(containeMetadata(communityService, subCommunityOfCloneTarget,
-                    ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                    ProjectConstants.MD_PROJECT_ENTITY.qualifier, "project_" + item.getID().toString() + "_item"));
+            assertTrue(containMetadata(itemService, item, "dc", "title", null, "My new Community"));
+            assertTrue(containMetadata(itemService, item, "cris", "project", "shared", "project"));
+            assertTrue(containMetadata(communityService, subCommunityOfCloneTarget,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                    ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, "My new Community", item.getID().toString()));
             assertFalse(items.hasNext());
 
         } finally {
@@ -3389,10 +3389,20 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         }
     }
 
-    private <T extends DSpaceObject> boolean containeMetadata(DSpaceObjectService<T> service, T target, String schema,
+    private <T extends DSpaceObject> boolean containMetadata(DSpaceObjectService<T> service, T target, String schema,
             String element, String qualifier, String valueToCheck) {
         String value = service.getMetadataFirstValue(target, schema, element, qualifier, null);
         if (StringUtils.equals(value, valueToCheck)) {
+            return true;
+        }
+        return false;
+    }
+    
+    private <T extends DSpaceObject> boolean containMetadata(DSpaceObjectService<T> service, T target, String schema,
+            String element, String qualifier, String valueToCheck, String authorityToCheck) {
+        List<MetadataValue> mdv = service.getMetadata(target, schema, element, qualifier, null);
+        if (mdv.size() > 0 && StringUtils.equals(mdv.get(0).getValue(), valueToCheck) &&
+                StringUtils.equals(mdv.get(0).getAuthority(), authorityToCheck)) {
             return true;
         }
         return false;

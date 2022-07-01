@@ -166,7 +166,7 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
     }
 
     private DSpaceObject getParentObjectByGroupName(Context context, Group group) {
-        Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
         Matcher matcher = pattern.matcher(group.getName());
         if (matcher.matches()) {
             UUID uuid = UUIDUtils.fromString(matcher.group(2));

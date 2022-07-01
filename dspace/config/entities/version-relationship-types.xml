@@ -367,19 +367,6 @@
         </rightCardinality>
     </type>
     <type>
-        <leftType>parentproject</leftType>
-        <rightType>parentproject</rightType>
-        <leftwardType>isVersionOf</leftwardType>
-        <rightwardType>hasVersion</rightwardType>
-        <leftCardinality>
-            <min>0</min>
-            <max>1</max>
-        </leftCardinality>
-        <rightCardinality>
-            <min>0</min>
-        </rightCardinality>
-    </type>
-    <type>
         <leftType>targetgroup</leftType>
         <rightType>targetgroup</rightType>
         <leftwardType>isVersionOf</leftwardType>

@@ -12,7 +12,7 @@
 
     <context:annotation-config /> <!-- allows us to use spring annotations in beans -->
 
-    <bean id="projectEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
+    <bean id="fundingEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
         <constructor-arg>
 			<map>
 				<entry 

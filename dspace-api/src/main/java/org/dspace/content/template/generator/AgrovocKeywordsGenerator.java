@@ -49,11 +49,11 @@ public class AgrovocKeywordsGenerator extends AbstractGenerator {
         try {
             Community projectCommunity;
             switch (extraParams) {
-                case ProjectConstants.PARENTPROJECT:
-                    projectCommunity = getParentProjectCommunity(templateItem);
-                    break;
                 case ProjectConstants.PROJECT:
                     projectCommunity = getProjectCommunity(templateItem);
+                    break;
+                case ProjectConstants.FUNDING:
+                    projectCommunity = getOwningCommunity(templateItem);
                     break;
                 default:
                     throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);
@@ -75,8 +75,8 @@ public class AgrovocKeywordsGenerator extends AbstractGenerator {
 
     private Item getProjectItem(Context context, Community projectCommunity) throws SQLException {
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
-                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
         return itemService.find(context, UUIDUtils.fromString(values.get(0).getAuthority()));
     }
 

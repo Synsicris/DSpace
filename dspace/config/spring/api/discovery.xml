@@ -5592,6 +5592,7 @@
     
     <bean id="searchFilterProjectStartDate" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="projectStartDate" />
+        <property name="type" value="date"/>
         <property name="metadataFields">
             <list>
                 <value>oairecerif.project.startDate</value>
@@ -5601,6 +5602,7 @@
 
     <bean id="searchFilterProjectEndDate" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="projectEndDate" />
+        <property name="type" value="date"/>
         <property name="metadataFields">
             <list>
                 <value>oairecerif.project.endDate</value>

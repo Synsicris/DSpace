@@ -1034,7 +1034,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In preparation" AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In preparation" AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1067,7 +1067,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In implementation" AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In implementation" AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1100,7 +1100,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:Completed AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:Completed AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1157,7 +1157,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -1241,7 +1241,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan AND -relation.isVersionOf:*</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -1261,7 +1261,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND -relation.isVersionOf:*</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>
@@ -3511,7 +3511,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3565,7 +3565,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3619,7 +3619,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3673,7 +3673,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3727,7 +3727,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3781,7 +3781,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3835,7 +3835,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3889,7 +3889,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3941,7 +3941,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway AND -relation.isVersionOf:*</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>
@@ -3985,7 +3985,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -4038,7 +4038,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -4090,7 +4090,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -4143,7 +4143,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!-- Default result per page -->
@@ -4186,7 +4186,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:other OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:other OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!-- Default result per page -->
@@ -4229,7 +4229,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:other OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:other OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!-- Default result per page -->
@@ -4272,7 +4272,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:other) AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:other) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!-- Default result per page -->

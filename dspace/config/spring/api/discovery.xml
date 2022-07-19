@@ -2139,6 +2139,7 @@
             <list>
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOrgUnit" />
                 <ref bean="searchFilterType" />
             </list>
@@ -2148,6 +2149,7 @@
             <list>
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOrgUnit" />
                 <ref bean="searchFilterType" />
             </list>

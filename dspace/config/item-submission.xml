@@ -424,11 +424,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="others" mandatory="true">
-      <heading>submit.progressbar.describe.others</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="tests" mandatory="true">
       <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -532,10 +527,14 @@
     <submission-process name="projects">
       <step id="projects" />
       <step id="projects_calc" />
+      <step id="agrovoc_keywords_parentproject" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="projects-edit">
       <step id="projects" />
       <step id="projects_calc" />
+      <step id="agrovoc_keywords_parentproject" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="funding">
       <step id="funding" />
@@ -780,7 +779,6 @@
       <step id="gender_reflection" />
       <step id="gender" />
       <step id="statusacc1" />
-      <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="gender-edit">
       <step id="gender_reflection" />
@@ -791,12 +789,13 @@
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
-      <step id="impact_pathway_task_form" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="ethics-edit">
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
+      <step id="upload" />
     </submission-process>
     <submission-process name="ia_objectives">
       <step id="ia_objectives" />
@@ -905,14 +904,6 @@
       <step id="applications" />
       <step id="applications_quant" />
       <step id="upload" />
-    </submission-process>
-    <submission-process name="others">
-      <step id="others" />
-      <step id="impact_pathway_task_form" />
-      <step id="exploitation_plan_task_form" />
-    </submission-process>
-    <submission-process name="others-edit">
-      <step id="others" />
     </submission-process>
     <submission-process name="comments">
       <step id="comments" />

@@ -199,7 +199,7 @@
       <copyright />
       <sidebar />
       <funding-comm>true</funding-comm>
-	  <policy-group rpType="admin">project_template_admin_group</policy-group>
+	    <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="remove">project_template_admin_group</policy-group>
       <policy-group rpType="delete">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
@@ -646,8 +646,8 @@
       </item-template>
     </collection>
     <collection>
-      <name language="en">Projects</name>
-      <name language="de">Projekte</name>
+      <name language="en">Consortia</name>
+      <name language="de">Verbünde</name>
       <description />
       <intro />
       <copyright />
@@ -1066,8 +1066,8 @@
       </item-template>
     </collection>
     <collection>
-      <name language="en">Funding</name>
-      <name language="de">Fördermittel</name>
+      <name language="en">Projects</name>
+      <name language="de">Projekte</name>
       <description />
       <intro />
       <copyright />

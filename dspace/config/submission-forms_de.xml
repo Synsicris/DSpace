@@ -1713,7 +1713,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
-          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1740,9 +1739,32 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>url</dc-qualifier>
+          <label>Projektseite(n)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="projects_calc">
       <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>jointproject</dc-qualifier>
+          <label>Art Verbund</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
@@ -1751,9 +1773,8 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-3</style>
           <hint />
-          <type-bind>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1763,7 +1784,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-3</style>
           <hint />
         </field>
         <field>
@@ -1773,9 +1794,8 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-3</style>
           <hint />
-          <type-bind>Calculated from the start and end date of the project</type-bind>
           <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
@@ -1789,7 +1809,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1801,7 +1820,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -1813,7 +1831,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>is calculated from the data of the subprojects</type-bind>
           <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
@@ -1826,7 +1843,6 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1838,7 +1854,6 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <type-bind>is calculated from the data of the subprojects</type-bind>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1858,10 +1873,10 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name der Organisation und Kurztitel des Teilprojekts</label>
+          <label>Name der Organisation und Kurztitel des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>Pflichteingabe</required>
           <style>col-md-8</style>
           <hint />
         </field>
@@ -1871,23 +1886,11 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>funding</dc-element>
           <dc-qualifier>identifier</dc-qualifier>
-          <label>Förderkennzeichen des Teilprojektes</label>
+          <label>Förderkennzeichen des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Projektseite(n)</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
           <hint />
         </field>
       </row>
@@ -1932,7 +1935,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>parentprojectid</dc-element>
-          <label>ID of the joint project</label>
+          <label>Verbund-Nr (VER_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1943,7 +1946,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>project</dc-qualifier>
-          <label>Verbundprojekt</label>
+          <label>Zugehöriges Verbundprojekt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1955,7 +1958,7 @@
         <field>
           <dc-schema>crispj</dc-schema>
           <dc-element>partnerou</dc-element>
-          <label>Akronym/Kurzname</label>
+          <label>Projektpartner / ausführende Stellen</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1964,11 +1967,11 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel des Verbundprojektes</label>
+          <label>Titel des Projektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
@@ -1976,29 +1979,29 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Bezeichnung in Englisch</label>
+          <label>Titel des Projektes in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>acronym</dc-element>
-          <label>Förderbereich/Bekanntmachung</label>
+          <label>Akronym/Kurzname</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
-          <label>Welches Teilprojekt koordiniert den Verbund?</label>
+          <label>Startdatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2009,7 +2012,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
           <dc-qualifier>endDate</dc-qualifier>
-          <label>Startdatum</label>
+          <label>Enddatum</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2022,7 +2025,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>abstract</dc-qualifier>
-          <label>Enddatum</label>
+          <label>Projektbeschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2035,7 +2038,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Dauer (Monate)</label>
+          <label>Projektbeschreibung (englisch)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2045,31 +2048,21 @@
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>amount</dc-element>
-          <label>Status</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>finance</dc-qualifier>
+          <label>Art der Finanzierung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Fördermaßnahme/Förderprogramm</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>budget</dc-qualifier>
-          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
+          <dc-qualifier>proportion</dc-qualifier>
+          <label>Anteil der Finanzierung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2080,7 +2073,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>currency</dc-qualifier>
-          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
+          <label>Währung</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2090,10 +2083,68 @@
       </row>
       <row>
         <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>grantpersonnel</dc-qualifier>
+          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>budget</dc-qualifier>
+          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>own</dc-qualifier>
+          <label>Eigenmittel des Zuwendungsempfängers</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>external</dc-qualifier>
+          <label>Mittel Dritter</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>prog</dc-qualifier>
-          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
+          <label>Programmklassifikation des PTs</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2104,7 +2155,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>researchfocus</dc-qualifier>
-          <label>Währung</label>
+          <label>Forschungsschwerpunkt</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2117,10 +2168,22 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>research</dc-qualifier>
-          <label>Name der Organisation und Kurztitel des Teilprojekts</label>
+          <label>Art der Forschung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>project</dc-qualifier>
+          <label>Art des Vorhabens</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -2129,7 +2192,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>relevance-development</dc-qualifier>
-          <label>Förderkennzeichen des Teilprojektes</label>
+          <label>Relevanz für Entwicklungszusammenarbeit (ODA-Relevanz)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2142,7 +2205,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>development-countries</dc-qualifier>
-          <label>Projektseite(n)</label>
+          <label>Relevante Länder Entwicklungszusammenarbeit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2155,7 +2218,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace-use</dc-qualifier>
-          <label>Letztes Änderungsdatum</label>
+          <label>Anwendungspotenzial</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2168,7 +2231,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>histLP</dc-qualifier>
-          <label>profi-ID des Teilprojektes (N_NR)</label>
+          <label>Leistungsplansystematik - Code</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2181,7 +2244,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>textLP</dc-qualifier>
-          <label>Status</label>
+          <label>Leistungsplansystematik - Text</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2193,7 +2256,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>funder</dc-element>
-          <label>ID of the joint project</label>
+          <label>Fördermittelgeber (Ministerium)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2204,7 +2267,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>funder</dc-element>
           <dc-qualifier>unit</dc-qualifier>
-          <label>Verbundprojekt</label>
+          <label>Arbeitseinheit Fördermittelgeber (Ministerium)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2216,7 +2279,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>fundingagency</dc-element>
-          <label>Akronym/Kurzname</label>
+          <label>Projektträger</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2227,23 +2290,23 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>fundingagency</dc-element>
           <dc-qualifier>unit</dc-qualifier>
-          <label>Titel des Verbundprojektes</label>
+          <label>Arbeitseinheit Projektträger</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <style>col-md-4</style>
-          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>fundingagency</dc-element>
           <dc-qualifier>detail</dc-qualifier>
-          <label>Bezeichnung in Englisch</label>
+          <label>Projektträger PT-Kennung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Geben Sie hier die Übersetzung des korrekten Titels zur Antragstellung ein.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -2251,11 +2314,11 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort-primary</dc-qualifier>
-          <label>Förderbereich/Bekanntmachung</label>
+          <label>Schlagwort Primärsorter</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -2263,7 +2326,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>sort</dc-qualifier>
-          <label>Welches Teilprojekt koordiniert den Verbund?</label>
+          <label>Alle Schlagworte der Sorter</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2275,7 +2338,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>sort</dc-qualifier>
-          <label>Startdatum</label>
+          <label>Schlagworte des Projektbetreuers</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2286,12 +2349,11 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>fundingParent</dc-element>
-          <label>Enddatum</label>
+          <label>Fördermaßnahme</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <type-bind>is imported from the information of the subprojects</type-bind>
         </field>
       </row>
       <row>
@@ -2299,7 +2361,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
           <dc-qualifier>profi-fundingParent</dc-qualifier>
-          <label>Dauer (Monate)</label>
+          <label>profi-ID Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2310,7 +2372,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
           <dc-qualifier>profi-fundingParent</dc-qualifier>
-          <label>Status</label>
+          <label>Akronym Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2323,7 +2385,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Fördermaßnahme/Förderprogramm</label>
+          <label>Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2335,7 +2397,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
           <dc-qualifier>profi-call</dc-qualifier>
-          <label>Zuwendung Gesamt vom Fördermittelgeber</label>
+          <label>profi-ID Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2346,7 +2408,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
           <dc-qualifier>profi-call</dc-qualifier>
-          <label>Zuwendung Personalmittel vom Fördermittelgeber</label>
+          <label>Acronym Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2358,8 +2420,30 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
+          <dc-qualifier>jointproject</dc-qualifier>
+          <label>Art Verbund</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>application</dc-qualifier>
+          <label>Art des Antrags</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
           <dc-qualifier>formtype</dc-qualifier>
-          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
+          <label>Formulartyp</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4237,32 +4321,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="innovationpotentials-dc-type">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Art</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Nutzende Akteursgruppe(n)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Die Liste zeigt die Akteursguppen, die im Projekt bereits angelegt wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
-        </field>
-      </row>
-    </form>
     <form name="innovationpotentials">
       <row>
         <field>
@@ -4279,12 +4337,24 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art und nutzende Akteursgruppe(n) der Lösung, Veränderung oder Innovation</label>
-          <input-type>inline-group</input-type>
+          <label>Art</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Wählen Sie bitte aus,wie Projektergebnisse genutzt werden können d.h. zu welcher Art der Lösung, Veränderung oder Innovation sie beitragen können.</hint>
+          <vocabulary closed="true">all-innovation</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Nutzende Akteursgruppe(n)</label>
+          <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Wählen Sie bitte die Art der Lösung, Veränderung oder Innovation und die Akteursgruppe, die sie nutzen soll.
-Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläche [+] weitere Einträge an und ordnen Sie die entsprechenden Akteursgruppen zu.</hint>
+          <hint>Die Liste zeigt die Akteursguppen, die im Projekt bereits angelegt wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
         </field>
       </row>
       <row>
@@ -4374,44 +4444,29 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_regional_scope-synsicris-coverage-regional">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>regional-status</dc-qualifier>
-          <label>Auswahl des Bezugspunktes</label>
-          <input-type value-pairs-name="status_regional">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Region</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">nuts2</vocabulary>
-        </field>
-      </row>
-    </form>
     <form name="innovationpotentials_regional_scope">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Regionale Verortung</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>regional-primary</dc-qualifier>
+          <label>1. primärer Einsatzbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Region, in der die Lösung / Veränderung / Innovation zur Anwendung kommen soll</hint>
+          <vocabulary closed="true">nuts2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional-secondary</dc-qualifier>
+          <label>2. spätere Verbreitung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Mögliches Gebiet für eine spätere Übertragung und Verbreitung</hint>
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
       </row>
       <row>
@@ -4456,31 +4511,6 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>rl-status</dc-qualifier>
-          <label>Readiness-Level zu Projektbeginn (Startwert) und Projektende (Zielwert)</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_srl_trl-synsicris-type-rl-status">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>rl-status</dc-qualifier>
-          <label>Auswahl Startwert/Zielwert</label>
-          <input-type value-pairs-name="status_rl">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>srl-trl</dc-qualifier>
           <label>Auswahl TRL/SRL</label>
           <input-type value-pairs-name="srl_trl">list</input-type>
@@ -4492,9 +4522,20 @@ Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläc
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
-          <label>Readiness Level</label>
-          <input-type>number</input-type>
+          <dc-qualifier>rl-start</dc-qualifier>
+          <label>1. Reifegrad der Lösung / Innovation zum Projektbeginn (Startwert)</label>
+          <input-type value-pairs-name="readiness_level">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>level</dc-element>
+          <dc-qualifier>rl-end</dc-qualifier>
+          <label>2. Reifegrad der Lösung / Innovation zum Projektende (Zielwert)</label>
+          <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -5890,12 +5931,13 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Auswahl eines relevanten ethischen Aspektes</label>
-          <input-type value-pairs-name="ethics">list</input-type>
+          <input-type value-pairs-name="ethics">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
@@ -5904,7 +5946,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Beschreibung der Vorgehensweise (oben im Text).</hint>
         </field>
       </row>
@@ -5934,6 +5975,18 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>ethic-docs</dc-qualifier>
+          <label>Gibt es weitergehende Dokumente zu den relevanten ethischen Aspekten?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="ia_objectives">
       <row>
@@ -5960,30 +6013,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </row>
     </form>
     <form name="proj_objectives">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="others">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -7494,10 +7523,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>gender</stored-value>
       </pair>
       <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Stand des Wissens und adressiertes Problem</displayed-value>
         <stored-value>stateofart</stored-value>
       </pair>
@@ -7542,14 +7567,42 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>TRL</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
+    <value-pairs value-pairs-name="readiness_level" dc-term="readiness_level">
       <pair>
-        <displayed-value>1. primärer Einsatzbereich</displayed-value>
-        <stored-value>Region in which the application is envisaged</stored-value>
+        <displayed-value>1</displayed-value>
+        <stored-value>1</stored-value>
       </pair>
       <pair>
-        <displayed-value>2. spätere Verbreitung</displayed-value>
-        <stored-value>Possible region for transmission and dissemination</stored-value>
+        <displayed-value>2</displayed-value>
+        <stored-value>2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>3</displayed-value>
+        <stored-value>3</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>4</displayed-value>
+        <stored-value>4</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>5</displayed-value>
+        <stored-value>5</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>6</displayed-value>
+        <stored-value>6</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>7</displayed-value>
+        <stored-value>7</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8</displayed-value>
+        <stored-value>8</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>9</displayed-value>
+        <stored-value>9</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
@@ -7697,18 +7750,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Stand des Wissens / Problemstellung</displayed-value>
         <stored-value>stateofart</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Reflexion der Geschlechtergerechtigkeit</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethische Reflexion</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_type" dc-term="impactpathway_step_type_2_task_type">
       <pair>
@@ -7723,10 +7764,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_objective_type" dc-term="impactpathway_step_type_2_task_objective_type">
       <pair>
@@ -7737,10 +7774,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
@@ -7750,10 +7783,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(Zwischen-) Ergebnis / Problem</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
@@ -7784,10 +7813,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
@@ -7822,10 +7847,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
@@ -8244,20 +8265,32 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>harmful-env</stored-value>
       </pair>
       <pair>
-        <displayed-value>6) F&amp;E-Ergebnisse berühren Grenzbereiche der ethischen Akzeptanz</displayed-value>
+        <displayed-value>6) Forschung mit menschlichen Zellen oder Geweben</displayed-value>
+        <stored-value>human-cells-tissues</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>7) Forschung mit menschlichen embryonalen Stammzellen</displayed-value>
+        <stored-value>human-embryonic stem-cells</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8) F&amp;E-Ergebnisse berühren Grenzbereiche der ethischen Akzeptanz</displayed-value>
         <stored-value>aceptance</stored-value>
       </pair>
       <pair>
-        <displayed-value>7) F&amp;E-Ergebnisse betreffen Dual-Use-Güter</displayed-value>
+        <displayed-value>9) F&amp;E-Ergebnisse betreffen Dual-Use-Güter</displayed-value>
         <stored-value>dualuse</stored-value>
       </pair>
       <pair>
-        <displayed-value>8) Potenzial für Missbrauch von Forschungsergebnissen</displayed-value>
+        <displayed-value>10) Potenzial für Missbrauch von Forschungsergebnissen</displayed-value>
         <stored-value>misuse-results</stored-value>
       </pair>
       <pair>
-        <displayed-value>9) Andere ethische Aspekte</displayed-value>
+        <displayed-value>11) Andere ethische Aspekte</displayed-value>
         <stored-value>others</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>12) das Projekt berührt keinen ethischen Aspekt</displayed-value>
+        <stored-value>no</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="working_plan_workpackage_type" dc-term="working_plan_workpackage_type">
@@ -8326,11 +8359,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>A: Unbeschränkte Bearbeitungsrechte für alle Mitglieder des Verbundprojektes</displayed-value>
+        <displayed-value>A: Unbeschränkte Bearbeitungsrechte für alle Mitglieder des Verbundes</displayed-value>
         <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>B: Bearbeitungsrechte beschränkt auf Mitglieder des Teilprojektes</displayed-value>
+        <displayed-value>B: Bearbeitungsrechte beschränkt auf Mitglieder des Projektes</displayed-value>
         <stored-value>funding</stored-value>
       </pair>
     </value-pairs>
@@ -8358,10 +8391,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
         <stored-value>spinoff</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_2_task_type" dc-term="exploitation_plan_step_type_2_task_type">
@@ -8436,10 +8465,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Auszeichnung</displayed-value>
         <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
@@ -8519,10 +8544,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Aufgabe</displayed-value>
         <stored-value>task</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
       <pair>
@@ -8544,10 +8565,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sonstiges</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -158,12 +159,20 @@ public class EditItemServiceImpl implements EditItemService {
             if (EditItemMode.NONE.equals(mode)) {
                 return EditItem.none(context, item);
             }
-            editMode = modeService.findMode(context, item, mode);
-            if (editMode == null) {
+            List<EditItemMode> editModes = modeService.findModes(context, item, mode);
+            if (editModes.isEmpty()) {
                 throw new NotFoundException();
             }
-            hasAccess = crisSecurityService.hasAccess(context, item, currentUser, editMode);
-            if (!hasAccess) {
+            editMode = editModes.stream().filter((em) -> {
+                try {
+                    return crisSecurityService.hasAccess(context, item, currentUser, em);
+                } catch (SQLException e) {
+                    throw new NotFoundException();
+                }
+            }).findFirst()
+              .orElse(null);
+
+            if (Objects.isNull(editMode)) {
                 throw new AuthorizeException();
             }
         }

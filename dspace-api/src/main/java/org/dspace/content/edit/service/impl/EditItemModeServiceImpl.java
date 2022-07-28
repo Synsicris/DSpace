@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.dspace.content.Item;
 import org.dspace.content.edit.EditItemMode;
@@ -90,6 +91,17 @@ public class EditItemModeServiceImpl implements EditItemModeService {
                 .filter(mode -> mode.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    /* (non-Javadoc)
+     * @see org.dspace.content.edit.service.EditItemModeService#findModes(org.dspace.core.Context, java.lang.String)
+     */
+    @Override
+    public List<EditItemMode> findModes(Context context, Item item, String name) throws SQLException {
+        List<EditItemMode> modes = findModes(context, item, false);
+        return modes.stream()
+                .filter(mode -> mode.getName().equalsIgnoreCase(name))
+                .collect(Collectors.toList());
     }
 
     public Map<String, List<EditItemMode>> getEditModesMap() {

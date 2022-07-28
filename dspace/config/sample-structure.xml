@@ -41,7 +41,7 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>Comment</entity-type>
+      <entity-type>comment</entity-type>
       <submission-type>comments</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">project_submitters_group</policy-group>

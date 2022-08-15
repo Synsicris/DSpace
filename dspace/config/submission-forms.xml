@@ -4517,7 +4517,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>1. Readinesslevel at project start</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
-          <required>1. Reifegrad der Lösung / Innovation zum Projektbeginn (Startwert)</required>
+          <required />
           <style>col-md-4</style>
           <hint />
         </field>
@@ -4528,36 +4528,9 @@ it, please select a type and enter the actual number or code.</hint>
           <label>2. Readinesslevel intended to reach at the end of the project</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
-          <required>2. Reifegrad der Lösung / Innovation zum Projektende (Zielwert)</required>
+          <required />
           <style>col-md-4</style>
           <hint />
-        </field>
-      </row>
-    </form>
-    <form name="applications-synsicris-type-innovation">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Type of solution / change / innovation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Customer / Usergroup</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Select which stakeholder groups are potential customers or users?</hint>
         </field>
       </row>
     </form>
@@ -4575,56 +4548,55 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Please select:</label>
-          <input-type value-pairs-name="innovation_link_new">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>innovationpotential</dc-qualifier>
           <label>Related  innovation</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Please choose an intended  innovationl. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
-          <type-bind>link</type-bind>
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Unit (Selection list)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Please choose a suitable unit or enter a new one.</hint>
+          <vocabulary closed="true">units</vocabulary>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Type of innovation and customer/ user group</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>quantifier-own</dc-qualifier>
+          <label>Free-defined unit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint>You can choose as much areas as required.</hint>
-          <type-bind>new</type-bind>
+          <style>col-md-6</style>
+          <hint>Please enter a unit, if predefined ones does not fit.</hint>
+          <type-bind>UI50</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Description of the solution, change or innovation</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
+          <dc-element>date</dc-element>
+          <dc-qualifier>referenceyear</dc-qualifier>
+          <label>Quantification and development of the application success</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
           <required />
-          <hint />
-          <type-bind>new</type-bind>
+          <hint>Please provide details about the scope and development of the application success, if possible.</hint>
         </field>
       </row>
     </form>
-    <form name="applications_quant-synsicris-date-referenceyear">
+    <form name="applications-synsicris-date-referenceyear">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4639,11 +4611,10 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>baseline</dc-qualifier>
-          <label>Baseline-value</label>
-          <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>quantity</dc-element>
+          <label>Quantity</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
           <hint />
@@ -4662,39 +4633,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier</dc-qualifier>
-          <label>Unit (Selection list)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Please choose a suitable unit or enter a new one.</hint>
-          <vocabulary closed="true">units</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier-own</dc-qualifier>
-          <label>Free-defined unit</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Please enter a unit, if predefined ones does not fit.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>quantity</dc-element>
-          <label>Quantity</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>description</dc-qualifier>
           <label>Description</label>
@@ -4703,20 +4641,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-12</style>
           <hint />
-        </field>
-      </row>
-    </form>
-    <form name="applications_quant">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Quantification and development of the application success</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please provide details about the scope and development of the application success, if possible.</hint>
         </field>
       </row>
     </form>
@@ -6915,12 +6839,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Pound sterling</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="yes" dc-term="yes">
-      <pair>
-        <displayed-value>Yes</displayed-value>
-        <stored-value>yes</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="project_contribution" dc-term="project_contribution">
       <pair>
         <displayed-value>Project organised the Event (thematic and organisational conception  is carried out by the project  - if necessary with other partners)</displayed-value>
@@ -7595,16 +7513,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>9</displayed-value>
         <stored-value>9</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
-      <pair>
-        <displayed-value>A: The application belongs to an already documented solution / change / innovation or to a patent.</displayed-value>
-        <stored-value>link</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>B: The application relates to a new / not yet documented solution / change / innovation that may have been developed by a third party.</displayed-value>
-        <stored-value>new</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="year" dc-term="year">

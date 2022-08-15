@@ -419,11 +419,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="applications_quant" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.applications_quant</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="tests" mandatory="true">
       <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -895,14 +890,12 @@
     </submission-process>
     <submission-process name="applications">
       <step id="applications" />
-      <step id="applications_quant" />
       <step id="upload" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="applications-edit">
       <step id="applications" />
-      <step id="applications_quant" />
       <step id="upload" />
     </submission-process>
     <submission-process name="comments">

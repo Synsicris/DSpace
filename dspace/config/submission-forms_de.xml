@@ -4543,33 +4543,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="applications-synsicris-type-innovation">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Art der Lösung / Veränderung / Innovation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Adressierte Akteursgruppe</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Die Liste zeigt die Akteursguppen, die im Projekt bereits angelegt wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich Akteursgruppe nach und ordnen Sie diese anschließend hier zu.</hint>
-        </field>
-      </row>
-    </form>
     <form name="applications">
       <row>
         <field>
@@ -4584,56 +4557,55 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Bitte wählen Sie aus</label>
-          <input-type value-pairs-name="innovation_link_new">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>innovationpotential</dc-qualifier>
           <label>Verlinkung zur dokumentierten Lösung / Veränderung / Innovation oder einem Patent</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Sie sehen in der Liste Einträge, die bisher im Projekt erfasst wurden.</hint>
-          <type-bind>link</type-bind>
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Einheit (Auswahl) ODER</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Bitte wählen Sie eine passende Einheit aus. Falls keine Einheit passt, nutzen Sie bitte das nachfolgende Feld „Einheit (eigene Angaben)“.</hint>
+          <vocabulary closed="true">units</vocabulary>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Art und nutzende Akteursgruppe(n) der Lösung, Veränderung oder Innovation</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>quantifier-own</dc-qualifier>
+          <label>Einheit (eigene Angaben)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint>Wenn eine Art mehrere Akteursgruppen adressiert, legen Sie über die Schaltfläche [+] weitere Einträge an und ordnen Sie die entsprechenden Akteursgruppen zu.</hint>
-          <type-bind>new</type-bind>
+          <style>col-md-6</style>
+          <hint>Falls keine der vorgeschlagenen Einheiten passt, geben Sie bitte eine eigene Einheit an.</hint>
+          <type-bind>UI50</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Beschreibung (einschließlich Nutzen und möglichem Verbreitung)</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
+          <dc-element>date</dc-element>
+          <dc-qualifier>referenceyear</dc-qualifier>
+          <label>Umfang und zeitliche Entwicklung der Anwendung</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
           <required />
-          <hint>Beschreiben Sie, welche Verbesserungen für die Akteursgruppe(n) durch die Lösung, Veränderung oder Innovation erzielt werden sollen. Ergänzen Sie, soweit möglich, Informationen über das mögliche Marktpotenzial bzw. die Größe der nutzenden Akteursgruppe.</hint>
-          <type-bind>new</type-bind>
+          <hint />
         </field>
       </row>
     </form>
-    <form name="applications_quant-synsicris-date-referenceyear">
+    <form name="applications-synsicris-date-referenceyear">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4648,14 +4620,13 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>baseline</dc-qualifier>
-          <label>Basisjahr</label>
-          <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>quantity</dc-element>
+          <label>Menge / Anzahl</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint>Bitte kennzeichnen Sie das Basisjahr der Zeitreihe. Dies ist das Jahr, bevor das Projekt einen Einfluss hatte.</hint>
+          <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4671,39 +4642,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier</dc-qualifier>
-          <label>Einheit (Auswahl) ODER</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Bitte wählen Sie eine passende Einheit aus. Falls keine Einheit passt, nutzen Sie bitte das nachfolgende Feld „Einheit (eigene Angaben)“.</hint>
-          <vocabulary closed="true">units</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier-own</dc-qualifier>
-          <label>Einheit (eigene Angaben)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Falls keine der vorgeschlagenen Einheiten passt, geben Sie bitte eine eigene Einheit an.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>quantity</dc-element>
-          <label>Menge / Anzahl</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>description</dc-qualifier>
           <label>Anmerkungen und, falls vorhanden, Weblinks</label>
@@ -4712,20 +4650,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <required />
           <style>col-md-12</style>
           <hint>Ergänzen Sie, falls vorhanden, Weblinks, um auf spezifische Anwendungsfälle oder erweiterte Informationen zu verweisen.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="applications_quant">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Umfang und zeitliche Entwicklung der Anwendung</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
         </field>
       </row>
     </form>
@@ -6923,12 +6847,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Pound sterling</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="yes" dc-term="yes">
-      <pair>
-        <displayed-value>Ja</displayed-value>
-        <stored-value>yes</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="project_contribution" dc-term="project_contribution">
       <pair>
         <displayed-value>Veranstaltet vom Projekt (Inhaltliche und organisatorische Konzeptionierung erfolgt durch das Projekt - ggf. mit anderen Partnern)</displayed-value>
@@ -7603,16 +7521,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>9</displayed-value>
         <stored-value>9</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
-      <pair>
-        <displayed-value>A: Die Anwendung gehört zu einer bereits dokumentierten Lösung / Veränderung / Innovation oder zu einem Patent.</displayed-value>
-        <stored-value>link</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>B: Die Anwendung bezieht sich auf eine neue/ noch nicht dokumentierte und ggf. durch Dritte entwickelte Lösung / Veränderung / Innovation.</displayed-value>
-        <stored-value>new</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="year" dc-term="year">

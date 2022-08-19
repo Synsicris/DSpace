@@ -11,9 +11,12 @@ import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.content.Item.ANY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -311,6 +314,336 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
         assertThat(publication.getMetadata(), hasItem(with("cris.virtual.department", "University")));
         assertThat(publication.getMetadata(), hasItem(with("cris.virtualsource.department", firstAuthorId)));
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementWithProjectWithNoCurrency() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+//        project item doesn't contain currency
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmount("200.0")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("300.0")
+                                    .build();
+
+        funding1 = reload(funding1);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), empty());
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), hasSize(2));
+        assertThat(runnableHandler.getErrorMessages(), containsInAnyOrder(
+            containsString("An error occurs during enhancement. The process is aborted"),
+            containsString("item:" + project.getID() + " doesn't contain currency")));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), empty());
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementWithWrongEntityType() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item publication = ItemBuilder.createItem(context, collection)
+                                      .withEntityType("Publication")
+                                      .withTitle("Test Publication")
+                                      .withAmountCurrency("EUR")
+                                      .withAmount("200.0")
+                                      .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200.0")
+                                    .build();
+
+        funding1 = reload(funding1);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, publication.getName(),
+            publication.getID().toString(), 600);
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), hasSize(2));
+        assertThat(runnableHandler.getErrorMessages(), containsInAnyOrder(
+            containsString("An error occurs during enhancement. The process is aborted"),
+            containsString("item:" + publication.getID() + " entity type not equal to Project")));
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementRelatedItemsWithDifferentCurrencies() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100.0")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200.0")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withAmountCurrency("USD")
+                                    .withAmount("300.0")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementWithRelatedItemWithNoCurrency() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100.0")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200.0")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withAmount("300.0")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementWithRelatedItemWithNotValidAmount() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100.0")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200.0")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("2xx.0")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), hasSize(2));
+        assertThat(runnableHandler.getErrorMessages(), containsInAnyOrder(
+            containsString("An error occurs during enhancement. The process is aborted"),
+            containsString("item:" + funding2.getID() + " contains incorrect amount value")));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+    }
+
+    @Test
+    public void testProjectItemCalculationEnhancementWithoutForce() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+//        project item contains currency 'EUR' and amount with 100.0
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100.0")
+                                  .build();
+
+//      funding contains amount with 200.0
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200.0")
+                                    .build();
+
+//      funding contains amount with 300.0
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("300.0")
+                                    .build();
+
+//      funding contains an empty amount
+        Item funding3  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 3")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("")
+                                    .build();
+
+//      funding doesn't contain amount
+        Item funding4  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 4")
+                                    .withAmountCurrency("EUR")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+        funding3 = reload(funding3);
+        funding4 = reload(funding4);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("500.0"));
 
     }
 

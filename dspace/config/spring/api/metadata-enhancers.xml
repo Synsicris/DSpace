@@ -29,6 +29,41 @@
         <property name="relatedItemMetadataField" value="person.affiliation.name" />
         <property name="virtualQualifier" value="department" />
     </bean>
-    
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemCalculationEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="targetEntityType" value="Project" />
+        <property name="relationMetadataField" value="synsicris.relation.project" />
+
+        <property name="sourceAmountMetadataField" value="oairecerif.amount" />
+        <property name="sourceCurrencyMetadataField" value="oairecerif.amount.currency" />
+
+        <property name="targetAmountMetadataField" value="oairecerif.amount" />
+        <property name="targetCurrencyMetadataField" value="oairecerif.amount.currency" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemCalculationEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="targetEntityType" value="Project" />
+        <property name="relationMetadataField" value="synsicris.relation.project" />
+
+        <property name="sourceAmountMetadataField" value="synsicris.amount.grantpersonnel" />
+        <property name="sourceCurrencyMetadataField" value="oairecerif.amount.currency" />
+
+        <property name="targetAmountMetadataField" value="synsicris.amount.grantpersonnel" />
+        <property name="targetCurrencyMetadataField" value="oairecerif.amount.currency" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemCalculationEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="targetEntityType" value="Project" />
+        <property name="relationMetadataField" value="synsicris.relation.project" />
+
+        <property name="sourceAmountMetadataField" value="synsicris.amount.budget" />
+        <property name="sourceCurrencyMetadataField" value="oairecerif.amount.currency" />
+
+        <property name="targetAmountMetadataField" value="synsicris.amount.budget" />
+        <property name="targetCurrencyMetadataField" value="oairecerif.amount.currency" />
+    </bean>
 
 </beans>

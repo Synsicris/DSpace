@@ -10,6 +10,7 @@ package org.dspace.content.enhancer.impl;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -216,7 +217,7 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
 
         LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate localDate2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        long duration = ChronoUnit.DAYS.between(localDate1, localDate2);
+        long duration = ChronoUnit.MONTHS.between(YearMonth.from(localDate1), YearMonth.from(localDate2));
 
         updateMetadata(context, item, String.valueOf(duration), targetDurationMetadataField);
     }

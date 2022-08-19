@@ -389,7 +389,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(), is("2013-08-01"));
         assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(), is("2016-08-01"));
-        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), equalTo("1096"));
+        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), equalTo("36"));
 
     }
 
@@ -402,15 +402,15 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         Item project = ItemBuilder.createItem(context, collection)
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
-                                  .withProjectStartDate("2013-08-02")
-                                  .withProjectEndDate("2013-08-10")
+                                  .withProjectStartDate("2013-08-16")
+                                  .withProjectEndDate("2013-08-20")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
-                                    .withProjectStartDate("2013-08-02")
-                                    .withProjectEndDate("2013-08-05")
+                                    .withProjectStartDate("2013-08-16")
+                                    .withProjectEndDate("2013-08-25")
                                     .build();
 
         Item funding2  = ItemBuilder.createItem(context, collection)
@@ -428,8 +428,8 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         Item funding4  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 4")
-                                    .withProjectStartDate("2013-08-01")
-                                    .withProjectEndDate("2013-08-15")
+                                    .withProjectStartDate("2013-08-15")
+                                    .withProjectEndDate("2013-09-01")
                                     .build();
 
         funding1 = reload(funding1);
@@ -447,9 +447,9 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
-            is("2013-08-02"));
+            is("2013-08-16"));
         assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(),
-            is("2013-08-10"));
+            is("2013-08-20"));
 
         context.commit();
 
@@ -465,9 +465,9 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "synsicris.duration"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
-            is("2013-08-01"));
-        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(), is("2013-08-15"));
-        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), is("14"));
+            is("2013-08-15"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(), is("2013-09-01"));
+        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), is("1"));
 
     }
 

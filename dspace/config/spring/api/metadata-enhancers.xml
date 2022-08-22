@@ -29,6 +29,26 @@
         <property name="relatedItemMetadataField" value="person.affiliation.name" />
         <property name="virtualQualifier" value="department" />
     </bean>
-    
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
+        <property name="relatedItemMetadataField" value="synsicris.type.jointproject" />
+        <property name="virtualQualifier" value="department" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
+        <property name="relatedItemMetadataField" value="oairecerif.project.status" />
+        <property name="virtualQualifier" value="department" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
+        <property name="relatedItemMetadataField" value="oairecerif.fundingParent" />
+        <property name="virtualQualifier" value="department" />
+    </bean>
 
 </beans>

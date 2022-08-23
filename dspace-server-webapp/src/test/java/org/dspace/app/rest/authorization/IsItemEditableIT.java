@@ -58,8 +58,6 @@ public class IsItemEditableIT extends AbstractControllerIntegrationTest {
 
         context.turnOffAuthorisationSystem();
 
-        context.setCurrentUser(admin);
-
         parentCommunity = CommunityBuilder.createCommunity(context)
                                           .withName("Community")
                                           .build();
@@ -72,8 +70,6 @@ public class IsItemEditableIT extends AbstractControllerIntegrationTest {
         itemA = ItemBuilder.createItem(context, collection)
                            .build();
 
-        configurationService.addPropertyValue("project.entity.edit-mode", "MODE1");
-
         context.restoreAuthSystemState();
 
         isItemEditable = authorizationFeatureService.find(IsItemEditable.NAME);
@@ -82,6 +78,10 @@ public class IsItemEditableIT extends AbstractControllerIntegrationTest {
 
     @Test
     public void testIsItemEditable() throws Exception {
+
+        context.setCurrentUser(admin);
+
+        configurationService.setProperty("project.entity.edit-mode", "MODE1");
 
         ItemRest itemRest = itemConverter.convert(itemA, Projection.DEFAULT);
 
@@ -107,7 +107,7 @@ public class IsItemEditableIT extends AbstractControllerIntegrationTest {
     @Test
     public void testIsItemEditableWithWrongPropertyValue() throws Exception {
 
-        configurationService.addPropertyValue("project.entity.edit-mode", "CUSTOM");
+        configurationService.setProperty("project.entity.edit-mode", "CUSTOM");
 
         ItemRest itemRest = itemConverter.convert(itemA, Projection.DEFAULT);
 

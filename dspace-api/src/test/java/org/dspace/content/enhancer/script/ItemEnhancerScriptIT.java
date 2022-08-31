@@ -14,7 +14,9 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
@@ -314,6 +316,258 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
         assertThat(publication.getMetadata(), hasItem(with("cris.virtual.department", "University")));
         assertThat(publication.getMetadata(), hasItem(with("cris.virtualsource.department", firstAuthorId)));
+
+    }
+
+    @Test
+    public void testProjectItemEnhancementAddDates() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+//        project item doesn't contain start date or end date
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withProjectStartDate("2013-08-02")
+                                    .withProjectEndDate("2016-08-01")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .build();
+
+        Item funding3  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 3")
+                                    .withProjectStartDate("")
+                                    .withProjectEndDate("")
+                                    .build();
+
+        Item funding4  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 4")
+                                    .withProjectStartDate("2013-08-01")
+                                    .withProjectEndDate("2016-07-31")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+        funding3 = reload(funding3);
+        funding4 = reload(funding4);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate"), empty());
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate"), empty());
+        assertThat(getMetadataValues(project, "synsicris.duration"), empty());
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "synsicris.duration"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(), is("2013-08-01"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(), is("2016-08-01"));
+        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), equalTo("36"));
+
+    }
+
+    @Test
+    public void testProjectItemEnhancementUpdateCurrentDates() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+//        project item has start date and end date
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withProjectStartDate("2013-08-16")
+                                  .withProjectEndDate("2013-08-20")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withProjectStartDate("2013-08-16")
+                                    .withProjectEndDate("2013-08-25")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .build();
+
+        Item funding3  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 3")
+                                    .withProjectStartDate("")
+                                    .withProjectEndDate("")
+                                    .build();
+
+        Item funding4  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 4")
+                                    .withProjectStartDate("2013-08-15")
+                                    .withProjectEndDate("2013-09-01")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+        funding3 = reload(funding3);
+        funding4 = reload(funding4);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
+            is("2013-08-16"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(),
+            is("2013-08-20"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "synsicris.duration"), hasSize(1));
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
+            is("2013-08-15"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(), is("2013-09-01"));
+        assertThat(getMetadataValues(project, "synsicris.duration").get(0).getValue(), is("1"));
+
+    }
+
+    @Test
+    public void testProjectItemEnhancementButHasCorrectDates() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+//        project item has correct minimum start date and maximum end date of related funding.
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withProjectStartDate("2013-08-01")
+                                  .withProjectEndDate("2016-08-01")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withProjectStartDate("2013-08-01")
+                                    .withProjectEndDate("2016-08-01")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withProjectStartDate("2013-08-02")
+                                    .withProjectEndDate("2016-07-31")
+                                    .build();
+
+        funding1 = reload(funding1);
+        funding2 = reload(funding2);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
+            is("2013-08-01"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(),
+            is("2016-08-01"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate"), hasSize(1));
+        assertThat(getMetadataValues(project, "synsicris.duration"), empty());
+
+        assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
+            is("2013-08-01"));
+        assertThat(getMetadataValues(project, "oairecerif.project.endDate").get(0).getValue(),
+            is("2016-08-01"));
+
+    }
+
+    @Test
+    public void testProjectItemEnhancementDatesWithWrongEntityType() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+
+        Item publication = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Publication")
+                                  .withTitle("Test Publication")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withProjectStartDate("2013-08-02")
+                                    .withProjectEndDate("2016-08-01")
+                                    .build();
+
+        funding1 = reload(funding1);
+
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, publication.getName(),
+            publication.getID().toString(), 600);
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), hasSize(2));
+        assertThat(runnableHandler.getErrorMessages(), containsInAnyOrder(
+            containsString("An error occurs during enhancement. The process is aborted"),
+            containsString("item:" + publication.getID() + " entity type not equal to Project")));
+
+        publication = reload(publication);
+
+        assertThat(getMetadataValues(publication, "oairecerif.project.startDate"), empty());
+        assertThat(getMetadataValues(publication, "oairecerif.project.endDate"), empty());
+        assertThat(getMetadataValues(publication, "synsicris.duration"), empty());
 
     }
 

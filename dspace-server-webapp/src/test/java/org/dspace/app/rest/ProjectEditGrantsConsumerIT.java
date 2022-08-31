@@ -25,10 +25,12 @@ import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
 import org.dspace.builder.GroupBuilder;
+import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -55,7 +57,9 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     private Community fundingRootCommunity;
     private Community fundingAComm;
     private Community fundingBComm;
+    private Collection projectCollection;
     private Collection publicationsCollection;
+    private Item projectItem;
     @SuppressWarnings("unused")
     private Collection collectionSubProjectA;
     @SuppressWarnings("unused")
@@ -83,6 +87,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                      .addMember(ePerson1)
                      .addMember(ePerson2).build();
 
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                     .withTitle("Prjoect Item")
+                     .build();
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -93,6 +107,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.PROJECT);
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -167,6 +183,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                      .addMember(ePerson1)
                      .addMember(ePerson2).build();
 
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                     .withTitle("Prjoect Item")
+                     .build(); 
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -177,6 +203,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.FUNDING);
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -242,6 +270,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Group projectsCommunityGroup = GroupBuilder.createGroup(context)
                      .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
                      .build();
+        
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                             .withTitle("Prjoect Item")
+                             .build();  
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
@@ -252,6 +290,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
@@ -326,9 +366,20 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Group projectsCommunityGroup = GroupBuilder.createGroup(context)
                      .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
                      .addMember(eperson).build();
+               
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                            .withName("Project Collection")
+                            .withEntityType("Project")
+                            .withSubmitterGroup(projectsCommunityGroup)
+                            .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                                 .withTitle("Prjoect Item")
+                                 .build();   
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
+                                                  .withEntityType("Publication")
                                                   .withSubmitterGroup(projectsCommunityGroup)
                                                   .withTemplateItem().build();
 
@@ -337,6 +388,10 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
 
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
+        
+        
         fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
@@ -362,6 +417,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                        .build();
 
         collectionSubProjectB = CollectionBuilder.createCollection(context, fundingBComm)
+                                                 .withEntityType("Funding")
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
@@ -411,6 +467,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                      .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
                      .addMember(ePerson1).build();
 
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                     .withTitle("Prjoect Item")
+                     .build(); 
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -419,6 +485,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Item templateItem = publicationsCollection.getTemplateItem();
         itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
                                 "GROUP_POLICY_PLACEHOLDER");
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         context.restoreAuthSystemState();
 
@@ -469,6 +537,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                      .addMember(ePerson1)
                      .build();
 
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                     .withTitle("Prjoect Item")
+                     .build();
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -479,6 +557,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.SHARED);
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         context.restoreAuthSystemState();
 
@@ -528,6 +608,16 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                      .addMember(ePerson1)
                      .build();
 
+        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Project Collection")
+                .withEntityType("Project")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .build();
+
+        projectItem = ItemBuilder.createItem(context, projectCollection)
+                     .withTitle("Prjoect Item")
+                     .build(); 
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -538,6 +628,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                                 "GROUP_POLICY_PLACEHOLDER");
         itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
                                 ProjectConstants.FUNDER);
+        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
+                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
         context.restoreAuthSystemState();
 

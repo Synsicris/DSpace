@@ -144,7 +144,9 @@ public class RelatedEntityItemCalculationEnhancer implements ItemEnhancer {
 
         itemIterator.forEachRemaining(relatedItems::add);
 
-        return relatedItems;
+        return relatedItems.stream()
+                           .filter(item1 -> isItemEntityTypeEqualTo(item1, sourceEntityType))
+                           .collect(Collectors.toList());
     }
 
     private void updateTargetItemAmount(Context context, Item targetItem, List<Item> relatedItems)

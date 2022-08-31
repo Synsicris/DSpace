@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -133,7 +134,9 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
 
         itemIterator.forEachRemaining(relatedItems::add);
 
-        return relatedItems;
+        return relatedItems.stream()
+                           .filter(item1 -> isItemEntityTypeEqualTo(item1, sourceEntityType))
+                           .collect(Collectors.toList());
     }
 
     private void updateTargetItemDates(Context context, Item targetItem, List<Item> relatedItems)

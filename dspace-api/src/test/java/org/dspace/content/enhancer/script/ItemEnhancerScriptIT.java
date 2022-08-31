@@ -16,7 +16,6 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
@@ -328,6 +327,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         Item project = ItemBuilder.createItem(context, collection)
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
@@ -356,10 +356,18 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withProjectEndDate("2016-07-31")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Publication")
+                                    .withTitle("Test publication")
+                                    .withProjectStartDate("2012-08-01")
+                                    .withProjectEndDate("2017-07-31")
+                                    .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
         funding3 = reload(funding3);
         funding4 = reload(funding4);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
@@ -368,6 +376,8 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate"), empty());
@@ -404,6 +414,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                   .withTitle("Test Project")
                                   .withProjectStartDate("2013-08-16")
                                   .withProjectEndDate("2013-08-20")
+                                  .withAmountCurrency("EUR")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
@@ -432,10 +443,18 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withProjectEndDate("2013-09-01")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                       .withEntityType("Publication")
+                                       .withTitle("Test publication")
+                                       .withProjectStartDate("2012-08-01")
+                                       .withProjectEndDate("2017-07-31")
+                                       .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
         funding3 = reload(funding3);
         funding4 = reload(funding4);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
@@ -444,6 +463,8 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
@@ -482,6 +503,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                   .withTitle("Test Project")
                                   .withProjectStartDate("2013-08-01")
                                   .withProjectEndDate("2016-08-01")
+                                  .withAmountCurrency("EUR")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
@@ -498,12 +520,22 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withProjectEndDate("2016-07-31")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                       .withEntityType("Publication")
+                                       .withTitle("Test publication")
+                                       .withProjectStartDate("2012-08-01")
+                                       .withProjectEndDate("2017-07-31")
+                                       .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.project.startDate").get(0).getValue(),
@@ -673,12 +705,22 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withAmount("300.0")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Publication")
+                                    .withTitle("Test Publication")
+                                    .withAmountCurrency("USD")
+                                    .withAmount("300.0")
+                                    .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
@@ -729,12 +771,22 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withAmount("300.0")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                       .withEntityType("Publication")
+                                       .withTitle("Test Publication")
+                                       .withAmountCurrency("USD")
+                                       .withAmount("300.0")
+                                       .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
@@ -787,12 +839,22 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withAmount("2xx.0")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                       .withEntityType("Publication")
+                                       .withTitle("Test Publication")
+                                       .withAmountCurrency("USD")
+                                       .withAmount("300.0")
+                                       .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));
@@ -864,10 +926,18 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                     .withAmountCurrency("EUR")
                                     .build();
 
+        Item publication  = ItemBuilder.createItem(context, collection)
+                                       .withEntityType("Publication")
+                                       .withTitle("Test Publication")
+                                       .withAmountCurrency("USD")
+                                       .withAmount("300.0")
+                                       .build();
+
         funding1 = reload(funding1);
         funding2 = reload(funding2);
         funding3 = reload(funding3);
         funding4 = reload(funding4);
+        publication = reload(publication);
 
         itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
@@ -876,6 +946,8 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         itemService.addMetadata(context, funding3, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
         itemService.addMetadata(context, funding4, "synsicris", "relation", "project", null, project.getName(),
+            project.getID().toString(), 600);
+        itemService.addMetadata(context, publication, "synsicris", "relation", "project", null, project.getName(),
             project.getID().toString(), 600);
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency"), hasSize(1));

@@ -195,7 +195,7 @@ public class RelatedEntityItemCalculationEnhancer implements ItemEnhancer {
         if (metadataValue != null && !TextUtils.isEmpty(metadataValue.getValue())) {
             return parseDouble(metadataValue.getValue(), metadataValue.getDSpaceObject()) != amount;
         }
-        return false;
+        return true;
     }
 
     private double parseDouble(String value, DSpaceObject item) {

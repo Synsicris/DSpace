@@ -3185,4 +3185,42 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
         ;
     }
 
+    @Test
+    public void deleteGroupWithNotAdminUserTest() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Community community = CommunityBuilder.createCommunity(context)
+                                              .withName("community name")
+                                              .withAdminGroup(eperson)
+                                              .build();
+
+        String groupName = "project_" + community.getID() + "_members_group";
+
+        EPerson member1 = EPersonBuilder.createEPerson(context).build();
+        EPerson member2 = EPersonBuilder.createEPerson(context).build();
+
+        Group group1 = GroupBuilder.createGroup(context)
+                                   .addMember(member1)
+                                   .build();
+
+        Group group2 = GroupBuilder.createGroup(context)
+                                   .addMember(member2)
+                                   .withName(groupName)
+                                   .build();
+
+        context.restoreAuthSystemState();
+
+        String authToken = getAuthToken(eperson.getEmail(), password);
+
+        getClient(authToken).perform(
+            delete("/api/eperson/groups/" + group1.getID())
+        ).andExpect(status().isForbidden());
+
+        getClient(authToken).perform(
+            delete("/api/eperson/groups/" + group2.getID())
+        ).andExpect(status().isNoContent());
+
+    }
+
 }

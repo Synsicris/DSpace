@@ -612,14 +612,14 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         Item project = ItemBuilder.createItem(context, collection)
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
-                                  .withAmount("200.0")
+                                  .withAmount("200")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("300.0")
+                                    .withAmount("300")
                                     .build();
 
         funding1 = reload(funding1);
@@ -653,14 +653,14 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                       .withEntityType("Publication")
                                       .withTitle("Test Publication")
                                       .withAmountCurrency("EUR")
-                                      .withAmount("200.0")
+                                      .withAmount("200")
                                       .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("200.0")
+                                    .withAmount("200")
                                     .build();
 
         funding1 = reload(funding1);
@@ -688,28 +688,28 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
                                   .withAmountCurrency("EUR")
-                                  .withAmount("100.0")
+                                  .withAmount("100")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("200.0")
+                                    .withAmount("200")
                                     .build();
 
         Item funding2  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 2")
                                     .withAmountCurrency("USD")
-                                    .withAmount("300.0")
+                                    .withAmount("300")
                                     .build();
 
         Item publication  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Publication")
                                     .withTitle("Test Publication")
                                     .withAmountCurrency("USD")
-                                    .withAmount("300.0")
+                                    .withAmount("300")
                                     .build();
 
         funding1 = reload(funding1);
@@ -727,7 +727,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
         context.commit();
 
@@ -742,7 +742,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
     }
 
@@ -755,27 +755,27 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
                                   .withAmountCurrency("EUR")
-                                  .withAmount("100.0")
+                                  .withAmount("100")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("200.0")
+                                    .withAmount("200")
                                     .build();
 
         Item funding2  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 2")
-                                    .withAmount("300.0")
+                                    .withAmount("300")
                                     .build();
 
         Item publication  = ItemBuilder.createItem(context, collection)
                                        .withEntityType("Publication")
                                        .withTitle("Test Publication")
                                        .withAmountCurrency("USD")
-                                       .withAmount("300.0")
+                                       .withAmount("300")
                                        .build();
 
         funding1 = reload(funding1);
@@ -793,7 +793,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
         context.commit();
 
@@ -808,7 +808,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
     }
 
@@ -822,28 +822,28 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
                                   .withAmountCurrency("EUR")
-                                  .withAmount("100.0")
+                                  .withAmount("100")
                                   .build();
 
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("200.0")
+                                    .withAmount("200")
                                     .build();
 
         Item funding2  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 2")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("2xx.0")
+                                    .withAmount("2xx")
                                     .build();
 
         Item publication  = ItemBuilder.createItem(context, collection)
                                        .withEntityType("Publication")
                                        .withTitle("Test Publication")
                                        .withAmountCurrency("USD")
-                                       .withAmount("300.0")
+                                       .withAmount("300")
                                        .build();
 
         funding1 = reload(funding1);
@@ -861,7 +861,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
         context.commit();
 
@@ -878,7 +878,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
     }
 
@@ -887,28 +887,28 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
         context.turnOffAuthorisationSystem();
 
-//        project item contains currency 'EUR' and amount with 100.0
+//        project item contains currency 'EUR' and amount with 100
         Item project = ItemBuilder.createItem(context, collection)
                                   .withEntityType("Project")
                                   .withTitle("Test Project")
                                   .withAmountCurrency("EUR")
-                                  .withAmount("100.0")
+                                  .withAmount("100")
                                   .build();
 
-//      funding contains amount with 200.0
+//      funding contains amount with 200
         Item funding1  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 1")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("200.0")
+                                    .withAmount("200")
                                     .build();
 
-//      funding contains amount with 300.0
+//      funding contains amount with 300
         Item funding2  = ItemBuilder.createItem(context, collection)
                                     .withEntityType("Funding")
                                     .withTitle("Test Funding 2")
                                     .withAmountCurrency("EUR")
-                                    .withAmount("300.0")
+                                    .withAmount("300")
                                     .build();
 
 //      funding contains an empty amount
@@ -930,7 +930,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
                                        .withEntityType("Publication")
                                        .withTitle("Test Publication")
                                        .withAmountCurrency("USD")
-                                       .withAmount("300.0")
+                                       .withAmount("300")
                                        .build();
 
         funding1 = reload(funding1);
@@ -954,7 +954,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("100"));
 
         context.commit();
 
@@ -969,7 +969,7 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(getMetadataValues(project, "oairecerif.amount"), hasSize(1));
 
         assertThat(getMetadataValues(project, "oairecerif.amount.currency").get(0).getValue(), is("EUR"));
-        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("500.0"));
+        assertThat(getMetadataValues(project, "oairecerif.amount").get(0).getValue(), is("500"));
 
     }
 

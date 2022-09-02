@@ -155,7 +155,7 @@ public class RelatedEntityItemCalculationEnhancer implements ItemEnhancer {
         String targetCurrency = getItemCurrency(targetItem, targetCurrencyMetadataField);
         boolean currencyEqual = isRelatedItemsCurrencyEqualTo(relatedItems, targetCurrency);
 
-        double amount = getSumOfAmount(relatedItems);
+        int amount = getSumOfAmount(relatedItems);
         boolean updateNeeded = isUpdateAmountNeeded(targetItem, amount);
 
         if (currencyEqual && updateNeeded) {
@@ -181,26 +181,26 @@ public class RelatedEntityItemCalculationEnhancer implements ItemEnhancer {
         return size == filteredSize;
     }
 
-    private double getSumOfAmount(List<Item> items) {
+    private int getSumOfAmount(List<Item> items) {
 
         return items.stream()
                     .map(item -> getFirstMetadataValue(item, sourceAmountMetadataField))
                     .filter(metadataValue -> metadataValue != null && !TextUtils.isEmpty(metadataValue.getValue()))
-                    .map(metadataValue -> parseDouble(metadataValue.getValue(), metadataValue.getDSpaceObject()))
-                    .reduce(Double::sum).orElse(0.0);
+                    .map(metadataValue -> parseInteger(metadataValue.getValue(), metadataValue.getDSpaceObject()))
+                    .reduce(Integer::sum).orElse(0);
     }
 
-    private boolean isUpdateAmountNeeded(Item targetItem, double amount) {
+    private boolean isUpdateAmountNeeded(Item targetItem, int amount) {
         MetadataValue metadataValue = getFirstMetadataValue(targetItem, targetAmountMetadataField);
         if (metadataValue != null && !TextUtils.isEmpty(metadataValue.getValue())) {
-            return parseDouble(metadataValue.getValue(), metadataValue.getDSpaceObject()) != amount;
+            return parseInteger(metadataValue.getValue(), metadataValue.getDSpaceObject()) != amount;
         }
         return true;
     }
 
-    private double parseDouble(String value, DSpaceObject item) {
+    private int parseInteger(String value, DSpaceObject item) {
         try {
-            return Double.parseDouble(value);
+            return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             String errorMessage = "item:" + item.getID() + " contains incorrect amount value";
             LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), errorMessage);

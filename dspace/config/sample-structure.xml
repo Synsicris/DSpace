@@ -1086,6 +1086,7 @@
         <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="oairecerif.amount.currency">Euro</metadata>
+      	<metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
       <item>
         <metadata name="dc.title">funding_item_name</metadata>

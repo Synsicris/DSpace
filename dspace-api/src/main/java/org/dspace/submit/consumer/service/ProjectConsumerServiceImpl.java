@@ -66,7 +66,14 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         try {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
                 String shared = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
-                Community projectCommunity = getProjectCommunity(context, item);
+                String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+                Community projectCommunity;
+                if (entityType != null && entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+                    projectCommunity = getProjectCommunity(context, item);
+                } else {
+                    projectCommunity = getProjectCommunityByRelationProject(context, item);    
+                }                
+                
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }

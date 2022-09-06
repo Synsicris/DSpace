@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.enhancer.AbstractItemEnhancer;
 import org.dspace.content.enhancer.ItemEnhancer;
@@ -152,13 +154,22 @@ public class RelatedEntityItemEnhancer extends AbstractItemEnhancer {
     }
 
     private void addVirtualField(Context context, Item item, String value) throws SQLException {
-        itemService.addMetadata(context, item, VIRTUAL_METADATA_SCHEMA, VIRTUAL_METADATA_ELEMENT,
-            getVirtualQualifier(), null, value);
+        StringTokenizer st = new StringTokenizer(getVirtualQualifier(), ".");
+        if (st.countTokens() > 1) {
+            MetadataFieldName mfn = new MetadataFieldName(getVirtualQualifier());
+            itemService.addMetadata(context, item, mfn.schema, mfn.element, mfn.qualifier, null, value);
+        } else {
+            itemService.addMetadata(context, item, VIRTUAL_METADATA_SCHEMA, VIRTUAL_METADATA_ELEMENT,
+                getVirtualQualifier(), null, value);
+        }
     }
 
     private void addVirtualSourceField(Context context, Item item, MetadataValue sourceValue) throws SQLException {
-        itemService.addMetadata(context, item, VIRTUAL_METADATA_SCHEMA, VIRTUAL_SOURCE_METADATA_ELEMENT,
-            getVirtualQualifier(), null, sourceValue.getAuthority());
+        StringTokenizer st = new StringTokenizer(getVirtualQualifier(), ".");
+        if (st.countTokens() == 1) {
+            itemService.addMetadata(context, item, VIRTUAL_METADATA_SCHEMA, VIRTUAL_SOURCE_METADATA_ELEMENT,
+                    getVirtualQualifier(), null, sourceValue.getAuthority());
+        }
     }
 
     public void setSourceEntityType(String sourceEntityType) {

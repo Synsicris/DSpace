@@ -973,6 +973,124 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
     }
 
+    @Test
+    public void testRelatedEntityItemMetadataEnhancerWithFakeUUID() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        String fakeId = "2588b8a1-d5f2-4e78-b225-f33f20eeab5f";
+
+        Item project = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200")
+                                    .withProjectStatus("OPEN")
+                                    .build();
+
+        project = reload(project);
+        funding1 = reload(funding1);
+
+        itemService.addMetadata(context, project, "synsicris", "relation", "funding", null, funding1.getName(),
+            funding1.getID().toString(), 600);
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, "test",
+            fakeId, 600);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.status"), empty());
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project = reload(project);
+
+        assertThat(getMetadataValues(project, "oairecerif.project.status"), empty());
+
+    }
+
+    @Test
+    public void testRelatedEntityItemMetadataEnhancer() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item project1 = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project1")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100")
+                                  .build();
+
+        Item project2 = ItemBuilder.createItem(context, collection)
+                                  .withEntityType("Project")
+                                  .withTitle("Test Project2")
+                                  .withAmountCurrency("EUR")
+                                  .withAmount("100")
+                                   .withProjectStatus("OPEN")
+                                  .build();
+
+        Item funding1  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 1")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200")
+                                    .withProjectStatus("OPEN")
+                                    .build();
+
+        Item funding2  = ItemBuilder.createItem(context, collection)
+                                    .withEntityType("Funding")
+                                    .withTitle("Test Funding 2")
+                                    .withAmountCurrency("EUR")
+                                    .withAmount("200")
+                                    .withProjectStatus("CLOSED")
+                                    .build();
+
+        project1 = reload(project1);
+        funding1 = reload(funding1);
+        project2 = reload(project2);
+        funding2 = reload(funding2);
+
+        itemService.addMetadata(context, project1, "synsicris", "relation", "funding", null, funding1.getName(),
+            funding1.getID().toString(), 600);
+        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, project1.getName(),
+            project1.getID().toString(), 600);
+
+        itemService.addMetadata(context, project2, "synsicris", "relation", "funding", null, funding2.getName(),
+            funding2.getID().toString(), 600);
+        itemService.addMetadata(context, funding2, "synsicris", "relation", "project", null, project2.getName(),
+            project2.getID().toString(), 600);
+
+        assertThat(getMetadataValues(project1, "oairecerif.project.status"), empty());
+        assertThat(getMetadataValues(project2, "oairecerif.project.status"), hasSize(1));
+        assertThat(getMetadataValues(project2, "oairecerif.project.status").get(0).getValue(), is("OPEN"));
+
+        context.commit();
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        project1 = reload(project1);
+        project2 = reload(project2);
+
+        assertThat(getMetadataValues(project1, "oairecerif.project.status"), hasSize(1));
+        assertThat(getMetadataValues(project2, "oairecerif.project.status"), hasSize(1));
+
+        assertThat(getMetadataValues(project1, "oairecerif.project.status").get(0).getValue(), is("OPEN"));
+        assertThat(getMetadataValues(project2, "oairecerif.project.status").get(0).getValue(), is("CLOSED"));
+
+    }
+
     private TestDSpaceRunnableHandler runScript(boolean force) throws InstantiationException, IllegalAccessException {
         TestDSpaceRunnableHandler runnableHandler = new TestDSpaceRunnableHandler();
         String[] args = force ? new String[] { "item-enhancer", "-f" } : new String[] { "item-enhancer" };

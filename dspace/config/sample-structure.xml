@@ -166,7 +166,7 @@
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
         <item-template>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
         </item-template>
       </collection>
@@ -186,7 +186,7 @@
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
         <item-template>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
       </collection>

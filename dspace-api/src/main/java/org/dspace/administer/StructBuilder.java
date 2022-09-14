@@ -53,6 +53,7 @@ import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
@@ -136,6 +137,9 @@ public class StructBuilder {
             = ContentServiceFactory.getInstance().getInstallItemService();
     public static final MetadataFieldName MD_FUNDING_COMMUNITY
             = new MetadataFieldName("synsicris", "funding", "community");
+
+    static String itemReferenceName = null;
+    static String itemReferenceUUID = null;
 
     /**
      * Default constructor
@@ -303,6 +307,7 @@ public class StructBuilder {
         communityMap.put("sidebar", MD_SIDEBAR_TEXT);
         communityMap.put("funding-comm", MD_FUNDING_COMMUNITY);
         communityMap.put("policy-group", null);
+        communityMap.put("has-item-reference", null);
 
         collectionMap.put("name", MD_NAME);
         collectionMap.put("entity-type", CrisConstants.MD_ENTITY_TYPE);
@@ -717,7 +722,7 @@ public class StructBuilder {
     private static void handleItem(Context context, Node node, Collection collection)
         throws SQLException, AuthorizeException, TransformerException {
         WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, true);
-        Item templateItem = installItemService.installItem(context, workspaceItem);
+        Item item = installItemService.installItem(context, workspaceItem);
         NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
         for (int i = 0; i < metadataList.getLength(); i++) {
             String metadataName = getAttributeValue(metadataList.item(i), "name");
@@ -725,8 +730,17 @@ public class StructBuilder {
             String authority = getAttributeValue(metadataList.item(i), "authority");
             int confidence = StringUtils.isNotBlank(authority) ? 600 : -1;
             String[] elements = MetadataFieldName.parse(metadataName);
-            itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue,
+            itemService.addMetadata(context, item, elements[0], elements[1], elements[2], null, metadatavalue,
                 authority, confidence);
+        }
+        
+        NodeList itemReferenceList = XPathAPI.selectNodeList(node, "item-reference");
+        for (int i = 0; i < itemReferenceList.getLength(); i++) {
+            String value = getStringValue(itemReferenceList.item(i));
+            if (value.equals("true")) {
+                itemReferenceName = item.getName();
+                itemReferenceUUID = item.getID().toString();
+            }
         }
     }
 
@@ -803,6 +817,10 @@ public class StructBuilder {
         Element[] elements = new Element[communities.getLength()];
 
         for (int i = 0; i < communities.getLength(); i++) {
+            if (parent == null) {
+                itemReferenceName = null;
+                itemReferenceUUID = null;
+            }
             Community community;
             Element element = new Element("community");
 
@@ -822,6 +840,7 @@ public class StructBuilder {
             String policyGroupName = null;
             String policyType = null;
             boolean toDelete = true;
+            boolean hasItemReference = false;
             for (Map.Entry<String, MetadataFieldName> entry : communityMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
                 if (nl.getLength() > 0) {
@@ -831,6 +850,8 @@ public class StructBuilder {
                             policyGroupName = getStringValue(nl.item(j));
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
+                        } else if (entry.getKey().equals("has-item-reference")) {
+                            hasItemReference = getStringValue(nl.item(j)).equals("true");
                         } else {
                             if (getStringValue(nl.item(j)) != null) {
                                 communityService.addMetadata(context, community,
@@ -917,6 +938,13 @@ public class StructBuilder {
             // handle collections
             NodeList collections = XPathAPI.selectNodeList(tn, "collection");
             Element[] collectionElements = handleCollections(context, collections, community);
+
+            if (hasItemReference && StringUtils.isNotBlank(itemReferenceName)
+                    && StringUtils.isNotBlank(itemReferenceUUID)) {
+
+                communityService.addMetadata(context, community, "synsicris", "relation", "entity_item", null,
+                        itemReferenceName, itemReferenceUUID, Choices.CF_ACCEPTED);
+            }
 
             int j;
             for (j = 0; j < subCommunityElements.length; j++) {

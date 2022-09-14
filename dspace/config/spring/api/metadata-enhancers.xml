@@ -79,25 +79,31 @@
         <property name="targetCurrencyMetadataField" value="oairecerif.amount.currency" />
     </bean>
 
-    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
-        <property name="sourceEntityType" value="Project" />
-        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
-        <property name="relatedItemMetadataField" value="synsicris.type.project" />
-        <property name="virtualQualifier" value="synsicris.type.jointproject" />
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemMetadataEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="relatedEntityType" value="Project" />
+        <property name="sourceRelationItemMetadataField" value="synsicris.relation.project" />
+        <property name="relatedRelationItemMetadataField" value="synsicris.relation.funding" />
+        <property name="sourceMetadataField" value="synsicris.type.project" />
+        <property name="relatedMetadataField" value="synsicris.type.project" />
     </bean>
 
-    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
-        <property name="sourceEntityType" value="Project" />
-        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
-        <property name="relatedItemMetadataField" value="oairecerif.project.status" />
-        <property name="virtualQualifier" value="oairecerif.project.status" />
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemMetadataEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="relatedEntityType" value="Project" />
+        <property name="sourceRelationItemMetadataField" value="synsicris.relation.project" />
+        <property name="relatedRelationItemMetadataField" value="synsicris.relation.funding" />
+        <property name="sourceMetadataField" value="oairecerif.project.status" />
+        <property name="relatedMetadataField" value="oairecerif.project.status" />
     </bean>
 
-    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemEnhancer" >
-        <property name="sourceEntityType" value="Project" />
-        <property name="sourceItemMetadataField" value="synsicris.relation.funding" />
-        <property name="relatedItemMetadataField" value="oairecerif.fundingParent" />
-        <property name="virtualQualifier" value="oairecerif.fundingParent" />
+    <bean class="org.dspace.content.enhancer.impl.RelatedEntityItemMetadataEnhancer" >
+        <property name="sourceEntityType" value="Funding" />
+        <property name="relatedEntityType" value="Project" />
+        <property name="sourceRelationItemMetadataField" value="synsicris.relation.project" />
+        <property name="relatedRelationItemMetadataField" value="synsicris.relation.funding" />
+        <property name="sourceMetadataField" value="oairecerif.fundingParent" />
+        <property name="relatedMetadataField" value="oairecerif.fundingParent" />
     </bean>
 
 </beans>

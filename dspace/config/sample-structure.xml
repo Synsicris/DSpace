@@ -142,6 +142,7 @@
     <policy-group rpType="remove">project_template_admin_group</policy-group>
     <policy-group rpType="delete">project_template_admin_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
+    <has-item-reference>true</has-item-reference>
     <community>
       <name>Impactpathway objects</name>
       <description />
@@ -667,8 +668,9 @@
       	<metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
       <item>
+        <item-reference>true</item-reference>
         <metadata name="dc.title">project_item_name</metadata>
-        <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::001">Workingplan</metadata>
+        <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::wp_001">Workingplan</metadata>
       </item>
     </collection>
     <collection>
@@ -914,7 +916,7 @@
 	    </item-template>
         <item>
             <metadata name="dc.title">Workingplan</metadata>
-            <metadata name="synsicris.struct-builder.identifier">001</metadata>
+            <metadata name="synsicris.struct-builder.identifier">wp_001</metadata>
         </item>
       </collection>
   </community>
@@ -941,6 +943,7 @@
     <policy-group rpType="delete">funding_template_admin_group</policy-group>
     <policy-group rpType="read">funding_template_members_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
+    <has-item-reference>true</has-item-reference>
     <community>
       <name>Exploitation plan objects</name>
       <description />
@@ -1089,6 +1092,7 @@
       	<metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
       <item>
+        <item-reference>true</item-reference>
         <metadata name="dc.title">funding_item_name</metadata>
         <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
       </item>

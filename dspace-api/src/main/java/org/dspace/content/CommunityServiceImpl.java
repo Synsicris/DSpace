@@ -111,9 +111,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Autowired
     protected InstallItemService installItemService;
 
-    private String matadataToSkip[] = new String[] {
-        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type",
-        "synsicris.struct-builder.identifier" };
+    private String matadataToSkipIfAlreadyPresent[] = new String[] {
+        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
+    
+    private String matadataToSkip[] = new String[] { "synsicris.struct-builder.identifier" };
+
     protected CommunityServiceImpl() {
         super();
 
@@ -890,11 +892,13 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             metadataName += "." + metadata.getQualifier();
         }
 
-        if (Arrays.stream(matadataToSkip).anyMatch(metadataName::equals)) {
+        if (Arrays.stream(matadataToSkipIfAlreadyPresent).anyMatch(metadataName::equals)) {
             List<MetadataValue> metadataList = service.getMetadataByMetadataString(target, metadataName);
+
             return metadataList.size() > 0;
         }
-        return false;
+
+        return Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
     }
 
     private UUID extractItemUuid(String value) {

@@ -14,6 +14,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.enhancer.ItemEnhancer;
 import org.dspace.content.service.ItemService;
@@ -42,11 +43,13 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
 
     private String relatedEntityType;
 
-    private String sourceItemMetadataField;
+    private String sourceRelationItemMetadataField;
 
-    private String relatedItemMetadataField;
+    private String relatedRelationItemMetadataField;
 
-    private String metadataField;
+    private String sourceMetadataField;
+    
+    private String relatedMetadataField;
 
     @Override
     public boolean canEnhance(Context context, Item item) {
@@ -58,7 +61,7 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
 
         try {
 
-            MetadataValue relationMetadataValue = getFirstMetadataValue(item, sourceItemMetadataField);
+            MetadataValue relationMetadataValue = getFirstMetadataValue(item, sourceRelationItemMetadataField);
 
             if (relationMetadataValue == null) {
                 return;
@@ -116,57 +119,57 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
     private void updateItem(Context context, Item item, Item relatedItem)
         throws SQLException, AuthorizeException {
 
-        if (isRelatedItemHasAuthorityEqualTo(relatedItem, item.getID().toString())) {
+        if (isSourceItemIdEqualToRelatedItemAuthority(relatedItem, item.getID().toString())) {
             if (isUpdateMetadataNeeded(item, relatedItem)) {
                 updateMetadata(context, item, relatedItem);
             }
         }
     }
 
-    private boolean isRelatedItemHasAuthorityEqualTo(Item relatedItem, String uuid) {
-        MetadataValue metadataValue = getFirstMetadataValue(relatedItem, relatedItemMetadataField);
-        return metadataValue == null ? false : metadataValue.getAuthority().equals(uuid);
+    private boolean isSourceItemIdEqualToRelatedItemAuthority(Item relatedItem, String sourceItemUuid) {
+        MetadataValue metadataValue = getFirstMetadataValue(relatedItem, relatedRelationItemMetadataField);
+        return metadataValue == null ? false : metadataValue.getAuthority().equals(sourceItemUuid);
     }
 
     private boolean isUpdateMetadataNeeded(Item item, Item relatedItem) {
-        MetadataValue sourceMetadataValue = getFirstMetadataValue(item, metadataField);
-        MetadataValue relatedMetadataValue = getFirstMetadataValue(relatedItem, metadataField);
+        MetadataValue sourceMetadataValue = getFirstMetadataValue(item, sourceMetadataField);
+        MetadataValue relatedMetadataValue = getFirstMetadataValue(relatedItem, relatedMetadataField);
 
         if (relatedMetadataValue != null && sourceMetadataValue != null) {
             return !sourceMetadataValue.getValue().equals(relatedMetadataValue);
         }
 
-        return relatedMetadataValue != null && sourceMetadataValue == null;
+        return true;
     }
 
-    private void updateMetadata(Context context, Item item, Item relatedItem)
+    private void updateMetadata(Context context, Item item, Item targetItem)
         throws SQLException, AuthorizeException {
 
-        MetadataValue sourceMetadataValue = getFirstMetadataValue(item, metadataField);
-        MetadataValue relatedMetadataValue = getFirstMetadataValue(relatedItem, metadataField);
+        MetadataValue sourceMetadataValue = getFirstMetadataValue(item, sourceMetadataField);
+        MetadataValue targetMetadataValue = getFirstMetadataValue(targetItem, relatedMetadataField);
 
-        if (sourceMetadataValue != null) {
-            clearAndAddMetadata(context, item, relatedMetadataValue.getValue(), sourceMetadataValue);
+        if (targetMetadataValue != null) {
+            clearAndAddMetadata(context, targetItem, sourceMetadataValue, relatedMetadataField);
         } else {
-            addMetadata(context, item, relatedMetadataValue.getValue(), metadataField);
+            addMetadata(context, targetItem, sourceMetadataValue, relatedMetadataField);
         }
     }
 
-    private void clearAndAddMetadata(Context context, Item item, String value, MetadataValue mValue)
+    private void clearAndAddMetadata(Context context, Item item, MetadataValue mValue, String metadataName)
         throws SQLException, AuthorizeException {
 
-        itemService.clearMetadata(context, item, mValue.getSchema(), mValue.getElement(), mValue.getQualifier(),
-            mValue.getLanguage());
-        itemService.addMetadata(context, item, mValue.getSchema(), mValue.getElement(), mValue.getQualifier(),
-            mValue.getLanguage(), value);
+        MetadataFieldName mf = new MetadataFieldName(metadataName);
+        itemService.replaceMetadata(context, item, mf.schema, mf.element, mf.qualifier, mValue.getLanguage(),
+                mValue.getValue(), mValue.getAuthority(), mValue.getConfidence(), 0);
         itemService.update(context, item);
     }
 
-    private void addMetadata(Context context, Item item, String value, String metadataField)
+    private void addMetadata(Context context, Item item, MetadataValue mValue, String metadataName)
         throws SQLException, AuthorizeException {
 
-        String[] fields = getElements(metadataField);
-        itemService.addMetadata(context, item, fields[0], fields[1], fields[2], null, value);
+        MetadataFieldName mf = new MetadataFieldName(metadataName);
+        itemService.addMetadata(context, item, mf.schema, mf.element, mf.qualifier, mValue.getLanguage(),
+                mValue.getValue(), mValue.getAuthority(), mValue.getConfidence());
         itemService.update(context, item);
     }
 
@@ -197,27 +200,36 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
         this.relatedEntityType = relatedEntityType;
     }
 
-    public String getSourceItemMetadataField() {
-        return sourceItemMetadataField;
+    public String getSourceRelationItemMetadataField() {
+        return sourceRelationItemMetadataField;
     }
 
-    public void setSourceItemMetadataField(String sourceItemMetadataField) {
-        this.sourceItemMetadataField = sourceItemMetadataField;
+    public void setSourceRelationItemMetadataField(String sourceRelationItemMetadataField) {
+        this.sourceRelationItemMetadataField = sourceRelationItemMetadataField;
     }
 
-    public String getRelatedItemMetadataField() {
-        return relatedItemMetadataField;
+    public String getRelatedRelationItemMetadataField() {
+        return relatedRelationItemMetadataField;
     }
 
-    public void setRelatedItemMetadataField(String relatedItemMetadataField) {
-        this.relatedItemMetadataField = relatedItemMetadataField;
+    public void setRelatedRelationItemMetadataField(String relatedRelationItemMetadataField) {
+        this.relatedRelationItemMetadataField = relatedRelationItemMetadataField;
     }
 
-    public String getMetadataField() {
-        return metadataField;
+    public String getSourceMetadataField() {
+        return sourceMetadataField;
     }
 
-    public void setMetadataField(String metadataField) {
-        this.metadataField = metadataField;
+    public void setSourceMetadataField(String sourceMetadataField) {
+        this.sourceMetadataField = sourceMetadataField;
     }
+
+    public String getRelatedMetadataField() {
+        return relatedMetadataField;
+    }
+
+    public void setRelatedMetadataField(String relatedMetadataField) {
+        this.relatedMetadataField = relatedMetadataField;
+    }
+
 }

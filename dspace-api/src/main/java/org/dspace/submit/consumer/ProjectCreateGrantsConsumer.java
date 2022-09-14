@@ -68,7 +68,7 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                 String[] entitiesToSkip = configurationService.getArrayProperty("project.grants.entity-name.to-skip",
                         new String[] {});
                 String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-                if (Arrays.stream(entitiesToSkip).anyMatch(entityType::equals)) {
+                if (Objects.isNull(entityType) || Arrays.stream(entitiesToSkip).anyMatch(entityType::equals)) {
                     return;
                 }                
                 EPerson submitter = item.getSubmitter();

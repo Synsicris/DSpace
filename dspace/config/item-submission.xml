@@ -274,18 +274,13 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="pot_societalimpact" mandatory="true">
-      <heading>submit.progressbar.describe.pot_societalimpact</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="exp_societalimpact" mandatory="true" opened="false">
+    <step-definition id="exp_societalimpact" mandatory="true">
       <heading>submit.progressbar.describe.exp_societalimpact</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="exp_societalimpact_neg" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.exp_societalimpact_neg</heading>
+    <step-definition id="neg_sideeffect" mandatory="true">
+      <heading>submit.progressbar.describe.neg_sideeffect</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -379,16 +374,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="subcontractors_orgunit" mandatory="true">
-      <heading>submit.progressbar.describe.subcontractors_orgunit</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="subcontractors" mandatory="true">
-      <heading>submit.progressbar.describe.subcontractors</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="research_results" mandatory="true">
       <heading>submit.progressbar.describe.research_results</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -459,6 +444,16 @@
       <heading>submit.progressbar.describe.internalacc</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
+    </step-definition>
+    <step-definition id="detect-duplicate" mandatory="true">
+      <heading>submit.progressbar.detect-duplicate</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DetectPotentialDuplicateStep</processing-class>
+      <type>detect-duplicate</type>
+    </step-definition>
+    <step-definition id="license" mandatory="true">
+      <heading>submit.progressbar.license</heading>
+      <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
+      <type>license</type>
     </step-definition>
   </step-definitions>
   <submission-definitions>
@@ -566,20 +561,23 @@
       <step id="statusacc2" />
     </submission-process>
     <submission-process name="publications">
+      <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
+      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="extractionstep" />
+      <step id="license" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="publications-edit">
+      <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
+      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="extractionstep" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />
@@ -738,26 +736,24 @@
       <step id="targetgroups" />
       <step id="targetgroups_classification" />
     </submission-process>
-    <submission-process name="pot_societalimpact">
-      <step id="pot_societalimpact" />
-      <step id="statusacc3" />
-      <step id="impact_pathway_task_form" />
-      <step id="exploitation_plan_task_form" />
-    </submission-process>
-    <submission-process name="pot_societalimpact-edit">
-      <step id="pot_societalimpact" />
-      <step id="statusacc3" />
-    </submission-process>
     <submission-process name="exp_societalimpact">
       <step id="exp_societalimpact" />
-      <step id="exp_societalimpact_neg" />
       <step id="statusacc3" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="exp_societalimpact-edit">
       <step id="exp_societalimpact" />
-      <step id="exp_societalimpact_neg" />
+      <step id="statusacc3" />
+    </submission-process>
+    <submission-process name="neg_sideeffect">
+      <step id="neg_sideeffect" />
+      <step id="statusacc3" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
+    </submission-process>
+    <submission-process name="neg_sideeffect-edit">
+      <step id="neg_sideeffect" />
       <step id="statusacc3" />
     </submission-process>
     <submission-process name="conditions">
@@ -809,12 +805,14 @@
     <submission-process name="products">
       <step id="products" />
       <step id="products_references" />
+      <step id="agrovoc_keywords_others" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="products-edit">
       <step id="products" />
       <step id="products_references" />
+      <step id="agrovoc_keywords_others" />
     </submission-process>
     <submission-process name="programmes">
       <step id="programmes" />
@@ -855,14 +853,6 @@
     <submission-process name="cooperationpartners-edit">
       <step id="cooperationpartners_orgunit" />
       <step id="cooperationpartners" />
-    </submission-process>
-    <submission-process name="subcontractors">
-      <step id="subcontractors_orgunit" />
-      <step id="subcontractors" />
-    </submission-process>
-    <submission-process name="subcontractors-edit">
-      <step id="subcontractors_orgunit" />
-      <step id="subcontractors" />
     </submission-process>
     <submission-process name="research_results">
       <step id="research_results" />

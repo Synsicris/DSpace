@@ -58,7 +58,10 @@ public class RelatedEntityItemEnhancer extends AbstractItemEnhancer {
     @Override
     public void enhance(Context context, Item item) {
         try {
-            cleanObsoleteVirtualFields(context, item);
+            StringTokenizer st = new StringTokenizer(getVirtualQualifier(), ".");
+            if (st.countTokens() == 1) {
+                cleanObsoleteVirtualFields(context, item);
+            }
             performEnhancement(context, item);
         } catch (SQLException e) {
             LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), e.getMessage(), e);
@@ -115,8 +118,15 @@ public class RelatedEntityItemEnhancer extends AbstractItemEnhancer {
                 continue;
             }
 
+            StringTokenizer st = new StringTokenizer(getVirtualQualifier(), ".");
+
+            boolean toClean = true;
             List<MetadataValue> relatedItemMetadataValues = getMetadataValues(relatedItem, relatedItemMetadataField);
             for (MetadataValue relatedItemMetadataValue : relatedItemMetadataValues) {
+                if (st.countTokens() > 1 && toClean) {
+                    cleanObsoleteVirtualFields(context, item);
+                    toClean = false;
+                }
                 addVirtualField(context, item, relatedItemMetadataValue.getValue());
                 addVirtualSourceField(context, item, metadataValue);
             }

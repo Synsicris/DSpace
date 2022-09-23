@@ -8,6 +8,7 @@
 package org.dspace.content.enhancer.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -159,9 +160,13 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
         throws SQLException, AuthorizeException {
 
         MetadataFieldName mf = new MetadataFieldName(metadataName);
-        itemService.replaceMetadata(context, item, mf.schema, mf.element, mf.qualifier, mValue.getLanguage(),
-                mValue.getValue(), mValue.getAuthority(), mValue.getConfidence(), 0);
-        itemService.update(context, item);
+        
+        List<MetadataValue> mvlist = itemService.getMetadata(item, mf.schema, mf.element, mf.qualifier, null);
+        if (!mvlist.isEmpty()) {
+            itemService.removeMetadataValues(context, item, mvlist);
+        }
+        
+        addMetadata(context, item, mValue, metadataName);
     }
 
     private void addMetadata(Context context, Item item, MetadataValue mValue, String metadataName)

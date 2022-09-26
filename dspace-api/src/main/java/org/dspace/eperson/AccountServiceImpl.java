@@ -285,7 +285,7 @@ public class AccountServiceImpl implements AccountService {
                                                .toString();
         Locale locale = context.getCurrentLocale();
         Email bean = Email.getEmail(I18nUtil.getEmailFilename(locale, isRegister ? "register"
-            : "change_password"));
+            : (rd.getGroups().size() == 0) ? "change_password" : "invitation_request"));
         bean.addRecipient(email);
         bean.addArgument(specialLink);
         bean.send();

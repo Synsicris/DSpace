@@ -13,24 +13,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.Parameter;
 import org.dspace.app.rest.SearchRestMethod;
 import org.dspace.app.rest.converter.MetadataConverter;
 import org.dspace.app.rest.exception.GroupNameNotProvidedException;
-import org.dspace.app.rest.exception.RESTAuthorizationException;
 import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.model.GroupRest;
 import org.dspace.app.rest.model.patch.Patch;
-import org.dspace.app.rest.utils.DSpaceObjectUtils;
 import org.dspace.authorize.AuthorizeException;
-import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.DSpaceObject;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
@@ -61,12 +55,6 @@ public class GroupRestRepository extends DSpaceObjectRestRepository<Group, Group
 
     @Autowired
     MetadataConverter metadataConverter;
-
-    @Autowired
-    private DSpaceObjectUtils dSpaceObjectUtils;
-
-    @Autowired
-    private AuthorizeService authorizeService;
 
     @Override
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -165,6 +153,7 @@ public class GroupRestRepository extends DSpaceObjectRestRepository<Group, Group
         return GroupRest.class;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Override
     protected void delete(Context context, UUID uuid) throws AuthorizeException {
         Group group = null;
@@ -190,57 +179,10 @@ public class GroupRestRepository extends DSpaceObjectRestRepository<Group, Group
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-            if (!isAuthorized(context, group.getName())) {
-                throw new RESTAuthorizationException("Only administrators can delete groups");
-            }
-
             gs.delete(context, group);
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
-    }
-
-    private boolean isAuthorized(Context context, String groupName) throws SQLException {
-
-        DSpaceObject dso = getDspaceObject(context, groupName);
-
-        if (authorizeService.isAdmin(context)) {
-            return true;
-        }
-
-        return dso != null && authorizeService.isAdmin(context, dso);
-    }
-
-    private DSpaceObject getDspaceObject(Context context, String value) {
-
-        UUID uuid = extractDspaceObjectUUID(value);
-
-        if (uuid == null) {
-            return null;
-        }
-
-        try {
-            return dSpaceObjectUtils.findDSpaceObject(context, uuid);
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    private UUID extractDspaceObjectUUID(String value) {
-        UUID uuid = null;
-        if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
-            Matcher matcher = pattern.matcher(value);
-            if (matcher.matches()) {
-                try {
-                    uuid = UUID.fromString(matcher.group(2));
-                } catch (Exception e) {
-                    // do nothing
-                }
-            }
-        }
-        return uuid;
     }
 
 }

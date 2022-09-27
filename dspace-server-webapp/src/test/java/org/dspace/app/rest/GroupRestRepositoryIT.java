@@ -3186,10 +3186,11 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void deleteGroupWithNotAdminUserTest() throws Exception {
+    public void deleteMemberFromGroupRelatedToDspaceObjectWithNotAdminUserTest() throws Exception {
 
         context.turnOffAuthorisationSystem();
 
+        // create community with admin group 'eperson'
         Community community = CommunityBuilder.createCommunity(context)
                                               .withName("community name")
                                               .withAdminGroup(eperson)
@@ -3200,10 +3201,12 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
         EPerson member1 = EPersonBuilder.createEPerson(context).build();
         EPerson member2 = EPersonBuilder.createEPerson(context).build();
 
+        // create group1 but not related to any Dspace Object
         Group group1 = GroupBuilder.createGroup(context)
                                    .addMember(member1)
                                    .build();
 
+        // create group2 related to Dspace Object 'community'
         Group group2 = GroupBuilder.createGroup(context)
                                    .addMember(member2)
                                    .withName(groupName)
@@ -3213,12 +3216,14 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         String authToken = getAuthToken(eperson.getEmail(), password);
 
+        // try to delete member1 from group1 by not admin user
         getClient(authToken).perform(
-            delete("/api/eperson/groups/" + group1.getID())
+            delete("/api/eperson/groups/" + group1.getID() + "/epersons/" + member1.getID())
         ).andExpect(status().isForbidden());
 
+        // try to delete member2 from group2 by not admin user but is an admin to related 'community'
         getClient(authToken).perform(
-            delete("/api/eperson/groups/" + group2.getID())
+            delete("/api/eperson/groups/" + group2.getID() + "/epersons/" + member2.getID())
         ).andExpect(status().isNoContent());
 
     }

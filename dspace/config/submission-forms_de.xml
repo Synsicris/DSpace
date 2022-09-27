@@ -1213,9 +1213,11 @@
           <label>Autor:in(nen)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>Pflichtangabe</required>
           <hint>Geben Sie die Namen in der Reihenfolge an, wie sie auf der Veröffentlichung angegeben sind mit Nachname, Vorname.</hint>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>author</dc-element>
@@ -1224,7 +1226,33 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie die Zugehörigkeit des/der Autor:in/nen an, wie sie in der Veröffentlichung angegeben ist.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="publications-dc-contributor-editor">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>editor</dc-qualifier>
+          <label>Editor:in(nen)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint>Die Herausgeber dieser Veröffentlichung.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>editor</dc-element>
+          <dc-qualifier>affiliation</dc-qualifier>
+          <label>Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Geben Sie die Zugehörigkeit des Herausgebers an, wie sie in der Veröffentlichung angegeben ist.</hint>
         </field>
       </row>
     </form>
@@ -1278,6 +1306,18 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>editor</dc-qualifier>
+          <label>Editor:in(nen)</label>
+          <input-type>group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Die Herausgeber dieser Veröffentlichung.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
           <label>Datum der Veröffentlichung</label>
@@ -1285,6 +1325,19 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie mindestens das Jahr der Veröffentlichung an, Monat und Tag sind optional.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>publications</dc-qualifier>
+          <label>Teil von</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Die Veröffentlichung, in der diese Publikation enthalten ist. Bei einem Buchkapitel wird hier z. B. das Buch aufgeführt, bei einem Beitrag zu einer Konferenz wird hier der Konferenzbericht aufgeführt.</hint>
+          <type-bind>coar:c_3248, coar:c_5794, coar:c_6670</type-bind>
         </field>
       </row>
       <row>
@@ -1335,7 +1388,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Tragen Sie bitte die ISSN ein, wenn sie nicht im System gefunden wurde.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f</type-bind>
         </field>
       </row>
       <row>
@@ -1382,18 +1434,6 @@
           <required />
           <style>col-md-3</style>
           <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Direktlink</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Kopieren Sie den Direktlink zur Veröffentlichung in dieses Feld.</hint>
         </field>
       </row>
       <row>
@@ -1466,7 +1506,7 @@
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Verweisen Sie auf einen oder mehreren vorhandenen Forschungsdatesätzen, die in der Veröffentlichung verwendet oder beschrieben werden.</hint>
         </field>
       </row>
     </form>
@@ -1762,9 +1802,22 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>project</dc-qualifier>
+          <label>Art des Vorhabens</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
@@ -1773,7 +1826,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -1784,7 +1837,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -1794,7 +1847,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
           <validation>/[^a-ü,.]/img</validation>
         </field>
@@ -1830,6 +1883,7 @@
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-3</style>
           <hint />
           <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
@@ -2468,7 +2522,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>easy-import</dc-qualifier>
-          <label>Ausführende Stelle im offiziellen Antrag (easy-Online)</label>
+          <label>yes_no</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -2516,6 +2570,21 @@
       </row>
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Wirtschaftszweig der Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
+          <type-bind>Economy</type-bind>
+          <readonly>all</readonly>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>organization</dc-schema>
           <dc-element>identifier</dc-element>
           <label>Organisations-ID</label>
@@ -2530,13 +2599,62 @@
     <form name="projectpartners_import">
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Letzte Aktualisierung aus profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Interne Namen-Kennung (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Interne Adress-Kennung (AD_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>organization</dc-schema>
           <dc-element>parentOrganization</dc-element>
           <label>Übergeordnete Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2544,7 +2662,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name der Organisation</label>
+          <label>Name der ausführenden Stelle / Organisationseinheit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -2560,7 +2678,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-5</style>
           <hint />
         </field>
         <field>
@@ -2582,9 +2700,11 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-5</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
@@ -2596,19 +2716,63 @@
           <style>col-md-2</style>
           <hint />
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postleitzahl Postfach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>Ort Postfach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+        </field>
       </row>
       <row>
         <field>
           <dc-schema>organization</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Land</label>
+          <label>Land / Bundesland</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>Gemeindekennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - Landeskennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -2658,7 +2822,6 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2675,42 +2838,14 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>publicfunded</dc-qualifier>
-          <label>Die Organisation wird überwiegend aus Zuwendungen der öffentlichen Hand finanziert.</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <readonly>all</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>recipient-stats</dc-qualifier>
           <label>Empfängerstatistik (wird aus profi importiert)</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig der Organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
-          <type-bind>Economy</type-bind>
-          <readonly>all</readonly>
-          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -2829,6 +2964,19 @@
           <readonly>all</readonly>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-personleader</dc-qualifier>
+          <label>Personen-Nr. Projektleitung profi (PERS_NR_PL)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
     </form>
     <form name="projectpartners_import_leadadmin">
       <row>
@@ -2894,6 +3042,19 @@
           <readonly>all</readonly>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-personadmin</dc-qualifier>
+          <label>Personen-Nr. Projektkoordination / administration profi (PERS_NR_PL)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
     </form>
     <form name="cooperationpartners_orgunit">
       <row>
@@ -2901,7 +3062,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>orgunit</dc-qualifier>
-          <label>Suche des Kooperationspartners</label>
+          <label>Suche der Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2912,11 +3073,22 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Name des Kooperationspartners</label>
+          <label>Name der Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
+          <style>col-md-8</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Akronym oder Kurzname der Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
       </row>
       <row>
@@ -2928,7 +3100,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2939,7 +3111,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2950,9 +3122,11 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
@@ -2961,7 +3135,29 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postleitzahl Postfach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>Ort Postfach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -2970,13 +3166,35 @@
           <dc-schema>organization</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Land</label>
+          <label>Land / Bundesland</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>Gemeindekennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - Landeskennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -3001,7 +3219,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Verwenden Sie möglichst eine allgemeine E-Mail, für die grundsätzliche Erreichbarkeit der Organisation.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3012,7 +3230,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Verwenden Sie möglichst eine allgemeine Telefonnummer, für die grundsätzliche Erreichbarkeit der Organisation.</hint>
         </field>
       </row>
       <row>
@@ -3030,17 +3248,17 @@
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Akronym oder Kurzname des Kooperationspartners</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>legalform</dc-qualifier>
+          <label>Rechtsform</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
@@ -3051,19 +3269,81 @@
           <required />
           <style>col-md-6</style>
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Letzte Aktualisierung aus profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Interne Namen-Kennung (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Interne Adress-Kennung (AD_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
     <form name="cooperationpartners">
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>cooperation</dc-qualifier>
+          <label>Art der Kooperation</label>
+          <input-type value-pairs-name="cooperation_type">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Tätigkeitsbereich des Kooperationspartners</label>
+          <label>Tätigkeitsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
+          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für Entwicklung und den Transfer von Forschungsergebnissen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
         </field>
       </row>
       <row>
@@ -3071,7 +3351,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig des Kooperationspartners</label>
+          <label>Wirtschaftszweig der Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3099,7 +3379,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>political</dc-qualifier>
-          <label>Politikebene(n) des Kooperationspartners</label>
+          <label>Politikebene(n) der Organisation</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3140,278 +3420,58 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Welchen Beitrag leistet die Kooperation zum Projekt? Was ist das Ziel der Kooperation?</hint>
-        </field>
-      </row>
-    </form>
-    <form name="subcontractors_orgunit">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>orgunit</dc-qualifier>
-          <label>Suchen des Unterauftragnehmers</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Name des Unterauftragnehmers</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Straße, Hausnummer</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressPostcode</dc-qualifier>
-          <label>Postleitzahl</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressCity</dc-qualifier>
-          <label>Ort</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressPostbox</dc-qualifier>
-          <label>Postfach</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Land</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">countries2</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Webadresse</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>E-Mail</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Telefon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>identifier</dc-element>
-          <label>Organisations-ID</label>
-          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Akronym oder Kurzname des Unterauftragnehmers</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>orgform</dc-qualifier>
-          <label>Organisationsform</label>
-          <input-type value-pairs-name="organisationform">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="subcontractors">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Tätigkeitsbereich des Unterauftragnehmers</label>
-          <input-type value-pairs-name="sector_type">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Projekt eingebracht wird, falls es mehrere gibt.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>Wirtschaftszweig des Unterauftragnehmers</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>Economy</type-bind>
-          <vocabulary closed="true">nace</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>destatis</dc-qualifier>
-          <label>Disziplin / Fachgebiet</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>Research</type-bind>
-          <vocabulary closed="true">destatis</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>political</dc-qualifier>
-          <label>Politikebene(n) des Unterauftragnehmers</label>
-          <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
-          <type-bind>Public institutions</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>cooperation</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Startdatum (wenn abweichend von der Projektlaufzeit)</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>cooperation</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>Enddatum (wenn abweichend von der Projektlaufzeit)</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>contribution</dc-qualifier>
-          <label>Beschreibung der Zusammenarbeit</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Welchen Beitrag leistet die Kooperation zum Projekt? Was ist das Ziel der Kooperation?</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
-          <label>Zugehöriges Projekt</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
+          <hint>Welchen Beitrag leistet die Organisation zum Projekt? Was ist das Ziel der Zusammenarbeit?</hint>
         </field>
       </row>
     </form>
     <form name="orgunits">
       <row>
         <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>identifier</dc-element>
-          <label>Organisations-ID</label>
-          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
-          <repeatable>true</repeatable>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Letzte Aktualisierung aus profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
+          <style>col-md-3</style>
+          <hint />
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Interne Namen-Kennung (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Interne Adress-Kennung (AD_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>organization</dc-schema>
           <dc-element>parentOrganization</dc-element>
@@ -3421,6 +3481,16 @@
           <required />
           <style>col-md-6</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>organization</dc-schema>
+          <dc-element>identifier</dc-element>
+          <label>Organisations-ID</label>
+          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
         </field>
       </row>
       <row>
@@ -3482,16 +3552,62 @@
       </row>
       <row>
         <field>
-          <dc-schema>organization</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
-          <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Land</label>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postleitzahl Postfach</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>Ort Postfach</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>organization</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCountry</dc-qualifier>
+          <label>Land / Bundesland</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>profi - Gemeindekennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - Landeskennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -3548,17 +3664,6 @@
           <dc-qualifier>orgform</dc-qualifier>
           <label>Organisationsform</label>
           <input-type value-pairs-name="organisationform">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>publicfunded</dc-qualifier>
-          <label>Die Organisation wird überwiegend aus Zuwendungen der öffentlichen Hand finanziert.</label>
-          <input-type value-pairs-name="yes_no">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -4589,7 +4694,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <required />
           <style>col-md-6</style>
           <hint>Falls keine der vorgeschlagenen Einheiten passt, geben Sie bitte eine eigene Einheit an.</hint>
-          <type-bind>UI50</type-bind>
+          <type-bind>units:UI50</type-bind>
         </field>
       </row>
       <row>
@@ -5412,79 +5517,6 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Bezeichnung</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Art</label>
-          <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Je nach Auswahl erscheinen nachfolgend unterschiedliche Eingabefelder.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>direction</dc-qualifier>
-          <label>Auswahl der Wirkungsrichtung</label>
-          <input-type value-pairs-name="societalimpact_direction">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>ecological</dc-qualifier>
-          <label>Spezifischer ökologischer Bereich</label>
-          <input-type value-pairs-name="ecological_field">dropdown</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
-          <type-bind>Ecological</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Auswahl der Akteursgruppe(n), die von der erwarteten Wirkung betroffen ist/sind</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Es können Akteursgruppen ausgewählt werden, die bereits für das Projekt eingetragen wurden. Falls relevante Akteursgruppen fehlen, tragen Sie diese bitte im Bereich „Akteursgruppe“ nach und ordnen Sie diese anschließend hier zu.</hint>
-          <type-bind>Economic, Social and cultural, Governance</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung und Größenordnung der erwarteten Wirkung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Bitte schließen Sie in die Beschreibung auch Informationen zur Größenordnung der erwarteten Wirkung ein, sofern dies im Förderprogramm vorgeschrieben ist oder dazu in Ihrem Forschungsprojekt Informationen vorliegen (z. B. aus eigenen Untersuchungen, vorliegenden Studien, öffentlichen Statistiken etc.). Achten Sie bei der Angabe von Größenordnungen auf korrekte Angabe der Bezugsgröße und der Bedingungen, unter denen die Wirkung quantifiziert wurde.</hint>
-        </field>
-      </row>
-    </form>
     <form name="exp_societalimpact">
       <row>
         <field>
@@ -5510,9 +5542,23 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
       </row>
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform</dc-qualifier>
+          <label>Adressierter Transformationsbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Erwartete Wirkung charakterisieren mit max. 3 Kernelementen und Transformationsbereichen</label>
+          <label>Charakterisierung der erwarteten gesellschaftlichen Wirkung durch Auswahl eines (bis maximal drei eng zusammenhängender) Kernelemente(s)</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5536,18 +5582,6 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>transform</dc-qualifier>
-          <label>Adressierter Transformationsbereich</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">transform</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>positive-direction</dc-qualifier>
           <label>Wirkungsintensität</label>
           <input-type value-pairs-name="impact_positive">list</input-type>
@@ -5564,17 +5598,52 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
     </form>
-    <form name="exp_societalimpact_neg">
+    <form name="neg_sideeffect">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung der erwarteten Wirkung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung der erwarteten Wirkung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type-n</dc-element>
-          <label>Charakterisierung der eventuellen Nebenwirkungen durch Auswahl aller betroffenen Kernelemente und Transformationsbereiche</label>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform</dc-qualifier>
+          <label>Adressierter Transformationsbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Charakterisierung der eventuellen Nebenwirkungen durch Auswahl eines (bis maximal drei eng zusammenhängender) betroffener Kernelemente(s)</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5582,11 +5651,11 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
-    <form name="exp_societalimpact_neg-synsicris-type-n">
+    <form name="neg_sideeffect-dc-type">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type-n</dc-element>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Kernelement der Nachhaltigkeit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5598,20 +5667,8 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>transform-n</dc-qualifier>
-          <label>Adressierter Transformationsbereich</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">transform</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>negative-direction</dc-qualifier>
-          <label>Wirkungsintensität-negativ</label>
+          <label>Intensität der neg. Nebenwirkung</label>
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5626,7 +5683,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -5858,10 +5915,9 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type value-pairs-name="ethics">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-12</style>
           <hint />
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
@@ -5870,7 +5926,8 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise zur Beschreibung der Vorgehensweise (oben im Text).</hint>
+          <style>col-md-12</style>
+          <hint>Beachten Sie bitte für jeden Aspekt die spezifischen Hinweise für einen angemessenen Umgang mit dem Aspekt auf der Hilfeseite.</hint>
         </field>
       </row>
     </form>
@@ -7217,6 +7274,32 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>private/public</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="cooperation_type" dc-term="cooperation_type">
+      <pair>
+        <displayed-value>Unterauftragnehmer (Auftragssumme kleiner als 100.000 €)</displayed-value>
+        <stored-value>subcontractor &lt; 100.000 €</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Unterauftragnehmer (Auftragssumme größer als 100.000 € )</displayed-value>
+        <stored-value>subcontractor &gt; 100.000 €</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vertragspartner mit Unternehmensvertrag</displayed-value>
+        <stored-value>company contract</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vertragspartner mit vorhabensspezifischem Vertrag</displayed-value>
+        <stored-value>project-specific contract</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Andere Vertragspartner</displayed-value>
+        <stored-value>other contract</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Informeller Kooperationspartner</displayed-value>
+        <stored-value>informal cooperation</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
       <pair>
         <displayed-value>Lebender Organismus wie z. B. Tier, Pflanze, Pilz</displayed-value>
@@ -7374,7 +7457,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </pair>
       <pair>
         <displayed-value>Erwartete gesellschaftliche Wirkungen</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
         <displayed-value>Ethische Reflexion</displayed-value>
@@ -7759,12 +7842,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
+        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
@@ -7935,140 +8018,38 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="impact_positive" dc-term="impact_positive">
       <pair>
-        <displayed-value>[+++] stark</displayed-value>
+        <displayed-value>Stark positive Wirkung</displayed-value>
         <stored-value>strong positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[++] mittel</displayed-value>
+        <displayed-value>Mittlere positive Wirkung</displayed-value>
         <stored-value>medium positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[+] gering</displayed-value>
-        <stored-value>slightly positive</stored-value>
+        <displayed-value>Geringe positive Wirkung</displayed-value>
+        <stored-value>sligh positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[?] noch nicht einschätzbar</displayed-value>
+        <displayed-value>Noch nicht einschätzbar</displayed-value>
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impact_negative" dc-term="impact_negative">
       <pair>
-        <displayed-value>[---]  stark</displayed-value>
+        <displayed-value>Starke negative Nebenwirkungen</displayed-value>
         <stored-value>strong negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[--] mittel</displayed-value>
+        <displayed-value>Mittlere negative Nebenwirkungen</displayed-value>
         <stored-value>medium negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[-] gering</displayed-value>
-        <stored-value>slightly negative</stored-value>
+        <displayed-value>Geringe negative Nebenwirkungen</displayed-value>
+        <stored-value>slight negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[?] noch nicht einschätzbar</displayed-value>
+        <displayed-value>Noch nicht einschätzbar</displayed-value>
         <stored-value>not yet assessable</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="societalimpact" dc-term="societalimpact">
-      <pair>
-        <displayed-value>Ökologisch</displayed-value>
-        <stored-value>Ecological</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ökonomisch</displayed-value>
-        <stored-value>Economic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Sozial und kulturell</displayed-value>
-        <stored-value>Social and cultural</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Governance</displayed-value>
-        <stored-value>Governance</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="societalimpact_direction" dc-term="societalimpact_direction">
-      <pair>
-        <displayed-value>(++) positiv</displayed-value>
-        <stored-value>(++) positive</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(+) eher positiv</displayed-value>
-        <stored-value>(+) rather positive</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(+/-) ambivalent</displayed-value>
-        <stored-value>(+/-) ambivalent</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(-) eher negativ</displayed-value>
-        <stored-value>(-) rather negative</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(--) negativ</displayed-value>
-        <stored-value>(--) negative</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="ecological_field" dc-term="ecological_field">
-      <pair>
-        <displayed-value>Landnutzung</displayed-value>
-        <stored-value>Land use</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Bodenqualität und -ressourcen</displayed-value>
-        <stored-value>Soil quality or resources</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Wasserqualität und -ressourcen - Süßwasser</displayed-value>
-        <stored-value>Water quality and resources - fresh water</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Wasserqualität und -ressourcen - Meere</displayed-value>
-        <stored-value>Water quality and resources - oceans</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Luftverschmutzung/ - qualität</displayed-value>
-        <stored-value>Air quality</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Lärm</displayed-value>
-        <stored-value>Noise</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Klima/Treibhausgase</displayed-value>
-        <stored-value>Climate</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Verkehr und Energienutzung</displayed-value>
-        <stored-value>Transport and the use of energy</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Artenvielfalt, Flora, Fauna und Landschaften</displayed-value>
-        <stored-value>Biodiversity, flora, fauna and landscapes</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Tierschutz</displayed-value>
-        <stored-value>Animal welfare</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Produktion/Entstehung/Recycling von Abfällen</displayed-value>
-        <stored-value>Waste production/generation/ recycling</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Wahrscheinlichkeit oder das Ausmaß von Umweltrisiken</displayed-value>
-        <stored-value>Likelihood or scale of environmental risks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ökologische Folgen von Unternehmens- und Verbraucheraktivitäten</displayed-value>
-        <stored-value>Environmental consquences of firms and consumers</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Erneuerbare und nicht erneuerbare Ressourcen</displayed-value>
-        <stored-value>Renewable and non-renewable resources</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>weltweite ökologische Folgen</displayed-value>
-        <stored-value>International environmental impacts</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">
@@ -8323,12 +8304,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
+        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
         <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
@@ -8433,12 +8414,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. x)</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwartete gesellschaftliche Wirkung (Var. y)</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
+        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
         <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>

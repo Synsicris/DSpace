@@ -8,13 +8,7 @@
 package org.dspace.content.enhancer.impl;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +16,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.util.TextUtils;
 import org.dspace.authorize.AuthorizeException;
-import org.dspace.content.DCDate;
+import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.enhancer.ItemEnhancer;
@@ -42,9 +37,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
  *
  */
-public class ProjectDatesEnhancer implements ItemEnhancer {
+public class RelatedEntityItemCalculationEnhancer implements ItemEnhancer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectDatesEnhancer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RelatedEntityItemCalculationEnhancer.class);
 
     @Autowired
     private ItemService itemService;
@@ -55,12 +50,13 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
 
     private String relationMetadataField;
 
-    private String sourceStartDateMetadataField;
-    private String sourceEndDateMetadataField;
+    private String sourceAmountMetadataField;
 
-    private String targetStartDateMetadataField;
-    private String targetEndDateMetadataField;
-    private String targetDurationMetadataField;
+    private String sourceCurrencyMetadataField;
+
+    private String targetAmountMetadataField;
+
+    private String targetCurrencyMetadataField;
 
     @Override
     public boolean canEnhance(Context context, Item item) {
@@ -84,9 +80,9 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
                 return;
             }
 
-            validateItemEntityType(targetItem);
+            validateItem(targetItem);
 
-            updateTargetItemDates(context, targetItem, findRelatedEntityItems(context, targetItem));
+            updateTargetItemAmount(context, targetItem, findRelatedEntityItems(context, targetItem));
 
         } catch (SQLException | AuthorizeException e) {
             LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), e.getMessage(), e);
@@ -110,19 +106,33 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
         }
     }
 
-    private void validateItemEntityType(Item item) {
+    private void validateItem(Item item) {
+        validateItemEntityType(item);
+        validateItemCurrency(item);
+    }
 
+    private void validateItemEntityType(Item item) {
         if (!isItemEntityTypeEqualTo(item, targetEntityType)) {
             String errorMessage = "item:" + item.getID() + " entity type not equal to " + targetEntityType;
             LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), errorMessage);
             throw new RuntimeException(errorMessage);
         }
-
     }
 
     private boolean isItemEntityTypeEqualTo(Item item, String entityType) {
         MetadataValue metadataValue = getFirstMetadataValue(item, "dspace.entity.type");
         return metadataValue != null ? metadataValue.getValue().equals(entityType) : false;
+    }
+
+    private void validateItemCurrency(Item item) {
+
+        String currency = getItemCurrency(item, targetCurrencyMetadataField);
+
+        if (currency == null) {
+            String errorMessage = "item:" + item.getID() + " doesn't contain currency";
+            LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     private List<Item> findRelatedEntityItems(Context context, Item item) throws SQLException, AuthorizeException {
@@ -139,90 +149,63 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
                            .collect(Collectors.toList());
     }
 
-    private void updateTargetItemDates(Context context, Item targetItem, List<Item> relatedItems)
+    private void updateTargetItemAmount(Context context, Item targetItem, List<Item> relatedItems)
         throws SQLException, AuthorizeException {
 
-        boolean dateUpdated = false;
-        Date targetStartDate = getTargetDateByMetadataField(targetItem, targetStartDateMetadataField);
-        Date targetEndDate = getTargetDateByMetadataField(targetItem, targetEndDateMetadataField);
+        String targetCurrency = getItemCurrency(targetItem, targetCurrencyMetadataField);
+        boolean currencyEqual = isRelatedItemsCurrencyEqualTo(relatedItems, targetCurrency);
 
-        Date sourceStartDate = getMinStartDate(relatedItems);
-        Date sourceEndDate = getMaxStartDate(relatedItems);
+        int amount = getSumOfAmount(relatedItems);
+        boolean updateNeeded = isUpdateAmountNeeded(targetItem, amount);
 
-        if (isTargetStartDateUpdateNeeded(targetStartDate, sourceStartDate)) {
-            updateTargetItemDate(context, targetItem, sourceStartDate, targetStartDateMetadataField);
-            dateUpdated = true;
-        }
-        if (isTargetEndDateUpdateNeeded(targetEndDate, sourceEndDate)) {
-            updateTargetItemDate(context, targetItem, sourceEndDate, targetEndDateMetadataField);
-            dateUpdated = true;
-        }
-        if (dateUpdated) {
-            updateTargetItemDuration(context, targetItem, sourceStartDate, sourceEndDate);
+        if (currencyEqual && updateNeeded) {
+            updateMetadata(context, targetItem, String.valueOf(amount), targetAmountMetadataField);
         }
     }
 
-    private Date getTargetDateByMetadataField(Item item, String metadataField) {
-
+    private String getItemCurrency(Item item, String metadataField) {
         MetadataValue metadataValue = getFirstMetadataValue(item, metadataField);
-
-        return metadataValue != null && !metadataValue.getValue().isEmpty() ?
-            new DCDate(metadataValue.getValue()).toDate() : null;
+        return metadataValue != null ? metadataValue.getValue() : null;
     }
 
-    private Date getMinStartDate(List<Item> relatedItems) {
+    private boolean isRelatedItemsCurrencyEqualTo(List<Item> items, String targetCurrency) {
 
-        return relatedItems.stream()
-                           .map(item -> getFirstMetadataValue(item, sourceStartDateMetadataField))
-                           .filter(metadataValue -> metadataValue != null && !metadataValue.getValue().isEmpty())
-                           .map(metadataValue -> new DCDate(metadataValue.getValue()).toDate())
-                           .min(Date::compareTo).orElse(null);
+        int size = items.size();
+        int filteredSize = items.stream()
+                                .map(item -> getItemCurrency(item, sourceCurrencyMetadataField))
+                                .filter(currency -> currency != null)
+                                .filter(currency -> currency.equals(targetCurrency))
+                                .collect(Collectors.toList())
+                                .size();
+
+        return size == filteredSize;
     }
 
-    private Date getMaxStartDate(List<Item> relatedItems) {
+    private int getSumOfAmount(List<Item> items) {
 
-        return relatedItems.stream()
-                           .map(item -> getFirstMetadataValue(item, sourceEndDateMetadataField))
-                           .filter(metadataValue -> metadataValue != null && !metadataValue.getValue().isEmpty())
-                           .map(metadataValue -> new DCDate(metadataValue.getValue()).toDate())
-                           .max(Date::compareTo).orElse(null);
+        return items.stream()
+                    .map(item -> getFirstMetadataValue(item, sourceAmountMetadataField))
+                    .filter(metadataValue -> metadataValue != null && !TextUtils.isEmpty(metadataValue.getValue()))
+                    .map(metadataValue -> parseInteger(metadataValue.getValue(), metadataValue.getDSpaceObject()))
+                    .reduce(Integer::sum).orElse(0);
     }
 
-    private boolean isTargetStartDateUpdateNeeded(Date targetStartDate, Date sourceStartDate) {
-
-        if (targetStartDate != null && sourceStartDate != null) {
-            return sourceStartDate.compareTo(targetStartDate) < 0;
-        } else {
-            return targetStartDate == null && sourceStartDate != null;
+    private boolean isUpdateAmountNeeded(Item targetItem, int amount) {
+        MetadataValue metadataValue = getFirstMetadataValue(targetItem, targetAmountMetadataField);
+        if (metadataValue != null && !TextUtils.isEmpty(metadataValue.getValue())) {
+            return parseInteger(metadataValue.getValue(), metadataValue.getDSpaceObject()) != amount;
         }
+        return true;
     }
 
-    private boolean isTargetEndDateUpdateNeeded(Date targetEndDate, Date sourceEndDate) {
-
-        if (targetEndDate != null && sourceEndDate != null) {
-            return sourceEndDate.compareTo(targetEndDate) > 0;
-        } else {
-            return targetEndDate == null && sourceEndDate != null;
+    private int parseInteger(String value, DSpaceObject item) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            String errorMessage = "item:" + item.getID() + " contains incorrect amount value";
+            LOGGER.error("An error occurs enhancing item with id {}: {}", item.getID(), errorMessage);
+            throw new RuntimeException(errorMessage);
         }
-    }
-
-    private void updateTargetItemDate(Context context, Item item, Date date, String metadataField)
-        throws SQLException, AuthorizeException {
-
-        SimpleDateFormat dateIso = new SimpleDateFormat("yyyy-MM-dd");
-        String dateStr = dateIso.format(date);
-
-        updateMetadata(context, item, dateStr, metadataField);
-    }
-
-    private void updateTargetItemDuration(Context context, Item item, Date date1, Date date2)
-        throws SQLException, AuthorizeException {
-
-        LocalDate localDate1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localDate2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        long duration = ChronoUnit.MONTHS.between(YearMonth.from(localDate1), YearMonth.from(localDate2));
-
-        updateMetadata(context, item, String.valueOf(duration), targetDurationMetadataField);
     }
 
     private void updateMetadata(Context context, Item item, String value, String metadataField)
@@ -247,11 +230,11 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
         itemService.update(context, item);
     }
 
-    private void addMetadata(Context context, Item item, String date, String metadataField)
+    private void addMetadata(Context context, Item item, String value, String metadataField)
         throws SQLException, AuthorizeException {
 
         String[] fields = getElements(metadataField);
-        itemService.addMetadata(context, item, fields[0], fields[1], fields[2], null, date);
+        itemService.addMetadata(context, item, fields[0], fields[1], fields[2], null, value);
         itemService.update(context, item);
     }
 
@@ -290,43 +273,35 @@ public class ProjectDatesEnhancer implements ItemEnhancer {
         this.relationMetadataField = relationMetadataField;
     }
 
-    public String getSourceStartDateMetadataField() {
-        return sourceStartDateMetadataField;
+    public String getSourceAmountMetadataField() {
+        return sourceAmountMetadataField;
     }
 
-    public void setSourceStartDateMetadataField(String sourceStartDateMetadataField) {
-        this.sourceStartDateMetadataField = sourceStartDateMetadataField;
+    public void setSourceAmountMetadataField(String sourceAmountMetadataField) {
+        this.sourceAmountMetadataField = sourceAmountMetadataField;
     }
 
-    public String getSourceEndDateMetadataField() {
-        return sourceEndDateMetadataField;
+    public String getSourceCurrencyMetadataField() {
+        return sourceCurrencyMetadataField;
     }
 
-    public void setSourceEndDateMetadataField(String sourceEndDateMetadataField) {
-        this.sourceEndDateMetadataField = sourceEndDateMetadataField;
+    public void setSourceCurrencyMetadataField(String sourceCurrencyMetadataField) {
+        this.sourceCurrencyMetadataField = sourceCurrencyMetadataField;
     }
 
-    public String getTargetStartDateMetadataField() {
-        return targetStartDateMetadataField;
+    public String getTargetAmountMetadataField() {
+        return targetAmountMetadataField;
     }
 
-    public void setTargetStartDateMetadataField(String targetStartDateMetadataField) {
-        this.targetStartDateMetadataField = targetStartDateMetadataField;
+    public void setTargetAmountMetadataField(String targetAmountMetadataField) {
+        this.targetAmountMetadataField = targetAmountMetadataField;
     }
 
-    public String getTargetEndDateMetadataField() {
-        return targetEndDateMetadataField;
+    public String getTargetCurrencyMetadataField() {
+        return targetCurrencyMetadataField;
     }
 
-    public void setTargetEndDateMetadataField(String targetEndDateMetadataField) {
-        this.targetEndDateMetadataField = targetEndDateMetadataField;
-    }
-
-    public String getTargetDurationMetadataField() {
-        return targetDurationMetadataField;
-    }
-
-    public void setTargetDurationMetadataField(String targetDurationMetadataField) {
-        this.targetDurationMetadataField = targetDurationMetadataField;
+    public void setTargetCurrencyMetadataField(String targetCurrencyMetadataField) {
+        this.targetCurrencyMetadataField = targetCurrencyMetadataField;
     }
 }

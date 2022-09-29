@@ -153,8 +153,8 @@ public class GroupRestRepository extends DSpaceObjectRestRepository<Group, Group
         return GroupRest.class;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @Override
+    @PreAuthorize("hasAuthority('ADMIN')")
     protected void delete(Context context, UUID uuid) throws AuthorizeException {
         Group group = null;
         try {

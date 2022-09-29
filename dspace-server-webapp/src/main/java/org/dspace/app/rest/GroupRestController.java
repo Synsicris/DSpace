@@ -26,11 +26,15 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.model.GroupRest;
+import org.dspace.app.rest.utils.DSpaceObjectUtils;
 import org.dspace.app.rest.utils.Utils;
 import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.authorize.service.AuthorizeService;
+import org.dspace.content.DSpaceObject;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -58,6 +62,12 @@ public class GroupRestController {
 
     @Autowired
     Utils utils;
+
+    @Autowired
+    private DSpaceObjectUtils dSpaceObjectUtils;
+
+    @Autowired
+    private AuthorizeService authorizeService;
 
     /**
      * Method to add one or more subgroups to a group.
@@ -232,7 +242,9 @@ public class GroupRestController {
             throw new ResourceNotFoundException("parent group is not found for uuid: " + parentUUID);
         }
 
-        AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        if (!isAuthorized(context, parentGroup.getName())) {
+            AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        }
 
         EPerson childGroup = ePersonService.find(context, memberUUID);
         if (childGroup == null) {
@@ -245,4 +257,47 @@ public class GroupRestController {
 
         response.setStatus(SC_NO_CONTENT);
     }
+
+    private boolean isAuthorized(Context context, String groupName) throws SQLException {
+
+        DSpaceObject dso = getDspaceObject(context, groupName);
+
+        if (authorizeService.isAdmin(context)) {
+            return true;
+        }
+
+        return dso != null && authorizeService.isAdmin(context, dso);
+    }
+
+    private DSpaceObject getDspaceObject(Context context, String value) {
+
+        UUID uuid = extractDspaceObjectUUID(value);
+
+        if (uuid == null) {
+            return null;
+        }
+
+        try {
+            return dSpaceObjectUtils.findDSpaceObject(context, uuid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private UUID extractDspaceObjectUUID(String value) {
+        UUID uuid = null;
+        if (StringUtils.isNotBlank(value)) {
+            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
+            Matcher matcher = pattern.matcher(value);
+            if (matcher.matches()) {
+                try {
+                    uuid = UUID.fromString(matcher.group(2));
+                } catch (Exception e) {
+                    // do nothing
+                }
+            }
+        }
+        return uuid;
+    }
+
 }

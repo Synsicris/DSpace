@@ -7,9 +7,10 @@
     <copyright />
     <sidebar />
     <policy-group rpType="admin">Administrator</policy-group>
-    <policy-group rpType="remove">project_submitters_group</policy-group>
-    <policy-group rpType="delete">project_submitters_group</policy-group>
-    <policy-group rpType="read">project_submitters_group</policy-group>
+    <policy-group rpType="remove">funder_organisational_managers_group</policy-group>
+    <policy-group rpType="delete">funder_organisational_managers_group</policy-group>
+    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+    <policy-group rpType="read">system_members_group</policy-group>
     <collection>
       <name language="en">Calls</name>
       <name language="de">Bekanntmachungen</name>
@@ -21,13 +22,13 @@
       <entity-type>call</entity-type>
       <submission-type>calls</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -44,10 +45,10 @@
       <entity-type>comment</entity-type>
       <submission-type>comments</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_submitters_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">system_members_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <item-template>
       	<metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
       	<metadata name="synsicris.date.creation">###DATE###</metadata>
@@ -64,13 +65,13 @@
       <entity-type>fundingobjective</entity-type>
       <submission-type>fundingobjectives</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -87,10 +88,13 @@
       <entity-type>OrgUnit</entity-type>
       <submission-type>orgunits</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">Administrator</policy-group>
-	  <policy-group rpType="add">Administrator</policy-group>
-      <policy-group rpType="item_read">Administrator</policy-group>
-      <policy-group rpType="bitstream_read">Administrator</policy-group>
+      <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
     </collection>
     <collection>
       <name language="en">Persons</name>
@@ -103,10 +107,10 @@
       <entity-type>Person</entity-type>
       <submission-type>persons</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_submitters_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">system_members_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
     </collection>
     <collection>
       <name language="en">Progammes</name>
@@ -119,13 +123,13 @@
       <entity-type>programme</entity-type>
       <submission-type>programmes</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
+      <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="item_read">system_members_group</policy-group>
+      <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -200,9 +204,10 @@
       <copyright />
       <sidebar />
       <funding-comm>true</funding-comm>
-	    <policy-group rpType="admin">project_template_admin_group</policy-group>
+	  <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="remove">project_template_admin_group</policy-group>
       <policy-group rpType="delete">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_funders_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
     </community>
     <collection>
@@ -658,9 +663,11 @@
       <submission-type>projects</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
+      <policy-group rpType="read">project_template_funders_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_funders_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">project</metadata>      	
@@ -927,8 +934,8 @@
     <intro />
     <copyright />
     <sidebar />
-    <policy-group rpType="add">project_submitters_group</policy-group>
-    <policy-group rpType="remove">project_submitters_group</policy-group>
+    <policy-group rpType="add">funder_project_managers_group</policy-group>
+    <policy-group rpType="remove">funder_project_managers_group</policy-group>
     <policy-group rpType="read">Anonymous</policy-group>
   </community>
   <community>

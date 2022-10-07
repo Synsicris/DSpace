@@ -2,9 +2,9 @@
 	<Title>@dc.title@</Title>
 	<Aspects>
 		@group.dc-type.start@
-		<Aspect>
-			<Type>@dc.type@</Type>
-		</Aspect>
+			<Aspect>
+				<Type>@dc.type@</Type>
+			</Aspect>
 		@group.dc-type.end@
 	</Aspects>
 </Project>

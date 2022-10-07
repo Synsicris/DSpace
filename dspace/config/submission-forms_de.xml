@@ -22,7 +22,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Geben Sie einen Namen für den neuen Impact Pathway ein.</label>
+          <label>Geben Sie den Namen des neuen Wirkungspfades ein</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -33,7 +33,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <label>Beschreibung des Wirkungspfades / Gesamtziele des Projekes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -45,7 +45,7 @@
           <dc-schema>impactpathway</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>step</dc-qualifier>
-          <label>Verbindung zum Schritt des Impact Pathway</label>
+          <label>Verbindung zum Schritt des Wirkungspfad</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -58,7 +58,7 @@
           <dc-schema>impactpathway</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>map</dc-qualifier>
-          <label>Wählen Sie die entsprechende Entität</label>
+          <label>Wählen Sie die entsprechende Kategorie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -85,7 +85,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Geben Sie einen Namen für den Impact Pathway ein.</label>
+          <label>Bezeichnung des  Wirkungspfades</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -110,7 +110,7 @@
           <dc-schema>impactpathway</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>parent</dc-qualifier>
-          <label>Verbindung zum Impact Pathway</label>
+          <label>Verbindung zum Wirkungspfad</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -123,7 +123,7 @@
           <dc-schema>impactpathway</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
-          <label>Verbindung zum Impact Pathway Task</label>
+          <label>Verbindung zum Wirkungspfad Task</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -209,7 +209,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Geben Sie einen Namen für den neuen Impact Pathway ein.</label>
+          <label>Name des  Wirkungspfades</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -220,7 +220,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Geben Sie eine Beschreibung für den Impact Pathway.</label>
+          <label>Beschreibung des Wirkungspfades / Gesamtziele des Projekes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -284,7 +284,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -309,7 +309,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -334,7 +334,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_2_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -383,7 +383,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -408,7 +408,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_3_task_objective_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -457,7 +457,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -482,7 +482,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte bestätigen Sie die Vorauswahl</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_5_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -507,7 +507,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte bestätigen Sie die Vorauswahl</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -542,7 +542,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung des Beitrag des Projektes</label>
+          <label>Beschreibung des Beitrags des Projektes</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -556,7 +556,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bereich</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="working_plan_workpackage_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -671,7 +671,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bereich</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="working_plan_workpackage_step_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -947,7 +947,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="exploitation_plan_step_type_1_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -972,7 +972,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="exploitation_plan_step_type_2_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -997,7 +997,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="exploitation_plan_step_type_3_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1022,7 +1022,7 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Bitte wählen Sie einen Bereich aus</label>
+          <label>Kategorie auswählen</label>
           <input-type value-pairs-name="exploitation_plan_step_type_4_task_type">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1300,7 +1300,7 @@
           <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie die Autoren in der Reihenfolge an, wie sie auf der Veröffentlichung angegeben sind mit Nachname, Vorname.</hint>
         </field>
       </row>
       <row>
@@ -1330,9 +1330,20 @@
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Herausgeber/Verlag</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>publications</dc-qualifier>
-          <label>Teil von</label>
+          <label>InBuch / InProceedings</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1371,7 +1382,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>ispartof</dc-qualifier>
-          <label>In Zeitschrift oder Reihe</label>
+          <label>Zeitschrift oder Reihe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3709,7 +3720,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Gesellschaftsbereich der Organisation</label>
+          <label>Tätigkeitsbereich der Organisation</label>
           <input-type value-pairs-name="sector_type">list</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -6018,6 +6029,30 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </row>
     </form>
     <form name="research_results">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="open_researchquestions">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -8444,16 +8479,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Forschungsergebnis</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
         <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Offene Forschungsfragen</displayed-value>
+        <stored-value>open_researchquestion</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

@@ -10,7 +10,7 @@ package org.dspace.app.rest.authorization;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import org.dspace.app.rest.authorization.impl.CanCreateProjectManager;
+import org.dspace.app.rest.authorization.impl.IsFunderOrganizationalManager;
 import org.dspace.app.rest.converter.EPersonConverter;
 import org.dspace.app.rest.model.EPersonRest;
 import org.dspace.app.rest.projection.Projection;
@@ -24,13 +24,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Test of {@link CanCreateProjectManager} implementation.
+ * Test of {@link IsFunderOrganizationalManager} implementation.
  *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
  */
-public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest {
+public class IsFunderOrganizationalManagerIT extends AbstractControllerIntegrationTest {
 
-    private AuthorizationFeature canCreateProjectManager;
+    private AuthorizationFeature isFunderOrganizationalManager;
 
     @Autowired
     private ConfigurationService configurationService;
@@ -55,12 +55,12 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         context.restoreAuthSystemState();
 
-        canCreateProjectManager = authorizationFeatureService.find(CanCreateProjectManager.NAME);
+        isFunderOrganizationalManager = authorizationFeatureService.find(IsFunderOrganizationalManager.NAME);
 
     }
 
     @Test
-    public void testCanCreateProjectManagerWhenCurrentUserIsMemberOfManagersGroup() throws Exception {
+    public void testIsFunderOrganizationalManagerWhenCurrentUserIsMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
@@ -75,14 +75,14 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
 
-        boolean canCreate = canCreateProjectManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
 
-        assertThat(canCreate, is(true));
+        assertThat(isAuthorized, is(true));
 
     }
 
     @Test
-    public void testCanCreateProjectManagerWhenCurrentUserIsNotMemberOfManagersGroup() throws Exception {
+    public void testIsFunderOrganizationalManagerWhenCurrentUserIsNotMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
@@ -97,14 +97,14 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
 
-        boolean canCreate = canCreateProjectManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
 
-        assertThat(canCreate, is(false));
+        assertThat(isAuthorized, is(false));
 
     }
 
     @Test
-    public void testCanCreateProjectManagerWhenManagersGroupPropertyIsNull() throws Exception {
+    public void testIsFunderOrganizationalManagerWhenManagersGroupPropertyIsNull() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
@@ -119,14 +119,14 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         configurationService.setProperty("funder-organisational-managers.group", null);
 
-        boolean canCreate = canCreateProjectManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
 
-        assertThat(canCreate, is(false));
+        assertThat(isAuthorized, is(false));
 
     }
 
     @Test
-    public void testCanCreateProjectManagerWhenSentUserIsMemberOfManagersGroup() throws Exception {
+    public void testIsFunderOrganizationalManagerWhenSentUserIsMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(admin);
         context.turnOffAuthorisationSystem();
@@ -141,14 +141,14 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
         EPersonRest ePersonRest = ePersonConverter.convert(eperson, Projection.DEFAULT);
-        boolean canCreate = canCreateProjectManager.isAuthorized(context, ePersonRest);
+        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, ePersonRest);
 
-        assertThat(canCreate, is(true));
+        assertThat(isAuthorized, is(true));
 
     }
 
     @Test
-    public void testCanCreateProjectManagerWhenSentUserIsNotMemberOfManagersGroup() throws Exception {
+    public void testIsFunderOrganizationalManagerWhenSentUserIsNotMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(admin);
         context.turnOffAuthorisationSystem();
@@ -163,9 +163,9 @@ public class CanCreateProjectManagerIT extends AbstractControllerIntegrationTest
 
         configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
         EPersonRest ePersonRest = ePersonConverter.convert(eperson, Projection.DEFAULT);
-        boolean canCreate = canCreateProjectManager.isAuthorized(context, ePersonRest);
+        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, ePersonRest);
 
-        assertThat(canCreate, is(false));
+        assertThat(isAuthorized, is(false));
 
     }
 

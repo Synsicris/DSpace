@@ -350,28 +350,6 @@
       <copyright />
       <sidebar />
       <license />
-      <entity-type>pot_societalimpact</entity-type>
-      <submission-type>pot_societalimpact</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Expected societal impacts (new)</name>
-      <name language="de">Erwartete gesellschaftliche Wirkungen (neu)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
       <entity-type>exp_societalimpact</entity-type>
       <submission-type>exp_societalimpact</submission-type>
       <policy-group rpType="admin">project_template_admin_group</policy-group>
@@ -498,6 +476,28 @@
       </item-template>
     </collection>
     <collection>
+      <name language="en">Negative side effects</name>
+      <name language="de">Negative Nebenwirkungen</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>neg_sideeffect</entity-type>
+      <submission-type>neg_sideeffects</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
+      </item-template>
+    </collection>
+    <collection>
       <name language="en">Work and cooperations after project end</name>
       <name language="de">Arbeiten und Kooperationen nach Projektende</name>
       <description />
@@ -541,28 +541,6 @@
       	<metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
-    <collection>
-      <name language="en">Others</name>
-      <name language="de">Sonstiges</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>other</entity-type>
-      <submission-type>others</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
-      </item-template>
-    </collection>  
     <collection>
       <name language="en">Patents and utility patents</name>
       <name language="de">Patente und Gebrauchsmuster</name>
@@ -768,7 +746,29 @@
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">project</metadata>
       </item-template>
-    </collection>  
+    </collection>
+    <collection>
+      <name language="en">Open research questions</name>
+      <name language="de">Offene Forschungsfragen</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <license />
+      <entity-type>open_researchquestion</entity-type>
+      <submission-type>open_researchquestions</submission-type>
+      <policy-group rpType="admin">project_template_admin_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="item_read">project_template_members_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+      <item-template>
+      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+      	<metadata name="cris.project.shared">project</metadata>
+      </item-template>
+    </collection>    
     <collection>
       <name language="en">Spin-offs (incl. associations)</name>
       <name language="de">Ausgründungen (inkl. Vereine)</name>
@@ -1050,29 +1050,6 @@
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>     	
       	<metadata name="synsicris.type.easy-import">No</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Subcontractors</name>
-      <name language="de">Unterauftragnehmer</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>subcontractor</entity-type>
-      <submission-type>subcontractors</submission-type>
-      <policy-group rpType="admin">funding_template_admin_group</policy-group>
-      <policy-group rpType="read">funding_template_members_group</policy-group>
-	  <policy-group rpType="add">funding_template_members_group</policy-group>
-      <policy-group rpType="item_read">funding_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	    <metadata name="cris.project.shared">funding</metadata>
-	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
       </item-template>
     </collection>
     <collection>

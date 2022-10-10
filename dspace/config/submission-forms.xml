@@ -1321,11 +1321,22 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
-          <label>Date of issue</label>
+          <label>Date issued</label>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Enter at least the year of publication, month and day are optional.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
@@ -1372,7 +1383,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>ispartof</dc-qualifier>
-          <label>In Journal or Serie</label>
+          <label>Journal or Serie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -6030,6 +6041,30 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
+    <form name="open_researchquestions">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Summary</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please give a brief summary of the main findings.</hint>
+        </field>
+      </row>
+    </form>
     <form name="products-dc-contributor-author">
       <row>
         <field>
@@ -8434,16 +8469,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Open research question</displayed-value>
+        <stored-value>open_researchquestion</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Contributions to funding programme objectives</displayed-value>
+        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

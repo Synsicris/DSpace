@@ -109,7 +109,7 @@
                 <entry key="RELATION.Project.cooperationpartner" value-ref="relationParentProjectCooperationpartnersConfiguration"/>
                 <entry key="RELATION.Project.ethic" value-ref="relationParentProjectEthicsConfiguration"/>
                 <entry key="RELATION.Project.Event" value-ref="relationParentProjectEventsConfiguration"/>
-                <entry key="RELATION.Project.pot_societalimpact" value-ref="relationParentProjectPotsocietalimpactsConfiguration"/>
+                <entry key="RELATION.Project.neg_sideeffect" value-ref="relationParentProjectNegativesideeffectsConfiguration"/>
                 <entry key="RELATION.Project.exp_societalimpact" value-ref="relationParentProjectExpsocietalimpactsConfiguration"/>
                 <entry key="RELATION.Project.condition" value-ref="relationParentProjectConditionsConfiguration"/>
                 <entry key="RELATION.Project.Funding" value-ref="relationParentProjectFundingsConfiguration"/>
@@ -118,7 +118,7 @@
                 <entry key="RELATION.Project.milestone" value-ref="relationParentProjectMilestonesConfiguration"/>
                 <entry key="RELATION.Project.step" value-ref="relationParentProjectStepsConfiguration"/>
                 <entry key="RELATION.Project.physical_object" value-ref="relationParentProjectPhysicalObjectsConfiguration"/>
-                <entry key="RELATION.Project.other" value-ref="relationParentProjectOthersConfiguration"/>
+                <entry key="RELATION.Project.open_researchquestion" value-ref="relationParentProjectOpenresearchquestionsConfiguration"/>
                 <entry key="RELATION.Project.Patent" value-ref="relationParentProjectPatentsConfiguration"/>
                 <entry key="RELATION.Project.plan_publication" value-ref="relationParentProjectPlanPublicationsConfiguration"/>
                 <entry key="RELATION.Project.process_event" value-ref="relationParentProjectProcessEventsConfiguration"/>
@@ -131,7 +131,6 @@
                 <entry key="RELATION.Project.innovationpotential" value-ref="relationParentProjectInnovationpotentialsConfiguration"/>
                 <entry key="RELATION.Project.spinoff" value-ref="relationParentProjectSpinoffsConfiguration"/>
                 <entry key="RELATION.Project.stateofart" value-ref="relationParentProjectStateofartsConfiguration"/>
-                <entry key="RELATION.Project.subcontractor" value-ref="relationParentProjectSubcontractorsConfiguration"/>
                 <entry key="RELATION.Project.targetgroup" value-ref="relationParentProjectTargetgroupsConfiguration"/>
                 <entry key="RELATION.Project.task" value-ref="relationParentProjectTasksConfiguration"/>
                 <entry key="RELATION.Project.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
@@ -140,7 +139,6 @@
 
                 <!-- Synsicris Funding Related items -->
                 <entry key="RELATION.Funding.exploitationplan" value-ref="relationFundingExploitationplansConfiguration"/>
-                <entry key="RELATION.Funding.subcontractor" value-ref="relationFundingSubcontractorsConfiguration"/>
                 <entry key="RELATION.Funding.projectpartner" value-ref="relationFundingProjectpartnersConfiguration"/>
                 <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
 
@@ -163,7 +161,7 @@
                 <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.ethic.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.pot_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.neg_sideeffect.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.exp_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.condition.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.gender.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -171,7 +169,7 @@
                 <entry key="RELATION.milestone.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.step.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.physical_object.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.other.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.open_researchquestion.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.Patent.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.plan_publication.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.process_event.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -184,7 +182,6 @@
                 <entry key="RELATION.innovationpotential.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.spinoff.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.stateofart.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.subcontractor.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.targetgroup.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.task.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.unexpected_result.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -192,7 +189,6 @@
                 <entry key="RELATION.impactpathway.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.exploitationplan.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.subcontractor.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
 
@@ -1771,7 +1767,7 @@
         </property>
     </bean>
 
-    <bean id="relationParentProjectPotsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    <bean id="relationParentProjectNegativesideeffectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -1790,7 +1786,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:pot_societalimpact</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:neg_sideeffect</value>
             </list>
         </property>
     </bean>
@@ -1989,7 +1985,7 @@
         </property>
     </bean>
 
-    <bean id="relationParentProjectOthersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    <bean id="relationParentProjectOpenresearchquestionsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2008,7 +2004,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:other</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:open_researchquestion</value>
             </list>
         </property>
     </bean>
@@ -2293,55 +2289,6 @@
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
                 <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:stateofart</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="relationParentProjectSubcontractorsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- subcontractors related to a funding -->
-    <bean id="relationFundingSubcontractorsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.funding_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
             </list>
         </property>
     </bean>

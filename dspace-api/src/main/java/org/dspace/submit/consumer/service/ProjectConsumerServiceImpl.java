@@ -71,9 +71,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 if (entityType != null && entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
                     projectCommunity = getProjectCommunity(context, item);
                 } else {
-                    projectCommunity = getProjectCommunityByRelationProject(context, item);    
-                }                
-                
+                    projectCommunity = getProjectCommunityByRelationProject(context, item);
+                }
+
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }
@@ -97,14 +97,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                             }
                         }
                         break;
-                    case ProjectConstants.SHARED:
-                        setPolicyGroup(context, item, configurationService.getProperty("project.creation.group"));
-                        break;
                     case ProjectConstants.FUNDER:
                         setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
-                        break;
-                    case ProjectConstants.FUNDER_PROGRAMME:
-                        setPolicyGroup(context,item,configurationService.getProperty("project.funder_programme.group"));
                         break;
                     default:
                         return;

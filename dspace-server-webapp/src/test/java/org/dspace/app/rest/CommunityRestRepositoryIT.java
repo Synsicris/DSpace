@@ -3071,7 +3071,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         boolean author2Found = StringUtils.equals(valuesItem1.get(1).getAuthority(), author1.getID().toString())
                             || StringUtils.equals(valuesItem1.get(1).getAuthority(), author2.getID().toString());
         boolean author3Found = StringUtils.equals(valuesItem2.get(0).getAuthority(), author3.getID().toString());
-        return (author1Found && author2Found && author3Found);
+        return author1Found && author2Found && author3Found;
     }
 
     @Test
@@ -3302,7 +3302,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     @Test
     public void cloneCommunityWithGrantsValueTest() throws Exception {
         context.turnOffAuthorisationSystem();
-        
+
         Community cloneTarget = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities")
                                                 .build();
@@ -3397,7 +3397,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
         }
         return false;
     }
-    
+
     private <T extends DSpaceObject> boolean containMetadata(DSpaceObjectService<T> service, T target, String schema,
             String element, String qualifier, String valueToCheck, String authorityToCheck) {
         List<MetadataValue> mdv = service.getMetadata(target, schema, element, qualifier, null);

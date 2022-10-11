@@ -16,6 +16,7 @@ import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.EPersonRest;
+import org.dspace.app.rest.model.SiteRest;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
@@ -51,7 +52,7 @@ public class IsFunderOrganizationalManager implements AuthorizationFeature {
     @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
         Group group = getGroup(context);
-        if (Objects.isNull(group) || (!Objects.isNull(object) && !(object instanceof EPersonRest))) {
+        if (Objects.isNull(group)) {
             return false;
         }
         EPerson ePerson = getEPerson(context, object);
@@ -69,7 +70,7 @@ public class IsFunderOrganizationalManager implements AuthorizationFeature {
 
     private EPerson getEPerson(Context context, BaseObjectRest object) throws SQLException {
         EPerson ePerson = context.getCurrentUser();
-        if (!Objects.isNull(object)) {
+        if (!Objects.isNull(object) && object instanceof EPersonRest) {
             ePerson = ePersonService.find(context, UUID.fromString(String.valueOf(object.getId())));
         }
         return ePerson;
@@ -77,7 +78,10 @@ public class IsFunderOrganizationalManager implements AuthorizationFeature {
 
     @Override
     public String[] getSupportedTypes() {
-        return new String[] { EPersonRest.CATEGORY + "." + EPersonRest.NAME };
+        return new String[] {
+            EPersonRest.CATEGORY + "." + EPersonRest.NAME,
+            SiteRest.CATEGORY + "." + SiteRest.NAME
+        };
     }
 
 }

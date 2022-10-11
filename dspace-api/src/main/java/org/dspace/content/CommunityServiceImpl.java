@@ -18,12 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.metrics.service.CrisMetricsService;
 import org.dspace.app.util.AuthorizeUtil;
@@ -70,7 +72,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     /**
      * log4j category
      */
-    private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(CommunityServiceImpl.class);
+    private static final Logger log = LogManager.getLogger(CommunityServiceImpl.class);
 
     @Autowired
     protected CommunityDAO communityDAO;
@@ -113,7 +115,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
     private String matadataToSkipIfAlreadyPresent[] = new String[] {
         "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
-    
+
     private String matadataToSkip[] = new String[] { "synsicris.struct-builder.identifier" };
 
     protected CommunityServiceImpl() {
@@ -135,7 +137,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     public Community create(Community parent, Context context, String handle,
                             UUID uuid) throws SQLException, AuthorizeException {
         if (!(authorizeService.isAdmin(context) ||
-                (parent != null && authorizeService.authorizeActionBoolean(context, parent, Constants.ADD)))) {
+                parent != null && authorizeService.authorizeActionBoolean(context, parent, Constants.ADD))) {
             throw new AuthorizeException(
                     "Only administrators can create communities");
         }
@@ -263,7 +265,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         // Check authorisation
         // authorized to remove the logo when DELETE rights
         // authorized when canEdit
-        if (!((is == null) && authorizeService.authorizeActionBoolean(
+        if (!(is == null && authorizeService.authorizeActionBoolean(
                 context, community, Constants.DELETE))) {
             canEdit(context, community);
         }
@@ -761,8 +763,14 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         boolean isProject = Objects.nonNull(parent) && parent.getID().toString().equals(projectRootCommId);
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, parent, projectRootCommId, isProject);
 
-        List<MetadataValue> relationMd = this.getMetadata(template, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
-                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
+        List<MetadataValue> relationMd =
+            this.getMetadata(
+                template,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null
+        );
         UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
         newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
                                       name, grants, newItems, oldItem2clonedItem);
@@ -1010,66 +1018,164 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      */
     private Map<UUID, Group> createScopedRoles(Context context, Community project, Community parent,
             String projectRootCommunityID, boolean isProject) throws SQLException, AuthorizeException {
-
-        Map<UUID, Group> groupsMap = new HashMap<>();
-        String[] templateGroupsName = (isProject || Objects.isNull(parent)) ?
-                configurationService.getArrayProperty("project.template.groups-name") :
-                    configurationService.getArrayProperty("project.funding-template.groups-name");
-        if (templateGroupsName.length > 0) {
-            for (int i = 0; i < templateGroupsName.length; i++) {
-                Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
-                if (templateGroup != null && StringUtils.isNotBlank(templateGroup.getName())) {
-                    String[] name_parts = extractName(templateGroup.getName());
-                    if (name_parts.length == 2) {
-                        Group scopedRole = groupService.create(context);
-                        groupService.addMember(context, scopedRole, context.getCurrentUser());
-                        String roleName = name_parts[0] + project.getID().toString() + name_parts[1] + "_group";
-                        groupService.setName(scopedRole, roleName);
-                        groupsMap.put(templateGroup.getID(), scopedRole);
-                    } else {
-                        throw new RuntimeException("The group name : " + templateGroup.getName()
-                              + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
-                    }
-                }
+        Map<UUID, Group> groupsMap;
+        String[] projectTemplates = configurationService.getArrayProperty("project.template.groups-name");
+        if (isProject || Objects.isNull(parent)) {
+            String[] projectUserGroups = configurationService.getArrayProperty("project.template.add-user-groups");
+            groupsMap = new HashMap<>(projectTemplates.length + projectUserGroups.length);
+            groupsMap.putAll(
+                createTemplateGroups(
+                    context,
+                    project,
+                    projectUserGroups
+                )
+            );
+            Map<UUID, Group> projectGroupsMap =
+                createTemplateGroups(
+                    context,
+                    project,
+                    projectTemplates
+                );
+            if (!isProject) {
+                groupsMap.putAll(projectGroupsMap);
+            }
+        } else {
+            String[] fundingTemplates = configurationService.getArrayProperty("project.funding-template.groups-name");
+            groupsMap = new HashMap<>(fundingTemplates.length + projectTemplates.length);
+            groupsMap.putAll(
+                createTemplateGroups(
+                    context,
+                    project,
+                    fundingTemplates
+                )
+            );
+            Community projectComm =
+                Optional.ofNullable(parent.getParentCommunities())
+                    .map(l -> l.get(0))
+                    .orElse(null);
+            if (projectComm != null && projectComm.getID().toString().equals(projectRootCommunityID)) {
+                addCommunityGroupsFromTemplate(
+                    context,
+                    projectComm,
+                    groupsMap,
+                    projectTemplates
+                );
             }
         }
-        
-        if (!isProject && Objects.nonNull(parent)) {
-            String[] projectGroupsName = configurationService.getArrayProperty("project.template.groups-name");
-            if (projectGroupsName.length > 0) {
-                Community projectComm = parent.getParentCommunities().get(0);
-                if (Objects.nonNull(projectComm) &&
-                    (projectComm.getParentCommunities().get(0).getID().toString().equals(projectRootCommunityID))) {
-                    for (int i = 0; i < projectGroupsName.length; i++) {
-                        Group templateProjectGroup = groupService.findByName(context, projectGroupsName[i]);
-                        if (templateProjectGroup != null && StringUtils.isNotBlank(templateProjectGroup.getName())) {
-                            String[] name_parts = extractName(templateProjectGroup.getName());
-                            if (name_parts.length == 2) {
-                                String roleName = name_parts[0] + projectComm.getID().toString() + name_parts[1] +
-                                        "_group";
-                                Group scopedRole = groupService.findByName(context, roleName);
-                                if (scopedRole != null) {
-                                    groupsMap.put(templateProjectGroup.getID(), scopedRole);
-                                } else {
-                                    throw new RuntimeException("Cannot find projcet community for funding tamplate " + 
-                                            project.getID().toString());
-                                }
-                            } else {
-                                throw new RuntimeException("The group name : " + templateProjectGroup.getName()
-                                + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
-                            }
-                        }
-                    }   
-                }
-            }
-        }
-       
+        groupsMap
+            .forEach((uuid, group) -> {
+                groupService.addMember(context, group, context.getCurrentUser());
+            });
         return groupsMap;
     }
 
+    private Map<UUID, Group> createTemplateGroups(
+        Context context,
+        Community project,
+        String[] templateGroupsName
+    ) throws SQLException, AuthorizeException {
+        if (templateGroupsName == null || templateGroupsName.length == 0) {
+            return Map.of();
+        }
+        Map<UUID, Group> groupsMap = new HashMap<>(templateGroupsName.length);
+        for (int i = 0; i < templateGroupsName.length; i++) {
+            String currentTemplateGroup = templateGroupsName[i];
+            Group templateGroup = groupService.findByName(context, currentTemplateGroup);
+            if (isValidGroup(templateGroup)) {
+                String projectId = project.getID().toString();
+                String[] name_parts = getValidGroupTemplateParts(templateGroup);
+                Group scopedRole = groupService.findByName(context, formatGroup(projectId, name_parts));
+                if (scopedRole == null) {
+                    scopedRole = createGroupFromTemplate(context, projectId, name_parts);
+                }
+                groupsMap.put(templateGroup.getID(), scopedRole);
+            } else {
+                log.warn("Cannot find a valid group for properties group template {}", currentTemplateGroup);
+            }
+        }
+        return groupsMap;
+    }
+
+    private void addCommunityGroupsFromTemplate(
+        Context context,
+        Community project,
+        Map<UUID, Group> groupsMap,
+        String[] templateGroupsName
+    ) throws SQLException, AuthorizeException {
+        if (templateGroupsName == null || templateGroupsName.length == 0) {
+            return;
+        }
+        for (int i = 0; i < templateGroupsName.length; i++) {
+            String currentTemplateGroup = templateGroupsName[i];
+            Group templateGroup = groupService.findByName(context, currentTemplateGroup);
+            if (isValidGroup(templateGroup)) {
+                String[] name_parts = getValidGroupTemplateParts(templateGroup);
+                Group scopedRole = getValidProjectGroup(context, project.getID().toString(), name_parts);
+                groupsMap.put(templateGroup.getID(), scopedRole);
+            } else {
+                log.warn("Cannot find a valid group for properties group template {}", currentTemplateGroup);
+            }
+        }
+    }
+
+    private Group getValidProjectGroup(Context context, String projectId, String[] name_parts) throws SQLException {
+        Group scopedRole = groupService.findByName(context, formatGroup(projectId, name_parts));
+        if (!isValidGroup(scopedRole)) {
+            throw new RuntimeException(
+                "Cannot find project community for funding tamplate " +
+                projectId
+            );
+        }
+        return scopedRole;
+    }
+
+    private String[] getValidGroupTemplateParts(Group templateGroup) {
+        String[] name_parts = extractName(templateGroup.getName());
+        if (!isValidTemplate(name_parts)) {
+            throw new RuntimeException(
+                "The group name : " +
+                templateGroup.getName() +
+                " is bad formed! It should have the following format : project_<UUID>_<NAME>_group"
+            );
+        }
+        return name_parts;
+    }
+
+
+    private Group createGroupFromTemplate(
+        Context context,
+        String projectId,
+        String[] name_parts
+    ) throws SQLException, AuthorizeException {
+        Group scopedRole = groupService.create(context);
+        groupService.setName(scopedRole, formatGroup(projectId, name_parts));
+        return scopedRole;
+    }
+
+    private String formatGroup(String projectId, String[] name_parts) {
+        return new StringBuilder(name_parts[0])
+                    .append(projectId)
+                    .append(name_parts[1])
+                    .append("_group")
+                    .toString();
+    }
+
+    private boolean isValidTemplate(String[] name_parts) {
+        return name_parts != null && name_parts.length == 2;
+    }
+
+    private boolean isValidGroup(Group templateGroup) {
+        return templateGroup != null && StringUtils.isNotBlank(templateGroup.getName());
+    }
+
     private String[] extractName(String groupName) {
+        if (groupName == null) {
+            return null;
+        }
+
         Pattern pattern = Pattern.compile("^((?:project_|funding_)).*(_.*)(_group)$");
         Matcher matcher = pattern.matcher(groupName);
+
         if (matcher.matches()) {
             return new String[] {matcher.group(1),matcher.group(2)};
         } else {

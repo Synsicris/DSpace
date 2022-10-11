@@ -86,7 +86,7 @@
 
 					<!-- entity name -->
 					<xsl:call-template name="entity-title-ruler">
-				    <xsl:with-param name="entityName" select="'Kooperation / Partizipation / Austauschprozess'" />
+				    <xsl:with-param name="entityName" select="'Ethik'" />
 			    </xsl:call-template>
 			    
 					<!-- title -->
@@ -95,64 +95,30 @@
 						<xsl:with-param name="value" select="cerif:Title" />
 					</xsl:call-template>
 
-					<!-- description -->
-					<xsl:call-template name="key-value-single">
-				    <xsl:with-param name="label" select="'Beschreibung'" />
-				    <xsl:with-param name="value" select="cerif:Description" />
-			    </xsl:call-template>
-			   
-					<!-- purposes-->
 					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Ziele'" />
-				    <xsl:with-param name="values" select="cerif:Purpose" />
-			    </xsl:call-template>
-			    
-					<!-- involved organisations -->
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Beteiligte'" />
-				    <xsl:with-param name="values" select="cerif:Organisation" />
-			    </xsl:call-template>
-
-					<!-- section frequency of cooperation processes -->
-					<xsl:call-template name="section-title-ruler">
-				    <xsl:with-param name="sectionName" select="'Häufigkeit der Kooperationsprozesse'" />
-			    </xsl:call-template>
-
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Process type'" />
-				    <xsl:with-param name="values" select="cerif:Processes" />
-			    </xsl:call-template>
-
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Process type2'" />
-				    <xsl:with-param name="values" select="cerif:Processes/cerif:Process/cerif:Type" />
-			    </xsl:call-template>					
-
-					<fo:block text-align="left" margin-top="10mm">
-						<xsl:text>Where is the data?</xsl:text>
-					</fo:block>					
-
-					<xsl:for-each select="cerif:Processes/cerif:Process">
-						<fo:block font-size="10pt">
-							<xsl:value-of select="cerif:Type" /> at <xsl:value-of select="cerif:Duration" />
-							from <xsl:value-of select="cerif:Period" />
-						</fo:block>
-					</xsl:for-each>
+				    <xsl:with-param name="label" select="'Type'" />
+				    <xsl:with-param name="values" select="cerif:Aspects/cerif:Aspect/cerif:Type" />
+			    </xsl:call-template>						
 
 					<!-- table frequency of cooperation processes -->
 					<xsl:call-template name="table-frequency">
-						<xsl:with-param name="process" select="cerif:Organisation" />
+						<xsl:with-param name="process" select="cerif:Aspects/cerif:Aspect/cerif:Type" />
 					</xsl:call-template>
 
-					<!-- section central activities -->
-					<xsl:call-template name="section-title-ruler">
-				    <xsl:with-param name="sectionName" select="'Daten zentraler Aktivitäten'" />
-			    </xsl:call-template>
+					<fo:block text-align="left" margin-top="5mm">
+						<xsl:text>Where is the data?</xsl:text>
+					</fo:block>					
 
-					<!-- table central activities -->
-					<!-- <xsl:call-template name="table-activities">
-						<xsl:with-param name="values" select="cerif:Stakeholder" />
-					</xsl:call-template>					 -->
+					<xsl:for-each select="cerif:Aspects/cerif:Aspect">
+						<fo:block font-size="10pt">
+							<xsl:value-of select="cerif:Type" />
+						</fo:block>
+					</xsl:for-each>
+
+					<!-- table frequency of cooperation processes two -->
+					<xsl:call-template name="table-frequency-two">
+						<xsl:with-param name="process" select="cerif:Aspects/cerif:Aspect" />
+					</xsl:call-template>
 
 				</fo:flow>
 			</fo:page-sequence>
@@ -218,13 +184,13 @@
 
 				<fo:inline font-weight="bold" text-align="right">
 					<xsl:value-of select="$label" /> 
-				</fo:inline >
+				</fo:inline>
 
 				<xsl:text>: </xsl:text>
 
 				<fo:inline>
 					<xsl:value-of select="$value" /> 
-				</fo:inline >
+				</fo:inline>
 
 			</fo:block>
 	  </xsl:if>
@@ -243,7 +209,7 @@
 				<fo:inline font-weight="bold" 
 				           text-align="right"  >
 					<xsl:value-of select="$label" /> 
-				</fo:inline >
+				</fo:inline>
 
 				<xsl:text>: </xsl:text>
 
@@ -252,7 +218,7 @@
 					  <xsl:value-of select="current()" />
 					  <xsl:if test="position() != last()">, </xsl:if> <!-- do only this for the last item -->
 					</xsl:for-each>
-				</fo:inline >
+				</fo:inline>
 
 			</fo:block>
 		</xsl:if>
@@ -271,7 +237,7 @@
 				<fo:inline font-weight="bold" 
 				           text-align="right"  >
 					<xsl:value-of select="$label" /> 
-				</fo:inline >
+				</fo:inline>
 
 				<xsl:text>: </xsl:text>
 			</fo:block>
@@ -367,5 +333,58 @@
 			</fo:table>
 		</fo:block>	
 	</xsl:template>	
+
 	
+	<!-- table frequency -->	
+	<xsl:template name = "table-frequency-two" >
+		<xsl:param name = "process" />
+
+		<fo:block margin-top="{$mainMarginTop}">
+
+			<fo:table table-layout="fixed"  
+			          border-before-style="hidden" 
+								border-after-style="hidden"
+								border-start-style="hidden"
+								border-end-style="hidden"> <!-- the style "none" is default, but still shows lines -->
+                                           <!-- the width of the table cannot be controlled here, is done via the columns -->
+				<!-- define the columns -->				
+				<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
+				<fo:table-column column-width="40%"/>                           
+				<fo:table-column column-width="40%"/>
+				<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+				                                                                <!-- in addition the columns need to be numbered, omitting the first and last column --> 
+				<!-- define the header -->
+				<fo:table-header color="#808080">
+					<fo:table-cell column-number="2" border-width="thin"  border-style="solid" border-start-style="hidden">
+						<fo:block text-align="center" font-weight="bold">Art</fo:block>
+					</fo:table-cell>
+					<fo:table-cell column-number="3" border-width="thin" border-style="solid" border-end-style="hidden">
+						<fo:block text-align="center" font-weight="bold">Dauer (h)</fo:block>
+					</fo:table-cell>										
+				</fo:table-header>
+
+				<fo:table-body>					
+					<xsl:for-each select="$process">
+						<fo:table-row>
+
+							<fo:table-cell column-number="2" border-width="thin" border-style="solid" border-start-style="hidden">
+							<fo:block text-align="center">
+								<xsl:value-of select="cerif:Type" />
+							</fo:block>
+						</fo:table-cell>
+
+						<fo:table-cell column-number="3" border-width="thin" border-style="solid" border-end-style="hidden">
+							<fo:block text-align="center">
+								<xsl:value-of select="cerif:Type" />
+							</fo:block>
+						</fo:table-cell>						
+
+						</fo:table-row>
+					</xsl:for-each>
+				</fo:table-body>
+
+			</fo:table>
+		</fo:block>	
+	</xsl:template>
+
 </xsl:stylesheet>

@@ -70,7 +70,7 @@ public class IsFunderOrganizationalManager implements AuthorizationFeature {
 
     private EPerson getEPerson(Context context, BaseObjectRest object) throws SQLException {
         EPerson ePerson = context.getCurrentUser();
-        if (object instanceof EPersonRest && !Objects.isNull(object)) {
+        if (!Objects.isNull(object) && object instanceof EPersonRest) {
             ePerson = ePersonService.find(context, UUID.fromString(String.valueOf(object.getId())));
         }
         return ePerson;

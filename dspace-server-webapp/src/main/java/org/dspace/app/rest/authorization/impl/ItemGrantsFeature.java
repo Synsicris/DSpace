@@ -77,8 +77,8 @@ public class ItemGrantsFeature implements AuthorizationFeature {
                 if (Objects.isNull(fundings) || fundings.size() != 1) {
                     return false;
                 }
-                boolean isAdminOfFunding = isAdminMemberOfFunding(context, fundings.get(0), currentUser);
-                if (isAdminOfFunding || submitter.getID().equals(currentUser.getID())) {
+                boolean isCoordinatorOfFunding = isCoordinatorMemberOfFunding(context, fundings.get(0), currentUser);
+                if (isCoordinatorOfFunding || submitter.getID().equals(currentUser.getID())) {
                     return true;
                 }
             }
@@ -110,11 +110,11 @@ public class ItemGrantsFeature implements AuthorizationFeature {
                 Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
     }
 
-    private boolean isAdminMemberOfFunding(Context context, Community community, EPerson submitter)
+    private boolean isCoordinatorMemberOfFunding(Context context, Community community, EPerson submitter)
             throws SQLException {
 
         Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community,
-                ProjectConstants.ADMIN_ROLE);
+                ProjectConstants.COORDINATOR_ROLE);
         if (!Objects.isNull(group) && groupService.isMember(context, submitter, group)) {
             return true;
         }

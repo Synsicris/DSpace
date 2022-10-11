@@ -34,18 +34,26 @@ public class ProjectConstants {
 
     public static final String PROJECTPARTNER_ENTITY = "projectpartner";
     
-    public static final String ADMIN_ROLE = "admin";
+    public static final String COORDINATOR_ROLE = "admin";
     
-    public static final String ADMIN_GROUP_TEMPLATE = "project_%s_admin_group";
+    public static final String COORDINATOR_GROUP_TEMPLATE = "project_%s_admin_group";
     
     public static final String FUNDING_ADMIN_GROUP_TEMPLATE = "funding_%s_admin_group";
     
     public static final String MEMBERS_ROLE = "members";
 
     public static final String MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";
-    
+
     public static final String FUNDING_MEMBERS_GROUP_TEMPLATE = "funding_%s_members_group";
-    
+
+    public static final String FUNDERS_ROLE = "funders";
+
+    public static final String FUNDERS_GROUP_TEMPLATE = "project_%s_funders_group";
+
+    public static final String READERS_ROLE = "readers";
+
+    public static final String READERS_GROUP_TEMPLATE = "project_%s_readers_group";
+
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
     public static final MetadataFieldName MD_RELATION_ITEM_ENTITY =

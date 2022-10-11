@@ -735,7 +735,7 @@ public class ProjectsMigrationScript extends
         if (!isSubproject) {
             parentProjectAdminGroup = adminGroup;
         }
-        scopedRoles.put("project_template_admin_group", adminGroup);
+        scopedRoles.put("project_template_coordinators_group", adminGroup);
 
         StringBuilder memberGroupName = new StringBuilder("project_")
                                                   .append(community.getID().toString())

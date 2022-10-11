@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.dspace.app.rest.authorization.impl.IsAdminOfProjectFeature;
+import org.dspace.app.rest.authorization.impl.IsCoordinatorOfProjectFeature;
 import org.dspace.app.rest.converter.ItemConverter;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.projection.Projection;
@@ -33,7 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest {
+public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private ItemConverter itemConverter;
@@ -44,7 +44,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
     @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
-    private AuthorizationFeature isAdminOfProject;
+    private AuthorizationFeature isCoordinatorOfProject;
 
     private Item parentProjectEntity;
 
@@ -55,7 +55,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
         context.turnOffAuthorisationSystem();
 
-        isAdminOfProject = authorizationFeatureService.find(IsAdminOfProjectFeature.NAME);
+        isCoordinatorOfProject = authorizationFeatureService.find(IsCoordinatorOfProjectFeature.NAME);
 
         Community joinProjects = createCommunity("Joint projects");
 
@@ -90,7 +90,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(eperson.getID()))
-            .param("feature", IsAdminOfProjectFeature.NAME))
+            .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
     }
@@ -102,12 +102,12 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
         String token = getAuthToken(admin.getEmail(), password);
 
-        Authorization expectedAuthorization = new Authorization(admin, isAdminOfProject, itemRest);
+        Authorization expectedAuthorization = new Authorization(admin, isCoordinatorOfProject, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(admin.getID()))
-            .param("feature", IsAdminOfProjectFeature.NAME))
+            .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
     }
@@ -130,7 +130,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
             .param("eperson", String.valueOf(user.getID()))
-            .param("feature", IsAdminOfProjectFeature.NAME))
+            .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
     }
@@ -164,12 +164,12 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
 
         ItemRest itemRest = itemConverter.convert(publication, Projection.DEFAULT);
 
-        Authorization expectedAuthorization = new Authorization(admin, isAdminOfProject, itemRest);
+        Authorization expectedAuthorization = new Authorization(admin, isCoordinatorOfProject, itemRest);
         getClient(getAuthToken(admin.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(admin.getID()))
-                .param("feature", IsAdminOfProjectFeature.NAME))
+                .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
 
@@ -177,7 +177,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(eperson.getID()))
-                .param("feature", IsAdminOfProjectFeature.NAME))
+                .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
 
@@ -185,7 +185,7 @@ public class IsAdminOfProjectFeatureIT extends AbstractControllerIntegrationTest
             .perform(get("/api/authz/authorizations/search/object")
                 .param("uri", getItemUri(itemRest))
                 .param("eperson", String.valueOf(user.getID()))
-                .param("feature", IsAdminOfProjectFeature.NAME))
+                .param("feature", IsCoordinatorOfProjectFeature.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
 

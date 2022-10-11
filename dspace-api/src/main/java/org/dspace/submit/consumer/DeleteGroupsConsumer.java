@@ -26,7 +26,7 @@ import org.dspace.project.util.ProjectConstants;
 /**
  * Implementation of {@link Consumer} this consumer has the role
  * of deleting hung groups of deleted communities.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class DeleteGroupsConsumer implements Consumer {
@@ -53,14 +53,22 @@ public class DeleteGroupsConsumer implements Consumer {
                 if (communitiesAlreadyProcessed.contains(uuid)) {
                     return;
                 }
+
                 Group membersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, false);
-                Group adminGroup = searchGroup(context, uuid, ProjectConstants.ADMIN_ROLE, false);
+                Group coordinatorGroup = searchGroup(context, uuid, ProjectConstants.COORDINATOR_ROLE, false);
+                Group fundersGroup = searchGroup(context, uuid, ProjectConstants.FUNDERS_ROLE, false);
+                Group readersGroup = searchGroup(context, uuid, ProjectConstants.READERS_ROLE, false);
+
                 Group fundingMembersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, true);
-                Group fundingAdminGroup = searchGroup(context, uuid, ProjectConstants.ADMIN_ROLE, true);
+                Group fundingCoordinatorGroup = searchGroup(context, uuid, ProjectConstants.COORDINATOR_ROLE, true);
+
                 deleteGroup(context, membersGroup);
-                deleteGroup(context, adminGroup);
+                deleteGroup(context, coordinatorGroup);
+                deleteGroup(context, fundersGroup);
+                deleteGroup(context, readersGroup);
+
                 deleteGroup(context, fundingMembersGroup);
-                deleteGroup(context, fundingAdminGroup);
+                deleteGroup(context, fundingCoordinatorGroup);
                 communitiesAlreadyProcessed.add(uuid);
             }
         }

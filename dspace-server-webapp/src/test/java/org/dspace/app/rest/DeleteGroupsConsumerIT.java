@@ -69,6 +69,14 @@ public class DeleteGroupsConsumerIT extends AbstractControllerIntegrationTest {
                      .withName("project_" + projectsCommunity.getID().toString() + "_admin_group")
                      .addMember(ePerson1).build();
 
+        Group projectsCommunityFunderGroup = GroupBuilder.createGroup(context)
+                      .withName("project_" + projectsCommunity.getID().toString() + "_funders_group")
+                      .addMember(ePerson1).build();
+
+        Group projectsCommunityReaderGroup = GroupBuilder.createGroup(context)
+                      .withName("project_" + projectsCommunity.getID().toString() + "_readers_group")
+                      .addMember(ePerson1).build();
+
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
@@ -114,6 +122,12 @@ public class DeleteGroupsConsumerIT extends AbstractControllerIntegrationTest {
                              .andExpect(status().isNotFound());
 
         getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityAdminGroup.getID()))
+                             .andExpect(status().isNotFound());
+
+        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityFunderGroup.getID()))
+                             .andExpect(status().isNotFound());
+
+        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityReaderGroup.getID()))
                              .andExpect(status().isNotFound());
 
         getClient(tokenAdmin).perform(get("/api/eperson/groups/" + subprojectAGroup.getID()))

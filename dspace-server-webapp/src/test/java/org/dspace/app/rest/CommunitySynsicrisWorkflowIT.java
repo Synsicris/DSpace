@@ -13,6 +13,12 @@ import static junit.framework.TestCase.assertEquals;
 import static org.dspace.builder.CollectionBuilder.createCollection;
 import static org.dspace.builder.CommunityBuilder.createCommunity;
 import static org.dspace.builder.CommunityBuilder.createSubCommunity;
+import static org.dspace.project.util.ProjectConstants.FUNDER_PROJECT_MANAGERS_GROUP;
+import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.TEMPLATE;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -64,13 +70,30 @@ import org.springframework.http.MediaType;
 
 public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationTest {
 
-    private static final String project_template_funders_group = "project_template_funders_group";
-    private static final String project_template_reader_group = "project_template_reader_group";
-    private static final String project_template_admin_group = "project_template_admin_group";
-    private static final String project_template_members_group = "project_template_members_group";
+    private static final String project_template_funders_group =
+        String.format(
+            PROJECT_FUNDERS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
+    private static final String project_template_readers_group =
+        String.format(
+            PROJECT_READERS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
+    private static final String project_template_coordinators_group =
+        String.format(
+            PROJECT_COORDINATORS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
+    private static final String project_template_members_group =
+        String.format(
+            PROJECT_MEMBERS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
 
     private static final String project_template_groups_name = "project.template.groups-name";
     private static final String project_template_add_user_groups = "project.template.add-user-groups";
+    private String funder_project_managers_group = FUNDER_PROJECT_MANAGERS_GROUP;
 
     @Autowired
     private CommunityService communityService;
@@ -94,26 +117,28 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         Group readGroup = GroupBuilder.createGroup(context).build();
         Group projAdminGroup = GroupBuilder.createGroup(context).build();
 
-        Group collectionGroupA = GroupBuilder.createGroup(context)
+        Group collectionGroupA =
+            GroupBuilder.createGroup(context)
                 .withName("Group A")
                 .build();
 
-        Group collectionGroupB = GroupBuilder.createGroup(context)
+        Group collectionGroupB =
+            GroupBuilder.createGroup(context)
                 .withName("Group B")
                 .build();
 
-        groupService.setName(adminGroup, project_template_admin_group);
+        groupService.setName(adminGroup, project_template_coordinators_group);
         groupService.setName(funderGroup, project_template_funders_group);
         groupService.setName(membersGroup, project_template_members_group);
-        groupService.setName(readGroup, project_template_reader_group);
-        groupService.setName(projAdminGroup, "funder_project_managers_group");
+        groupService.setName(readGroup, project_template_readers_group);
+        groupService.setName(projAdminGroup, funder_project_managers_group);
 
         configurationService.setProperty(
             project_template_groups_name,
             List.of(
                 project_template_funders_group,
-                project_template_admin_group,
-                project_template_reader_group,
+                project_template_coordinators_group,
+                project_template_readers_group,
                 project_template_members_group
             )
         );
@@ -183,12 +208,19 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
             assertEquals("My new Community", newCommunity.getName());
             assertNotEquals(parentCommunity.getID(), newCommunity.getID());
 
-            String funders_Group = project_template_funders_group.replaceAll("template",
-                    newCommunity.getID().toString());
-            String admin_Group = project_template_admin_group.replaceAll("template", newCommunity.getID().toString());
-            String members_Group = project_template_members_group.replaceAll("template",
-                    newCommunity.getID().toString());
-            String read_Group = project_template_reader_group.replaceAll("template", newCommunity.getID().toString());
+            String funders_Group =
+                project_template_funders_group.replaceAll(
+                    "template",
+                    newCommunity.getID().toString()
+                );
+            String admin_Group =
+                project_template_coordinators_group.replaceAll("template", newCommunity.getID().toString());
+            String members_Group =
+                project_template_members_group.replaceAll(
+                    "template",
+                    newCommunity.getID().toString()
+                );
+            String read_Group = project_template_readers_group.replaceAll("template", newCommunity.getID().toString());
 
             Group groupAdmin = groupService.findByName(context, admin_Group);
             Group groupMembers = groupService.findByName(context, members_Group);
@@ -251,25 +283,26 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
         Group adminGroup =
             GroupBuilder.createGroup(context)
-                .withName("funder_project_managers_group")
+                .withName(funder_project_managers_group)
                 .build();
 
-        Community cloneTarget = CommunityBuilder.createCommunity(context)
-                                                .withName("Community to hold cloned communities")
-                                                .withAdminGroup(adminGroup)
-                                                .build();
+        Community cloneTarget =
+            CommunityBuilder.createCommunity(context)
+                .withName("Community to hold cloned communities")
+                .withAdminGroup(adminGroup)
+                .build();
 
-        GroupBuilder.createGroup(context).withName(project_template_admin_group).build();
+        GroupBuilder.createGroup(context).withName(project_template_coordinators_group).build();
         GroupBuilder.createGroup(context).withName(project_template_funders_group).build();
         GroupBuilder.createGroup(context).withName(project_template_members_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_reader_group).build();
+        GroupBuilder.createGroup(context).withName(project_template_readers_group).build();
 
         configurationService.setProperty(
             project_template_groups_name,
             List.of(
                 project_template_funders_group,
-                project_template_admin_group,
-                project_template_reader_group,
+                project_template_coordinators_group,
+                project_template_readers_group,
                 project_template_members_group
             )
         );
@@ -278,21 +311,26 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
         Community parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
 
-        Community child1 = CommunityBuilder.createSubCommunity(context, parentCommunity).withName("Sub Community 1")
-                                           .build();
+        Community child1 =
+            CommunityBuilder.createSubCommunity(context, parentCommunity).withName("Sub Community 1")
+                .build();
 
-        Community child2 = CommunityBuilder.createSubCommunity(context, parentCommunity).withName("Sub Community 2")
-                                           .build();
+        Community child2 =
+            CommunityBuilder.createSubCommunity(context, parentCommunity).withName("Sub Community 2")
+                .build();
 
-        Collection col = CollectionBuilder.createCollection(context, parentCommunity)
-                                                       .withName("Collection of parent Community")
-                                                       .build();
-        Collection child1Col1 = CollectionBuilder.createCollection(context, child1)
-                                                 .withName("Child 1 Collection 1")
-                                                 .build();
-        Collection child2Col1 = CollectionBuilder.createCollection(context, child2)
-                                                 .withName("Child 2 Collection 1")
-                                                 .build();
+        Collection col =
+            CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("Collection of parent Community")
+                .build();
+        Collection child1Col1 =
+            CollectionBuilder.createCollection(context, child1)
+                .withName("Child 1 Collection 1")
+                .build();
+        Collection child2Col1 =
+            CollectionBuilder.createCollection(context, child2)
+                .withName("Child 2 Collection 1")
+                .build();
 
         context.restoreAuthSystemState();
 
@@ -336,9 +374,9 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
             List<Collection> collections = subCommunityOfCloneTarget.getCollections();
 
             String funders_Group = project_template_funders_group.replaceAll("template", idRef.toString());
-            String admin_Group = project_template_admin_group.replaceAll("template", idRef.toString());
+            String admin_Group = project_template_coordinators_group.replaceAll("template", idRef.toString());
             String members_Group = project_template_members_group.replaceAll("template", idRef.toString());
-            String read_Group = project_template_reader_group.replaceAll("template", idRef.toString());
+            String read_Group = project_template_readers_group.replaceAll("template", idRef.toString());
 
             Group groupAdmin = groupService.findByName(context, admin_Group);
             Group groupMembers = groupService.findByName(context, members_Group);

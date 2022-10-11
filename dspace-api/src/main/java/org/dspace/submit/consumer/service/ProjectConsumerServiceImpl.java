@@ -176,16 +176,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
                 break;
             case ProjectConstants.FUNDERS_ROLE:
-                template = ProjectConstants.FUNDERS_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
                 break;
             case ProjectConstants.READERS_ROLE:
-                template = ProjectConstants.READERS_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
                 break;
             default:
-                template = ProjectConstants.COORDINATOR_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, projectCommunity.getID().toString());

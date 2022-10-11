@@ -27,10 +27,10 @@
 	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
     </collection>
     <collection>
       <name language="en">Comments</name>
@@ -47,8 +47,8 @@
 	  <policy-group rpType="add">system_members_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
       	<metadata name="synsicris.date.creation">###DATE###</metadata>
@@ -70,8 +70,8 @@
 	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
     </collection>
@@ -91,10 +91,10 @@
 	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
     </collection>
     <collection>
       <name language="en">Persons</name>
@@ -110,9 +110,9 @@
       <policy-group rpType="read">system_members_group</policy-group>
 	  <policy-group rpType="add">system_members_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
     </collection>
     <collection>
       <name language="en">Progammes</name>
@@ -130,10 +130,10 @@
 	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">funder_programme</metadata>
@@ -150,7 +150,7 @@
     <policy-group rpType="remove">project_template_admin_group</policy-group>
     <policy-group rpType="delete">project_template_admin_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
-    <policy-group rpType="read">project_template_reader_group</policy-group>
+    <policy-group rpType="read">project_template_readers_group</policy-group>
     <has-item-reference>true</has-item-reference>
     <community>
       <name>Impactpathway objects</name>
@@ -161,7 +161,7 @@
 	  <policy-group rpType="admin">project_template_admin_group</policy-group>
       <policy-group rpType="remove">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-      <policy-group rpType="read">project_template_reader_group</policy-group>
+      <policy-group rpType="read">project_template_readers_group</policy-group>
       <collection>
         <name>Impactpathway steps</name>
         <description />
@@ -176,8 +176,8 @@
         <policy-group rpType="add">project_template_members_group</policy-group>
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
@@ -197,8 +197,8 @@
         <policy-group rpType="add">project_template_members_group</policy-group>
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -219,7 +219,7 @@
       <policy-group rpType="delete">project_template_admin_group</policy-group>
       <policy-group rpType="read">project_template_funders_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-      <policy-group rpType="read">project_template_reader_group</policy-group>
+      <policy-group rpType="read">project_template_readers_group</policy-group>
     </community>
     <collection>
       <name language="en">Applications of a solution / change / innovation</name>
@@ -236,8 +236,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
         <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -260,8 +260,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -284,8 +284,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -308,8 +308,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -332,8 +332,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -356,8 +356,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -380,8 +380,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -404,8 +404,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -428,8 +428,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -452,8 +452,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -476,8 +476,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -500,8 +500,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -525,8 +525,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -549,8 +549,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -573,8 +573,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -597,8 +597,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -621,8 +621,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -645,8 +645,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -669,8 +669,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -695,8 +695,8 @@
       <policy-group rpType="item_read">project_template_funders_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
       	<metadata name="cris.project.shared">project</metadata>      	
@@ -724,8 +724,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="synsicris.subject.agrovoc">###AGROVOCKEYWORDS.project###</metadata>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
@@ -749,8 +749,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -773,8 +773,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -797,8 +797,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -821,8 +821,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -845,8 +845,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -869,8 +869,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -893,10 +893,10 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -919,8 +919,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -943,8 +943,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -967,8 +967,8 @@
 	  <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
       	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
       	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
@@ -991,8 +991,8 @@
         <policy-group rpType="add">project_template_members_group</policy-group>
         <policy-group rpType="item_read">project_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
@@ -1027,7 +1027,7 @@
     <policy-group rpType="delete">funding_template_admin_group</policy-group>
     <policy-group rpType="read">funding_template_members_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
-    <policy-group rpType="read">project_template_reader_group</policy-group>
+    <policy-group rpType="read">project_template_readers_group</policy-group>
     <has-item-reference>true</has-item-reference>
     <community>
       <name>Exploitation plan objects</name>
@@ -1039,7 +1039,7 @@
       <policy-group rpType="remove">funding_template_admin_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="delete">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_reader_group</policy-group>
+      <policy-group rpType="read">project_template_readers_group</policy-group>
       <collection>
         <name>Exploitation plan steps</name>
         <description />
@@ -1054,8 +1054,8 @@
         <policy-group rpType="add">funding_template_members_group</policy-group>
         <policy-group rpType="item_read">funding_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
 	      <metadata name="cris.project.shared">funding</metadata>
@@ -1092,8 +1092,8 @@
         <policy-group rpType="add">funding_template_members_group</policy-group>
         <policy-group rpType="item_read">funding_template_members_group</policy-group>
         <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_reader_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
 	      <metadata name="cris.project.shared">funding</metadata>
@@ -1126,8 +1126,8 @@
 	  <policy-group rpType="add">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">funding_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
 	    <metadata name="cris.project.shared">funding</metadata>
@@ -1152,8 +1152,8 @@
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_reader_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_reader_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.admin###</metadata>
       	<metadata name="cris.project.shared">funding</metadata>

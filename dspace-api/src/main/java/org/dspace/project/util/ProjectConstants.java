@@ -11,10 +11,12 @@ import org.dspace.content.MetadataFieldName;
 
 /**
  * Class with constants for Project services.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ProjectConstants {
+
+    public static final String TEMPLATE = "template";
 
     public static final String FUNDER = "funder";
 
@@ -33,26 +35,29 @@ public class ProjectConstants {
     public static final String PROJECT_ENTITY = "Project";
 
     public static final String PROJECTPARTNER_ENTITY = "projectpartner";
-    
-    public static final String COORDINATOR_ROLE = "admin";
-    
-    public static final String COORDINATOR_GROUP_TEMPLATE = "project_%s_admin_group";
-    
+
+    public static final String COORDINATORS_ROLE = "coordinators";
+
+    public static final String PROJECT_COORDINATORS_GROUP_TEMPLATE = "project_%s_coordinators_group";
+
     public static final String FUNDING_ADMIN_GROUP_TEMPLATE = "funding_%s_admin_group";
-    
+
     public static final String MEMBERS_ROLE = "members";
 
-    public static final String MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";
+    public static final String PROJECT_MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";
 
     public static final String FUNDING_MEMBERS_GROUP_TEMPLATE = "funding_%s_members_group";
 
     public static final String FUNDERS_ROLE = "funders";
 
-    public static final String FUNDERS_GROUP_TEMPLATE = "project_%s_funders_group";
+    public static final String PROJECT_FUNDERS_GROUP_TEMPLATE = "project_%s_funders_group";
 
     public static final String READERS_ROLE = "readers";
 
-    public static final String READERS_GROUP_TEMPLATE = "project_%s_readers_group";
+    public static final String PROJECT_READERS_GROUP_TEMPLATE = "project_%s_readers_group";
+
+    public static final String FUNDER_PROJECT_MANAGERS_GROUP = "funder_project_managers_group";
+
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
@@ -61,19 +66,19 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_PROJECT_RELATION =
             new MetadataFieldName("synsicris", "relation", "project");
-    
+
     public static final MetadataFieldName MD_FUNDING_RELATION =
             new MetadataFieldName("synsicris", "relation", "funding");
-    
+
     public static final MetadataFieldName MD_EASYIMPORT =
             new MetadataFieldName("synsicris", "type", "easy-import");
 
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 
     public static final MetadataFieldName MD_RELATION_CALL = new MetadataFieldName("synsicris", "relation", "call");
-    
+
     public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
-   
+
     public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME = new MetadataFieldName("synsicris",
             "relation","programme");
     public static final MetadataFieldName MD_RELATION_CALLTOPROGRAMME = new MetadataFieldName("oairecerif",

@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 /**
  * The ItemGrants feature. It can be used for verify that an user
  * has access to modify the grants of a specific item.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component
@@ -88,9 +88,9 @@ public class ItemGrantsFeature implements AuthorizationFeature {
 
     @SuppressWarnings("rawtypes")
     private Item getItem(Context context, BaseObjectRest object) throws IllegalArgumentException, SQLException {
-        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, (ItemRest) object);
+        DSpaceObject dSpaceObject = (DSpaceObject) utils.getDSpaceAPIObjectFromRest(context, object);
         if (dSpaceObject.getType() == Constants.ITEM && Objects.nonNull(dSpaceObject)) {
-            return ((Item) dSpaceObject);
+            return (Item) dSpaceObject;
         }
         return null;
     }
@@ -105,7 +105,7 @@ public class ItemGrantsFeature implements AuthorizationFeature {
 
     private boolean isForbbidenEntityType(Context context, Item item) {
         String entiyType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-        
+
         return StringUtils.isNotBlank(entiyType) &&
                 Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
     }
@@ -114,7 +114,7 @@ public class ItemGrantsFeature implements AuthorizationFeature {
             throws SQLException {
 
         Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community,
-                ProjectConstants.COORDINATOR_ROLE);
+                ProjectConstants.COORDINATORS_ROLE);
         if (!Objects.isNull(group) && groupService.isMember(context, submitter, group)) {
             return true;
         }

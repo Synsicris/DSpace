@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest.authorization.impl;
 
-import static org.dspace.project.util.ProjectConstants.COORDINATOR_ROLE;
+import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
@@ -29,7 +29,7 @@ public class IsCoordinatorOfProjectFeature extends IsMemberOfProjectFeature {
 
     @Override
     protected String getRoleName() {
-        return COORDINATOR_ROLE;
+        return COORDINATORS_ROLE;
     }
 
 }

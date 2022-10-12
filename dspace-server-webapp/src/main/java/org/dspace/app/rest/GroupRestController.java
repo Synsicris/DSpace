@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -40,6 +41,7 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -68,6 +70,9 @@ public class GroupRestController {
 
     @Autowired
     private AuthorizeService authorizeService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     /**
      * Method to add one or more subgroups to a group.
@@ -150,7 +155,10 @@ public class GroupRestController {
             throw new ResourceNotFoundException("parent group is not found for uuid: " + uuid);
         }
 
-        AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        if (!isProjectManagersGroup(context, parentGroup.getID()) ||
+            !isOrganisationalManager(context, context.getCurrentUser())) {
+            AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        }
 
         List<String> memberLinks = utils.getStringListFromRequest(request);
 
@@ -242,8 +250,13 @@ public class GroupRestController {
             throw new ResourceNotFoundException("parent group is not found for uuid: " + parentUUID);
         }
 
-        if (!isAuthorized(context, parentGroup.getName())) {
-            AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        if (!isProjectManagersGroup(context, parentGroup.getID()) ||
+            !isOrganisationalManager(context, context.getCurrentUser())) {
+
+            if (!isAuthorized(context, parentGroup.getName())) {
+                AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+            }
+
         }
 
         EPerson childGroup = ePersonService.find(context, memberUUID);
@@ -256,6 +269,37 @@ public class GroupRestController {
         context.complete();
 
         response.setStatus(SC_NO_CONTENT);
+    }
+
+    private boolean isOrganisationalManager(Context context, EPerson ePerson) throws SQLException {
+        Group organisationalManagersGroup = getOrganisationalManagersGroup(context);
+        if (!Objects.isNull(organisationalManagersGroup)) {
+            return groupService.isMember(context, ePerson, organisationalManagersGroup);
+        }
+        return false;
+    }
+
+    private Group getOrganisationalManagersGroup(Context context) throws SQLException {
+        String groupId = configurationService.getProperty("funder-organisational-managers.group");
+        Group group = null;
+        if (StringUtils.isNotEmpty(groupId)) {
+            group = groupService.find(context, UUID.fromString(groupId));
+        }
+        return group;
+    }
+
+    private boolean isProjectManagersGroup(Context context, UUID groupId) throws SQLException {
+        Group managersGroup = getProjectManagersGroup(context);
+        return !Objects.isNull(managersGroup) ? managersGroup.getID() == groupId : false;
+    }
+
+    private Group getProjectManagersGroup(Context context) throws SQLException {
+        String groupId = configurationService.getProperty("funders-project-managers.group");
+        Group group = null;
+        if (StringUtils.isNotEmpty(groupId)) {
+            group = groupService.find(context, UUID.fromString(groupId));
+        }
+        return group;
     }
 
     private boolean isAuthorized(Context context, String groupName) throws SQLException {

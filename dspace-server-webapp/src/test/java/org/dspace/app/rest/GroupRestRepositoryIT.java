@@ -3228,4 +3228,93 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     }
 
+    @Test
+    public void testAddProjectManagerByOrganizationalManager() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        EPerson memberOne = EPersonBuilder.createEPerson(context).build();
+        EPerson memberTwo = EPersonBuilder.createEPerson(context).build();
+
+        // create an organisational manager Group and add eperson.
+        Group organisationalManagerGroup = GroupBuilder.createGroup(context)
+                                                       .withName("funder-organisational-managers.group")
+                                                       .addMember(eperson)
+                                                       .build();
+
+        Group managerGroup = GroupBuilder.createGroup(context)
+                                                       .withName("funders-project-managers.group")
+                                                       .build();
+
+        context.restoreAuthSystemState();
+
+        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(organisationalManagerGroup.getID()));
+        configurationService.setProperty("funders-project-managers.group", String.valueOf(managerGroup.getID()));
+
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+
+        assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
+        assertFalse(groupService.isMember(context, memberOne, managerGroup));
+
+        String authToken = getAuthToken(eperson.getEmail(), password);
+        getClient(authToken).perform(
+            post("/api/eperson/groups/" + managerGroup.getID() + "/epersons")
+                .contentType(parseMediaType(TEXT_URI_LIST_VALUE))
+                .content(REST_SERVER_URL + "eperson/groups/" + memberOne.getID() + "/\n"
+                    + REST_SERVER_URL + "eperson/groups/" + memberTwo.getID()
+                )
+        ).andExpect(status().isNoContent());
+
+        assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
+        assertTrue(groupService.isMember(context, memberOne, managerGroup));
+        assertTrue(groupService.isMember(context, memberTwo, managerGroup));
+
+        configurationService.setProperty("funder-organisational-managers.group", "");
+        configurationService.setProperty("funders-project-managers.group", "");
+
+    }
+
+    @Test
+    public void testRemoveProjectManagerByOrganizationalManager() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        EPerson memberOne = EPersonBuilder.createEPerson(context).build();
+
+        // create an organisational manager Group and add eperson.
+        Group organisationalManagerGroup = GroupBuilder.createGroup(context)
+                                                       .withName("funder-organisational-managers.group")
+                                                       .addMember(eperson)
+                                                       .build();
+
+        // create a manager Group and add memberOne.
+        Group managerGroup = GroupBuilder.createGroup(context)
+                                                       .withName("funders-project-managers.group")
+                                                       .addMember(memberOne)
+                                                       .build();
+
+        context.restoreAuthSystemState();
+
+        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(organisationalManagerGroup.getID()));
+        configurationService.setProperty("funders-project-managers.group", String.valueOf(managerGroup.getID()));
+
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+
+        assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
+        assertTrue(groupService.isMember(context, memberOne, managerGroup));
+
+        String authToken = getAuthToken(eperson.getEmail(), password);
+
+        getClient(authToken).perform(
+            delete("/api/eperson/groups/" + managerGroup.getID() + "/epersons/" + memberOne.getID())
+        ).andExpect(status().isNoContent());
+
+        assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
+        assertFalse(groupService.isMember(context, memberOne, managerGroup));
+
+        configurationService.setProperty("funder-organisational-managers.group", "");
+        configurationService.setProperty("funders-project-managers.group", "");
+
+    }
+
 }

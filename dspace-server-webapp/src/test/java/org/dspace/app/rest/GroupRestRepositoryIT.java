@@ -63,6 +63,7 @@ import org.dspace.core.Constants;
 import org.dspace.core.I18nUtil;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.GroupConfiguration;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
@@ -96,6 +97,11 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
         collection = CollectionBuilder.createCollection(context, parentCommunity).withName("Collection 1").build();
 
         context.restoreAuthSystemState();
+    }
+
+    public void tearDown() {
+        configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, "");
+        configurationService.setProperty(GroupConfiguration.FUNDERS_PROJECT_MANAGER, "");
     }
 
     @Test
@@ -3248,8 +3254,10 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(organisationalManagerGroup.getID()));
-        configurationService.setProperty("funders-project-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService
+            .setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, String.valueOf(organisationalManagerGroup.getID()));
+        configurationService
+            .setProperty(GroupConfiguration.FUNDERS_PROJECT_MANAGER, String.valueOf(managerGroup.getID()));
 
         GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
 
@@ -3268,10 +3276,6 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
         assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
         assertTrue(groupService.isMember(context, memberOne, managerGroup));
         assertTrue(groupService.isMember(context, memberTwo, managerGroup));
-
-        configurationService.setProperty("funder-organisational-managers.group", "");
-        configurationService.setProperty("funders-project-managers.group", "");
-
     }
 
     @Test
@@ -3295,8 +3299,10 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(organisationalManagerGroup.getID()));
-        configurationService.setProperty("funders-project-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService
+            .setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, String.valueOf(organisationalManagerGroup.getID()));
+        configurationService
+            .setProperty(GroupConfiguration.FUNDERS_PROJECT_MANAGER, String.valueOf(managerGroup.getID()));
 
         GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
 
@@ -3311,9 +3317,6 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         assertTrue(groupService.isMember(context, eperson, organisationalManagerGroup));
         assertFalse(groupService.isMember(context, memberOne, managerGroup));
-
-        configurationService.setProperty("funder-organisational-managers.group", "");
-        configurationService.setProperty("funders-project-managers.group", "");
 
     }
 

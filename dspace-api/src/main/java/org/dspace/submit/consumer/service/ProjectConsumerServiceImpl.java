@@ -6,6 +6,9 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -157,7 +160,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;;
+                template = FUNDING_MEMBERS_GROUP_TEMPLATE;;
                 break;
             default:
                 template = ProjectConstants.FUNDING_ADMIN_GROUP_TEMPLATE;
@@ -176,7 +179,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+                template = PROJECT_MEMBERS_GROUP_TEMPLATE;
                 break;
             case ProjectConstants.FUNDERS_ROLE:
                 template = ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
@@ -207,16 +210,21 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community,
             boolean isFunding) throws SQLException {
-        StringBuilder memberGroupName = isFunding ? new StringBuilder( "funding_") : new StringBuilder( "project_");
-        memberGroupName.append(community.getID().toString()).append("_members_group");
-        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
+        String memberGroupName =
+            String.format(
+                isFunding ? FUNDING_MEMBERS_GROUP_TEMPLATE : PROJECT_MEMBERS_GROUP_TEMPLATE,
+                community.getID().toString()
+            );
+        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName);
         boolean isAdmin = authorizeService.isAdmin(context);
         boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
 
         if (isAdmin || isGroupMember || isCommunityAdmin) {
-            itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
-                    memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0);
+            itemService.replaceMetadata(
+                context, item, "cris", "policy", "group", null, memberGroupName,
+                memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0
+            );
             return true;
         }
         return false;

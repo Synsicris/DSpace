@@ -10,8 +10,6 @@ package org.dspace.submit.consumer;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import org.dspace.authorize.AuthorizeException;
+import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.factory.ContentServiceFactory;
@@ -36,6 +34,7 @@ import org.dspace.event.Event;
  * The consumer to create new programme group when create new programme item.
  *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */
 public class ProgrammeCreateGroupConsumer implements Consumer {
@@ -52,25 +51,33 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
+        if (event.getSubjectType() != Constants.ITEM) {
+            return;
+        }
+
         DSpaceObject dso = event.getSubject(context);
-        if (dso != null && !isItem(dso) || event.getSubjectType() != Constants.ITEM) {
+        if (dso != null && !isEntityTypeEqualTo((Item) dso, PROGRAMME)) {
+            return;
+        }
+
+        if (!AuthorizeUtil.canAddOrRemoveProgramme(context, dso)) {
             return;
         }
 
         UUID uuid = event.getSubjectID();
         int eventType = event.getEventType();
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, uuid.toString());
 
-        boolean processed = hasBeenProcessed(uuid, eventType);
-        if (eventType == Event.DELETE && !processed) {
+        if (hasBeenProcessed(uuid, eventType)) {
+            return;
+        }
+
+        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, uuid.toString());
+        if (eventType == Event.DELETE) {
             deleteGroupByName(context, groupName);
             putProcessed(uuid, eventType);
-        } else if (eventType == Event.INSTALL && !processed) {
-            Item item = (Item) dso;
-            if (isEntityTypeEqualTo(item, PROGRAMME)) {
-                createProgrammeGroup(context, groupName);
-                putProcessed(uuid, eventType);
-            }
+        } else if (eventType == Event.INSTALL) {
+            createProgrammeGroup(context, groupName);
+            putProcessed(uuid, eventType);
         }
 
     }
@@ -93,11 +100,17 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
     }
 
 
-    private void deleteGroupByName(Context context, String groupName)
-        throws SQLException, AuthorizeException, IOException {
-        Group group = groupService.findByName(context, groupName);
-        if (group != null) {
-            groupService.delete(context, group);
+    private void deleteGroupByName(Context context, String groupName) {
+        try {
+            context.turnOffAuthorisationSystem();
+            Group group = groupService.findByName(context, groupName);
+            if (group != null) {
+                groupService.delete(context, group);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            context.restoreAuthSystemState();
         }
     }
 
@@ -105,14 +118,17 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         return itemService.getEntityType(item).equals(entityType);
     }
 
-    private boolean isItem(DSpaceObject dso) {
-        return dso instanceof Item;
-    }
-
-    private void createProgrammeGroup(Context context, String groupName) throws SQLException, AuthorizeException {
-        Group group = groupService.create(context);
-        groupService.setName(group, groupName);
-        groupService.update(context, group);
+    private void createProgrammeGroup(Context context, String groupName) {
+        try {
+            context.turnOffAuthorisationSystem();
+            Group group = groupService.create(context);
+            groupService.setName(group, groupName);
+            groupService.update(context, group);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            context.restoreAuthSystemState();
+        }
     }
 
     private void putProcessed(UUID id, Integer event) {

@@ -15,13 +15,17 @@ import static org.junit.Assert.assertNull;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
+import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.GroupConfiguration;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.ProgrammeCreateGroupConsumer;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * test against {@link ProgrammeCreateGroupConsumer}.
  *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
  */
 public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegrationTest {
 
@@ -38,6 +44,9 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
 
     @Autowired
     private GroupService groupService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     private Collection collection;
 
@@ -60,13 +69,29 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
 
     }
 
+    @After
+    public void tearDown() {
+        configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, "");
+    }
+
     @Test
     public void testCreateProgrammeItem() throws Exception {
 
         context.turnOffAuthorisationSystem();
+
+        Group organisationalManagerGroup =
+            GroupBuilder.createGroup(context)
+                .withName("funder-organisational-managers.group")
+                .addMember(context.getCurrentUser())
+                .build();
+
+        configurationService
+            .setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, organisationalManagerGroup.getID().toString());
+
         Item programmeItem = ItemBuilder.createItem(context, collection)
                                     .withTitle("new programme")
                                     .build();
+
         context.restoreAuthSystemState();
 
         String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
@@ -81,13 +106,15 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
     public void testCreateNotProgrammeItem() throws Exception {
 
         context.turnOffAuthorisationSystem();
-        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
-                                                 .withName("collection")
-                                                 .withEntityType("Project")
-                                                 .build();
-        Item projectItem = ItemBuilder.createItem(context, collection)
-                                      .withTitle("new project")
-                                      .build();
+        Collection collection =
+            CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("collection")
+                .withEntityType("Project")
+                .build();
+        Item projectItem =
+            ItemBuilder.createItem(context, collection)
+                .withTitle("new project")
+                .build();
         context.restoreAuthSystemState();
 
         String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, projectItem.getID());
@@ -100,6 +127,16 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
     public void testDeleteProgrammeItem() throws Exception {
 
         context.turnOffAuthorisationSystem();
+
+        Group organisationalManagerGroup =
+            GroupBuilder.createGroup(context)
+                .withName("funder-organisational-managers.group")
+                .addMember(context.getCurrentUser())
+                .build();
+
+        configurationService
+            .setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, organisationalManagerGroup.getID().toString());
+
         // create a programme item
         Item programmeItem = ItemBuilder.createItem(context, collection)
                                     .withTitle("new programme")

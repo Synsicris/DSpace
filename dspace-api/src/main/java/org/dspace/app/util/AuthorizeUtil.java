@@ -740,4 +740,12 @@ public class AuthorizeUtil {
         }
         return isAble;
     }
+
+    public static boolean canAddOrRemoveProgramme(Context context, DSpaceObject dso) throws SQLException {
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+        AuthorizeService authorizeService = AuthorizeServiceFactory.getInstance().getAuthorizeService();
+        return authorizeService.isAdmin(context) ||
+            authorizeService.isAdmin(context, dso) ||
+            groupService.isOrganisationalManager(context, context.getCurrentUser());
+    }
 }

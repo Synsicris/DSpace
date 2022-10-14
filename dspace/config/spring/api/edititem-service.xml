@@ -1291,7 +1291,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="pot_societalimpact">
+                <entry key="neg_sideeffect">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
@@ -1300,7 +1300,7 @@
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="pot_societalimpact-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="EDIT_GRANTS" />
@@ -1323,7 +1323,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="pot_societalimpact-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -1959,7 +1959,7 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="other">
+                <entry key="open_researchquestion">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="CUSTOM" />
@@ -1968,7 +1968,7 @@
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="others-edit" />
+                            <property name="submissionDefinition" value="open_researchquestions-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="EDIT_GRANTS" />
@@ -1991,7 +1991,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="others-edit" />
+                            <property name="submissionDefinition" value="open_researchquestions-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -2183,33 +2183,6 @@
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="programmes-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
-                    </list>
-                </entry>
-                <entry key="subcontractor">
-                    <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subcontractors-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subcontractors-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>

@@ -69,6 +69,7 @@ import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,7 @@ public class GroupRestRepositoryIT extends AbstractControllerIntegrationTest {
         context.restoreAuthSystemState();
     }
 
+    @After
     public void tearDown() {
         configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, "");
         configurationService.setProperty(GroupConfiguration.FUNDERS_PROJECT_MANAGER, "");

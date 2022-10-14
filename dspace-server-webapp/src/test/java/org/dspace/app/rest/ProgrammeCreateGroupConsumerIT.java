@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest;
 
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -40,8 +41,7 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
 
     private Collection collection;
 
-    private final String PROGRAMME_GROUP_NAME = "programme_%s_group";
-
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
@@ -69,7 +69,7 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
                                     .build();
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_NAME, programmeItem.getID());
+        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
 
         Group programmeGroup = groupService.findByName(context, groupName);
 
@@ -90,7 +90,7 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
                                       .build();
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_NAME, projectItem.getID());
+        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, projectItem.getID());
 
         Group programmeGroup = groupService.findByName(context, groupName);
         assertNull(programmeGroup);
@@ -106,7 +106,7 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
                                     .build();
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_NAME, programmeItem.getID());
+        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
 
         // check that programme group has been created
         Group programmeGroup = groupService.findByName(context, groupName);

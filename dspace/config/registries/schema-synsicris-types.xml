@@ -225,6 +225,12 @@
     
     <dc-type>
         <schema>synsicris</schema>
+        <element>funder-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    <dc-type>
+        <schema>synsicris</schema>
         <element>relation</element>
         <qualifier>projectpartner</qualifier>
         <scope_note></scope_note>

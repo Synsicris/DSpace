@@ -160,8 +160,8 @@
     <sidebar />
     <policy-group rpType="admin">project_template_funders_group</policy-group>
     <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-    <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-    <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+    <policy-group rpType="remove">project_template_funders_group</policy-group>
+    <policy-group rpType="delete">project_template_funders_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
     <policy-group rpType="read">project_template_readers_group</policy-group>
     <has-item-reference>true</has-item-reference>
@@ -171,8 +171,9 @@
       <intro />
       <copyright />
       <sidebar />
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-      <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="read">project_template_readers_group</policy-group>
       <collection>
@@ -184,6 +185,7 @@
         <license />
         <entity-type>impactpathwaystep</entity-type>
         <submission-type>impact_pathway_step</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -205,6 +207,7 @@
         <license />
         <entity-type>impactpathway</entity-type>
         <submission-type>impact_pathway</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -227,7 +230,10 @@
       <copyright />
       <sidebar />
       <funding-comm>true</funding-comm>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
+      <policy-group rpType="delete">project_template_funders_group</policy-group>
       <policy-group rpType="remove">project_template_coordinators_group</policy-group>
       <policy-group rpType="delete">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_funders_group</policy-group>
@@ -244,6 +250,7 @@
       <license />
       <entity-type>application</entity-type>
       <submission-type>applications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -268,6 +275,7 @@
       <license />
       <entity-type>award</entity-type>
       <submission-type>awards</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -292,6 +300,7 @@
       <license />
       <entity-type>contribution_fundingprogramme</entity-type>
       <submission-type>contribution_fundingprogramme</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -316,6 +325,7 @@
       <license />
       <entity-type>cooperationpartner</entity-type>
       <submission-type>cooperationpartners</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -340,6 +350,7 @@
       <license />
       <entity-type>ethic</entity-type>
       <submission-type>ethics</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -364,6 +375,7 @@
       <license />
       <entity-type>Event</entity-type>
       <submission-type>events</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -388,6 +400,7 @@
       <license />
       <entity-type>exp_societalimpact</entity-type>
       <submission-type>exp_societalimpact</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -412,6 +425,7 @@
       <license />
       <entity-type>condition</entity-type>
       <submission-type>conditions</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -436,6 +450,7 @@
       <license />
       <entity-type>gender</entity-type>
       <submission-type>gender</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -460,6 +475,7 @@
       <license />
       <entity-type>ia_objective</entity-type>
       <submission-type>ia_objectives</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -484,6 +500,7 @@
       <license />
       <entity-type>innovationidea</entity-type>
       <submission-type>innovationideas</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -508,6 +525,7 @@
       <license />
       <entity-type>milestone</entity-type>
       <submission-type>milestones</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -533,6 +551,7 @@
       <license />
       <entity-type>neg_sideeffect</entity-type>
       <submission-type>neg_sideeffects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -557,6 +576,7 @@
       <license />
       <entity-type>step</entity-type>
       <submission-type>steps</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -581,6 +601,7 @@
       <license />
       <entity-type>physical_object</entity-type>
       <submission-type>physical_objects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -605,6 +626,7 @@
       <license />
       <entity-type>Patent</entity-type>
       <submission-type>patents</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -629,6 +651,7 @@
       <license />
       <entity-type>plan_publication</entity-type>
       <submission-type>plan_publications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -653,6 +676,7 @@
       <license />
       <entity-type>process_event</entity-type>
       <submission-type>process_events</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -677,6 +701,7 @@
       <license />
       <entity-type>proj_objective</entity-type>
       <submission-type>proj_objectives</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -701,6 +726,7 @@
       <license />
       <entity-type>Project</entity-type>
       <submission-type>projects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="read">project_template_funders_group</policy-group>
@@ -711,6 +737,7 @@
       <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
         <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
         <metadata name="cris.project.shared">project</metadata>         
         <metadata name="oairecerif.amount.currency">Euro</metadata>
@@ -732,6 +759,7 @@
       <license />
       <entity-type>Publication</entity-type>
       <submission-type>publications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -757,6 +785,7 @@
       <license />
       <entity-type>Product</entity-type>
       <submission-type>products</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -781,6 +810,7 @@
       <license />
       <entity-type>research_result</entity-type>
       <submission-type>research_results</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -805,6 +835,7 @@
       <license />
       <entity-type>innovationpotential</entity-type>
       <submission-type>innovationpotentials</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -829,6 +860,7 @@
       <license />
       <entity-type>open_researchquestion</entity-type>
       <submission-type>open_researchquestions</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -853,6 +885,7 @@
       <license />
       <entity-type>spinoff</entity-type>
       <submission-type>spinoffs</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -877,6 +910,7 @@
       <license />
       <entity-type>stateofart</entity-type>
       <submission-type>stateofart</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -901,6 +935,7 @@
       <license />
       <entity-type>targetgroup</entity-type>
       <submission-type>targetgroups</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -927,6 +962,7 @@
       <license />
       <entity-type>task</entity-type>
       <submission-type>tasks</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -951,6 +987,7 @@
       <license />
       <entity-type>unexpected_result</entity-type>
       <submission-type>unexpected_results</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -975,6 +1012,7 @@
       <license />
       <entity-type>workpackage</entity-type>
       <submission-type>workpackages</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="add">project_template_members_group</policy-group>
@@ -999,6 +1037,7 @@
         <license />
         <entity-type>workingplan</entity-type>
         <submission-type>working_plan_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -1025,7 +1064,6 @@
     <copyright />
     <sidebar />
     <policy-group rpType="add">funder_project_managers_group</policy-group>
-    <policy-group rpType="remove">funder_project_managers_group</policy-group>
     <policy-group rpType="read">Anonymous</policy-group>
   </community>
   <community>
@@ -1034,6 +1072,7 @@
     <intro />
     <copyright />
     <sidebar />
+    <policy-group rpType="admin">project_template_funders_group</policy-group>
     <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
     <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
     <policy-group rpType="delete">project_template_coordinators_group</policy-group>
@@ -1048,6 +1087,7 @@
       <intro />
       <copyright />
       <sidebar />
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
       <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
@@ -1062,6 +1102,7 @@
         <license />
         <entity-type>exploitationplanstep</entity-type>
         <submission-type>exploitation_plan_step_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
         <policy-group rpType="read">funding_template_members_group</policy-group>
         <policy-group rpType="add">funding_template_members_group</policy-group>
@@ -1100,6 +1141,7 @@
         <license />
         <entity-type>exploitationplan</entity-type>
         <submission-type>exploitation_plan_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
         <policy-group rpType="read">funding_template_members_group</policy-group>
         <policy-group rpType="add">funding_template_members_group</policy-group>
@@ -1134,6 +1176,7 @@
       <license />
       <entity-type>projectpartner</entity-type>
       <submission-type>projectpartners</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="add">funding_template_members_group</policy-group>
@@ -1160,6 +1203,7 @@
       <license />
       <entity-type>Funding</entity-type>
       <submission-type>funding</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>

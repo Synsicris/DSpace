@@ -7,7 +7,9 @@
  */
 package org.dspace.app.rest;
 
+import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Test against {@link LinkProgrammeGroupWithProjectConsumer}.
- * 
+ *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
  */
 public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerIntegrationTest {
@@ -53,21 +55,27 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         context.turnOffAuthorisationSystem();
 
-        parentCommunity = CommunityBuilder.createCommunity(context)
-                                          .withName("community").build();
+        parentCommunity =
+            CommunityBuilder.createCommunity(context)
+                .withName("community")
+                .build();
 
-        programmeCollection = CollectionBuilder.createCollection(context, parentCommunity)
-                                               .withName("programme collection")
-                                               .withEntityType("programme")
-                                               .build();
+        programmeCollection =
+            CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("programme collection")
+                .withEntityType(PROGRAMME)
+                .build();
 
-        projectCommunity = CommunityBuilder.createCommunity(context)
-                                           .withName("project's community").build();
+        projectCommunity =
+            CommunityBuilder.createCommunity(context)
+                .withName("project's community")
+                .build();
 
-        projectCollection = CollectionBuilder.createCollection(context, projectCommunity)
-                                      .withName("project collection")
-                                      .withEntityType("Project")
-                                      .build();
+        projectCollection =
+            CollectionBuilder.createCollection(context, projectCommunity)
+                .withName("project collection")
+                .withEntityType(PROJECT_ENTITY)
+                .build();
 
         context.restoreAuthSystemState();
     }
@@ -78,29 +86,29 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group projectCommunityGroup =
             GroupBuilder.createGroup(context)
-                        .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
-                        .build();
+                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                .build();
 
-        Group subGroup = GroupBuilder.createGroup(context)
-                                     .withName("sub-group one")
-                                     .withParent(projectCommunityGroup)
-                                     .build();
+        Group subGroup =
+            GroupBuilder.createGroup(context)
+                .withName("sub-group one")
+                .withParent(projectCommunityGroup)
+                .build();
 
-        Item programmeItem = ItemBuilder.createItem(context, programmeCollection)
-                                        .withTitle("new programme")
-                                        .build();
+        Item programmeItem =
+            ItemBuilder.createItem(context, programmeCollection)
+                .withTitle("new programme")
+                .build();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
-        deleteGroupIfExist(context, groupName);
-        Group programmeGroup = GroupBuilder.createGroup(context)
-                                           .withName(groupName)
-                                           .build();
+        GroupBuilder.createGroup(context)
+            .withName(String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()))
+            .build();
 
         // create project item with Funding Parent Metadata without authority
-        Item projectItem = ItemBuilder.createItem(context, projectCollection)
-                                      .withTitle("new project")
-                                      .withFundingParent(programmeItem.getName())
-                                      .build();
+        ItemBuilder.createItem(context, projectCollection)
+            .withTitle("new project")
+            .withFundingParent(programmeItem.getName())
+            .build();
 
         context.restoreAuthSystemState();
 
@@ -118,30 +126,34 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group projectCommunityGroup =
             GroupBuilder.createGroup(context)
-                        .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
-                        .build();
+                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                .build();
 
-        Group subGroup = GroupBuilder.createGroup(context)
-                                     .withName("sub-group one")
-                                     .withParent(projectCommunityGroup)
-                                     .build();
+        Group subGroup =
+            GroupBuilder.createGroup(context)
+                .withName("sub-group one")
+                .withParent(projectCommunityGroup)
+                .build();
 
+        Collection publicationCollection =
+            CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("publication collection")
+                .withEntityType("Publication")
+                .build();
 
-        Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
-                                                            .withName("publication collection")
-                                                            .withEntityType("Publication")
-                                                            .build();
+        Item publicationItemItem =
+            ItemBuilder.createItem(context, publicationCollection)
+                .withTitle("new programme")
+                .build();
 
-        Item publicationItemItem = ItemBuilder.createItem(context, publicationCollection)
-                                        .withTitle("new programme")
-                                        .build();
-
-        // create project item with Funding Parent Metadata with authority but not programme
-        Item projectItem = ItemBuilder.createItem(context, projectCollection)
-                                      .withTitle("new project")
-                                      .withFundingParent(
-                                          publicationItemItem.getName(), String.valueOf(publicationItemItem.getID()))
-                                      .build();
+        // create project item with Funding Parent Metadata with authority but not
+        // programme
+        ItemBuilder.createItem(context, projectCollection)
+            .withTitle("new project")
+            .withFundingParent(
+                publicationItemItem.getName(), String.valueOf(publicationItemItem.getID())
+            )
+            .build();
 
         context.restoreAuthSystemState();
 
@@ -159,26 +171,27 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group projectCommunityGroup =
             GroupBuilder.createGroup(context)
-                        .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
-                        .build();
+                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                .build();
 
-        Group subGroup = GroupBuilder.createGroup(context)
-                                     .withName("sub-group one")
-                                     .withParent(projectCommunityGroup)
-                                     .build();
+        Group subGroup =
+            GroupBuilder.createGroup(context)
+                .withName("sub-group one")
+                .withParent(projectCommunityGroup)
+                .build();
 
-        Item programmeItem = ItemBuilder.createItem(context, programmeCollection)
-                                        .withTitle("new programme")
-                                        .build();
+        Item programmeItem =
+            ItemBuilder.createItem(context, programmeCollection)
+                .withTitle("new programme")
+                .build();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
-        deleteGroupIfExist(context, groupName);
+        deleteGroupIfExist(context, String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()));
 
         // create project item with Funding Parent Metadata with programme authority
-        Item projectItem = ItemBuilder.createItem(context, projectCollection)
-                                      .withTitle("new project")
-                                      .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
-                                      .build();
+        ItemBuilder.createItem(context, projectCollection)
+            .withTitle("new project")
+            .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
+            .build();
 
         context.restoreAuthSystemState();
 
@@ -197,34 +210,34 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group projectCommunityGroup =
             GroupBuilder.createGroup(context)
-                        .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
-                        .build();
+                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                .build();
 
-        Group subGroup = GroupBuilder.createGroup(context)
-                                     .withName("sub-group one")
-                                     .withParent(projectCommunityGroup)
-                                     .build();
+        GroupBuilder.createGroup(context)
+            .withName("sub-group one")
+            .withParent(projectCommunityGroup)
+            .build();
 
-        Group subGroupTwo = GroupBuilder.createGroup(context)
-                                      .withName("sub-group two")
-                                      .withParent(projectCommunityGroup)
-                                      .build();
+        GroupBuilder.createGroup(context)
+            .withName("sub-group two")
+            .withParent(projectCommunityGroup)
+            .build();
 
-        Item programmeItem = ItemBuilder.createItem(context, programmeCollection)
-                                        .withTitle("new programme")
-                                        .build();
+        Item programmeItem =
+            ItemBuilder.createItem(context, programmeCollection)
+                .withTitle("new programme")
+                .build();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
-        deleteGroupIfExist(context, groupName);
-        Group programmeGroup = GroupBuilder.createGroup(context)
-                                           .withName(groupName)
-                                           .build();
+        Group programmeGroup =
+            GroupBuilder.createGroup(context)
+                .withName(String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()))
+                .build();
 
         // create project item with Funding Parent Metadata with programme authority
-        Item projectItem = ItemBuilder.createItem(context, projectCollection)
-                                      .withTitle("new project")
-                                      .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
-                                      .build();
+        ItemBuilder.createItem(context, projectCollection)
+            .withTitle("new project")
+            .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
+            .build();
 
         context.restoreAuthSystemState();
 

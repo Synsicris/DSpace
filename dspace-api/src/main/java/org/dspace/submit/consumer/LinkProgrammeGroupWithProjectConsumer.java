@@ -8,13 +8,15 @@
 package org.dspace.submit.consumer;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_CALLTOPROGRAMME;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +27,7 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.factory.EPersonServiceFactory;
@@ -36,9 +39,9 @@ import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
 
 /**
- * The purpose of this consumer is to link a programme reader group
- * to the project reader group.
- * 
+ * The purpose of this consumer is to link a programme reader group to the
+ * project reader group.
+ *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
  */
 public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
@@ -51,41 +54,35 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
     public void initialize() throws Exception {
         itemService = ContentServiceFactory.getInstance().getItemService();
         groupService = EPersonServiceFactory.getInstance().getGroupService();
-        projectConsumerService = new DSpace().getServiceManager()
-                                             .getServiceByName(ProjectConsumerServiceImpl.class.getName(),
-                                                 ProjectConsumerServiceImpl.class);
+        projectConsumerService =
+            new DSpace().getServiceManager()
+                .getServiceByName(
+                    ProjectConsumerServiceImpl.class.getName(),
+                    ProjectConsumerServiceImpl.class
+                );
     }
 
     @Override
     public void consume(Context context, Event event) throws Exception {
+        if (
+                event.getSubjectType() != Constants.ITEM ||
+                event.getEventType() != Event.MODIFY_METADATA ||
+                event.getDetail() == null ||
+                !event.getDetail().contains(MD_RELATION_CALLTOPROGRAMME.toString().replaceAll("\\.", "_"))
+        ) {
+            return;
+        }
+
         DSpaceObject dso = event.getSubject(context);
 
-        if (!(dso instanceof Item)) {
+        if (dso == null) {
             return;
         }
 
         Item item = (Item) dso;
-        if (isEntityTypeEqualTo(item, "Project") &&
-            isEventTypeEqualTo(event, Event.MODIFY_METADATA) &&
-            isEventMetadataEqualTo(event, getRelationMetadata())) {
+        if (isEntityTypeEqualTo(item, PROJECT_ENTITY)) {
             consumeItem(context, item);
         }
-    }
-
-    private boolean isEntityTypeEqualTo(Item item, String entityType) {
-        return itemService.getEntityType(item).equals(entityType);
-    }
-
-    private boolean isEventTypeEqualTo(Event event, int eventType) {
-        return event.getEventType() == eventType;
-    }
-
-    private boolean isEventMetadataEqualTo(Event event, String metadata) {
-        return event.getDetail() != null && event.getDetail().contains(metadata);
-    }
-
-    private String getRelationMetadata() {
-        return MD_RELATION_CALLTOPROGRAMME.toString().replaceAll("\\.", "_");
     }
 
     private void consumeItem(Context context, Item item) throws SQLException, AuthorizeException {
@@ -108,24 +105,31 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
     }
 
     private Item getRelatedProgrammeItem(Context context, Item item) throws SQLException {
-        Item relatedItem;
+        Item relatedItem = null;
         MetadataValue metadataValue = getRelationMetadataValue(item);
         if (!Objects.isNull(metadataValue) && hasAuthority(metadataValue)) {
-            relatedItem = itemService.find(context, UUID.fromString(metadataValue.getAuthority()));
-            if (!Objects.isNull(relatedItem) && isEntityTypeEqualTo(relatedItem, "programme")) {
-                return relatedItem;
-            }
+            relatedItem =
+                Optional.ofNullable(itemService.find(context, UUID.fromString(metadataValue.getAuthority())))
+                    .filter(found -> isEntityTypeEqualTo(found, PROGRAMME))
+                    .orElse(null);
         }
-        return null;
-    }
-    private MetadataValue getRelationMetadataValue(Item item) {
-        List<MetadataValue> metadataValues =
-            itemService.getMetadata(item, "oairecerif", "fundingParent", null, null);
-        return !Objects.isNull(metadataValues) ? getFirstMetadataValue(metadataValues) : null;
+        return relatedItem;
     }
 
-    private MetadataValue getFirstMetadataValue(List<MetadataValue> metadataValues) {
-        return metadataValues.stream().findFirst().get();
+    private boolean isEntityTypeEqualTo(Item item, String entityType) {
+        return itemService.getEntityType(item).equals(entityType);
+    }
+
+    private MetadataValue getRelationMetadataValue(Item item) {
+        return Optional.ofNullable(
+                itemService.getMetadata(
+                    item, MD_RELATION_CALLTOPROGRAMME.schema, MD_RELATION_CALLTOPROGRAMME.element,
+                    MD_RELATION_CALLTOPROGRAMME.qualifier, null
+                )
+            )
+            .filter(metadatas -> !metadatas.isEmpty())
+            .map(metadatas -> metadatas.get(0))
+            .orElse(null);
     }
 
     private boolean hasAuthority(MetadataValue metadataValue) {
@@ -142,18 +146,11 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
     }
 
     private void removeAllChildGroups(Context context, Group parentGroup) throws SQLException, AuthorizeException {
-        List<Group> childGroups = getCopyOfMemberGroups(parentGroup.getMemberGroups());
+        List<Group> childGroups = List.copyOf(parentGroup.getMemberGroups());
         for (Group childGroup : childGroups) {
             groupService.removeMember(context, parentGroup, childGroup);
         }
         groupService.update(context, parentGroup);
-    }
-
-    private List<Group> getCopyOfMemberGroups(List<Group> memberGroups) {
-        List<Group> copyOfMemberGroups = new ArrayList<>();
-        memberGroups.stream()
-                    .forEach(group -> copyOfMemberGroups.add(group));
-        return copyOfMemberGroups;
     }
 
     private void addChildGroup(Context context, Group parentGroup, Group childGroup)
@@ -168,6 +165,7 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
     }
 
     @Override
-    public void finish(Context context) throws Exception {}
+    public void finish(Context context) throws Exception {
+    }
 
 }

@@ -163,7 +163,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 template = FUNDING_MEMBERS_GROUP_TEMPLATE;;
                 break;
             default:
-                template = ProjectConstants.FUNDING_ADMIN_GROUP_TEMPLATE;
+                template = ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, fundingCommunity.getID().toString());

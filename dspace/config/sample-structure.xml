@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <import_structure>
-  <community>
+  <groups>
+    <group>funder_organisational_managers_group</group>
+    <group>funder_project_managers_group</group>
+    <group>system_members_group</group>
+    <group>project_template_readers_group</group>
+    <group>project_template_funders_group</group>
+    <group>project_template_coordinators_group</group>
+    <group>project_template_members_group</group>
+    <group>funding_template_coordinators_group</group>
+    <group>funding_template_members_group</group>
+  </groups>
+  <communities>
+    <community>
     <name>Shared</name>
     <description />
     <intro />
@@ -24,7 +36,7 @@
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -44,14 +56,14 @@
       <submission-type>comments</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">system_members_group</policy-group>
+      <policy-group rpType="add">system_members_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
-      	<metadata name="synsicris.date.creation">###DATE###</metadata>
+        <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
+        <metadata name="synsicris.date.creation">###DATE###</metadata>
       </item-template>
     </collection>
     <collection>
@@ -67,7 +79,7 @@
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -88,7 +100,7 @@
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -108,7 +120,7 @@
       <submission-type>persons</submission-type>
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">system_members_group</policy-group>
+      <policy-group rpType="add">system_members_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
@@ -127,7 +139,7 @@
       <policy-group rpType="admin">Administrator</policy-group>
       <policy-group rpType="read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="read">system_members_group</policy-group>
-	  <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="add">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
       <policy-group rpType="item_read">system_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -135,8 +147,8 @@
       <policy-group rpType="bitstream_read">system_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">funder_programme</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">funder_programme</metadata>
       </item-template>
     </collection>
   </community>    
@@ -146,9 +158,10 @@
     <intro />
     <copyright />
     <sidebar />
+    <policy-group rpType="admin">project_template_funders_group</policy-group>
     <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-    <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-    <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+    <policy-group rpType="remove">project_template_funders_group</policy-group>
+    <policy-group rpType="delete">project_template_funders_group</policy-group>
     <policy-group rpType="read">project_template_members_group</policy-group>
     <policy-group rpType="read">project_template_readers_group</policy-group>
     <has-item-reference>true</has-item-reference>
@@ -158,8 +171,9 @@
       <intro />
       <copyright />
       <sidebar />
-	  <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-      <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
+      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="read">project_template_readers_group</policy-group>
       <collection>
@@ -171,6 +185,7 @@
         <license />
         <entity-type>impactpathwaystep</entity-type>
         <submission-type>impact_pathway_step</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -179,8 +194,8 @@
         <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
         </item-template>
       </collection>
       <collection>
@@ -192,6 +207,7 @@
         <license />
         <entity-type>impactpathway</entity-type>
         <submission-type>impact_pathway</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -200,10 +216,10 @@
         <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
       </collection>
     </community>
     <community>
@@ -214,7 +230,10 @@
       <copyright />
       <sidebar />
       <funding-comm>true</funding-comm>
-	  <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
+      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
+      <policy-group rpType="delete">project_template_funders_group</policy-group>
       <policy-group rpType="remove">project_template_coordinators_group</policy-group>
       <policy-group rpType="delete">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_funders_group</policy-group>
@@ -231,18 +250,21 @@
       <license />
       <entity-type>application</entity-type>
       <submission-type>applications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-        <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -255,18 +277,21 @@
       <license />
       <entity-type>award</entity-type>
       <submission-type>awards</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -279,18 +304,21 @@
       <license />
       <entity-type>contribution_fundingprogramme</entity-type>
       <submission-type>contribution_fundingprogramme</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -303,18 +331,21 @@
       <license />
       <entity-type>cooperationpartner</entity-type>
       <submission-type>cooperationpartners</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -327,18 +358,21 @@
       <license />
       <entity-type>ethic</entity-type>
       <submission-type>ethics</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -351,18 +385,21 @@
       <license />
       <entity-type>Event</entity-type>
       <submission-type>events</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -375,18 +412,21 @@
       <license />
       <entity-type>exp_societalimpact</entity-type>
       <submission-type>exp_societalimpact</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -399,18 +439,21 @@
       <license />
       <entity-type>condition</entity-type>
       <submission-type>conditions</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -423,18 +466,21 @@
       <license />
       <entity-type>gender</entity-type>
       <submission-type>gender</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -447,18 +493,21 @@
       <license />
       <entity-type>ia_objective</entity-type>
       <submission-type>ia_objectives</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -471,18 +520,21 @@
       <license />
       <entity-type>innovationidea</entity-type>
       <submission-type>innovationideas</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -495,19 +547,22 @@
       <license />
       <entity-type>milestone</entity-type>
       <submission-type>milestones</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
-      	<metadata name="workingplan.link.status">linked</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
+        <metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
     <collection>
@@ -520,18 +575,21 @@
       <license />
       <entity-type>neg_sideeffect</entity-type>
       <submission-type>neg_sideeffects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -544,18 +602,21 @@
       <license />
       <entity-type>step</entity-type>
       <submission-type>steps</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -568,18 +629,21 @@
       <license />
       <entity-type>physical_object</entity-type>
       <submission-type>physical_objects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -592,18 +656,21 @@
       <license />
       <entity-type>Patent</entity-type>
       <submission-type>patents</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -616,18 +683,21 @@
       <license />
       <entity-type>plan_publication</entity-type>
       <submission-type>plan_publications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -640,18 +710,21 @@
       <license />
       <entity-type>process_event</entity-type>
       <submission-type>process_events</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -664,18 +737,21 @@
       <license />
       <entity-type>proj_objective</entity-type>
       <submission-type>proj_objectives</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -688,20 +764,24 @@
       <license />
       <entity-type>Project</entity-type>
       <submission-type>projects</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
       <policy-group rpType="read">project_template_funders_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_funders_group</policy-group>
+      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
-      <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>      	
-      	<metadata name="oairecerif.amount.currency">Euro</metadata>
-      	<metadata name="oairecerif.project.status">In preparation</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>         
+        <metadata name="oairecerif.amount.currency">Euro</metadata>
+        <metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
       <item>
         <item-reference>true</item-reference>
@@ -719,19 +799,22 @@
       <license />
       <entity-type>Publication</entity-type>
       <submission-type>publications</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="synsicris.subject.agrovoc">###AGROVOCKEYWORDS.project###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -744,18 +827,21 @@
       <license />
       <entity-type>Product</entity-type>
       <submission-type>products</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -768,18 +854,21 @@
       <license />
       <entity-type>research_result</entity-type>
       <submission-type>research_results</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -792,18 +881,21 @@
       <license />
       <entity-type>innovationpotential</entity-type>
       <submission-type>innovationpotentials</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -816,18 +908,21 @@
       <license />
       <entity-type>open_researchquestion</entity-type>
       <submission-type>open_researchquestions</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>    
     <collection>
@@ -840,18 +935,21 @@
       <license />
       <entity-type>spinoff</entity-type>
       <submission-type>spinoffs</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -864,18 +962,21 @@
       <license />
       <entity-type>stateofart</entity-type>
       <submission-type>stateofart</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -888,9 +989,10 @@
       <license />
       <entity-type>targetgroup</entity-type>
       <submission-type>targetgroups</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -898,10 +1000,12 @@
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -914,18 +1018,21 @@
       <license />
       <entity-type>task</entity-type>
       <submission-type>tasks</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -938,18 +1045,21 @@
       <license />
       <entity-type>unexpected_result</entity-type>
       <submission-type>unexpected_results</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
       </item-template>
     </collection>
     <collection>
@@ -962,19 +1072,22 @@
       <license />
       <entity-type>workpackage</entity-type>
       <submission-type>workpackages</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">project_template_coordinators_group</policy-group>
       <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
+      <policy-group rpType="add">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
-      	<metadata name="workingplan.link.status">linked</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+        <metadata name="cris.project.shared">project</metadata>
+        <metadata name="workingplan.link.status">linked</metadata>
       </item-template>
     </collection>
     <collection>
@@ -986,6 +1099,7 @@
         <license />
         <entity-type>workingplan</entity-type>
         <submission-type>working_plan_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">project_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_members_group</policy-group>
         <policy-group rpType="add">project_template_members_group</policy-group>
@@ -994,10 +1108,13 @@
         <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
         <item>
             <metadata name="dc.title">Workingplan</metadata>
             <metadata name="synsicris.struct-builder.identifier">wp_001</metadata>
@@ -1012,7 +1129,6 @@
     <copyright />
     <sidebar />
     <policy-group rpType="add">funder_project_managers_group</policy-group>
-    <policy-group rpType="remove">funder_project_managers_group</policy-group>
     <policy-group rpType="read">Anonymous</policy-group>
   </community>
   <community>
@@ -1021,6 +1137,7 @@
     <intro />
     <copyright />
     <sidebar />
+    <policy-group rpType="admin">project_template_funders_group</policy-group>
     <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
     <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
     <policy-group rpType="delete">project_template_coordinators_group</policy-group>
@@ -1035,7 +1152,8 @@
       <intro />
       <copyright />
       <sidebar />
-	  <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
+      <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
       <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="delete">project_template_coordinators_group</policy-group>
@@ -1049,6 +1167,7 @@
         <license />
         <entity-type>exploitationplanstep</entity-type>
         <submission-type>exploitation_plan_step_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
         <policy-group rpType="read">funding_template_members_group</policy-group>
         <policy-group rpType="add">funding_template_members_group</policy-group>
@@ -1057,9 +1176,11 @@
         <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	      <metadata name="cris.project.shared">funding</metadata>
-	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
+          <metadata name="cris.project.shared">funding</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
         </item-template>
         <item>
             <metadata name="dc.title">step_type_1</metadata>
@@ -1087,6 +1208,7 @@
         <license />
         <entity-type>exploitationplan</entity-type>
         <submission-type>exploitation_plan_form</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
         <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
         <policy-group rpType="read">funding_template_members_group</policy-group>
         <policy-group rpType="add">funding_template_members_group</policy-group>
@@ -1095,11 +1217,11 @@
         <policy-group rpType="item_read">project_template_readers_group</policy-group>
         <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
         <item-template>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	      <metadata name="cris.project.shared">funding</metadata>
-	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	  <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
+          <metadata name="cris.project.shared">funding</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
         </item-template>
         <item>
             <metadata name="dc.title">exploitation_plan</metadata>
@@ -1121,20 +1243,23 @@
       <license />
       <entity-type>projectpartner</entity-type>
       <submission-type>projectpartners</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
-	  <policy-group rpType="add">funding_template_members_group</policy-group>
+      <policy-group rpType="add">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">funding_template_members_group</policy-group>
       <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_readers_group</policy-group>
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
-	    <metadata name="cris.project.shared">funding</metadata>
-	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>     	
-      	<metadata name="synsicris.type.easy-import">No</metadata>
+        <metadata name="cris.project.shared">funding</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>         
+        <metadata name="synsicris.type.easy-import">No</metadata>
       </item-template>
     </collection>
     <collection>
@@ -1147,6 +1272,7 @@
       <license />
       <entity-type>Funding</entity-type>
       <submission-type>funding</submission-type>
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
       <policy-group rpType="read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">funding_template_members_group</policy-group>
       <policy-group rpType="item_read">project_template_members_group</policy-group>
@@ -1156,11 +1282,13 @@
       <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
       <item-template>
         <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.admin###</metadata>
-      	<metadata name="cris.project.shared">funding</metadata>
-        <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="oairecerif.amount.currency">Euro</metadata>
-      	<metadata name="oairecerif.project.status">In preparation</metadata>
+        <metadata name="cris.project.shared">funding</metadata>
+        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+        <metadata name="oairecerif.amount.currency">Euro</metadata>
+        <metadata name="oairecerif.project.status">In preparation</metadata>
       </item-template>
       <item>
         <item-reference>true</item-reference>
@@ -1169,4 +1297,5 @@
       </item>
     </collection>
   </community>
+  </communities>
 </import_structure>

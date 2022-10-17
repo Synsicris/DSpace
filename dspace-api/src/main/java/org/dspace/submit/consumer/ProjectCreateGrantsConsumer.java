@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.content.Item;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
@@ -26,14 +25,13 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * The purpose of this consumer is to check if the user
  * who created the workspaceitem belongs to a funding group,
- * if yes in the metadata 'cris.project.shared' it is copied by using the 
+ * if yes in the metadata 'cris.project.shared' it is copied by using the
  * grant value present in the belonging funding.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ProjectCreateGrantsConsumer implements Consumer {
@@ -63,14 +61,14 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                 return;
             }
             Object dso = event.getSubject(context);
-            if ((dso instanceof Item)) {
+            if (dso instanceof Item) {
                 Item item = (Item) dso;
                 String[] entitiesToSkip = configurationService.getArrayProperty("project.grants.entity-name.to-skip",
                         new String[] {});
                 String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
                 if (Objects.isNull(entityType) || Arrays.stream(entitiesToSkip).anyMatch(entityType::equals)) {
                     return;
-                }                
+                }
                 EPerson submitter = item.getSubmitter();
                 if (Objects.isNull(submitter)) {
                     return;

@@ -16,12 +16,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -1019,6 +1022,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     private Map<UUID, Group> createScopedRoles(Context context, Community project, Community parent,
             String projectRootCommunityID, boolean isProject) throws SQLException, AuthorizeException {
         Map<UUID, Group> groupsMap;
+        Map<UUID, Group> scopedRolesMap;
         String[] projectTemplates = configurationService.getArrayProperty("project.template.groups-name");
         if (isProject || Objects.isNull(parent)) {
             String[] projectUserGroups = configurationService.getArrayProperty("project.template.add-user-groups");
@@ -1039,6 +1043,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             if (!isProject) {
                 groupsMap.putAll(projectGroupsMap);
             }
+            scopedRolesMap =
+                Stream.concat(groupsMap.entrySet().stream(), projectGroupsMap.entrySet().stream())
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (a, b) -> b));
         } else {
             String[] fundingTemplates = configurationService.getArrayProperty("project.funding-template.groups-name");
             groupsMap = new HashMap<>(fundingTemplates.length + projectTemplates.length);
@@ -1061,12 +1068,12 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                     projectTemplates
                 );
             }
+            scopedRolesMap = groupsMap;
         }
-        groupsMap
-            .forEach((uuid, group) -> {
-                groupService.addMember(context, group, context.getCurrentUser());
-            });
-        return groupsMap;
+
+        groupsMap.forEach((uuid, group) -> groupService.addMember(context, group, context.getCurrentUser()));
+
+        return scopedRolesMap;
     }
 
     private Map<UUID, Group> createTemplateGroups(

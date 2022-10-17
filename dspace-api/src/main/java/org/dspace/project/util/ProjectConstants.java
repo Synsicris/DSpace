@@ -62,20 +62,24 @@ public class ProjectConstants {
 
     public static final String FUNDER_PROJECT_MANAGERS_GROUP = "funder_project_managers_group";
 
+    public static final String GROUP_POLICY_PLACEHOLDER = "GROUP_POLICY_PLACEHOLDER";
+
+    public static final String RELATION_ITEM_ENTITY_TEMPLATE = "project_%s_item";
+
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
     public static final MetadataFieldName MD_RELATION_ITEM_ENTITY =
-                    new MetadataFieldName("synsicris", "relation", "entity_item");
+        new MetadataFieldName("synsicris", "relation", "entity_item");
 
     public static final MetadataFieldName MD_PROJECT_RELATION =
-            new MetadataFieldName("synsicris", "relation", "project");
+        new MetadataFieldName("synsicris", "relation", "project");
 
     public static final MetadataFieldName MD_FUNDING_RELATION =
-            new MetadataFieldName("synsicris", "relation", "funding");
+        new MetadataFieldName("synsicris", "relation", "funding");
 
     public static final MetadataFieldName MD_EASYIMPORT =
-            new MetadataFieldName("synsicris", "type", "easy-import");
+        new MetadataFieldName("synsicris", "type", "easy-import");
 
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 
@@ -83,10 +87,27 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
 
-    public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME = new MetadataFieldName("synsicris",
-            "relation","programme");
-    public static final MetadataFieldName MD_RELATION_CALLTOPROGRAMME = new MetadataFieldName("oairecerif",
-            "fundingParent");
+    public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME =
+        new MetadataFieldName(
+            "synsicris",
+            "relation",
+            "programme"
+        );
+    public static final MetadataFieldName MD_RELATION_CALLTOPROGRAMME =
+        new MetadataFieldName(
+            "oairecerif",
+            "fundingParent"
+        );
+
+    public static final MetadataFieldName MD_POLICY_GROUP = new MetadataFieldName("cris", "policy", "group");
+
+    public static final MetadataFieldName MD_CURRENCY = new MetadataFieldName("oairecerif", "amount", "currency");
+    public static final String DEFAULT_CURRENCY = "Euro";
+
+    public static final MetadataFieldName MD_PROJECT_STATUS = new MetadataFieldName("oairecerif", "project", "status");
+    public static final String DEFAULT_STATUS = "In preparation";
+
+    public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
 
     /**
      * Default constructor

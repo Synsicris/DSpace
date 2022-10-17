@@ -218,7 +218,21 @@
     
     <dc-type>
         <schema>synsicris</schema>
-        <element>common-policy</element>
+        <element>member-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>funder-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>reader-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>

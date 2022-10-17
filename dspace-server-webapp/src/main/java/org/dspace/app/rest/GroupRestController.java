@@ -150,7 +150,7 @@ public class GroupRestController {
             throw new ResourceNotFoundException("parent group is not found for uuid: " + uuid);
         }
 
-        AuthorizeUtil.authorizeManageGroup(context, parentGroup);
+        AuthorizeUtil.authorizeAddMembers(context, parentGroup);
 
         List<String> memberLinks = utils.getStringListFromRequest(request);
 
@@ -242,9 +242,7 @@ public class GroupRestController {
             throw new ResourceNotFoundException("parent group is not found for uuid: " + parentUUID);
         }
 
-        if (!isAuthorized(context, parentGroup.getName())) {
-            AuthorizeUtil.authorizeManageGroup(context, parentGroup);
-        }
+        AuthorizeUtil.authorizeRemoveMembers(context, parentGroup, hasAdminPrivileges(context, parentGroup.getName()));
 
         EPerson childGroup = ePersonService.find(context, memberUUID);
         if (childGroup == null) {
@@ -258,13 +256,12 @@ public class GroupRestController {
         response.setStatus(SC_NO_CONTENT);
     }
 
-    private boolean isAuthorized(Context context, String groupName) throws SQLException {
-
-        DSpaceObject dso = getDspaceObject(context, groupName);
-
+    private boolean hasAdminPrivileges(Context context, String groupName) throws SQLException {
         if (authorizeService.isAdmin(context)) {
             return true;
         }
+
+        DSpaceObject dso = getDspaceObject(context, groupName);
 
         return dso != null && authorizeService.isAdmin(context, dso);
     }

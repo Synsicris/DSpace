@@ -28,6 +28,7 @@ import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Context;
 import org.dspace.core.LogHelper;
 import org.dspace.eperson.EPerson;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,9 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
 
     @Autowired
     private AuthorizeService authorizeService;
+
+    @Autowired
+    private GroupService groupService;
 
     @Autowired
     private RequestService requestService;
@@ -207,10 +211,16 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
 
             if (isAdmin) {
                 authorities.add(new SimpleGrantedAuthority(ADMIN_GRANT));
-            } else if ((isCommunityAdmin && AuthorizeUtil.canCommunityAdminManageAccounts())
-                       || (isCollectionAdmin && AuthorizeUtil.canCollectionAdminManageAccounts())) {
-                authorities.add(new SimpleGrantedAuthority(MANAGE_ACCESS_GROUP));
-            }
+            } else
+                try {
+                    if ((isCommunityAdmin && AuthorizeUtil.canCommunityAdminManageAccounts())
+                               || (isCollectionAdmin && AuthorizeUtil.canCollectionAdminManageAccounts())
+                               || groupService.isOrganisationalManager(context, eperson)) {
+                        authorities.add(new SimpleGrantedAuthority(MANAGE_ACCESS_GROUP));
+                    }
+                } catch (SQLException e) {
+                    authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
+                }
 
             authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
         }

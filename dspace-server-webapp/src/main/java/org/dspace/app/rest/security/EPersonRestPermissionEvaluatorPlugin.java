@@ -25,6 +25,7 @@ import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
 import org.slf4j.Logger;
@@ -44,6 +45,9 @@ public class EPersonRestPermissionEvaluatorPlugin extends RestObjectPermissionEv
 
     @Autowired
     AuthorizeService authorizeService;
+
+    @Autowired
+    private GroupService groupService;
 
     @Autowired
     private RequestService requestService;
@@ -81,6 +85,9 @@ public class EPersonRestPermissionEvaluatorPlugin extends RestObjectPermissionEv
                 return true;
             } else if (authorizeService.isCollectionAdmin(context)
                 && AuthorizeUtil.canCollectionAdminManageAccounts()) {
+                return true;
+            } else if (DSpaceRestPermission.READ.equals(restPermission) && 
+                    isFunderOganizationalManager(context, ePerson)) {
                 return true;
             }
         } catch (SQLException e) {
@@ -129,6 +136,14 @@ public class EPersonRestPermissionEvaluatorPlugin extends RestObjectPermissionEv
         }
 
         return true;
+    }
+    
+    private boolean isFunderOganizationalManager(Context context, EPerson ePerson ) {
+        try {
+            return groupService.isOrganisationalManager(context, ePerson);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
 }

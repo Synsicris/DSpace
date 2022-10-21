@@ -31,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Davide Negretti (davide.negretti at 4science.it)
  */
-public class AgrovocKeywordsGenerator extends AbstractGenerator {
+public class AgrovocKeywordsGenerator extends AbstractProjectGenerator {
 
     private static final Logger log = LoggerFactory.getLogger(AgrovocKeywordsGenerator.class);
 

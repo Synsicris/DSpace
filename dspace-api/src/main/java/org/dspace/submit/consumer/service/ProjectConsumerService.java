@@ -7,6 +7,7 @@
  */
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,4 +47,7 @@ public interface ProjectConsumerService {
     public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
             throws SQLException;
 
+    public Iterator<Item> findVersionedItemsOfProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    );
 }

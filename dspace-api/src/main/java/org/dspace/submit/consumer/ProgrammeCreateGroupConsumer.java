@@ -115,7 +115,7 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
     }
 
     private boolean isEntityTypeEqualTo(Item item, String entityType) {
-        return itemService.getEntityType(item).equals(entityType);
+        return entityType.equals(itemService.getEntityType(item));
     }
 
     private void createProgrammeGroup(Context context, String groupName) {

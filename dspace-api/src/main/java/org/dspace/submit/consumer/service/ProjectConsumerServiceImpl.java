@@ -12,11 +12,14 @@ import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEM
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +36,11 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.core.exception.SQLRuntimeException;
+import org.dspace.discovery.DiscoverQuery;
+import org.dspace.discovery.DiscoverResultItemIterator;
+import org.dspace.discovery.indexobject.IndexableCommunity;
+import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
@@ -47,6 +55,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 */
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
+    private static final String SOLR_FILTER_UNIQUEID = "synsicris.uniqueid:\"*\\_%s$\"";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -193,6 +202,37 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         String groupName = String.format(template, projectCommunity.getID().toString());
         return groupService.findByName(context, groupName);
+    }
+
+    @Override
+    public Iterator<Item> findVersionedItemsOfProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        try {
+
+            projectCommunity =
+                Optional.ofNullable(projectCommunity)
+                    .orElse(getProjectCommunity(context, projectItem));
+            if (projectCommunity == null) {
+                return IteratorUtils.emptyIterator();
+            }
+
+            return findItemsByCommunity(context, projectCommunity, projectItem, version);
+
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    private Iterator<Item> findItemsByCommunity(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(String.format(SOLR_FILTER_UNIQUEID, version));
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 
     private Community getFundingCommunity(Community projectCommunity) {

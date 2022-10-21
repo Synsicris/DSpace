@@ -80,6 +80,9 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
     public void removeDsoGroupPolicies(Context context, DSpaceObject dso, Group group)
         throws SQLException, AuthorizeException;
 
+    public void removeDsoGroupActionPolicies(Context context, DSpaceObject dso, Group group, int actionId)
+        throws SQLException, AuthorizeException;
+
     public void removeDsoEPersonPolicies(Context context, DSpaceObject dso, EPerson ePerson)
         throws SQLException, AuthorizeException;
 
@@ -113,7 +116,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies that belong to an EPerson
-     * 
+     *
      * @param context       DSpace context object
      * @param ePerson       ePerson whose policies want to find
      * @param offset        the position of the first result to return
@@ -125,7 +128,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the resource policies of the ePerson
-     * 
+     *
      * @param context        DSpace context object
      * @param ePerson        ePerson whose policies want to count
      * @return               total resource policies of the ePerson
@@ -135,7 +138,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies related to a resourceUuid belong to an ePerson
-     * 
+     *
      * @param context        DSpace context object
      * @param ePerson        ePerson whose policies want to find
      * @param resourceUuid   the uuid of an DSpace resource
@@ -149,7 +152,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the policies related to a resourceUuid belong to an ePerson
-     * 
+     *
      * @param context        DSpace context object
      * @param resourceUuid   the uuid of an DSpace resource
      * @param ePerson        ePerson whose policies want to find
@@ -161,7 +164,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies related to a DSpace resource filter by actionId
-     * 
+     *
      * @param context        DSpace context object
      * @param resourceUuid   the uuid of an DSpace resource
      * @param actionId       id relative to action as READ, WRITE, DELITE etc.
@@ -175,7 +178,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the policies related to a resourceUuid and actionId
-     * 
+     *
      * @param context        DSpace context object
      * @param resourceUuid   the uuid of an DSpace resource
      * @param actionId       id relative to action as READ, WRITE, DELITE etc.
@@ -186,7 +189,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies related to a DSpace resource
-     * 
+     *
      * @param context        DSpace context object
      * @param resourceUuid   the uuid of an DSpace resource
      * @param offset         the position of the first result to return
@@ -199,7 +202,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the policies by resourceUuid
-     * 
+     *
      * @param context        DSpace context object
      * @param resourceUuid   the uuid of an DSpace resource
      * @return               total policies
@@ -209,7 +212,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies related to a group
-     * 
+     *
      * @param context        DSpace context object
      * @param group          DSpace group
      * @param offset         the position of the first result to return
@@ -221,7 +224,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the resource policies of the group
-     * 
+     *
      * @param context        DSpace context object
      * @param group          DSpace group
      * @return               total policies
@@ -231,7 +234,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Return a paginated list of policies related to a group and related to a resourceUuid
-     * 
+     *
      * @param context        DSpace context object
      * @param group          DSpace group
      * @param resourceUuid   the uuid of an DSpace resource
@@ -245,7 +248,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Count all the resource policies of the group and of the resourceUuid
-     * 
+     *
      * @param context        DSpace context object
      * @param group          DSpace group
      * @param resourceUuid   the uuid of an DSpace resource
@@ -256,7 +259,7 @@ public interface ResourcePolicyService extends DSpaceCRUDService<ResourcePolicy>
 
     /**
      * Check if the resource policy identified with (id) belong to ePerson
-     * 
+     *
      * @param context           DSpace context object
      * @param eperson           ePerson
      * @param id                id of resource policy

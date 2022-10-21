@@ -218,6 +218,13 @@
     
     <dc-type>
         <schema>synsicris</schema>
+        <element>coordinator-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
         <element>member-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>

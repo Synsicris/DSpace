@@ -200,13 +200,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="orgunits-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>
@@ -2179,13 +2179,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="programmes-edit" />
+                            <property name="submissionDefinition" value="orgunits-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>
@@ -2288,13 +2288,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="calls-edit" />
+                            <property name="submissionDefinition" value="orgunits-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>
@@ -2315,13 +2315,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="fundingobjectives-edit" />
+                            <property name="submissionDefinition" value="orgunits-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>

@@ -1,166 +1,383 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.1"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-	xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
-	exclude-result-prefixes="fo">
-	
-	<xsl:param name="imageDir" />
-	
+								xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+								xmlns:fo="http://www.w3.org/1999/XSL/Format"
+								xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
+								exclude-result-prefixes="fo">
+
+<!--#########################################################################-->
+<!-- VARIABLES -->	
+<!--#########################################################################-->
+
+<!-- paths -->	
+<!-- NOTE: path needs to be given with single hyphens otherwise the path is interpreted as XPath element --> 
+<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template'"/>
+
+<!-- font size -->	
+<xsl:param name="titleFontSize" select="'14pt'"/>
+<xsl:param name="mainFontSize" select="'10pt'"/> 
+
+<!-- margins -->	
+<xsl:param name="textMarginLeft" select="'3mm'"/>
+<xsl:param name="titleMarginTop" select="'5mm'"/>	
+<xsl:param name="mainMarginTop" select="'2mm'"/>
+<xsl:param name="sectionMarginTop" select="'10mm'"/>
+<xsl:param name="sectionMarginBottom" select="'-3mm'"/>		
+
+<!-- rulers -->
+<xsl:param name="titleRulerLength" select="'100%'"/>
+<xsl:param name="sectionRulerLength" select="'97.5%'"/>
+
+<!-- CURRENT PROBLEMS AND QUESTIONS -->	
+<!-- so far relative paths are not correctly handled, that is why absolute paths are given -->
+<!-- how to handle multi-language approaches? using variables? -->
+
+<!--#########################################################################-->
+<!-- MAIN PAGE -->	
+<!--#########################################################################-->
+
 	<xsl:template match="cerif:Project">	
 		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+
+		<!-- LAYOUT MASTER SET-->
 			<fo:layout-master-set>
-				<fo:simple-page-master master-name="simpleA4"
-					page-height="29.7cm" page-width="24cm" margin-top="2cm"
-					margin-bottom="2cm" margin-left="1cm" margin-right="1cm">
-					<fo:region-body />
+				<!-- page properties -->
+				<fo:simple-page-master master-name="A4-process-events"
+															page-height="29.7cm" 
+															page-width="24cm" 
+															margin-top="2cm"
+															margin-bottom="2cm" 
+															margin-left="1cm" 
+															margin-right="1cm">
+
+					<!-- properties of the body region -->																 
+					<fo:region-body border-before-width="0"> <!-- according to the standard the width has be 0, 
+																												this affectively avoids border lines to be implemented 
+																												(unless the standard is ignored which DSpace does not do), 
+																												as solution the other regions are used: 1pt and black background --> 
+					</fo:region-body>	
+
+					<!-- properties of header -->
+					<fo:region-before extent="1pt"
+														background-color="black">
+					</fo:region-before>
+
+					<!-- properties of footer -->
+					<fo:region-after extent="1pt"
+													background-color="black">
+					</fo:region-after>
+
+					<!-- properties of the left side -->
+					<fo:region-start extent="1pt"
+													background-color="black">
+					</fo:region-start>
+
+					<!-- properties of the right side -->
+					<fo:region-end extent="1pt"
+												background-color="black">
+					</fo:region-end>					
+
 				</fo:simple-page-master>
 			</fo:layout-master-set>
-			<fo:page-sequence master-reference="simpleA4">
-				<fo:flow flow-name="xsl-region-body">
-		         	<fo:block margin-bottom="5mm" padding="2mm">
-						<fo:block font-size="26pt" font-weight="bold" text-align="center" >
-							<xsl:value-of select="cerif:Title" />
-						</fo:block>
-					</fo:block>
-					
-			    	<fo:block font-size="10pt" space-after="5mm" text-align="justify" margin-top="5mm" >
-						<xsl:value-of select="cerif:Abstract" />
-					</fo:block>
-					
-					<xsl:call-template name="section-title">
-				    	<xsl:with-param name="label" select="'Basic informations TEST'" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'Project Acronym'" />
-				    	<xsl:with-param name="value" select="cerif:Acronym" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'OpenAIRE id(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Identifier[@type = 'http://namespace.openaire.eu/oaf']" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'URL(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Identifier[@type = 'URL']" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'Start date'" />
-				    	<xsl:with-param name="value" select="cerif:StartDate" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'End date'" />
-				    	<xsl:with-param name="value" select="cerif:EndDate" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'Status'" />
-				    	<xsl:with-param name="value" select="cerif:Status" />
-			    	</xsl:call-template>
-					
-					<xsl:call-template name="section-title">
-				    	<xsl:with-param name="label" select="'Consortium'" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Consortium Coordinator(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Consortium/cerif:Coordinator/cerif:OrgUnit/cerif:Name" />
-				    </xsl:call-template>
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Partner Organization(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Consortium/cerif:Partner/cerif:OrgUnit/cerif:Name" />
-				    </xsl:call-template>
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Participant Organization(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Consortium/cerif:Member/cerif:OrgUnit/cerif:Name" />
-				    </xsl:call-template>
-					
-					<xsl:call-template name="section-title">
-				    	<xsl:with-param name="label" select="'Team'" />
-			    	</xsl:call-template>
-			    	
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'Project Coordinator'" />
-				    	<xsl:with-param name="value" select="cerif:Team/cerif:PrincipalInvestigator/cerif:Person/@displayName" />
-				    </xsl:call-template>
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Co-Investigator(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Team/cerif:Member/cerif:Person/@displayName" />
-				    </xsl:call-template>
-					
-					<xsl:call-template name="section-title">
-				    	<xsl:with-param name="label" select="'Other informations'" />
-			    	</xsl:call-template>
 
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Uses equipment(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Uses/cerif:Equipment/cerif:Name" />
-				    </xsl:call-template>
-					<xsl:call-template name="print-values">
-				    	<xsl:with-param name="label" select="'Keyword(s)'" />
-				    	<xsl:with-param name="values" select="cerif:Keyword" />
-				    </xsl:call-template>
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'OA Mandate'" />
-				    	<xsl:with-param name="value" select="cerif:OAMandate/@mandated" />
-			    	</xsl:call-template>
-					<xsl:call-template name="print-value">
-				    	<xsl:with-param name="label" select="'OA Policy URL'" />
-				    	<xsl:with-param name="value" select="cerif:OAMandate/@URL" />
-			    	</xsl:call-template>
-				    
+		<!-- PAGE SEQUENCE -->
+			<fo:page-sequence master-reference="A4-process-events">
+				<fo:flow flow-name="xsl-region-body">
+
+					<!-- entity name -->
+					<xsl:call-template name="report-title-ruler">
+						<xsl:with-param name="reportName" select="'Vorhabensbeschreibung / Basisbericht'" />
+					</xsl:call-template>
+					
+					<!-- title -->
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="label" select="'Titel des Verbundprojektes'" />
+						<xsl:with-param name="value" select="cerif:Title" />
+					</xsl:call-template>
+
+					<!-- acronym -->
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="label" select="'Akronym'" />
+						<xsl:with-param name="value" select="cerif:Acronym" />
+					</xsl:call-template>
+
+					<!-- period -->
+					<xsl:call-template name="key-period">
+						<xsl:with-param name="label" select="'Laufzeit'" />
+						<xsl:with-param name="startdate" select="cerif:StartDate" />
+						<xsl:with-param name="enddate" select="cerif:EndDate" />
+					</xsl:call-template>
+
+					<!-- partner -->
+					<xsl:call-template name="key-only">
+						<xsl:with-param name="label" select="'Partner'" />
+					</xsl:call-template>					
+
+
 				</fo:flow>
 			</fo:page-sequence>
+
 		</fo:root>
 	</xsl:template>
-	
-	<xsl:template name = "print-value" >
-	  	<xsl:param name = "label" />
-	  	<xsl:param name = "value" />
-	  	<xsl:if test="$value">
-		  	<fo:block font-size="10pt" margin-top="2mm">
-				<fo:inline font-weight="bold" text-align="right" >
+
+<!--#########################################################################-->
+<!-- USED TEMPLATES -->	
+<!--#########################################################################-->
+
+	<!-- report title with horizontal ruler -->	
+	<xsl:template name = "report-title-ruler" >
+		<xsl:param name = "reportName" />
+
+		<fo:block margin-left="{$textMarginLeft}"
+							margin-top="{$titleMarginTop}">
+			<fo:inline font-size="{$titleFontSize}"
+								 font-weight="bold" 
+								 text-align="left">							
+				<xsl:value-of select="$reportName" />
+			</fo:inline>
+		</fo:block>
+
+		<fo:block>
+			<fo:leader leader-pattern="rule" 
+			           leader-length="{$titleRulerLength}"
+								 rule-style="solid" />         
+		</fo:block>
+
+	</xsl:template>
+
+	<!-- section title with horizontal ruler -->	
+	<xsl:template name = "section-title-ruler" >
+		<xsl:param name = "sectionName" />
+
+		<fo:block margin-left="{$textMarginLeft}"
+							margin-top="{$sectionMarginTop}"
+							margin-bottom="{$sectionMarginBottom}"
+							font-size="{$mainFontSize}">
+			<fo:inline text-align="left">							
+				<xsl:value-of select="$sectionName" />
+			</fo:inline>
+		</fo:block>
+
+		<fo:block text-align="center"> <!-- ruler cannot be aligned, this is done via the block -->
+			<fo:leader leader-pattern="rule" 
+			           leader-length="{$sectionRulerLength}" 
+								 rule-style="solid" />
+		</fo:block>
+
+	</xsl:template>
+
+	<!-- key: no value -->
+	<xsl:template name = "key-only" >
+	  <xsl:param name = "label" />
+
+	  <xsl:if test="$label">
+		  <fo:block margin-left="{$textMarginLeft}"
+								font-size="{$mainFontSize}" 
+			        	margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="bold" text-align="right">
 					<xsl:value-of select="$label" /> 
 				</fo:inline >
+
 				<xsl:text>: </xsl:text>
+
+			</fo:block>
+	  </xsl:if>
+	</xsl:template>
+
+	<!-- key: single value -->
+	<xsl:template name = "key-value-single" >
+	  <xsl:param name = "label" />
+	  <xsl:param name = "value" />
+
+	  <xsl:if test="$value">
+		  <fo:block margin-left="{$textMarginLeft}"
+								font-size="{$mainFontSize}" 
+			        	margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="bold" text-align="right">
+					<xsl:value-of select="$label" /> 
+				</fo:inline >
+
+				<xsl:text>: </xsl:text>
+
 				<fo:inline>
 					<xsl:value-of select="$value" /> 
 				</fo:inline >
+
 			</fo:block>
-	  	</xsl:if>
+	  </xsl:if>
 	</xsl:template>
 	
-	<xsl:template name = "section-title" >
-		<xsl:param name = "label" />
-		<fo:block font-size="16pt" font-weight="bold" margin-top="8mm" >
-			<xsl:value-of select="$label" /> 
-		</fo:block>
-		<fo:block>
-			<fo:leader leader-pattern="rule" leader-length="100%" rule-style="solid" />         
-		</fo:block>
+	<!-- key: period -->
+	<xsl:template name = "key-period" >
+	  <xsl:param name = "label" />
+	  <xsl:param name = "startdate" />
+		<xsl:param name = "enddate" />
+
+	  <xsl:if test="$startdate">
+			<xsl:if test="$enddate">
+				<fo:block margin-left="{$textMarginLeft}"
+									font-size="{$mainFontSize}" 
+									margin-top="{$mainMarginTop}">
+
+					<fo:inline font-weight="bold" text-align="right">
+						<xsl:value-of select="$label" /> 
+					</fo:inline >
+
+					<xsl:text>: </xsl:text>
+
+					<fo:inline>
+						<xsl:value-of select="$startdate" /> 
+					</fo:inline >
+
+					<xsl:text> - </xsl:text>
+
+					<fo:inline>
+						<xsl:value-of select="$enddate" /> 
+					</fo:inline >
+
+				</fo:block>
+		  </xsl:if>
+	  </xsl:if>
 	</xsl:template>
-	
-	<xsl:template name = "print-values" >
+
+	<!-- key: value list separated by commas -->
+	<xsl:template name = "key-value-comma-list" >
 		<xsl:param name = "label" />
-	  	<xsl:param name = "values" />
-	  	<xsl:if test="$values">
-		  	<fo:block font-size="10pt" margin-top="2mm">
-				<fo:inline font-weight="bold" text-align="right"  >
+	  <xsl:param name = "values" />
+
+	  <xsl:if test="$values">
+		  <fo:block margin-left="{$textMarginLeft}" 
+								font-size="{$mainFontSize}" 
+			          margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="bold" 
+				           text-align="right"  >
 					<xsl:value-of select="$label" /> 
 				</fo:inline >
+
 				<xsl:text>: </xsl:text>
+
 				<fo:inline>
 					<xsl:for-each select="$values">
-					    <xsl:value-of select="current()" />
-					    <xsl:if test="position() != last()">, </xsl:if>
+					  <xsl:value-of select="current()" />
+					  <xsl:if test="position() != last()">, </xsl:if> <!-- do only this for the last item -->
 					</xsl:for-each>
 				</fo:inline >
+
 			</fo:block>
 		</xsl:if>
+	</xsl:template>	
+
+	<!-- key: every value in a separated line -->
+	<xsl:template name = "key-value-line-list" >
+		<xsl:param name = "label" />
+	  <xsl:param name = "values" />
+
+		<xsl:if test="$values"> <!-- do only if there are values -->
+
+			<fo:block margin-left="{$textMarginLeft}"
+								font-size="{$mainFontSize}" 
+			          margin-top="{$mainMarginTop}">
+				<fo:inline font-weight="bold" 
+				           text-align="right"  >
+					<xsl:value-of select="$label" /> 
+				</fo:inline >
+
+				<xsl:text>: </xsl:text>
+			</fo:block>
+
+			<fo:list-block font-size="{$mainFontSize}">
+				<xsl:for-each select="$values">
+					<fo:list-item>
+
+						<fo:list-item-label>      <!-- for whatever reason there is no space between label and body --> 
+							<fo:block></fo:block>   <!-- so the label is skipped here and moved to the body -->  
+						</fo:list-item-label>
+				
+						<fo:list-item-body>
+							<fo:block>- <xsl:value-of select="current()" /></fo:block>
+						</fo:list-item-body>
+
+				  </fo:list-item>
+
+			  </xsl:for-each>
+		  </fo:list-block>
+	  </xsl:if>
+
+  </xsl:template>	
+
+	<!-- table frequency -->	
+	<xsl:template name = "table-frequency" >
+		<xsl:param name = "process" />
+
+		<fo:block margin-top="{$mainMarginTop}">
+
+			<fo:table table-layout="fixed"  
+			          border-before-style="hidden" 
+								border-after-style="hidden"
+								border-start-style="hidden"
+								border-end-style="hidden"> <!-- the style "none" is default, but still shows lines -->
+                                           <!-- the width of the table cannot be controlled here, is done via the columns -->
+				<!-- define the columns -->				
+				<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
+				<fo:table-column column-width="40%"/>                           
+				<fo:table-column column-width="10%"/>
+				<fo:table-column column-width="20%"/>
+				<fo:table-column column-width="25%"/>
+				<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+				                                                                <!-- in addition the columns need to be numbered, omitting the first and last column --> 
+				<!-- define the header -->
+				<fo:table-header color="#808080">
+					<fo:table-cell column-number="2" border-width="thin"  border-style="solid" border-start-style="hidden">
+						<fo:block text-align="center" font-weight="bold">Art</fo:block>
+					</fo:table-cell>
+					<fo:table-cell column-number="3" border-width="thin" border-style="solid">
+						<fo:block text-align="center" font-weight="bold">Dauer (h)</fo:block>
+					</fo:table-cell>
+					<fo:table-cell column-number="4" border-width="thin" border-style="solid">
+						<fo:block text-align="center" font-weight="bold">Häufigkeit</fo:block>
+					</fo:table-cell>
+					<fo:table-cell column-number="5" border-width="thin" border-style="solid" border-end-style="hidden">
+						<fo:block text-align="center" font-weight="bold">Zeitraum</fo:block>
+					</fo:table-cell>										
+				</fo:table-header>
+
+				<fo:table-body>					
+					<xsl:for-each select="$process">
+						<fo:table-row>
+
+							<fo:table-cell column-number="2" border-width="thin" border-style="solid" border-start-style="hidden">
+							<fo:block text-align="center">
+								<xsl:value-of select="current()" />
+							</fo:block>
+						</fo:table-cell>
+
+						<fo:table-cell column-number="3" border-width="thin" border-style="solid">
+							<fo:block text-align="center">
+								<xsl:value-of select="current()" />
+							</fo:block>
+						</fo:table-cell>						
+
+						<fo:table-cell column-number="4" border-width="thin" border-style="solid">
+							<fo:block text-align="center">
+								<xsl:value-of select="current()" />
+							</fo:block>
+						</fo:table-cell>	
+
+						<fo:table-cell column-number="5" border-width="thin" border-style="solid" border-end-style="hidden">
+							<fo:block text-align="center">
+								<xsl:value-of select="current()" />
+							</fo:block>
+						</fo:table-cell>	
+
+						</fo:table-row>
+					</xsl:for-each>
+				</fo:table-body>
+
+			</fo:table>
+		</fo:block>	
 	</xsl:template>
-	
+
 </xsl:stylesheet>

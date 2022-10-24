@@ -409,6 +409,42 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
+    public Item getParentProjectItemByCommunityUUID(Context context, UUID communityUUID) throws SQLException {
+        Item projectItem = null;
+        Community community = null;
+
+        try {
+            community = communityService.find(context, communityUUID);
+        } catch (SQLException e) {
+            log.error("Error while trying to extract communities for collection {}: {}", communityUUID.toString(),
+                    e.getMessage());
+            return projectItem;
+        }
+
+        if (Objects.isNull(community)) {
+            return projectItem;
+        }
+
+        List<MetadataValue> values = communityService.getMetadata(community,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
+
+        if (values.size() != 1) {
+            log.warn("Communitiy {} has {} project items, unable to proceed", community.getID().toString(),
+                    values.size());
+            return projectItem;
+        }
+
+        String itemUUID = values.get(0).getAuthority();
+        if (StringUtils.isBlank(itemUUID)) {
+            log.warn("Communitiy {} has no project items, unable to proceed", community.getID().toString());
+            return projectItem;
+        }
+
+        return itemService.find(context, UUIDUtils.fromString(itemUUID));
+    }
+
+    @Override
     public boolean isProjectItem(Item item) {
         return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
     }

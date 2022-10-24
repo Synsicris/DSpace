@@ -237,6 +237,20 @@
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_funder-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.funder-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
                     </list>
                 </entry>
                 <entry key="person">

@@ -2082,6 +2082,32 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
+    <form name="projects_versioning">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>visible</dc-qualifier>
+          <label>Visible</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>official</dc-qualifier>
+          <label>Official</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="funding">
       <row>
         <field>

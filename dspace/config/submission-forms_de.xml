@@ -507,10 +507,10 @@
           <dc-schema>dspace</dc-schema>
           <dc-element>entity</dc-element>
           <dc-qualifier>type</dc-qualifier>
-          <label>Kategorie auswählen</label>
+          <label>Bitte bestätigen Sie die Vorauswahl</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -1160,7 +1160,7 @@
           <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie jeweils einen Begriff oder Teile davon ein. Dann sucht das System im Schlagwortverzeichnis von Agrovoc. Wählen Sie anschließend den passenden Begriff aus der angezeigten Vorschlagsliste.</hint>
           <vocabulary closed="true">agrovoc</vocabulary>
         </field>
       </row>
@@ -1745,7 +1745,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel des Verbundprojektes</label>
+          <label>Titel des Verbundes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -1759,7 +1759,7 @@
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
-          <label>Bezeichnung in Englisch</label>
+          <label>Titel in Englisch</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1913,7 +1913,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
           <dc-qualifier>budget</dc-qualifier>
-          <label>Gesamtvolumen des Verbundprojektes (Zuwendung &amp; Eigenmittel)</label>
+          <label>Gesamtbudget des Verbundes (inkl. Eigenmittel)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1930,6 +1930,154 @@
           <required />
           <style>col-md-3</style>
           <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Titel des Verbundprojektes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <validation>/[a-ü\D]+/gmi</validation>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Fördermaßnahme/Förderprogramm</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Förderbereich/Bekanntmachung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Hier werden Ihnen die jeweiligen Förderbereiche/Bekanntmachungen angezeigt. Andere verwendete Begriffe sind Ausschreibung oder Call. Es ist äußerst wichtig, dass die Auswahl korrekt erfolgt, da nur dann die richtigen Förderpolitischen Ziele im Projekt angezeigt werden.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visibility</dc-qualifier>
+          <label>Voreinstellung öffentliche Sichtbarkeit</label>
+          <input-type value-pairs-name="public_visibility">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Zugehörige SDGs</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel1</dc-qualifier>
+          <label>Projektlabel Transfer</label>
+          <input-type value-pairs-name="funderlabel1">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel2</dc-qualifier>
+          <label>Project label Placeholder</label>
+          <input-type value-pairs-name="funderlabel2">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel3</dc-qualifier>
+          <label>Project label other Placeholder</label>
+          <input-type value-pairs-name="funderlabel3">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder-synsicris-type-sdg">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Zugehöriges SDG</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+          <vocabulary closed="true">sdg</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Beitrag des Projektes zum SDG</label>
+          <input-type value-pairs-name="sdg_influence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Begründung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-10</style>
+          <hint>Falls erforderlich, können sie hier Ihre Einschätzung begründen.</hint>
         </field>
       </row>
     </form>
@@ -2533,7 +2681,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>easy-import</dc-qualifier>
-          <label>yes_no</label>
+          <label>Ausführende Stelle im easy-online-Antrag</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required>Pflichtangabe</required>
@@ -4633,7 +4781,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Wählen Sie den Readiness Level, der besser möglichen zur Lösung, Veränderung oder Innovation passt.</hint>
+          <hint>Wählen Sie den Readiness Level, der besser  zur möglichen Lösung, Veränderung oder Innovation passt.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5560,7 +5708,6 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">transform</vocabulary>
         </field>
@@ -5586,7 +5733,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
           <vocabulary closed="true">core</vocabulary>
         </field>
@@ -5598,7 +5745,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type value-pairs-name="impact_positive">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -5671,7 +5818,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
           <vocabulary closed="true">core</vocabulary>
         </field>
@@ -5683,7 +5830,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -7221,6 +7368,76 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Completed</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="public_visibility" dc-term="public_visibility">
+      <pair>
+        <displayed-value>Projektnehmer können weitere Informationen aus dem im Monitoring-Tool veröffentlichen</displayed-value>
+        <stored-value>open</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Basisinformationen werden öffentlich - Projektnehmer können keine weiteren Informationen im Monitoring-Tool veröffentlichen</displayed-value>
+        <stored-value>limited</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Keine Informationen werden öffentlich</displayed-value>
+        <stored-value>closed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel1" dc-term="funderlabel1">
+      <pair>
+        <displayed-value>Leuchtturmprojekt/Erfolgsstory</displayed-value>
+        <stored-value>success story</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wissenstransfer Ernährung (BZfE)</displayed-value>
+        <stored-value>transfer food</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Wissenstransfer Landwirtschaft (BZL)</displayed-value>
+        <stored-value>transfer farming</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Öffentlich umstrittenes Thema</displayed-value>
+        <stored-value>public controversy</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel2" dc-term="funderlabel2">
+      <pair>
+        <displayed-value>Platzhalter</displayed-value>
+        <stored-value>placeholder</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel3" dc-term="funderlabel3">
+      <pair>
+        <displayed-value>Platzhalter</displayed-value>
+        <stored-value>placeholder</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="sdg_influence" dc-term="sdg_influence">
+      <pair>
+        <displayed-value>Stark positive Wirkung</displayed-value>
+        <stored-value>strong positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mittlere positive Wirkung</displayed-value>
+        <stored-value>medium positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Geringe positive Wirkung</displayed-value>
+        <stored-value>sligh positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Geringe negative Wirkung</displayed-value>
+        <stored-value>slight negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mittlere negative Wirkung</displayed-value>
+        <stored-value>medium negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Starke negative Wirkung</displayed-value>
+        <stored-value>strong negative</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="gender" dc-term="gender">
       <pair>
         <displayed-value>Unbekannt</displayed-value>
@@ -7493,6 +7710,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Erwartete gesellschaftliche Wirkungen</displayed-value>
         <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mögliche negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffects</stored-value>
       </pair>
       <pair>
         <displayed-value>Ethische Reflexion</displayed-value>
@@ -8119,27 +8340,27 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="influence_conditions" dc-term="influence_conditions">
       <pair>
-        <displayed-value>[++] Stark fördernd</displayed-value>
+        <displayed-value>Stark fördernd</displayed-value>
         <stored-value>Strongly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ + ] Leicht fördernd</displayed-value>
+        <displayed-value>Leicht fördernd</displayed-value>
         <stored-value>Slightly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[+/-] Sowohl fördernd als auch hemmend</displayed-value>
+        <displayed-value>Sowohl fördernd als auch hemmend</displayed-value>
         <stored-value>facilitating and hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ -  ] Leicht hemmend</displayed-value>
+        <displayed-value>Leicht hemmend</displayed-value>
         <stored-value>Slightly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ -- ] Stark hemmend</displayed-value>
+        <displayed-value>Stark hemmend</displayed-value>
         <stored-value>Strongly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ ? ] Einfluss noch nicht einschätzbar</displayed-value>
+        <displayed-value>Einfluss noch nicht einschätzbar</displayed-value>
         <stored-value>Influence not yet assessable</stored-value>
       </pair>
     </value-pairs>
@@ -8213,7 +8434,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>others</stored-value>
       </pair>
       <pair>
-        <displayed-value>12) das Projekt berührt keinen ethischen Aspekt</displayed-value>
+        <displayed-value>12) Das Projekt berührt keinen ethischen Aspekt</displayed-value>
         <stored-value>no</stored-value>
       </pair>
     </value-pairs>
@@ -8347,10 +8568,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Geplante Veröffentlichungen</displayed-value>
         <stored-value>plan_publication</stored-value>
       </pair>
@@ -8457,10 +8674,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Arbeitspaket</displayed-value>
         <stored-value>workpackage</stored-value>
       </pair>
@@ -8489,10 +8702,6 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       <pair>
         <displayed-value>Offene Forschungsfragen</displayed-value>
         <stored-value>open_researchquestion</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Beitrag zu förderpolitischen Zielen</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

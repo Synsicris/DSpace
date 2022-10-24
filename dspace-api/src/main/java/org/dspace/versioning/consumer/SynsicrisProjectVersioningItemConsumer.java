@@ -65,9 +65,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     private ProjectConsumerService projectConsumerService;
     private GroupService groupService;
     private AuthorizeService authorizeService;
+    private ProjectGeneratorService projectGeneratorService;
+
     private Group funderOrganisationalManagerGroup;
     private Group systemMembersGroup;
-    private ProjectGeneratorService projectGeneratorService;
 
     @Override
     public void initialize() throws Exception {
@@ -118,7 +119,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     }
 
     @Override
-    public void end(Context ctx) throws Exception {}
+    public void end(Context ctx) throws Exception {
+        this.funderOrganisationalManagerGroup = null;
+        this.systemMembersGroup = null;
+    }
 
     @Override
     public void finish(Context ctx) throws Exception {}

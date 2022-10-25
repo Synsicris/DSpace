@@ -21,6 +21,7 @@ import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.project.util.ProjectConstants;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,19 +61,52 @@ public class DeleteGroupsConsumerIT extends AbstractControllerIntegrationTest {
         projectsCommunity = CommunityBuilder.createCommunity(context)
                                             .withName("Projects Community").build();
 
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .addMember(ePerson2).build();
+        Group projectsCommunityGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        projectsCommunity.getID().toString()
+                    )
+                )
+                .addMember(ePerson1)
+                .addMember(ePerson2).build();
 
-        Group projectsCommunityAdminGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_admin_group")
-                     .addMember(ePerson1).build();
+        Group projectsCommunityCoordinatorsGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE,
+                        projectsCommunity.getID().toString()
+                    )
+                )
+                .addMember(ePerson1)
+                .build();
+
+        Group projectsCommunityFunderGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE,
+                        projectsCommunity.getID().toString()
+                    )
+                )
+                .addMember(ePerson1).build();
+
+        Group projectsCommunityReaderGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE,
+                        projectsCommunity.getID().toString()
+                    )
+                )
+                .addMember(ePerson1).build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
                                                   .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withAdminGroup(projectsCommunityAdminGroup)
+                                                  .withAdminGroup(projectsCommunityCoordinatorsGroup)
                                                   .withTemplateItem().build();
 
         Item templateItem = publicationsCollection.getTemplateItem();
@@ -111,16 +145,22 @@ public class DeleteGroupsConsumerIT extends AbstractControllerIntegrationTest {
                              .andExpect(status().isNoContent());
 
         getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityGroup.getID()))
-                             .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
 
-        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityAdminGroup.getID()))
-                             .andExpect(status().isNotFound());
+        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityCoordinatorsGroup.getID()))
+            .andExpect(status().isNotFound());
+
+        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityFunderGroup.getID()))
+            .andExpect(status().isNotFound());
+
+        getClient(tokenAdmin).perform(get("/api/eperson/groups/" + projectsCommunityReaderGroup.getID()))
+            .andExpect(status().isNotFound());
 
         getClient(tokenAdmin).perform(get("/api/eperson/groups/" + subprojectAGroup.getID()))
-                             .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
 
         getClient(tokenAdmin).perform(get("/api/eperson/groups/" + subprojectBGroup.getID()))
-                             .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound());
     }
 
 }

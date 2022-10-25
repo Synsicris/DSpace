@@ -37,6 +37,7 @@ import org.dspace.eperson.Group;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -191,7 +192,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         projectItem = ItemBuilder.createItem(context, projectCollection)
                      .withTitle("Prjoect Item")
-                     .build(); 
+                     .build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
@@ -270,7 +271,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Group projectsCommunityGroup = GroupBuilder.createGroup(context)
                      .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
                      .build();
-        
+
         projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                 .withName("Project Collection")
                 .withEntityType("Project")
@@ -279,7 +280,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         projectItem = ItemBuilder.createItem(context, projectCollection)
                              .withTitle("Prjoect Item")
-                             .build();  
+                             .build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
@@ -366,7 +367,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
         Group projectsCommunityGroup = GroupBuilder.createGroup(context)
                      .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
                      .addMember(eperson).build();
-               
+
         projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                             .withName("Project Collection")
                             .withEntityType("Project")
@@ -375,7 +376,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         projectItem = ItemBuilder.createItem(context, projectCollection)
                                  .withTitle("Prjoect Item")
-                                 .build();   
+                                 .build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
@@ -390,8 +391,8 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
                 projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-        
-        
+
+
         fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                .withName("Sub Projects Community").build();
 
@@ -475,7 +476,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         projectItem = ItemBuilder.createItem(context, projectCollection)
                      .withTitle("Prjoect Item")
-                     .build(); 
+                     .build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")
@@ -515,6 +516,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
+    @Ignore
     public void createWorkspaceItemWithSubmitterUsing_sharedValueTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
@@ -616,7 +618,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
 
         projectItem = ItemBuilder.createItem(context, projectCollection)
                      .withTitle("Prjoect Item")
-                     .build(); 
+                     .build();
 
         publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
                                                   .withName("Publication Collection")

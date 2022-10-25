@@ -111,51 +111,58 @@ public class StructBuilderIT
     private static final String IMPORT_DOCUMENT =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<import_structure>\n" +
-            "  <community>\n" +
-            "    <name>Top Community 0</name>\n" +
-            "    <description>A top level community</description>\n" +
-            "    <intro>Testing 1 2 3</intro>\n" +
-            "    <copyright>1969</copyright>\n" +
-            "    <sidebar>A sidebar</sidebar>\n" +
+            "  <groups>\n" +
+            "    <group>testing_group</group>\n" +
+            "  </groups>\n" +
+            "  <communities>\n" +
             "    <community>\n" +
-            "      <name>Sub Community 0.0</name>\n" +
-            "      <description>A sub community</description>\n" +
-            "      <intro>Live from New York....</intro>\n" +
-            "      <copyright>1957</copyright>\n" +
-            "      <sidebar>Another sidebar</sidebar>\n" +
+            "      <name>Top Community 0</name>\n" +
+            "      <description>A top level community</description>\n" +
+            "      <intro>Testing 1 2 3</intro>\n" +
+            "      <copyright>1969</copyright>\n" +
+            "      <sidebar>A sidebar</sidebar>\n" +
+            "      <community>\n" +
+            "        <name>Sub Community 0.0</name>\n" +
+            "        <description>A sub community</description>\n" +
+            "        <intro>Live from New York....</intro>\n" +
+            "        <copyright>1957</copyright>\n" +
+            "        <sidebar>Another sidebar</sidebar>\n" +
+            "        <collection>\n" +
+            "          <name>Collection 0.0.0</name>\n" +
+            "          <description>A collection</description>\n" +
+            "          <intro>Our next guest needs no introduction</intro>\n" +
+            "          <copyright>1776</copyright>\n" +
+            "          <sidebar>Yet another sidebar</sidebar>\n" +
+            "          <license>MIT</license>\n" +
+            "          <provenance>Testing</provenance>\n" +
+            "        </collection>\n" +
+            "      </community>\n" +
             "      <collection>\n" +
-            "        <name>Collection 0.0.0</name>\n" +
-            "        <description>A collection</description>\n" +
-            "        <intro>Our next guest needs no introduction</intro>\n" +
-            "        <copyright>1776</copyright>\n" +
-            "        <sidebar>Yet another sidebar</sidebar>\n" +
-            "        <license>MIT</license>\n" +
-            "        <provenance>Testing</provenance>\n" +
+            "        <name>Collection 0.1</name>\n" +
+            "        <description>Another collection</description>\n" +
+            "        <intro>Fourscore and seven years ago</intro>\n" +
+            "        <copyright>1863</copyright>\n" +
+            "        <sidebar>No sidebar</sidebar>\n" +
+            "        <license>Public domain</license>\n" +
+            "        <provenance>Testing again</provenance>\n" +
             "      </collection>\n" +
             "    </community>\n" +
-            "    <collection>\n" +
-            "      <name>Collection 0.1</name>\n" +
-            "      <description>Another collection</description>\n" +
-            "      <intro>Fourscore and seven years ago</intro>\n" +
-            "      <copyright>1863</copyright>\n" +
-            "      <sidebar>No sidebar</sidebar>\n" +
-            "      <license>Public domain</license>\n" +
-            "      <provenance>Testing again</provenance>\n" +
-            "    </collection>\n" +
-            "  </community>\n" +
+            "  </communities>\n" +
             "</import_structure>\n";
 
     private static final String EXPORT_DOCUMENT =
             "<?xml version='1.0' encoding='UTF-8'?>\n" +
             "<import_structure>\n" +
-            "  <community>\n" +
-            "    <name>Top Community 0</name>\n" +
-            "    <description/><intro/><copyright/><sidebar/>\n" +
-            "    <collection>\n" +
-            "      <name>Collection 0.0</name>\n" +
-            "      <description/><intro/><copyright/><sidebar/><license/>\n" +
-            "    </collection>\n" +
-            "  </community>\n" +
+            "  <communities>\n" +
+            "    <community>\n" +
+            "      <name>Top Community 0</name>\n" +
+            "      <description/><intro/><copyright/><sidebar/>\n" +
+            "      <collection>\n" +
+            "        <name>Collection 0.0</name>\n" +
+            "        <description/><intro/><copyright/><sidebar/><license/>\n" +
+            "      </collection>\n" +
+            "    </community>\n" +
+            "  </communities>\n" +
             "</import_structure>\n";
 
     /**
@@ -371,8 +378,8 @@ public class StructBuilderIT
             log.error("test node name:  {}", testNode.getNodeName());
             return true;
         }
-        if ((controlNode.getParentNode().getNodeType() != Node.DOCUMENT_NODE)
-                || (testNode.getParentNode().getNodeType() != Node.DOCUMENT_NODE)) {
+        if (controlNode.getParentNode().getNodeType() != Node.DOCUMENT_NODE
+                || testNode.getParentNode().getNodeType() != Node.DOCUMENT_NODE) {
             log.error("control node's parent type is {}", controlNode.getParentNode().getNodeType());
             log.error("test node's parent type is {}", testNode.getParentNode().getNodeType());
             return true;

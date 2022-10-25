@@ -1058,9 +1058,19 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             );
             Community projectComm =
                 Optional.ofNullable(parent.getParentCommunities())
+                    .filter(l -> !l.isEmpty())
                     .map(l -> l.get(0))
                     .orElse(null);
-            if (projectComm != null && projectComm.getID().toString().equals(projectRootCommunityID)) {
+            Community parentProjComm =
+                Optional.ofNullable(projectComm.getParentCommunities())
+                    .filter(l -> !l.isEmpty())
+                    .map(l -> l.get(0))
+                    .orElse(null);
+            if (
+                    projectComm != null &&
+                    parentProjComm != null &&
+                    parentProjComm.getID().toString().equals(projectRootCommunityID)
+            ) {
                 addCommunityGroupsFromTemplate(
                     context,
                     projectComm,

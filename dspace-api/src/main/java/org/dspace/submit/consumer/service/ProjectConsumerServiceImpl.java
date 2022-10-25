@@ -6,6 +6,9 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,9 +74,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 if (entityType != null && entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
                     projectCommunity = getProjectCommunity(context, item);
                 } else {
-                    projectCommunity = getProjectCommunityByRelationProject(context, item);    
-                }                
-                
+                    projectCommunity = getProjectCommunityByRelationProject(context, item);
+                }
+
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }
@@ -97,14 +100,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                             }
                         }
                         break;
-                    case ProjectConstants.SHARED:
-                        setPolicyGroup(context, item, configurationService.getProperty("project.creation.group"));
-                        break;
                     case ProjectConstants.FUNDER:
                         setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
-                        break;
-                    case ProjectConstants.FUNDER_PROGRAMME:
-                        setPolicyGroup(context,item,configurationService.getProperty("project.funder_programme.group"));
                         break;
                     default:
                         return;
@@ -163,10 +160,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;;
+                template = FUNDING_MEMBERS_GROUP_TEMPLATE;;
                 break;
             default:
-                template = ProjectConstants.FUNDING_ADMIN_GROUP_TEMPLATE;
+                template = ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, fundingCommunity.getID().toString());
@@ -182,10 +179,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;;
+                template = PROJECT_MEMBERS_GROUP_TEMPLATE;
+                break;
+            case ProjectConstants.FUNDERS_ROLE:
+                template = ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
+                break;
+            case ProjectConstants.READERS_ROLE:
+                template = ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
                 break;
             default:
-                template = ProjectConstants.ADMIN_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, projectCommunity.getID().toString());
@@ -207,16 +210,21 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community,
             boolean isFunding) throws SQLException {
-        StringBuilder memberGroupName = isFunding ? new StringBuilder( "funding_") : new StringBuilder( "project_");
-        memberGroupName.append(community.getID().toString()).append("_members_group");
-        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
+        String memberGroupName =
+            String.format(
+                isFunding ? FUNDING_MEMBERS_GROUP_TEMPLATE : PROJECT_MEMBERS_GROUP_TEMPLATE,
+                community.getID().toString()
+            );
+        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName);
         boolean isAdmin = authorizeService.isAdmin(context);
         boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
 
         if (isAdmin || isGroupMember || isCommunityAdmin) {
-            itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
-                    memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0);
+            itemService.replaceMetadata(
+                context, item, "cris", "policy", "group", null, memberGroupName,
+                memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0
+            );
             return true;
         }
         return false;
@@ -354,6 +362,42 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String itemUUID = values.get(0).getAuthority();
         if (StringUtils.isBlank(itemUUID)) {
             log.warn("Communitiy {} has no project items, unable to proceed", communities.get(0).getID().toString());
+            return projectItem;
+        }
+
+        return itemService.find(context, UUIDUtils.fromString(itemUUID));
+    }
+
+    @Override
+    public Item getParentProjectItemByCommunityUUID(Context context, UUID communityUUID) throws SQLException {
+        Item projectItem = null;
+        Community community = null;
+
+        try {
+            community = communityService.find(context, communityUUID);
+        } catch (SQLException e) {
+            log.error("Error while trying to extract communities for collection {}: {}", communityUUID.toString(),
+                    e.getMessage());
+            return projectItem;
+        }
+
+        if (Objects.isNull(community)) {
+            return projectItem;
+        }
+
+        List<MetadataValue> values = communityService.getMetadata(community,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
+
+        if (values.size() != 1) {
+            log.warn("Communitiy {} has {} project items, unable to proceed", community.getID().toString(),
+                    values.size());
+            return projectItem;
+        }
+
+        String itemUUID = values.get(0).getAuthority();
+        if (StringUtils.isBlank(itemUUID)) {
+            log.warn("Communitiy {} has no project items, unable to proceed", community.getID().toString());
             return projectItem;
         }
 

@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest.authorization.impl;
 
-import static org.dspace.project.util.ProjectConstants.ADMIN_ROLE;
+import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
@@ -15,21 +15,21 @@ import org.springframework.stereotype.Component;
 
 /**
  * Implementation of {@link AuthorizationFeature} to evaluate if the current
- * user is admin of the given project.
+ * user is coordinator of the given project.
  *
  * @author Luca Giamminonni (luca.giamminonni at 4science.it)
  *
  */
 @Component
-@AuthorizationFeatureDocumentation(name = IsAdminOfProjectFeature.NAME,
-    description = "It can be used for verify that an user is admin of the given project")
-public class IsAdminOfProjectFeature extends IsMemberOfProjectFeature {
+@AuthorizationFeatureDocumentation(name = IsCoordinatorOfProjectFeature.NAME,
+    description = "It can be used for verify that an user is coordinator of the given project")
+public class IsCoordinatorOfProjectFeature extends IsMemberOfProjectFeature {
 
-    public static final String NAME = "isAdminOfProject";
+    public static final String NAME = "isCoordinatorOfProject";
 
     @Override
     protected String getRoleName() {
-        return ADMIN_ROLE;
+        return COORDINATORS_ROLE;
     }
 
 }

@@ -787,6 +787,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return setMetadataSingleValue(item, "synsicris", "uniqueid", null, value);
     }
 
+    public ItemBuilder withFundingParent(String value) {
+        return addMetadataValue(item, "oairecerif", "fundingParent", null, value);
+    }
+
+    public ItemBuilder withFundingParent(String value, String authority) {
+        return addMetadataValue(item, "oairecerif", "fundingParent", null, null, value, authority, 600);
+    }
+
     /**
      * Withdrawn the item under build. Please note that an user need to be loggedin the context to avoid NPE during the
      * creation of the provenance metadata

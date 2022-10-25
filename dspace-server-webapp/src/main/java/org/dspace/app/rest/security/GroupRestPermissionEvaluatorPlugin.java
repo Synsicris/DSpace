@@ -22,6 +22,7 @@ import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
+import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class GroupRestPermissionEvaluatorPlugin extends RestObjectPermissionEval
 
     @Autowired
     AuthorizeService authorizeService;
-
+    
     @Override
     public boolean hasDSpacePermission(Authentication authentication, Serializable targetId,
                                  String targetType, DSpaceRestPermission permission) {
@@ -79,11 +80,24 @@ public class GroupRestPermissionEvaluatorPlugin extends RestObjectPermissionEval
             } else if (authorizeService.isCollectionAdmin(context)
                     && AuthorizeUtil.canCollectionAdminManageAccounts()) {
                 return true;
+            } else if (authorizeService.isCollectionAdmin(context)
+                    && AuthorizeUtil.canCollectionAdminManageAccounts()) {
+                return true;
+            } else if (isFunderOganizationalManager(context, ePerson)) {
+                return true;
             }
 
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }
         return false;
+    }
+    
+    private boolean isFunderOganizationalManager(Context context, EPerson ePerson ) {
+        try {
+            return groupService.isOrganisationalManager(context, ePerson);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }

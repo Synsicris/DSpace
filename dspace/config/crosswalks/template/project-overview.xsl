@@ -5,36 +5,36 @@
 								xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
 								exclude-result-prefixes="fo">
 
-	<!--#########################################################################-->
-  <!-- VARIABLES -->	
-	<!--#########################################################################-->
+<!--#########################################################################-->
+<!-- VARIABLES -->	
+<!--#########################################################################-->
 
-	<!-- paths -->	
-	<!-- NOTE: path needs to be given with single hyphens otherwise the path is interpreted as XPath element --> 
-	<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template'"/>
+<!-- paths -->	
+<!-- NOTE: path needs to be given with single hyphens otherwise the path is interpreted as XPath element --> 
+<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template'"/>
 
-	<!-- font size -->	
-	<xsl:param name="titleFontSize" select="'14pt'"/>
-	<xsl:param name="mainFontSize" select="'10pt'"/> 
+<!-- font size -->	
+<xsl:param name="titleFontSize" select="'14pt'"/>
+<xsl:param name="mainFontSize" select="'10pt'"/> 
 
-	<!-- margins -->	
-	<xsl:param name="textMarginLeft" select="'3mm'"/>
-	<xsl:param name="titleMarginTop" select="'5mm'"/>	
-	<xsl:param name="mainMarginTop" select="'2mm'"/>
-	<xsl:param name="sectionMarginTop" select="'10mm'"/>
-	<xsl:param name="sectionMarginBottom" select="'-3mm'"/>		
+<!-- margins -->	
+<xsl:param name="textMarginLeft" select="'3mm'"/>
+<xsl:param name="titleMarginTop" select="'5mm'"/>	
+<xsl:param name="mainMarginTop" select="'2mm'"/>
+<xsl:param name="sectionMarginTop" select="'10mm'"/>
+<xsl:param name="sectionMarginBottom" select="'-3mm'"/>		
 
-	<!-- rulers -->
-	<xsl:param name="titleRulerLength" select="'100%'"/>
-	<xsl:param name="sectionRulerLength" select="'97.5%'"/>
+<!-- rulers -->
+<xsl:param name="titleRulerLength" select="'100%'"/>
+<xsl:param name="sectionRulerLength" select="'97.5%'"/>
 
-	<!-- CURRENT PROBLEMS AND QUESTIONS -->	
-	<!-- so far relative paths are not correctly handled, that is why absolute paths are given -->
-	<!-- how to handle multi-language approaches? using variables? -->
+<!-- CURRENT PROBLEMS AND QUESTIONS -->	
+<!-- so far relative paths are not correctly handled, that is why absolute paths are given -->
+<!-- how to handle multi-language approaches? using variables? -->
 
-	<!--#########################################################################-->
-  <!-- MAIN PAGE -->	
-	<!--#########################################################################-->
+<!--#########################################################################-->
+<!-- MAIN PAGE -->	
+<!--#########################################################################-->
 
 	<xsl:template match="cerif:Project">	
 		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
@@ -43,12 +43,12 @@
 			<fo:layout-master-set>
 				<!-- page properties -->
 				<fo:simple-page-master master-name="A4-process-events"
-															 page-height="29.7cm" 
-															 page-width="24cm" 
-															 margin-top="2cm"
-															 margin-bottom="2cm" 
-															 margin-left="1cm" 
-															 margin-right="1cm">
+															page-height="29.7cm" 
+															page-width="24cm" 
+															margin-top="2cm"
+															margin-bottom="2cm" 
+															margin-left="1cm" 
+															margin-right="1cm">
 
 					<!-- properties of the body region -->																 
 					<fo:region-body border-before-width="0"> <!-- according to the standard the width has be 0, 
@@ -64,17 +64,17 @@
 
 					<!-- properties of footer -->
 					<fo:region-after extent="1pt"
-													 background-color="black">
+													background-color="black">
 					</fo:region-after>
 
 					<!-- properties of the left side -->
 					<fo:region-start extent="1pt"
-													 background-color="black">
+													background-color="black">
 					</fo:region-start>
 
 					<!-- properties of the right side -->
 					<fo:region-end extent="1pt"
-												 background-color="black">
+												background-color="black">
 					</fo:region-end>					
 
 				</fo:simple-page-master>
@@ -85,74 +85,34 @@
 				<fo:flow flow-name="xsl-region-body">
 
 					<!-- entity name -->
-					<xsl:call-template name="entity-title-ruler">
-				    <xsl:with-param name="entityName" select="'Kooperation / Partizipation / Austauschprozess'" />
-			    </xsl:call-template>
-			    
+					<xsl:call-template name="report-title-ruler">
+						<xsl:with-param name="reportName" select="'Vorhabensbeschreibung / Basisbericht'" />
+					</xsl:call-template>
+					
 					<!-- title -->
 					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="label" select="'Titel'" />
+						<xsl:with-param name="label" select="'Titel des Verbundprojektes'" />
 						<xsl:with-param name="value" select="cerif:Title" />
 					</xsl:call-template>
 
-					<!-- description -->
+					<!-- acronym -->
 					<xsl:call-template name="key-value-single">
-				    <xsl:with-param name="label" select="'Beschreibung'" />
-				    <xsl:with-param name="value" select="cerif:Description" />
-			    </xsl:call-template>
-			   
-					<!-- purposes-->
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Ziele'" />
-				    <xsl:with-param name="values" select="cerif:Purpose" />
-			    </xsl:call-template>
-			    
-					<!-- involved organisations -->
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Beteiligte'" />
-				    <xsl:with-param name="values" select="cerif:Organisation" />
-			    </xsl:call-template>
-
-					<!-- section frequency of cooperation processes -->
-					<xsl:call-template name="section-title-ruler">
-				    <xsl:with-param name="sectionName" select="'Häufigkeit der Kooperationsprozesse'" />
-			    </xsl:call-template>
-
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Process type'" />
-				    <xsl:with-param name="values" select="cerif:Processes" />
-			    </xsl:call-template>
-
-					<xsl:call-template name="key-value-comma-list">
-				    <xsl:with-param name="label" select="'Process type2'" />
-				    <xsl:with-param name="values" select="cerif:Processes/cerif:Process/cerif:Type" />
-			    </xsl:call-template>					
-
-					<fo:block text-align="left" margin-top="10mm">
-						<xsl:text>Where is the data?</xsl:text>
-					</fo:block>					
-
-					<xsl:for-each select="cerif:Processes/cerif:Process">
-						<fo:block font-size="10pt">
-							<xsl:value-of select="cerif:Type" /> at <xsl:value-of select="cerif:Duration" />
-							from <xsl:value-of select="cerif:Period" />
-						</fo:block>
-					</xsl:for-each>
-
-					<!-- table frequency of cooperation processes -->
-					<xsl:call-template name="table-frequency">
-						<xsl:with-param name="process" select="cerif:Organisation" />
+						<xsl:with-param name="label" select="'Akronym'" />
+						<xsl:with-param name="value" select="cerif:Acronym" />
 					</xsl:call-template>
 
-					<!-- section central activities -->
-					<xsl:call-template name="section-title-ruler">
-				    <xsl:with-param name="sectionName" select="'Daten zentraler Aktivitäten'" />
-			    </xsl:call-template>
+					<!-- period -->
+					<xsl:call-template name="key-period">
+						<xsl:with-param name="label" select="'Laufzeit'" />
+						<xsl:with-param name="startdate" select="cerif:StartDate" />
+						<xsl:with-param name="enddate" select="cerif:EndDate" />
+					</xsl:call-template>
 
-					<!-- table central activities -->
-					<!-- <xsl:call-template name="table-activities">
-						<xsl:with-param name="values" select="cerif:Stakeholder" />
-					</xsl:call-template>					 -->
+					<!-- partner -->
+					<xsl:call-template name="key-only">
+						<xsl:with-param name="label" select="'Partner'" />
+					</xsl:call-template>					
+
 
 				</fo:flow>
 			</fo:page-sequence>
@@ -160,20 +120,20 @@
 		</fo:root>
 	</xsl:template>
 
-	<!--#########################################################################-->
-  <!-- USED TEMPLATES -->	
-	<!--#########################################################################-->
+<!--#########################################################################-->
+<!-- USED TEMPLATES -->	
+<!--#########################################################################-->
 
-	<!-- entity title with horizontal ruler -->	
-	<xsl:template name = "entity-title-ruler" >
-		<xsl:param name = "entityName" />
+	<!-- report title with horizontal ruler -->	
+	<xsl:template name = "report-title-ruler" >
+		<xsl:param name = "reportName" />
 
 		<fo:block margin-left="{$textMarginLeft}"
 							margin-top="{$titleMarginTop}">
 			<fo:inline font-size="{$titleFontSize}"
 								 font-weight="bold" 
 								 text-align="left">							
-				<xsl:value-of select="$entityName" />
+				<xsl:value-of select="$reportName" />
 			</fo:inline>
 		</fo:block>
 
@@ -206,6 +166,25 @@
 
 	</xsl:template>
 
+	<!-- key: no value -->
+	<xsl:template name = "key-only" >
+	  <xsl:param name = "label" />
+
+	  <xsl:if test="$label">
+		  <fo:block margin-left="{$textMarginLeft}"
+								font-size="{$mainFontSize}" 
+			        	margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="bold" text-align="right">
+					<xsl:value-of select="$label" /> 
+				</fo:inline >
+
+				<xsl:text>: </xsl:text>
+
+			</fo:block>
+	  </xsl:if>
+	</xsl:template>
+
 	<!-- key: single value -->
 	<xsl:template name = "key-value-single" >
 	  <xsl:param name = "label" />
@@ -230,6 +209,39 @@
 	  </xsl:if>
 	</xsl:template>
 	
+	<!-- key: period -->
+	<xsl:template name = "key-period" >
+	  <xsl:param name = "label" />
+	  <xsl:param name = "startdate" />
+		<xsl:param name = "enddate" />
+
+	  <xsl:if test="$startdate">
+			<xsl:if test="$enddate">
+				<fo:block margin-left="{$textMarginLeft}"
+									font-size="{$mainFontSize}" 
+									margin-top="{$mainMarginTop}">
+
+					<fo:inline font-weight="bold" text-align="right">
+						<xsl:value-of select="$label" /> 
+					</fo:inline >
+
+					<xsl:text>: </xsl:text>
+
+					<fo:inline>
+						<xsl:value-of select="$startdate" /> 
+					</fo:inline >
+
+					<xsl:text> - </xsl:text>
+
+					<fo:inline>
+						<xsl:value-of select="$enddate" /> 
+					</fo:inline >
+
+				</fo:block>
+		  </xsl:if>
+	  </xsl:if>
+	</xsl:template>
+
 	<!-- key: value list separated by commas -->
 	<xsl:template name = "key-value-comma-list" >
 		<xsl:param name = "label" />
@@ -366,6 +378,6 @@
 
 			</fo:table>
 		</fo:block>	
-	</xsl:template>	
-	
+	</xsl:template>
+
 </xsl:stylesheet>

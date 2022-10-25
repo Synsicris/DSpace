@@ -510,7 +510,7 @@
           <label>Please confirm the preselection.</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -1321,11 +1321,22 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
-          <label>Date of issue</label>
+          <label>Date issued</label>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Enter at least the year of publication, month and day are optional.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Publisher</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
       <row>
@@ -1372,7 +1383,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>ispartof</dc-qualifier>
-          <label>In Journal or Serie</label>
+          <label>Journal or Serie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1920,6 +1931,154 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-3</style>
           <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <validation>/[a-ü\D]+/gmi</validation>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Call / funding area</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visibility</dc-qualifier>
+          <label>Settings public visibility</label>
+          <input-type value-pairs-name="public_visibility">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Related SDGs</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel1</dc-qualifier>
+          <label>Project label transfer</label>
+          <input-type value-pairs-name="funderlabel1">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel2</dc-qualifier>
+          <label>Projekt label Placeholder</label>
+          <input-type value-pairs-name="funderlabel2">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel3</dc-qualifier>
+          <label>Projekt label other Placeholder</label>
+          <input-type value-pairs-name="funderlabel3">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder-synsicris-type-sdg">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Related SDG</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+          <vocabulary closed="true">sdg</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Contribution of the project to the SDG</label>
+          <input-type value-pairs-name="sdg_influence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Explanation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-10</style>
+          <hint>If necessary, you can explain your assessment here.</hint>
         </field>
       </row>
     </form>
@@ -5539,7 +5698,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
           <vocabulary closed="true">transform</vocabulary>
         </field>
@@ -5565,7 +5723,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
           <vocabulary closed="true">core</vocabulary>
         </field>
@@ -5577,7 +5735,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type value-pairs-name="impact_positive">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -5650,7 +5808,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
           <vocabulary closed="true">core</vocabulary>
         </field>
@@ -5662,7 +5820,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -6007,6 +6165,30 @@ For example topics, specific methods, procedures, peculiarities of the participa
       </row>
     </form>
     <form name="research_results">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Summary</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Please give a brief summary of the main findings.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="open_researchquestions">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -7176,6 +7358,76 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Completed</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="public_visibility" dc-term="public_visibility">
+      <pair>
+        <displayed-value>Project holders can publish further information from the in the monitoring tool</displayed-value>
+        <stored-value>open</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Basic information becomes public - project holders cannot publish further information in the monitoring tool</displayed-value>
+        <stored-value>limited</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>No information becomes public</displayed-value>
+        <stored-value>closed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel1" dc-term="funderlabel1">
+      <pair>
+        <displayed-value>Lighthouse project/success story</displayed-value>
+        <stored-value>success story</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Knowledge Transfer Food (BZfE)</displayed-value>
+        <stored-value>transfer food</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Knowledge Transfer Agriculture (BZL)</displayed-value>
+        <stored-value>transfer farming</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Topic of public controversy</displayed-value>
+        <stored-value>public controversy</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel2" dc-term="funderlabel2">
+      <pair>
+        <displayed-value>placeholder</displayed-value>
+        <stored-value>placeholder</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel3" dc-term="funderlabel3">
+      <pair>
+        <displayed-value>placeholder</displayed-value>
+        <stored-value>placeholder</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="sdg_influence" dc-term="sdg_influence">
+      <pair>
+        <displayed-value>Strong positive Impact</displayed-value>
+        <stored-value>strong positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Medium positive Impact</displayed-value>
+        <stored-value>medium positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Slight positive Impact</displayed-value>
+        <stored-value>sligh positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Slight negative Impact</displayed-value>
+        <stored-value>slight negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Medium negative Impact</displayed-value>
+        <stored-value>medium negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Strong negative Impact</displayed-value>
+        <stored-value>strong negative</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="gender" dc-term="gender">
       <pair>
         <displayed-value>Unknown</displayed-value>
@@ -7448,6 +7700,10 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Expected societal impacts</displayed-value>
         <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible negative side effects</displayed-value>
+        <stored-value>neg_sideeffects</stored-value>
       </pair>
       <pair>
         <displayed-value>Ethical reflection</displayed-value>
@@ -8026,15 +8282,15 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="impact_negative" dc-term="impact_negative">
       <pair>
-        <displayed-value>Strong negative Sideeffects</displayed-value>
+        <displayed-value>Strong negative Sideeffect</displayed-value>
         <stored-value>strong negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>Medium negative Sideeffects</displayed-value>
+        <displayed-value>Medium negative Sideeffect</displayed-value>
         <stored-value>medium negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>Slight negative Sideeffects</displayed-value>
+        <displayed-value>Slight negative Sideeffect</displayed-value>
         <stored-value>slight negative</stored-value>
       </pair>
       <pair>
@@ -8074,27 +8330,27 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="influence_conditions" dc-term="influence_conditions">
       <pair>
-        <displayed-value>[++] Strongly supporting</displayed-value>
+        <displayed-value>Strongly supporting</displayed-value>
         <stored-value>Strongly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ + ] Slightly supporting</displayed-value>
+        <displayed-value>Slightly supporting</displayed-value>
         <stored-value>Slightly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[+/-] Both facilitating and hampering</displayed-value>
+        <displayed-value>Both facilitating and hampering</displayed-value>
         <stored-value>facilitating and hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ - ] Slightly hampering</displayed-value>
+        <displayed-value>Slightly hampering</displayed-value>
         <stored-value>Slightly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ -- ] Strongly hampering</displayed-value>
+        <displayed-value>Strongly hampering</displayed-value>
         <stored-value>Strongly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ ? ] Influence not yet assessable</displayed-value>
+        <displayed-value>Influence not yet assessable</displayed-value>
         <stored-value>Influence not yet assessable</stored-value>
       </pair>
     </value-pairs>
@@ -8168,7 +8424,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>others</stored-value>
       </pair>
       <pair>
-        <displayed-value>12) 12) the project affects no ethical aspect</displayed-value>
+        <displayed-value>12) The project affects no ethical aspect</displayed-value>
         <stored-value>no</stored-value>
       </pair>
     </value-pairs>
@@ -8302,10 +8558,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Planned Publications</displayed-value>
         <stored-value>plan_publication</stored-value>
       </pair>
@@ -8412,10 +8664,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Workpackage</displayed-value>
         <stored-value>workpackage</stored-value>
       </pair>
@@ -8434,16 +8682,16 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Open research question</displayed-value>
+        <stored-value>open_researchquestion</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

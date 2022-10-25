@@ -114,6 +114,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="projects_funder" mandatory="true" opened="true">
+      <heading>submit.progressbar.describe.projects_funder</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="funding" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.funding</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -379,6 +384,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="open_researchquestions" mandatory="true">
+      <heading>submit.progressbar.describe.open_researchquestions</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="innovationpotentials" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.innovationpotentials</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -450,7 +460,7 @@
       <processing-class>org.dspace.app.rest.submit.step.DetectPotentialDuplicateStep</processing-class>
       <type>detect-duplicate</type>
     </step-definition>
-    <step-definition id="license" mandatory="true">
+    <step-definition id="license" mandatory="false">
       <heading>submit.progressbar.license</heading>
       <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
       <type>license</type>
@@ -526,6 +536,12 @@
       <step id="agrovoc_keywords_parentproject" />
       <step id="upload" />
     </submission-process>
+    <submission-process name="projects_funder">
+      <step id="projects_funder" />
+    </submission-process>
+    <submission-process name="projects_funder-edit">
+      <step id="projects_funder" />
+    </submission-process>
     <submission-process name="funding">
       <step id="funding" />
       <step id="funding_import" />
@@ -575,9 +591,9 @@
       <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
-      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
+      <step id="license" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />
@@ -861,6 +877,13 @@
     </submission-process>
     <submission-process name="research_results-edit">
       <step id="research_results" />
+    </submission-process>
+    <submission-process name="open_researchquestions">
+      <step id="open_researchquestions" />
+      <step id="exploitation_plan_task_form" />
+    </submission-process>
+    <submission-process name="open_researchquestions-edit">
+      <step id="open_researchquestions" />
     </submission-process>
     <submission-process name="innovationpotentials">
       <step id="innovationpotentials" />

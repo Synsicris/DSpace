@@ -1062,7 +1062,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                     .map(l -> l.get(0))
                     .orElse(null);
             Community parentProjComm =
-                Optional.ofNullable(projectComm.getParentCommunities())
+                Optional.ofNullable(projectComm)
+                    .map(Community::getParentCommunities)
                     .filter(l -> !l.isEmpty())
                     .map(l -> l.get(0))
                     .orElse(null);

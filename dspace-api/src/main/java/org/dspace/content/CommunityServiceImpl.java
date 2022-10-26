@@ -1058,17 +1058,34 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             );
             Community projectComm =
                 Optional.ofNullable(parent.getParentCommunities())
+                    .filter(l -> !l.isEmpty())
                     .map(l -> l.get(0))
                     .orElse(null);
-            if (projectComm != null && projectComm.getID().toString().equals(projectRootCommunityID)) {
+            Community parentProjComm =
+                Optional.ofNullable(projectComm)
+                    .map(Community::getParentCommunities)
+                    .filter(l -> !l.isEmpty())
+                    .map(l -> l.get(0))
+                    .orElse(null);
+            Map<UUID, Group> projectGroupsMap = Map.of();
+            if (
+                    projectComm != null &&
+                    parentProjComm != null &&
+                    parentProjComm.getID().toString().equals(projectRootCommunityID)
+            ) {
+
+                projectGroupsMap = new HashMap<UUID, Group>(projectTemplates.length);
+
                 addCommunityGroupsFromTemplate(
                     context,
                     projectComm,
-                    groupsMap,
+                    projectGroupsMap,
                     projectTemplates
                 );
             }
-            scopedRolesMap = groupsMap;
+            scopedRolesMap =
+                Stream.concat(groupsMap.entrySet().stream(), projectGroupsMap.entrySet().stream())
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (a, b) -> b));
         }
 
         groupsMap.forEach((uuid, group) -> groupService.addMember(context, group, context.getCurrentUser()));

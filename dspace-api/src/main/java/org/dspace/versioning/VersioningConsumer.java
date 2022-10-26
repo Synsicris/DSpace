@@ -19,7 +19,6 @@ import org.dspace.event.Consumer;
 import org.dspace.event.Event;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersionHistoryService;
-import org.dspace.versioning.service.VersioningService;
 
 /**
  * @author Fabio Bolognesi (fabio at atmire dot com)
@@ -31,14 +30,12 @@ public class VersioningConsumer implements Consumer {
     private static Set<Item> itemsToProcess;
 
     private VersionHistoryService versionHistoryService;
-    private VersioningService versioningService;
     private ItemService itemService;
 
 
     @Override
     public void initialize() throws Exception {
         versionHistoryService = VersionServiceFactory.getInstance().getVersionHistoryService();
-        versioningService = VersionServiceFactory.getInstance().getVersionService();
         itemService = ContentServiceFactory.getInstance().getItemService();
     }
 

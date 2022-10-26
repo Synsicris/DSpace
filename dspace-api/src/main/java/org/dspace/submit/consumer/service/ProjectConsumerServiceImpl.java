@@ -56,6 +56,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private static final String SOLR_FILTER_UNIQUEID = "synsicris.uniqueid:\"*\\_%s$\"";
+    private static final String SOLR_FILTER_UNIQUEID_PROJECT = "synsicris.uniqueid:\"*\\_%s$\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -224,6 +225,26 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
+    @Override
+    public Iterator<Item> findVersionedItemsRelatedToProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+        ) {
+        try {
+
+            projectCommunity =
+                Optional.ofNullable(projectCommunity)
+                .orElse(getProjectCommunity(context, projectItem));
+            if (projectCommunity == null) {
+                return IteratorUtils.emptyIterator();
+            }
+
+            return findNotProjectItemsByCommunity(context, projectCommunity, projectItem, version);
+
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
     private Iterator<Item> findItemsByCommunity(
         Context context, Community projectCommunity, Item projectItem, String version
     ) {
@@ -231,7 +252,22 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
         discoverQuery.setMaxResults(10000);
-        discoverQuery.setQuery(String.format(SOLR_FILTER_UNIQUEID, version));
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_UNIQUEID, version)
+        );
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findNotProjectItemsByCommunity(
+        Context context, Community projectCommunity, Item projectItem, String version
+        ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_UNIQUEID_PROJECT, version, projectItem.getID().toString())
+        );
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 

@@ -214,23 +214,18 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         items.forEach(item -> {
             try {
                 deleteItem(c, c.reloadEntity(item));
-            } catch (SQLException | AuthorizeException |IOException e) {
+            } catch (SQLException | AuthorizeException | IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }
         });
     }
 
-    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber)
-        throws SQLException {
+    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
         List<Item> versionedItems = new ArrayList<>();
         Community community = projectConsumerService.getProjectCommunity(c, projectItem);
         projectConsumerService
-            .findVersionedItemsOfProject(c, community, projectItem, versionNumber)
-            .forEachRemaining(item -> {
-                if (item.getID() != projectItem.getID()) {
-                    versionedItems.add(item);
-                }
-            });
+            .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber)
+            .forEachRemaining(versionedItems::add);
         return versionedItems;
     }
 

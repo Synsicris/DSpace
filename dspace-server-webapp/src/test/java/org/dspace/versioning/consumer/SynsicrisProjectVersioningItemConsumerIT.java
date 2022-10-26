@@ -144,6 +144,12 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             .addMember(admin)
             .build();
 
+        configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, membersGroup.getID());
+        configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, funderGroup.getID());
+        configurationService.setProperty("project.parent-community-id", projectCommunity.getID().toString());
+        configurationService
+            .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
+
         context.restoreAuthSystemState();
     }
 
@@ -188,17 +194,12 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 .withSubject("ExtraEntry")
                 .build();
 
+        context.commit();
         context.restoreAuthSystemState();
 
         AtomicReference<Integer> idRef = new AtomicReference<Integer>();
         AtomicReference<String> itemUrl = new AtomicReference<String>();
         AtomicReference<UUID> itemId = new AtomicReference<UUID>();
-
-        configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, membersGroup.getID());
-        configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, funderGroup.getID());
-        configurationService.setProperty("project.parent-community-id", projectCommunity.getID().toString());
-        configurationService
-            .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
 
         try {
             String adminToken = getAuthToken(admin.getEmail(), password);
@@ -327,17 +328,12 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 .withSubject("ExtraEntry")
                 .build();
 
+        context.commit();
         context.restoreAuthSystemState();
 
         AtomicReference<Integer> idRef = new AtomicReference<Integer>();
         AtomicReference<String> itemUrl = new AtomicReference<String>();
         AtomicReference<UUID> itemId = new AtomicReference<UUID>();
-
-        configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, membersGroup.getID());
-        configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, funderGroup.getID());
-        configurationService.setProperty("project.parent-community-id", projectCommunity.getID().toString());
-        configurationService
-            .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
 
         try {
             String adminToken = getAuthToken(admin.getEmail(), password);

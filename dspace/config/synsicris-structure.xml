@@ -39,10 +39,8 @@
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	  </collection>
 	  <collection>
 	    <name language="en">Comments</name>
@@ -55,12 +53,12 @@
 	    <entity-type>comment</entity-type>
 	    <submission-type>comments</submission-type>
 	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">system_members_group</policy-group>
+	    <policy-group rpType="read">funder_project_managers_group</policy-group>
+	    <policy-group rpType="add">funder_project_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
+	    <policy-group rpType="item_read">funder_project_managers_group</policy-group>
+	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
 	    <item-template>
 	      <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
 	      <metadata name="synsicris.date.creation">###DATE###</metadata>
@@ -82,8 +80,6 @@
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
 	  </collection>
@@ -103,10 +99,8 @@
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	  </collection>
 	  <collection>
 	    <name language="en">Persons</name>
@@ -122,9 +116,7 @@
 	    <policy-group rpType="read">system_members_group</policy-group>
 	    <policy-group rpType="add">system_members_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
 	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	  </collection>
 	  <collection>
 	    <name language="en">Progammes</name>
@@ -142,14 +134,8 @@
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">funder_programme</metadata>
-	    </item-template>
 	  </collection>
 	</community>    
 	<community>

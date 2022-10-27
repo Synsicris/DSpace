@@ -8,9 +8,11 @@
 package org.dspace.app.rest;
 
 import static com.jayway.jsonpath.JsonPath.read;
+import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static java.lang.String.join;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.app.matcher.ResourcePolicyMatcher.matches;
+import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -21,7 +23,10 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.SQLException;
@@ -57,6 +62,7 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.service.VersioningService;
+import org.hamcrest.Matchers;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -530,9 +536,18 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertNotNull(version);
         assertNotNull(version.getItem());
 
-        context.turnOffAuthorisationSystem();
-        itemService.delete(context, version.getItem());
-        context.restoreAuthSystemState();
+        getClient(token).perform(get("/api/core/items/" + version.getItem().getID()))
+                        .andExpect(status().isOk());
+
+        getClient(token).perform(delete("/api/core/items/" + version.getItem().getID()))
+                        .andExpect(status().isNoContent());
+
+        getClient(token).perform(get("/api/core/items/" + version.getItem().getID()))
+                        .andExpect(status().isNotFound());
+
+//        context.turnOffAuthorisationSystem();
+//        itemService.delete(context, version.getItem());
+//        context.restoreAuthSystemState();
 
         parentProject = context.reloadEntity(parentProject);
         person = context.reloadEntity(person);

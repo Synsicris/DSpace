@@ -170,7 +170,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -330,7 +330,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -394,7 +394,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -458,7 +458,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -472,7 +472,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -536,7 +536,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -600,7 +600,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -664,7 +664,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -728,7 +728,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -742,7 +742,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -806,7 +806,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -861,7 +861,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -925,7 +925,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1030,7 +1030,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1094,7 +1094,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1108,7 +1108,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1172,7 +1172,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1186,7 +1186,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1250,7 +1250,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1264,7 +1264,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1369,7 +1369,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1433,7 +1433,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1497,7 +1497,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1561,7 +1561,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1625,7 +1625,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1689,7 +1689,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1703,7 +1703,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1767,7 +1767,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1781,7 +1781,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1845,7 +1845,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1909,7 +1909,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1973,7 +1973,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2037,7 +2037,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2101,7 +2101,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2124,7 +2124,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2269,7 +2269,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>

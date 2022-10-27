@@ -52,4 +52,8 @@ public interface ProjectConsumerService {
     public Iterator<Item> findVersionedItemsOfProject(
         Context context, Community projectCommunity, Item projectItem, String version
     );
+
+    Iterator<Item> findVersionedItemsRelatedToProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    );
 }

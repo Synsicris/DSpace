@@ -23,7 +23,7 @@ public abstract class AbstractProjectGenerator implements TemplateValueGenerator
     }
 
     protected Community getProjectCommunity(Item templateItem) throws SQLException {
-        return this.projectGeneratorService.getOwningCommunity(templateItem);
+        return this.projectGeneratorService.getProjectCommunity(templateItem);
     }
 
 }

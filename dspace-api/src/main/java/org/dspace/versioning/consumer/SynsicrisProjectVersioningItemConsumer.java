@@ -7,7 +7,11 @@
  */
 package org.dspace.versioning.consumer;
 
+import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
+import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
+import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
 import java.sql.SQLException;
 import java.util.AbstractMap.SimpleEntry;
@@ -37,8 +41,6 @@ import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
-import org.dspace.eperson.factory.EPersonServiceFactory;
-import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
 import org.dspace.project.util.ProjectConstants;
@@ -63,17 +65,12 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     private ItemService itemService;
     private ProjectConsumerService projectConsumerService;
-    private GroupService groupService;
     private AuthorizeService authorizeService;
     private ProjectGeneratorService projectGeneratorService;
-
-    private Group funderOrganisationalManagerGroup;
-    private Group systemMembersGroup;
 
     @Override
     public void initialize() throws Exception {
         this.itemService = ContentServiceFactory.getInstance().getItemService();
-        this.groupService = EPersonServiceFactory.getInstance().getGroupService();
         this.authorizeService = AuthorizeServiceFactory.getInstance().getAuthorizeService();
         this.projectConsumerService =
             new DSpace().getServiceManager()
@@ -120,8 +117,6 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     @Override
     public void end(Context ctx) throws Exception {
-        this.funderOrganisationalManagerGroup = null;
-        this.systemMembersGroup = null;
     }
 
     @Override
@@ -129,7 +124,8 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     private void consumeProjectItem(Context ctx, Item projectItem, Boolean isVersionVisible, String version)
         throws SQLException, AuthorizeException {
-        Community community = null;
+        Community community =
+            this.projectConsumerService.getProjectCommunity(ctx, projectItem);
         Iterator<Item> projectItems =
             this.projectConsumerService.findVersionedItemsOfProject(ctx, community, projectItem, version);
         if (!projectItems.hasNext()) {
@@ -137,22 +133,30 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         }
         Item actual;
         Group fundersGroup =
-            Optional.ofNullable(this.getFunderOrganisationalManagerGroup(ctx))
-                .orElseThrow(() -> new RuntimeException("Cannot find the configured funder organisational group!"));
-        Group membersGroup =
-            Optional.ofNullable(this.getSystemMembersGroup(ctx))
-                .orElseThrow(() -> new RuntimeException("Cannot find the configured system members group!"));
+            Optional.ofNullable(this.getFunderPolicyGroup(ctx, community))
+                .orElseThrow(
+                    () -> new RuntimeException(
+                        "Cannot find the funders policy group for community: " + community.getID()
+                    )
+                );
+        Group readersGroup =
+            Optional.ofNullable(this.getReaderPolicyGroup(ctx, community))
+                .orElseThrow(
+                    () -> new RuntimeException(
+                        "Cannot find the readers policy group for community: " + community.getID()
+                    )
+                );
         while (projectItems.hasNext() && (actual = projectItems.next()) != null) {
             // makes visible versioned project and all its items to the organisational_funder
             if (isVersionVisible) {
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
-                addGroupsPolicy(ctx, actual, fundersGroup, membersGroup);
+                addGroupsPolicy(ctx, actual, fundersGroup, readersGroup);
             // hides versioned project and all its items to the organisational_funder
             } else {
                 addMetadataPolicies(ctx, community, actual);
                 removeReadPolicy(ctx, actual, fundersGroup);
-                removeGroupsPolicy(ctx, actual, fundersGroup, membersGroup);
+                removeGroupsPolicy(ctx, actual, fundersGroup, readersGroup);
             }
         }
     }
@@ -234,26 +238,29 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     }
 
     private void addMetadataPolicies(Context ctx, Community community, Item actual) throws SQLException {
-        MetadataValueVO funders = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, "funders");
+        MetadataValueVO funders =
+            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, FUNDERS_ROLE);
         this.itemService.addMetadata(
             ctx, actual, ProjectConstants.MD_FUNDER_POLICY_GROUP.schema,
             ProjectConstants.MD_FUNDER_POLICY_GROUP.element, ProjectConstants.MD_FUNDER_POLICY_GROUP.qualifier, null,
             funders.getValue(), funders.getAuthority(), funders.getConfidence()
         );
-        MetadataValueVO readers = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, "readers");
+        MetadataValueVO readers =
+            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, READERS_ROLE);
         this.itemService.addMetadata(
             ctx, actual, ProjectConstants.MD_READER_POLICY_GROUP.schema,
             ProjectConstants.MD_READER_POLICY_GROUP.element, ProjectConstants.MD_READER_POLICY_GROUP.qualifier, null,
             readers.getValue(), readers.getAuthority(), readers.getConfidence()
         );
-        MetadataValueVO members = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, "members");
+        MetadataValueVO members =
+            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, MEMBERS_ROLE);
         this.itemService.addMetadata(
             ctx, actual, ProjectConstants.MD_MEMBER_POLICY_GROUP.schema,
             ProjectConstants.MD_MEMBER_POLICY_GROUP.element, ProjectConstants.MD_MEMBER_POLICY_GROUP.qualifier, null,
             members.getValue(), members.getAuthority(), members.getConfidence()
         );
         MetadataValueVO coordinators =
-            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, "coordinators");
+            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, COORDINATORS_ROLE);
         this.itemService.addMetadata(
             ctx, actual, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.schema,
             ProjectConstants.MD_COORDINATOR_POLICY_GROUP.element,
@@ -262,26 +269,12 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         );
     }
 
-    private Group getFunderOrganisationalManagerGroup(Context ctx) {
-        if (this.funderOrganisationalManagerGroup == null) {
-            try {
-                this.funderOrganisationalManagerGroup = this.groupService.getFunderOrganisationalManagerGroup(ctx);
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot find organisational manager group!", e);
-            }
-        }
-        return this.funderOrganisationalManagerGroup;
+    private Group getFunderPolicyGroup(Context ctx, Community projectCommunity) {
+        return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, FUNDERS_ROLE);
     }
 
-    private Group getSystemMembersGroup(Context ctx) {
-        if (this.systemMembersGroup == null) {
-            try {
-                this.systemMembersGroup = this.groupService.getSystemMembersGroup(ctx);
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot find organisational manager group!", e);
-            }
-        }
-        return this.systemMembersGroup;
+    private Group getReaderPolicyGroup(Context ctx, Community projectCommunity) {
+        return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, READERS_ROLE);
     }
 
 }

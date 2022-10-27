@@ -9,6 +9,7 @@ package org.dspace.content.template.generator;
 
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
@@ -65,23 +66,30 @@ public class ProjectGeneratorServiceImpl implements ProjectGeneratorService {
     }
 
     @Override
-    public MetadataValueVO getProjectCommunityMetadata(Context context, Community community, String role) {
+    public Group getProjectCommunityGroup(Context context, Community community, String role) {
 
         if (community == null) {
-            return new MetadataValueVO("");
+            return null;
         }
 
-        Group group;
+        Group group = null;
         try {
             group = projectService.getProjectCommunityGroupByRole(context, community, role);
         } catch (SQLException e) {
-            return new MetadataValueVO("");
+            return null;
         }
-        return new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED);
+        return group;
     }
 
     @Override
-    public MetadataValueVO getFunderCommunityMetadata(Context context, Community community, String role) {
+    public MetadataValueVO getProjectCommunityMetadata(Context context, Community community, String role) {
+        return Optional.ofNullable(this.getProjectCommunityGroup(context, community, role))
+                    .map(group -> new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED))
+                    .orElse(new MetadataValueVO(""));
+    }
+
+    @Override
+    public MetadataValueVO getFundingCommunityMetadata(Context context, Community community, String role) {
         if (community == null) {
             return new MetadataValueVO("");
         }

@@ -56,7 +56,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private static final String SOLR_FILTER_UNIQUEID = "synsicris.uniqueid:\"*\\_%s$\"";
-    private static final String SOLR_FILTER_UNIQUEID_PROJECT = "synsicris.uniqueid:\"*\\_%s$\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
+    private static final String SOLR_FILTER_UNIQUEID_PROJECT =
+        "synsicris.uniqueid:\"*\\_%s$\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -228,7 +229,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public Iterator<Item> findVersionedItemsRelatedToProject(
         Context context, Community projectCommunity, Item projectItem, String version
-        ) {
+    ) {
         try {
 
             projectCommunity =
@@ -260,7 +261,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     private Iterator<Item> findNotProjectItemsByCommunity(
         Context context, Community projectCommunity, Item projectItem, String version
-        ) {
+    ) {
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));

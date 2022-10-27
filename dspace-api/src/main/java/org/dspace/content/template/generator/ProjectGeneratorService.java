@@ -13,6 +13,7 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;
+import org.dspace.eperson.Group;
 
 /**
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
@@ -26,6 +27,8 @@ public interface ProjectGeneratorService {
 
     MetadataValueVO getProjectCommunityMetadata(Context context, Community community, String role);
 
-    MetadataValueVO getFunderCommunityMetadata(Context context, Community community, String role);
+    MetadataValueVO getFundingCommunityMetadata(Context context, Community community, String role);
+
+    Group getProjectCommunityGroup(Context context, Community community, String role);
 
 }

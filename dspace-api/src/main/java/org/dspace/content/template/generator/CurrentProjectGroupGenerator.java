@@ -53,7 +53,7 @@ public class CurrentProjectGroupGenerator extends AbstractProjectGenerator {
                     break;
                 case ProjectConstants.FUNDING:
                     metadataVO =
-                        this.projectGeneratorService.getFunderCommunityMetadata(
+                        this.projectGeneratorService.getFundingCommunityMetadata(
                             context, getOwningCommunity(templateItem), role
                         );
                     break;

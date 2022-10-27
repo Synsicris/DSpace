@@ -258,11 +258,10 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="projects-edit" />
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.coordinator-policy.group</value>
-                                    <value>synsicris.funder-policy.group</value>
+                                    <value>synsicris.versioning-policy.group</value>
                                 </list>
                             </property>
                         </bean>

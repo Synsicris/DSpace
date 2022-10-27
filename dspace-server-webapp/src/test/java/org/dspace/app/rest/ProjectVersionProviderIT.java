@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -27,7 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -51,6 +54,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.core.Constants;
+import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.event.factory.EventServiceFactory;
 import org.dspace.event.service.EventService;
@@ -528,45 +532,58 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
                         .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Version version = versioningService.getVersion(context, idRef.get());
-
+        Item versionedItem = null;
         try {
             assertNotNull(version);
             assertNotNull(version.getItem());
 
-            Item versionedItem = this.itemService.find(context, version.getItem().getID());
+            versionedItem = this.itemService.find(context, version.getItem().getID());
 
             getClient().perform(get("/api/core/items/" + versionedItem.getID()))
-                            .andExpect(status().isOk());
+                       .andExpect(status().isOk());
+
+            List<Item> versionedItems =
+                findVersionedItems(context, context.reloadEntity(versionedItem), idRef.get().toString());
+
+            assertEquals(versionedItems.size(), 2);
 
             token = getAuthToken(admin.getEmail(), password);
 
+            // when delete versionedItem
             getClient(token).perform(delete("/api/core/items/" + versionedItem.getID()))
                             .andExpect(status().isNoContent());
 
+            // check that versionedItem is deleted.
             getClient().perform(get("/api/core/items/" + versionedItem.getID()))
                             .andExpect(status().isNotFound());
-
-//          context.turnOffAuthorisationSystem();
-//          itemService.delete(context, version.getItem());
-//          context.restoreAuthSystemState();
 
             parentProject = context.reloadEntity(parentProject);
             person = context.reloadEntity(person);
             publication = context.reloadEntity(publication);
 
-            version = context.reloadEntity(version);
-
-            assertNotNull(version);
-            assertNull(version.getItem());
-
+            // all original items are existed.
             assertNotNull(parentProject);
             assertNotNull(person);
             assertNotNull(publication);
 
+            version = context.reloadEntity(version);
+            assertNotNull(version);
+
+            // version not deleted, but doesn't contain item.
+            assertNull(version.getItem());
+
+            // check that all versioned Items related to parentProject will be deleted
+            for (Item item : versionedItems) {
+                assertNull(context.reloadEntity(item));
+            }
+
         } finally {
-//            if (version != null) {
-//                this.versioningService.delete(context, version);
-//            }
+            version = context.reloadEntity(version);
+            if (!Objects.isNull(version.getItem())) {
+                context.turnOffAuthorisationSystem();
+                this.itemService.delete(context, version.getItem());
+                context.restoreAuthSystemState();
+            }
         }
     }
 
@@ -622,4 +639,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             .map(Relationship::getLeftItem)
             .collect(Collectors.toList());
     }
+
+    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
+        List<Item> versionedItems = new ArrayList<>();
+        Community community = this.projectConsumerService.getProjectCommunity(c, projectItem);
+        this.projectConsumerService
+            .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber)
+            .forEachRemaining(versionedItems::add);
+        return versionedItems;
+    }
+
 }

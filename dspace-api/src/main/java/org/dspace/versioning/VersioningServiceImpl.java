@@ -132,8 +132,6 @@ public class VersioningServiceImpl implements VersioningService {
 
             // Completely delete the item
             if (item != null) {
-                item = c.reloadEntity(item);
-
                 // DS-1814 introduce the possibility that submitter can create
                 // new versions. To avoid authorithation problems we need to
                 // check whether a corresponding workspaceItem exists.

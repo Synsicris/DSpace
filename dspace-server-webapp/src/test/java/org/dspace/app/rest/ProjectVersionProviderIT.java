@@ -580,9 +580,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         } finally {
             version = context.reloadEntity(version);
             if (!Objects.isNull(version.getItem())) {
-                context.turnOffAuthorisationSystem();
-                this.itemService.delete(context, version.getItem());
-                context.restoreAuthSystemState();
+                if (Objects.isNull(versionedItem)) {
+                    versionedItem = this.itemService.find(context, version.getItem().getID());
+                }
+                if (!Objects.isNull(versionedItem)) {
+                    context.turnOffAuthorisationSystem();
+                    this.itemService.delete(context, versionedItem);
+                    context.restoreAuthSystemState();
+                }
             }
         }
     }

@@ -47,9 +47,8 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
-import org.dspace.versioning.dao.VersionDAO;
 import org.dspace.versioning.service.VersioningService;
-import org.dspace.workflow.WorkflowItemService;
+import org.dspace.xmlworkflow.storedcomponents.service.XmlWorkflowItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +87,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     protected WorkspaceItemService workspaceItemService;
 
     @Autowired
-    protected WorkflowItemService workflowItemService;
+    protected XmlWorkflowItemService workflowItemService;
 
     @Autowired
     protected RelationshipService relationshipService;
@@ -101,8 +100,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Autowired
     protected GroupService groupService;
-    @Autowired(required = true)
-    protected VersionDAO versionDAO;
+
     @Override
     public Item createNewItem(Context context, Item item) {
         context.turnOffAuthorisationSystem();
@@ -215,7 +213,10 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             try {
                 deleteItem(c, c.reloadEntity(item));
             } catch (SQLException | AuthorizeException | IOException e) {
-                throw new RuntimeException(e.getMessage(), e);
+                throw new RuntimeException(
+                    "Error while deleting the versioned item with id: " + item.getID(),
+                    e
+                );
             }
         });
     }

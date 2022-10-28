@@ -47,13 +47,16 @@ import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.GroupConfiguration;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.ProjectVersionProvider;
+import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,6 +72,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     private Collection researchProfileCollection;
     private Group funderGroup;
     private Group membersGroup;
+    private Group readersGroup;
 
     @Autowired
     private ItemService itemService;
@@ -78,6 +82,15 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
     @Autowired
     private AuthorizeService authorizeService;
+
+    @Autowired
+    private CollectionService collectionService;
+
+    @Autowired
+    private GroupService groupService;
+
+    @Autowired
+    private VersioningService versioningService;
 
     @Override
     @Before
@@ -97,13 +110,11 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             ProjectVersionProvider.VERSION_RELATIONSHIP, 0, 1, 0, 1
         );
 
-        funderGroup =
-            GroupBuilder.createGroup(context)
-                .withName(FUNDER_PROJECT_MANAGERS_GROUP)
-                .build();
+        GroupBuilder.createGroup(context)
+            .withName(FUNDER_PROJECT_MANAGERS_GROUP)
+            .build();
 
-        membersGroup =
-            GroupBuilder.createGroup(context)
+        GroupBuilder.createGroup(context)
             .withName(ProjectConstants.SYSTEM_MEMBERS_GROUP)
             .build();
 
@@ -115,7 +126,6 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         researchProfileCollection =
             CollectionBuilder.createCollection(context, sharedCoummunity)
                 .withName("Persons")
-                .withAdminGroup(funderGroup)
                 .build();
 
         parentCommunity =
@@ -143,6 +153,40 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             )
             .addMember(admin)
             .build();
+
+        funderGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE,
+                        projectCommunity.getID().toString()
+                    )
+                )
+                .build();
+
+        membersGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        projectCommunity.getID().toString()
+                    )
+                )
+                .build();
+
+        readersGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE,
+                        projectCommunity.getID().toString()
+                    )
+                )
+                .build();
+
+        Group g = collectionService.createAdministrators(context, researchProfileCollection);
+        this.groupService.addMember(context, g, funderGroup);
+        this.groupService.update(context, g);
 
         configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, membersGroup.getID());
         configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, funderGroup.getID());
@@ -277,13 +321,16 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                     }
                 });
 
+            context.commit();
         } finally {
             configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
             configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
             configurationService.setProperty("project.parent-community-id", null);
             configurationService.setProperty("researcher-profile.collection.uuid", null);
+            context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
             VersionBuilder.delete(idRef.get());
+            context.restoreAuthSystemState();
         }
     }
 
@@ -420,13 +467,16 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                         throw new RuntimeException(e);
                     }
                 });
+            context.commit();
         } finally {
             configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
             configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
             configurationService.setProperty("project.parent-community-id", null);
             configurationService.setProperty("researcher-profile.collection.uuid", null);
+            context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
             VersionBuilder.delete(idRef.get());
+            context.restoreAuthSystemState();
         }
     }
 
@@ -454,9 +504,9 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         assertNotNull(policyGroups);
 
         Matcher<Iterable<? super MetadataValue>> funderGroupItem = getGroupMatcher(funderGroup);
-        Matcher<Iterable<? super MetadataValue>> membersGroupItem = getGroupMatcher(membersGroup);
+        Matcher<Iterable<? super MetadataValue>> readersGroupItem = getGroupMatcher(readersGroup);
         assertThat(policyGroups, funderGroupItem);
-        assertThat(policyGroups, membersGroupItem);
+        assertThat(policyGroups, readersGroupItem);
         assertThat(policyGroups, hasSize(2));
 
         List<ResourcePolicy> policies = this.authorizeService.getPolicies(context, item);
@@ -475,15 +525,15 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         assertThat(
             this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_FUNDER_POLICY_GROUP.toString()),
             hasSize(1)
-            );
+        );
         assertThat(
             this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_READER_POLICY_GROUP.toString()),
             hasSize(1)
-            );
+        );
         assertThat(
             this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_MEMBER_POLICY_GROUP.toString()),
             hasSize(1)
-            );
+        );
         assertThat(
             this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.toString()),
             hasSize(1)

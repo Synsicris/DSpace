@@ -84,8 +84,8 @@ public class ProjectGeneratorServiceImpl implements ProjectGeneratorService {
     @Override
     public MetadataValueVO getProjectCommunityMetadata(Context context, Community community, String role) {
         return Optional.ofNullable(this.getProjectCommunityGroup(context, community, role))
-                    .map(group -> new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED))
-                    .orElse(new MetadataValueVO(""));
+            .map(group -> new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED))
+            .orElse(new MetadataValueVO(""));
     }
 
     @Override

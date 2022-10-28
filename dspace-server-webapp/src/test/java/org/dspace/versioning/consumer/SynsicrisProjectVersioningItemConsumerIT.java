@@ -9,8 +9,18 @@ package org.dspace.versioning.consumer;
 
 import static com.jayway.jsonpath.JsonPath.read;
 import static org.dspace.project.util.ProjectConstants.FUNDER_PROJECT_MANAGERS_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_MEMBER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
+import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.SYSTEM_MEMBERS_GROUP;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -56,7 +66,6 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.ProjectVersionProvider;
-import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -89,9 +98,6 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     @Autowired
     private GroupService groupService;
 
-    @Autowired
-    private VersioningService versioningService;
-
     @Override
     @Before
     public void setUp() throws Exception {
@@ -115,7 +121,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName(ProjectConstants.SYSTEM_MEMBERS_GROUP)
+            .withName(SYSTEM_MEMBERS_GROUP)
             .build();
 
         sharedCoummunity =
@@ -147,7 +153,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         GroupBuilder.createGroup(context)
             .withName(
                 String.format(
-                    ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE,
+                    PROJECT_COORDINATORS_GROUP_TEMPLATE,
                     projectCommunity.getID().toString()
                 )
             )
@@ -158,7 +164,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             GroupBuilder.createGroup(context)
                 .withName(
                     String.format(
-                        ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE,
+                        PROJECT_FUNDERS_GROUP_TEMPLATE,
                         projectCommunity.getID().toString()
                     )
                 )
@@ -168,7 +174,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             GroupBuilder.createGroup(context)
                 .withName(
                     String.format(
-                        ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        PROJECT_MEMBERS_GROUP_TEMPLATE,
                         projectCommunity.getID().toString()
                     )
                 )
@@ -178,7 +184,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             GroupBuilder.createGroup(context)
                 .withName(
                     String.format(
-                        ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE,
+                        PROJECT_READERS_GROUP_TEMPLATE,
                         projectCommunity.getID().toString()
                     )
                 )
@@ -272,8 +278,8 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
             context.turnOffAuthorisationSystem();
             this.itemService.addMetadata(
-                context, item, ProjectConstants.MD_VERSION_VISIBLE.schema, ProjectConstants.MD_VERSION_VISIBLE.element,
-                ProjectConstants.MD_VERSION_VISIBLE.qualifier, null, "true"
+                context, item, MD_VERSION_VISIBLE.schema, MD_VERSION_VISIBLE.element,
+                MD_VERSION_VISIBLE.qualifier, null, "true"
             );
             this.itemService.update(context, item);
             this.context.commit();
@@ -410,8 +416,8 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             // make visible
             context.turnOffAuthorisationSystem();
             this.itemService.addMetadata(
-                context, item, ProjectConstants.MD_VERSION_VISIBLE.schema, ProjectConstants.MD_VERSION_VISIBLE.element,
-                ProjectConstants.MD_VERSION_VISIBLE.qualifier, null, "true"
+                context, item, MD_VERSION_VISIBLE.schema, MD_VERSION_VISIBLE.element,
+                MD_VERSION_VISIBLE.qualifier, null, "true"
             );
             this.itemService.update(context, item);
             this.context.commit();
@@ -421,7 +427,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
             // hide project
             context.turnOffAuthorisationSystem();
-            this.itemService.setMetadataSingleValue(context, item, ProjectConstants.MD_VERSION_VISIBLE, null, "false");
+            this.itemService.setMetadataSingleValue(context, item, MD_VERSION_VISIBLE, null, "false");
             this.itemService.update(context, item);
             this.context.commit();
             context.restoreAuthSystemState();
@@ -482,20 +488,30 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
     public void checkVisibleItem(Item item) throws SQLException {
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_FUNDER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_VERSION_VISIBLE.toString()),
+            allOf(
+                hasSize(1),
+                hasItem(
+                    hasProperty("value", equalTo(Boolean.TRUE.toString()))
+                )
+            )
+        );
+
+        assertThat(
+            this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()),
             hasSize(0)
         );
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_READER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()),
             hasSize(0)
         );
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_MEMBER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()),
             hasSize(0)
         );
         assertThat(
             this.itemService
-                .getMetadataByMetadataString(item, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.toString()),
+                .getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()),
             hasSize(0)
         );
 
@@ -522,20 +538,31 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     }
 
     public void checkHidItem(Item item) throws SQLException {
+
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_FUNDER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_VERSION_VISIBLE.toString()),
+            allOf(
+                hasSize(1),
+                hasItem(
+                    hasProperty("value", equalTo(Boolean.FALSE.toString()))
+                )
+            )
+        );
+
+        assertThat(
+            this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()),
             hasSize(1)
         );
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_READER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()),
             hasSize(1)
         );
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_MEMBER_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()),
             hasSize(1)
         );
         assertThat(
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.toString()),
+            this.itemService.getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()),
             hasSize(1)
         );
 

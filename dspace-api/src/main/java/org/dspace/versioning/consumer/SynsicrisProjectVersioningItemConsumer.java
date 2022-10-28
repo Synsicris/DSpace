@@ -147,18 +147,26 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     )
                 );
         while (projectItems.hasNext() && (actual = projectItems.next()) != null) {
-            // makes visible versioned project and all its items to the organisational_funder
+            // makes visible versioned project and all its items to the funder role of the project-community
+            if (!actual.getID().equals(projectItem.getID())) {
+                setVersionVisibility(ctx, actual, isVersionVisible);
+            }
             if (isVersionVisible) {
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addGroupsPolicy(ctx, actual, fundersGroup, readersGroup);
-            // hides versioned project and all its items to the organisational_funder
+            // hides versioned project and all its items to the funder role of the project-community
             } else {
                 addMetadataPolicies(ctx, community, actual);
                 removeReadPolicy(ctx, actual, fundersGroup);
                 removeGroupsPolicy(ctx, actual, fundersGroup, readersGroup);
             }
         }
+    }
+
+    private void setVersionVisibility(Context ctx, Item item, boolean isVersionVisible) throws SQLException {
+        this.itemService
+            .setMetadataSingleValue(ctx, item, MD_VERSION_VISIBLE, null, Boolean.toString(isVersionVisible));
     }
 
     private void addGroupsPolicy(Context ctx, Item actual, Group... groups) throws SQLException {

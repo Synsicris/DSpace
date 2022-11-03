@@ -40,7 +40,9 @@ public class ProjectConstants {
 
     public static final String PROGRAMME = "programme";
 
-    public static final String PROGRAMME_GROUP_TEMPLATE = "programme_%s_group";
+    public static final String PROGRAMME_MEMBERS_GROUP_TEMPLATE = "programme_%s_members_group";
+
+    public static final String PROGRAMME_MANAGERS_GROUP_TEMPLATE = "programme_%s_managers_group";
 
     public static final String PROJECT_COORDINATORS_GROUP_TEMPLATE = "project_%s_coordinators_group";
 

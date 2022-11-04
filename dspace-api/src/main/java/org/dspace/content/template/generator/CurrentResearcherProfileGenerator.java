@@ -20,7 +20,6 @@ import org.dspace.content.Item;
 import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.dspace.eperson.service.EPersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +36,6 @@ public class CurrentResearcherProfileGenerator implements TemplateValueGenerator
     private static final Logger log = LoggerFactory.getLogger(EPersonValueGenerator.class);
 
     @Autowired
-    private EPersonService ePersonService;
-    
-    @Autowired
     private ResearcherProfileService researcherProfileService;
 
     @Override
@@ -54,7 +50,7 @@ public class CurrentResearcherProfileGenerator implements TemplateValueGenerator
         if (!Objects.isNull(rp)) {
             return Arrays.asList(new MetadataValueVO(rp.getFullName(), rp.getItem().getID().toString()));
         } else {
-            return new ArrayList<MetadataValueVO>(); 
+            return new ArrayList<MetadataValueVO>();
         }
     }
 

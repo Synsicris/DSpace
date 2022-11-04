@@ -180,51 +180,61 @@ public class ItemDAOImpl extends AbstractHibernateDSODAO<Item> implements ItemDA
 
     enum OP {
         equals {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return Property.forName("mv.value").eq(val);
             }
         },
         not_equals {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return OP.equals.buildPredicate(val, regexClause);
             }
         },
         like {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return Property.forName("mv.value").like(val);
             }
         },
         not_like {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return OP.like.buildPredicate(val, regexClause);
             }
         },
         contains {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return Property.forName("mv.value").like("%" + val + "%");
             }
         },
         doesnt_contain {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return OP.contains.buildPredicate(val, regexClause);
             }
         },
         exists {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return Property.forName("mv.value").isNotNull();
             }
         },
         doesnt_exist {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return OP.exists.buildPredicate(val, regexClause);
             }
         },
         matches {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return Restrictions.sqlRestriction(regexClause, val, StandardBasicTypes.STRING);
             }
         },
         doesnt_match {
+            @Override
             public Criterion buildPredicate(String val, String regexClause) {
                 return OP.matches.buildPredicate(val, regexClause);
             }

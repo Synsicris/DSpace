@@ -852,4 +852,19 @@ public class GroupServiceImpl extends DSpaceObjectServiceImpl<Group> implements 
         return false;
     }
 
+    @Override
+    public Group getProjectManagersGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.FUNDERS_PROJECT_MANAGER);
+    }
+
+    @Override
+    public Group getFunderOrganisationalManagerGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.ORGANISATIONAL_MANAGER);
+    }
+
+    @Override
+    public Group getSystemMembersGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.SYSTEM_MEMBERS);
+    }
+
 }

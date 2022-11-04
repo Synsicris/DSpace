@@ -78,7 +78,7 @@ public interface ItemDAO extends DSpaceObjectLegacySupportDAO<Item> {
 
     /**
      * Find all the items in the archive or not with a given authority key value in LIKE format.
-     * 
+     *
      * @param context         DSpace context object
      * @param likeAuthority   value that will be used with operator LIKE on field
      *                        authority, it's possible to enter '%' to improve

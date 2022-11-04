@@ -36,7 +36,7 @@
 	    <policy-group rpType="admin">Administrator</policy-group>
 	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+	    <policy-group rpType="add">Administrator</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
@@ -131,7 +131,7 @@
 	    <policy-group rpType="admin">Administrator</policy-group>
 	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+	    <policy-group rpType="add">Administrator</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
@@ -147,7 +147,9 @@
 	  <policy-group rpType="admin">project_template_funders_group</policy-group>
 	  <policy-group rpType="admin">project_template_coordinators_group</policy-group>
 	  <policy-group rpType="remove">project_template_funders_group</policy-group>
+	  <policy-group rpType="remove">project_template_coordinators_group</policy-group>
 	  <policy-group rpType="delete">project_template_funders_group</policy-group>
+	  <policy-group rpType="delete">project_template_coordinators_group</policy-group>
 	  <policy-group rpType="read">project_template_members_group</policy-group>
 	  <policy-group rpType="read">project_template_readers_group</policy-group>
 	  <has-item-reference>true</has-item-reference>
@@ -160,6 +162,7 @@
 	    <policy-group rpType="admin">project_template_funders_group</policy-group>
 	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
 	    <policy-group rpType="remove">project_template_funders_group</policy-group>
+	    <policy-group rpType="delete">project_template_funders_group</policy-group>
 	    <policy-group rpType="read">project_template_members_group</policy-group>
 	    <policy-group rpType="read">project_template_readers_group</policy-group>
 	    <collection>
@@ -175,6 +178,8 @@
 	      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
 	      <policy-group rpType="read">project_template_members_group</policy-group>
 	      <policy-group rpType="add">project_template_members_group</policy-group>
+	      <policy-group rpType="remove">project_template_funders_group</policy-group>
+	      <policy-group rpType="delete">project_template_funders_group</policy-group>
 	      <policy-group rpType="item_read">project_template_members_group</policy-group>
 	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
 	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -197,6 +202,8 @@
 	      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
 	      <policy-group rpType="read">project_template_members_group</policy-group>
 	      <policy-group rpType="add">project_template_members_group</policy-group>
+	      <policy-group rpType="remove">project_template_funders_group</policy-group>
+	      <policy-group rpType="delete">project_template_funders_group</policy-group>
 	      <policy-group rpType="item_read">project_template_members_group</policy-group>
 	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
 	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
@@ -784,6 +791,8 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.versioning-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+	      <metadata name="synsicris.versioning-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
 	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
 	      <metadata name="cris.project.shared">project</metadata>         
 	      <metadata name="oairecerif.amount.currency">Euro</metadata>
@@ -1147,6 +1156,7 @@
 	  <copyright />
 	  <sidebar />
 	  <policy-group rpType="add">funder_project_managers_group</policy-group>
+	  <policy-group rpType="remove">funder_project_managers_group</policy-group>
 	  <policy-group rpType="read">Anonymous</policy-group>
 	</community>
 	<community>
@@ -1157,7 +1167,10 @@
 	  <sidebar />
 	  <policy-group rpType="admin">project_template_funders_group</policy-group>
 	  <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+	  <policy-group rpType="remove">project_template_funders_group</policy-group>
+	  <policy-group rpType="remove">project_template_coordinators_group</policy-group>
 	  <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
+	  <policy-group rpType="delete">project_template_funders_group</policy-group>
 	  <policy-group rpType="delete">project_template_coordinators_group</policy-group>
 	  <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
 	  <policy-group rpType="read">funding_template_members_group</policy-group>
@@ -1172,10 +1185,14 @@
 	    <sidebar />
 	    <policy-group rpType="admin">project_template_funders_group</policy-group>
 	    <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+	    <policy-group rpType="remove">project_template_funders_group</policy-group>
+	    <policy-group rpType="remove">project_template_coordinators_group</policy-group>
 	    <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">funding_template_members_group</policy-group>
+	    <policy-group rpType="delete">project_template_funders_group</policy-group>
 	    <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+	    <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
 	    <policy-group rpType="read">project_template_readers_group</policy-group>
+	    <policy-group rpType="read">funding_template_members_group</policy-group>
 	    <collection>
 	      <name>Exploitation plan steps</name>
 	      <description />

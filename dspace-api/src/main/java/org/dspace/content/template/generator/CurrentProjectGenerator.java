@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  */
-public class CurrentProjectGenerator extends AbstractGenerator {
+public class CurrentProjectGenerator extends AbstractProjectGenerator {
 
     private static final Logger log = LoggerFactory.getLogger(CurrentProjectGenerator.class);
 
@@ -87,7 +87,7 @@ public class CurrentProjectGenerator extends AbstractGenerator {
                     return new MetadataValueVO(itemProject.getName(), UUIDUtils.toString(itemProject.getID()),
                         value.getConfidence());
                 } else {
-                    return new MetadataValueVO(""); 
+                    return new MetadataValueVO("");
                 }
             } catch (SQLException e) {
                 return new MetadataValueVO("");

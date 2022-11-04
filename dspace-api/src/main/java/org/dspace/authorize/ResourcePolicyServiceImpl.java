@@ -179,7 +179,7 @@ public class ResourcePolicyServiceImpl implements ResourcePolicyService {
         Date ed = resourcePolicy.getEndDate();
 
         // if no dates set, return true (most common case)
-        if ((sd == null) && (ed == null)) {
+        if (sd == null && ed == null) {
             return true;
         }
 
@@ -208,10 +208,10 @@ public class ResourcePolicyServiceImpl implements ResourcePolicyService {
         ResourcePolicy clone = create(context);
         clone.setGroup(resourcePolicy.getGroup());
         clone.setEPerson(resourcePolicy.getEPerson());
-        clone.setStartDate((Date) ObjectUtils.clone(resourcePolicy.getStartDate()));
-        clone.setEndDate((Date) ObjectUtils.clone(resourcePolicy.getEndDate()));
-        clone.setRpType((String) ObjectUtils.clone(resourcePolicy.getRpType()));
-        clone.setRpDescription((String) ObjectUtils.clone(resourcePolicy.getRpDescription()));
+        clone.setStartDate(ObjectUtils.clone(resourcePolicy.getStartDate()));
+        clone.setEndDate(ObjectUtils.clone(resourcePolicy.getEndDate()));
+        clone.setRpType(ObjectUtils.clone(resourcePolicy.getRpType()));
+        clone.setRpDescription(ObjectUtils.clone(resourcePolicy.getRpDescription()));
         update(context, clone);
         return clone;
     }
@@ -236,6 +236,15 @@ public class ResourcePolicyServiceImpl implements ResourcePolicyService {
     public void removeDsoGroupPolicies(Context context, DSpaceObject dso, Group group)
         throws SQLException, AuthorizeException {
         resourcePolicyDAO.deleteByDsoGroupPolicies(context, dso, group);
+        context.turnOffAuthorisationSystem();
+        contentServiceFactory.getDSpaceObjectService(dso).updateLastModified(context, dso);
+        context.restoreAuthSystemState();
+    }
+
+    @Override
+    public void removeDsoGroupActionPolicies(Context context, DSpaceObject dso, Group group, int actionId)
+        throws SQLException, AuthorizeException {
+        resourcePolicyDAO.deleteByDsoGroupActionPolicies(context, dso, group, actionId);
         context.turnOffAuthorisationSystem();
         contentServiceFactory.getDSpaceObjectService(dso).updateLastModified(context, dso);
         context.restoreAuthSystemState();

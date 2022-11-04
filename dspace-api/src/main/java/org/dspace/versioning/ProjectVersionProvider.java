@@ -11,7 +11,9 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.dspace.authority.service.AuthorityValueService.REFERENCE;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -46,6 +48,7 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
 import org.dspace.versioning.service.VersioningService;
+import org.dspace.xmlworkflow.storedcomponents.service.XmlWorkflowItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +85,9 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Autowired
     protected WorkspaceItemService workspaceItemService;
+
+    @Autowired
+    protected XmlWorkflowItemService workflowItemService;
 
     @Autowired
     protected RelationshipService relationshipService;
@@ -191,7 +197,55 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     @Override
     public void deleteVersionedItem(Context c, Version versionToDelete, VersionHistory history) throws SQLException {
+        Item projectItem = versionToDelete.getItem();
+        if (!projectConsumerService.isProjectItem(projectItem)) {
+            return;
+        }
 
+        List<Item> itemsToDelete =
+            findVersionedItems(c, projectItem, String.valueOf(versionToDelete.getVersionNumber()));
+
+        deleteItems(c, itemsToDelete);
+    }
+
+    private void deleteItems(Context c, List<Item> items) {
+        items.forEach(item -> {
+            try {
+                deleteItem(c, c.reloadEntity(item));
+            } catch (SQLException | AuthorizeException | IOException e) {
+                throw new RuntimeException(
+                    "Error while deleting the versioned item with id: " + item.getID(),
+                    e
+                );
+            }
+        });
+    }
+
+    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
+        List<Item> versionedItems = new ArrayList<>();
+        Community community = projectConsumerService.getProjectCommunity(c, projectItem);
+        projectConsumerService
+            .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber)
+            .forEachRemaining(versionedItems::add);
+        return versionedItems;
+    }
+
+    private void deleteItem(Context context, Item item) throws SQLException, AuthorizeException, IOException {
+        if (isItemInWorkspace(context, item)) {
+            workspaceItemService.deleteAll(context, workspaceItemService.findByItem(context, item));
+        } else if (isItemInWorkflow(context, item)) {
+            workflowItemService.delete(context, workflowItemService.findByItem(context, item));
+        } else {
+            itemService.delete(context, item);
+        }
+    }
+
+    private boolean isItemInWorkspace(Context context, Item item) throws SQLException {
+        return workspaceItemService.findByItem(context, item) != null;
+    }
+
+    private boolean isItemInWorkflow(Context context, Item item) throws SQLException {
+        return workflowItemService.findByItem(context, item) != null;
     }
 
     private Iterator<Item> findItemsOfProject(Context context, Item projectItem) {

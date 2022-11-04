@@ -27,6 +27,7 @@ public class GroupConfiguration {
 
     public static final String FUNDERS_PROJECT_MANAGER = "funders-project-managers.group";
     public static final String ORGANISATIONAL_MANAGER = "funder-organisational-managers.group";
+    public static final String SYSTEM_MEMBERS = "system_members.group";
 
     /**
      * A static reference to the {@link ConfigurationService} see the init method for initialization

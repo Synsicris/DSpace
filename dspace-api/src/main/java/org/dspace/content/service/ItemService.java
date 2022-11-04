@@ -481,7 +481,7 @@ public interface ItemService
      * already applied to the bundle/bitstream. Collection's policies are inherited
      * if there are no other policies defined or if the append mode is defined by
      * the configuration via the core.authorization.installitem.inheritance-read.append-mode property
-     * 
+     *
      * @param context             DSpace context object
      * @param item                Item to adjust policies on
      * @param collection          Collection
@@ -499,7 +499,7 @@ public interface ItemService
      * inherited as appropriate. Collection's policies are inherited if there are no
      * other policies defined or if the append mode is defined by the configuration
      * via the core.authorization.installitem.inheritance-read.append-mode property
-     * 
+     *
      * @param context              DSpace context object
      * @param item                 Item to adjust policies on
      * @param collection           Collection
@@ -807,7 +807,7 @@ public interface ItemService
 
     /**
      * Find all the items in the archive or not with a given authority key value in LIKE format.
-     * 
+     *
      * @param context         DSpace context object
      * @param likeAuthority   value that will be used with operator LIKE on field
      *                        authority, it's possible to enter '%' to improve

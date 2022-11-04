@@ -432,6 +432,20 @@ public interface AuthorizeService {
     public void removeGroupPolicies(Context c, DSpaceObject o, Group g) throws SQLException, AuthorizeException;
 
     /**
+     * Removes all policies from a group for a particular object that belong to
+     * a Group. FIXME doesn't check authorization
+     *
+     * @param c current context
+     * @param o the object
+     * @param g the group
+     * @param actionId the actionId to remove
+     * @throws SQLException       if there's a database problem
+     * @throws AuthorizeException if authorization error
+     */
+    public void removeGroupPolicies(
+        Context c, DSpaceObject o, Group g, int actionId) throws SQLException, AuthorizeException;
+
+    /**
      * Removes all policies from an eperson for a particular object that belong to
      * an EPerson. FIXME doesn't check authorization
      *

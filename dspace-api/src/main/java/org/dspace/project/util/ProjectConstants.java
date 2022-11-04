@@ -68,6 +68,8 @@ public class ProjectConstants {
 
     public static final String RELATION_ITEM_ENTITY_TEMPLATE = "project_%s_item";
 
+    public static final String SYSTEM_MEMBERS_GROUP = "system_members_group";
+
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
@@ -110,6 +112,15 @@ public class ProjectConstants {
     public static final String DEFAULT_STATUS = "In preparation";
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
+    public static final MetadataFieldName MD_VERSION_VISIBLE = new MetadataFieldName("synsicris", "version", "visible");
+    public static final MetadataFieldName MD_FUNDER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "funder-policy", "group");
+    public static final MetadataFieldName MD_READER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "reader-policy", "group");
+    public static final MetadataFieldName MD_MEMBER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "member-policy", "group");
+    public static final MetadataFieldName MD_COORDINATOR_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "coordinator-policy", "group");
 
     /**
      * Default constructor

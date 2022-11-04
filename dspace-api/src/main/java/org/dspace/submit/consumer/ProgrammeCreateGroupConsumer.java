@@ -7,16 +7,22 @@
  */
 package org.dspace.submit.consumer;
 
+import static org.dspace.content.authority.Choices.CF_ACCEPTED;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
-import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
@@ -71,12 +77,13 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
             return;
         }
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, uuid.toString());
+        String memberGroupName = String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, uuid.toString());
+        String managerGroupName = String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, uuid.toString());
         if (eventType == Event.DELETE) {
-            deleteGroupByName(context, groupName);
+            deleteGroupsByName(context, memberGroupName, managerGroupName);
             putProcessed(uuid, eventType);
         } else if (eventType == Event.INSTALL) {
-            createProgrammeGroup(context, groupName);
+            createProgrammeGroupsAndMetadata(context, (Item) dso, memberGroupName, managerGroupName);
             putProcessed(uuid, eventType);
         }
 
@@ -99,6 +106,11 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         return this.alreadyProcessed;
     }
 
+    private void deleteGroupsByName(Context context, String ...groupNames) {
+        Stream.of(groupNames)
+            .filter(StringUtils::isNotBlank)
+            .forEach(group -> this.deleteGroupByName(context, group));
+    }
 
     private void deleteGroupByName(Context context, String groupName) {
         try {
@@ -118,10 +130,29 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         return entityType.equals(itemService.getEntityType(item));
     }
 
-    private void createProgrammeGroup(Context context, String groupName) {
+    private void createProgrammeGroupsAndMetadata(
+        Context context, Item dso, String memberGroupName, String managerGroupName
+    ) {
+        try {
+            createProgrammeGroup(context, memberGroupName);
+            addPolicyGroupMetadata(context, dso, createProgrammeGroup(context, managerGroupName));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addPolicyGroupMetadata(Context context, Item dso, Group programmeManagerGroup) throws SQLException {
+        this.itemService.addMetadata(
+            context, dso, MD_POLICY_GROUP.schema, MD_POLICY_GROUP.element, MD_POLICY_GROUP.qualifier, null,
+            programmeManagerGroup.getName(), programmeManagerGroup.getID().toString(), CF_ACCEPTED, 0
+        );
+    }
+
+    private Group createProgrammeGroup(Context context, String groupName) {
+        Group group = null;
         try {
             context.turnOffAuthorisationSystem();
-            Group group = groupService.create(context);
+            group = groupService.create(context);
             groupService.setName(group, groupName);
             groupService.update(context, group);
         } catch (Exception e) {
@@ -129,6 +160,7 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         } finally {
             context.restoreAuthSystemState();
         }
+        return group;
     }
 
     private void putProcessed(UUID id, Integer event) {

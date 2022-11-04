@@ -348,4 +348,31 @@ public interface GroupService extends DSpaceObjectService<Group>, DSpaceObjectLe
      * @throws SQLException
      */
     boolean isProjectManagersGroup(Context context, UUID groupId) throws SQLException;
+
+    /**
+     * Retrieves the configured project managers group
+     *
+     * @param context
+     * @return
+     * @throws SQLException
+     */
+    Group getProjectManagersGroup(Context context) throws SQLException;
+
+    /**
+     * Retrieves the configured organisational manager group
+     *
+     * @param context
+     * @return
+     * @throws SQLException
+     */
+    Group getFunderOrganisationalManagerGroup(Context context) throws SQLException;
+
+    /**
+     * Retrieves the configured system members group
+     *
+     * @param context
+     * @return
+     * @throws SQLException
+     */
+    Group getSystemMembersGroup(Context context) throws SQLException;
 }

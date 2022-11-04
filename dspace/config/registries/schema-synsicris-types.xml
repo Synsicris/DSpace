@@ -243,6 +243,20 @@
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>coordinator-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>versioning-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>    
     
     <dc-type>
         <schema>synsicris</schema>
@@ -388,6 +402,20 @@
         <schema>synsicris</schema>
         <element>amount</element>
         <qualifier>budget</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>visible</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>official</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

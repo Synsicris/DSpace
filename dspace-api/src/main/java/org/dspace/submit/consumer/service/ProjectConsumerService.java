@@ -7,6 +7,7 @@
  */
 package org.dspace.submit.consumer.service;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,9 +38,9 @@ public interface ProjectConsumerService {
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
 
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;
-    
+
     public Item getParentProjectItemByCommunityUUID(Context context, UUID communityUUID) throws SQLException;
-    
+
     public boolean isProjectItem(Item item);
 
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
@@ -48,4 +49,11 @@ public interface ProjectConsumerService {
     public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
             throws SQLException;
 
+    public Iterator<Item> findVersionedItemsOfProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    );
+
+    Iterator<Item> findVersionedItemsRelatedToProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    );
 }

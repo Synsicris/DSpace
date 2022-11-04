@@ -251,6 +251,20 @@
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="VERSIONING" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.versioning-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
                     </list>
                 </entry>
                 <entry key="person">

@@ -143,6 +143,7 @@ public class ResourcePolicyDAOImpl extends AbstractHibernateDAO<ResourcePolicy> 
         return list(context, criteriaQuery, false, ResourcePolicy.class, 1, -1);
     }
 
+    @Override
     public List<ResourcePolicy> findByEPersonGroupTypeIdAction(Context context, EPerson e, List<Group> groups,
                                                                int action, int type_id) throws SQLException {
         CriteriaBuilder criteriaBuilder = getCriteriaBuilder(context);
@@ -154,7 +155,7 @@ public class ResourcePolicyDAOImpl extends AbstractHibernateDAO<ResourcePolicy> 
                                 criteriaBuilder.equal(resourcePolicyRoot.get(ResourcePolicy_.actionId), action),
                                 criteriaBuilder
                                     .or(criteriaBuilder.equal(resourcePolicyRoot.get(ResourcePolicy_.eperson), e),
-                                        (resourcePolicyRoot.get(ResourcePolicy_.epersonGroup).in(groups)))
+                                        resourcePolicyRoot.get(ResourcePolicy_.epersonGroup).in(groups))
             )
         );
         return list(context, criteriaQuery, false, ResourcePolicy.class, 1, -1);
@@ -200,6 +201,22 @@ public class ResourcePolicyDAOImpl extends AbstractHibernateDAO<ResourcePolicy> 
         Query query = createQuery(context, queryString);
         query.setParameter("dso", dso);
         query.setParameter("epersonGroup", group);
+        query.executeUpdate();
+
+    }
+
+    @Override
+    public void deleteByDsoGroupActionPolicies(Context context, DSpaceObject dso, Group group, int actionId)
+        throws SQLException {
+        String queryString =
+            "delete from ResourcePolicy" +
+            " where dSpaceObject = :dso AND " +
+            " epersonGroup = :epersonGroup AND " +
+            " actionId = :actionId";
+        Query query = createQuery(context, queryString);
+        query.setParameter("dso", dso);
+        query.setParameter("epersonGroup", group);
+        query.setParameter("actionId", actionId);
         query.executeUpdate();
 
     }

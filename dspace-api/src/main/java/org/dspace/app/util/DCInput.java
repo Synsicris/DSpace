@@ -12,7 +12,6 @@ import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import javax.annotation.Nullable;
@@ -194,23 +193,23 @@ public class DCInput {
         repeatable = "true".equalsIgnoreCase(repStr)
             || "yes".equalsIgnoreCase(repStr);
         String nameVariantsString = fieldMap.get("name-variants");
-        nameVariants = StringUtils.isNotBlank(nameVariantsString) ?
+        nameVariants = (StringUtils.isNotBlank(nameVariantsString)) ?
                 nameVariantsString.equalsIgnoreCase("true") : false;
         label = fieldMap.get("label");
         inputType = fieldMap.get("input-type");
         // these types are list-controlled
         if ("dropdown".equals(inputType) || "qualdrop_value".equals(inputType)
-            || "list".equals(inputType)) {
+            || "list".equals(inputType) ) {
             valueListName = fieldMap.get("value-pairs-name");
             valueList = listMap.get(valueListName);
         }
         hint = fieldMap.get("hint");
         warning = fieldMap.get("required");
-        required = warning != null && warning.length() > 0;
+        required = (warning != null && warning.length() > 0);
         visibility = fieldMap.get("visibility");
         readOnly = fieldMap.get("readonly");
         vocabulary = fieldMap.get("vocabulary");
-        regex = extractRegex(fieldMap);
+        regex = fieldMap.get("regex");
         String closedVocabularyStr = fieldMap.get("closedVocabulary");
         closedVocabulary = "true".equalsIgnoreCase(closedVocabularyStr)
             || "yes".equalsIgnoreCase(closedVocabularyStr);
@@ -241,21 +240,6 @@ public class DCInput {
 
     }
 
-    public String extractRegex(Map<String, String> fieldMap) {
-        String regex = fieldMap.get("regex");
-        Pattern generatedPattern = null;
-        if (regex != null) {
-            try {
-                generatedPattern = RegexPatternUtils.computePattern(regex);
-            } catch (PatternSyntaxException e) {
-                log.warn("The regex field of input {} with value {} is invalid!", this.label, regex);
-            }
-        }
-        return Optional.ofNullable(generatedPattern)
-                .map(pattern -> regex)
-                .orElse(null);
-    }
-
     /**
      * Is this DCInput for display in the given scope? The scope should be
      * either "workflow" or "submit", as per the input forms definition. If the
@@ -266,7 +250,7 @@ public class DCInput {
      * @return whether the input should be displayed or not
      */
     public boolean isVisible(String scope) {
-        return visibility == null || visibility.equals(scope);
+        return (visibility == null || visibility.equals(scope));
     }
 
     /**
@@ -601,6 +585,7 @@ public class DCInput {
         if (StringUtils.isNotBlank(value)) {
             try {
                 if (StringUtils.isNotBlank(regex)) {
+                    Pattern pattern = Pattern.compile(regex);
                     if (!pattern.matcher(value).matches()) {
                         return false;
                     }
@@ -614,11 +599,6 @@ public class DCInput {
         return true;
     }
 
-    /**
-     * Get the type bind list for use in determining whether
-     * to display this field in angular dynamic form building
-     * @return list of bound types
-     */
     public List<String> getTypeBindList() {
         return typeBind;
     }

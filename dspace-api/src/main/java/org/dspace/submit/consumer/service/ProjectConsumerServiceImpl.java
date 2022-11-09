@@ -314,7 +314,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(projectCommunity)) {
                 return;
             }
-            Community fundingCommunity = isMemberOfFunding(context, currentUser, projectCommunity);
+            Community fundingCommunity = getFundingCommunityByUser(context, currentUser, projectCommunity);
             if (Objects.nonNull(fundingCommunity)) {
                 List<MetadataValue> values = communityService.getMetadata(fundingCommunity,
                         ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
@@ -350,7 +350,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public Community isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
+    public boolean isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException {
+
+        Community funding  = getFundingCommunityByUser(context, ePerson, projectCommunity);
+        return Objects.nonNull(funding);
+    }
+
+    @Override
+    public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
 
         List<Community> fundings = getAllFundingsByUser(context, ePerson, projectCommunity);

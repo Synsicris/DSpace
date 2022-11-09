@@ -206,7 +206,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
             final String value, final String authority) {
         return addMetadataValue(item, schema, element, qualifier, null, value, authority, CF_ACCEPTED);
     }
-    
+
     public ItemBuilder withMetadata(final String schema, final String element, final String qualifier,
                                     final String value) {
         return addMetadataValue(item, schema, element, qualifier, value);

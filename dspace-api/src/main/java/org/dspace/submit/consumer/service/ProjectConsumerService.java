@@ -27,7 +27,7 @@ public interface ProjectConsumerService {
 
     public void checkGrants(Context context, EPerson currentUser, Item item);
 
-    public Community isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
+    public boolean isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
     public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
@@ -56,4 +56,7 @@ public interface ProjectConsumerService {
     Iterator<Item> findVersionedItemsRelatedToProject(
         Context context, Community projectCommunity, Item projectItem, String version
     );
+
+    public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException;
 }

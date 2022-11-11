@@ -23,6 +23,7 @@ import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
 import static org.dspace.project.util.ProjectConstants.PROJECT;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
@@ -51,20 +52,26 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tools.ant.Project;
 import org.dspace.app.rest.matcher.CollectionMatcher;
 import org.dspace.app.rest.matcher.CommunityMatcher;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
+import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
+import org.dspace.builder.RelationshipTypeBuilder;
+import org.dspace.builder.VersionBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
+import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.InstallItemService;
@@ -74,10 +81,15 @@ import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.versioning.Version;
+import org.dspace.versioning.VersionHistory;
+import org.dspace.versioning.service.VersionHistoryService;
+import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.StringEndsWith;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +139,15 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
     @Autowired
     private InstallItemService installItemService;
+
+    @Autowired
+    private VersioningService versioningService;
+
+    @Autowired
+    private VersionHistoryService versionHistoryService;
+
+    @Autowired
+    private CollectionService collectionService;
 
     @Test
     public void cloneCommunityRootTest() throws Exception {
@@ -1173,6 +1194,89 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         } finally {
             CommunityBuilder.deleteCommunity(idRef.get());
         }
+    }
+
+
+    @Test
+    public void testDeleteCollectionContainsVersionedProjects() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Community projectCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("project's community")
+                            .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, projectCommunity)
+                                      .withName("collection")
+                                      .withEntityType("Project")
+                                      .build();
+
+        Item projectItem =
+            ItemBuilder.createItem(context, collection)
+                       .withTitle("projects")
+                       .build();
+
+        Community projectACommunity =
+            CommunityBuilder.createSubCommunity(context, projectCommunity)
+                            .withName("project a community")
+                            .build();
+
+        Collection collectionA =
+            CollectionBuilder.createCollection(context, projectACommunity)
+                             .withName("collection a")
+                             .withEntityType("Project")
+                             .build();
+
+        Item projectAItem =
+            ItemBuilder.createItem(context, collectionA)
+                       .withTitle("project a item")
+                       .build();
+
+        communityService
+            .addMetadata(context, projectCommunity, MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
+                null, projectItem.getID().toString(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        communityService
+            .addMetadata(context, projectACommunity, MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
+                null, projectAItem.getID().toString(), projectAItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        configurationService.setProperty("project.parent-community-id", projectCommunity.getID());
+
+        EntityType type =
+            EntityTypeBuilder.createEntityTypeBuilder(context, PROJECT_ENTITY)
+                             .build();
+
+        RelationshipTypeBuilder
+            .createRelationshipTypeBuilder(context, type, type, "isVersionOf", "hasVersion", 0, 1, 0, null)
+            .build();
+
+        VersionBuilder.createVersion(context, projectAItem, "test").build();
+        VersionBuilder.createVersion(context, projectAItem, "test").build();
+        VersionBuilder.createVersion(context, projectAItem, "test").build();
+
+        context.commit();
+        context.restoreAuthSystemState();
+
+        VersionHistory versionHistoryA = versionHistoryService.findByItem(context, projectAItem);
+        List<Version> versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
+
+        Assert.assertEquals(versionsOfA.size(), 4);
+
+        // delete collectionA then all items related will be deleted.
+        context.turnOffAuthorisationSystem();
+        collectionService.delete(context, context.reloadEntity(collectionA));
+        context.restoreAuthSystemState();
+
+        versionHistoryA = context.reloadEntity(versionHistoryA);
+        versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
+
+        // all versioned items were deleted.
+        Assert.assertEquals(versionsOfA.size(), 0);
+
+        configurationService.setProperty("project.parent-community-id", "");
     }
 
     private <T extends DSpaceObject> boolean containMetadata(DSpaceObjectService<T> service, T target, String schema,

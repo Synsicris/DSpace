@@ -39,6 +39,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.data.rest.webmvc.RestMediaTypes.TEXT_URI_LIST_VALUE;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -52,7 +53,6 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tools.ant.Project;
 import org.dspace.app.rest.matcher.CollectionMatcher;
 import org.dspace.app.rest.matcher.CommunityMatcher;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
@@ -71,7 +71,6 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.Choices;
-import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.DSpaceObjectService;
 import org.dspace.content.service.InstallItemService;
@@ -145,9 +144,6 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
     @Autowired
     private VersionHistoryService versionHistoryService;
-
-    @Autowired
-    private CollectionService collectionService;
 
     @Test
     public void cloneCommunityRootTest() throws Exception {
@@ -1265,10 +1261,11 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
         Assert.assertEquals(versionsOfA.size(), 4);
 
+        String token = getAuthToken(admin.getEmail(), password);
+
         // delete collectionA then all items related will be deleted.
-        context.turnOffAuthorisationSystem();
-        collectionService.delete(context, context.reloadEntity(collectionA));
-        context.restoreAuthSystemState();
+        getClient(token).perform(delete("/api/core/collections/" + collectionA.getID().toString()))
+                        .andExpect(status().isNoContent());
 
         versionHistoryA = context.reloadEntity(versionHistoryA);
         versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);

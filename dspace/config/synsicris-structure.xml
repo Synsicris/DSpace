@@ -1207,8 +1207,10 @@
 	      <policy-group rpType="read">funding_template_members_group</policy-group>
 	      <policy-group rpType="add">funding_template_members_group</policy-group>
 	      <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	      <policy-group rpType="item_read">project_template_members_group</policy-group>
 	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
 	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	      <item-template>
 	        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
@@ -1251,8 +1253,10 @@
 	      <policy-group rpType="read">funding_template_members_group</policy-group>
 	      <policy-group rpType="add">funding_template_members_group</policy-group>
 	      <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	      <policy-group rpType="item_read">project_template_members_group</policy-group>
 	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
+	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
 	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	      <item-template>
 	        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
@@ -1287,8 +1291,10 @@
 	    <policy-group rpType="read">funding_template_members_group</policy-group>
 	    <policy-group rpType="add">funding_template_members_group</policy-group>
 	    <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	    <policy-group rpType="item_read">project_template_members_group</policy-group>
 	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
+	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
 	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	    <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
@@ -1317,9 +1323,9 @@
 	    <policy-group rpType="read">project_template_readers_group</policy-group>
 	    <policy-group rpType="item_read">funding_template_members_group</policy-group>
 	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
 	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
+	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	    
 	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	    <item-template>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.coordinators###</metadata>

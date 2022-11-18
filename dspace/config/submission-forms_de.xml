@@ -1938,13 +1938,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Titel des Verbundprojektes</label>
+          <label>Title project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
-          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <required>mandatory</required>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>

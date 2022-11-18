@@ -144,7 +144,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
     }
 
     private Collection getProjectPartnerCollection(Context context, Item item) throws SQLException {
-        Community parentCommunity = projectConsumerService.getProjectCommunityByRelationProject(context, item);
+        Community parentCommunity = projectConsumerService.getProjectCommunity(context, item);
         if (Objects.nonNull(parentCommunity)) {
             return collectionService.retriveCollectionByEntityType(context, parentCommunity,
                     ProjectConstants.PROJECTPARTNER_ENTITY);

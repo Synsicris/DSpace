@@ -34,6 +34,8 @@ public interface ProjectConsumerService {
             throws SQLException;
 
     public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException;
+    
+    public Community getFundingCommunityByRelationFunding(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
 
@@ -59,4 +61,5 @@ public interface ProjectConsumerService {
 
     public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
+
 }

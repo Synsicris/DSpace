@@ -412,6 +412,23 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
+    public Community getFundingCommunityByRelationFunding(Context context, Item item) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_FUNDING_RELATION.schema,
+                ProjectConstants.MD_FUNDING_RELATION.element,
+                ProjectConstants.MD_FUNDING_RELATION.qualifier, null);
+        if (values.isEmpty()) {
+            return null;
+        }
+        String uuid = values.get(0).getAuthority();
+        if (StringUtils.isNotBlank(uuid)) {
+            // item that represent Project community
+            Item projectItem = itemService.find(context, UUID.fromString(uuid));
+            return getProjectCommunity(context, projectItem);
+        }
+        return null;
+    }
+
+    @Override
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException {
         Item projectItem = null;
         List<Community> communities;

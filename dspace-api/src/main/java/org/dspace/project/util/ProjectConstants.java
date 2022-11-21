@@ -43,7 +43,7 @@ public class ProjectConstants {
     public static final String PROGRAMME_MEMBERS_GROUP_TEMPLATE = "programme_%s_members_group";
 
     public static final String PROGRAMME_MANAGERS_GROUP_TEMPLATE = "programme_%s_managers_group";
-    
+
     public static final String PROGRAMME_PROJECT_FUNDERS_GROUP_TEMPLATE = "programme_%s_funders_group";
 
     public static final String PROJECT_COORDINATORS_GROUP_TEMPLATE = "project_%s_coordinators_group";
@@ -115,6 +115,9 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
     public static final MetadataFieldName MD_VERSION_VISIBLE = new MetadataFieldName("synsicris", "version", "visible");
+    public static final MetadataFieldName MD_LAST_VERSION_VISIBLE =
+        new MetadataFieldName("synsicris", "isLastVersion", "visible");
+    public static final MetadataFieldName MD_LAST_VERSION = new MetadataFieldName("synsicris", "isLastVersion");
     public static final MetadataFieldName MD_FUNDER_POLICY_GROUP =
         new MetadataFieldName("synsicris", "funder-policy", "group");
     public static final MetadataFieldName MD_READER_POLICY_GROUP =

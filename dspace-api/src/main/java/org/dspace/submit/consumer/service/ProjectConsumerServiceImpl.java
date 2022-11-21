@@ -55,9 +55,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 */
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
-    private static final String SOLR_FILTER_UNIQUEID = "synsicris.uniqueid:\"*\\_%s$\"";
-    private static final String SOLR_FILTER_UNIQUEID_PROJECT =
-        "synsicris.uniqueid:\"*\\_%s$\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
+    private static final String SOLR_FILTER_LAST_VERSION_VISIBLE = "synsicris.isLastVersion.visible:true";
+    private static final String SOLR_FILTER_PREVIOUS_VISIBLE_VERSIONS = "synsicris.version:[1 TO %s]";
+    private static final String SOLR_FILTER_VERSION = "synsicris.version:\"%s\"";
+    private static final String SOLR_FILTER_VERSION_PROJECT =
+        "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -207,6 +209,20 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
+    public Iterator<Item> findPreviousVisibleVersionsInCommunity(
+        Context context, Community projectCommunity, String versionNumber
+    ) {
+        return findPreviousVisibleVersionsByCommunity(context, projectCommunity, versionNumber);
+    }
+
+    @Override
+    public Iterator<Item> findLastVersionVisibleInCommunity(
+        Context context, Community projectCommunity
+    ) {
+        return findLastVersionVisibleByCommunity(context, projectCommunity);
+    }
+
+    @Override
     public Iterator<Item> findVersionedItemsOfProject(
         Context context, Community projectCommunity, Item projectItem, String version
     ) {
@@ -246,6 +262,28 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
     }
 
+    private Iterator<Item> findPreviousVisibleVersionsByCommunity(
+        Context context, Community projectCommunity, String versionNumber
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(String.format(SOLR_FILTER_PREVIOUS_VISIBLE_VERSIONS, versionNumber));
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findLastVersionVisibleByCommunity(
+        Context context, Community projectCommunity
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(SOLR_FILTER_LAST_VERSION_VISIBLE);
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
     private Iterator<Item> findItemsByCommunity(
         Context context, Community projectCommunity, Item projectItem, String version
     ) {
@@ -254,7 +292,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
         discoverQuery.setMaxResults(10000);
         discoverQuery.setQuery(
-            String.format(SOLR_FILTER_UNIQUEID, version)
+            String.format(SOLR_FILTER_VERSION, version)
         );
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
@@ -267,7 +305,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
         discoverQuery.setMaxResults(10000);
         discoverQuery.setQuery(
-            String.format(SOLR_FILTER_UNIQUEID_PROJECT, version, projectItem.getID().toString())
+            String.format(SOLR_FILTER_VERSION_PROJECT, version, projectItem.getID().toString())
         );
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }

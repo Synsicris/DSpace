@@ -66,7 +66,7 @@ public class ProjectAuthorityFilter extends EntityTypeAuthorityFilter {
                 .filter(StringUtils::isNotBlank)
                 .map(Collections::singletonList)
                 .orElseGet(Collections::emptyList));
-            
+
             // exclude item versions from the authority search
             filters.add("-synsicris.uniqueid:*");
 

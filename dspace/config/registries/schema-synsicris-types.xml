@@ -419,4 +419,17 @@
         <scope_note></scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>isLastVersion</element>
+        <qualifier>visible</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <scope_note></scope_note>
+    </dc-type>
+
 </dspace-dc-types>

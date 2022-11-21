@@ -10,6 +10,7 @@ package org.dspace.versioning;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.dspace.authority.service.AuthorityValueService.REFERENCE;
+import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -123,6 +124,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
         String uniqueIdMetadataValue = composeUniqueId(previousItem.getID().toString(), version);
         addUniqueIdMetadata(context, itemNew, uniqueIdMetadataValue);
+        addVersionMetadata(context, itemNew, String.valueOf(version.getVersionNumber()));
 
         replaceAuthoritiesWithWillBeReferenced(context, itemNew, version);
 
@@ -155,7 +157,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private void removeIsLastVersionMarker(Context context, Item item) {
         try {
-            List<MetadataValue> values = itemService.getMetadataByMetadataString(item, "synsicris.isLastVersion");
+            List<MetadataValue> values = itemService.getMetadataByMetadataString(item, MD_LAST_VERSION.toString());
             itemService.removeMetadataValues(context, item, values);
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
@@ -337,6 +339,14 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     private void addUniqueIdMetadata(Context context, Item item, String metadataValue) {
         try {
             itemService.addMetadata(context, item, "synsicris", "uniqueid", null, null, metadataValue);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    private void addVersionMetadata(Context context, Item item, String metadataValue) {
+        try {
+            itemService.addMetadata(context, item, "synsicris", "version", null, null, metadataValue);
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }

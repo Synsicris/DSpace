@@ -9,7 +9,8 @@ package org.dspace.submit.consumer;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_CALLTOPROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
-import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.authorize.AuthorizeException;
@@ -92,15 +94,16 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
             return;
         }
 
-        Group programmeGroup = getProgrammeGroup(context, programmeItem);
-        if (Objects.isNull(programmeGroup)) {
+        Group programmeMemberGroup = getProgrammeMembersGroup(context, programmeItem);
+        Group programmeManagerGroup = getProgrammeManagerGroup(context, programmeItem);
+        if (Objects.isNull(programmeMemberGroup) && Objects.isNull(programmeManagerGroup)) {
             return;
         }
 
         Group parentGroup = getProjectCommunityGroupByRole(context, item, READERS_ROLE);
         if (!Objects.isNull(parentGroup)) {
             removeAllChildGroups(context, parentGroup);
-            addChildGroup(context, parentGroup, programmeGroup);
+            addChildGroups(context, parentGroup, programmeMemberGroup, programmeManagerGroup);
         }
     }
 
@@ -136,8 +139,13 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
         return StringUtils.isNotEmpty(metadataValue.getAuthority());
     }
 
-    private Group getProgrammeGroup(Context context, Item programmeItem) throws SQLException {
-        return groupService.findByName(context, String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()));
+    private Group getProgrammeMembersGroup(Context context, Item programmeItem) throws SQLException {
+        return groupService.findByName(context, String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()));
+    }
+
+    private Group getProgrammeManagerGroup(Context context, Item programmeItem) throws SQLException {
+        return groupService
+            .findByName(context, String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, programmeItem.getID()));
     }
 
     private Group getProjectCommunityGroupByRole(Context context, Item projectItem, String role) throws SQLException {
@@ -153,10 +161,19 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
         groupService.update(context, parentGroup);
     }
 
-    private void addChildGroup(Context context, Group parentGroup, Group childGroup)
-        throws SQLException, AuthorizeException {
-        groupService.addMember(context, parentGroup, childGroup);
-        groupService.update(context, parentGroup);
+    private void addChildGroups(Context context, Group parentGroup, Group ...childGroups) {
+        Stream.of(childGroups)
+            .filter(Objects::nonNull)
+            .forEach(childGroup -> this.addChildGroup(context, parentGroup, childGroup));
+    }
+
+    private void addChildGroup(Context context, Group parentGroup, Group childGroup) {
+        try {
+            groupService.addMember(context, parentGroup, childGroup);
+            groupService.update(context, parentGroup);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

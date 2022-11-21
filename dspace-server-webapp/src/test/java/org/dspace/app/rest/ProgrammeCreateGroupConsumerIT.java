@@ -7,7 +7,8 @@
  */
 package org.dspace.app.rest;
 
-import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -94,12 +95,16 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
 
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
+        String groupMembersName = String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID());
+        String groupManagerName = String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, programmeItem.getID());
 
-        Group programmeGroup = groupService.findByName(context, groupName);
+        Group programmeMembersGroup = groupService.findByName(context, groupMembersName);
+        Group programmeManagerGroup = groupService.findByName(context, groupManagerName);
 
-        assertNotNull(programmeGroup);
-        assertEquals(programmeGroup.getName(), groupName);
+        assertNotNull(programmeMembersGroup);
+        assertEquals(programmeMembersGroup.getName(), groupMembersName);
+        assertNotNull(programmeManagerGroup);
+        assertEquals(programmeManagerGroup.getName(), groupManagerName);
     }
 
     @Test
@@ -117,10 +122,13 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
                 .build();
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, projectItem.getID());
+        String groupMembersName = String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, projectItem.getID());
+        String groupManagerName = String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, projectItem.getID());
 
-        Group programmeGroup = groupService.findByName(context, groupName);
-        assertNull(programmeGroup);
+        Group programmeMembersGroup = groupService.findByName(context, groupMembersName);
+        Group programmeManagerGroup = groupService.findByName(context, groupManagerName);
+        assertNull(programmeMembersGroup);
+        assertNull(programmeManagerGroup);
     }
 
     @Test
@@ -143,11 +151,14 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
                                     .build();
         context.restoreAuthSystemState();
 
-        String groupName = String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID());
+        String groupMembersName = String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID());
+        String groupManagerName = String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, programmeItem.getID());
 
         // check that programme group has been created
-        Group programmeGroup = groupService.findByName(context, groupName);
-        assertNotNull(programmeGroup);
+        Group programmeMembersGroup = groupService.findByName(context, groupMembersName);
+        Group programmeManagerGroup = groupService.findByName(context, groupManagerName);
+        assertNotNull(programmeMembersGroup);
+        assertNotNull(programmeManagerGroup);
 
         programmeItem = context.reloadEntity(programmeItem);
 
@@ -158,8 +169,10 @@ public class ProgrammeCreateGroupConsumerIT extends AbstractControllerIntegratio
         context.commit();
 
         // then programme group will be deleted
-        programmeGroup = groupService.findByName(context, groupName);
-        assertNull(programmeGroup);
+        programmeMembersGroup = groupService.findByName(context, groupMembersName);
+        programmeManagerGroup = groupService.findByName(context, groupManagerName);
+        assertNull(programmeMembersGroup);
+        assertNull(programmeManagerGroup);
 
     }
 

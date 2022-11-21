@@ -80,11 +80,11 @@
                     value-ref="synsicris.orgunits.phone">
                 </entry>
                 <entry
-                    key-ref="partner-PLZ_Postfach_ZE"
+                    key-ref="partner-PLZ_Postfach_ST"
                     value-ref="synsicris.address.addressPostcodePostbox">
                 </entry>
                 <entry
-                    key-ref="partner-Ort_Postfach_ZE"
+                    key-ref="partner-Ort_Postfach_ST"
                     value-ref="synsicris.address.addressCityPostbox">
                 </entry>
                 <entry 
@@ -325,8 +325,16 @@
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:PLZ_Postfach_ZE/text()"/>
     </bean>
 
+    <bean id="partner-PLZ_Postfach_ST" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:PLZ_Postfach_ST/text()"/>
+    </bean>
+
     <bean id="partner-Ort_Postfach_ZE" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Ort_Postfach_ZE/text()"/>
+    </bean>
+
+    <bean id="partner-Ort_Postfach_ST" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Ort_Postfach_ST/text()"/>
     </bean>
 
     <bean id="partner-Rechtsform" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">

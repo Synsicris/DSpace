@@ -15,12 +15,14 @@ import java.util.Objects;
 import org.dspace.content.DCDate;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.versioning.dao.VersionDAO;
 import org.dspace.versioning.service.VersionHistoryService;
 import org.dspace.versioning.service.VersioningService;
+import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -126,6 +128,22 @@ public class VersioningServiceImpl implements VersioningService {
                 }
                 // delete the version history
                 versionHistoryService.delete(c, history);
+            }
+
+            // delete linked workspace / workflow item.
+            if (item != null && !item.isArchived()) {
+                // DS-1814 introduce the possibility that submitter can create
+                // new versions. To avoid authorization problems we need to
+                // check whether a corresponding workspaceItem exists.
+                WorkspaceItem wsi = workspaceItemService.findByItem(c, item);
+                if (wsi != null) {
+                    workspaceItemService.deleteAll(c, wsi);
+                } else {
+                    WorkflowItem wfi = workflowItemService.findByItem(c, item);
+                    if (wfi != null) {
+                        workflowItemService.delete(c, wfi);
+                    }
+                }
             }
 
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package org.dspace.versioning;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
+import static org.dspace.project.util.ProjectConstants.MD_VERSION_OFFICIAL;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,20 +36,23 @@ import org.dspace.versioning.service.VersioningService;
  *
  */
 public class OldVersionsDeletionCLITool {
+
     private final static Logger log = LogManager.getLogger();
 
-    private ConfigurationService configurationService;
-    private CommunityService communityService;
-    private ItemService itemService;
-    private static VersioningService versioningService;
-    private static VersionHistoryService versionHistoryService;
+    private final ConfigurationService configurationService;
+    private final CommunityService communityService;
+    private final ItemService itemService;
+    private final int threshold;
+    private final VersioningService versioningService;
+    private final VersionHistoryService versionHistoryService;
 
     public OldVersionsDeletionCLITool() {
-        configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
-        communityService = ContentServiceFactory.getInstance().getCommunityService();
-        itemService = ContentServiceFactory.getInstance().getItemService();
-        versioningService = VersionServiceFactory.getInstance().getVersionService();
-        versionHistoryService = VersionServiceFactory.getInstance().getVersionHistoryService();
+        this.configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        this.communityService = ContentServiceFactory.getInstance().getCommunityService();
+        this.itemService = ContentServiceFactory.getInstance().getItemService();
+        this.versioningService = VersionServiceFactory.getInstance().getVersionService();
+        this.versionHistoryService = VersionServiceFactory.getInstance().getVersionHistoryService();
+        this.threshold = getThreshold();
     }
 
     public static void main(String[] argv) throws SQLException {
@@ -64,21 +68,25 @@ public class OldVersionsDeletionCLITool {
                 oldVersionsDeletionCLITool.getCommunityByProperty(context, "project.parent-community-id");
 
             if (Objects.isNull(projectCommunity)) {
-                return;
+                throw new RuntimeException(
+                    "Can't delete items: 'project.parent-community-id' property not configured!"
+                );
             }
 
             for (Community community : projectCommunity.getSubcommunities()) {
                 oldVersionsDeletionCLITool.deleteOldVersionsByCommunity(context, community);
             }
 
-            context.restoreAuthSystemState();
-            context.complete();
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new RuntimeException();
+            log.error(e);
+            throw new RuntimeException(e);
         } finally {
-            if (context != null && context.isValid()) {
-                context.abort();
+            if (context != null) {
+                context.restoreAuthSystemState();
+                context.complete();
+                if (context.isValid()) {
+                    context.abort();
+                }
             }
         }
 
@@ -95,31 +103,34 @@ public class OldVersionsDeletionCLITool {
     private void deleteOldVersionsByCommunity(Context context, Community community)
         throws SQLException, AuthorizeException, IOException {
 
-        int threshold = getThreshold();
         Item projectItem = getProjectItem(context, community);
         VersionHistory versionHistory = versionHistoryService.findByItem(context, projectItem);
-        List<Version> allVersions = versioningService.getVersionsByHistory(context, versionHistory);
+        int versions = versioningService.countVersionsByHistoryWithItem(context, versionHistory);
 
-        if (allVersions.size() <= threshold) {
+        if (versions <= threshold) {
             return;
         }
 
-        List<Version> notOfficialVersions =getNotOfficialVersions(projectItem, allVersions);
-        int notDeletableCount =
-            getNotDeletableCount(allVersions.size(), notOfficialVersions.size(), threshold);
+        List<Version> allVersions = versioningService.getVersionsByHistory(context, versionHistory);
+        List<Version> notOfficialVersions = getNotOfficialVersions(projectItem, allVersions);
 
-        for (int i = notOfficialVersions.size() - 1  ; i >= notDeletableCount ; i--) {
-            itemService.delete(context,
-                itemService.find(context, notOfficialVersions.get(i).getItem().getID()));
+        for (int i = notOfficialVersions.size() - 1; i >= threshold; i--) {
+            itemService.delete(
+                context,
+                itemService.find(context, notOfficialVersions.get(i).getItem().getID())
+            );
         }
     }
 
     private int getThreshold() {
         String threshold = configurationService.getProperty("versioning.delete.threshold");
-        if (StringUtils.isNotEmpty(threshold)) {
-            return Integer.parseInt(threshold);
+        if (StringUtils.isEmpty(threshold)) {
+            throw new RuntimeException(
+                "The threshold for the deletable versions is not configured, " +
+                "please configure it: versioning.delete.threshold."
+            );
         }
-        return 9999;
+        return Integer.parseInt(threshold);
     }
 
     private Item getProjectItem(Context context, Community community) throws SQLException {
@@ -137,15 +148,14 @@ public class OldVersionsDeletionCLITool {
     }
 
     private boolean isNotOfficial(Version version) {
-        List<MetadataValue> values =
-            itemService.getMetadata(version.getItem(), "synsicris", "version", "official", Item.ANY);
-        return !CollectionUtils.isNotEmpty(values);
+        return CollectionUtils.isEmpty(
+            itemService.getMetadata(
+                version.getItem(),
+                MD_VERSION_OFFICIAL.schema,
+                MD_VERSION_OFFICIAL.element,
+                MD_VERSION_OFFICIAL.qualifier,
+                Item.ANY
+            )
+        );
     }
-
-    private int getNotDeletableCount(int allVersions, int notOfficialVersions, int threshold) {
-        int officialVersionsCount = allVersions - notOfficialVersions;
-        int notDeletableCount = threshold - officialVersionsCount;
-        return notDeletableCount > 0 ? notDeletableCount : 0;
-    }
-
 }

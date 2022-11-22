@@ -226,17 +226,17 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
         createIsVersionRelationshipType(PROJECT_ENTITY);
 
         VersionBuilder.createVersion(context, projectAItem, "test").build();
-        VersionBuilder.createVersion(context, projectAItem, "test").build();
+        Version versionATwo = VersionBuilder.createVersion(context, projectAItem, "test").build();
         Version versionAThree =
             VersionBuilder.createVersion(context, projectAItem, "test")
-                          .build();
+                .build();
 
         VersionBuilder.createVersion(context, projectBItem, "test").build();
         VersionBuilder.createVersion(context, projectBItem, "test").build();
-        VersionBuilder.createVersion(context, projectBItem, "test").build();
+        Version versionBThree = VersionBuilder.createVersion(context, projectBItem, "test").build();
         Version versionBFour =
             VersionBuilder.createVersion(context, projectBItem, "test")
-                          .build();
+                .build();
 
         context.commit();
         context.restoreAuthSystemState();
@@ -248,8 +248,8 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
         List<Version> versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
         List<Version> versionsOfB = versioningService.getVersionsByHistory(context, versionHistoryB);
 
-        assertEquals(versionsOfA.size(), 4);
-        assertEquals(versionsOfB.size(), 5);
+        assertEquals(4, versionsOfA.size());
+        assertEquals(5, versionsOfB.size());
 
 
         runDSpaceScript("delete-old-versions");
@@ -261,14 +261,22 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
         versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
         versionsOfB = versioningService.getVersionsByHistory(context, versionHistoryB);
 
-        assertEquals(versionsOfA.size(), 2);
-        assertEquals(versionsOfB.size(), 2);
+        // 3 Versions:
+        //  - 1 ProjectItem;
+        //  - 2 Not-Official versions.
+        assertEquals(3, versionsOfA.size());
+        // 3 Versions:
+        //  - 1 ProjectItem:
+        //  - 2 Not-Official versions.
+        assertEquals(3, versionsOfB.size());
 
-        assertEquals(versionsOfA.get(0).getItem().getID(), versionAThree.getItem().getID());
-        assertEquals(versionsOfA.get(1).getItem().getID(), projectAItem.getID());
+        assertEquals(versionAThree.getItem().getID(), versionsOfA.get(0).getItem().getID());
+        assertEquals(versionATwo.getItem().getID(), versionsOfA.get(1).getItem().getID());
+        assertEquals(projectAItem.getID(), versionsOfA.get(2).getItem().getID());
 
-        assertEquals(versionsOfB.get(0).getItem().getID(), versionBFour.getItem().getID());
-        assertEquals(versionsOfB.get(1).getItem().getID(), projectBItem.getID());
+        assertEquals(versionBFour.getItem().getID(), versionsOfB.get(0).getItem().getID());
+        assertEquals(versionBThree.getItem().getID(), versionsOfB.get(1).getItem().getID());
+        assertEquals(projectBItem.getID(), versionsOfB.get(2).getItem().getID());
 
     }
 
@@ -281,23 +289,23 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
 
         Version versionOne =
             VersionBuilder.createVersion(context, projectAItem, "test")
-                          .build();
+                .build();
+        // deleted
+        VersionBuilder.createVersion(context, projectAItem, "test")
+            .build();
 
-        Version versionTwo =
-            VersionBuilder.createVersion(context, projectAItem, "test")
-                          .build();
-
-        VersionBuilder.createVersion(context, projectAItem, "test").build();
+        Version versionThree = VersionBuilder.createVersion(context, projectAItem, "test").build();
+        Version versionFour = VersionBuilder.createVersion(context, projectAItem, "test").build();
 
         Item versionedItemOne = context.reloadEntity(versionOne.getItem());
-        Item versionedItemTwo = context.reloadEntity(versionTwo.getItem());
+        Item versionedItemThree = context.reloadEntity(versionThree.getItem());
+        Item versionedItemFour = context.reloadEntity(versionFour.getItem());
 
-
-        itemService.addMetadata(context, versionedItemOne, "synsicris", "version", "official", null, "");
+        // 4 Versions:
+        //  - 1 Official;
+        //  - 3 Not-Official;
+        itemService.addMetadata(context, versionedItemOne, "synsicris", "version", "official", null, "true");
         itemService.update(context, versionedItemOne);
-
-        itemService.addMetadata(context, versionedItemTwo, "synsicris", "version", "official", null, "");
-        itemService.update(context, versionedItemTwo);
 
         context.commit();
         context.restoreAuthSystemState();
@@ -307,7 +315,8 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
 
         List<Version> versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
 
-        assertEquals(versionsOfA.size(), 4);
+        // 4 Versions + Base item.
+        assertEquals(5, versionsOfA.size());
 
         runDSpaceScript("delete-old-versions");
 
@@ -316,11 +325,12 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
 
         versionsOfA = versioningService.getVersionsByHistory(context, versionHistoryA);
 
-        assertEquals(versionsOfA.size(), 3);
+        assertEquals(4, versionsOfA.size());
 
-        assertEquals(versionsOfA.get(0).getItem().getID(), versionedItemTwo.getID());
-        assertEquals(versionsOfA.get(1).getItem().getID(), versionedItemOne.getID());
-        assertEquals(versionsOfA.get(2).getItem().getID(), projectAItem.getID());
+        assertEquals(versionedItemFour.getID(), versionsOfA.get(0).getItem().getID());
+        assertEquals(versionedItemThree.getID(), versionsOfA.get(1).getItem().getID());
+        assertEquals(versionedItemOne.getID(), versionsOfA.get(2).getItem().getID());
+        assertEquals(projectAItem.getID(), versionsOfA.get(3).getItem().getID());
 
     }
 

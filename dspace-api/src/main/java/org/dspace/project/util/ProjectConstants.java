@@ -115,6 +115,8 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
     public static final MetadataFieldName MD_VERSION_VISIBLE = new MetadataFieldName("synsicris", "version", "visible");
+    public static final MetadataFieldName MD_VERSION_OFFICIAL =
+        new MetadataFieldName("synsicris", "version", "official");
     public static final MetadataFieldName MD_LAST_VERSION_VISIBLE =
         new MetadataFieldName("synsicris", "isLastVersion", "visible");
     public static final MetadataFieldName MD_LAST_VERSION = new MetadataFieldName("synsicris", "isLastVersion");

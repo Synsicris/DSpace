@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -30,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -43,6 +41,7 @@ import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.ResourcePolicyBuilder;
+import org.dspace.builder.VersionBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
@@ -215,11 +214,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         context.restoreAuthSystemState();
 
         String token = getAuthToken(eperson.getEmail(), password);
-
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
 
         assertThat(findOneByRelationship(sharedPerson1, personIsVersionOf), nullValue());
@@ -287,6 +287,8 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(getVersionNumber(subPublicationV2), is(2));
         assertThat(getVersionNumber(parentProjectV2), is(2));
 
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -305,11 +307,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         context.restoreAuthSystemState();
 
         String token = getAuthToken(eperson.getEmail(), password);
-
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -389,6 +392,9 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(getVersionNumber(publicationV3), is(3));
         assertThat(getVersionNumber(parentProjectV2), is(2));
         assertThat(getVersionNumber(parentProjectV3), is(3));
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -407,10 +413,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item firstPersonV2 = findOneByRelationship(firstPerson, personIsVersionOf);
         assertThat(firstPersonV2.isArchived(), is(true));
@@ -421,6 +429,9 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             hasItem(with("synsicris.uniqueid", firstPerson.getID().toString() + "_2")));
 
         assertThat(findOneByRelationship(secondPerson.getItem(), personIsVersionOf), nullValue());
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -452,10 +463,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -470,6 +483,8 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, admin, ResourcePolicy.TYPE_CUSTOM)));
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, eperson, ResourcePolicy.TYPE_INHERITED)));
 
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -491,10 +506,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -505,10 +522,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             hasItem(with("synsicris.uniqueid", person.getID().toString() + "_2")));
 
         assertThat(personV2.getResourcePolicies(), hasItem(matches(Constants.READ, funderGroup, null)));
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
     public void testProjectDeleteManyVersioning() throws Exception {
+        context.commit();
         context.turnOffAuthorisationSystem();
 
         Item person = ItemBuilder.createItem(context, persons)
@@ -530,6 +551,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
                             .content("/api/core/items/" + parentProject.getID()))
                         .andExpect(status().isCreated())
                         .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+        context.commit();
 
         Version version = versioningService.getVersion(context, idRef.get());
         Item versionedItem = null;
@@ -538,14 +560,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             assertNotNull(version.getItem());
 
             versionedItem = this.itemService.find(context, version.getItem().getID());
-
             getClient().perform(get("/api/core/items/" + versionedItem.getID()))
-                       .andExpect(status().isOk());
+                .andExpect(status().isOk());
+//            assertEquals(2, versionedItems.size());
 
             List<Item> versionedItems =
                 findVersionedItems(context, context.reloadEntity(versionedItem), idRef.get().toString());
-
-            assertEquals(versionedItems.size(), 2);
 
             token = getAuthToken(admin.getEmail(), password);
 
@@ -576,19 +596,10 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             for (Item item : versionedItems) {
                 assertNull(context.reloadEntity(item));
             }
-
         } finally {
-            version = context.reloadEntity(version);
-            if (!Objects.isNull(version.getItem())) {
-                if (Objects.isNull(versionedItem)) {
-                    versionedItem = this.itemService.find(context, version.getItem().getID());
-                }
-                if (!Objects.isNull(versionedItem)) {
-                    context.turnOffAuthorisationSystem();
-                    this.itemService.delete(context, versionedItem);
-                    context.restoreAuthSystemState();
-                }
-            }
+            context.turnOffAuthorisationSystem();
+            VersionBuilder.delete(idRef.get());
+            context.restoreAuthSystemState();
         }
     }
 

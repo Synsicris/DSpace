@@ -77,10 +77,8 @@ public class CanMakeEasyOnlineImportFeature implements AuthorizationFeature {
                 if (Objects.isNull(projectCommunity)) {
                     return false;
                 }
-                if (Objects.nonNull(projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
-                        projectCommunity))) {
-                    return true;
-                }
+                return projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
+                        projectCommunity);
             }
         }
         return false;

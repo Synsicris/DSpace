@@ -114,6 +114,9 @@ public class ProjectConstants {
     public static final String DEFAULT_STATUS = "In preparation";
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
+    public static final MetadataFieldName MD_VERSION = new MetadataFieldName("synsicris", "version");
+    public static final MetadataFieldName MD_VERSION_READ_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-read-policy", "group");
     public static final MetadataFieldName MD_VERSION_VISIBLE = new MetadataFieldName("synsicris", "version", "visible");
     public static final MetadataFieldName MD_VERSION_OFFICIAL =
         new MetadataFieldName("synsicris", "version", "official");

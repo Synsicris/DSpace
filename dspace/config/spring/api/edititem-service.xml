@@ -261,7 +261,7 @@
                             <property name="submissionDefinition" value="projects_versioning-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.versioning-policy.group</value>
+                                    <value>synsicris.versioning-edit-policy.group</value>
                                 </list>
                             </property>
                         </bean>

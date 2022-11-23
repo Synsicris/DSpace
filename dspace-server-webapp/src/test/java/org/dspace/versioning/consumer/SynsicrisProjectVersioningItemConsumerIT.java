@@ -14,6 +14,7 @@ import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.MD_MEMBER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_VERSION_READ_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
@@ -30,6 +31,7 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -916,6 +918,42 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                     }
                 });
             context.commit();
+
+            firstVersionItem = this.context.reloadEntity(firstVersionItem);
+            secondVersionItem = this.context.reloadEntity(secondVersionItem);
+            thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
+
+            this.context.turnOffAuthorisationSystem();
+            this.itemService.delete(context, thirdVersionItem);
+            this.context.restoreAuthSystemState();
+
+            this.context.commit();
+
+            firstVersionItem = this.context.reloadEntity(firstVersionItem);
+            secondVersionItem = this.context.reloadEntity(secondVersionItem);
+            thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
+
+            assertNull(thirdVersionItem);
+            checkHidItem(secondVersionItem);
+            checkVisibleItem(firstVersionItem);
+            checkLastVersionNotVisible(secondVersionItem);
+            checkLastVersionVisible(firstVersionItem);
+
+            this.context.turnOffAuthorisationSystem();
+            this.itemService.delete(context, secondVersionItem);
+            this.context.restoreAuthSystemState();
+
+            this.context.commit();
+
+            firstVersionItem = this.context.reloadEntity(firstVersionItem);
+            secondVersionItem = this.context.reloadEntity(secondVersionItem);
+            thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
+
+            assertNull(thirdVersionItem);
+            assertNull(secondVersionItem);
+            checkVisibleItem(firstVersionItem);
+            checkLastVersionVisible(firstVersionItem);
+
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {
@@ -954,20 +992,26 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
 
         List<MetadataValue> policyGroups =
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_POLICY_GROUP.toString());
+            this.itemService.getMetadataByMetadataString(item, MD_VERSION_READ_POLICY_GROUP.toString());
         assertNotNull(policyGroups);
 
         Matcher<Iterable<? super MetadataValue>> funderGroupItem = getGroupMatcher(funderGroup);
         Matcher<Iterable<? super MetadataValue>> readersGroupItem = getGroupMatcher(readersGroup);
+        Matcher<Iterable<? super MetadataValue>> membersGroupItem = getGroupMatcher(membersGroup);
         assertThat(policyGroups, funderGroupItem);
         assertThat(policyGroups, readersGroupItem);
+        assertThat(policyGroups, membersGroupItem);
         assertThat(
             policyGroups
                 .stream()
                 .map(MetadataValue::getValue)
-                .filter(value -> funderGroup.getName().equals(value) || readersGroup.getName().equals(value))
+                .filter(value ->
+                    funderGroup.getName().equals(value) ||
+                    readersGroup.getName().equals(value) ||
+                    membersGroup.getName().equals(value)
+                )
                 .collect(Collectors.toList()),
-            hasSize(2)
+            hasSize(3)
         );
 
         List<ResourcePolicy> policies = this.authorizeService.getPolicies(context, item);
@@ -1025,12 +1069,14 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         );
 
         List<MetadataValue> policyGroups =
-            this.itemService.getMetadataByMetadataString(item, ProjectConstants.MD_POLICY_GROUP.toString());
+            this.itemService.getMetadataByMetadataString(item, MD_VERSION_READ_POLICY_GROUP.toString());
         assertNotNull(policyGroups);
 
         Matcher<Iterable<? super MetadataValue>> funderGroupItem = getGroupMatcher(funderGroup);
+        Matcher<Iterable<? super MetadataValue>> readersGroupItem = getGroupMatcher(readersGroup);
         Matcher<Iterable<? super MetadataValue>> membersGroupItem = getGroupMatcher(membersGroup);
         assertThat(policyGroups, not(funderGroupItem));
+        assertThat(policyGroups, not(readersGroupItem));
         assertThat(policyGroups, not(membersGroupItem));
 
         List<ResourcePolicy> policies = this.authorizeService.getPolicies(context, item);

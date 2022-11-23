@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -45,6 +46,7 @@ import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
@@ -208,6 +210,54 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             findVersionedItems(c, projectItem, String.valueOf(versionToDelete.getVersionNumber()));
 
         deleteItems(c, itemsToDelete);
+
+        forceVisibilityPreviousVersion(c, versionToDelete, history, projectItem);
+    }
+
+    private void forceVisibilityPreviousVersion(
+        Context c, Version versionToDelete, VersionHistory history, Item projectItem
+    ) throws SQLException {
+        Boolean lastVersionVisible =
+            Boolean.valueOf(
+                this.itemService.getMetadataFirstValue(
+                    projectItem, ProjectConstants.MD_LAST_VERSION_VISIBLE.schema,
+                    ProjectConstants.MD_LAST_VERSION_VISIBLE.element,
+                    ProjectConstants.MD_LAST_VERSION_VISIBLE.qualifier,
+                    null
+                )
+            );
+        if (lastVersionVisible) {
+            Optional<Item> previousVersionItem =
+                this.versioningService.getVersionsByHistory(c, history)
+                    .stream()
+                    .filter(v -> v.getItem() != null && v.getVersionNumber() < versionToDelete.getVersionNumber())
+                    .filter(
+                        v ->
+                        Boolean.valueOf(
+                            this.itemService.getMetadataFirstValue(
+                                v.getItem(), ProjectConstants.MD_VERSION_VISIBLE.schema,
+                                ProjectConstants.MD_VERSION_VISIBLE.element,
+                                ProjectConstants.MD_VERSION_VISIBLE.qualifier,
+                                null
+                            )
+                        )
+                    )
+                    .sorted((v1, v2) -> v2.getVersionNumber() - v1.getVersionNumber())
+                    .findFirst()
+                    .map(Version::getItem);
+            if (previousVersionItem.isPresent()) {
+                Item previousProjectItem = previousVersionItem.get();
+                this.itemService
+                    .setMetadataSingleValue(
+                        c, previousProjectItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true"
+                );
+                try {
+                    this.itemService.update(c, previousProjectItem);
+                } catch (AuthorizeException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     private void deleteItems(Context c, List<Item> items) {

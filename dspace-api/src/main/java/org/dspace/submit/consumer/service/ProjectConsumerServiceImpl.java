@@ -58,6 +58,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private static final String SOLR_FILTER_LAST_VERSION_VISIBLE = "synsicris.isLastVersion.visible:true";
     private static final String SOLR_FILTER_PREVIOUS_VISIBLE_VERSIONS = "synsicris.version:[1 TO %s]";
     private static final String SOLR_FILTER_VERSION = "synsicris.version:\"%s\"";
+    private static final String SOLR_FILTER_PROJECT_UNIQUEID =
+        "synsicris.uniqueid:%s AND dspace.entity.type:Project";
     private static final String SOLR_FILTER_VERSION_PROJECT =
         "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
@@ -223,6 +225,11 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
+    public Iterator<Item> findVersionedProjectItemsBy(Context context, UUID projectId) {
+        return findProjectItemsBy(context, projectId);
+    }
+
+    @Override
     public Iterator<Item> findVersionedItemsOfProject(
         Context context, Community projectCommunity, Item projectItem, String version
     ) {
@@ -295,6 +302,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             String.format(SOLR_FILTER_VERSION, version)
         );
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findProjectItemsBy(Context context, UUID itemId) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_PROJECT_UNIQUEID, itemId.toString())
+        );
+        return new DiscoverResultItemIterator(context, discoverQuery);
     }
 
     private Iterator<Item> findNotProjectItemsByCommunity(

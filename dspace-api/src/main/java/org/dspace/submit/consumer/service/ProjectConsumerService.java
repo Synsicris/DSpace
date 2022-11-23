@@ -70,4 +70,6 @@ public interface ProjectConsumerService {
     public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
+    public Iterator<Item> findVersionedProjectItemsBy(Context context, UUID projectId);
+
 }

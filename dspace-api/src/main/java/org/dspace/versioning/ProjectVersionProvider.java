@@ -10,12 +10,14 @@ package org.dspace.versioning;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.dspace.authority.service.AuthorityValueService.REFERENCE;
+import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,6 +46,7 @@ import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
@@ -123,6 +126,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
         String uniqueIdMetadataValue = composeUniqueId(previousItem.getID().toString(), version);
         addUniqueIdMetadata(context, itemNew, uniqueIdMetadataValue);
+        addVersionMetadata(context, itemNew, String.valueOf(version.getVersionNumber()));
 
         replaceAuthoritiesWithWillBeReferenced(context, itemNew, version);
 
@@ -155,7 +159,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private void removeIsLastVersionMarker(Context context, Item item) {
         try {
-            List<MetadataValue> values = itemService.getMetadataByMetadataString(item, "synsicris.isLastVersion");
+            List<MetadataValue> values = itemService.getMetadataByMetadataString(item, MD_LAST_VERSION.toString());
             itemService.removeMetadataValues(context, item, values);
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
@@ -206,6 +210,55 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             findVersionedItems(c, projectItem, String.valueOf(versionToDelete.getVersionNumber()));
 
         deleteItems(c, itemsToDelete);
+
+        forceVisibilityPreviousVersion(c, versionToDelete, history, projectItem);
+    }
+
+    private void forceVisibilityPreviousVersion(
+        Context c, Version versionToDelete, VersionHistory history, Item projectItem
+    ) throws SQLException {
+        Boolean lastVersionVisible =
+            Boolean.valueOf(
+                this.itemService.getMetadataFirstValue(
+                    projectItem, ProjectConstants.MD_LAST_VERSION_VISIBLE.schema,
+                    ProjectConstants.MD_LAST_VERSION_VISIBLE.element,
+                    ProjectConstants.MD_LAST_VERSION_VISIBLE.qualifier,
+                    null
+                )
+            );
+        if (lastVersionVisible) {
+            Optional<Item> previousVersionItem =
+                this.versioningService.getVersionsByHistory(c, history)
+                    .stream()
+                    .filter(v -> v.getItem() != null && v.getVersionNumber() < versionToDelete.getVersionNumber())
+                    .filter(
+                        v ->
+                        Boolean.valueOf(
+                            this.itemService.getMetadataFirstValue(
+                                v.getItem(), ProjectConstants.MD_VERSION_VISIBLE.schema,
+                                ProjectConstants.MD_VERSION_VISIBLE.element,
+                                ProjectConstants.MD_VERSION_VISIBLE.qualifier,
+                                null
+                            )
+                        )
+                    )
+                    .sorted((v1, v2) -> v2.getVersionNumber() - v1.getVersionNumber())
+                    .findFirst()
+                    .map(Version::getItem);
+            if (previousVersionItem.isPresent()) {
+                Item previousProjectItem = previousVersionItem.get();
+                this.itemService
+                    .setMetadataSingleValue(
+                        c, previousProjectItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true"
+                );
+                this.setIsLastVersionMetadata(c, previousProjectItem);
+                try {
+                    this.itemService.update(c, previousProjectItem);
+                } catch (AuthorizeException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     private void deleteItems(Context c, List<Item> items) {
@@ -342,9 +395,18 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         }
     }
 
+    private void addVersionMetadata(Context context, Item item, String metadataValue) {
+        try {
+            itemService.addMetadata(context, item, "synsicris", "version", null, null, metadataValue);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
     private void setIsLastVersionMetadata(Context context, Item item) {
         try {
-            itemService.setMetadataSingleValue(context, item, "synsicris", "isLastVersion", null, null, "true");
+            itemService.setMetadataSingleValue(context, item, ProjectConstants.MD_LAST_VERSION.schema,
+                ProjectConstants.MD_LAST_VERSION.element, ProjectConstants.MD_LAST_VERSION.qualifier, null, "true");
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }

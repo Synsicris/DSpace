@@ -251,6 +251,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
                     .setMetadataSingleValue(
                         c, previousProjectItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true"
                 );
+                this.setIsLastVersionMetadata(c, previousProjectItem);
                 try {
                     this.itemService.update(c, previousProjectItem);
                 } catch (AuthorizeException e) {
@@ -404,7 +405,8 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
 
     private void setIsLastVersionMetadata(Context context, Item item) {
         try {
-            itemService.setMetadataSingleValue(context, item, "synsicris", "isLastVersion", null, null, "true");
+            itemService.setMetadataSingleValue(context, item, ProjectConstants.MD_LAST_VERSION.schema,
+                ProjectConstants.MD_LAST_VERSION.element, ProjectConstants.MD_LAST_VERSION.qualifier, null, "true");
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }

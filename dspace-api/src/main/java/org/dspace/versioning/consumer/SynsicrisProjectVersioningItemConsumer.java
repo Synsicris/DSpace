@@ -137,8 +137,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             Boolean isVersionVisible =
                 Boolean.valueOf(this.itemService.getMetadataFirstValue(item, MD_VERSION_VISIBLE, null));
             this.consumeProjectItem(ctx, item, isVersionVisible, version);
+            this.itemService.update(ctx, item);
             this.itemsToProcess.remove(entry.getKey());
         }
+        ctx.commit();
     }
 
     @Override
@@ -293,17 +295,23 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                 removeReadPolicy(ctx, actual, fundersGroup);
                 removeVersionPolicyGroup(ctx, actual, fundersGroup, readersGroup, membersGroup);
             }
+            this.itemService.update(ctx, actual);
             processed.add(actual.getID());
         }
     }
 
-    private void clearLastVersionVisible(Context ctx, Community community, String versionNumber) {
+    private void clearLastVersionVisible(Context ctx, Community community, String versionNumber)
+            throws SQLException, AuthorizeException {
         Iterator<Item> previousVisibleVersions =
             this.projectConsumerService.findPreviousVisibleVersionsInCommunity(ctx, community, versionNumber);
         Item actual = null;
         while (previousVisibleVersions.hasNext() && (actual = previousVisibleVersions.next()) != null) {
             clearLastVersionVisible(ctx, actual);
+            this.itemService.update(ctx, actual);
         }
+        // Commit here to avoid the update event trigger the consumer itself with also previous version project
+        // DO NOT MOVE
+        ctx.commit();
     }
 
     private void addLastVersionVisible(Context ctx, Item actual) {

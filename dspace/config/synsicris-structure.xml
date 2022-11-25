@@ -579,7 +579,7 @@
 	    <sidebar />
 	    <license />
 	    <entity-type>neg_sideeffect</entity-type>
-	    <submission-type>neg_sideeffects</submission-type>
+	    <submission-type>neg_sideeffect</submission-type>
 	    <policy-group rpType="admin">project_template_funders_group</policy-group>
 	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
 	    <policy-group rpType="read">project_template_members_group</policy-group>

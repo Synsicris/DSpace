@@ -12,6 +12,7 @@ import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_PROJECT_FUNDERS_GROUP_TEMPLATE;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -79,11 +80,15 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
 
         String memberGroupName = String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, uuid.toString());
         String managerGroupName = String.format(PROGRAMME_MANAGERS_GROUP_TEMPLATE, uuid.toString());
+        String projectFunderGroupName = String.format(PROGRAMME_PROJECT_FUNDERS_GROUP_TEMPLATE, uuid.toString());
+
         if (eventType == Event.DELETE) {
-            deleteGroupsByName(context, memberGroupName, managerGroupName);
+            deleteGroupsByName(context, memberGroupName, managerGroupName, projectFunderGroupName);
             putProcessed(uuid, eventType);
         } else if (eventType == Event.INSTALL) {
-            createProgrammeGroupsAndMetadata(context, (Item) dso, memberGroupName, managerGroupName);
+            createProgrammeGroupsAndMetadata(
+                context, (Item) dso, memberGroupName, managerGroupName, projectFunderGroupName
+            );
             putProcessed(uuid, eventType);
         }
 
@@ -130,11 +135,11 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         return entityType.equals(itemService.getEntityType(item));
     }
 
-    private void createProgrammeGroupsAndMetadata(
-        Context context, Item dso, String memberGroupName, String managerGroupName
-    ) {
+    private void createProgrammeGroupsAndMetadata(Context context, Item dso, String memberGroupName,
+            String managerGroupName, String projectFunderGroupName) {
         try {
             createProgrammeGroup(context, memberGroupName);
+            createProgrammeGroup(context, projectFunderGroupName);
             addPolicyGroupMetadata(context, dso, createProgrammeGroup(context, managerGroupName));
         } catch (Exception e) {
             throw new RuntimeException(e);

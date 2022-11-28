@@ -85,16 +85,14 @@ public class EasyOnlineImportRestPermissionEvaluatorPlugin extends RestObjectPer
             }
             String uuid = values.get(0).getAuthority();
             if (StringUtils.isNotBlank(uuid)) {
-                // item that rappresent Project community
+                // item that represents Project community
                 Item projectItem = itemService.find(context, UUID.fromString(uuid));
                 Community projectCommunity = projectConsumerService.getProjectCommunity(context, projectItem);
                 if (Objects.isNull(projectCommunity)) {
                     return false;
                 }
-                if (Objects.nonNull(projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
-                        projectCommunity))) {
-                    return true;
-                }
+                return projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
+                        projectCommunity);
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);

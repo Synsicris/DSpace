@@ -65,10 +65,13 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                 Item item = (Item) dso;
                 String[] entitiesToSkip = configurationService.getArrayProperty("project.grants.entity-name.to-skip",
                         new String[] {});
+                String[] entitiesToInclude = configurationService.getArrayProperty(
+                        "project.grants.entity-name.to-include", new String[] {});
                 String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
                 if (Objects.isNull(entityType) || Arrays.stream(entitiesToSkip).anyMatch(entityType::equals)) {
                     return;
                 }
+
                 EPerson submitter = item.getSubmitter();
                 if (Objects.isNull(submitter)) {
                     return;
@@ -84,7 +87,8 @@ public class ProjectCreateGrantsConsumer implements Consumer {
                     return;
                 }
                 if (StringUtils.isNotBlank(sharedValue) &&
-                    Objects.nonNull(workspaceItemService.findByItem(context, item))) {
+                    (Objects.nonNull(workspaceItemService.findByItem(context, item)) ||
+                     Arrays.stream(entitiesToInclude).anyMatch(entityType::equals))) {
                     projectConsumerService.checkGrants(context, submitter, item);
                 }
                 itemsAlreadyProcessed.add(item);

@@ -1943,9 +1943,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>

@@ -130,28 +130,25 @@ public class VersioningServiceImpl implements VersioningService {
                 versionHistoryService.delete(c, history);
             }
 
-            // Completely delete the item
-            if (item != null) {
+            // delete linked workspace / workflow item.
+            if (item != null && !item.isArchived()) {
                 // DS-1814 introduce the possibility that submitter can create
-                // new versions. To avoid authorithation problems we need to
+                // new versions. To avoid authorization problems we need to
                 // check whether a corresponding workspaceItem exists.
-                if (!item.isArchived()) {
-                    WorkspaceItem wsi = workspaceItemService.findByItem(c, item);
-                    if (wsi != null) {
-                        workspaceItemService.deleteAll(c, wsi);
-                    } else {
-                        WorkflowItem wfi = workflowItemService.findByItem(c, item);
-                        if (wfi != null) {
-                            workflowItemService.delete(c, wfi);
-                        }
-                    }
+                WorkspaceItem wsi = workspaceItemService.findByItem(c, item);
+                if (wsi != null) {
+                    workspaceItemService.deleteAll(c, wsi);
                 } else {
-                    itemService.delete(c, item);
+                    WorkflowItem wfi = workflowItemService.findByItem(c, item);
+                    if (wfi != null) {
+                        workflowItemService.delete(c, wfi);
+                    }
                 }
             }
+
         } catch (Exception e) {
             c.abort();
-            throw new RuntimeException(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 

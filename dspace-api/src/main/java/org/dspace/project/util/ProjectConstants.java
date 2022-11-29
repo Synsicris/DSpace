@@ -40,7 +40,11 @@ public class ProjectConstants {
 
     public static final String PROGRAMME = "programme";
 
-    public static final String PROGRAMME_GROUP_TEMPLATE = "programme_%s_group";
+    public static final String PROGRAMME_MEMBERS_GROUP_TEMPLATE = "programme_%s_members_group";
+
+    public static final String PROGRAMME_MANAGERS_GROUP_TEMPLATE = "programme_%s_managers_group";
+
+    public static final String PROGRAMME_PROJECT_FUNDERS_GROUP_TEMPLATE = "programme_%s_funders_group";
 
     public static final String PROJECT_COORDINATORS_GROUP_TEMPLATE = "project_%s_coordinators_group";
 
@@ -65,6 +69,8 @@ public class ProjectConstants {
     public static final String GROUP_POLICY_PLACEHOLDER = "GROUP_POLICY_PLACEHOLDER";
 
     public static final String RELATION_ITEM_ENTITY_TEMPLATE = "project_%s_item";
+
+    public static final String SYSTEM_MEMBERS_GROUP = "system_members_group";
 
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
@@ -108,6 +114,23 @@ public class ProjectConstants {
     public static final String DEFAULT_STATUS = "In preparation";
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
+    public static final MetadataFieldName MD_VERSION = new MetadataFieldName("synsicris", "version");
+    public static final MetadataFieldName MD_VERSION_READ_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-read-policy", "group");
+    public static final MetadataFieldName MD_VERSION_VISIBLE = new MetadataFieldName("synsicris", "version", "visible");
+    public static final MetadataFieldName MD_VERSION_OFFICIAL =
+        new MetadataFieldName("synsicris", "version", "official");
+    public static final MetadataFieldName MD_LAST_VERSION_VISIBLE =
+        new MetadataFieldName("synsicris", "isLastVersion", "visible");
+    public static final MetadataFieldName MD_LAST_VERSION = new MetadataFieldName("synsicris", "isLastVersion");
+    public static final MetadataFieldName MD_FUNDER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "funder-policy", "group");
+    public static final MetadataFieldName MD_READER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "reader-policy", "group");
+    public static final MetadataFieldName MD_MEMBER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "member-policy", "group");
+    public static final MetadataFieldName MD_COORDINATOR_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "coordinator-policy", "group");
 
     /**
      * Default constructor

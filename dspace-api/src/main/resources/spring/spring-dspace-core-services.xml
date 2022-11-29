@@ -57,7 +57,9 @@
             </list>
         </constructor-arg>
     </bean>
-    
+
+    <bean class="org.dspace.content.template.generator.ProjectGeneratorServiceImpl" id="org.dspace.content.template.generator.ProjectGeneratorServiceImpl" />
+
     <bean class="org.dspace.content.template.generator.AgrovocKeywordsGenerator" id="agrovocKeywordsGenerator" />
 
     <bean id="placeholderTemplateItemValue" class="org.dspace.content.template.PlaceholderTemplateItemValue">

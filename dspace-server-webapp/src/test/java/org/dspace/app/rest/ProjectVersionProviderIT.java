@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest;
 
+import static com.jayway.jsonpath.JsonPath.read;
 import static java.lang.String.join;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.app.matcher.ResourcePolicyMatcher.matches;
@@ -18,11 +19,17 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
@@ -34,6 +41,7 @@ import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.ResourcePolicyBuilder;
+import org.dspace.builder.VersionBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
@@ -42,13 +50,16 @@ import org.dspace.content.Item;
 import org.dspace.content.Relationship;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.core.Constants;
+import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.event.factory.EventServiceFactory;
 import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.service.VersioningService;
 import org.junit.AfterClass;
@@ -73,6 +84,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
     @Autowired
     private ConfigurationService configurationService;
+
+    @Autowired
+    private ProjectConsumerService projectConsumerService;
+
+    @Autowired
+    private ItemService itemService;
 
     private Community joinProjects;
 
@@ -127,7 +144,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         persons = createCollection("Persons", "Person", testProject);
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_admin_group")
+            .withName("project_" + testProject.getID() + "_coordinators_group")
             .addMember(eperson)
             .build();
 
@@ -197,11 +214,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         context.restoreAuthSystemState();
 
         String token = getAuthToken(eperson.getEmail(), password);
-
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
 
         assertThat(findOneByRelationship(sharedPerson1, personIsVersionOf), nullValue());
@@ -269,6 +287,8 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(getVersionNumber(subPublicationV2), is(2));
         assertThat(getVersionNumber(parentProjectV2), is(2));
 
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -287,11 +307,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         context.restoreAuthSystemState();
 
         String token = getAuthToken(eperson.getEmail(), password);
-
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -371,6 +392,9 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(getVersionNumber(publicationV3), is(3));
         assertThat(getVersionNumber(parentProjectV2), is(2));
         assertThat(getVersionNumber(parentProjectV3), is(3));
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -389,10 +413,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item firstPersonV2 = findOneByRelationship(firstPerson, personIsVersionOf);
         assertThat(firstPersonV2.isArchived(), is(true));
@@ -403,6 +429,9 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             hasItem(with("synsicris.uniqueid", firstPerson.getID().toString() + "_2")));
 
         assertThat(findOneByRelationship(secondPerson.getItem(), personIsVersionOf), nullValue());
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -434,10 +463,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -452,6 +483,8 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, admin, ResourcePolicy.TYPE_CUSTOM)));
         assertThat(resourcePolicies, hasItem(matches(Constants.READ, eperson, ResourcePolicy.TYPE_INHERITED)));
 
+        context.commit();
+        VersionBuilder.delete(idRef.get());
     }
 
     @Test
@@ -473,10 +506,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         String token = getAuthToken(eperson.getEmail(), password);
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         getClient(token).perform(post("/api/versioning/versions")
             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
             .content("/api/core/items/" + parentProject.getID()))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
         Item personV2 = findOneByRelationship(person, personIsVersionOf);
         assertThat(personV2.isArchived(), is(true));
@@ -487,6 +522,85 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             hasItem(with("synsicris.uniqueid", person.getID().toString() + "_2")));
 
         assertThat(personV2.getResourcePolicies(), hasItem(matches(Constants.READ, funderGroup, null)));
+
+        context.commit();
+        VersionBuilder.delete(idRef.get());
+    }
+
+    @Test
+    public void testProjectDeleteManyVersioning() throws Exception {
+        context.commit();
+        context.turnOffAuthorisationSystem();
+
+        Item person = ItemBuilder.createItem(context, persons)
+                                 .withTitle("Person")
+                                 .build();
+
+        Item publication = ItemBuilder.createItem(context, publications)
+                                      .withTitle("Publication")
+                                      .withAuthor("Person", person.getID().toString())
+                                      .build();
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(eperson.getEmail(), password);
+
+        AtomicReference<Integer> idRef = new AtomicReference<>();
+        getClient(token).perform(post("/api/versioning/versions")
+                            .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                            .content("/api/core/items/" + parentProject.getID()))
+                        .andExpect(status().isCreated())
+                        .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+        context.commit();
+
+        Version version = versioningService.getVersion(context, idRef.get());
+        Item versionedItem = null;
+        try {
+            assertNotNull(version);
+            assertNotNull(version.getItem());
+
+            versionedItem = this.itemService.find(context, version.getItem().getID());
+            getClient().perform(get("/api/core/items/" + versionedItem.getID()))
+                .andExpect(status().isOk());
+//            assertEquals(2, versionedItems.size());
+
+            List<Item> versionedItems =
+                findVersionedItems(context, context.reloadEntity(versionedItem), idRef.get().toString());
+
+            token = getAuthToken(admin.getEmail(), password);
+
+            // when delete versionedItem
+            getClient(token).perform(delete("/api/core/items/" + versionedItem.getID()))
+                            .andExpect(status().isNoContent());
+
+            // check that versionedItem is deleted.
+            getClient().perform(get("/api/core/items/" + versionedItem.getID()))
+                            .andExpect(status().isNotFound());
+
+            parentProject = context.reloadEntity(parentProject);
+            person = context.reloadEntity(person);
+            publication = context.reloadEntity(publication);
+
+            // all original items are existed.
+            assertNotNull(parentProject);
+            assertNotNull(person);
+            assertNotNull(publication);
+
+            version = context.reloadEntity(version);
+            assertNotNull(version);
+
+            // version not deleted, but doesn't contain item.
+            assertNull(version.getItem());
+
+            // check that all versioned Items related to parentProject will be deleted
+            for (Item item : versionedItems) {
+                assertNull(context.reloadEntity(item));
+            }
+        } finally {
+            context.turnOffAuthorisationSystem();
+            VersionBuilder.delete(idRef.get());
+            context.restoreAuthSystemState();
+        }
     }
 
     private Community createCommunity(String name) {
@@ -541,4 +655,14 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
             .map(Relationship::getLeftItem)
             .collect(Collectors.toList());
     }
+
+    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
+        List<Item> versionedItems = new ArrayList<>();
+        Community community = this.projectConsumerService.getProjectCommunity(c, projectItem);
+        this.projectConsumerService
+            .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber)
+            .forEachRemaining(versionedItems::add);
+        return versionedItems;
+    }
+
 }

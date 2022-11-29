@@ -2206,9 +2206,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>
@@ -2342,6 +2340,32 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-10</style>
           <hint>If necessary, you can explain your assessment here.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="projects_versioning">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>visible</dc-qualifier>
+          <label>Visible</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>official</dc-qualifier>
+          <label>Official</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Mandatory</required>
+          <hint />
         </field>
       </row>
     </form>

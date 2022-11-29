@@ -12,7 +12,7 @@
             	<entry key="comment">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -124,7 +124,7 @@
                 <entry key="patent">
                     <list>
                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -188,7 +188,7 @@
                 <entry key="orgunit">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -215,7 +215,7 @@
                 <entry key="project">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -238,7 +238,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="FUNDER_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     CUSTOM
@@ -248,6 +248,20 @@
                             <property name="groups">
                                 <list>
                                     <value>synsicris.funder-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="VERSIONING" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.versioning-edit-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -269,7 +283,7 @@
                 <entry key="spinoff">
                     <list>    
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -333,7 +347,7 @@
                 <entry key="publication">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -397,7 +411,7 @@
                 <entry key="plan_publication">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -475,7 +489,7 @@
                 <entry key="award">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -539,7 +553,7 @@
                 <entry key="step">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -603,7 +617,7 @@
                 <entry key="innovationidea">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -667,7 +681,7 @@
                 <entry key="task">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -745,7 +759,7 @@
                 <entry key="milestone">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -800,7 +814,7 @@
                 <entry key="stateofart">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -864,7 +878,7 @@
                 <entry key="contribution_fundingprogramme">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -928,7 +942,7 @@
                 <entry key="cooperationpartner">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -969,7 +983,7 @@
                 <entry key="unexpected_result">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1033,7 +1047,7 @@
                 <entry key="event">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1111,7 +1125,7 @@
                 <entry key="process_event">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1189,7 +1203,7 @@
                 <entry key="physical_object">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1267,7 +1281,7 @@
                 <entry key="targetgroup">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1308,7 +1322,7 @@
                 <entry key="neg_sideeffect">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1372,7 +1386,7 @@
                 <entry key="exp_societalimpact">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1436,7 +1450,7 @@
                 <entry key="condition">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1500,7 +1514,7 @@
                 <entry key="gender">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1564,7 +1578,7 @@
                 <entry key="ethic">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1628,7 +1642,7 @@
                 <entry key="proj_objective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1706,7 +1720,7 @@
                 <entry key="ia_objective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1784,7 +1798,7 @@
                 <entry key="research_result">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1848,7 +1862,7 @@
                 <entry key="innovationpotential">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1912,7 +1926,7 @@
                 <entry key="application">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1976,7 +1990,7 @@
                 <entry key="open_researchquestion">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2040,7 +2054,7 @@
                 <entry key="workpackage">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2154,7 +2168,7 @@
                 <entry key="projectpartner">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2181,7 +2195,7 @@
                 <entry key="programme">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2193,13 +2207,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    GROUP
+                                    CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="orgunits-edit" />
+                            <property name="submissionDefinition" value="programmes-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>${funder-organisational-managers.group}</value>
+                                    <value>cris.policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2208,7 +2222,7 @@
                 <entry key="product">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2263,7 +2277,7 @@
                 <entry key="funding">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2290,7 +2304,7 @@
                 <entry key="call">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2305,7 +2319,7 @@
                                     GROUP
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="orgunits-edit" />
+                            <property name="submissionDefinition" value="calls-edit" />
                             <property name="groups">
                                 <list>
                                     <value>${funder-organisational-managers.group}</value>
@@ -2317,7 +2331,7 @@
                 <entry key="fundingobjective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2332,7 +2346,7 @@
                                     GROUP
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="orgunits-edit" />
+                            <property name="submissionDefinition" value="fundingobjectives-edit" />
                             <property name="groups">
                                 <list>
                                     <value>${funder-organisational-managers.group}</value>

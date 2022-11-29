@@ -8,7 +8,7 @@
 package org.dspace.app.rest;
 
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
-import static org.dspace.project.util.ProjectConstants.PROGRAMME_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
 import static org.junit.Assert.assertEquals;
@@ -101,7 +101,7 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
                 .build();
 
         GroupBuilder.createGroup(context)
-            .withName(String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()))
+            .withName(String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()))
             .build();
 
         // create project item with Funding Parent Metadata without authority
@@ -185,7 +185,7 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
                 .withTitle("new programme")
                 .build();
 
-        deleteGroupIfExist(context, String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()));
+        deleteGroupIfExist(context, String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()));
 
         // create project item with Funding Parent Metadata with programme authority
         ItemBuilder.createItem(context, projectCollection)
@@ -230,7 +230,7 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group programmeGroup =
             GroupBuilder.createGroup(context)
-                .withName(String.format(PROGRAMME_GROUP_TEMPLATE, programmeItem.getID()))
+                .withName(String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()))
                 .build();
 
         // create project item with Funding Parent Metadata with programme authority

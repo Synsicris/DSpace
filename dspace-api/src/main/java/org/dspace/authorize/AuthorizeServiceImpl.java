@@ -283,7 +283,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             }
         }
         if (o instanceof Bundle) {
-            ignoreCustomPolicies = !isAnyItemInstalled(c, Arrays.asList(((Bundle) o)));
+            ignoreCustomPolicies = !isAnyItemInstalled(c, Arrays.asList((Bundle) o));
         }
         if (o instanceof Item) {
             // the isArchived check is fast and would exclude the possibility that the item
@@ -314,7 +314,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
                     return true; // match
                 }
 
-                if ((rp.getGroup() != null)
+                if (rp.getGroup() != null
                     && groupService.isMember(c, e, rp.getGroup())) {
                     // group was set, and eperson is a member
                     // of that group
@@ -399,7 +399,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
                     return true; // match
                 }
 
-                if ((rp.getGroup() != null)
+                if (rp.getGroup() != null
                     && groupService.isMember(c, e, rp.getGroup())) {
                     // group was set, and eperson is a member
                     // of that group
@@ -608,6 +608,12 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     }
 
     @Override
+    public void removeGroupPolicies(Context c, DSpaceObject o, Group g, int actionId)
+        throws SQLException, AuthorizeException {
+        resourcePolicyService.removeDsoGroupActionPolicies(c, o, g, actionId);
+    }
+
+    @Override
     public void removeEPersonPolicies(Context c, DSpaceObject o, EPerson e)
         throws SQLException, AuthorizeException {
         resourcePolicyService.removeDsoEPersonPolicies(c, o, e);
@@ -676,7 +682,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
                                           String reason, DSpaceObject dso, Collection owningCollection)
         throws SQLException, AuthorizeException {
 
-        if (embargoDate != null || (embargoDate == null && dso instanceof Bitstream)) {
+        if (embargoDate != null || embargoDate == null && dso instanceof Bitstream) {
 
             List<Group> authorizedGroups = getAuthorizedGroups(context, owningCollection, Constants.DEFAULT_ITEM_READ);
 

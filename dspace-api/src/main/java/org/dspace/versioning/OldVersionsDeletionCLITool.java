@@ -105,6 +105,11 @@ public class OldVersionsDeletionCLITool {
 
         Item projectItem = getProjectItem(context, community);
         VersionHistory versionHistory = versionHistoryService.findByItem(context, projectItem);
+
+        if (Objects.isNull(versionHistory)) {
+            return;
+        }
+
         int versions = versioningService.countVersionsByHistoryWithItem(context, versionHistory);
 
         if (versions <= threshold) {

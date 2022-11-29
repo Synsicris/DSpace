@@ -1268,6 +1268,99 @@
 	      </item>
 	    </collection>
 	  </community>
+	  <community>
+        <name>Interim report objects</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">project_template_funders_group</policy-group>
+        <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="delete">project_template_funders_group</policy-group>
+        <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+        <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">funding_template_members_group</policy-group>
+        <collection>
+          <name>Interim report steps</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>interim_report_step</entity-type>
+          <submission-type>interim_report_step_form</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+          <policy-group rpType="read">funding_template_members_group</policy-group>
+          <policy-group rpType="add">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">funding_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <item-template>
+            <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
+            <metadata name="cris.project.shared">funding</metadata>
+            <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+            <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+            <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          </item-template>
+          <item>
+              <metadata name="dc.title">step_type_1</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_1</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_2</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_2</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_3</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_3</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_4</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_4</metadata>
+          </item>
+        </collection>
+        <collection>
+          <name>Interim report</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>interim_report</entity-type>
+          <submission-type>interim_report_form</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+          <policy-group rpType="read">funding_template_members_group</policy-group>
+          <policy-group rpType="add">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">funding_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <item-template>
+            <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.funding.members###</metadata>
+            <metadata name="cris.project.shared">funding</metadata>
+            <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+            <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
+          </item-template>
+          <item>
+              <metadata name="dc.title">interim_report</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_001</metadata>
+              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_1">step_type_1</metadata>
+              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
+              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
+              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
+          </item>
+        </collection>
+      </community>
 	  <collection>
 	    <name language="en">Project partners</name>
 	    <name language="de">Projektpartner</name>
@@ -1332,6 +1425,7 @@
 	      <item-reference>true</item-reference>
 	      <metadata name="dc.title">funding_item_name</metadata>
 	      <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
+	      <metadata name="synsicris.relation.interim_report" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
 	    </item>
 	  </collection>
 	</community>

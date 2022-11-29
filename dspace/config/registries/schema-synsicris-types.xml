@@ -278,6 +278,13 @@
         <qualifier>exploitationplan</qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+		<schema>synsicris</schema>
+		<element>relation</element>
+		<qualifier>interim_report</qualifier>
+		<scope_note></scope_note>
+    </dc-type>
 
     <dc-type>
         <schema>synsicris</schema>

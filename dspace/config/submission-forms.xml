@@ -1115,6 +1115,269 @@
         </field>
       </row>
     </form>
+    <form name="interim_report_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_form">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Are applications for property rights being considered or have property rights already been granted?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_1_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_2_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_3_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_4_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report-edit_form"><row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>interim_report</dc-qualifier>
+          <label>Relation interim report</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>apply-propertyrights</dc-qualifier>
+          <label>Are applications for property rights being considered or have property rights already been granted?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="bitstream-metadata">
       <row>
         <field>

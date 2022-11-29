@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -153,14 +153,23 @@ public class OldVersionsDeletionCLITool {
     }
 
     private boolean isNotOfficial(Version version) {
-        return CollectionUtils.isEmpty(
-            itemService.getMetadata(
+        return !isOfficial(version);
+    }
+
+    public Boolean isOfficial(Version version) {
+        return itemService.getMetadata(
                 version.getItem(),
                 MD_VERSION_OFFICIAL.schema,
                 MD_VERSION_OFFICIAL.element,
                 MD_VERSION_OFFICIAL.qualifier,
                 Item.ANY
             )
-        );
+            .stream()
+            .filter(Objects::nonNull)
+            .map(MetadataValue::getValue)
+            .map(Boolean::valueOf)
+            .filter(BooleanUtils::isTrue)
+            .findFirst()
+            .orElse(false);
     }
 }

@@ -2278,7 +2278,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Visible</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -2290,7 +2290,19 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Official</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>Mandatory</required>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>notes</dc-qualifier>
+          <label>Notes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <hint />
         </field>
       </row>

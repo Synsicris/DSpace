@@ -2293,6 +2293,18 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>notes</dc-qualifier>
+          <label>Official</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="funding">
       <row>

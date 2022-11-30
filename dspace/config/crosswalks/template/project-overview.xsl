@@ -127,7 +127,161 @@
 						<xsl:with-param name="label" select="'Test ExpectedSocietalImpact Inline Group'"/>
 						<xsl:with-param name="values" select="cerif:ExpectedSocietalImpact/cerif:Type/cerif:CoreElement"/>
 					</xsl:call-template>
-			
+					
+					<!--Tests ethics-->
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Ethics Botschaft'"/>
+						<xsl:with-param name="values" select="cerif:Ethics/cerif:KeyMessage"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Weitere Dokumente'"/>
+						<xsl:with-param name="values" select="cerif:Ethics/cerif:FurtherDocuments"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="label" select="'Test Reflection Aspektart'"/>
+						<xsl:with-param name="values" select="cerif:Ethics/cerif:Reflection/cerif:Type/cerif:AspectType"/>
+					</xsl:call-template>				
+
+					<xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="label" select="'Test Reflection Ethische Beschreibung'"/>
+						<xsl:with-param name="values" select="cerif:Ethics/cerif:Reflection/cerif:Type/cerif:EthicDescription"/>
+					</xsl:call-template>
+
+					<!--Tests condition-->
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Bedingungen Titel '"/>
+						<xsl:with-param name="values" select="cerif:Conditions/cerif:Title"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Bedingungen Typ'"/>
+						<xsl:with-param name="values" select="cerif:Conditions/cerif:ConditionsType"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Bedingungen Einfluss'"/>
+						<xsl:with-param name="values" select="cerif:Conditions/cerif:Influences"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Bedingungen Start'"/>
+						<xsl:with-param name="values" select="cerif:Conditions/cerif:StartFramework"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Bedingungen Beschreibung'"/>
+						<xsl:with-param name="values" select="cerif:Conditions/cerif:ConditionDescription"/>
+					</xsl:call-template>
+
+					<!--Tests Gender-->
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender Kernbotschaft'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:KeyMessage"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Forschungsfrage'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:Researchquestion"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Forschungsfrage Beschr'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionResearchquestion"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - SOA'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:StateOfResearch"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - SOA Beschr'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionStateOfResearch"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Bedeutung'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:Relevance"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Bedeutung Beschr.'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionRelevance"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Anwendung'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:Application"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Anwendung Beschr.'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionApplication"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Umsetzung'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:Implementation"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Umsetzung Beschreib'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionImplementaiton"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Balance'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:GenderBalance"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test Gender - Balance Beschreib'"/>
+						<xsl:with-param name="values" select="cerif:Gender/cerif:Reflection/cerif:DescriptionGenderBalance"/>
+					</xsl:call-template>
+
+					<!--Tests State OfArt-->
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test SOA Titel'"/>
+						<xsl:with-param name="values" select="cerif:StateOfArt/cerif:TitleSOA"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test SOA Titel - Beschr'"/>
+						<xsl:with-param name="values" select="cerif:StateOfArt/cerif:DescriptionSOA"/>
+					</xsl:call-template>
+
+					<!--Tests Unexpected Results-->
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test UnExRe Titel'"/>
+						<xsl:with-param name="values" select="cerif:UnexpectedResults/cerif:Title"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test UnExRe BEschr'"/>
+						<xsl:with-param name="values" select="cerif:UnexpectedResults/cerif:ResultDescription"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test UnExRe Liste gepl Veröff'"/>
+						<xsl:with-param name="values" select="cerif:UnexpectedResults/cerif:Publication/cerif:ListPlannedPublications"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test UnExRe Info gepl Veröff'"/>
+						<xsl:with-param name="values" select="cerif:UnexpectedResults/cerif:Publication/cerif:InformationPublication"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="label" select="'Test UnExRe Link gepl Veröff'"/>
+						<xsl:with-param name="values" select="cerif:UnexpectedResults/cerif:Publication/cerif:LinkPublication"/>
+					</xsl:call-template>
+
 					<!-- new page -->
           <fo:block break-after='page'/>
 

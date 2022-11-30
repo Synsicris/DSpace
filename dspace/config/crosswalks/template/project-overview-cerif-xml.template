@@ -15,6 +15,103 @@
 	<FundingProgramme>@oairecerif.fundingParent@</FundingProgramme>
 
 	<!--########################################################################-->
+  <!-- attributes from the ethics entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+	<Ethics>
+		@relation.ethic.start@
+		<!-- direct attributes (basic accordion) -->
+		<KeyMessage>@dc.title@</KeyMessage>
+		<FurtherDocuments>@synsicris.type.ethic-docs@</FurtherDocuments>
+		
+		<!-- attributes from the reflection inline-group-->
+		<Reflection>
+			@group.dc-type.start@
+			<Type>
+				<AspectType>@dc.type@</AspectType>
+				<EthicDescription>@synsicris.description.aspect@</EthicDescription>
+			</Type>
+			@group.dc-type.end@
+
+			
+		</Reflection>
+
+		@relation.ethic.end@
+	</Ethics>
+
+	<!--########################################################################-->
+  <!-- attributes from the conditions entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<Conditions>
+			@relation.condition.start@
+				<Title>@dc.title@</Title>
+				<ConditionsType>@dc.type@</ConditionsType>
+				<Influences>@synsicris.type.influence@</Influences>
+				<StartFramework>@synsicris.date@</StartFramework>
+				<ConditionDescription>@dc.description@</ConditionDescription>
+			@relation.condition.end@
+		</Conditions>
+
+	<!--########################################################################-->
+  <!-- attributes from the gender entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<Gender>
+			@relation.gender.start@
+			<!-- direct attributes (basic accordion) -->
+				<KeyMessage>@dc.title@</KeyMessage>
+			<!-- attributes from the reflection accordion-->
+				<Reflection>
+					<Researchquestion>@synsicris.type.researchquestion@</Researchquestion>
+					<DescriptionResearchquestion>@synsicris.description.researchquestion@</DescriptionResearchquestion>
+					<StateOfResearch>@synsicris.type.stateofart@</StateOfResearch>
+					<DescriptionStateOfResearch>@synsicris.description.stateofart@</DescriptionStateOfResearch>
+					<Relevance>@synsicris.type.projectdesign@</Relevance>
+					<DescriptionRelevance>@synsicris.description.projectdesign@</DescriptionRelevance>
+					<Application>@synsicris.type.application@</Application>
+					<DescriptionApplication>@synsicris.description.application@</DescriptionApplication>
+					<Implementation>@synsicris.type.project@</Implementation>
+					<DescriptionImplementaiton>@synsicris.description.project@</DescriptionImplementaiton>
+					<GenderBalance>@synsicris.type.balance@</GenderBalance>
+					<DescriptionGenderBalance>@synsicris.description.balance@</DescriptionGenderBalance>
+				</Reflection>
+			@relation.gender.end@
+		</Gender>
+
+	<!--########################################################################-->
+  <!-- attributes from the stateofart entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<StateOfArt>
+			@relation.stateofart.start@
+					<TitleSOA>@dc.title@</TitleSOA>
+					<DescriptionSOA>@dc.description@</DescriptionSOA>
+			@relation.stateofart.end@
+		</StateOfArt>
+
+	<!--########################################################################-->
+  <!-- attributes from the unexpectedresults entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<UnexpectedResults>
+			@relation.unexpected_result.start@
+
+			<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<ResultDescription>@dc.description@</ResultDescription>
+
+			<!-- attributes from the Publication accordion-->
+				<Publication>
+					<ListPlannedPublications>@dc.type@</ListPlannedPublications>
+					<InformationPublication>@synsicris.description.relevance@</InformationPublication>
+					<LinkPublication>@synsicris.relation.publication@</LinkPublication>
+				</Publication>
+			@relation.unexpected_result.end@
+		</UnexpectedResults>
+
+
+	<!--########################################################################-->
   <!-- attributes from the funding entity (based on the discovery.xml) -->
 	<!--########################################################################-->
 

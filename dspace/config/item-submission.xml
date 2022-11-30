@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE item-submission SYSTEM "item-submission.dtd">
-
 <item-submission>
   <submission-map>
     <name-map collection-handle="default" submission-name="edit_grants" />
@@ -75,6 +74,28 @@
     </step-definition>
     <step-definition id="exploitation_plan-edit_form" mandatory="true">
       <heading>submit.progressbar.describe.exploitation_plan-edit_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="interim_report_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="interim_report_step_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_step_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="interim_report_task_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_task_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="interim_report-edit_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report-edit_form</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
@@ -504,6 +525,15 @@
     </submission-process>
     <submission-process name="exploitation_plan-edit_form">
       <step id="exploitation_plan-edit_form" />
+    </submission-process>
+    <submission-process name="interim_report_form">
+      <step id="interim_report_form" />
+    </submission-process>
+    <submission-process name="interim_report_step_form">
+      <step id="interim_report_step_form" />
+    </submission-process>
+    <submission-process name="interim_report-edit_form">
+      <step id="interim_report-edit_form" />
     </submission-process>
     <submission-process name="patents">
       <step id="patents" />
@@ -995,4 +1025,3 @@
     </submission-process>
   </submission-definitions>
 </item-submission>
-

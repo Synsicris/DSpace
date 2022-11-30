@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE input-forms SYSTEM "submission-forms.dtd">
-
 <input-forms>
   <form-definitions>
     <form name="edit_grants">
@@ -1068,18 +1067,6 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>exploitationplan</dc-qualifier>
-          <label>Relation exploitation plan</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>exploitationplan</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
@@ -1110,6 +1097,234 @@
           <label>Sind Schutzrechtsanmelungen angestrebt oder Schutzrechte bereits erteilt?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Kategorie auswählen</label>
+          <input-type value-pairs-name="interim_report_step_type_1_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Kategorie auswählen</label>
+          <input-type value-pairs-name="interim_report_step_type_2_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Kategorie auswählen</label>
+          <input-type value-pairs-name="interim_report_step_type_3_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Kategorie auswählen</label>
+          <input-type value-pairs-name="interim_report_step_type_4_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Bezeichnung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Pflichtangabe</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation exploitation plan</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -1711,7 +1926,7 @@
           <required>Pflichtangabe</required>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
           <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <regex>/[a-ü\D]+/gmi</regex>
         </field>
       </row>
       <row>
@@ -1825,7 +2040,7 @@
           <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-          <validation>/[^a-ü,.]/img</validation>
+          <regex>/[^a-ü,.]/img</regex>
         </field>
       </row>
       <row>
@@ -1877,7 +2092,7 @@
           <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-          <validation>^[0-9]\d*(\.\d+)?$</validation>
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1916,7 +2131,7 @@
           <required>Pflichtangabe</required>
           <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
           <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <regex>/[a-ü\D]+/gmi</regex>
         </field>
       </row>
       <row>
@@ -8744,6 +8959,198 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>open_researchquestion</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_1_task_type" dc-term="interim_report_step_type_1_task_type">
+      <pair>
+        <displayed-value>Patent oder Gebrauchsmuster</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rahmenbedingung</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
+        <stored-value>spinoff</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_2_task_type" dc-term="interim_report_step_type_2_task_type">
+      <pair>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
+        <stored-value>spinoff</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rahmenbedingung</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Geplante Veröffentlichungen</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung</displayed-value>
+        <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gegenstand oder Material</displayed-value>
+        <stored-value>physical_object</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
+        <stored-value>process_event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veranstaltung</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeitspaket</displayed-value>
+        <stored-value>workpackage</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Aufgabe</displayed-value>
+        <stored-value>task</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Auszeichnung</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_3_task_type" dc-term="interim_report_step_type_3_task_type">
+      <pair>
+        <displayed-value>Geplante Veröffentlichungen</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veröffentlichung</displayed-value>
+        <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsdaten</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Gegenstand oder Material</displayed-value>
+        <stored-value>physical_object</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Auszeichnung oder Preis</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Kooperation / Partizipation / Austauschprozess</displayed-value>
+        <stored-value>process_event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Veranstaltung</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Mögliche Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ausgründung (inkl. Vereinsgründung)</displayed-value>
+        <stored-value>spinoff</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Anwendung einer Lösung / Veränderung / Innovation</displayed-value>
+        <stored-value>application</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Rahmenbedingung</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Erwartete gesellschaftliche Wirkung</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeitspaket</displayed-value>
+        <stored-value>workpackage</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Aufgabe</displayed-value>
+        <stored-value>task</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_4_task_type" dc-term="interim_report_step_type_4_task_type">
+      <pair>
+        <displayed-value>Idee für eine Nutzung von Projektergebnissen</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Arbeiten und Kooperation nach Projektende</displayed-value>
+        <stored-value>step</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Forschungsergebnis</displayed-value>
+        <stored-value>research_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Zwischen) Ergebnis / Problem, das Veränderungen bewirkt</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Offene Forschungsfrage</displayed-value>
+        <stored-value>open_researchquestion</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">
       <pair>
         <displayed-value>Datensatz</displayed-value>
@@ -9832,4 +10239,3 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
   </form-value-pairs>
 </input-forms>
-

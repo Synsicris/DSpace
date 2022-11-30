@@ -1,86 +1,341 @@
 <Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
+
+	<!--########################################################################-->
+  <!--attributes from the project entity (those come direct)-->	
+	<!--########################################################################-->
+
 	<Acronym>@oairecerif.acronym@</Acronym>
 	<Title>@dc.title@</Title>
+	<FundingCall>@synsicris.relation.call@</FundingCall>
 	<Identifier type="http://namespace.openaire.eu/oaf">@crispj.openaireid@</Identifier>
 	<Identifier type="URL">@oairecerif.identifier.url@</Identifier>
 	<StartDate>@oairecerif.project.startDate@</StartDate>
 	<EndDate>@oairecerif.project.endDate@</EndDate>
-	<Consortium>
-		<Coordinator>
-			@relation.crispj-coordinator.start@
-			<OrgUnit id="@virtual.id@">
-                <Acronym>@oairecerif.acronym@</Acronym>
-				<Name>@dc.title@</Name>
-			</OrgUnit>
-			@relation.crispj-coordinator.end@
-			@if.not.authority.crispj-coordinator.start@
-			<OrgUnit> <Name>@crispj.coordinator@</Name> </OrgUnit>
-			@if.not.authority.crispj-coordinator.end@
-		</Coordinator>
-		<Partner>
-			@relation.crispj-partnerou.start@
-			<OrgUnit id="@virtual.id@">
-                <Acronym>@oairecerif.acronym@</Acronym>
-				<Name>@dc.title@</Name>
-			</OrgUnit>
-			@relation.crispj-partnerou.end@
-			@if.not.authority.crispj-partnerou.start@
-			<OrgUnit> <Name>@crispj.partnerou@</Name> </OrgUnit>
-			@if.not.authority.crispj-partnerou.end@
-		</Partner>
-		<Member>
-			@relation.crispj-organization.start@
-			<OrgUnit id="@virtual.id@">
-                <Acronym>@oairecerif.acronym@</Acronym>
-				<Name>@dc.title@</Name>
-			</OrgUnit>
-			@relation.crispj-organization.end@
-			@if.not.authority.crispj-organization.start@
-			<OrgUnit> <Name>@crispj.organization@</Name> </OrgUnit>
-			@if.not.authority.crispj-organization.end@
-		</Member>
-	</Consortium>
-	<Team>
-		<PrincipalInvestigator>
-			<Person displayName="@crispj.investigator@" />
-		</PrincipalInvestigator>
-		<Member>
-			<Person displayName="@crispj.coinvestigators@" />
-		</Member>
-	</Team>
-	@relation.fundings.start@
-	<Funded>
-		<By>
-			@relation.oairecerif-funder.start@
-			<OrgUnit id="@virtual.id@">
-                <Acronym>@oairecerif.acronym@</Acronym>
-				<Name>@dc.title@</Name>
-			</OrgUnit>
-			@relation.oairecerif-funder.end@
-			@if.not.authority.oairecerif-funder.start@
-			<OrgUnit>
-				<Name>@oairecerif.funder@</Name>
-			</OrgUnit>
-			@if.not.authority.oairecerif-funder.end@
-		</By>
-		<As>
-			<Funding id="@virtual.id@">
-				<Type xmlns="https://www.openaire.eu/cerif-profile/vocab/OpenAIRE_Funding_Types">@virtual.mapConverter.fundingTypes.dc-type@</Type>
-				<Name>@dc.title@</Name>
-			</Funding>
-		</As>
-	</Funded>
-	@relation.fundings.end@
-	<Keyword>@dc.subject@</Keyword>
-	<Abstract>@dc.description.abstract@</Abstract>
-    <Status>@oairecerif.project.status@</Status>
-    <Uses>
-        <Equipment>
-            <Name>@dc.relation.equipment@</Name>
-        </Equipment>
-    </Uses>
-	<OAMandate 
-		mandated="@oairecerif.oamandate@" 
-		URL="@oairecerif.oamandate.url@" 
-	/>
+	<Duration>@synsicris.duration@</Duration>
+	<FundingProgramme>@oairecerif.fundingParent@</FundingProgramme>
+
+	<!--########################################################################-->
+  <!-- attributes from the ethics entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+	<Ethics>
+		@relation.ethic.start@
+		<!-- direct attributes (basic accordion) -->
+		<KeyMessage>@dc.title@</KeyMessage>
+		<FurtherDocuments>@synsicris.type.ethic-docs@</FurtherDocuments>
+		
+		<!-- attributes from the reflection inline-group-->
+		<Reflection>
+			@group.dc-type.start@
+			<Type>
+				<AspectType>@dc.type@</AspectType>
+				<EthicDescription>@synsicris.description.aspect@</EthicDescription>
+			</Type>
+			@group.dc-type.end@
+
+			
+		</Reflection>
+
+		@relation.ethic.end@
+	</Ethics>
+
+	<!--########################################################################-->
+  <!-- attributes from the conditions entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<Conditions>
+			@relation.condition.start@
+				<Title>@dc.title@</Title>
+				<ConditionsType>@dc.type@</ConditionsType>
+				<Influences>@synsicris.type.influence@</Influences>
+				<StartFramework>@synsicris.date@</StartFramework>
+				<ConditionDescription>@dc.description@</ConditionDescription>
+			@relation.condition.end@
+		</Conditions>
+
+	<!--########################################################################-->
+  <!-- attributes from the gender entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<Gender>
+			@relation.gender.start@
+			<!-- direct attributes (basic accordion) -->
+				<KeyMessage>@dc.title@</KeyMessage>
+			<!-- attributes from the reflection accordion-->
+				<Reflection>
+					<Researchquestion>@synsicris.type.researchquestion@</Researchquestion>
+					<DescriptionResearchquestion>@synsicris.description.researchquestion@</DescriptionResearchquestion>
+					<StateOfResearch>@synsicris.type.stateofart@</StateOfResearch>
+					<DescriptionStateOfResearch>@synsicris.description.stateofart@</DescriptionStateOfResearch>
+					<Relevance>@synsicris.type.projectdesign@</Relevance>
+					<DescriptionRelevance>@synsicris.description.projectdesign@</DescriptionRelevance>
+					<Application>@synsicris.type.application@</Application>
+					<DescriptionApplication>@synsicris.description.application@</DescriptionApplication>
+					<Implementation>@synsicris.type.project@</Implementation>
+					<DescriptionImplementaiton>@synsicris.description.project@</DescriptionImplementaiton>
+					<GenderBalance>@synsicris.type.balance@</GenderBalance>
+					<DescriptionGenderBalance>@synsicris.description.balance@</DescriptionGenderBalance>
+				</Reflection>
+			@relation.gender.end@
+		</Gender>
+
+	<!--########################################################################-->
+  <!-- attributes from the stateofart entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<StateOfArt>
+			@relation.stateofart.start@
+					<TitleSOA>@dc.title@</TitleSOA>
+					<DescriptionSOA>@dc.description@</DescriptionSOA>
+			@relation.stateofart.end@
+		</StateOfArt>
+
+	<!--########################################################################-->
+  <!-- attributes from the unexpectedresults entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+		<UnexpectedResults>
+			@relation.unexpected_result.start@
+
+			<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<ResultDescription>@dc.description@</ResultDescription>
+
+			<!-- attributes from the Publication accordion-->
+				<Publication>
+					<ListPlannedPublications>@dc.type@</ListPlannedPublications>
+					<InformationPublication>@synsicris.description.relevance@</InformationPublication>
+					<LinkPublication>@synsicris.relation.publication@</LinkPublication>
+				</Publication>
+			@relation.unexpected_result.end@
+		</UnexpectedResults>
+
+
+	<!--########################################################################-->
+  <!-- attributes from the funding entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+  <Funding>
+	  @relation.Funding.start@ 
+
+		<!-- direct attributes (basic accordion) -->
+			<Name>@dc.title@</Name>
+
+		@relation.Funding.end@	
+	</Funding>  
+
+	<!--########################################################################-->
+	<!-- attributes from the project partners entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+	<ProjectPartner>
+		@relation.projectpartner.start@ 
+
+		<!-- direct attributes (basic accordion) -->
+			<Acronym>@oairecerif.acronym@</Acronym>
+			<EasyOnlineImport>@synsicris.type.easy-import@</EasyOnlineImport>
+			<SectorType>@dc.type@</SectorType>
+			<Destatis>@synsicris.subject.destatis@</Destatis>
+			<NACE>@synsicris.subject.nace@</NACE>
+			<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+
+		<!-- attributes from the import accordion-->
+			<Import>
+				<ParentOrganisation>@organization.parentOrganisation@</ParentOrganisation>
+				<OrganisationName>@dc.title@</OrganisationName>
+				<Postcode>@synsicris.address.addressPostcode@</Postcode>
+				<City>@synsicris.address.addressCity@</City>
+				<Country>@organization.address.addressCountry@</Country>
+				<WebAdress>@oairecerif.identifier.url@</WebAdress>
+				<OrganisationType>@synsicris.type.orgform@</OrganisationType>
+			</Import>	
+
+			<!-- attributes from the import lead accordion-->			
+			<ImportLead> 
+				<Name>@synsicris.personleader@</Name>
+				<Degree>@synsicris.personleader.degree@</Degree>
+				<Gender>@synsicris.personleader.gender@</Gender>
+			</ImportLead>		
+
+	  @relation.projectpartner.end@	
+	</ProjectPartner>
+
+	<!--########################################################################-->
+	<!-- attributes from the cooperationpartner entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+
+	<CooperationPartner>
+		@relation.cooperationpartner.start@
+
+		<!-- direct attributes (basic accordion) -->
+			<CooperationType>@synsicris.type.cooperation@</CooperationType>
+			<Sector>@dc.type@</Sector>
+			<Branch>@synsicris.subject.nace@</Branch>
+			<Discipline>@synsicris.subject.destatis@</Discipline>
+			<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+			<ProjectContribution>@synsicris.description.contribution@</ProjectContribution>
+			
+		<!-- attributes from the organisation unit accordion -->
+			<OrganisationUnit>
+				<OrganisationName>@dc.title@</OrganisationName>
+				<PostCode>@synsicris.address.addressPostcode@</PostCode>
+				<City>@synsicris.address.addressCity@</City>
+				<CountryFederal>@organization.address.addressCountry@</CountryFederal>
+				<Web>@oairecerif.identifier.url@</Web>
+				<FormOfOrganisation>@synsicris.type.orgform@</FormOfOrganisation>
+			</OrganisationUnit>
+
+		@relation.cooperationpartner.end@
+	</CooperationPartner>
+
+	<!--########################################################################-->
+	<!-- attributes from the target groups entity (based on the discovery.xml) -->
+  <!--########################################################################-->
+
+	<TargetGroup>
+		@relation.targetgroup.start@ 
+
+		<!-- direct attributes (basic accordion) -->
+			<Title>@dc.title@</Title>
+			<ProjectRelevance>@synsicris.description.targetgroup@</ProjectRelevance>
+
+		<!-- attributes from the classification accordion -->
+			<Classification>
+				<SocietalArea>@dc.type@</SocietalArea>
+				<EconomicSector>@synsicris.subject.nace@</EconomicSector>
+				<BusinessSize>@synsicris.subject.enterprise-size@</BusinessSize>
+				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+				<ActorsAffiliation>@synsicris.subject.urban-rural@</ActorsAffiliation>
+		</Classification>
+
+	  @relation.targetgroup.end@	
+	</TargetGroup>
+
+	<!--########################################################################-->	
+	<!-- attributes from the interaction objectives entity (based on the discovery.xml) -->
+  <!--########################################################################-->
+
+	<InteractionObjective>
+		@relation.ia_objective.start@
+		
+		<!-- direct attributes (basic accordion) -->
+			<Title>@dc.title@</Title>
+			<Description>@dc.description@</Description>
+
+	  @relation.ia_objective.end@	
+	</InteractionObjective>
+	
+	<!--########################################################################-->	
+	<!-- attributes from the negative side effect entity (based on the discovery.xml) -->
+  <!--########################################################################-->
+
+	<NegativeSideEffect>
+		@relation.neg_sideeffect.start@
+		
+		<!-- direct attributes (basic accordion) -->
+			<Title>@dc.title@</Title>
+			<Description>@dc.description@</Description>
+			<TransitionArea>@synsicris.type.transform@</TransitionArea>
+			<Evidence>@synsicris.type.evidence@</Evidence>
+
+		<!-- attributes from dc.type inline group -->
+			<Type>
+        @group.dc-type.start@
+
+					<CoreElement>@dc.type@</CoreElement>	
+					<Intensity>@synsicris.type.negative-direction@</Intensity>
+          <Description>@synsicris.description.neg@</Description>
+
+				@group.dc-type.end@
+			</Type>
+
+	  @relation.neg_sideeffect.end@	
+	</NegativeSideEffect>
+
+	<!--########################################################################-->	
+	<!-- attributes from the expected societal impact entity (based on the discovery.xml) -->
+  <!--########################################################################-->
+
+	<ExpectedSocietalImpact>
+		@relation.exp_societalimpact.start@
+
+		<!-- direct attributes (basic accordion) -->
+		<Title>@dc.title@</Title>
+		<Description>@dc.description@</Description>
+		<TransitionArea>@synsicris.type.transform@</TransitionArea>
+		<Evidence>@synsicris.type.evidence@</Evidence>
+
+	<!-- attributes from dc.type inline group -->
+		<Type>
+			@group.dc-type.start@
+
+				<CoreElement>@dc.type@</CoreElement>	
+				<Intensity>@synsicris.type.positive-direction@</Intensity>
+				<Description>@synsicris.description.pos@</Description>
+
+			@group.dc-type.end@
+		</Type>
+
+		@relation.exp_societalimpact.end@
+  </ExpectedSocietalImpact>
+
+  <!--########################################################################-->
+  <!-- additional informations --> 
+  <!--########################################################################-->
+
+	<!-- definition of Synsicris Parent Project Related items as taken from the discovery.xml -->
+<!--
+	<entry key="RELATION.Project.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
+	<entry key="RELATION.Project.application" value-ref="relationParentProjectApplicationsConfiguration"/>
+	<entry key="RELATION.Project.award" value-ref="relationParentProjectAwardsConfiguration"/>
+	<entry key="RELATION.Project.contribution_fundingprogramme" value-ref="relationParentProjectContributionsfundingprogrammeConfiguration"/>
+	<entry key="RELATION.Project.ethic" value-ref="relationParentProjectEthicsConfiguration"/>
+	<entry key="RELATION.Project.Event" value-ref="relationParentProjectEventsConfiguration"/>
+	<entry key="RELATION.Project.condition" value-ref="relationParentProjectConditionsConfiguration"/>
+	<entry key="RELATION.Project.gender" value-ref="relationParentProjectGendersConfiguration"/>
+	<entry key="RELATION.Project.innovationidea" value-ref="relationParentProjectInnovationideasConfiguration"/>
+	<entry key="RELATION.Project.milestone" value-ref="relationParentProjectMilestonesConfiguration"/>
+	<entry key="RELATION.Project.step" value-ref="relationParentProjectStepsConfiguration"/>
+	<entry key="RELATION.Project.physical_object" value-ref="relationParentProjectPhysicalObjectsConfiguration"/>
+	<entry key="RELATION.Project.open_researchquestion" value-ref="relationParentProjectOpenresearchquestionsConfiguration"/>
+	<entry key="RELATION.Project.Patent" value-ref="relationParentProjectPatentsConfiguration"/>
+	<entry key="RELATION.Project.plan_publication" value-ref="relationParentProjectPlanPublicationsConfiguration"/>
+	<entry key="RELATION.Project.process_event" value-ref="relationParentProjectProcessEventsConfiguration"/>
+	<entry key="RELATION.Project.proj_objective" value-ref="relationParentProjectProjObjectivesConfiguration"/>
+	<entry key="RELATION.Project.Publication" value-ref="relationParentProjectPublicationsConfiguration"/>
+	<entry key="RELATION.Project.Product" value-ref="relationParentProjectProductsConfiguration"/>
+	<entry key="RELATION.Project.research_result" value-ref="relationParentProjectResearchResultsConfiguration"/>
+	<entry key="RELATION.Project.innovationpotential" value-ref="relationParentProjectInnovationpotentialsConfiguration"/>
+	<entry key="RELATION.Project.spinoff" value-ref="relationParentProjectSpinoffsConfiguration"/>
+	<entry key="RELATION.Project.stateofart" value-ref="relationParentProjectStateofartsConfiguration"/>
+	<entry key="RELATION.Project.task" value-ref="relationParentProjectTasksConfiguration"/>
+	<entry key="RELATION.Project.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
+	<entry key="RELATION.Project.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
+	<entry key="RELATION.Project.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
+-->
+
+<!--########################################################################-->
+<!-- other types of configurations -->
+<!--########################################################################-->
+
+
+<!-- 
+	<Aspects>
+		@group.dc-type.start@
+		<Aspect>
+			<Type>@dc.type@</Type>
+		</Aspect>
+		@group.dc-type.end@
+	</Aspects>
+-->
+
+  <!-- attributes from the funding entity based on the authority.cfg (only a single value is displayed) -->	
+  <!-- 
+	@relation.synsicris-relation-funding.start@
+		<Funding id="@virtual.id@">
+			<Name>@dc.title@</Name>
+		</Funding>
+	@relation.synsicris-relation-funding.end@  	 
+-->
+
 </Project>

@@ -1203,6 +1203,17 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>audience</dc-element>
+          <label>Zielpublikum</label>
+          <input-type value-pairs-name="target_audience">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Bitte wählen Sie aus, an welches Zielpublikum sich dieser Sammeleintrag richtet (Mehrfachauswahl möglich)</hint>
+        </field>
+      </row>
     </form>
     <form name="publications-dc-contributor-author">
       <row>
@@ -1355,50 +1366,12 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Wenn zu der Publikation eine ISBN (International Standard Book Number) gehört, dann tragen Sie diese bitte hier ein.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>doi</dc-qualifier>
-          <label>DOI</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Wenn zu der Publikation eine DOI gehört, dann tragen Sie diese bitte hier ein.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
           <dc-qualifier>ispartof</dc-qualifier>
           <label>Zeitschrift oder Reihe</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>Geben Sie hier den Titel ein, in welcher die Veröffentlichung erschienen ist.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
-          <label>ISSN</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Tragen Sie bitte die ISSN ein, wenn sie nicht im System gefunden wurde.</hint>
         </field>
       </row>
       <row>
@@ -1501,23 +1474,11 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>audience</dc-element>
-          <label>Bitte wählen Sie aus, an welches Zielpublikum sich die Veröffentlichung richtet (Mehrfachauswahl möglich)</label>
+          <label>Zielpublikum</label>
           <input-type value-pairs-name="target_audience">list</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>product</dc-qualifier>
-          <label>Forschungsdaten</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Verweisen Sie auf einen oder mehreren vorhandenen Forschungsdatesätzen, die in der Veröffentlichung verwendet oder beschrieben werden.</hint>
+          <hint>Bitte wählen Sie aus, an welches Zielpublikum sich die Veröffentlichung richtet (Mehrfachauswahl möglich)</hint>
         </field>
       </row>
     </form>
@@ -1579,7 +1540,7 @@
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint />
+          <hint>Lizenzvergabe bedeutet, dass der Patentinhaber einem Dritten die vertraglich geregelte Nutzung gestattet und im Gegenzug Lizenzgebühren erhält. Verkauf bedeutet, dass der Patentinhaber sämtliche Rechte an einen Dritten verkauft</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1597,25 +1558,25 @@
     <form name="patents_result">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>applicationnumber</dc-qualifier>
           <label>Anmeldenummer</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
           <hint>Geben Sie bitte die Anmeldenummer aus dem Registrierungs-Formular des Patentamtes ein.</hint>
         </field>
+      </row>
+      <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>filled</dc-qualifier>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateSubmitted</dc-element>
           <label>Datum der Anmeldung</label>
-          <input-type>calendar</input-type>
+          <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
@@ -1640,7 +1601,18 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateAccepted</dc-element>
+          <label>Datum der Zulassung</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
           <hint />
         </field>
         <field>
@@ -1648,46 +1620,46 @@
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
           <label>Datum der Veröffentlichung</label>
-          <input-type>calendar</input-type>
+          <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>contributor</dc-element>
-          <dc-qualifier>author</dc-qualifier>
-          <label>Erfinder:in(nen)</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
         </field>
       </row>
       <row>
         <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>author</dc-qualifier>
+          <label>Erfinder:in(nen)</label>
+          <input-type>group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Erteiler</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Der Erteiler ist das Europäische Patentamt</hint>
+        </field>
+        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>ipc</dc-qualifier>
-          <label>IPC-Klasse</label>
+          <label>IPC-Klasse(n)</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>dateAccepted</dc-element>
-          <label>Datum der Zulassung</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <type-bind>patent</type-bind>
         </field>
       </row>
       <row>
@@ -1711,18 +1683,6 @@
           <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Direktlink zum Dokument</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
           <hint />
         </field>
       </row>
@@ -1795,7 +1755,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Projektseite(n)</label>
+          <label>Webseite(n) des Verbundes / der Projekte</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1815,6 +1775,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1826,6 +1787,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -1839,6 +1801,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1850,6 +1813,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1860,6 +1824,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
           <validation>/[^a-ü,.]/img</validation>
         </field>
       </row>
@@ -1873,6 +1838,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -1883,7 +1849,21 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-10</style>
           <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>currency</dc-qualifier>
+          <label>Währung</label>
+          <input-type value-pairs-name="currency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -1894,8 +1874,9 @@
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
           <validation>^[0-9]\d*(\.\d+)?$</validation>
         </field>
         <field>
@@ -1906,8 +1887,9 @@
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -1917,19 +1899,9 @@
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>currency</dc-qualifier>
-          <label>Währung</label>
-          <input-type value-pairs-name="currency">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
@@ -1938,11 +1910,13 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>title</dc-element>
-          <label>Title project</label>
+          <label>Titel des Verbundprojektes</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
+          <required>Pflichtangabe</required>
+          <hint>Geben Sie bitte zunächst mindestens einen Arbeitstitel ein. Den korrekten Titel können Sie zur Antragstellung aktualisieren.</hint>
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <validation>/[a-ü\D]+/gmi</validation>
         </field>
       </row>
       <row>
@@ -2021,7 +1995,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>funderlabel2</dc-qualifier>
-          <label>Project label Placeholder</label>
+          <label>Projektlabel Platzhalter</label>
           <input-type value-pairs-name="funderlabel2">list</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2033,7 +2007,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>funderlabel3</dc-qualifier>
-          <label>Project label other Placeholder</label>
+          <label>Projektlabel weiterer Platzhalter</label>
           <input-type value-pairs-name="funderlabel3">list</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2063,7 +2037,7 @@
           <input-type value-pairs-name="sdg_influence">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-12</style>
           <hint />
         </field>
         <field>
@@ -2074,7 +2048,7 @@
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-10</style>
+          <style>col-md-12</style>
           <hint>Falls erforderlich, können sie hier Ihre Einschätzung begründen.</hint>
         </field>
       </row>
@@ -2114,7 +2088,6 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>Pflichteingabe</required>
-          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -2144,6 +2117,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -2154,18 +2128,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>project</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="project_status">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -2178,6 +2141,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2193,14 +2157,28 @@
       </row>
       <row>
         <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
           <dc-schema>crispj</dc-schema>
           <dc-element>partnerou</dc-element>
           <label>Projektpartner / ausführende Stellen</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
@@ -2231,7 +2209,7 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2242,7 +2220,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2253,7 +2231,7 @@
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2267,7 +2245,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -2280,7 +2257,6 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
         </field>
       </row>
       <row>
@@ -2387,6 +2363,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2398,6 +2375,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2411,6 +2389,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2422,6 +2401,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2435,9 +2415,8 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
@@ -2448,6 +2427,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2460,7 +2440,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
-          <visibility>workflow</visibility>
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2474,9 +2454,8 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
@@ -2487,6 +2466,7 @@
           <required />
           <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2499,6 +2479,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2510,6 +2491,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2522,6 +2504,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2533,6 +2516,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2544,6 +2528,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2556,6 +2541,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2568,6 +2554,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2580,6 +2567,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2590,7 +2578,21 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-8</style>
           <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>Akronym Fördermaßnahme/Förderprogramm</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2602,19 +2604,9 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-fundingParent</dc-qualifier>
-          <label>Akronym Fördermaßnahme/Förderprogramm</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2626,7 +2618,21 @@
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>Acronym Förderbereich</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2640,17 +2646,7 @@
           <required />
           <style>col-md-6</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-call</dc-qualifier>
-          <label>Acronym Förderbereich</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2664,6 +2660,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2675,6 +2672,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2686,21 +2684,12 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
     <form name="projectpartners">
       <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Akronym der Organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
-        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
@@ -2711,6 +2700,16 @@
           <required>Pflichtangabe</required>
           <style>col-md-6</style>
           <hint>Diese Angabe dient dazu, den Import und die Aktualisierung korrekt durchzuführen.</hint>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Akronym der Organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Das Akronym kann frei gewählt werden, wenn kein offizieller Kurzname vorhanden ist.</hint>
         </field>
       </row>
       <row>
@@ -2762,7 +2761,6 @@
           <required />
           <hint>Angaben nur für Unternehmen. Die Informationen dienen dazu, die im Projekt einbezogenen fachlichen Handlungsfelder einzuschätzen.</hint>
           <type-bind>Economy</type-bind>
-          <readonly>all</readonly>
           <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
@@ -2775,7 +2773,7 @@
           <repeatable>true</repeatable>
           <required />
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -2791,7 +2789,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2803,7 +2801,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2815,7 +2813,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2827,7 +2825,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -2945,6 +2943,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2956,6 +2955,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2963,7 +2963,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Webadresse</label>
+          <label>Webseite(n) der Organisationseinheit</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3367,6 +3367,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3378,6 +3379,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -3385,7 +3387,7 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Webadresse</label>
+          <label>Webseite der Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -3426,7 +3428,7 @@
           <required />
           <style>col-md-6</style>
           <hint>Ist eine ID bekannt, wählen Sie bitte den Typ und geben Sie die Identifikationsnummer ein.</hint>
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -3440,7 +3442,7 @@
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3465,7 +3467,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3477,7 +3479,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3489,7 +3491,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3501,7 +3503,7 @@
           <required />
           <style>col-md-3</style>
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -4032,11 +4034,11 @@
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Website(s) zu meiner Person (z.B. Personenseite meiner Organisation, persönliche Homepage, Researchgate, LinkedIn Twitter, Facebook)</label>
+          <label>Website(n) zu meiner Person</label>
           <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>Durch die Verlinkung verbessern Sie Ihre Sichtbarkeit und Erreichbarkeit.</hint>
+          <hint>Durch die Verlinkung verbessern Sie Ihre Sichtbarkeit und Erreichbarkeit. Beispiele: Personenseite meiner Organisation, persönliche Homepage, Researchgate, LinkedIn Twitter, Facebook</hint>
         </field>
       </row>
       <row>
@@ -4421,11 +4423,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Art der Arbeit nach Projektende (Mehrfachauswahl möglich)</label>
+          <label>Art der Arbeit nach Projektende</label>
           <input-type value-pairs-name="nextsteps">list</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Mehrfachauswahl möglich</hint>
         </field>
       </row>
       <row>
@@ -4439,15 +4441,28 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <style>col-md-3</style>
           <hint>Bitte geben Sie einen ungefähren Zeithorizont an, zu dem die Arbeit(en) realisiert sein soll(en).</hint>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung (möglichst mit Angaben zur Finanzierung)</label>
+          <label>Beschreibung</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-9</style>
+          <style>col-md-6</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>finance</dc-qualifier>
+          <label>Angaben zur Finanzierung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Bitte beschreiben Sie die Finanzierung der Aufgabe, falls möglich. Diese Information wird nicht veröffentlicht, auch wenn der Eintrag öffentlich gemacht wird.</hint>
         </field>
       </row>
     </form>
@@ -4520,20 +4535,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <hint>Bitte zeigen Sie Vorbehalte und wesentliche Voraussetzungen zur Erfüllung der Arbeiten auf.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="workpackages_result">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>changes</dc-qualifier>
-          <label>Beschreiben Sie bitte die Veränderung im Projektverlauf und begründen diese.</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Im Impact Pathway können Sie wichtige Ursachen für eine Veränderung über Einträge in "Rahmenbedingungen" und "(Zwischen-) Ergebnisse / Probleme, die Veränderungen bewirken" darstellen.</hint>
         </field>
       </row>
     </form>
@@ -4629,7 +4630,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie bitte aus,wie Projektergebnisse genutzt werden können d.h. zu welcher Art der Lösung, Veränderung oder Innovation sie beitragen können.</hint>
+          <hint>Wählen Sie bitte aus, wie Projektergebnisse genutzt werden können bzw. zu welcher Art der Lösung, Veränderung oder Innovation sie beitragen können.</hint>
           <vocabulary closed="true">all-innovation</vocabulary>
         </field>
       </row>
@@ -5013,7 +5014,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <label>Art der Beteiligung des Projektes</label>
           <input-type value-pairs-name="project_contribution">list</input-type>
           <repeatable>false</repeatable>
-          <required>Pflichtangabe</required>
+          <required />
           <hint />
         </field>
       </row>
@@ -5566,12 +5567,12 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>functions</dc-qualifier>
-          <label>Verwendungsmöglichkeiten (Mehrfachauswahl möglich)</label>
+          <label>Verwendungsmöglichkeiten</label>
           <input-type value-pairs-name="physicalobjects_function">list</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>Mehrfachauswahl möglich</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5747,6 +5748,18 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>evidence</dc-qualifier>
+          <label>Fachliche Grundlage der Information zum erwarteten gesellschaftlichen Impact</label>
+          <input-type value-pairs-name="impact_evidence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="exp_societalimpact-dc-type">
       <row>
@@ -5832,6 +5845,18 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>evidence</dc-qualifier>
+          <label>Fachliche Grundlage der Information zum erwarteten gesellschaftlichen Impact</label>
+          <input-type value-pairs-name="impact_evidence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
     </form>
     <form name="neg_sideeffect-dc-type">
       <row>
@@ -5844,7 +5869,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <required />
           <style>col-md-8</style>
           <hint />
-          <vocabulary closed="true">core</vocabulary>
+          <vocabulary closed="true">core-n</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6060,7 +6085,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Ein ausgeglichenes Geschlechterverhältnis im Projekt unter den Beschäftigten zu erzielen kann z. B. in Themengebieten schwierig sein, in denen ungleich viele Frauen oder Männer arbeiten.</hint>
+          <hint>Beantworten Sie diese Frage erst zum Projektende.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -6071,7 +6096,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
-          <hint />
+          <hint>Begründen Sie, wenn kein ausgeglichenes Geschlechterverhältnis im Projektteam erzielt werden konnte. Dies kann beispielsweise in Themengebieten schwierig sein, in denen  Geschlechterverhältnis sehr ungleich sind oder auch durch die fachliche Eignung oder sehr kleine Projektteams bedingt sein.</hint>
         </field>
       </row>
     </form>
@@ -6256,7 +6281,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <label>Autor:in(nen)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>Pflichtangabe</required>
           <hint />
         </field>
       </row>
@@ -6269,7 +6294,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Geben Sie die Zugehörigkeit des/der Autor:in/nen an</hint>
         </field>
       </row>
     </form>
@@ -6283,6 +6308,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <repeatable>true</repeatable>
           <required />
           <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -6293,7 +6319,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type value-pairs-name="dataset_types">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Nichts einzutragen.</hint>
+          <hint>Klicken Sie den Typ an</hint>
         </field>
       </row>
       <row>
@@ -6313,7 +6339,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Autor:in(nen)</label>
-          <input-type>onebox</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
           <hint />
@@ -6328,17 +6354,17 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint>Geben Sie mindestens das Jahr der Veröffentlichung an, Monat und Tag sind optional.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>publisher</dc-element>
-          <label>Verlag</label>
+          <label>Direktlink zum Repositorium</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -6364,17 +6390,18 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <required />
           <style>col-md-6</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>subject</dc-element>
-          <label>Schlagwörter</label>
+          <label>Schlagworte</label>
           <input-type>tag</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Mit Schlagworten beschreiben Sie den Inhalt des Datensatzes. Verwenden Sie für jedes Schlagwort ein eigenes Feld.</hint>
         </field>
       </row>
     </form>
@@ -6417,47 +6444,35 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>ressort</dc-qualifier>
-          <label>Förderndes Ressort/Ministerium bzw. Träger</label>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>Künstlicher Primärschlüssel</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <style>col-md-4</style>
+          <hint>(FMA_ID)</hint>
         </field>
-      </row>
-    </form>
-    <form name="calls-synsicris-contact">
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <label>Kontakt</label>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visiblity</dc-qualifier>
+          <label>Sichtbarkeit in easy online</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>E-Mail</label>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>funding-guideline</dc-qualifier>
+          <label>Schlüssel der übergeordneten Förderrichtlinie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -6487,81 +6502,80 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Beschreibung</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Art</label>
-          <input-type value-pairs-name="project_types">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>fundingParent</dc-element>
           <label>Zugehöriges Programm / Fördermaßnahme</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>(FMA_ID)</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <label>Kontaktinformationen</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>call</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Start des Calls</label>
-          <input-type>calendar</input-type>
+          <dc-element>fundingagency</dc-element>
+          <label>Kennung des zugeordneten Ressorts oder Projektträgers</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>call</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>Ende des Calls</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
+          <hint>(PT_KEY)</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Webseite(n)</label>
+          <dc-element>funder</dc-element>
+          <label>Kennung des zugeordneten Mandanten/Ressort</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>funder</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Dispositionsbefugtes Referat des Mandanten</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>(V_DISREF)</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visiblity</dc-qualifier>
+          <label>Sichtbarkeit in easy online</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>Künstlicher Primärschlüssel</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint>(FMB_ID)</hint>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Letztes Änderungsdatum profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -6852,11 +6866,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Use by owner</stored-value>
       </pair>
       <pair>
-        <displayed-value>über Lizenzvergabe (Patentinhaber überträgt einem anderen die vertraglich geregelte Nutzung, im Gegenzug erhält er Lizenzgebühren.)</displayed-value>
+        <displayed-value>Lizenzvergabe</displayed-value>
         <stored-value>Licensing</stored-value>
       </pair>
       <pair>
-        <displayed-value>über Verkauf (Patentinhaber verkauft sämtliche Rechte an einen anderen.)</displayed-value>
+        <displayed-value>Verkauf</displayed-value>
         <stored-value>Sale</stored-value>
       </pair>
     </value-pairs>
@@ -7126,24 +7140,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="event_purpose" dc-term="event_purpose">
       <pair>
-        <displayed-value>Problemstellung schärfen</displayed-value>
+        <displayed-value>Problemstellung reflektieren</displayed-value>
         <stored-value>Problem definition</stored-value>
       </pair>
       <pair>
         <displayed-value>Projektdesign konkretisieren (z. B. Fragestellung, Methoden)</displayed-value>
         <stored-value>Project design</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Impact Pathway des Projektes weiterentwickeln</displayed-value>
-        <stored-value>Impact pathway reflection</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Transfer- und Verbreitungsstrategien entwickeln</displayed-value>
-        <stored-value>Transfer strategies</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Laufenden Forschungs- und Entwicklungsprozess reflektieren</displayed-value>
-        <stored-value>Research process reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Daten erheben / Versuche durchführen</displayed-value>
@@ -7158,8 +7160,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Practice knowledge integration</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ergebnisse entwickeln</displayed-value>
-        <stored-value>Joint development</stored-value>
+        <displayed-value>Forschungs- und Entwicklungsprozess reflektieren</displayed-value>
+        <stored-value>Research process reflection</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Transfer- und Verbreitungsstrategien entwickeln</displayed-value>
+        <stored-value>Transfer strategies</stored-value>
       </pair>
       <pair>
         <displayed-value>Projektergebnisse diskutieren</displayed-value>
@@ -7170,20 +7176,20 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>Research process - others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Praxisreife/Anwendbarkeit der Ergebnisse beleuchten</displayed-value>
+        <displayed-value>Praxisreife/Anwendbarkeit der Ergebnisse reflektieren</displayed-value>
         <stored-value>Reflect applicability</stored-value>
       </pair>
       <pair>
-        <displayed-value>Erwünschte gesellschaftliche Wirkungen des Projektes / der Ergebnisse fördern</displayed-value>
-        <stored-value>Reflect desired societal impacts</stored-value>
+        <displayed-value>Erwartete gesellschaftliche Wirkungen reflektieren</displayed-value>
+        <stored-value>Reflect expected societal impacts</stored-value>
       </pair>
       <pair>
-        <displayed-value>Ethische Aspekte des Projektes und der Ergebnisse reflektieren</displayed-value>
-        <stored-value>Ethical reflection</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Risiken und Folgen/Nebenfolgen der Projektergebnisse abwägen</displayed-value>
+        <displayed-value>Risiken und Folgen/Nebenfolgen reflektieren</displayed-value>
         <stored-value>Risk reflection</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Ethische Aspekte reflektieren</displayed-value>
+        <stored-value>Ethical reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Regionale Vernetzung</displayed-value>
@@ -7426,14 +7432,22 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="funderlabel2" dc-term="funderlabel2">
       <pair>
-        <displayed-value>Platzhalter</displayed-value>
-        <stored-value>placeholder</stored-value>
+        <displayed-value>Platzhalter 1</displayed-value>
+        <stored-value>placeholder 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Platzhalter 2</displayed-value>
+        <stored-value>placeholder 2</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="funderlabel3" dc-term="funderlabel3">
       <pair>
-        <displayed-value>Platzhalter</displayed-value>
-        <stored-value>placeholder</stored-value>
+        <displayed-value>Platzhalter 1</displayed-value>
+        <stored-value>placeholder 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Platzhalter 2</displayed-value>
+        <stored-value>placeholder 2</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="sdg_influence" dc-term="sdg_influence">
@@ -7552,28 +7566,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="cooperation_type" dc-term="cooperation_type">
       <pair>
-        <displayed-value>Unterauftragnehmer (Auftragssumme kleiner als 100.000 €)</displayed-value>
-        <stored-value>subcontractor &lt; 100.000 €</stored-value>
+        <displayed-value>Unterauftragnehmer</displayed-value>
+        <stored-value>Subcontract</stored-value>
       </pair>
       <pair>
-        <displayed-value>Unterauftragnehmer (Auftragssumme größer als 100.000 € )</displayed-value>
-        <stored-value>subcontractor &gt; 100.000 €</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Vertragspartner mit Unternehmensvertrag</displayed-value>
-        <stored-value>company contract</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Vertragspartner mit vorhabensspezifischem Vertrag</displayed-value>
-        <stored-value>project-specific contract</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Andere Vertragspartner</displayed-value>
-        <stored-value>other contract</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Informeller Kooperationspartner</displayed-value>
-        <stored-value>informal cooperation</stored-value>
+        <displayed-value>Kooperationspartner</displayed-value>
+        <stored-value>Coperation</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
@@ -7840,12 +7838,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Readiness Level</displayed-value>
-        <stored-value>SRL</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Technology Readiness Level</displayed-value>
         <stored-value>TRL</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Solution Readiness Level</displayed-value>
+        <stored-value>SRL</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="readiness_level" dc-term="readiness_level">
@@ -8126,7 +8124,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Negative Nebenwirkungen</displayed-value>
+        <displayed-value>Mögliche negative Nebenwirkungen</displayed-value>
         <stored-value>neg_sideeffect</stored-value>
       </pair>
     </value-pairs>
@@ -8332,6 +8330,24 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="impact_evidence" dc-term="impact_evidence">
+      <pair>
+        <displayed-value>Ergebnisse aus dem Vorhaben</displayed-value>
+        <stored-value>project results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Externe Ergebnisse / Literatur</displayed-value>
+        <stored-value>external results</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Hypothesen – fachliche abgeleitet</displayed-value>
+        <stored-value>scientific hypothesis</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Vermutungen – noch nicht fachlich hergeleitet</displayed-value>
+        <stored-value>non-scientific assumptions</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">
       <pair>
         <displayed-value>Schutzrechtsanmeldungen Anderer (die einer Verwertung durch die Antragsteller entgegenstehen)</displayed-value>
@@ -8404,11 +8420,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>balanced gender ratio</stored-value>
       </pair>
       <pair>
-        <displayed-value>Nein – der Anteil der beschäftigten Frauen ist größer als 60 %</displayed-value>
+        <displayed-value>Der Anteil der beschäftigten Frauen ist größer als 60 %</displayed-value>
         <stored-value>proportion of women above 60 %</stored-value>
       </pair>
       <pair>
-        <displayed-value>Nein – der Anteil der beschäftigten Männer ist größer als 60 %</displayed-value>
+        <displayed-value>Der Anteil der beschäftigten Männer ist größer als 60 %</displayed-value>
         <stored-value>proportion of men above 60 %</stored-value>
       </pair>
     </value-pairs>
@@ -8724,7 +8740,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Offene Forschungsfragen</displayed-value>
+        <displayed-value>Offene Forschungsfrage</displayed-value>
         <stored-value>open_researchquestion</stored-value>
       </pair>
     </value-pairs>
@@ -9802,8 +9818,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="internal_purpose" dc-term="internal_purpose">
       <pair>
-        <displayed-value>Überprüfe, Ändern, Ergänzen</displayed-value>
-        <stored-value>check_and_complete</stored-value>
+        <displayed-value>Besprechen</displayed-value>
+        <stored-value>exchange</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Bearbeiten</displayed-value>
+        <stored-value>edit</stored-value>
       </pair>
       <pair>
         <displayed-value>Erledigt</displayed-value>

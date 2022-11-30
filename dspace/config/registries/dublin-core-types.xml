@@ -926,15 +926,7 @@
     <qualifier>targetgroup</qualifier>
     <scope_note></scope_note>
   </dc-type>
-  
-  
-  <dc-type>
-    <schema>dc</schema>
-    <element>relation</element>
-    <qualifier>exploitationplan</qualifier>
-    <scope_note></scope_note>
-  </dc-type>
-  
+
   <dc-type>
     <schema>dc</schema>
     <element>relation</element>
@@ -942,10 +934,4 @@
     <scope_note></scope_note>
   </dc-type>
 
-  <dc-type>
-    <schema>dc</schema>
-    <element>relation</element>
-    <qualifier>interim_report</qualifier>
-    <scope_note></scope_note>
-  </dc-type>
 </dspace-dc-types>

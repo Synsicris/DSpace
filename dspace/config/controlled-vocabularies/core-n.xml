@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="CORE-N 2022-11-22">
+  <isComposedBy>
+    <node id="COR_N_10" label="Resource protection" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_11" label="Less efficient use of natural resources (e.g. soil, water, raw materials)" selectable="true">
+        <hasNote>Durch eine weniger effiziente Nutzung von Ressourcen wird mit einem gleich bleibenden Ressourcenaufwand ein geringerer Nutzen (Produkte, Energie, etc.) gewonnen bzw. ein gleich bleibender Nutzen mit einem höheren Ressourcenaufwand erzielt. 
+
+Beispiele: Die Erzeugung tierischer Nahrungsmittel ist in vielen Fällen weniger effizient als die Erzeugung pflanzlicher Nahrungsmittel, da tierische Lebensmittel bezogen auf eine Kalorieneinheit im Schnitt mehr Anbaufläche und Wasser beanspruchen als pflanzliche Erzeugnisse.</hasNote>
+        </node>
+        <node id="COR_N_12" label="Increased natural resource consumption" selectable="true">
+        <hasNote>Eine Erhöhung des Ressourcenverbrauchs kann verursacht werden durch:
+- den gesteigerte Bedarf an einem Produkt, einer Dienstleistung oder Energie
+- eine verringerte Effizienz bei der Gewinnung oder Nutzung von Ressourcen
+
+Beispiele: Zwischen 1995 und 2015 ist die Nutzung von nachwachsenden Rohstoffen gestiegen, da der Bedarf an Energie und Rohstoffen aus nachwachsenden Quellen gestiegen ist.
+
+Die gesteigerte Nachfrage an digitalen Technologien und Solarpanelen hat in den vergangenen Jahren zu einem gesteigertem Abbau seltener Erden geführt.</hasNote>
+        </node>
+        <node id="COR_N_13" label="Overuse of renewable resources" selectable="true">
+        <hasNote>Nutzung nachwachsender Rohstoffe in einem Ausmaß, das die Regenerationsfähigkeit von Ökosystemen und damit die zukünftige Nutzung dieser Ressourcen sowie Menschen gefährdet.
+
+Beispiele: Ein gesteigerter Bedarf an Kraftstoffen aus Kulturpflanzen erhöht den Flächendruck und die Umwandlung von Wäldern in Ackerflächen, wodurch Bodenqualität und -funktion beeinträchtigt werden.</hasNote>
+        </node>
+        <node id="COR_N_14" label="Increased land consumption" selectable="true">
+        <hasNote>Betrifft die Inanspruchnahme von Flächen durch Versiegelung oder Landnutzung, sodass deren ursprüngliche ökologische Funktion beeinträchtigt wird.
+
+Beispiele:
+Für die Erschließung von Ressourcen  über Tagebau gehen erhebliche Flächen verloren.
+
+Die Versiegelung von Flächen für Bauvorhaben geht in den meisten Fällen einen irreversiblen Verlust der ursprünglichen Bodenfunktionen (z.B. Versickerung, Filterfunktion, Habitat, Pflanzenproduktion) am jeweiligen Standort einher.</hasNote>
+        </node>
+        <node id="COR_N_15" label="Increased quantities of waste" selectable="true">
+        <hasNote>Erzeugung neuer Abfallströme oder Erhöhung des bestehenden Abfallaufkommens.
+
+Beispiele: Der Einsatz von Tröpfchenbewässerungssystemen im Gemüsebau ermöglicht eine effizientere Wassernutzung, geht jedoch mit der Erzeugung von zusätzlichem Plastikabfällen einher, da die Tropfschläuche regelmäßig ausgewechselt werden müssen.
+
+Die gesteigerte Textilproduktion hat in den vergangenen Jahrzehnten zu einem massiven Anstieg im Aufkommen von (auch schlecht recyclebaren) Altkleidern geführt.</hasNote>
+        </node>
+        <node id="COR_N_16" label="Problems due to waste disposal" selectable="true">
+        <hasNote>Entsorgung von Abfällen, die Schäden für Mensch und Umwelt verursacht.
+
+Beispiele:
+Politische und technische Hürden für eine sichere Endlagerung von Atommüll.
+
+Methanemissionen durch die Deponierung von Müll.</hasNote>
+        </node>
+        <node id="COR_N_17" label="Impairment of the reuse and recycling of materials from production and consumption processes" selectable="true">
+        <hasNote>Betrifft Hindernisse für eine Wiederverwertung nicht mehr genutzter Stoffe aus Konsum und Produktion.
+
+Beispiele: Baustoffe stellen einen der bedeutendsten Abfallströme dar, die meisten Baustoffe sind jedoch schlecht recyclebar und nicht auf Wiederverwertung ausgelegt.
+
+Die Getrenntsammlung von organischen Abfällen durch private Haushalte ermöglicht deren energetische und stoffliche Verwertung bisher nur in begrenztem Maße, da nur die Hälfte der organischen Abfälle getrennt gesammelt werden und getrennt gesammelte Abfälle durch Fremdstoffe verunreinigt werden.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_20" label="Climate protection and climate adaption" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_21" label="Additoinal greenhouse gas emissions" selectable="true">
+        <hasNote>Eine Erhöhung des Treibhausgasausstoßes auf gesamtwirtschaftlicher, sektoraler oder individueller Ebene kann verursacht werden durch:
+- erhöhten Bedarf an Produkten, Dienstleistungen oder Energie
+- weniger effiziente Nutzung von Ressourcen, also erhöhte THG-Emissionen pro genutzter Ressourcen- oder Energieeinheit oder gewonnener Produkteinheit
+
+Beispiele:
+Erhöhung der THG-Emissionen durch Ausbau von digitalen Infrastrukturen und damit einhergehender gesteigertem Energiebedarf.
+
+Der während der vergangenen Jahrzehnte weltweit gestiegene Einsatz von mineralischen Stickstoff-Düngern wird mit den gestiegenen Lachgas-Emissionen in Verbindung gebracht.</hasNote>
+        </node>
+        <node id="COR_N_22" label="Impairment of CO2 sequestration" selectable="true">
+        <hasNote>Betrifft sämtliche Treibhausgassenken und -speicher, die durch den Menschen beeinflusst werden können. 
+
+Beispiele:
+Die Umwandlung von Wäldern oder Grünland in Ackerflächen geht in der Regel mit einer Verringerung der Kohlenstoffspeicherkapazität der betroffenen Flächen einher.</hasNote>
+        </node>
+        <node id="COR_N_23" label="Increased use of fossil fuels" selectable="true">
+        <hasNote>Betrifft die Intensivierung des Abbaus von fossilen Energieträgern wie Öl, Kohle und Gas. 
+
+Beispiele: 
+Die Entnahme von Öl, Kohle und Gas ist in Deutschland zwischen 1994 und 2015 gesunken. Im gleichen Zeitraum ist jedoch der Verbauch von fossilen Energieträgern durch indirekte und direkte Importe gestiegen.</hasNote>
+        </node>
+        <node id="COR_N_24" label="Impairment of the expansion of renewable energy" selectable="true">
+        <hasNote>Betrifft Hemmnisse für den Ausbau erneuerbarer Energien, wenn dadurch die Ablösung fossiler Energieträger verzögert wird.
+
+Beispiele:
+Planungsrechtliche und politische Hürden für die Nutzung von Flächen für den Bau von Windkraftanlagen
+
+Geopolitische, menschenrechtliche und ökologische Bedenken und Hemmnisse bei der Beschaffung von seltenen Erden für die Produktion von Solarkraftanlagen</hasNote>
+        </node>
+        <node id="COR_N_25" label="Less efficient use of energy / increasing energy consumption" selectable="true">
+        <hasNote>Betrifft wenig energieeffiziente Prozesse bzw. einen steigenden absoluten Energieverbrauch. 
+
+Beispiele: Durch eine schlechte Isolation von Gebäuden wird pro beheiztem Raumvolumen mehr Energie benötigt, als mit besserer Isolation.
+
+Individualisierter Autoverkehr ist im Vergleich zum ÖPNV eine Mobilitätsform mit sehr ineffizienter Nutzung von Energie. Der Trend hin zu größeren Autos steigert den Energieverbrauch.</hasNote>
+        </node>
+        <node id="COR_N_26" label="Impairment of adaptions to extreme weather events" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer Anpassung an potenziell häufiger auftretende Extremwetterereignisse entgegenstehen oder die bereits vorhandene Resilienz gegenüber Extremwetterereignissen verschlechtern. 
+
+Beispiele:
+Die Rodung von Wäldern für die Ressourcengewinnung in Tagebauten verringert die Fähigkeit der Landschaft Wasser zurückzuhalten und Winde zu brechen.</hasNote>
+        </node>
+        <node id="COR_N_27" label="Impairment of climate resilience of land use systems" selectable="true">
+        <hasNote>Betrifft Entwicklungen im Management von Landnutzungssystemen, die eine Verschlechterung der Resilienz gegenüber veränderlichen Klimabedingungen mit sich bringen.
+
+Beispiele:
+Ausweitung der Anbauflächen von Kulturpflanzensorten, die auf gute Ertragseigenschaften, nicht aber auf Anpassungsfähigkeit und Widerstandsfähigkeit hin gezüchtet wurden. 
+
+Beseitigung von dauerhaften Landschaftselementen, wie Hecken und Baumstreifen zugunsten der Bearbeitbarkeit von Flächen.</hasNote>
+        </node>
+        <node id="COR_N_28" label="Impariment of climate resilience of urban areas" selectable="true">
+        <hasNote>Betrifft Entwicklungen, die die Resilienz von urbanen Räumen gegenüber veränderten Klimabedingungen und Wetterereignissen verschlechtert.
+
+Beispiele:
+Zusätzliche Versiegelung von Grünflächen im städtischen Raum verringert das Infiltrationsvermögen des Bodens und erhöht damit die Überschwemmungsgefahr.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_30" label="Environmental protection" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_31" label="Increasing harmful emissions and immissions" selectable="true">
+        <hasNote>Betrifft den zusätzlichen Ausstoß von Emissionen, die sich negativ auf menschliche Gesundheit und Ökosysteme auswirken außer Emissionen von Gasen, die ausschließlich Treibhausgaswirkung zeigen (siehe dazu "Zusätzlicher Ausstoß klimarelevanter Gase"). 
+
+Beispiele:
+Lichtimmissionen durch nächtliche Beleuchtung in Städten beeinträchtigt natürliche Verhaltensweisen und Lebensvorgänge von Insekten und Vögeln.
+
+Stickstoffemissionen aus der Abwasserreinigung in die Umwelt wurden in den vergangenen Jahrzehnten verlagert: die Einträge in Gewässer konnten reduziert werden, dafür hat sich der Ausstoß stickstoffhaltiger Gase bei der Abwasserreinigung erhöht.</hasNote>
+        </node>
+        <node id="COR_N_32" label="Impairment of nature conservation and threats to biodiversity" selectable="true">
+        <hasNote>Betrifft Prozesse und Entwicklungen, die Bemühungen um Naturschutz entgegenwirken oder die genetische Vielfalt in natürlichen und anthropogen geformten Ökosystemen gefährden.
+
+Beispiele:
+Vereinheitlichung von natürlichen Habitaten durch die Homogenisierung von Landschaften, z.B. für den Anbau von Monokulturen auf großen zusammenhängenden Flächen.
+
+Die Haltung von Nutzbienen kann in bestimmten Gebieten zur Erhöhung des Konkurrenzdrucks um Nahrung für seltene Insektenarten führen.</hasNote>
+        </node>
+        <node id="COR_N_33" label="Threats to ecosystem services" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die Funktionen und Integrität von Ökosystemen gefährden.
+
+Beispiele:
+Die Entnahme von Wasser zur Bewässerung landwirtschaftlicher Kulturen kann in Trockenperiode zur Absenkung oder Austrocknung natürlicher Gewässer führen, wodurch diese Ihre Funktion als Habitat und zur mikroklimatischen Abkühlung einbüßen.
+
+Die Rodung von Wäldern für die Ressourcengewinnung in Tagebauen gefährdet deren Funktion als Habitat, Wasser- und Schadstofffilter, Erholungsort etc.</hasNote>
+        </node>
+        <node id="COR_N_34" label="Impairment of the sustainablity of land use systems" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die negative Einflüsse auf Ökosysteme und anthropogene Systeme durch land- und forstwirtschaftliche Systeme vergrößert.
+
+Beispiele:
+Der Einsatz von Tröpfchenbewässerungssystemen im Gemüsebau ermöglicht eine effizientere Wassernutzung, geht jedoch mit der Erzeugung von zusätzlichem Plastikabfällen und einem höheren Materialaufwand einher, da die Tropfschläuche regelmäßig ausgewechselt werden müssen.
+
+Erhöhung der Ressourcenintensität der Nahrungsmittelerzeugung durch Ausweitung der tierischen Erzeugung, insbesondere von nicht grünlandbasierter Tierhaltung.</hasNote>
+        </node>
+        <node id="COR_N_35" label="Impairment of the expansion / strengthening of organic agriculture" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Verbreitung, Etablierung und Verbesserung von Praktiken des Ökolandbaus entgegenstehen.
+
+Beispiele: 
+Die fehlende Einpreisung von Umwelteinflüssen durch die Nahrungsmittelproduktion führt zu einer relativen Minderung der Konkurrenzfähigkeit der ökologischen Erzeugung am Markt. Dieser Nachteil kann durch eine Deregulierung von Marktprozessen weiter verschärft werden.
+
+Der Fokus von Züchtungsvorhaben auf Bedingungen der konventionellen Erzeugung bedingt ein relativ geschmälertes Angebot von Kulturpflanzenzüchtungen für die ökologische Erzeugung was deren Attraktivität für Landwirt*innen beeinträchtigt.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_40" label="Participation and justice" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_41" label="Threats to human health" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die die menschliche Gesundheit direkt oder indirekt, kurz- oder langfristig gefährden.
+
+Beispiele: Der Trend hin zu energiereicher und ballaststoffarmer Ernährung wird mit der massiven Zunahme lebensstilassoziierter Erkrankungen im vergangenen Jahrhundert in Verbindung gebracht.
+
+Intensivierung, Rationalisierungszwänge und Konkurrenzdruck auf dem europäischen Markt für Gemüse erhöhen den Druck auf Gemüseerzeuger in Südeuropa, die diesen Druck in Teilen an die Belegschaft weitergeben und dadurch deren Gesundheit gefährden (z.B. durch Missachtung von Arbeitsschutzvorschriften im Umgang mit Pflanzenschutzmitteln).</hasNote>
+        </node>
+        <node id="COR_N_42" label="Setbacks to social and political participation" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer gerechten Teilhabe an sozialen Aktivitäten und politischen Entscheidungen entgegenwirken.
+
+Beispiele: Verkürzung von Mitwirkungsfristen zur Beschleunigung von Bauvorhaben auf kommunaler Ebene auf Kosten von Beteiligungsmöglichkeiten von Bürger*innen.
+
+Verschlechterung Möglichkeiten zur sozialen Anbindung von Menschen aus dem ländlichen Raum durch Rationalisierung des ÖPNV.</hasNote>
+        </node>
+        <node id="COR_N_43" label="Setbacks to social justice" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten unabhängig von Hintergründen und Ausgangsvoraussetzungen einer Person (z.B. Religion, Bildungsstand Herkunft) und der Beseitigung systematischer und kulturell bedingter Diskriminierung entgegenwirken. 
+
+Beispiele: Verfestigung und weitere Ausweitung der Schere zwischen oberen und unteren Lohngrenzen durch Arbeitspolitiken von Unternehmen und öffentlichen Arbeitgebern.</hasNote>
+        </node>
+        <node id="COR_N_44" label="Impairment of gender equality" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten zur Teilhabe zwischen Menschen unterschiedlicher Geschlechterzugehörigkeiten entgegenwirken.
+
+Beispiele: Missbrauch sozialer Medien zur Polarisierung in politischen Diskursen zur Geschlechtergerechtigkeit.
+
+Gesundheitsgefährdungen und finanzielle Folgeschäden im Zuge der Corona-Pandemie haben aufgrund struktureller Ungleichheiten Frauen stärker betroffen als Männer.</hasNote>
+        </node>
+        <node id="COR_N_45" label="Threats to human rights and social standards along (global) value chains" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die Menschenrechte entlang von Lieferketten gefährden und der Verbesserung sozialer Standards für alle Beteiligten in Produktions- und Lieferketten entgegenwirken.
+
+Beispiele: 
+Intensivierung, Rationalisierungszwänge und Konkurrenzdruck auf dem europäischen Markt für Gemüse erhöhen den Druck auf Gemüseerzeuger in Südeuropa, die diesen Druck in Teilen an die Belegschaft weitergeben und dadurch deren Gesundheit gefährden (z.B. durch Missachtung von Arbeitsschutzvorschriften im Umgang mit Pflanzenschutzmitteln).
+Schwächung von Arbeitnehmerrechten in Produktionsländern.</hasNote>
+        </node>
+        <node id="COR_N_46" label="Threats to supply security (e.g. secure supply of energy, food, medical treatment)" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die eine nachhaltige Absicherung der materiellen Versorgung zur Befriedigung von Grundbedürfnissen gefährden.
+
+Beispiele: Konzentrationsprozesse bei denen vielfältige Versorgungsstrukturen zugunsten einer Rationalisierung durch zentralisierte Strukturen und einseitige Abhängigkeiten abgelöst werden.
+
+Gefährdung der langfristigen Versorgungsleistung von Böden durch Übernutzung und damit einhergehender Erosion und Qualitätsminderung.</hasNote>
+        </node>
+        <node id="COR_N_47" label="Impairment of integratet urban developments (holistic development of traffic, settlements, environment and social concerns)" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer integrierten Stadtplanung und -entwicklung sowie der Ausrichtung von Bau- und Strukturvorhaben an einem holistischen Verständnis zur Integration von sozialen, ökologischen und wirtschaftlichen Belangen entgegenwirken.
+
+Beispiele:
+Verkürzung von Mitwirkungsfristen zur Beschleunigung von Bauvorhaben auf kommunaler Ebene auf Kosten von Beteiligungsmöglichkeiten von Bürger*innen.
+
+Verdrängung sozialer Treffpunkte und lokaler Versorgungsstrukturen zugunsten von hochpreisigen und damit exklusiveren Angeboten im Zuge von Gentrifizierungen.</hasNote>
+        </node>
+        <node id="COR_N_48" label="Obstacles to the development of rural areas towards attractive living spaces and economic areas" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Gestaltung und Entwicklung von ländlichen Räumen als lebenswerten Arbeits- und Lebensräumen entgegewirken.
+
+Beispiele: 
+Verschlechterung der Anbindung und Versorgung durch Abbau des ÖPNV.
+
+Verdrängung von lokalen Einkaufsmöglichkeiten durch zentralisierte Einkaufsmöglichkeiten größerer Einzelhandelsunternehmen.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_50" label="Education and innovation" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_51" label="Deterioration of education" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Fortentwicklung und Anpassung von Bildungseinrichtungen an Bedürfnisse der Gesellschaft und der Schaffung inklusiver und universell zugänglicher Bildungsangebote entgegenwirken.
+
+Beispiele: Ausrichtung neuer Bildungsangeboten an einseitigen Forderungen (z.B. Überfokus auf Digitalisierung) anstatt einer ganzheitlicheren Evaluation von Bedürfnissen an Fähigkeiten und Bildungsangeboten.
+
+(Übermäßige) Schaffung von Bildungsangeboten, die unzureichend an Bedürfnisse unterschiedlicher Zielgruppen angepasst sind und damit ausschließlich einer exklusiven Minderheit zugutekommen.
+
+Die Normalisierung und Intensivierung der Nutzung von digitalen Technologien in jungem Alter könnte der Entwicklung von sozialen Fähigkeiten und dem Interesse an gesellschaftlicher Teilhabe und Gestaltung in einigen Fällen entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_52" label="Impairment of technical innovations for sustainable development" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Entwicklung und Erprobung von technischen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele entgegenwirken.
+
+Beispiele:
+Ethische Bedenken und geopolitische Hemmnisse bzgl. der Ressourcengewinnung für den Ausbau erneuerbarer Energien.</hasNote>
+        </node>
+        <node id="COR_N_53" label="Impairment of social innovations for sustainable development" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Entwicklung und Erprobung von sozialen und kulturellen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele entgegenwirken.
+
+Beispiele:
+Konsumtrends hin zu vermeintlich oder nur begrenzt nachhaltigen Produkten, die tiefergreifende kulturelle und marktwirtschaftliche Veränderungen unnötig erscheinen lassen (z.B. lassen sich Umweltziele im Verkehrssektor nur erreichen, wenn der Umstieg auf Elektromobilität mit einer massiven Reduktion des motorisierten Individualverkehrs einhergeht).
+
+Trends zur kulturellen Individualisierung könnten einer kollektiven und damit ressourceneffizienteren Nutzung von Gütern (z.B. Gemeinschaftsverpflegung, gemeinsame Nutzung von Wohnraum) entgegenwirken.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_60" label="Miscellaneous" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_61" label="Miscellaneous - ecologic" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_62" label="Miscellaneous - economic" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_63" label="Miscellaneous - socio-cultural" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_64" label="Miscellaneous - governance" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

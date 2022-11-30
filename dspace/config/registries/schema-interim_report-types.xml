@@ -1,0 +1,33 @@
+<dspace-dc-types>
+
+    <dspace-header>
+        <title>Interim Report Types</title>
+    </dspace-header>
+
+    <dc-schema>
+        <name>interim_report</name>
+        <namespace>https://schema.org/interim_report</namespace>
+    </dc-schema>
+
+    <dc-type>
+        <schema>interim_report</schema>
+        <element>relation</element>
+        <qualifier>step</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>interim_report</schema>
+        <element>relation</element>
+        <qualifier>task</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>interim_report</schema>
+        <element>step</element>
+        <qualifier>type</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+</dspace-dc-types>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="CORE-N 2022-11-22">
+  <isComposedBy>
+    <node id="COR_N_10" label="Ressourcenschutz" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_11" label="Weniger effiziente Nutzung natürlicher Ressourcen (z.B. Boden, Wasser, Rohstoffe)" selectable="true">
+        <hasNote>Durch eine weniger effiziente Nutzung von Ressourcen wird mit einem gleich bleibenden Ressourcenaufwand ein geringerer Nutzen (Produkte, Energie, etc.) gewonnen bzw. ein gleich bleibender Nutzen mit einem höheren Ressourcenaufwand erzielt.</hasNote>
+        </node>
+        <node id="COR_N_12" label="Erhöhter Verbrauch natürlicher Ressourcen" selectable="true">
+        <hasNote>Eine Erhöhung des Ressourcenverbrauchs kann verursacht werden durch:
+- den gesteigerte Bedarf an einem Produkt, einer Dienstleistung oder Energie
+- eine verringerte Effizienz bei der Gewinnung oder Nutzung von Ressourcen</hasNote>
+        </node>
+        <node id="COR_N_13" label="Übernutzung nachwachsender Rohstoffe" selectable="true">
+        <hasNote>Nutzung nachwachsender Rohstoffe in einem Ausmaß, das die Regenerationsfähigkeit von Ökosystemen und damit die zukünftige Nutzung dieser Ressourcen sowie Menschen gefährdet.</hasNote>
+        </node>
+        <node id="COR_N_14" label="Erhöhter Flächenverbrauch" selectable="true">
+        <hasNote>Betrifft die Inanspruchnahme von Flächen durch Versiegelung oder Landnutzung, sodass deren ursprüngliche ökologische Funktion beeinträchtigt wird.</hasNote>
+        </node>
+        <node id="COR_N_15" label="Zusätzliche Erzeugung von Abfällen" selectable="true">
+        <hasNote>Erzeugung neuer Abfallströme oder Erhöhung des bestehenden Abfallaufkommens.</hasNote>
+        </node>
+        <node id="COR_N_16" label="Probleme durch die Abfallentsorgung" selectable="true">
+        <hasNote>Entsorgung von Abfällen, die Schäden für Mensch und Umwelt verursacht.</hasNote>
+        </node>
+        <node id="COR_N_17" label="Beeinträchtigung der Wiederverwertung/ Recycling nicht mehr genutzter Stoffe aus Konsum und Produktion" selectable="true">
+        <hasNote>Betrifft Hindernisse für eine Wiederverwertung nicht mehr genutzter Stoffe aus Konsum und Produktion.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_20" label="Klimaschutz und Klimaanpassung" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_21" label="Zusätzlicher Ausstoß klimarelevanter Gase" selectable="true">
+        <hasNote>Eine Erhöhung des Treibhausgasausstoßes auf gesamtwirtschaftlicher, sektoraler oder individueller Ebene kann verursacht werden durch:
+- erhöhten Bedarf an Produkten, Dienstleistungen oder Energie
+- weniger effiziente Nutzung von Ressourcen, also erhöhte THG-Emissionen pro genutzter Ressourcen- oder Energieeinheit oder gewonnener Produkteinheit</hasNote>
+        </node>
+        <node id="COR_N_22" label="Verminderung der CO2 -Bindung" selectable="true">
+        <hasNote>Betrifft sämtliche Treibhausgassenken und -speicher, die durch den Menschen beeinflusst werden können.</hasNote>
+        </node>
+        <node id="COR_N_23" label="Verstärkte Nutzung fossiler Energieträger" selectable="true">
+        <hasNote>Betrifft die Intensivierung des Abbaus von fossilen Energieträgern wie Öl, Kohle und Gas.</hasNote>
+        </node>
+        <node id="COR_N_24" label="Beeinträchtigung des Ausbaus erneuerbarer Energien" selectable="true">
+        <hasNote>Betrifft Hemmnisse für den Ausbau erneuerbarer Energien, wenn dadurch die Ablösung fossiler Energieträger verzögert wird.</hasNote>
+        </node>
+        <node id="COR_N_25" label="Wenig effiziente Energienutzung / Steigerung des Energieverbrauchs" selectable="true">
+        <hasNote>Betrifft wenig energieeffiziente Prozesse bzw. einen steigenden absoluten Energieverbrauch. 
+
+Beispiele: Durch eine schlechte Isolation von Gebäuden wird pro beheiztem Raumvolumen mehr Energie benötigt, als mit besserer Isolation.
+
+Individualisierter Autoverkehr ist im Vergleich zum ÖPNV eine Mobilitätsform mit sehr ineffizienter Nutzung von Energie. Der Trend hin zu größeren Autos steigert den Energieverbrauch.</hasNote>
+        </node>
+        <node id="COR_N_26" label="Beeinträchtigung der Anpassung an Extremwetterereignisse" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer Anpassung an potenziell häufiger auftretende Extremwetterereignisse entgegenstehen oder die bereits vorhandene Resilienz gegenüber Extremwetterereignissen verschlechtern. 
+
+Beispiele:
+Die Rodung von Wäldern für die Ressourcengewinnung in Tagebauten verringert die Fähigkeit der Landschaft Wasser zurückzuhalten und Winde zu brechen.</hasNote>
+        </node>
+        <node id="COR_N_27" label="Verschlechterung der Klimaresilienz von Landnutzungssystemen" selectable="true">
+        <hasNote>Betrifft Entwicklungen im Management von Landnutzungssystemen, die eine Verschlechterung der Resilienz gegenüber veränderlichen Klimabedingungen mit sich bringen.</hasNote>
+        </node>
+        <node id="COR_N_28" label="Verschlechterung der Klimaresilienz des städtischen Raums" selectable="true">
+        <hasNote>Betrifft Entwicklungen, die die Resilienz von urbanen Räumen gegenüber veränderten Klimabedingungen und Wetterereignissen verschlechtert.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_30" label="Umweltschutz" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_31" label="Zusätzliche schädliche  Emissionen (Ausstoß von Schadstoffen) und Immissionen (Einwirkung von Schadstoffen auf Menschen oder Ökosysteme)" selectable="true">
+        <hasNote>Betrifft den zusätzlichen Ausstoß von Emissionen, die sich negativ auf menschliche Gesundheit und Ökosysteme auswirken außer Emissionen von Gasen, die ausschließlich Treibhausgaswirkung zeigen (siehe dazu "Zusätzlicher Ausstoß klimarelevanter Gase").</hasNote>
+        </node>
+        <node id="COR_N_32" label="Beeinträchtigung des Naturschutzes und Gefährdung biologischer Vielfalt" selectable="true">
+        <hasNote>Betrifft Prozesse und Entwicklungen, die Bemühungen um Naturschutz entgegenwirken oder die genetische Vielfalt in natürlichen und anthropogen geformten Ökosystemen gefährden.</hasNote>
+        </node>
+        <node id="COR_N_33" label="Gefährdung der Funktionen von Ökosystemen" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die Funktionen und Integrität von Ökosystemen gefährden.</hasNote>
+        </node>
+        <node id="COR_N_34" label="Verringerung der Nachhaltigkeit von Landnutzungssystemen" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die negative Einflüsse auf Ökosysteme und anthropogene Systeme durch land- und forstwirtschaftliche Systeme vergrößert.</hasNote>
+        </node>
+        <node id="COR_N_35" label="Beeinträchtigung der Entwicklung des Ökolandbaus" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Verbreitung, Etablierung und Verbesserung von Praktiken des Ökolandbaus entgegenstehen.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_40" label="Teilhabe und Gerechtigkeit" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_41" label="Gefährdung menschlicher Gesundheit" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die die menschliche Gesundheit direkt oder indirekt, kurz- oder langfristig gefährden.</hasNote>
+        </node>
+        <node id="COR_N_42" label="Verschlechterung sozialer und politischer Teilhabe" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer gerechten Teilhabe an sozialen Aktivitäten und politischen Entscheidungen entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_43" label="Beeinträchtigung der sozialen Gerechtigkeit" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten unabhängig von Hintergründen und Ausgangsvoraussetzungen einer Person (z.B. Religion, Bildungsstand Herkunft) und der Beseitigung systematischer und kulturell bedingter Diskriminierung entgegenwirken. (Chancengerechtigkeit, Bedarfsgerechtigkeit, Leistungsgerechtigkeit, Generationengerechtigkeit)</hasNote>
+        </node>
+        <node id="COR_N_44" label="Beeinträchtigung der Geschlechtergerechtigkeit" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die der Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten zur Teilhabe zwischen Menschen unterschiedlicher Geschlechterzugehörigkeiten entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_45" label="Beeinträchtigung von Menschenrechten und sozialer 
+Standards entlang (globaler) Wertschöpfungsketten" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die Menschenrechte entlang von Lieferketten gefährden und der Verbesserung sozialer Standards für alle Beteiligten in Produktions- und Lieferketten entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_46" label="Beeinträchtigung der Versorgungssicherheit (z.B. gesicherte und Versorgung mit Energie, Lebensmitteln, medizinischer Versorgung)" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die eine nachhaltige Absicherung der materiellen Versorgung zur Befriedigung von Grundbedürfnissen gefährden.</hasNote>
+        </node>
+        <node id="COR_N_47" label="Hemmung einer integrierten Stadtentwicklung (ganzheitliche Entwicklung von Siedlung, Verkehr, Umwelt und sozialer Belange)" selectable="true">
+        <hasNote>Betrifft Entwicklungen und Prozesse, die einer integrierten Stadtplanung und -entwicklung sowie der Ausrichtung von Bau- und Strukturvorhaben an einem holistischen Verständnis zur Integration von sozialen, ökologischen und wirtschaftlichen Belangen entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_48" label="Negative Beeinträchtigung ländlicher Räume als attraktive Wirtschafts- und Lebensräume" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Gestaltung und Entwicklung von ländlichen Räumen als lebenswerten Arbeits- und Lebensräumen entgegewirken.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_50" label="Bildung und Innovation" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_51" label="Verschlechterung der Bildung" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Fortentwicklung und Anpassung von Bildungseinrichtungen an Bedürfnisse der Gesellschaft und der Schaffung inklusiver und universell zugänglicher Bildungsangebote entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_52" label="Hemmung technologischer Innovationen für Nachhaltige Entwicklung" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Entwicklung und Erprobung von technischen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele entgegenwirken.</hasNote>
+        </node>
+        <node id="COR_N_53" label="Hemmung sozialer Innovationen für Nachhaltige Entwicklung" selectable="true">
+        <hasNote>Betrifft Prozesse, die der Entwicklung und Erprobung von sozialen und kulturellen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele entgegenwirken.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_N_60" label="Sonstiges" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_N_61" label="Sonstiges - ökologisch" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_62" label="Sonstiges - ökonomisch" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_63" label="Sonstiges - sozial-kulturell" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="COR_N_64" label="Sonstiges - governance" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+  </isComposedBy>
+</node>

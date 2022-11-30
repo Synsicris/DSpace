@@ -380,4 +380,11 @@
             <class>org.dspace.iiif.canvasdimension.CanvasDimensionCLI</class>
         </step>
     </command>
+    <command>
+        <name>delete-old-versions</name>
+        <description>Delete old not-official versions</description>
+        <step>
+            <class>org.dspace.versioning.OldVersionsDeletionCLITool</class>
+        </step>
+    </command>
 </commands>

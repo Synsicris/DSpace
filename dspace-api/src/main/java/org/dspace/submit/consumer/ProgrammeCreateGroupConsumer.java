@@ -86,7 +86,9 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
             deleteGroupsByName(context, memberGroupName, managerGroupName, projectFunderGroupName);
             putProcessed(uuid, eventType);
         } else if (eventType == Event.INSTALL) {
-            createProgrammeGroupsAndMetadata(context, (Item) dso, memberGroupName, managerGroupName, projectFunderGroupName);
+            createProgrammeGroupsAndMetadata(
+                context, (Item) dso, memberGroupName, managerGroupName, projectFunderGroupName
+            );
             putProcessed(uuid, eventType);
         }
 

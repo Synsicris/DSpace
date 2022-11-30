@@ -510,6 +510,32 @@
         </rightCardinality>
     </type>
     <type>
+        <leftType>interim_report</leftType>
+        <rightType>interim_report</rightType>
+        <leftwardType>isVersionOf</leftwardType>
+        <rightwardType>hasVersion</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+    </type>
+    <type>
+        <leftType>interim_report_step</leftType>
+        <rightType>interim_report_step</rightType>
+        <leftwardType>isVersionOf</leftwardType>
+        <rightwardType>hasVersion</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+    </type>
+    <type>
         <leftType>projectpartner</leftType>
         <rightType>projectpartner</rightType>
         <leftwardType>isVersionOf</leftwardType>

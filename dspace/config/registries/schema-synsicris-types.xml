@@ -253,7 +253,14 @@
 
     <dc-type>
         <schema>synsicris</schema>
-        <element>versioning-policy</element>
+        <element>versioning-edit-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>versioning-read-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>    
@@ -291,6 +298,13 @@
         <element>relation</element>
         <qualifier>exploitationplan</qualifier>
         <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+		<schema>synsicris</schema>
+		<element>relation</element>
+		<qualifier>interim_report</qualifier>
+		<scope_note></scope_note>
     </dc-type>
 
     <dc-type>
@@ -416,6 +430,26 @@
         <schema>synsicris</schema>
         <element>version</element>
         <qualifier>official</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>notes</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>isLastVersion</element>
+        <qualifier>visible</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
         <scope_note></scope_note>
     </dc-type>
 

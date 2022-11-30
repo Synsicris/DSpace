@@ -50,6 +50,8 @@
 				<value>workpackage</value>
 				<value>exploitationplanstep</value>
 				<value>exploitationplan</value>
+				<value>interim_report_step</value>
+				<value>interim_report</value>
 				<value>Project</value>
             </list>
         </property>

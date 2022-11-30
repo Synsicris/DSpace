@@ -34,7 +34,7 @@ public interface ProjectConsumerService {
             throws SQLException;
 
     public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException;
-    
+
     public Community getFundingCommunityByRelationFunding(Context context, Item item) throws SQLException;
 
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
@@ -55,11 +55,21 @@ public interface ProjectConsumerService {
         Context context, Community projectCommunity, Item projectItem, String version
     );
 
-    Iterator<Item> findVersionedItemsRelatedToProject(
+    public Iterator<Item> findVersionedItemsRelatedToProject(
         Context context, Community projectCommunity, Item projectItem, String version
+    );
+
+    public Iterator<Item> findPreviousVisibleVersionsInCommunity(
+        Context context, Community projectCommunity, String versionNumber
+    );
+
+    public Iterator<Item> findLastVersionVisibleInCommunity(
+        Context context, Community projectCommunity
     );
 
     public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
+
+    public Iterator<Item> findVersionedProjectItemsBy(Context context, UUID projectId);
 
 }

@@ -2040,7 +2040,7 @@
           <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-          <regex>/[^a-ü,.]/img</regex>
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
       </row>
       <row>

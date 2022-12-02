@@ -31,4 +31,6 @@ public interface ProjectGeneratorService {
 
     Group getProjectCommunityGroup(Context context, Community community, String role);
 
+    String getOwningFundigPolicy(Context context, Item Item) throws SQLException;
+
 }

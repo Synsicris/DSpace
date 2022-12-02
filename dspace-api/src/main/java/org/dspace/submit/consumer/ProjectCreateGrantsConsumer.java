@@ -63,34 +63,15 @@ public class ProjectCreateGrantsConsumer implements Consumer {
             Object dso = event.getSubject(context);
             if (dso instanceof Item) {
                 Item item = (Item) dso;
-                String[] entitiesToSkip = configurationService.getArrayProperty("project.grants.entity-name.to-skip",
-                        new String[] {});
                 String[] entitiesToInclude = configurationService.getArrayProperty(
-                        "project.grants.entity-name.to-include", new String[] {});
+                        "project.grants.entity-name.to-process", new String[] {});
                 String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-                if (Objects.isNull(entityType) || Arrays.stream(entitiesToSkip).anyMatch(entityType::equals)) {
+                if (Objects.isNull(entityType) || Arrays.stream(entitiesToInclude).noneMatch(entityType::equals)) {
                     return;
                 }
 
-                EPerson submitter = item.getSubmitter();
-                if (Objects.isNull(submitter)) {
-                    return;
-                }
-                if (itemsAlreadyProcessed.contains(item)) {
-                    return;
-                }
+                projectConsumerService.setGrantsByFundingPolicy(context, item);
 
-                String sharedValue = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
-                if (StringUtils.equals(sharedValue, ProjectConstants.SHARED) ||
-                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER) ||
-                    StringUtils.equals(sharedValue, ProjectConstants.FUNDER_PROGRAMME)) {
-                    return;
-                }
-                if (StringUtils.isNotBlank(sharedValue) &&
-                    (Objects.nonNull(workspaceItemService.findByItem(context, item)) ||
-                     Arrays.stream(entitiesToInclude).anyMatch(entityType::equals))) {
-                    projectConsumerService.checkGrants(context, submitter, item);
-                }
                 itemsAlreadyProcessed.add(item);
             }
         }

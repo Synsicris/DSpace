@@ -140,6 +140,11 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             this.itemService.update(ctx, item);
             this.itemsToProcess.remove(entry.getKey());
         }
+
+        if (this.itemsToProcess.isEmpty()) {
+            return;
+        }
+
         ctx.commit();
     }
 

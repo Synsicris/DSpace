@@ -7,8 +7,12 @@
  */
 package org.dspace.app.rest.repository;
 
+import static org.apache.commons.lang.StringUtils.isEmpty;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -43,8 +47,10 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.EPersonServiceImpl;
+import org.dspace.services.ConfigurationService;
 import org.dspace.validation.model.ValidationError;
 import org.dspace.validation.service.ValidationService;
+import org.dspace.versioning.service.VersioningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -86,6 +92,12 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
 
     @Autowired
     private ValidationService validationService;
+
+    @Autowired
+    VersioningService versioningService;
+
+    @Autowired
+    ConfigurationService configurationService;
 
     public EditItemRestRepository() throws SubmissionConfigReaderException {
         submissionConfigReader = new SubmissionConfigReader();
@@ -265,12 +277,19 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
         if (item == null) {
             throw new ResourceNotFoundException("No such item with uuid : " + itemUuid);
         }
+
+        // authorization
+
+
         EditItem source = eis.find(context, item, modeName);
         if (source != null && source.getMode() == null) {
             // The user is not allowed to give edit mode, return 403
             throw new AccessDeniedException(
                     "The current user does not have rights to edit mode <" + modeName + ">");
         }
+
+        boolean isAdmin = authorizeService.isAdmin(context);
+
         context.turnOffAuthorisationSystem();
 
         EditItemRest eir = findOne(context, data);
@@ -279,6 +298,10 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
             String[] path = op.getPath().substring(1).split("/", 3);
             if (OPERATION_PATH_SECTIONS.equals(path[0])) {
                 String section = path[1];
+                if (path.length > 2 && !isAuthorized(isAdmin, item, path[2])) {
+                    throw new AccessDeniedException(
+                        "The current user does not have rights to edit Item <" + itemUuid + ">");
+                }
                 evaluatePatch(context, request, source, eir, section, op);
             } else {
                 throw new DSpaceBadRequestException(
@@ -357,4 +380,24 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
             throw new RuntimeException(e.getMessage(), e);
         }
     }
+
+    private boolean isAuthorized(boolean isAdmin, Item item, String metadataField) {
+        String[] metadata =
+            configurationService.getArrayProperty("project.version.metadata-to-patch");
+
+        if (isAdmin || isNotVersionItem(item)) {
+            return true;
+        }
+
+        return
+            itemService.getEntityType(item).equals(PROJECT_ENTITY) &&
+                Arrays.stream(metadata).anyMatch(metadataField::equals);
+    }
+
+    private boolean isNotVersionItem(Item item) {
+        return isEmpty(
+            itemService.getMetadataFirstValue(item, "synsicris", "uniqueid", null, Item.ANY)
+        );
+    }
+
 }

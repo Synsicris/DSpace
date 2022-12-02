@@ -91,6 +91,33 @@
                         </bean>
                     </list>
                 </entry>
+                <entry key="project">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="VERSIONING-ADMIN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="VERSIONING-CUSTOM" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.versioning-edit-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </entry>
             </map>
         </property> 
     </bean>

@@ -130,11 +130,8 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     @Override
     public void end(Context ctx) throws Exception {
         if (this.itemsToProcess.isEmpty()) {
-
             return;
-
         }
-
         while (!this.itemsToProcess.isEmpty()) {
             Iterator<Entry<UUID, ImmutablePair<Item, String>>> it = this.itemsToProcess.entrySet().iterator();
             Entry<UUID, ImmutablePair<Item, String>> entry = it.next();

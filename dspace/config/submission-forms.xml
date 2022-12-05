@@ -1280,6 +1280,31 @@
         </field>
       </row>
     </form>
+    <form name="interim_report_step_type_5_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_5_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="interim_report_task_form">
       <row>
         <field>
@@ -1927,7 +1952,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required>mandatory</required>
           <hint />
           <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <regex>/[a-ü\D]+/gmi</regex>
         </field>
       </row>
       <row>
@@ -2041,7 +2065,6 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
       </row>
       <row>
@@ -2093,7 +2116,6 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2132,7 +2154,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required>mandatory</required>
           <hint />
           <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
-          <regex>/[a-ü\D]+/gmi</regex>
         </field>
       </row>
       <row>
@@ -4332,6 +4353,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4380,6 +4402,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4524,6 +4547,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
+          <regex>/[^a-ü,.]/img</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4535,6 +4559,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>/[a-ü\D]+/gmi</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -8963,68 +8988,6 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="interim_report_step_type_1_task_type" dc-term="interim_report_step_type_1_task_type">
       <pair>
-        <displayed-value>Patent or utility patent</displayed-value>
-        <stored-value>Patent</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Application of a solution / change / innovation</displayed-value>
-        <stored-value>application</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>External condition</displayed-value>
-        <stored-value>condition</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Solution/ change/ innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Spin-off (incl. association)</displayed-value>
-        <stored-value>spinoff</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="interim_report_step_type_2_task_type" dc-term="interim_report_step_type_2_task_type">
-      <pair>
-        <displayed-value>Solution/ change/ innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Spin-off (incl. association)</displayed-value>
-        <stored-value>spinoff</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>External condition</displayed-value>
-        <stored-value>condition</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Application of a solution / change / innovation</displayed-value>
-        <stored-value>application</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Expected societal impact</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Negative side effects</displayed-value>
-        <stored-value>neg_sideeffect</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Planned Publications</displayed-value>
-        <stored-value>plan_publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Publication</displayed-value>
-        <stored-value>Publication</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
@@ -9033,124 +8996,160 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Object or material</displayed-value>
-        <stored-value>physical_object</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Process of cooperation, participation and working together</displayed-value>
-        <stored-value>process_event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Event / Interaction</displayed-value>
+        <displayed-value>Event</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Workpackage</displayed-value>
+        <displayed-value>Cooperation / Participation / Exchange process</displayed-value>
+        <stored-value>process_event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication</displayed-value>
+        <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Reserach data</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Object /material</displayed-value>
+        <stored-value>physical_object</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Work package</displayed-value>
         <stored-value>workpackage</stored-value>
       </pair>
       <pair>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestone</displayed-value>
+        <stored-value>milestone</stored-value>
       </pair>
       <pair>
         <displayed-value>Award</displayed-value>
         <stored-value>award</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="interim_report_step_type_3_task_type" dc-term="interim_report_step_type_3_task_type">
-      <pair>
-        <displayed-value>Planned Publications</displayed-value>
-        <stored-value>plan_publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Publication</displayed-value>
-        <stored-value>Publication</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Dataset</displayed-value>
-        <stored-value>Product</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Research result</displayed-value>
-        <stored-value>research_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Object or material</displayed-value>
-        <stored-value>physical_object</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Award or prize</displayed-value>
-        <stored-value>award</stored-value>
-      </pair>
+    <value-pairs value-pairs-name="interim_report_step_type_2_task_type" dc-term="interim_report_step_type_2_task_type">
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Process of cooperation, participation and working together</displayed-value>
-        <stored-value>process_event</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Event / Interaction</displayed-value>
+        <displayed-value>Event</displayed-value>
         <stored-value>Event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Solution/ change/ innovation</displayed-value>
-        <stored-value>innovationpotential</stored-value>
+        <displayed-value>Cooperation / Participation / Exchange process</displayed-value>
+        <stored-value>process_event</stored-value>
       </pair>
       <pair>
-        <displayed-value>Spin-off (incl. association)</displayed-value>
-        <stored-value>spinoff</stored-value>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
       </pair>
       <pair>
-        <displayed-value>Application of a solution / change / innovation</displayed-value>
-        <stored-value>application</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>External condition</displayed-value>
-        <stored-value>condition</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Expected societal impact</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Negative side effects</displayed-value>
-        <stored-value>neg_sideeffect</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Workpackage</displayed-value>
+        <displayed-value>Work package</displayed-value>
         <stored-value>workpackage</stored-value>
       </pair>
       <pair>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
+      <pair>
+        <displayed-value>Milestone</displayed-value>
+        <stored-value>milestone</stored-value>
+      </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="interim_report_step_type_4_task_type" dc-term="interim_report_step_type_4_task_type">
+    <value-pairs value-pairs-name="interim_report_step_type_3_task_type" dc-term="interim_report_step_type_3_task_type">
       <pair>
-        <displayed-value>Idea for use of project results</displayed-value>
-        <stored-value>innovationidea</stored-value>
+        <displayed-value>External condition</displayed-value>
+        <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Next step and cooperation</displayed-value>
-        <stored-value>step</stored-value>
+        <displayed-value>Research and development objective</displayed-value>
+        <stored-value>proj_objective</stored-value>
       </pair>
       <pair>
-        <displayed-value>Research result</displayed-value>
-        <stored-value>research_result</stored-value>
+        <displayed-value>Target for interaction and transfer</displayed-value>
+        <stored-value>ia_objective</stored-value>
       </pair>
       <pair>
         <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Open research question</displayed-value>
-        <stored-value>open_researchquestion</stored-value>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible solution / change / innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Idea for the use of project results</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents or utility patent</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Expected societal impact</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative side effect</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_4_task_type" dc-term="interim_report_step_type_4_task_type">
+      <pair>
+        <displayed-value>External condition</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>State of knowledge / problem definition</displayed-value>
+        <stored-value>stateofart</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_5_task_type" dc-term="interim_report_step_type_5_task_type">
+      <pair>
+        <displayed-value>Research and development objective</displayed-value>
+        <stored-value>proj_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Target for interaction and transfer</displayed-value>
+        <stored-value>ia_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible solution / change / innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Idea for the use of project results</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents or utility patent</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Expected societal impact</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative side effect</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">

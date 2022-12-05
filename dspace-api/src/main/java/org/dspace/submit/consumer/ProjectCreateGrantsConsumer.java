@@ -11,16 +11,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.dspace.content.Item;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
-import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
-import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
@@ -38,7 +35,6 @@ public class ProjectCreateGrantsConsumer implements Consumer {
 
     private ConfigurationService configurationService;
     private ItemService itemService;
-    private WorkspaceItemService workspaceItemService;
     private ProjectConsumerService projectConsumerService;
 
     private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
@@ -47,7 +43,6 @@ public class ProjectCreateGrantsConsumer implements Consumer {
     public void initialize() throws Exception {
         configurationService = new DSpace().getConfigurationService();
         itemService = ContentServiceFactory.getInstance().getItemService();
-        workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
         projectConsumerService = new DSpace().getServiceManager().getServiceByName(
                                               ProjectConsumerServiceImpl.class.getName(),
                                               ProjectConsumerServiceImpl.class);

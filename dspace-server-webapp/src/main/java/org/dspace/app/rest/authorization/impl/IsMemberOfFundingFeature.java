@@ -75,7 +75,7 @@ public class IsMemberOfFundingFeature implements AuthorizationFeature {
             throw new IllegalArgumentException("No item found with the given id: " + itemRest.getUuid());
         }
 
-        Community community = projectConsumerService.getProjectCommunity(context, item);
+        Community community = projectConsumerService.getFirstOwningCommunity(context, item);
         if (community == null) {
             return false;
         }

@@ -129,6 +129,9 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     @Override
     public void end(Context ctx) throws Exception {
+        if (this.itemsToProcess.isEmpty()) {
+            return;
+        }
         while (!this.itemsToProcess.isEmpty()) {
             Iterator<Entry<UUID, ImmutablePair<Item, String>>> it = this.itemsToProcess.entrySet().iterator();
             Entry<UUID, ImmutablePair<Item, String>> entry = it.next();
@@ -136,8 +139,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             String version = entry.getValue().getRight();
             Boolean isVersionVisible =
                 Boolean.valueOf(this.itemService.getMetadataFirstValue(item, MD_VERSION_VISIBLE, null));
+            ctx.turnOffAuthorisationSystem();
             this.consumeProjectItem(ctx, item, isVersionVisible, version);
             this.itemService.update(ctx, item);
+            ctx.restoreAuthSystemState();
             this.itemsToProcess.remove(entry.getKey());
         }
         ctx.commit();

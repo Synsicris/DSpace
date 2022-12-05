@@ -16,6 +16,8 @@ import static org.dspace.builder.CommunityBuilder.createSubCommunity;
 import static org.dspace.project.util.ProjectConstants.DEFAULT_CURRENCY;
 import static org.dspace.project.util.ProjectConstants.DEFAULT_STATUS;
 import static org.dspace.project.util.ProjectConstants.FUNDER_PROJECT_MANAGERS_GROUP;
+import static org.dspace.project.util.ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.GROUP_POLICY_PLACEHOLDER;
 import static org.dspace.project.util.ProjectConstants.MD_CURRENCY;
 import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
@@ -89,6 +91,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.StringEndsWith;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,9 +119,20 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
             PROJECT_MEMBERS_GROUP_TEMPLATE,
             TEMPLATE
         );
+    private static final String funding_template_coordinators_group =
+        String.format(
+            FUNDING_COORDINATORS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
+    private static final String funding_template_members_group =
+        String.format(
+            FUNDING_MEMBERS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
 
     private static final String project_template_groups_name = "project.template.groups-name";
     private static final String project_template_add_user_groups = "project.template.add-user-groups";
+    private static final String funding_template_groups_name = "project.funding-template.groups-name";
     private String funder_project_managers_group = FUNDER_PROJECT_MANAGERS_GROUP;
 
     @Autowired
@@ -145,31 +159,47 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     @Autowired
     private VersionHistoryService versionHistoryService;
 
-    @Test
-    public void cloneCommunityRootTest() throws Exception {
+    private Community projectTemplate;
+    
+    private Community fundingTemplate;
+    
+    private Group adminGroup;
+    private Group funderGroup;
+    private Group membersGroup;
+    private Group fundingCoordGroup;
+    private Group fundingMemberGroup;
+    private Group readGroup;
+    private Group projAdminGroup;
+    
+    
+    @Override
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+
         context.turnOffAuthorisationSystem();
-
-        Group adminGroup = GroupBuilder.createGroup(context).build();
-        Group funderGroup = GroupBuilder.createGroup(context).build();
-        Group membersGroup = GroupBuilder.createGroup(context).build();
-        Group readGroup = GroupBuilder.createGroup(context).build();
-        Group projAdminGroup = GroupBuilder.createGroup(context).build();
-
-        Group collectionGroupA =
-            GroupBuilder.createGroup(context)
-                .withName("Group A")
-                .build();
-
-        Group collectionGroupB =
-            GroupBuilder.createGroup(context)
-                .withName("Group B")
-                .build();
-
-        groupService.setName(adminGroup, project_template_coordinators_group);
-        groupService.setName(funderGroup, project_template_funders_group);
-        groupService.setName(membersGroup, project_template_members_group);
-        groupService.setName(readGroup, project_template_readers_group);
-        groupService.setName(projAdminGroup, funder_project_managers_group);
+        
+        adminGroup = GroupBuilder.createGroup(context)
+                                 .withName(project_template_coordinators_group) 
+                                 .build();
+        funderGroup = GroupBuilder.createGroup(context)
+                                  .withName(project_template_funders_group)
+                                  .build();
+        membersGroup = GroupBuilder.createGroup(context)
+                                   .withName(project_template_members_group)
+                                   .build();
+        fundingMemberGroup = GroupBuilder.createGroup(context)
+                                         .withName(funding_template_members_group)
+                                         .build();
+        fundingCoordGroup = GroupBuilder.createGroup(context)
+                                        .withName(funding_template_coordinators_group)    
+                                        .build();
+        readGroup = GroupBuilder.createGroup(context)
+                                .withName(project_template_readers_group)
+                                .build();
+        projAdminGroup = GroupBuilder.createGroup(context)
+                                     .withName(funder_project_managers_group)
+                                     .build();
 
         configurationService.setProperty(
             project_template_groups_name,
@@ -180,6 +210,130 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                 project_template_members_group
             )
         );
+        
+        configurationService.setProperty(
+            funding_template_groups_name,
+            List.of(
+                    funding_template_members_group,
+                    funding_template_coordinators_group
+            )
+        );
+
+        configurationService.setProperty(
+                project_template_add_user_groups,
+            List.of(
+                    project_template_funders_group
+            )
+        );
+
+        projectTemplate = CommunityBuilder.createCommunity(context)
+                                          .withTitle("project-template")
+                                          .build();
+
+        CommunityBuilder.createSubCommunity(context, projectTemplate)
+                        .withName("Funding").build();
+        
+        Collection projectColl = CollectionBuilder.createCollection(context, projectTemplate)
+                                                  .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                                                  .withTemplateItem()
+                                                  .withSubmitterGroup(membersGroup)
+                                                  .withName("Project").build();
+        
+        Item templateItem = projectColl.getTemplateItem();
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
+                ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
+                "###CURRENTPROJECTGROUP.project.members###");
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_SHARED.schema,
+                ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, null,
+                ProjectConstants.PROJECT);
+        
+        Item projectItem = ItemBuilder.createItem(context, projectColl)
+                   .withTitle("project_item_name")
+                   .build();
+
+        communityService.addMetadata(context, projectTemplate, MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
+                null, projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
+        
+        Collection publicationColl = CollectionBuilder.createCollection(context, projectTemplate)
+                                                      .withName("Publication Collection")
+                                                      .withEntityType("Publication")
+                                                      .withSubmitterGroup(membersGroup)
+                                                      .withTemplateItem()
+                                                      .build();
+        
+        templateItem = publicationColl.getTemplateItem();
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
+                ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
+                "###CURRENTPROJECTGROUP.project.members###");
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_SHARED.schema,
+                ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, null,
+                ProjectConstants.PROJECT);
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+                ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
+                null, "###CURRENTPROJECT.project###");
+
+        fundingTemplate = CommunityBuilder.createCommunity(context)
+                .withTitle("funding-template")
+                .build();
+        
+        Collection fundingColl = CollectionBuilder.createCollection(context, fundingTemplate)
+                                .withEntityType(ProjectConstants.FUNDING_ENTITY)
+                                .withTemplateItem()
+                                .withSubmitterGroup(fundingMemberGroup)
+                                .withName("Funding").build();
+        
+        templateItem = fundingColl.getTemplateItem();
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
+                ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
+                "GROUP_POLICY_PLACEHOLDER");
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+                ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
+                null, "###CURRENTPROJECT.project###");
+        
+        Item fundingItem = ItemBuilder.createItem(context, fundingColl)
+                                      .withTitle("funding_item_name")
+                                      .build();
+        
+        communityService.addMetadata(context, fundingTemplate, MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
+                null, fundingItem.getName(), fundingItem.getID().toString(), Choices.CF_ACCEPTED);
+        
+        Collection projectPartnerColl = CollectionBuilder.createCollection(context, fundingTemplate)
+                                                         .withSubmitterGroup(fundingMemberGroup)
+                                                         .withEntityType(ProjectConstants.PROJECTPARTNER_ENTITY)
+                                                         .withSubmissionDefinition("projectpartners")
+                                                         .withName("Project partners")
+                                                         .withTemplateItem().build();
+
+        templateItem = projectPartnerColl.getTemplateItem();
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_SHARED.schema,
+                ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, null,
+                "GROUP_POLICY_PLACEHOLDER");
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+                ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier, null,
+                "###CURRENTPROJECT.project###");
+        itemService.addMetadata(context, templateItem, ProjectConstants.MD_FUNDING_RELATION.schema,
+                ProjectConstants.MD_FUNDING_RELATION.element, ProjectConstants.MD_FUNDING_RELATION.qualifier, null,
+                "###CURRENTPROJECT.funding###");
+
+        context.restoreAuthSystemState();
+        
+    }
+    
+    @Test
+    public void cloneCommunityRootTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Group collectionGroupA =
+                GroupBuilder.createGroup(context)
+                    .withName("Group A")
+                    .build();
+
+            Group collectionGroupB =
+                GroupBuilder.createGroup(context)
+                    .withName("Group B")
+                    .build();
 
         parentCommunity = createCommunity(context)
                 .withName("Parent Community")
@@ -319,32 +473,12 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     public void cloneProjectCommunity() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        Group adminGroup =
-            GroupBuilder.createGroup(context)
-                .withName(funder_project_managers_group)
-                .build();
-
         Community cloneTarget =
             CommunityBuilder.createCommunity(context)
                 .withName("Community to hold cloned communities")
                 .withAdminGroup(adminGroup)
                 .build();
 
-        GroupBuilder.createGroup(context).withName(project_template_coordinators_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_funders_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_members_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_readers_group).build();
-
-        configurationService.setProperty(
-            project_template_groups_name,
-            List.of(
-                project_template_funders_group,
-                project_template_coordinators_group,
-                project_template_readers_group,
-                project_template_members_group
-            )
-        );
-        configurationService.setProperty(project_template_add_user_groups, List.of(project_template_funders_group));
         configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
 
         Community parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
@@ -496,11 +630,6 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     public void cloneProjectCommunityPolicy() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        Group adminGroup =
-            GroupBuilder.createGroup(context)
-                .withName(funder_project_managers_group)
-                .build();
-
         Community sharedCoummunity =
             CommunityBuilder.createCommunity(context)
                 .withName("Shared")
@@ -518,21 +647,6 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
             .withAdminGroup(adminGroup)
             .build();
 
-        GroupBuilder.createGroup(context).withName(project_template_coordinators_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_funders_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_members_group).build();
-        GroupBuilder.createGroup(context).withName(project_template_readers_group).build();
-
-        configurationService.setProperty(
-            project_template_groups_name,
-            List.of(
-                project_template_funders_group,
-                project_template_coordinators_group,
-                project_template_readers_group,
-                project_template_members_group
-            )
-        );
-        configurationService.setProperty(project_template_add_user_groups, List.of(project_template_funders_group));
         configurationService.setProperty("project.parent-community-id", projectsCommunityHolder.getID().toString());
         configurationService
             .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
@@ -900,12 +1014,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         getClient(tokenAdmin).perform(get("/api/core/communities"))
              .andExpect(status().isOk())
              .andExpect(content().contentType(contentType))
-             .andExpect(jsonPath("$._embedded.communities", Matchers.contains(
-                 CommunityMatcher.matchProperties(parentCommunity.getName(),
-                                                  parentCommunity.getID(),
-                                                  parentCommunity.getHandle())
-             )))
-             .andExpect(jsonPath("$.page.totalElements", is(1)));
+             .andExpect(jsonPath("$.page.totalElements", is(4)));
     }
 
     @Test
@@ -1106,86 +1215,92 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     public void cloneCommunityWithGrantsValueTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        Community cloneTarget = CommunityBuilder.createCommunity(context)
+        Community projects = CommunityBuilder.createCommunity(context)
                                                 .withName("Community to hold cloned communities")
                                                 .build();
-        configurationService.setProperty("project.parent-community-id", cloneTarget.getID().toString());
-
-        Community parentCommunity = CommunityBuilder.createCommunity(context)
-                                                    .withName("Parent Community")
-                                                    .build();
-
-        Community child1 = createSubCommunity(context, parentCommunity)
-                                    .withName("Sub Community 1").build();
-
-        Community child2 = createSubCommunity(context, parentCommunity)
-                                    .withName("Sub Community 2").build();
-
-        Collection col = CollectionBuilder.createCollection(context, child1)
-                                          .withName("Projects").build();
-
-        Item publicItem1 = ItemBuilder.createItem(context, col)
-                                      .withTitle("project_" + parentCommunity.getID().toString() + "_name")
-                                      .build();
-
-        communityService.replaceMetadata(context, parentCommunity, MD_RELATION_ITEM_ENTITY.schema,
-                MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
-                null, publicItem1.getName(), publicItem1.getID().toString(), Choices.CF_ACCEPTED, 0);
-
-        context.restoreAuthSystemState();
+        configurationService.setProperty("project.parent-community-id", projects.getID().toString());
 
         AtomicReference<UUID> idRef = new AtomicReference<>();
-
-        String tokenAdmin = getAuthToken(admin.getEmail(), password);
         try {
-            getClient(tokenAdmin).perform(post("/api/core/communities")
-                                 .param("projection", "full")
-                                 .param("name", "My new Community")
-                                 .param("grants", "project")
-                                 .param("parent", cloneTarget.getID().toString())
-                                 .contentType(MediaType.parseMediaType(
-                                  TEXT_URI_LIST_VALUE))
-                                 .content("https://localhost:8080/server//api/core/communities/"
-                                          + parentCommunity.getID()))
-                     .andExpect(status().isCreated()).andDo(result -> idRef
-                                        .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
-                    .andExpect(jsonPath("$",Matchers.allOf(hasJsonPath("$.name", is("My new Community")),
-                            hasJsonPath("$.id", is(idRef.get().toString())),
-                            hasJsonPath("$.id", not(parentCommunity.getID().toString())))));
-
-            cloneTarget = context.reloadEntity(cloneTarget);
-            Community subCommunityOfCloneTarget = cloneTarget.getSubcommunities().get(0);
-            assertEquals(subCommunityOfCloneTarget.getID().toString(), idRef.toString());
-            assertEquals("My new Community", subCommunityOfCloneTarget.getName());
-            assertNotEquals(parentCommunity.getID(), idRef.toString());
-            List<Community> communities = subCommunityOfCloneTarget.getSubcommunities();
-            List<Collection> collections = subCommunityOfCloneTarget.getCollections();
-
-            assertEquals(2, communities.size());
-            assertEquals(0, collections.size());
-            Community firstChild = communities.get(0);
-            Community secondChild = communities.get(1);
-            boolean child1Found = StringUtils.equals(firstChild.getName(), child1.getName())
-                    || StringUtils.equals(secondChild.getName(), child1.getName());
-            boolean child2Found = StringUtils.equals(firstChild.getName(), child2.getName())
-                    || StringUtils.equals(secondChild.getName(), child2.getName());
-            assertTrue(child1Found);
-            assertTrue(child2Found);
-            assertNotEquals(firstChild.getID(), child1.getID());
-            assertNotEquals(firstChild.getID(), child2.getID());
-            assertEquals(1, firstChild.getCollections().size());
-            assertEquals(0, secondChild.getCollections().size());
-            Collection colProject = firstChild.getCollections().get(0);
+            String token = getAuthToken(eperson.getEmail(), password);
+    
+            getClient(token).perform(post("/api/core/communities")
+                    .param("projection", "full")
+                    .param("name", "My new Project")
+                    .param("parent", projects.getID().toString())
+                    .contentType(MediaType.parseMediaType(
+                     TEXT_URI_LIST_VALUE))
+                    .content("https://localhost:8080/server//api/core/communities/"
+                             + projectTemplate.getID()))
+                    .andExpect(status().isCreated()).andDo(result -> idRef
+                                       .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
+                    .andExpect(jsonPath("$",Matchers.allOf(hasJsonPath("$.name", is("My new Project")),
+                               hasJsonPath("$.id", is(idRef.get().toString())),
+                               hasJsonPath("$.id", not(projectTemplate.getID().toString())))));
+            
+            projects = context.reloadEntity(projects);
+            
+            Community projectCommunity = projects.getSubcommunities().get(0);
+            
+            Community projectFundingCommunity = projectCommunity.getSubcommunities().get(0);
+            
+            
+            Collection colProject = projectCommunity.getCollections().get(0);
             // check that the new cloned collection has a new item project
             Iterator<Item> items = itemService.findAllByCollection(context, colProject);
             assertTrue(items.hasNext());
-            Item item = items.next();
-            assertTrue(containMetadata(itemService, item, "dc", "title", null, "My new Community"));
-            assertTrue(containMetadata(itemService, item, "cris", "project", "shared", "project"));
-            assertTrue(containMetadata(communityService, subCommunityOfCloneTarget,
+            Item projectItem = items.next();
+            String groupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE, projectCommunity.getID().toString());
+            Group projectmembersGroup = groupService.findByName(context, groupName);
+            assertTrue(containMetadata(itemService, projectItem, MD_POLICY_GROUP.schema, MD_POLICY_GROUP.element,
+                    MD_POLICY_GROUP.qualifier, groupName, projectmembersGroup.getID().toString()));
+
+            assertTrue(containMetadata(itemService, projectItem, "dc", "title", null, "My new Project"));
+            assertTrue(containMetadata(itemService, projectItem, "cris", "project", "shared", "project"));
+            assertTrue(containMetadata(communityService, projectCommunity,
                     MD_RELATION_ITEM_ENTITY.schema, MD_RELATION_ITEM_ENTITY.element,
-                    MD_RELATION_ITEM_ENTITY.qualifier, "My new Community", item.getID().toString()));
+                    MD_RELATION_ITEM_ENTITY.qualifier, projectItem.getName(), projectItem.getID().toString()));
             assertFalse(items.hasNext());
+
+
+            getClient(token).perform(post("/api/core/communities")
+                                 .param("projection", "full")
+                                 .param("name", "My new Funding")
+                                 .param("grants", "funding")
+                                 .param("parent", projectFundingCommunity.getID().toString())
+                                 .contentType(MediaType.parseMediaType(
+                                  TEXT_URI_LIST_VALUE))
+                                 .content("https://localhost:8080/server//api/core/communities/"
+                                          + fundingTemplate.getID()))
+                     .andExpect(status().isCreated()).andDo(result -> idRef
+                                        .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))))
+                    .andExpect(jsonPath("$",Matchers.allOf(hasJsonPath("$.name", is("My new Funding")),
+                            hasJsonPath("$.id", is(idRef.get().toString())),
+                            hasJsonPath("$.id", not(fundingTemplate.getID().toString())))));
+
+            projects = context.reloadEntity(projects);
+            Community fundingCreated = projects.getSubcommunities().get(0).getSubcommunities().get(0)
+                    .getSubcommunities().get(0);
+            assertEquals(fundingCreated.getID().toString(), idRef.toString());
+            assertEquals("My new Funding", fundingCreated.getName());
+            assertNotEquals(fundingTemplate.getID(), idRef.toString());
+            Collection colFunding = fundingCreated.getCollections().get(0);
+            // check that the new cloned collection has a new item project
+            items = itemService.findAllByCollection(context, colFunding);
+            assertTrue(items.hasNext());
+            Item fundingItem = items.next();
+            assertTrue(containMetadata(itemService, fundingItem, "dc", "title", null, "My new Funding"));
+            assertTrue(containMetadata(itemService, fundingItem, MD_POLICY_SHARED.schema,
+                    MD_POLICY_SHARED.element, MD_POLICY_SHARED.qualifier, "funding"));
+            assertTrue(containMetadata(communityService, fundingCreated, MD_RELATION_ITEM_ENTITY.schema,
+                    MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier, fundingItem.getName(),
+                    fundingItem.getID().toString()));
+            assertFalse(items.hasNext());
+            groupName = String.format(FUNDING_MEMBERS_GROUP_TEMPLATE, fundingCreated.getID().toString());
+            Group fundingMembersGroup = groupService.findByName(context, groupName);
+            assertTrue(containMetadata(itemService, fundingItem, MD_POLICY_GROUP.schema, MD_POLICY_GROUP.element,
+                    MD_POLICY_GROUP.qualifier, groupName, fundingMembersGroup.getID().toString()));
+
 
         } finally {
             CommunityBuilder.deleteCommunity(idRef.get());

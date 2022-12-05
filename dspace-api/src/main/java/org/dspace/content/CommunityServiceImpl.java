@@ -7,6 +7,9 @@
  */
 package org.dspace.content;
 
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -764,6 +767,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         UUID rootCommunityUUID = newCommunity.getID();
         String projectRootCommId = configurationService.getProperty("project.parent-community-id", "");
         boolean isProject = Objects.nonNull(parent) && parent.getID().toString().equals(projectRootCommId);
+        boolean isFunding = !isProject;
         Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, parent, projectRootCommId, isProject);
 
         List<MetadataValue> relationMd =
@@ -775,18 +779,18 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 null
         );
         UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
-        newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name, grants, newItems, oldItem2clonedItem);
+        newCommunity = cloneCommunity(context, parent, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                                      name, grants, newItems, oldItem2clonedItem, isFunding);
 
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
     }
 
-    private Community cloneCommunity(Context context, Community communityToClone, Community clone,
-            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
-            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem)
-            throws SQLException, AuthorizeException {
+    private Community cloneCommunity(Context context, Community parentCommunity, Community communityToClone,
+            Community clone, Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID,
+            String newName, String grants, List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem,
+            boolean isFunding) throws SQLException, AuthorizeException {
 
         List<Community> subCommunities = communityToClone.getSubcommunities();
         List<Collection> subCollections = communityToClone.getCollections();
@@ -795,8 +799,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
-            cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                           newName, grants, newItems, oldItem2clonedItem);
+            cloneCommunity(context, parentCommunity, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                           newName, grants, newItems, oldItem2clonedItem, isFunding);
         }
 
         for (Collection collection : subCollections) {
@@ -804,8 +808,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
-            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
-                    newName, grants,newItems, oldItem2clonedItem);
+            cloneCollectionItems(context, parentCommunity, newCollection, collection, uuidProjectItem,
+                    rootCommunityUUID, newName, grants,newItems, oldItem2clonedItem, isFunding);
         }
 
         return clone;
@@ -829,9 +833,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
     }
 
-    private void cloneCollectionItems(Context context, Collection newCollection, Collection collection,
-            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
-            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) throws SQLException {
+    private void cloneCollectionItems(Context context, Community parentCommunity, Collection newCollection,
+            Collection collection, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem, boolean isFunding) throws SQLException {
         Iterator<Item> items = itemService.findAllByCollection(context, collection);
         try {
             while (items.hasNext()) {
@@ -842,7 +846,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 cloneMetadata(context, itemService, newItem, item);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
-                        replacePlaceholderValue(context, rootCommunityUUID, newItem, newName, grants);
+                        Community rootCommunity = this.find(context, rootCommunityUUID);
+                        replacePlaceholderValue(context, rootCommunity, newItem, newName, grants);
+                        if (isFunding) {
+                            setCrisPolicy(context, parentCommunity, rootCommunity, newItem, grants);
+                        }
                     }
                 }
                 newItems.add(newItem);
@@ -853,18 +861,43 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
     }
 
-    private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName,
+    private void setCrisPolicy(Context context, Community parentCommunity, Community newRootCommunity, Item newItem,
             String grants) throws SQLException {
-        Community rootCommunity = this.find(context, rootCommunityUUID);
-        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+
+        if (StringUtils.isBlank(grants)) {
+            grants = ProjectConstants.PROJECT;
+        }
+        
+        itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
+                Choices.CF_UNSET, 0);
+        
+        String groupName = null;
+        Group group;
+        switch (grants) {
+            case ProjectConstants.PROJECT:
+                groupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        parentCommunity.getParentCommunities().get(0).getID().toString());
+                break;
+            case ProjectConstants.FUNDING:
+                groupName = String.format(FUNDING_MEMBERS_GROUP_TEMPLATE, newRootCommunity.getID().toString());
+                break;
+        }
+        group = groupService.findByName(context, groupName);
+        if (Objects.nonNull(group)) {
+            itemService.replaceMetadata(context, newItem, ProjectConstants.MD_POLICY_GROUP.schema,
+                    ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
+                    null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
+        }
+        
+    }
+
+    private void replacePlaceholderValue(Context context, Community newRootCommunity, Item newItem, String newName,
+            String grants) throws SQLException {
+        this.replaceMetadata(context, newRootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                 null, newName, newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
-        if (StringUtils.isNoneBlank(grants)) {
-            itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
-                                        Choices.CF_UNSET, 0);
-        }
     }
 
     private void cloneTemplateItem(Context context, Collection col, Collection collection)

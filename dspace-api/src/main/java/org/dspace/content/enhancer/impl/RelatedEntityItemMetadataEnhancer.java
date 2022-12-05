@@ -49,7 +49,7 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
     private String relatedRelationItemMetadataField;
 
     private String sourceMetadataField;
-    
+
     private String relatedMetadataField;
 
     @Override
@@ -151,7 +151,7 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
 
         if (targetMetadataValue != null) {
             clearAndAddMetadata(context, targetItem, sourceMetadataValue, relatedMetadataField);
-        } else {
+        } else if (sourceMetadataValue != null) {
             addMetadata(context, targetItem, sourceMetadataValue, relatedMetadataField);
         }
     }
@@ -160,12 +160,12 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
         throws SQLException, AuthorizeException {
 
         MetadataFieldName mf = new MetadataFieldName(metadataName);
-        
+
         List<MetadataValue> mvlist = itemService.getMetadata(item, mf.schema, mf.element, mf.qualifier, null);
         if (!mvlist.isEmpty()) {
             itemService.removeMetadataValues(context, item, mvlist);
         }
-        
+
         addMetadata(context, item, mValue, metadataName);
     }
 
@@ -183,7 +183,7 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
 
         int add = 4 - tokens.length;
         if (add > 0) {
-            tokens = (String[]) ArrayUtils.addAll(tokens, new String[add]);
+            tokens = ArrayUtils.addAll(tokens, new String[add]);
         }
 
         return tokens;

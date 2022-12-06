@@ -998,12 +998,17 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         project = reload(project);
         funding1 = reload(funding1);
 
-        itemService.addMetadata(context, project, "synsicris", "relation", "funding", null, funding1.getName(),
-            funding1.getID().toString(), 600);
-        itemService.addMetadata(context, funding1, "synsicris", "relation", "project", null, "test",
-            fakeId, 600);
+        itemService.addMetadata(
+            context, project, "synsicris", "relation", "funding", null, "test RelatedEntityItemEnhancer",
+            fakeId, 600
+        );
+        itemService.addMetadata(
+            context, funding1, "synsicris", "relation", "project", null, "test RelatedEntityItemMetadataEnhancer",
+            fakeId, 600
+        );
 
         assertThat(getMetadataValues(project, "oairecerif.project.status"), empty());
+        assertThat(getMetadataValues(funding1, "oairecerif.project.status"), hasSize(1));
 
         context.commit();
 
@@ -1013,7 +1018,10 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
         assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
 
         project = reload(project);
+        funding1 = reload(funding1);
 
+        assertThat(getMetadataValues(funding1, "synsicris.relation.project"), hasSize(1));
+        assertThat(getMetadataValues(project, "synsicris.relation.funding"), hasSize(1));
         assertThat(getMetadataValues(project, "oairecerif.project.status"), empty());
 
     }

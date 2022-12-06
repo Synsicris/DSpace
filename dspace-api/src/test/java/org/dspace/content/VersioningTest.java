@@ -24,20 +24,17 @@ import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
-import org.dspace.content.service.MetadataDSpaceCsvExportService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.handle.factory.HandleServiceFactory;
 import org.dspace.handle.service.HandleService;
 import org.dspace.utils.DSpace;
 import org.dspace.versioning.DefaultItemVersionProvider;
-import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.ProjectVersionProvider;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.VersionHistory;
 import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersionHistoryService;
-import org.dspace.versioning.service.VersioningService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,7 +60,8 @@ public class VersioningTest extends AbstractUnitTest {
     protected ItemService itemService = ContentServiceFactory.getInstance().getItemService();
     protected HandleService handleService = HandleServiceFactory.getInstance().getHandleService();
     protected WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
-    protected VersioningServiceImpl versionService = (VersioningServiceImpl) VersionServiceFactory.getInstance().getVersionService();
+    protected VersioningServiceImpl versionService =
+        (VersioningServiceImpl) VersionServiceFactory.getInstance().getVersionService();
     protected DefaultItemVersionProvider itemVersionProvider = new DSpace().getServiceManager()
             .getServiceByName("defaultItemVersionProvider", DefaultItemVersionProvider.class);
     protected ProjectVersionProvider projectItemVersionProvider = new DSpace().getServiceManager()
@@ -88,7 +86,7 @@ public class VersioningTest extends AbstractUnitTest {
         super.init();
         try {
             context.turnOffAuthorisationSystem();
-            versionService.setProvider((ItemVersionProvider) itemVersionProvider);
+            versionService.setProvider(itemVersionProvider);
             Community community = communityService.create(null, context);
 
             Collection col = collectionService.create(context, community);
@@ -121,7 +119,7 @@ public class VersioningTest extends AbstractUnitTest {
     @After
     @Override
     public void destroy() {
-        versionService.setProvider((ItemVersionProvider) projectItemVersionProvider);
+        versionService.setProvider(projectItemVersionProvider);
         context.abort();
         super.destroy();
     }
@@ -177,7 +175,7 @@ public class VersioningTest extends AbstractUnitTest {
     public void testVersionDelete() throws Exception {
         context.turnOffAuthorisationSystem();
         String handle = versionedItem.getHandle();
-        versionService.removeVersion(context, versionedItem);
+        this.itemService.delete(context, versionedItem);
         assertThat("Test_version_delete", itemService.find(context, versionedItem.getID()), nullValue());
         assertThat("Test_version_handle_delete", handleService.resolveToObject(context, handle), nullValue());
         context.restoreAuthSystemState();

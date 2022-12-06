@@ -186,9 +186,9 @@ public class ResearcherProfileServiceImpl implements ResearcherProfileService {
     }
 
     private Group getInternalGroup(Context context) throws SQLException {
-        String uuid = configurationService.getProperty("project.creation.group");
+        String uuid = configurationService.getProperty("system_members.group");
         if (StringUtils.isBlank(uuid)) {
-            throw new RuntimeException("The property 'project.creation.group' must be configured!");
+            throw new RuntimeException("The property 'system_members.group' must be configured!");
         }
         Group internalGroup = groupService.find(context, UUID.fromString(uuid));
         if (Objects.isNull(internalGroup)) {

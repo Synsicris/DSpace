@@ -1,0 +1,10 @@
+<Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
+	<Title>@dc.title@</Title>
+	<Aspects>
+		@group.dc-type.start@
+			<Aspect>
+				<Type>@dc.type@</Type>
+			</Aspect>
+		@group.dc-type.end@
+	</Aspects>
+</Project>

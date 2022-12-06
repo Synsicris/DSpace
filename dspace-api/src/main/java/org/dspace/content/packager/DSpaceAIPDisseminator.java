@@ -37,7 +37,6 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
-import org.dspace.content.WorkspaceItem;
 import org.dspace.content.crosswalk.CrosswalkException;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
@@ -428,12 +427,7 @@ public class DSpaceAIPDisseminator extends AbstractMETSDisseminator {
         String parentHandle = null;
         switch (dso.getType()) {
             case Constants.ITEM:
-                if (((Item) dso).isArchived()) {
-                    parentHandle = ((Item) dso).getOwningCollection().getHandle();
-                } else {
-                    WorkspaceItem wsi = workspaceItemService.findByItem(context, (Item) dso);
-                    parentHandle = wsi.getCollection().getHandle();
-                }
+                parentHandle = ((Item) dso).getOwningCollection().getHandle();
                 break;
 
             case Constants.COLLECTION:

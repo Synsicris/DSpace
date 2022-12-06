@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="COMMENT 2022-05-06">
+  <isComposedBy>
+    <node id="COM11" label="geprüft" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM12" label="Rücksprache intern erforderlich" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM13" label="Rücksprache mit PN erforderlich" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM14" label="Überarbeitungsbedarf PN" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM15" label="Sonstige Aufgabe" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM16" label="Relevant für Wissenstransfer" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="COM17" label="Positivbeispiel" selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

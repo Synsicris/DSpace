@@ -926,19 +926,12 @@
     <qualifier>targetgroup</qualifier>
     <scope_note></scope_note>
   </dc-type>
-  
-  
-  <dc-type>
-    <schema>dc</schema>
-    <element>relation</element>
-    <qualifier>exploitationplan</qualifier>
-    <scope_note></scope_note>
-  </dc-type>
-  
+
   <dc-type>
     <schema>dc</schema>
     <element>relation</element>
     <qualifier>fundingobjective</qualifier>
     <scope_note></scope_note>
   </dc-type>
+
 </dspace-dc-types>

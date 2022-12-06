@@ -1,1092 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <import_structure>
-  <community>
-    <name>Shared</name>
-    <description />
-    <intro />
-    <copyright />
-    <sidebar />
-    <policy-group rpType="admin">Administrator</policy-group>
-    <policy-group rpType="remove">project_submitters_group</policy-group>
-    <policy-group rpType="delete">project_submitters_group</policy-group>
-    <policy-group rpType="read">project_submitters_group</policy-group>
-    <collection>
-      <name language="en">Calls</name>
-      <name language="de">Bekanntmachungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>call</entity-type>
-      <submission-type>calls</submission-type>
-      <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">funder_programme</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Funding objectives</name>
-      <name language="de">Förderziele</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>fundingobjective</entity-type>
-      <submission-type>fundingobjectives</submission-type>
-      <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">funder_programme</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Organisation units</name>
-      <name language="de">Organisationen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>OrgUnit</entity-type>
-      <submission-type>orgunits</submission-type>
-      <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">Administrator</policy-group>
-	  <policy-group rpType="add">Administrator</policy-group>
-      <policy-group rpType="item_read">Administrator</policy-group>
-      <policy-group rpType="bitstream_read">Administrator</policy-group>
-    </collection>
-    <collection>
-      <name language="en">Persons</name>
-      <name language="de">Personen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Person</entity-type>
-      <submission-type>persons</submission-type>
-      <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_submitters_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
-    </collection>
-    <collection>
-      <name language="en">Progammes</name>
-      <name language="de">Förderprogramme</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>programme</entity-type>
-      <submission-type>programmes</submission-type>
-      <policy-group rpType="admin">Administrator</policy-group>
-      <policy-group rpType="read">project_funder_programme_group</policy-group>
-      <policy-group rpType="read">project_submitters_group</policy-group>
-	  <policy-group rpType="add">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="item_read">project_submitters_group</policy-group>
-      <policy-group rpType="bitstream_read">project_funder_programme_group</policy-group>
-      <policy-group rpType="bitstream_read">project_submitters_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">funder_programme</metadata>
-      </item-template>
-    </collection>
-  </community>    
-  <community>
-    <name>parent-project-template</name>
-    <description />
-    <intro />
-    <copyright />
-    <sidebar />
-    <policy-group rpType="admin">project_template_admin_group</policy-group>
-    <policy-group rpType="remove">project_template_admin_group</policy-group>
-    <policy-group rpType="delete">project_template_admin_group</policy-group>
-    <policy-group rpType="read">project_template_members_group</policy-group>
-    <community>
-      <name>Impactpathway objects</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-	  <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="remove">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-      <collection>
-        <name>Impactpathway steps</name>
-        <description />
-        <intro />
-        <copyright />
-        <sidebar />
-        <license />
-        <entity-type>impactpathwaystep</entity-type>
-        <submission-type>impact_pathway_step</submission-type>
-        <policy-group rpType="admin">project_template_admin_group</policy-group>
-        <policy-group rpType="read">project_template_members_group</policy-group>
-        <policy-group rpType="add">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_members_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <item-template>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">owningproject</metadata>
-        </item-template>
-      </collection>
-      <collection>
-        <name>Impactpathways</name>
-        <description />
-        <intro />
-        <copyright />
-        <sidebar />
-        <license />
-        <entity-type>impactpathway</entity-type>
-        <submission-type>impact_pathway</submission-type>
-        <policy-group rpType="admin">project_template_admin_group</policy-group>
-        <policy-group rpType="read">project_template_members_group</policy-group>
-        <policy-group rpType="add">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_members_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <item-template>
-	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">owningproject</metadata>
-	    </item-template>
-      </collection>
-    </community>
-    <community>
-      <name language="en">Subprojects</name>
-      <name language="de">Teilprojekte</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <subproject-comm>true</subproject-comm>
-	  <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="remove">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-    </community>
-    <collection>
-      <name language="en">Applications of a solution / change / innovation</name>
-      <name language="de">Anwendungen einer Lösung / Veränderung / Innovation</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>application</entity-type>
-      <submission-type>applications</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-	  <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-        <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-        <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Awards</name>
-      <name language="de">Auszeichnungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>award</entity-type>
-      <submission-type>awards</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Contributions to funding programme objectives</name>
-      <name language="de">Beiträge zu förderpolitischen Zielen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>contribution_fundingprogramme</entity-type>
-      <submission-type>contribution_fundingprogramme</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Cooperation partners</name>
-      <name language="de">Kooperationspartner</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>cooperationpartner</entity-type>
-      <submission-type>cooperationpartners</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Ethical reflections</name>
-      <name language="de">Ethische Reflexionen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>ethic</entity-type>
-      <submission-type>ethics</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Events</name>
-      <name language="de">Veranstaltungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Event</entity-type>
-      <submission-type>events</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Expected societal impacts</name>
-      <name language="de">Erwartete gesellschaftliche Wirkungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>pot_societalimpact</entity-type>
-      <submission-type>pot_societalimpact</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Expected societal impacts (new)</name>
-      <name language="de">Erwartete gesellschaftliche Wirkungen (neu)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>exp_societalimpact</entity-type>
-      <submission-type>exp_societalimpact</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">External conditions</name>
-      <name language="de">Rahmenbedingungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>condition</entity-type>
-      <submission-type>conditions</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Gender reflections</name>
-      <name language="de">Reflexionen zu Geschlechteraspekten</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>gender</entity-type>
-      <submission-type>gender</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Target for interaction and transfer</name>
-      <name language="de">Ziel für Interaktion und Transfer</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>ia_objective</entity-type>
-      <submission-type>ia_objectives</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Ideas for the use of project results</name>
-      <name language="de">Ideen für eine Nutzung von Projektergebnissen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>innovationidea</entity-type>
-      <submission-type>innovationideas</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Milestones</name>
-      <name language="de">Meilensteine</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>milestone</entity-type>
-      <submission-type>milestones</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      	<metadata name="workingplan.link.status">linked</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Work and cooperations after project end</name>
-      <name language="de">Arbeiten und Kooperationen nach Projektende</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>step</entity-type>
-      <submission-type>steps</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Objects / materials</name>
-      <name language="de">Gegenstände / Materialien</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>physical_object</entity-type>
-      <submission-type>physical_objects</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Others</name>
-      <name language="de">Sonstiges</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>other</entity-type>
-      <submission-type>others</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>  
-    <collection>
-      <name language="en">Patents and utility patents</name>
-      <name language="de">Patente und Gebrauchsmuster</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Patent</entity-type>
-      <submission-type>patents</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Planned Publications</name>
-      <name language="de">Geplante Veröffentlichungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>plan_publication</entity-type>
-      <submission-type>plan_publications</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Cooperations / Participation / Exchange processes</name>
-      <name language="de">Kooperationen / Partizipation / Austauschprozesse</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>process_event</entity-type>
-      <submission-type>process_events</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Project objective for research and development</name>
-      <name language="de">Wissenschaftlich-technisches Arbeitsziel</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>proj_objective</entity-type>
-      <submission-type>proj_objectives</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Joint projects</name>
-      <name language="de">Verbundprojekte</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>parentproject</entity-type>
-      <submission-type>parentprojects</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">owningproject</metadata>      	
-      	<metadata name="oairecerif.amount.currency">Euro</metadata>
-      	<metadata name="oairecerif.project.status">In preparation</metadata>
-      </item-template>
-      <item>
-        <metadata name="dc.title">project_item_name</metadata>
-        <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::001">Workingplan</metadata>
-      </item>
-    </collection>
-    <collection>
-      <name language="en">Publications</name>
-      <name language="de">Veröffentlichungen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Publication</entity-type>
-      <submission-type>publications</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-        <metadata name="synsicris.subject.agrovoc">###AGROVOCKEYWORDS.project###</metadata>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Research data</name>
-      <name language="de">Forschungsdaten</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Product</entity-type>
-      <submission-type>products</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Research results</name>
-      <name language="de">Forschungsergebnisse</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>research_result</entity-type>
-      <submission-type>research_results</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Possible solutions / changes / innovations</name>
-      <name language="de">Mögliche Lösungen / Veränderungen /Innovationen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>innovationpotential</entity-type>
-      <submission-type>innovationpotentials</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>  
-    <collection>
-      <name language="en">Spin-offs (incl. associations)</name>
-      <name language="de">Ausgründungen (inkl. Vereine)</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>spinoff</entity-type>
-      <submission-type>spinoffs</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">State of knowledge</name>
-      <name language="de">Stand des Wissens / Problemstellung</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>stateofart</entity-type>
-      <submission-type>stateofart</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Stakeholder groups</name>
-      <name language="de">Akteursgruppen</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>targetgroup</entity-type>
-      <submission-type>targetgroups</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Tasks</name>
-      <name language="de">Aufgaben</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>task</entity-type>
-      <submission-type>tasks</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">(Intermediate) results / problems that causes change</name>
-      <name language="de">(Zwischen-) Ergebnisse / Probleme, die Veränderungen bewirken</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>unexpected_result</entity-type>
-      <submission-type>unexpected_results</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Work packages</name>
-      <name language="de">Arbeitspakete</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>workpackage</entity-type>
-      <submission-type>workpackages</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-      	<metadata name="cris.project.shared">parentproject</metadata>
-      	<metadata name="workingplan.link.status">linked</metadata>
-      </item-template>
-    </collection>
-    <collection>
-        <name>Workingplan</name>
-        <description />
-        <intro />
-        <copyright />
-        <sidebar />
-        <license />
-        <entity-type>workingplan</entity-type>
-        <submission-type>working_plan_form</submission-type>
-        <policy-group rpType="admin">project_template_admin_group</policy-group>
-        <policy-group rpType="read">project_template_members_group</policy-group>
-        <policy-group rpType="add">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_members_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <item-template>
-	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="cris.project.shared">parentproject</metadata>
-	    </item-template>
-        <item>
-            <metadata name="dc.title">Workingplan</metadata>
-            <metadata name="synsicris.struct-builder.identifier">001</metadata>
-        </item>
-      </collection>
-  </community>
-  <community>
-    <name language="en">Joint projects</name>
-    <name language="de">Verbundprojekte</name>
-    <description />
-    <intro />
-    <copyright />
-    <sidebar />
-    <policy-group rpType="add">project_submitters_group</policy-group>
-    <policy-group rpType="remove">project_submitters_group</policy-group>
-    <policy-group rpType="read">Anonymous</policy-group>
-  </community>
-  <community>
-    <name>project-template</name>
-    <description />
-    <intro />
-    <copyright />
-    <sidebar />
-    <policy-group rpType="admin">project_template_admin_group</policy-group>
-    <policy-group rpType="remove">project_template_admin_group</policy-group>
-    <policy-group rpType="delete">project_template_admin_group</policy-group>
-    <policy-group rpType="read">project_template_members_group</policy-group>
-    <community>
-      <name>Exploitation plan objects</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-	  <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="remove">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-      <collection>
-        <name>Exploitation plan steps</name>
-        <description />
-        <intro />
-        <copyright />
-        <sidebar />
-        <license />
-        <entity-type>exploitationplanstep</entity-type>
-        <submission-type>exploitation_plan_step_form</submission-type>
-        <policy-group rpType="admin">project_template_admin_group</policy-group>
-        <policy-group rpType="read">project_template_members_group</policy-group>
-        <policy-group rpType="add">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_members_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <item-template>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-        </item-template>
-        <item>
-            <metadata name="dc.title">step_type_1</metadata>
-            <metadata name="synsicris.struct-builder.identifier">exp_step_1</metadata>
-        </item>
-        <item>
-            <metadata name="dc.title">step_type_2</metadata>
-            <metadata name="synsicris.struct-builder.identifier">exp_step_2</metadata>
-        </item>
-        <item>
-            <metadata name="dc.title">step_type_3</metadata>
-            <metadata name="synsicris.struct-builder.identifier">exp_step_3</metadata>
-        </item>
-        <item>
-            <metadata name="dc.title">step_type_4</metadata>
-            <metadata name="synsicris.struct-builder.identifier">exp_step_4</metadata>
-        </item>
-      </collection>
-      <collection>
-        <name>Exploitation plan</name>
-        <description />
-        <intro />
-        <copyright />
-        <sidebar />
-        <license />
-        <entity-type>exploitationplan</entity-type>
-        <submission-type>exploitation_plan_form</submission-type>
-        <policy-group rpType="admin">project_template_admin_group</policy-group>
-        <policy-group rpType="read">project_template_members_group</policy-group>
-        <policy-group rpType="add">project_template_members_group</policy-group>
-        <policy-group rpType="item_read">project_template_members_group</policy-group>
-        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-        <item-template>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	      <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-	      <metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	  <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-        </item-template>
-        <item>
-            <metadata name="dc.title">exploitation_plan</metadata>
-            <metadata name="synsicris.struct-builder.identifier">exp_001</metadata>
-            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_1">step_type_1</metadata>
-            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_2">step_type_2</metadata>
-            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_3">step_type_3</metadata>
-            <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_4">step_type_4</metadata>
-        </item>
-      </collection>
-    </community>
-    <collection>
-      <name language="en">Fundings</name>
-      <name language="de">Fördermittel</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Funding</entity-type>
-      <submission-type>funding</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	    <metadata name="cris.project.shared">project</metadata>
-	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      	<metadata name="oairecerif.amount.currency">Euro</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Project partners</name>
-      <name language="de">Projektpartner</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>projectpartner</entity-type>
-      <submission-type>projectpartners</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	    <metadata name="cris.project.shared">project</metadata>
-	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>     	
-      	<metadata name="synsicris.type.easy-import">No</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Subcontractors</name>
-      <name language="de">Unterauftragnehmer</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>subcontractor</entity-type>
-      <submission-type>subcontractors</submission-type>
-      <policy-group rpType="admin">project_template_admin_group</policy-group>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="add">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-      	<metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	    <metadata name="cris.project.shared">project</metadata>
-	    <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      	<metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-      </item-template>
-    </collection>
-    <collection>
-      <name language="en">Subprojects</name>
-      <name language="de">Teilprojekte</name>
-      <description />
-      <intro />
-      <copyright />
-      <sidebar />
-      <license />
-      <entity-type>Project</entity-type>
-      <submission-type>projects</submission-type>
-      <policy-group rpType="read">project_template_members_group</policy-group>
-      <policy-group rpType="item_read">project_template_members_group</policy-group>
-      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-      <item-template>
-        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.admin###</metadata>
-      	<metadata name="cris.project.shared">project</metadata>
-        <metadata name="synsicris.common-policy.group">###CURRENTPROJECTGROUP.parentproject.members###</metadata>
-      	<metadata name="synsicris.relation.parentproject">###CURRENTPROJECT.parentproject###</metadata>
-      </item-template>
-      <item>
-        <metadata name="dc.title">project_item_name</metadata>
-        <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
-      </item>
-    </collection>
-  </community>
+	<community>
+		<name>CRIS</name>
+		<description />
+		<intro />
+		<copyright />
+		<sidebar />
+		<collection>
+			<name>Person</name>
+			<entity-type>Person</entity-type>
+			<submission-type>person</submission-type>
+			<description />
+			<intro />
+			<copyright />
+			<sidebar />
+			<license />
+			<provenance />
+		</collection>
+        <collection>
+            <name>Project</name>
+            <entity-type>Project</entity-type>
+			<submission-type>project</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Funding</name>
+            <entity-type>Funding</entity-type>
+            <submission-type>funding</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>OrgUnit</name>
+            <entity-type>OrgUnit</entity-type>
+			<submission-type>orgunit</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Journal</name>
+            <entity-type>Journal</entity-type>
+			<submission-type>journal</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Publication</name>
+            <entity-type>Publication</entity-type>
+			<submission-type>publication</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Patent</name>
+            <entity-type>Patent</entity-type>
+			<submission-type>patent</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Dataset or other products</name>
+            <entity-type>Product</entity-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Event</name>
+            <entity-type>Event</entity-type>
+			<submission-type>event</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+        <collection>
+            <name>Equipment</name>
+            <entity-type>Equipment</entity-type>
+			<submission-type>equipment</submission-type>
+            <description />
+            <intro />
+            <copyright />
+            <sidebar />
+            <license />
+            <provenance />
+        </collection>
+	</community>
 </import_structure>
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
+	<Title>@dc.title@</Title>
+	<Description>@dc.description@</Description>
+	<Purpose>@synsicris.type.purpose@</Purpose>
+	<Organisation>@synsicris.relation.partner@</Organisation>
+	<Stakeholder>@synsicris.relation.targetgroup@</Stakeholder>
+  <Status>@oairecerif.project.status@</Status>
+	<Processes>
+		@group.synsicris-type-process-event-frequency.start@
+			<Process> 
+				<Type>@synsicris.type.process-event-frequency@</Type>
+				<Duration>@synsicris.duration.number@</Duration>
+				<Frequency>@synsicris.type.frequency@</Frequency>
+				<Period>@synsicris.type.period@</Period>
+			</Process>					  
+		@group.synsicris-type-process-event-frequency.end@
+	</Processes>	
+</Project>

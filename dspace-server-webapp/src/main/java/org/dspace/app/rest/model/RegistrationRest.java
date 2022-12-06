@@ -33,6 +33,10 @@ public class RegistrationRest extends RestAddressableModel {
     private List<String> groupNames = Collections.emptyList();
 
     private List<UUID> groups = Collections.emptyList();
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<String> dspaceObjectNames = Collections.emptyList();
+
     /**
      * Generic getter for the email
      * @return the email value of this RegisterRest
@@ -95,5 +99,13 @@ public class RegistrationRest extends RestAddressableModel {
 
     public void setGroupNames(List<String> groupNames) {
         this.groupNames = groupNames;
+    }
+
+    public List<String> getDspaceObjectNames() {
+        return dspaceObjectNames;
+    }
+
+    public void setDspaceObjectNames(List<String> dspaceObjectNames) {
+        this.dspaceObjectNames = dspaceObjectNames;
     }
 }

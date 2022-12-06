@@ -25,7 +25,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.matcher.RegistrationMatcher;
 import org.dspace.app.rest.model.RegistrationRest;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
+import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.GroupBuilder;
+import org.dspace.content.Community;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.RegistrationData;
 import org.dspace.eperson.dao.RegistrationDataDAO;
@@ -98,33 +100,6 @@ public class RegistrationRestRepositoryIT extends AbstractControllerIntegrationT
                    .andExpect(status().isNotFound());
     }
 
-    private void createTokenForEmail(String email) throws Exception {
-        List<RegistrationData> registrationDatas;
-        ObjectMapper mapper = new ObjectMapper();
-        RegistrationRest registrationRest = new RegistrationRest();
-        registrationRest.setEmail(email);
-        getClient().perform(post("/api/eperson/registrations")
-                                .content(mapper.writeValueAsBytes(registrationRest))
-                                .contentType(contentType))
-                   .andExpect(status().isCreated());
-    }
-    private void createTokenWithGroupsForEmail(String email) throws Exception {
-        List<RegistrationData> registrationDatas;
-        ObjectMapper mapper = new ObjectMapper();
-        RegistrationRest registrationRest = new RegistrationRest();
-        registrationRest.setEmail(email);
-        context.turnOffAuthorisationSystem();
-        Group firstGroup = GroupBuilder.createGroup(context).withName("firstGroup").build();
-        List<UUID> groupList = new ArrayList<>();
-        groupList.add(firstGroup.getID());
-        registrationRest.setGroups(groupList);
-        context.restoreAuthSystemState();
-        String token = getAuthToken(admin.getEmail(), password);
-        getClient(token).perform(post("/api/eperson/registrations")
-                        .content(mapper.writeValueAsBytes(registrationRest))
-                        .contentType(contentType))
-                .andExpect(status().isCreated());
-    }
     @Test
     public void registrationFlowTest() throws Exception {
         List<RegistrationData> registrationDataList = registrationDataDAO.findAll(context, RegistrationData.class);
@@ -203,7 +178,7 @@ public class RegistrationRestRepositoryIT extends AbstractControllerIntegrationT
     @Test
     public void findByTokenTestExistingUserWithGroupsTest() throws Exception {
         String email = eperson.getEmail();
-        createTokenWithGroupsForEmail("albaTest@yahoo.com");
+        createTokenWithGroupsForEmail("albaTest@yahoo.com", "firstGroup");
         RegistrationData registrationData = registrationDataDAO.findByEmail(context, "albaTest@yahoo.com");
 
         try {
@@ -230,5 +205,84 @@ public class RegistrationRestRepositoryIT extends AbstractControllerIntegrationT
         }
 
 
+    }
+
+    @Test
+    public void findByTokenTestExistingUserWithMultipleGroupsTest() throws Exception {
+
+        String email = "ttalbaTest@yahoo.com";
+        String fakeId = "2bad1dd0-1513-40a8-8df2-ecfcca8a9d45";
+
+        context.turnOffAuthorisationSystem();
+        Community community1 = CommunityBuilder.createCommunity(context).withName("community name1").build();
+        Community community2 = CommunityBuilder.createCommunity(context).build();
+        Community community3 = CommunityBuilder.createCommunity(context).withName("community name3").build();
+
+        String groupName1 = "project_" + community1.getID() + "_members_group";
+        String groupName2 = "project_" + fakeId + "_members_group";
+        String groupName3 = "project_template_members_group";
+        String groupName4 = "project_" + community2.getID() + "_admin_group";
+        String groupName5 = "funding_" + community3.getID() + "_admin_group";
+
+        createTokenWithGroupsForEmail(email, groupName1, groupName2, groupName3, groupName4,groupName5);
+        RegistrationData registrationData = registrationDataDAO.findByEmail(context, email);
+
+        try {
+            getClient().perform(get("/api/eperson/registrations/search/findByToken")
+                           .param("token", registrationData.getToken()))
+                       .andExpect(status().isOk())
+                       .andExpect(jsonPath("$.groupNames", Matchers.hasSize(5)))
+                       .andExpect(jsonPath("$.email", Matchers.is(email)))
+                       .andExpect(jsonPath("$.groups", Matchers.hasSize(5)))
+                       .andExpect(jsonPath("$.groupNames[0]", Matchers.is(groupName1)))
+                       .andExpect(jsonPath("$.groupNames[1]", Matchers.is(groupName2)))
+                       .andExpect(jsonPath("$.groupNames[2]", Matchers.is(groupName3)))
+                       .andExpect(jsonPath("$.groupNames[3]", Matchers.is(groupName4)))
+                       .andExpect(jsonPath("$.groupNames[4]", Matchers.is(groupName5)))
+                       .andExpect(jsonPath("$.dspaceObjectNames[0]", Matchers.is(community1.getName())))
+                       .andExpect(jsonPath("$.dspaceObjectNames[1]", Matchers.is("")))
+                       .andExpect(jsonPath("$.dspaceObjectNames[2]", Matchers.is("")))
+                       .andExpect(jsonPath("$.dspaceObjectNames[3]", Matchers.is(community2.getName())))
+                       .andExpect(jsonPath("$.dspaceObjectNames[4]", Matchers.is(community3.getName())));
+
+        } finally {
+            registrationDataDAO.delete(context, registrationData);
+            context.commit();
+        }
+
+
+    }
+
+    private void createTokenForEmail(String email) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        RegistrationRest registrationRest = new RegistrationRest();
+        registrationRest.setEmail(email);
+        getClient().perform(post("/api/eperson/registrations")
+                       .content(mapper.writeValueAsBytes(registrationRest))
+                       .contentType(contentType))
+                   .andExpect(status().isCreated());
+    }
+
+    private void createTokenWithGroupsForEmail(String email, String... groupNames) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        RegistrationRest registrationRest = new RegistrationRest();
+        registrationRest.setEmail(email);
+
+        context.turnOffAuthorisationSystem();
+
+        List<UUID> groupList = new ArrayList<>();
+        for (String name : groupNames) {
+            Group firstGroup = GroupBuilder.createGroup(context).withName(name).build();
+            groupList.add(firstGroup.getID());
+        }
+        registrationRest.setGroups(groupList);
+
+        context.restoreAuthSystemState();
+
+        String token = getAuthToken(admin.getEmail(), password);
+        getClient(token).perform(post("/api/eperson/registrations")
+                            .content(mapper.writeValueAsBytes(registrationRest))
+                            .contentType(contentType))
+                        .andExpect(status().isCreated());
     }
 }

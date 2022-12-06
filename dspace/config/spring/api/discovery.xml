@@ -37,7 +37,7 @@
     <bean id="solrServiceMetricsIndexPlugin" class="org.dspace.discovery.SolrServiceMetricsIndexPlugin"/>
     <bean id="solrServiceCrisValuePairsIndexPlugin" class="org.dspace.discovery.SolrServiceValuePairsIndexPlugin"/>
     <bean id="solrServiceCustomUrlIndexPlugin" class="org.dspace.discovery.SolrServiceCustomUrlIndexPlugin"/>
-    <bean id="SolrServiceIndexSubprojectCommunityPlugin" class="org.dspace.discovery.SolrServiceIndexSubprojectCommunityPlugin" scope="prototype"/>
+    <bean id="SolrServiceIndexFundingCommunityPlugin" class="org.dspace.discovery.SolrServiceIndexFundingCommunityPlugin" scope="prototype"/>
 
 
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
@@ -100,64 +100,100 @@
                 <entry key="RELATION.OrgUnit.people" value-ref="relationOrgunitPersonsConfiguration"/>
                 <entry key="RELATION.OrgUnit.projects" value-ref="relationOrgunitProjectsConfiguration"/>
                 <entry key="RELATION.OrgUnit.organizations" value-ref="relationOrgunitOrgunitsConfiguration"/>
-                <!-- Synsicris Parent Project Related items -->
-                <entry key="RELATION.parentproject.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
-                <entry key="RELATION.parentproject.application" value-ref="relationParentProjectApplicationsConfiguration"/>
-                <entry key="RELATION.parentproject.award" value-ref="relationParentProjectAwardsConfiguration"/>
-                <entry key="RELATION.parentproject.contribution_fundingprogramme" value-ref="relationParentProjectContributionsfundingprogrammeConfiguration"/>
-                <entry key="RELATION.parentproject.cooperationpartner" value-ref="relationParentProjectCooperationpartnersConfiguration"/>
-                <entry key="RELATION.parentproject.ethic" value-ref="relationParentProjectEthicsConfiguration"/>
-                <entry key="RELATION.parentproject.Event" value-ref="relationParentProjectEventsConfiguration"/>
-                <entry key="RELATION.parentproject.pot_societalimpact" value-ref="relationParentProjectPotsocietalimpactsConfiguration"/>
-                <entry key="RELATION.parentproject.exp_societalimpact" value-ref="relationParentProjectExpsocietalimpactsConfiguration"/>
-                <entry key="RELATION.parentproject.condition" value-ref="relationParentProjectConditionsConfiguration"/>
-                <entry key="RELATION.parentproject.Funding" value-ref="relationParentProjectFundingsConfiguration"/>
-                <entry key="RELATION.parentproject.gender" value-ref="relationParentProjectGendersConfiguration"/>
-                <entry key="RELATION.parentproject.innovationidea" value-ref="relationParentProjectInnovationideasConfiguration"/>
-                <entry key="RELATION.parentproject.milestone" value-ref="relationParentProjectMilestonesConfiguration"/>
-                <entry key="RELATION.parentproject.step" value-ref="relationParentProjectStepsConfiguration"/>
-                <entry key="RELATION.parentproject.physical_object" value-ref="relationParentProjectPhysicalObjectsConfiguration"/>
-                <entry key="RELATION.parentproject.other" value-ref="relationParentProjectOthersConfiguration"/>
-                <entry key="RELATION.parentproject.Patent" value-ref="relationParentProjectPatentsConfiguration"/>
-                <entry key="RELATION.parentproject.plan_publication" value-ref="relationParentProjectPlanPublicationsConfiguration"/>
-                <entry key="RELATION.parentproject.process_event" value-ref="relationParentProjectProcessEventsConfiguration"/>
-                <entry key="RELATION.parentproject.proj_objective" value-ref="relationParentProjectProjObjectivesConfiguration"/>
-                <entry key="RELATION.parentproject.ia_objective" value-ref="relationParentProjectIaObjectivesConfiguration"/>
-                <entry key="RELATION.parentproject.projectpartner" value-ref="relationParentProjectProjectpartnersConfiguration"/>
-                <entry key="RELATION.parentproject.Publication" value-ref="relationParentProjectPublicationsConfiguration"/>
-                <entry key="RELATION.parentproject.Product" value-ref="relationParentProjectProductsConfiguration"/>
-                <entry key="RELATION.parentproject.research_result" value-ref="relationParentProjectResearchResultsConfiguration"/>
-                <entry key="RELATION.parentproject.innovationpotential" value-ref="relationParentProjectInnovationpotentialsConfiguration"/>
-                <entry key="RELATION.parentproject.spinoff" value-ref="relationParentProjectSpinoffsConfiguration"/>
-                <entry key="RELATION.parentproject.stateofart" value-ref="relationParentProjectStateofartsConfiguration"/>
-                <entry key="RELATION.parentproject.subcontractor" value-ref="relationParentProjectSubcontractorsConfiguration"/>
-                <entry key="RELATION.parentproject.targetgroup" value-ref="relationParentProjectTargetgroupsConfiguration"/>
-                <entry key="RELATION.parentproject.task" value-ref="relationParentProjectTasksConfiguration"/>
 
-                <entry key="RELATION.parentproject.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
-                <entry key="RELATION.parentproject.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
-                <entry key="RELATION.parentproject.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
-                <entry key="RELATION.parentproject.Project" value-ref="relationParentProjectProjectsConfiguration"/>
-                <!-- Synsicris Project Related items -->
-                <entry key="RELATION.Project.exploitationplan" value-ref="relationProjectExploitationplansConfiguration"/>
-                <entry key="RELATION.Project.Funding" value-ref="relationProjectFundingsConfiguration"/>
-                <entry key="RELATION.Project.subcontractor" value-ref="relationProjectSubcontractorsConfiguration"/>
-                <entry key="RELATION.Project.subcontractor" value-ref="relationProjectSubcontractorsConfiguration"/>
-                <entry key="RELATION.Project.projectpartner" value-ref="relationProjectProjectpartnersConfiguration"/>
+                <!-- Synsicris Parent Project Related items -->
+                <entry key="RELATION.last_visible_version" value-ref="relationLastVisibleVersionConfiguration"/>
+                <entry key="RELATION.Project.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
+                <entry key="RELATION.Project.application" value-ref="relationParentProjectApplicationsConfiguration"/>
+                <entry key="RELATION.Project.award" value-ref="relationParentProjectAwardsConfiguration"/>
+                <entry key="RELATION.Project.contribution_fundingprogramme" value-ref="relationParentProjectContributionsfundingprogrammeConfiguration"/>
+                <entry key="RELATION.Project.cooperationpartner" value-ref="relationParentProjectCooperationpartnersConfiguration"/>
+                <entry key="RELATION.Project.ethic" value-ref="relationParentProjectEthicsConfiguration"/>
+                <entry key="RELATION.Project.Event" value-ref="relationParentProjectEventsConfiguration"/>
+                <entry key="RELATION.Project.neg_sideeffect" value-ref="relationParentProjectNegativesideeffectsConfiguration"/>
+                <entry key="RELATION.Project.exp_societalimpact" value-ref="relationParentProjectExpsocietalimpactsConfiguration"/>
+                <entry key="RELATION.Project.condition" value-ref="relationParentProjectConditionsConfiguration"/>
+                <entry key="RELATION.Project.Funding" value-ref="relationParentProjectFundingsConfiguration"/>
+                <entry key="RELATION.Project.gender" value-ref="relationParentProjectGendersConfiguration"/>
+                <entry key="RELATION.Project.innovationidea" value-ref="relationParentProjectInnovationideasConfiguration"/>
+                <entry key="RELATION.Project.milestone" value-ref="relationParentProjectMilestonesConfiguration"/>
+                <entry key="RELATION.Project.step" value-ref="relationParentProjectStepsConfiguration"/>
+                <entry key="RELATION.Project.physical_object" value-ref="relationParentProjectPhysicalObjectsConfiguration"/>
+                <entry key="RELATION.Project.open_researchquestion" value-ref="relationParentProjectOpenresearchquestionsConfiguration"/>
+                <entry key="RELATION.Project.Patent" value-ref="relationParentProjectPatentsConfiguration"/>
+                <entry key="RELATION.Project.plan_publication" value-ref="relationParentProjectPlanPublicationsConfiguration"/>
+                <entry key="RELATION.Project.process_event" value-ref="relationParentProjectProcessEventsConfiguration"/>
+                <entry key="RELATION.Project.proj_objective" value-ref="relationParentProjectProjObjectivesConfiguration"/>
+                <entry key="RELATION.Project.ia_objective" value-ref="relationParentProjectIaObjectivesConfiguration"/>
+                <entry key="RELATION.Project.projectpartner" value-ref="relationParentProjectProjectpartnersConfiguration"/>
+                <entry key="RELATION.Project.Publication" value-ref="relationParentProjectPublicationsConfiguration"/>
+                <entry key="RELATION.Project.Product" value-ref="relationParentProjectProductsConfiguration"/>
+                <entry key="RELATION.Project.research_result" value-ref="relationParentProjectResearchResultsConfiguration"/>
+                <entry key="RELATION.Project.innovationpotential" value-ref="relationParentProjectInnovationpotentialsConfiguration"/>
+                <entry key="RELATION.Project.spinoff" value-ref="relationParentProjectSpinoffsConfiguration"/>
+                <entry key="RELATION.Project.stateofart" value-ref="relationParentProjectStateofartsConfiguration"/>
+                <entry key="RELATION.Project.targetgroup" value-ref="relationParentProjectTargetgroupsConfiguration"/>
+                <entry key="RELATION.Project.task" value-ref="relationParentProjectTasksConfiguration"/>
+                <entry key="RELATION.Project.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
+                <entry key="RELATION.Project.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
+                <entry key="RELATION.Project.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
+
+                <!-- Synsicris Funding Related items -->
+                <entry key="RELATION.Funding.exploitationplan" value-ref="relationFundingExploitationplansConfiguration"/>
+                <entry key="RELATION.Funding.projectpartner" value-ref="relationFundingProjectpartnersConfiguration"/>
+                <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
+
                 <!-- Synsicris Person Browse items -->
                 <entry key="BROWSE.Person.latestParentProjectsPreparation" value-ref="browsePersonLatestParentProjectsPreparationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsImplementation" value-ref="browsePersonLatestParentProjectsImplementationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
+                <entry key="RELATION.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
+                <entry key="RELATION.Person.programme" value-ref="relationPersonProgrammeConfiguration"/>
+                <entry key="RELATION.Person.call" value-ref="relationPersonCallConfiguration"/>
+                <entry key="RELATION.Person.fundingobjective" value-ref="relationPersonFundingobjectiveConfiguration"/>
+                <entry key="RELATION.Person.OrgUnit" value-ref="relationPersonOrgUnitConfiguration"/>
+                
 
+                <!-- Synsicris Project comments configuration -->
+                <entry key="RELATION.Project.comment" value-ref="relationItemCommentsConfiguration"/>
+				<entry key="RELATION.application.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.award.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.contribution_fundingprogramme.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.ethic.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.neg_sideeffect.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.exp_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.condition.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.gender.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.innovationidea.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.milestone.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.step.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.physical_object.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.open_researchquestion.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Patent.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.plan_publication.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.process_event.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.proj_objective.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.ia_objective.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Publication.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Product.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.research_result.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.innovationpotential.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.spinoff.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.stateofart.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.targetgroup.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.task.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.unexpected_result.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.workpackage.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.impactpathway.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.exploitationplan.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
 
-
-                <!-- Edit Configurations -->
-                <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
-                <entry key="editCollection" value-ref="editCollectionConfiguration"/>
-                <entry key="lucky-search" value-ref="lucky"/>
-                <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
-                <entry key="subprojectCommunity" value-ref="subprojectCommunityConfiguration"/>
-                <!-- Impact pathway -->
+                <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_task_type" value-ref="impactpathwayStepType2TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_2_objective_task_type" value-ref="impactpathwayStepType2ObjectiveTaskTypeConfiguration"/>
@@ -167,15 +203,31 @@
                 <entry key="impactpathway_step_type_5_task_type" value-ref="impactpathwayStepType5TaskTypeConfiguration"/>
                 <entry key="impactpathway_step_type_6_task_type" value-ref="impactpathwayStepType6TaskTypeConfiguration"/>
                 <entry key="allImpactPathways" value-ref="allImpactPathwaysConfiguration"/>
-                <!-- Working plan -->
+
+                <!-- Synsicris Project Working plan -->
                 <entry key="allLinkedWorkingPlanObj" value-ref="allLinkedWorkingPlanObjConfiguration"/>
                 <entry key="allUnlinkedWorkingPlanObj" value-ref="allUnlinkedWorkingPlanObjConfiguration"/>
                 <entry key="workpackageSteps" value-ref="workpackageStepsConfiguration"/>
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
+                <entry key="allProjectItemsForAdminAndFunders" value-ref="allProjectItemsForAdminAndFundersConfiguration" />
+                <entry key="searchProjectsForAdminAndFunders" value-ref="searchProjectsForAdminAndFundersConfiguration" />
+                <entry key="searchAllProjectForAdminAndFunders" value-ref="searchAllProjectForAdminAndFundersConfiguration" />
+                <entry key="searchProjectsForMembers" value-ref="searchProjectsForMembersConfiguration" />
+                <entry key="searchAllProjectForMembers" value-ref="searchAllProjectForMembersConfiguration" />
+                
+                <!-- Synsicris Project Exploitation plan -->
                 <entry key="exploitation_plan_step_type_1_task_type" value-ref="exploitationPlanStepType1TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_2_task_type" value-ref="exploitationPlanStepType2TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_3_task_type" value-ref="exploitationPlanStepType3TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_4_task_type" value-ref="exploitationPlanStepType4TaskTypeConfiguration"/>
+
+                <!-- Edit Configurations -->
+                <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
+                <entry key="editCollection" value-ref="editCollectionConfiguration"/>
+                <entry key="lucky-search" value-ref="lucky"/>
+                <entry key="userProjectsCommunity" value-ref="userProjectsConfiguration"/>
+                <entry key="fundingCommunity" value-ref="fundingCommunityConfiguration"/>
+
             </map>
         </property>
         <property name="toIgnoreMetadataFields">
@@ -238,14 +290,14 @@
     </bean>
 
     <!--The project community configuration settings for discovery-->
-    <bean id="subprojectCommunityConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="commonConfiguration">
-        <property name="id" value="editCommunityConfiguration"/>
+    <bean id="fundingCommunityConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="commonConfiguration">
+        <property name="id" value="fundingCommunityConfiguration"/>
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
                 <value>search.resourcetype:Community</value>
-                <value>dc.title:${project.subproject-community-name}</value>
-                <value>search.subprojectCommunity:true</value>
+                <value>dc.title:${project.funding-community-name}</value>
+                <value>search.fundingCommunity:true</value>
             </list>
         </property>
     </bean>
@@ -793,7 +845,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !entityType:parentproject AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !entityType:Funding AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -982,7 +1034,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In preparation" AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In preparation" AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1015,7 +1067,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:"In implementation" AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:"In implementation" AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1048,7 +1100,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find communities-->
-                <value>search.resourcetype:Item AND entityType_keyword:parentproject AND oairecerif.project.status:Completed AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND entityType_keyword:Project AND oairecerif.project.status:Completed AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1068,23 +1120,24 @@
     <bean id="allProjectItemsConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype">
+        <property name="indexAlways" value="true"/>
         <property name="id" value="allProjectItems" />
         <!--Which sidebar facets are to be displayed -->
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <!-- <ref bean="searchFilterType" /> -->
-                <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
         <property name="searchFilters">
             <list>
-                <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterEntityType" />
-                <!-- <ref bean="searchFilterType" /> -->
-                <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeProjectContribution" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1104,7 +1157,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>search.resourcetype:Item AND !entityType:parentproject AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:workingplan</value>
+                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -1137,6 +1190,138 @@
         </property>
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
+    </bean>
+
+    <bean id="allProjectItemsForAdminAndFundersConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="allProjectItemsConfiguration">
+        <property name="id" value="searchProjectsForAdminAndFunders" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--The discovery configuration for funder searching functionality-->
+    <bean id="searchProjectsCommonConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype">
+        <property name="indexAlways" value="true"/>
+        <property name="id" value="searchProjectsCommon" />
+        <!--Which sidebar facets are to be displayed -->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterEntityType" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterFundingParent" />
+                <ref bean="searchFilterSynsicrisRelationCall" />
+                <ref bean="searchFilterProjectStartDate" />
+                <ref bean="searchFilterProjectEndDate" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectDestatis" />
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page -->
+        <property name="searchFilters">
+            <list>
+                <ref bean="searchFilterEntityType" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterFundingParent" />
+                <ref bean="searchFilterSynsicrisRelationCall" />
+                <ref bean="searchFilterProjectStartDate" />
+                <ref bean="searchFilterProjectEndDate" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectDestatis" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <property name="sortFields">
+                    <list>
+                    	<ref bean="sortLastModified" />
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan</value>
+            </list>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+
+    <bean id="searchProjectsForAdminAndFundersConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="searchProjectsCommonConfiguration">
+        <property name="id" value="searchProjectsForAdminAndFunders" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchAllProjectForAdminAndFundersConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="searchProjectsCommonConfiguration">
+        <property name="id" value="searchAllProjectForAdminAndFunders" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchProjectsForMembersConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="searchProjectsCommonConfiguration">
+        <property name="id" value="searchProjectsForAdminAndFunders" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchAllProjectForMembersConfiguration"
+        class="org.dspace.discovery.configuration.DiscoveryConfiguration"
+        scope="prototype" parent="searchProjectsCommonConfiguration">
+        <property name="id" value="searchAllProjectForAdminAndFunders" />
+
+        <!--Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find items, workspace and accepted for workflow -->
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
     </bean>
 
     <!-- Inverse Relations -->
@@ -1414,31 +1599,6 @@
         </property>
     </bean>
 
-    <!-- project related to a project -->
-    <bean id="relationProjectProjectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortByProjectsSelection" />
-                        <ref bean="sortTitle" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>dc.relation.project_authority:{0} AND entityType_keyword:Project</value>
-            </list>
-        </property>
-    </bean>
-
     <!-- publications related to a project -->
     <bean id="relationProjectPublicationConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -1464,7 +1624,30 @@
         </property>
     </bean>
 
-    <!-- SYNSICRIS entities related to a parentproject -->
+    <!-- SYNSICRIS entities related to a project -->
+
+    <bean id="relationLastVisibleVersionConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>relation.isVersionOf:{0} AND synsicris.isLastVersion.visible:true AND search.resourcetype:Item</value>
+            </list>
+        </property>
+    </bean>
 
     <bean id="relationParentProjectMultipleEntitiesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
@@ -1485,7 +1668,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:subcontractor OR entityType_keyword:cooperationpartner)</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:cooperationpartner)</value>
             </list>
         </property>
     </bean>
@@ -1509,7 +1692,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:application</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:application</value>
             </list>
         </property>
     </bean>
@@ -1533,7 +1716,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:award</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:award</value>
             </list>
         </property>
     </bean>
@@ -1556,7 +1739,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:contribution_fundingprogramme</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:contribution_fundingprogramme</value>
             </list>
         </property>
     </bean>
@@ -1580,7 +1763,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:cooperationpartner</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:cooperationpartner</value>
             </list>
         </property>
     </bean>
@@ -1604,7 +1787,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ethic</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ethic</value>
             </list>
         </property>
     </bean>
@@ -1623,7 +1806,7 @@
                 <ref bean="graphEventByParticipant"/>
                 <ref bean="searchFilterType"/>
                 <ref bean="searchsynsicristypeprojectcontribution" />
-                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchsynsicrisrelationpartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchoairecerifeventcountry" />
@@ -1641,7 +1824,7 @@
                 <ref bean="graphEventByParticipant"/>
                 <ref bean="searchFilterType"/>
                 <ref bean="searchsynsicristypeprojectcontribution" />
-                <ref bean="searchsynsicristypepurpose" />
+                <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchsynsicrisrelationpartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchoairecerifeventcountry" />
@@ -1664,12 +1847,12 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Event</value>
             </list>
         </property>
     </bean>
 
-    <bean id="relationParentProjectPotsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    <bean id="relationParentProjectNegativesideeffectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -1688,7 +1871,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:pot_societalimpact</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:neg_sideeffect</value>
             </list>
         </property>
     </bean>
@@ -1712,7 +1895,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exp_societalimpact</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exp_societalimpact</value>
             </list>
         </property>
     </bean>
@@ -1738,37 +1921,12 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:condition</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:condition</value>
             </list>
         </property>
     </bean>
 
     <bean id="relationParentProjectFundingsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Funding</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- fundings related to a project -->
-    <bean id="relationProjectFundingsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -1793,7 +1951,6 @@
     </bean>
 
 
-
     <bean id="relationParentProjectGendersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
@@ -1813,7 +1970,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:gender</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:gender</value>
             </list>
         </property>
     </bean>
@@ -1837,7 +1994,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationidea</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationidea</value>
             </list>
         </property>
     </bean>
@@ -1861,7 +2018,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:milestone</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:milestone</value>
             </list>
         </property>
     </bean>
@@ -1884,7 +2041,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:step</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:step</value>
             </list>
         </property>
     </bean>
@@ -1908,12 +2065,12 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:physical_object</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:physical_object</value>
             </list>
         </property>
     </bean>
 
-    <bean id="relationParentProjectOthersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    <bean id="relationParentProjectOpenresearchquestionsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -1932,7 +2089,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:other</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:open_researchquestion</value>
             </list>
         </property>
     </bean>
@@ -1956,7 +2113,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Patent</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Patent</value>
             </list>
         </property>
     </bean>
@@ -1980,7 +2137,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:plan_publication</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:plan_publication</value>
             </list>
         </property>
     </bean>
@@ -2004,7 +2161,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:process_event</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:process_event</value>
             </list>
         </property>
     </bean>
@@ -2028,7 +2185,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:proj_objective</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:proj_objective</value>
             </list>
         </property>
     </bean>
@@ -2052,7 +2209,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ia_objective</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ia_objective</value>
             </list>
         </property>
     </bean>
@@ -2063,6 +2220,7 @@
             <list>
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOrgUnit" />
                 <ref bean="searchFilterType" />
             </list>
@@ -2072,6 +2230,7 @@
             <list>
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
+                <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOrgUnit" />
                 <ref bean="searchFilterType" />
             </list>
@@ -2093,7 +2252,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Publication</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Publication</value>
             </list>
         </property>
     </bean>
@@ -2118,7 +2277,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Product</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Product</value>
             </list>
         </property>
     </bean>
@@ -2142,7 +2301,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:research_result</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:research_result</value>
             </list>
         </property>
     </bean>
@@ -2166,7 +2325,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationpotential</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:innovationpotential</value>
             </list>
         </property>
     </bean>
@@ -2190,7 +2349,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:spinoff</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:spinoff</value>
             </list>
         </property>
     </bean>
@@ -2214,62 +2373,13 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:stateofart</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="relationParentProjectSubcontractorsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- subcontractors related to a project -->
-    <bean id="relationProjectSubcontractorsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:subcontractor</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:stateofart</value>
             </list>
         </property>
     </bean>
 
     <!-- Projectpartners related to a project -->
-    <bean id="relationProjectProjectpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    <bean id="relationFundingProjectpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2289,7 +2399,7 @@
             <list>
                 <!--To keep as example of solr join query, it search for the same value of synsicris.relation.parentproject -->
                 <!-- <value>_query_:"'{'!join from=synsicris.relation.parentproject_authority to=synsicris.relation.parentproject_authority'}'search.resourceid:{0}" AND search.resourcetype:Item AND entityType_keyword:projectpartner</value> -->
-                <value>(synsicris.relation.project_authority:{0} OR dc.relation.project_authority:{0}) AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
+                <value>(synsicris.relation.funding_authority:{0} OR dc.relation.funding_authority:{0}) AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
             </list>
         </property>
     </bean>
@@ -2313,7 +2423,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:targetgroup</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:targetgroup</value>
             </list>
         </property>
     </bean>
@@ -2337,7 +2447,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:task</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:task</value>
             </list>
         </property>
     </bean>
@@ -2361,7 +2471,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:unexpected_result</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:unexpected_result</value>
             </list>
         </property>
     </bean>
@@ -2385,7 +2495,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:workpackage</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:workpackage</value>
             </list>
         </property>
     </bean>
@@ -2409,31 +2519,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="relationParentProjectProjectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitle" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:Project</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
             </list>
         </property>
     </bean>
@@ -2457,12 +2543,62 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
             </list>
         </property>
     </bean>
-
-    <bean id="relationProjectExploitationplansConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    
+    <bean id="relationItemCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                    	<ref bean="sortLastCommentCreated" />
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.relation.item_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="relationPersonCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                    	<ref bean="sortLastCommentCreated" />
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.creator_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="relationPersonProgrammeConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2481,7 +2617,103 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exploitationplan</value>
+                <value>search.resourcetype:Item AND entityType_keyword:programme</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="relationPersonCallConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>search.resourcetype:Item AND entityType_keyword:call</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="relationPersonFundingobjectiveConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>search.resourcetype:Item AND entityType_keyword:fundingobjective</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="relationPersonOrgUnitConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>search.resourcetype:Item AND entityType_keyword:OrgUnit</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="relationFundingExploitationplansConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.relation.funding_authority:{0} AND search.resourcetype:Item AND entityType_keyword:exploitationplan</value>
             </list>
         </property>
     </bean>
@@ -3313,7 +3545,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:stateofart OR entityType_keyword:condition OR entityType_keyword:gender OR entityType_keyword:ethic) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3367,7 +3599,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:research_result OR entityType_keyword:unexpected_result) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3421,7 +3653,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3475,7 +3707,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:ia_objective OR entityType_keyword:unexpected_result) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3529,7 +3761,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3583,7 +3815,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:unexpected_result OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:award) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3637,7 +3869,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3691,7 +3923,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:contribution_fundingprogramme) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3743,7 +3975,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.parentproject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:impactpathway</value>
             </list>
         </property>
     </bean>
@@ -3787,7 +4019,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:linked AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3840,7 +4072,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -relation.isVersionOf:*</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:workpackage OR entityType_keyword:milestone) AND workingplanLinkStatus:unlinked AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3892,7 +4124,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:physical_object) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--The configuration for the recent submissions-->
@@ -3911,8 +4143,8 @@
         <property name="spellCheckEnabled" value="true"/>
     </bean>
 
-     <!-- exploitationPlan StepType1 Task Type Configuration -->
-     <bean id="exploitationPlanStepType1TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <!-- exploitationPlan StepType1 Task Type Configuration -->
+    <bean id="exploitationPlanStepType1TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
         <property name="id" value="exploitation_plan_step_type_1_task_type"/>
         <property name="indexAlways" value="true"/>
         <!-- Which sidebar facets are to be displayed -->
@@ -3945,18 +4177,8 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
-        </property>
-        <!-- The configuration for the recent submissions -->
-        <property name="recentSubmissionConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
-                <property name="metadataSortField" value="dc.date.accessioned"/>
-                <property name="type" value="date"/>
-                <property name="max" value="20"/>
-                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
-                <property name="useAsHomePage" value="false"/>
-            </bean>
         </property>
         <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
@@ -3964,8 +4186,8 @@
         <property name="spellCheckEnabled" value="true"/>
     </bean>
 
-     <!-- exploitationPlan StepType2 Task Type Configuration -->
-     <bean id="exploitationPlanStepType2TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <!-- exploitationPlan StepType2 Task Type Configuration -->
+    <bean id="exploitationPlanStepType2TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
         <property name="id" value="exploitation_plan_step_type_2_task_type"/>
         <property name="indexAlways" value="true"/>
         <!-- Which sidebar facets are to be displayed -->
@@ -3998,18 +4220,8 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:other OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
-        </property>
-        <!-- The configuration for the recent submissions -->
-        <property name="recentSubmissionConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
-                <property name="metadataSortField" value="dc.date.accessioned"/>
-                <property name="type" value="date"/>
-                <property name="max" value="20"/>
-                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
-                <property name="useAsHomePage" value="false"/>
-            </bean>
         </property>
         <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
@@ -4017,8 +4229,8 @@
         <property name="spellCheckEnabled" value="true"/>
     </bean>
 
-     <!-- exploitationPlan StepType1 Task Type Configuration -->
-     <bean id="exploitationPlanStepType3TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <!-- exploitationPlan StepType3 Task Type Configuration -->
+    <bean id="exploitationPlanStepType3TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
         <property name="id" value="exploitation_plan_step_type_3_task_type"/>
         <property name="indexAlways" value="true"/>
         <!-- Which sidebar facets are to be displayed -->
@@ -4051,18 +4263,8 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:other OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:pot_societalimpact OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
-        </property>
-        <!-- The configuration for the recent submissions -->
-        <property name="recentSubmissionConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
-                <property name="metadataSortField" value="dc.date.accessioned"/>
-                <property name="type" value="date"/>
-                <property name="max" value="20"/>
-                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
-                <property name="useAsHomePage" value="false"/>
-            </bean>
         </property>
         <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
@@ -4070,8 +4272,8 @@
         <property name="spellCheckEnabled" value="true"/>
     </bean>
 
-     <!-- exploitationPlan StepType1 Task Type Configuration -->
-     <bean id="exploitationPlanStepType4TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <!-- exploitationPlan StepType4 Task Type Configuration -->
+    <bean id="exploitationPlanStepType4TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
         <property name="id" value="exploitation_plan_step_type_4_task_type"/>
         <property name="indexAlways" value="true"/>
         <!-- Which sidebar facets are to be displayed -->
@@ -4104,18 +4306,8 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:other)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:open_researchquestion) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
-        </property>
-        <!-- The configuration for the recent submissions -->
-        <property name="recentSubmissionConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
-                <property name="metadataSortField" value="dc.date.accessioned"/>
-                <property name="type" value="date"/>
-                <property name="max" value="20"/>
-                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
-                <property name="useAsHomePage" value="false"/>
-            </bean>
         </property>
         <!-- Default result per page -->
         <property name="defaultRpp" value="10"/>
@@ -4622,6 +4814,7 @@
 
     <bean id="searchFilterTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="types" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
@@ -5296,7 +5489,7 @@
         <property name="exposeMinAndMaxValue" value="true"/>
     </bean>
 
-    <bean id="searchsynsicristypepurpose" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypePurpose" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicristypepurpose" />
         <property name="metadataFields">
             <list>
@@ -5401,11 +5594,82 @@
         </property>
     </bean>
 
-    <bean id="searchFilterParentProjectStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterParentProjectStatus" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="parentProjectStatus" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>oairecerif.project.status</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterFundingParent" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="fundingParent" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.fundingParent</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="searchFilterSynsicrisRelationCall" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisRelationCall" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.call</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="searchFilterProjectStartDate" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="projectStartDate" />
+        <property name="type" value="date"/>
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.project.startDate</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterProjectEndDate" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="projectEndDate" />
+        <property name="type" value="date"/>
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.project.endDate</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="searchFilterSynsicrisSubjectNace" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisSubjectNace" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.subject.nace</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisSubjectDestatis" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisSubjectDestatis" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.subject.destatis</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="searchFilterSynsicrisTypeProjectContribution" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeProjectContribution" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.project-contribution</value>
             </list>
         </property>
     </bean>
@@ -5433,6 +5697,12 @@
 
     <bean id="sortLastModified" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
 		<property name="metadataField" value="lastModified" />
+		<property name="type" value="date" />
+        <property name="defaultSortOrder" value="desc"/>
+	</bean>
+
+	<bean id="sortLastCommentCreated" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+		<property name="metadataField" value="synsicris.date.creation" />
 		<property name="type" value="date" />
         <property name="defaultSortOrder" value="desc"/>
 	</bean>

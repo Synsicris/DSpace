@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="UNITS 2021-11-03">
+<node id="ResourceTypeGenres" label="UNITS 2022-11-29">
   <isComposedBy>
     <node id="UI10" label="Anzahl der Nutzer/Anwendungsfälle der Lösung / Änderung / Innovation ..." selectable="false">
     <hasNote></hasNote>
@@ -44,7 +44,7 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="UI30" label="Erfolgsindikatoren in einem Unternehmen, die die Nutzung der Lösung / Veränderung / Innovation zeigen" selectable="false">
+    <node id="UI30" label="Erfolgsindikatoren in einem Unternehmen oder einer Organisation, die die Nutzung der Lösung / Veränderung / Innovation zeigen" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="UI31" label="Lizenzeinnahmen aus der Verwertung von Patenten, Gebrauchsmustern oder Urheberrechten" selectable="true">
@@ -71,10 +71,13 @@
         <node id="UI38" label="Produktivitätssteigerung" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="UI39" label="Erzielter Marktanteil" selectable="true">
+        <node id="UI39" label="Erzielter/gesteigerter Marktanteil" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>
+    </node>
+    <node id="UI50" label="Keine Einheit passend" selectable="true">
+    <hasNote></hasNote>
     </node>
   </isComposedBy>
 </node>

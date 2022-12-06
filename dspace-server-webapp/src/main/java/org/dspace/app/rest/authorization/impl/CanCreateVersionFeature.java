@@ -24,6 +24,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
 
         Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
-        if (!projectConsumerService.isParentProjectItem(item) || isVersionItem(item)) {
+        if (!projectConsumerService.isProjectItem(item) || isVersionItem(item)) {
             return false;
         }
 
@@ -85,7 +86,8 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
             return false;
         }
 
-        String adminGroupName = "project_" + projectCommunity.getID() + "_admin_group";
+        String adminGroupName = String.format(ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE,
+                projectCommunity.getID().toString());
         Group adminGroup = groupService.findByName(context, adminGroupName);
         if (adminGroup == null) {
             return false;

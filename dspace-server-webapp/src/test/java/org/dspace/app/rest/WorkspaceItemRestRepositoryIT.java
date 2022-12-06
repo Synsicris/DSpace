@@ -101,6 +101,7 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.hamcrest.Matchers;
@@ -1961,21 +1962,23 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
 
         Collection projectCollection = CollectionBuilder.createCollection(context, parentCommunity)
             .withName("Parent project")
-            .withEntityType("parentproject")
+            .withEntityType(ProjectConstants.PROJECT_ENTITY)
             .withSubmitterGroup(eperson)
             .build();
 
-        Item parentProjectItem = ItemBuilder.createItem(context, projectCollection)
+        Item projectItem = ItemBuilder.createItem(context, projectCollection)
             .withTitle("Parent Project Item Title")
             .build();
 
-        final String projectItemID = "project_" + parentProjectItem.getID().toString() + "_item";
+        final String projectItemID = "project_" + projectItem.getID().toString() + "_item";       
+        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, projectItemID, projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
-        communityService.addMetadata(context, parentCommunity, "synsicris", "relation", "entity_project", null,
-            projectItemID, parentProjectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        itemService.addMetadata(context, parentProjectItem, "synsicris", "subject", "agrovoc", null, "Item #1");
-        itemService.addMetadata(context, parentProjectItem, "synsicris", "subject", "agrovoc", null, "Item #2");
+        itemService.addMetadata(context, projectItem, ProjectConstants.MD_AGROVOC.schema,
+                ProjectConstants.MD_AGROVOC.element, ProjectConstants.MD_AGROVOC.qualifier, null, "Item #1");
+        itemService.addMetadata(context, projectItem, ProjectConstants.MD_AGROVOC.schema,
+                ProjectConstants.MD_AGROVOC.element, ProjectConstants.MD_AGROVOC.qualifier, null, "Item #2");
 
         Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
             .withName("Publications")
@@ -1983,8 +1986,9 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             .withTemplateItem()
             .build();
 
-        itemService.addMetadata(context, publicationCollection.getTemplateItem(), "synsicris", "subject", "agrovoc",
-            null, "###AGROVOCKEYWORDS.project###");
+        itemService.addMetadata(context, publicationCollection.getTemplateItem(), ProjectConstants.MD_AGROVOC.schema,
+                ProjectConstants.MD_AGROVOC.element, ProjectConstants.MD_AGROVOC.qualifier, null,
+                "###AGROVOCKEYWORDS.project###");
 
         String authToken = getAuthToken(eperson.getEmail(), password);
 

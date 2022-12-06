@@ -319,3 +319,23 @@ assetstore.s3.awsRegionName =
 
 #GeoIP dbfile configuration for usage statistics
 usage-statistics.dbfile=/var/lib/GeoIP/GeoLite2-City.mmdb
+
+############## Projects configuration #################
+authentication-password.login.specialgroup = system_members_group
+project.funding-community-name = Funding
+project.community-name.to-skip = Exploitation plan objects, Impactpathway objects, Interim report objects
+project.template.add-user-groups = project_template_funders_group
+project.template.groups-name = project_template_funders_group, project_template_readers_group, project_template_coordinators_group, project_template_members_group
+project.funding-template.groups-name = funding_template_coordinators_group, funding_template_members_group
+project.entity-name.to-skip = impactpathway, impactpathwaystep, Project, Funding, exploitationplan, exploitationplanstep, interim_report, interim_report_step
+project.grants.entity-name.to-process = exploitationplan, exploitationplanstep, interim_report, interim_report_step, projectpartner
+project.entity.edit-mode = CUSTOM
+
+############## Projects configuration local #################
+system_members.group =
+funder-organisational-managers.group =
+funders-project-namagers.group =
+project.template-id =
+funding.template-id =
+project.parent-community-id =
+researcher-profile.collection.uuid =

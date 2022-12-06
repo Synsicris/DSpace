@@ -114,7 +114,7 @@ public class CrisLayoutBoxServiceImplTest {
         Item item = item();
 
         when(searchConfigurationUtilsService.findByRelation(context, item, "authors")).thenReturn(emptyIterator());
-        assertThat(crisLayoutBoxService.hasContent(context, box, item), is(false));
+        assertThat(crisLayoutBoxService.hasContent(context, box, item), is(true));
 
     }
 

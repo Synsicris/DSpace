@@ -40,6 +40,7 @@ import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.DiscoverResultIterator;
 import org.dspace.discovery.SearchServiceException;
 import org.dspace.discovery.indexobject.IndexableItem;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -103,7 +104,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                                                    " provided is not correspond to a valid Project");
         }
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-        if (!StringUtils.equals("Project", entityType)) {
+        if (!StringUtils.equals(ProjectConstants.FUNDING_ENTITY, entityType)) {
             throw new UnprocessableEntityException("The uuid:" + id +
                                                    " proviede is non correspond to Project, is " + entityType);
         }
@@ -123,12 +124,14 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             } else {
                 WorkspaceItem workspaceItem = workspaceItemService.create(context, projectPartnerCollection, true);
                 Item newItem = installItemService.installItem(context, workspaceItem);
-                easyOnlineImportService.importFile(context, newItem, document, "projectpartner");
+                easyOnlineImportService.importFile(context, newItem, document, ProjectConstants.PROJECTPARTNER_ENTITY);
                 collectionService.addItem(context, projectPartnerCollection, newItem);
-                itemService.replaceMetadata(context, newItem, "synsicris", "type", "easy-import", null, "Yes", null,
-                                            Choices.CF_UNSET, 0);
-                itemService.replaceMetadata(context, newItem, "synsicris", "relation", "project", null, item.getName(),
-                                            item.getID().toString(), Choices.CF_ACCEPTED, 0);
+                itemService.replaceMetadata(context, newItem, ProjectConstants.MD_EASYIMPORT.schema,
+                        ProjectConstants.MD_EASYIMPORT.element, ProjectConstants.MD_EASYIMPORT.qualifier, null, "Yes",
+                        null, Choices.CF_UNSET, 0);
+                itemService.replaceMetadata(context, newItem, ProjectConstants.MD_FUNDING_RELATION.schema,
+                        ProjectConstants.MD_FUNDING_RELATION.element, ProjectConstants.MD_FUNDING_RELATION.qualifier,
+                        null, item.getName(), item.getID().toString(), Choices.CF_ACCEPTED, 0);
                 newItem = context.reloadEntity(newItem);
                 easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));
             }
@@ -141,9 +144,10 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
     }
 
     private Collection getProjectPartnerCollection(Context context, Item item) throws SQLException {
-        Community parentCommunity = projectConsumerService.getParentCommunityByProjectItem(context, item);
+        Community parentCommunity = projectConsumerService.getFirstOwningCommunity(context, item);
         if (Objects.nonNull(parentCommunity)) {
-            return collectionService.retriveCollectionByEntityType(context, parentCommunity, "projectpartner");
+            return collectionService.retriveCollectionByEntityType(context, parentCommunity,
+                    ProjectConstants.PROJECTPARTNER_ENTITY);
         }
         return null;
     }
@@ -152,10 +156,11 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             throws SQLException, SearchServiceException {
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
-        discoverQuery.addFilterQueries("dspace.entity.type:projectpartner");
-        discoverQuery.addFilterQueries("synsicris.type.easy-import:Yes");
+        discoverQuery.addFilterQueries("dspace.entity.type:" + ProjectConstants.PROJECTPARTNER_ENTITY);
+        discoverQuery.addFilterQueries(ProjectConstants.MD_EASYIMPORT.toString() + ":Yes");
         discoverQuery.addFilterQueries("location.coll:" + collection.getID().toString());
-        discoverQuery.addFilterQueries("dc.relation.project_authority:" + projectItem.getID().toString());
+        discoverQuery.addFilterQueries(ProjectConstants.MD_FUNDING_RELATION.toString() + "_authority:" +
+                projectItem.getID().toString());
         return new DiscoverResultIterator<Item, UUID>(context, discoverQuery);
     }
 

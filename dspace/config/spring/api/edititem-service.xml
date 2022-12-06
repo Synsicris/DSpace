@@ -9,6 +9,28 @@
     <bean class="org.dspace.content.edit.service.impl.EditItemModeServiceImpl">
         <property name="editModesMap">
             <map>
+            	<entry key="comment">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="ADMIN_EDIT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="comments-edit" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="OWNER" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    OWNER
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="comments-edit" />
+                        </bean>
+                    </list>
+                </entry>
                 <entry key="impactpathway">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
@@ -42,6 +64,15 @@
                                     <value>cris.policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_form" />
                         </bean>
                     </list>
                 </entry>
@@ -79,12 +110,21 @@
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="EXPLOITATIONPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="exploitation_plan-edit_form" />
+                        </bean>
                     </list>
                 </entry>
                 <entry key="patent">
                     <list>
                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -130,16 +170,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="orgunit">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -151,40 +200,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="orgunits-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
-                    </list>
-                </entry>
-                <entry key="parentproject">
-                    <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="parentprojects-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="parentprojects-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>
@@ -193,7 +215,7 @@
                 <entry key="project">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -215,19 +237,38 @@
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="FUNDER_EDIT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_funder-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.funder-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="VERSIONING" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="projects_versioning-edit" />
+                            <property name="groups">
+                                <list>
+                                    <value>synsicris.versioning-edit-policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
                     </list>
                 </entry>
                 <entry key="person">
                     <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="persons-edit" />
-                        </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="OWNER" />
                             <property name="security">
@@ -242,7 +283,7 @@
                 <entry key="spinoff">
                     <list>    
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -288,16 +329,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="publication">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -343,16 +393,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="plan_publication">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -398,7 +457,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -412,16 +471,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="award">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -467,16 +535,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="step">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -522,16 +599,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="innovationidea">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -577,16 +663,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="task">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -632,7 +727,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -646,16 +741,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="milestone">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -701,7 +805,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -710,7 +814,7 @@
                 <entry key="stateofart">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -756,16 +860,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="contribution_fundingprogramme">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -811,16 +924,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="cooperationpartner">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -861,7 +983,7 @@
                 <entry key="unexpected_result">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -907,16 +1029,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="event">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -962,7 +1093,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -976,16 +1107,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="process_event">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1031,7 +1171,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1045,16 +1185,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="physical_object">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1100,7 +1249,7 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1114,16 +1263,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="targetgroup">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1161,16 +1319,16 @@
                         </bean>
                     </list>
                 </entry>
-                <entry key="pot_societalimpact">
+                <entry key="neg_sideeffect">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="pot_societalimpact-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="EDIT_GRANTS" />
@@ -1193,7 +1351,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="pot_societalimpact-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -1210,16 +1368,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="exp_societalimpact">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1265,16 +1432,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="condition">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1320,16 +1496,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="gender">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1375,16 +1560,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="ethic">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1430,16 +1624,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="proj_objective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1485,7 +1688,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1499,16 +1702,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="ia_objective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1554,7 +1766,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -1568,16 +1780,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="research_result">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1623,16 +1844,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
+                        </bean>                        
                     </list>
                 </entry>
                 <entry key="innovationpotential">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1678,16 +1908,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
+                        </bean>                        
                     </list>
                 </entry>
                 <entry key="application">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1733,22 +1972,31 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
-                <entry key="other">
+                <entry key="open_researchquestion">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="others-edit" />
+                            <property name="submissionDefinition" value="open_researchquestions-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="EDIT_GRANTS" />
@@ -1771,7 +2019,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="others-edit" />
+                            <property name="submissionDefinition" value="open_researchquestions-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -1788,16 +2036,25 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
+                        </bean>                        
                     </list>
                 </entry>
                 <entry key="workpackage">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1843,9 +2100,18 @@
                             <property name="submissionDefinition" value="working_plan-edit_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />
@@ -1857,24 +2123,24 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                         </bean>
                     </list>
                 </entry>
                 <entry key="workingplan">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="workpackages-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -1888,12 +2154,21 @@
                                 </list>
                             </property>
                         </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                        </bean>
                     </list>
                 </entry>
                 <entry key="projectpartner">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1920,7 +2195,7 @@
                 <entry key="programme">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1936,33 +2211,6 @@
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="programmes-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
-                    </list>
-                </entry>
-                <entry key="subcontractor">
-                    <list>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    ADMIN
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subcontractors-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="subcontractors-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>
@@ -1974,7 +2222,7 @@
                 <entry key="product">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2020,7 +2268,7 @@
                             <property name="submissionDefinition" value="impact_pathway-edit_link_form" />
                             <property name="groups">
                                 <list>
-                                    <value>synsicris.common-policy.group</value>
+                                    <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
                         </bean>
@@ -2029,7 +2277,7 @@
                 <entry key="funding">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2056,7 +2304,7 @@
                 <entry key="call">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2068,13 +2316,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="calls-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>
@@ -2083,7 +2331,7 @@
                 <entry key="fundingobjective">
                     <list>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="FULL" />
+                            <property name="name" value="ADMIN_EDIT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2095,13 +2343,13 @@
                             <property name="name" value="CUSTOM" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
+                                    GROUP
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="fundingobjectives-edit" />
                             <property name="groups">
                                 <list>
-                                    <value>cris.policy.group</value>
+                                    <value>${funder-organisational-managers.group}</value>
                                 </list>
                             </property>
                         </bean>

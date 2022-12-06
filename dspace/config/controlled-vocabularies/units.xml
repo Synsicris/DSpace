@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="UNITS 2021-02-02">
+<node id="ResourceTypeGenres" label="UNITS 2022-11-29">
   <isComposedBy>
     <node id="UI10" label="Number of users/use-cases of the solution / change / innovation …" selectable="false">
     <hasNote></hasNote>
@@ -44,7 +44,7 @@
         </node>
       </isComposedBy>
     </node>
-    <node id="UI30" label="Success indicators in a company, that show the use of the solution / change / innovation" selectable="false">
+    <node id="UI30" label="Success indicators in a company or organisation, that show the use of the solution / change / innovation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
         <node id="UI31" label="Licensing income from the exploitation of patents, utility models or copyrights" selectable="true">
@@ -75,6 +75,9 @@
         <hasNote></hasNote>
         </node>
       </isComposedBy>
+    </node>
+    <node id="UI40" label="No unit suitable" selectable="true">
+    <hasNote></hasNote>
     </node>
   </isComposedBy>
 </node>

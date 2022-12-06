@@ -207,6 +207,41 @@
         <property name="singleResultOnAggregate" value="false"/>
      </bean>
 
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="FundingAuthority"/>
+        <property name="relatedInputformMetadata" value="oairecerif_project_status"/>
+        <property name="schema" value="oairecerif"/>
+        <property name="element" value="project"/>
+        <property name="qualifier" value="status"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="FundingAuthority"/>
+        <property name="relatedInputformMetadata" value="oairecerif_fundingParent"/>
+        <property name="schema" value="oairecerif"/>
+        <property name="element" value="fundingParent"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="FundingAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_type_project"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="type"/>
+        <property name="qualifier" value="project"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+     
+     <bean class="org.dspace.content.authority.ItemSimpleAuthorityMetadataGenerator">
+        <property name="authorityName" value="FundingAuthority"/>
+        <property name="relatedInputformMetadata" value="synsicris_type_jointproject"/>
+        <property name="schema" value="synsicris"/>
+        <property name="element" value="type"/>
+        <property name="qualifier" value="jointproject"/>
+        <property name="singleResultOnAggregate" value="false"/>
+     </bean>
+
      <bean id="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator" 
     	class="org.dspace.content.authority.ZDBExtraIssnMetadataGenerator">
     	<property name="relatedInputformMetadata" value="dc_relation_issn"/>

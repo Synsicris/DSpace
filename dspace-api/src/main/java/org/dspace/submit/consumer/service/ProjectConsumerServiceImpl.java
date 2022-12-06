@@ -6,14 +6,19 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +35,11 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.core.exception.SQLRuntimeException;
+import org.dspace.discovery.DiscoverQuery;
+import org.dspace.discovery.DiscoverResultItemIterator;
+import org.dspace.discovery.indexobject.IndexableCommunity;
+import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
@@ -44,6 +54,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 */
 public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
+    private static final String SOLR_FILTER_LAST_VERSION_VISIBLE = "synsicris.isLastVersion.visible:true";
+    private static final String SOLR_FILTER_PREVIOUS_VISIBLE_VERSIONS = "synsicris.version:[1 TO %s]";
+    private static final String SOLR_FILTER_VERSION = "synsicris.version:\"%s\"";
+    private static final String SOLR_FILTER_PROJECT_UNIQUEID =
+        "synsicris.uniqueid:%s AND dspace.entity.type:Project";
+    private static final String SOLR_FILTER_VERSION_PROJECT =
+        "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -66,38 +83,39 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         try {
             if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
                 String shared = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
-                Community projectCommunity = getProjectCommunity(context, item);
+                String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
+                Community projectCommunity;
+                if (entityType != null && entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+                    projectCommunity = getProjectCommunity(context, item);
+                } else {
+                    projectCommunity = getProjectCommunityByRelationProject(context, item);
+                }
+
                 if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
                     return;
                 }
                 switch (shared) {
-                    case ProjectConstants.PARENTPROJECT :
+                    case ProjectConstants.PROJECT :
                     case ProjectConstants.OWNING_PROJECT :
-                        if (!setPolicyGroup(context, item, currentUser, projectCommunity)) {
+                        if (!setPolicyGroup(context, item, currentUser, projectCommunity, false)) {
                             log.error("something went wrong, the item:" + item.getID().toString()
                                     + " could not register the policy 'cris.policy.group'.");
                         }
                         break;
-                    case ProjectConstants.PROJECT:
-                        Community project = getSubProjectCommunity(projectCommunity);
+                    case ProjectConstants.FUNDING:
+                        Community project = getFundingCommunity(projectCommunity);
                         if (Objects.isNull(project)) {
-                            throw new RuntimeException("It was not possible to find the subProject Community");
+                            throw new RuntimeException("It was not possible to find the funding Community");
                         }
                         List<Community> subCommunities = project.getSubcommunities();
                         for (Community community : subCommunities) {
-                            if (setPolicyGroup(context, item, currentUser, community)) {
+                            if (setPolicyGroup(context, item, currentUser, community, true)) {
                                 return;
                             }
                         }
                         break;
-                    case ProjectConstants.SHARED:
-                        setPolicyGroup(context, item, configurationService.getProperty("project.creation.group"));
-                        break;
                     case ProjectConstants.FUNDER:
                         setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
-                        break;
-                    case ProjectConstants.FUNDER_PROGRAMME:
-                        setPolicyGroup(context,item,configurationService.getProperty("project.funder_programme.group"));
                         break;
                     default:
                         return;
@@ -119,10 +137,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public Community getProjectCommunity(Context context, Item item) throws SQLException {
-        Community parentProjectCommunity = null;
+    public Community getFirstOwningCommunity(Context context, Item item) throws SQLException {
+        Community parentCommunity = null;
         Collection owningCollection = null;
-        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
 
         WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
         if (Objects.nonNull(workspaceItem)) {
@@ -134,19 +151,83 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             }
             owningCollection = item.getOwningCollection();
         }
-
-        if (owningCollection == null) {
-            // the item is a template item
-            return null;
+        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
+        parentCommunity = owningCollection.getCommunities().get(0);
+        while (Arrays.stream(commToSkip).anyMatch(parentCommunity.getName()::equals)) {
+            parentCommunity = parentCommunity.getParentCommunities().get(0);
         }
-
-        parentProjectCommunity = owningCollection.getCommunities().get(0);
-        while (Arrays.stream(commToSkip).anyMatch(parentProjectCommunity.getName()::equals)) {
-            parentProjectCommunity = parentProjectCommunity.getParentCommunities().get(0);
-        }
-        return parentProjectCommunity;
+        return parentCommunity;
     }
 
+    @Override
+    public Community getProjectCommunity(Context context, Item item) throws SQLException {
+        Community owningCommunity = getFirstOwningCommunity(context, item);
+        Community parentCommunity = owningCommunity.getParentCommunities().get(0);
+
+        String parentCommId = configurationService.getProperty("project.parent-community-id", null);
+
+        if (parentCommunity.getID().toString().equals(parentCommId)) {
+            return owningCommunity;
+        } else {
+            return parentCommunity.getParentCommunities().get(0);
+        }
+    }
+    
+//    @Override
+//    public Community getProjectCommunity(Context context, Item item) throws SQLException {
+//        Community projectCommunity = null;
+//        Collection owningCollection = null;
+//        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
+//
+//        WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
+//        if (Objects.nonNull(workspaceItem)) {
+//            owningCollection = workspaceItem.getCollection();
+//        } else {
+//            if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
+//                // the item is a template item
+//                return null;
+//            }
+//            owningCollection = item.getOwningCollection();
+//        }
+//
+//        if (owningCollection == null) {
+//            // the item is a template item
+//            return null;
+//        }
+//
+//        projectCommunity = owningCollection.getCommunities().get(0);
+//        while (Arrays.stream(commToSkip).anyMatch(projectCommunity.getName()::equals)) {
+//            projectCommunity = projectCommunity.getParentCommunities().get(0);
+//        }
+//        return projectCommunity;
+//    }
+
+    @Override
+    public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
+            throws SQLException {
+        if (Objects.isNull(fundingCommunity)) {
+            return null;
+        }
+        String template;
+        switch (role) {
+            case ProjectConstants.MEMBERS_ROLE:
+                template = FUNDING_MEMBERS_GROUP_TEMPLATE;
+                break;
+            default:
+                template = ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
+                break;
+        }
+        String groupName = String.format(template, fundingCommunity.getID().toString());
+        return groupService.findByName(context, groupName);
+    }
+
+    @Override
+    public String getOwningFundigPolicy(Context context, Item item) throws SQLException {
+        Community parentComm = getFirstOwningCommunity(context, item);
+        Item fundingItem = getRelationItemByCommunity(context, parentComm);
+
+        return getDefaultSharedValueByItemProject(context, fundingItem);
+    }
 
     @Override
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
@@ -157,129 +238,272 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         String template;
         switch (role) {
             case ProjectConstants.MEMBERS_ROLE:
-                template = ProjectConstants.MEMBERS_GROUP_TEMPLATE;;
+                template = PROJECT_MEMBERS_GROUP_TEMPLATE;
+                break;
+            case ProjectConstants.FUNDERS_ROLE:
+                template = ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
+                break;
+            case ProjectConstants.READERS_ROLE:
+                template = ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
                 break;
             default:
-                template = ProjectConstants.ADMIN_GROUP_TEMPLATE;
+                template = ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, projectCommunity.getID().toString());
         return groupService.findByName(context, groupName);
     }
 
-    private Community getSubProjectCommunity(Community projectCommunity) {
-        String subprojectName =  configurationService.getProperty("project.subproject-community-name");
+    @Override
+    public Iterator<Item> findPreviousVisibleVersionsInCommunity(
+        Context context, Community projectCommunity, String versionNumber
+    ) {
+        return findPreviousVisibleVersionsByCommunity(context, projectCommunity, versionNumber);
+    }
+
+    @Override
+    public Iterator<Item> findLastVersionVisibleInCommunity(
+        Context context, Community projectCommunity
+    ) {
+        return findLastVersionVisibleByCommunity(context, projectCommunity);
+    }
+
+    @Override
+    public Iterator<Item> findVersionedProjectItemsBy(Context context, UUID projectId) {
+        return findProjectItemsBy(context, projectId);
+    }
+
+    @Override
+    public Iterator<Item> findVersionedItemsOfProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        try {
+
+            projectCommunity =
+                Optional.ofNullable(projectCommunity)
+                    .orElse(getProjectCommunity(context, projectItem));
+            if (projectCommunity == null) {
+                return IteratorUtils.emptyIterator();
+            }
+
+            return findItemsByCommunity(context, projectCommunity, projectItem, version);
+
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    @Override
+    public Iterator<Item> findVersionedItemsRelatedToProject(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        try {
+
+            projectCommunity =
+                Optional.ofNullable(projectCommunity)
+                .orElse(getProjectCommunity(context, projectItem));
+            if (projectCommunity == null) {
+                return IteratorUtils.emptyIterator();
+            }
+
+            return findNotProjectItemsByCommunity(context, projectCommunity, projectItem, version);
+
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    private Iterator<Item> findPreviousVisibleVersionsByCommunity(
+        Context context, Community projectCommunity, String versionNumber
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(String.format(SOLR_FILTER_PREVIOUS_VISIBLE_VERSIONS, versionNumber));
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findLastVersionVisibleByCommunity(
+        Context context, Community projectCommunity
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(SOLR_FILTER_LAST_VERSION_VISIBLE);
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findItemsByCommunity(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_VERSION, version)
+        );
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Iterator<Item> findProjectItemsBy(Context context, UUID itemId) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_PROJECT_UNIQUEID, itemId.toString())
+        );
+        return new DiscoverResultItemIterator(context, discoverQuery);
+    }
+
+    private Iterator<Item> findNotProjectItemsByCommunity(
+        Context context, Community projectCommunity, Item projectItem, String version
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(
+            String.format(SOLR_FILTER_VERSION_PROJECT, version, projectItem.getID().toString())
+        );
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
+    }
+
+    private Community getFundingCommunity(Community projectCommunity) {
+        String fundingName =  configurationService.getProperty("project.funding-community-name");
         List<Community> subCommunities = new ArrayList<>();
         subCommunities.addAll(projectCommunity.getSubcommunities());
         subCommunities.addAll(projectCommunity.getParentCommunities());
         for (Community community : subCommunities) {
-            if (StringUtils.equals(subprojectName, community.getName())) {
+            if (StringUtils.equals(fundingName, community.getName())) {
                 return community;
             }
         }
         return null;
     }
 
-    private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community)
-            throws SQLException {
-        StringBuilder memberGroupName = new StringBuilder("project_")
-                                                 .append(community.getID().toString())
-                                                 .append("_members_group");
-        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName.toString());
+    private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community,
+            boolean isFunding) throws SQLException {
+        String memberGroupName =
+            String.format(
+                isFunding ? FUNDING_MEMBERS_GROUP_TEMPLATE : PROJECT_MEMBERS_GROUP_TEMPLATE,
+                community.getID().toString()
+            );
+        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName);
         boolean isAdmin = authorizeService.isAdmin(context);
         boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
         boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
+
         if (isAdmin || isGroupMember || isCommunityAdmin) {
-            itemService.replaceMetadata(context, item, "cris", "policy", "group", null, memberGroupName.toString(),
-                    memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0);
+            itemService.replaceMetadata(
+                context, item, "cris", "policy", "group", null, memberGroupName,
+                memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0
+            );
             return true;
         }
         return false;
     }
 
     @Override
-    public void checkGrants(Context context, EPerson currentUser, Item item) {
+    public void setGrantsByFundingPolicy(Context context, Item item) {
         try {
             Community projectCommunity = getProjectCommunity(context, item);
+            Community fundingCommunity = getFirstOwningCommunity(context, item);
             if (Objects.isNull(projectCommunity)) {
                 return;
             }
-            Community subprojectCommunity = isMemberOfSubProject(context, currentUser, projectCommunity);
-            if (Objects.nonNull(subprojectCommunity)) {
-                List<MetadataValue> values = communityService.getMetadata(subprojectCommunity,
-                        ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                        ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
-                if (CollectionUtils.isNotEmpty(values)) {
-                    String defaultValue = getDefaultSharedValueByItemProject(context, values);
-                    if (StringUtils.isNoneEmpty(defaultValue)) {
-                        itemService.replaceMetadata(context, item, "cris", "project", "shared",
-                                                       null, defaultValue, null, Choices.CF_UNSET, 0);
-                    }
-                }
-            } else {
-                itemService.replaceMetadata(context, item, "cris", "project", "shared",
-                                            null, ProjectConstants.PARENTPROJECT, null, Choices.CF_UNSET, 0);
+
+            String policyValue = getOwningFundigPolicy(context, item);
+            if (StringUtils.isBlank(policyValue)) {
+                policyValue = ProjectConstants.PROJECT;
             }
+            
+            itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_SHARED.schema,
+                    ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier,
+                    null, policyValue, null, Choices.CF_UNSET, 0);
+            
+            Group group;
+            switch (policyValue) {
+                case ProjectConstants.PROJECT:
+                    group = getProjectCommunityGroupByRole(context, projectCommunity, ProjectConstants.MEMBERS_ROLE);
+                    break;
+                case ProjectConstants.FUNDING:
+                    group = getFundingCommunityGroupByRole(context, fundingCommunity, ProjectConstants.MEMBERS_ROLE);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unable to find policy named : " + policyValue);
+            }
+
+            itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_GROUP.schema,
+                    ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
+                    null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
         } catch (SQLException e) {
             e.printStackTrace();
             log.error(e.getMessage());
         }
     }
 
-    private String getDefaultSharedValueByItemProject(Context context, List<MetadataValue> values) throws SQLException {
-        UUID uuidProjectItem = UUID.fromString(values.get(0).getAuthority());
-        if (Objects.nonNull(uuidProjectItem)) {
-            Item projectItem = itemService.find(context, uuidProjectItem);
-            if (Objects.isNull(projectItem)) {
-                return null;
-            }
-            return itemService.getMetadataFirstValue(projectItem, "cris", "project", "shared", Item.ANY);
+    @Override
+    public String getDefaultSharedValueByItemProject(Context context, Item projectItem) {
+        if (Objects.isNull(projectItem)) {
+            return null;
         }
-        return null;
+        return itemService.getMetadataFirstValue(projectItem, ProjectConstants.MD_POLICY_SHARED.schema,
+                ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, Item.ANY);
     }
 
     @Override
-    public Community isMemberOfSubProject(Context context, EPerson ePerson, Community projectCommunity)
+    public boolean isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
 
-        List<Community> subprojects = getAllSubProjectsByUser(context, ePerson, projectCommunity);
-        // user MUST be member of at least one subproject within a project
-        if (subprojects.size() > 0) {
-            return subprojects.get(0);
+        Community funding  = getFundingCommunityByUser(context, ePerson, projectCommunity);
+        return Objects.nonNull(funding);
+    }
+
+    @Override
+    public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
+            throws SQLException {
+
+        List<Community> fundings = getAllFundingsByUser(context, ePerson, projectCommunity);
+        // user MUST be member of at least one funding within a project
+        if (fundings.size() > 0) {
+            return fundings.get(0);
         } else {
             return null;
         }
     }
 
     @Override
-    public List<Community> getAllSubProjectsByUser(Context context, EPerson ePerson, Community projectCommunity)
+    public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
-        Community subprojectsParentCommunity = getSubProjectCommunity(projectCommunity);
-        List<Community> subprojects = new ArrayList<Community>();
+        Community fundingsParentCommunity = getFundingCommunity(projectCommunity);
+        List<Community> fundings = new ArrayList<Community>();
 
-        if (Objects.isNull(subprojectsParentCommunity)) {
-            return subprojects;
+        if (Objects.isNull(fundingsParentCommunity)) {
+            return fundings;
         }
 
-        List<Community> subCommunities = subprojectsParentCommunity.getSubcommunities();
+        List<Community> subCommunities = fundingsParentCommunity.getSubcommunities();
         for (Community community : subCommunities) {
-            StringBuilder memberGroupName = new StringBuilder("project_")
+            StringBuilder memberGroupName = new StringBuilder("funding_")
                                                       .append(community.getID().toString())
                                                       .append("_members_group");
             Group group = groupService.findByName(context, memberGroupName.toString());
             boolean isGroupMember = groupService.isMember(context, ePerson, group);
             if (isGroupMember) {
-                subprojects.add(community);
+                fundings.add(community);
             }
         }
-        return subprojects;
+        return fundings;
     }
 
     @Override
-    public Community getParentCommunityByProjectItem(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PARENTPROJECT_RELATION.schema,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.element,
-                ProjectConstants.MD_PARENTPROJECT_RELATION.qualifier, null);
+    public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
+                ProjectConstants.MD_PROJECT_RELATION.element,
+                ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
@@ -293,7 +517,52 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
-    public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException {
+    public Community getFundingCommunityByRelationFunding(Context context, Item item) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_FUNDING_RELATION.schema,
+                ProjectConstants.MD_FUNDING_RELATION.element,
+                ProjectConstants.MD_FUNDING_RELATION.qualifier, null);
+        if (values.isEmpty()) {
+            return null;
+        }
+        String uuid = values.get(0).getAuthority();
+        if (StringUtils.isNotBlank(uuid)) {
+            // item that represent Project community
+            Item projectItem = itemService.find(context, UUID.fromString(uuid));
+            return getFirstOwningCommunity(context, projectItem);
+        }
+        return null;
+    }
+
+    public Item getRelationItemByCommunity(Context context, Community community) {
+        Item projectItem = null;
+        
+        List<MetadataValue> values = communityService.getMetadata(community,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
+
+        if (values.size() != 1) {
+            log.warn("Communitiy {} has {} project items, unable to proceed", community.getID().toString(),
+                    values.size());
+            return projectItem;
+        }
+
+        String itemUUID = values.get(0).getAuthority();
+        if (StringUtils.isBlank(itemUUID)) {
+            log.warn("Communitiy {} has no project items, unable to proceed", community.getID().toString());
+            return projectItem;
+        }
+        
+        try {
+            projectItem = itemService.find(context, UUIDUtils.fromString(itemUUID));
+        } catch (SQLException e) {
+            return projectItem;
+        }
+        
+        return projectItem;
+    }
+    
+    @Override
+    public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) {
         Item projectItem = null;
         List<Community> communities;
 
@@ -315,28 +584,32 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             return projectItem;
         }
 
-        List<MetadataValue> values = communityService.getMetadata(communities.get(0),
-                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
-
-        if (values.size() != 1) {
-            log.warn("Communitiy {} has {} project items, unable to proceed", communities.get(0).getID().toString(),
-                    values.size());
-            return projectItem;
-        }
-
-        String itemUUID = values.get(0).getAuthority();
-        if (StringUtils.isBlank(itemUUID)) {
-            log.warn("Communitiy {} has no project items, unable to proceed", communities.get(0).getID().toString());
-            return projectItem;
-        }
-
-        return itemService.find(context, UUIDUtils.fromString(itemUUID));
+        return getRelationItemByCommunity(context, communities.get(0));
     }
 
     @Override
-    public boolean isParentProjectItem(Item item) {
-        return ProjectConstants.PARENTPROJECT_ENTITY.equals(itemService.getEntityType(item));
+    public Item getParentProjectItemByCommunityUUID(Context context, UUID communityUUID) {
+        Item projectItem = null;
+        Community community = null;
+
+        try {
+            community = communityService.find(context, communityUUID);
+        } catch (SQLException e) {
+            log.error("Error while trying to extract communities for collection {}: {}", communityUUID.toString(),
+                    e.getMessage());
+            return projectItem;
+        }
+
+        if (Objects.isNull(community)) {
+            return projectItem;
+        }
+
+        return getRelationItemByCommunity(context, community);
+    }
+
+    @Override
+    public boolean isProjectItem(Item item) {
+        return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
     }
 
 }

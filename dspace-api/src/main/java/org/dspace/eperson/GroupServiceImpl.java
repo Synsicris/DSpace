@@ -42,6 +42,7 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Event;
+import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
 import org.dspace.xmlworkflow.Role;
 import org.dspace.xmlworkflow.factory.XmlWorkflowFactory;
@@ -95,6 +96,8 @@ public class GroupServiceImpl extends DSpaceObjectServiceImpl<Group> implements 
     protected ClaimedTaskService claimedTaskService;
     @Autowired(required = true)
     protected XmlWorkflowFactory workflowFactory;
+    @Autowired
+    private ConfigurationService configurationService;
 
     protected GroupServiceImpl() {
         super();
@@ -341,7 +344,7 @@ public class GroupServiceImpl extends DSpaceObjectServiceImpl<Group> implements 
         // However, we only do this is we are looking up the special groups
         // of the current user, as we cannot look up the special groups
         // of a user who is not logged in.
-        if ((context.getCurrentUser() == null) || (context.getCurrentUser().equals(ePerson))) {
+        if (context.getCurrentUser() == null || context.getCurrentUser().equals(ePerson)) {
             List<Group> specialGroups = context.getSpecialGroups();
             for (Group special : specialGroups) {
                 groups.add(special);
@@ -518,7 +521,7 @@ public class GroupServiceImpl extends DSpaceObjectServiceImpl<Group> implements 
     @Override
     public boolean isEmpty(Group group) {
         // the only fast check available is on epeople...
-        boolean hasMembers = (!group.getMembers().isEmpty());
+        boolean hasMembers = !group.getMembers().isEmpty();
 
         if (hasMembers) {
             return false;
@@ -829,4 +832,39 @@ public class GroupServiceImpl extends DSpaceObjectServiceImpl<Group> implements 
                                            final MetadataField metadataField) throws SQLException {
         return groupDAO.findByMetadataField(context, searchValue, metadataField);
     }
+
+    @Override
+    public boolean isProjectManagersGroup(Context context, UUID groupId) throws SQLException {
+        return Optional.ofNullable(
+                    GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.FUNDERS_PROJECT_MANAGER)
+                )
+                .map(group -> group.getID() == groupId)
+                .orElse(false);
+    }
+
+    @Override
+    public boolean isOrganisationalManager(Context context, EPerson ePerson) throws SQLException {
+        Group organisationalManagersGroup =
+            GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.ORGANISATIONAL_MANAGER);
+        if (!Objects.isNull(organisationalManagersGroup)) {
+            return this.isMember(context, ePerson, organisationalManagersGroup);
+        }
+        return false;
+    }
+
+    @Override
+    public Group getProjectManagersGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.FUNDERS_PROJECT_MANAGER);
+    }
+
+    @Override
+    public Group getFunderOrganisationalManagerGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.ORGANISATIONAL_MANAGER);
+    }
+
+    @Override
+    public Group getSystemMembersGroup(Context context) throws SQLException {
+        return GroupConfiguration.getGroupFromProperty(context, GroupConfiguration.SYSTEM_MEMBERS);
+    }
+
 }

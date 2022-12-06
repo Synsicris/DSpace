@@ -32,6 +32,10 @@ import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.handle.dao.HandleDAO;
 import org.dspace.utils.DSpace;
+import org.dspace.versioning.DefaultItemVersionProvider;
+import org.dspace.versioning.ItemVersionProvider;
+import org.dspace.versioning.ProjectVersionProvider;
+import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
 import org.junit.After;
@@ -64,7 +68,11 @@ public class HandleDAOImplTest extends AbstractUnitTest {
     protected BitstreamService bitstreamService = ContentServiceFactory.getInstance().getBitstreamService();
     protected WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
     protected InstallItemService installItemService = ContentServiceFactory.getInstance().getInstallItemService();
-    protected VersioningService versioningService = VersionServiceFactory.getInstance().getVersionService();
+    protected VersioningServiceImpl versioningService = (VersioningServiceImpl) VersionServiceFactory.getInstance().getVersionService();
+    protected DefaultItemVersionProvider itemVersionProvider = new DSpace().getServiceManager()
+            .getServiceByName("defaultItemVersionProvider", DefaultItemVersionProvider.class);
+    protected ProjectVersionProvider projectItemVersionProvider = new DSpace().getServiceManager()
+            .getServiceByName("projectItemVersionProvider", ProjectVersionProvider.class);
 
     private HandleDAO handleDAO = new DSpace().getServiceManager().getServicesByType(HandleDAO.class).get(0);
 
@@ -83,6 +91,7 @@ public class HandleDAOImplTest extends AbstractUnitTest {
         try {
             //we have to create a new community in the database
             context.turnOffAuthorisationSystem();
+            versioningService.setProvider((ItemVersionProvider) itemVersionProvider);
             this.owningCommunity = communityService.create(null, context);
             Collection collection = collectionService.create(context, owningCommunity);
 
@@ -122,12 +131,12 @@ public class HandleDAOImplTest extends AbstractUnitTest {
     public void destroy() {
         try {
             context.turnOffAuthorisationSystem();
-
             //Context might have been committed in the test method, so best to reload to entity so we're sure that it
             // is attached.
             owningCommunity = context.reloadEntity(owningCommunity);
             ContentServiceFactory.getInstance().getCommunityService().delete(context, owningCommunity);
             owningCommunity = null;
+            versioningService.setProvider(projectItemVersionProvider);
         } catch (Exception e) {
             throw new AssertionError("Error occurred in destroy()", e);
         }

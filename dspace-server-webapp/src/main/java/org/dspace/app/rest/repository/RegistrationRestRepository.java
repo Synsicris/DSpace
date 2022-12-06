@@ -29,6 +29,7 @@ import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.model.RegistrationRest;
 import org.dspace.app.util.AuthorizeUtil;
+import org.dspace.app.util.service.DSpaceObjectUtils;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.DSpaceObject;
@@ -78,6 +79,9 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
 
     @Autowired
     private CommunityService communityService;
+
+    @Autowired
+    private DSpaceObjectUtils dSpaceObjectUtils;
 
     @Override
     public RegistrationRest findOne(Context context, Integer integer) {
@@ -166,7 +170,7 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
     }
 
     private DSpaceObject getParentObjectByGroupName(Context context, Group group) {
-        Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
         Matcher matcher = pattern.matcher(group.getName());
         if (matcher.matches()) {
             UUID uuid = UUIDUtils.fromString(matcher.group(2));
@@ -211,6 +215,50 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
         registrationRest.setGroupNames(groupNames);
         registrationRest.setGroups(registrationData
                 .getGroups().stream().map(Group::getID).collect(Collectors.toList()));
+        registrationRest.setDspaceObjectNames(getDspaceObjectNames(context, groupNames));
         return registrationRest;
     }
+
+    private List<String> getDspaceObjectNames(Context context, List<String> groupNames) {
+        return groupNames.stream()
+                         .map(value -> getDspaceObjectName(context, value))
+                         .collect(Collectors.toList());
+    }
+
+    private String getDspaceObjectName(Context context, String value) {
+
+        UUID uuid = extractDspaceObjectUUID(value);
+
+        if (uuid == null) {
+            return "";
+        }
+
+        try {
+            DSpaceObject dSpaceObject = dSpaceObjectUtils.findDSpaceObject(context, uuid);
+            if (dSpaceObject != null) {
+                return dSpaceObject.getName();
+            } else {
+                return "";
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private UUID extractDspaceObjectUUID(String value) {
+        UUID uuid = null;
+        if (StringUtils.isNotBlank(value)) {
+            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
+            Matcher matcher = pattern.matcher(value);
+            if (matcher.matches()) {
+                try {
+                    uuid = UUID.fromString(matcher.group(2));
+                } catch (Exception e) {
+                    // do nothing
+                }
+            }
+        }
+        return uuid;
+    }
+
 }

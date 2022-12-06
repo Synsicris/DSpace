@@ -202,6 +202,11 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, "iiif", "image", "height", String.valueOf(i));
     }
 
+    public ItemBuilder withAuthorityMetadata(final String schema, final String element, final String qualifier,
+            final String value, final String authority) {
+        return addMetadataValue(item, schema, element, qualifier, null, value, authority, CF_ACCEPTED);
+    }
+
     public ItemBuilder withMetadata(final String schema, final String element, final String qualifier,
                                     final String value) {
         return addMetadataValue(item, schema, element, qualifier, value);
@@ -775,7 +780,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
     }
 
     public ItemBuilder withParentproject(String value, String authority_uuid) {
-        return addMetadataValue(item, "synsicris", "relation", "parentproject", null,
+        return addMetadataValue(item, "synsicris", "relation", "project", null,
                                          value, authority_uuid, Choices.CF_ACCEPTED);
     }
 
@@ -785,6 +790,14 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withUniqueId(String value) {
         return setMetadataSingleValue(item, "synsicris", "uniqueid", null, value);
+    }
+
+    public ItemBuilder withFundingParent(String value) {
+        return addMetadataValue(item, "oairecerif", "fundingParent", null, value);
+    }
+
+    public ItemBuilder withFundingParent(String value, String authority) {
+        return addMetadataValue(item, "oairecerif", "fundingParent", null, null, value, authority, 600);
     }
 
     /**

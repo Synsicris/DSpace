@@ -21,11 +21,12 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
+import org.dspace.project.util.ProjectConstants;
 
 /**
  * Implementation of {@link Consumer} this consumer has the role
  * of deleting hung groups of deleted communities.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class DeleteGroupsConsumer implements Consumer {
@@ -52,10 +53,22 @@ public class DeleteGroupsConsumer implements Consumer {
                 if (communitiesAlreadyProcessed.contains(uuid)) {
                     return;
                 }
-                Group membersGroup = searchGroup(context, uuid, "members");
-                Group adminGroup = searchGroup(context, uuid, "admin");
+
+                Group membersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, false);
+                Group coordinatorGroup = searchGroup(context, uuid, ProjectConstants.COORDINATORS_ROLE, false);
+                Group fundersGroup = searchGroup(context, uuid, ProjectConstants.FUNDERS_ROLE, false);
+                Group readersGroup = searchGroup(context, uuid, ProjectConstants.READERS_ROLE, false);
+
+                Group fundingMembersGroup = searchGroup(context, uuid, ProjectConstants.MEMBERS_ROLE, true);
+                Group fundingCoordinatorGroup = searchGroup(context, uuid, ProjectConstants.COORDINATORS_ROLE, true);
+
                 deleteGroup(context, membersGroup);
-                deleteGroup(context, adminGroup);
+                deleteGroup(context, coordinatorGroup);
+                deleteGroup(context, fundersGroup);
+                deleteGroup(context, readersGroup);
+
+                deleteGroup(context, fundingMembersGroup);
+                deleteGroup(context, fundingCoordinatorGroup);
                 communitiesAlreadyProcessed.add(uuid);
             }
         }
@@ -75,13 +88,13 @@ public class DeleteGroupsConsumer implements Consumer {
     /**
      * Finish the event
      *
-     * @param ctx The relevant DSpace Context.
+     * @param context The relevant DSpace Context.
      */
     @Override
     public void finish(Context context) throws Exception {}
 
-    private Group searchGroup(Context context, UUID communityUuid, String type) throws SQLException {
-        StringBuilder groupName = new StringBuilder( "project_");
+    private Group searchGroup(Context context, UUID communityUuid, String type, boolean isFunding) throws SQLException {
+        StringBuilder groupName = isFunding ? new StringBuilder( "funding_") : new StringBuilder( "project_");
         groupName.append(communityUuid.toString()).append("_").append(type).append("_group");
         return groupService.findByName(context, groupName.toString());
     }

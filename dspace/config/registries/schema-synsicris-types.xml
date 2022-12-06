@@ -12,14 +12,14 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>entity_project</qualifier>
+        <qualifier>entity_item</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>parentproject</qualifier>
+        <qualifier>funding</qualifier>
         <scope_note></scope_note>
     </dc-type>
     
@@ -117,6 +117,13 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>personadmin</element>
+        <qualifier>email</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>personadmin</element>
         <qualifier>degree</qualifier>
         <scope_note></scope_note>
     </dc-type>
@@ -179,7 +186,7 @@
     
     <dc-type>
         <schema>synsicris</schema>
-        <element>subproject</element>
+        <element>funding</element>
         <qualifier>community</qualifier>
         <scope_note></scope_note>
     </dc-type>
@@ -187,6 +194,13 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>title</element>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>title</element>
+        <qualifier>registercourt</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
@@ -204,10 +218,52 @@
     
     <dc-type>
         <schema>synsicris</schema>
-        <element>common-policy</element>
+        <element>coordinator-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>member-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>funder-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>reader-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>coordinator-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>versioning-edit-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>versioning-read-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>    
     
     <dc-type>
         <schema>synsicris</schema>
@@ -244,4 +300,157 @@
         <scope_note></scope_note>
     </dc-type>
     
+    <dc-type>
+		<schema>synsicris</schema>
+		<element>relation</element>
+		<qualifier>interim_report</qualifier>
+		<scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>creator</element>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>item</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>date</element>
+        <qualifier>creation</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>date</element>
+        <qualifier>reminder</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>partner</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>call</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>orgunit</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>targetgroup</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>person</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>innovationpotential</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>publication</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>fundingobjective</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>programme</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>duration</element>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>amount</element>
+        <qualifier>grantpersonnel</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>amount</element>
+        <qualifier>budget</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>visible</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>official</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <qualifier>notes</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>isLastVersion</element>
+        <qualifier>visible</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>version</element>
+        <scope_note></scope_note>
+    </dc-type>
+
 </dspace-dc-types>

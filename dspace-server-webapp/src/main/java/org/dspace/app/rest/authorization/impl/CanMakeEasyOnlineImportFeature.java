@@ -58,12 +58,14 @@ public class CanMakeEasyOnlineImportFeature implements AuthorizationFeature {
             Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
             String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-            if (!entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+            if (!entityType.equals(ProjectConstants.FUNDING_ENTITY)) {
                 // import is available only for project entity
                 return false;
             }
 
-            List<MetadataValue> values = itemService.getMetadata(item, "synsicris", "relation", "parentproject", null);
+            List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
+                    ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
+                    null);
             if (values.isEmpty()) {
                 return false;
             }
@@ -75,10 +77,8 @@ public class CanMakeEasyOnlineImportFeature implements AuthorizationFeature {
                 if (Objects.isNull(projectCommunity)) {
                     return false;
                 }
-                if (Objects.nonNull(projectConsumerService.isMemberOfSubProject(context, context.getCurrentUser(),
-                        projectCommunity))) {
-                    return true;
-                }
+                return projectConsumerService.isMemberOfFunding(context, context.getCurrentUser(),
+                        projectCommunity);
             }
         }
         return false;

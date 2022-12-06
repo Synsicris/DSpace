@@ -111,7 +111,7 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
 
         Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
+                       .withName("funding_" + subprojectAComm.getID().toString() + "_members_group")
                        .addMember(ePerson1).build();
 
         collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
@@ -122,14 +122,14 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                                           .withName("Sub ProjectB of SubprojectsCommunity").build();
 
         Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
+                       .withName("funding_" + subprojectBComm.getID().toString() + "_members_group")
                        .addMember(ePerson2).build();
 
         collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectAComm)
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();
 
         ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);
@@ -202,7 +202,7 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                                                  .withSubmitterGroup(subprojectBGroup)
                                                  .withName("Collection Sub Project B").build();
 
-        configurationService.setProperty("project.subproject-community-name", subprojectsCommunity.getName());
+        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();
 
         ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);

@@ -211,8 +211,8 @@
         </rightCardinality>
     </type>
     <type>
-        <leftType>pot_societalimpact</leftType>
-        <rightType>pot_societalimpact</rightType>
+        <leftType>neg_sideeffect</leftType>
+        <rightType>neg_sideeffect</rightType>
         <leftwardType>isVersionOf</leftwardType>
         <rightwardType>hasVersion</rightwardType>
         <leftCardinality>
@@ -367,19 +367,6 @@
         </rightCardinality>
     </type>
     <type>
-        <leftType>parentproject</leftType>
-        <rightType>parentproject</rightType>
-        <leftwardType>isVersionOf</leftwardType>
-        <rightwardType>hasVersion</rightwardType>
-        <leftCardinality>
-            <min>0</min>
-            <max>1</max>
-        </leftCardinality>
-        <rightCardinality>
-            <min>0</min>
-        </rightCardinality>
-    </type>
-    <type>
         <leftType>targetgroup</leftType>
         <rightType>targetgroup</rightType>
         <leftwardType>isVersionOf</leftwardType>
@@ -445,8 +432,8 @@
         </rightCardinality>
     </type>
     <type>
-        <leftType>other</leftType>
-        <rightType>other</rightType>
+        <leftType>open_researchquestion</leftType>
+        <rightType>open_researchquestion</rightType>
         <leftwardType>isVersionOf</leftwardType>
         <rightwardType>hasVersion</rightwardType>
         <leftCardinality>
@@ -523,6 +510,32 @@
         </rightCardinality>
     </type>
     <type>
+        <leftType>interim_report</leftType>
+        <rightType>interim_report</rightType>
+        <leftwardType>isVersionOf</leftwardType>
+        <rightwardType>hasVersion</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+    </type>
+    <type>
+        <leftType>interim_report_step</leftType>
+        <rightType>interim_report_step</rightType>
+        <leftwardType>isVersionOf</leftwardType>
+        <rightwardType>hasVersion</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+    </type>
+    <type>
         <leftType>projectpartner</leftType>
         <rightType>projectpartner</rightType>
         <leftwardType>isVersionOf</leftwardType>
@@ -538,19 +551,6 @@
     <type>
         <leftType>programme</leftType>
         <rightType>programme</rightType>
-        <leftwardType>isVersionOf</leftwardType>
-        <rightwardType>hasVersion</rightwardType>
-        <leftCardinality>
-            <min>0</min>
-            <max>1</max>
-        </leftCardinality>
-        <rightCardinality>
-            <min>0</min>
-        </rightCardinality>
-    </type>
-    <type>
-        <leftType>subcontractor</leftType>
-        <rightType>subcontractor</rightType>
         <leftwardType>isVersionOf</leftwardType>
         <rightwardType>hasVersion</rightwardType>
         <leftCardinality>

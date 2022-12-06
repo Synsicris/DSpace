@@ -612,6 +612,57 @@ public class AuthorizeUtil {
         throw new AuthorizeException("not authorized to manage this group");
     }
 
+
+    /**
+     * Authorizes the current user in the context to remove members.
+     * If not authorized, a new exception will be thrown.
+     *
+     * @param context
+     * @param parentGroup
+     * @throws SQLException
+     * @throws AuthorizeException
+     */
+    public static void authorizeRemoveMembers(
+        Context context,
+        Group parentGroup,
+        boolean hasAdminPrivileges
+    ) throws SQLException, AuthorizeException {
+        if (canManageMemberInSynsicris(context, parentGroup) || hasAdminPrivileges) {
+            return;
+        }
+        authorizeManageGroup(context, parentGroup);
+    }
+
+    /**
+     * Authorizes the current user in the context to add members.
+     * If not authorized, a new exception will be thrown.
+     *
+     * @param context
+     * @param parentGroup
+     * @throws SQLException
+     * @throws AuthorizeException
+     */
+    public static void authorizeAddMembers(Context context, Group parentGroup) throws SQLException, AuthorizeException {
+        if (canManageMemberInSynsicris(context, parentGroup)) {
+            return;
+        }
+        authorizeManageGroup(context, parentGroup);
+    }
+
+    /**
+     * Checks if the current user is authorized to manage members of the group.
+     *
+     * @param context
+     * @param group
+     * @return
+     * @throws SQLException
+     */
+    private static boolean canManageMemberInSynsicris(Context context, Group group) throws SQLException {
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+        return groupService.isProjectManagersGroup(context, group.getID()) ||
+            groupService.isOrganisationalManager(context, context.getCurrentUser());
+    }
+
     /**
      * This method will return a boolean indicating whether the current user is allowed to register a new
      * account or not
@@ -688,5 +739,13 @@ public class AuthorizeUtil {
             isAble = true;
         }
         return isAble;
+    }
+
+    public static boolean canAddOrRemoveProgramme(Context context, DSpaceObject dso) throws SQLException {
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+        AuthorizeService authorizeService = AuthorizeServiceFactory.getInstance().getAuthorizeService();
+        return authorizeService.isAdmin(context) ||
+            authorizeService.isAdmin(context, dso) ||
+            groupService.isOrganisationalManager(context, context.getCurrentUser());
     }
 }

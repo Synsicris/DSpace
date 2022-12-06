@@ -49,18 +49,16 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
-import org.dspace.metrics.UpdateCrisMetricsWithExternalSource;
 import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.util.UUIDUtils;
 import org.dspace.utils.DSpace;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implementation of {@link DSpaceRunnable}
  * The purpose of this script is to migrate projects according to a certain structure .
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ProjectsMigrationScript extends
@@ -83,15 +81,15 @@ public class ProjectsMigrationScript extends
     private ItemService itemService;
 
     private GroupService groupService;
-    
+
     private EPersonService epersonService;
 
     private Context context;
 
     private AuthorizeService authorizeService;
-    
+
     private Map<String, MetadataMigrate> metadataMigrationMap;
-    
+
     private Collection projectPartnersColl = null;
     private Collection subprojectPartnersColl = null;
     private Collection jointProjectsColl = null;
@@ -99,10 +97,10 @@ public class ProjectsMigrationScript extends
     private Collection workingPlanColl = null;
     private Group parentProjectAdminGroup = null;
     private Group parentProjectMemberGroup = null;
-    
+
     private Integer errors = 0;
     private List<String> errorMsgs = new ArrayList<String>();
-    
+
     private boolean migrateMetadata = false;
 
 
@@ -120,7 +118,8 @@ public class ProjectsMigrationScript extends
         this.epersonService = EPersonServiceFactory.getInstance().getEPersonService();
         this.itemService = ContentServiceFactory.getInstance().getItemService();
         this.authorizeService = AuthorizeServiceFactory.getInstance().getAuthorizeService();
-        this.metadataMigrationMap = new DSpace().getServiceManager().getServiceByName("metadataMigrationMap", Map.class);
+        this.metadataMigrationMap = new DSpace().getServiceManager().getServiceByName("metadataMigrationMap",
+                Map.class);
     }
 
     @Override
@@ -136,7 +135,7 @@ public class ProjectsMigrationScript extends
         context.turnOffAuthorisationSystem();
 //        Map<String, Collection> names2collection = getCollectionsNameOfProgectTemplate();
         Map<String, Community> names2comm = getCommunitiesNameOfProgectTemplate();
-        Map<String, Collection> entities2collection = getCollectionsEntityOfProgectTemplate();  
+        Map<String, Collection> entities2collection = getCollectionsEntityOfProgectTemplate();
         Community projectCommunity = getCommunityByProperty("project.parent-community-id");
         if (Objects.isNull(projectCommunity)) {
             throw new RuntimeException("The ProjectCommunity has not been found,"
@@ -144,8 +143,9 @@ public class ProjectsMigrationScript extends
         }
         Community projectTemplateCommunity = getCommunityByProperty("project.template-id");
         Map<String, Group> scopedRoles = new HashMap<>();
-        List<Collection> projectCollections = new ArrayList<Collection>();        
-        EPerson coordinator = epersonService.find(context, UUIDUtils.fromString("77e03ec3-e0bb-42c5-8622-006bde576c70")); 
+        List<Collection> projectCollections = new ArrayList<Collection>();
+        EPerson coordinator = epersonService.find(context,
+                UUIDUtils.fromString("77e03ec3-e0bb-42c5-8622-006bde576c70"));
         errors = 0;
         for (Community project : projectCommunity.getSubcommunities()) {
             try {
@@ -163,27 +163,27 @@ public class ProjectsMigrationScript extends
                 if (hasSubproject) {
                     System.out.println(project.getName());
                 }
-    
+
                 // rename groups
                 renameGroup(project, scopedRoles, coordinator, false);
-    
+
                 clonePolicies(context, project, projectTemplateCommunity, scopedRoles, true);
-    
+
                 // check project communities
                 checkProjectCommunities(project, entities2collection, names2comm, scopedRoles, projectCollections);
-                
+
                 // check project collection, if exist some collection that not exist in
                 // project-template will be deleted
                 cleanProjects(project, entities2collection.keySet());
 
                 // check project collections, add itemTemplate, deposite workspaceItems
                 checkProjectCollection(project, entities2collection, scopedRoles, projectCollections, false);
-    
-    
+
+
                 Item projectItem = createProjectItem(project, scopedRoles, false);
-                
+
                 processWorkingplan(workingPlanColl, projectItem);
-    
+
                 // fix workspaceitems and items metadata
                 System.out.println("Collections to process : " + projectCollections.size());
                 for (Collection projectCollection : projectCollections) {
@@ -191,11 +191,12 @@ public class ProjectsMigrationScript extends
                         checkCollectionWorkspaceItems(projectCollection, project, projectItem);
                         checkCollectionItems(projectCollection, project, scopedRoles, projectItem, null);
                     } catch (Exception e) {
-                        printError(e, "Error project " + project.getName() + " collection " + projectCollection.getID());
+                        printError(e,
+                                "Error project " + project.getName() + " collection " + projectCollection.getID());
                         continue;
                     }
                 }
-                
+
                 if (hasSubproject) {
                     migrateSubprojects(project, getSubprojectCommunity(project), projectItem);
                 }
@@ -227,7 +228,7 @@ public class ProjectsMigrationScript extends
     }
 
     private void processWorkingplan(Collection targetCollection, Item projectItem)
-            throws SQLException, AuthorizeException {      
+            throws SQLException, AuthorizeException {
         Iterator<Item> items = itemService.findAllByCollection(context, targetCollection);
         if (!items.hasNext()) {
 
@@ -245,7 +246,7 @@ public class ProjectsMigrationScript extends
     }
 
     private boolean hasSubproject(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
             if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() > 0) {
                 return true;
@@ -255,7 +256,7 @@ public class ProjectsMigrationScript extends
     }
 
     private Community getSubprojectCommunity(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
             if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() > 0) {
                 return subcommunity;
@@ -263,11 +264,12 @@ public class ProjectsMigrationScript extends
         }
         return null;
     }
-    
+
     private Community getEmptySubprojectCommunity(Community parentProject) {
-        String subprojectCommunityName = configurationService.getProperty("project.subproject-community-name");
+        String subprojectCommunityName = configurationService.getProperty("project.funding-community-name");
         for (final Community subcommunity : parentProject.getSubcommunities()) {
-            if (subcommunity.getName().equals(subprojectCommunityName) && subcommunity.getSubcommunities().size() == 0) {
+            if (subcommunity.getName().equals(subprojectCommunityName)
+                    && subcommunity.getSubcommunities().size() == 0) {
                 return subcommunity;
             }
         }
@@ -276,7 +278,7 @@ public class ProjectsMigrationScript extends
 
     private void migrateSubprojects(Community parentProject, Community subprojects, Item projectItem)
             throws Exception {
-        Map<String, Collection> entities2collection = getCollectionsEntityOfSubprojectTemplate();  
+        Map<String, Collection> entities2collection = getCollectionsEntityOfSubprojectTemplate();
         if (Objects.isNull(subprojects)) {
             throw new RuntimeException("The ProjectCommunity has not been found,"
                                      + " check the propery : project.parent-community-id");
@@ -307,16 +309,16 @@ public class ProjectsMigrationScript extends
 
             // Step 3 : check project collections, add itemTemplate, deposite workspaceItems
             checkProjectCollection(subproject, entities2collection, scopedRoles, projectCollections, true);
-           
+
             subprojectItem = createProjectItem(subproject, scopedRoles, true);
-            
+
             if (firstSubprojectProjectPartnerColl == null) {
                 firstSubprojectProjectPartnerColl = subprojectPartnersColl;
             }
 
             // migrate project partner entities
             processProjectPartnerCollection(subprojectPartnersColl, subprojectItem, unprocessedProjectPartnerItems);
-            
+
             for (Collection subprojectCollection : projectCollections) {
                 try {
                     checkCollectionWorkspaceItems(subprojectCollection, parentProject, projectItem);
@@ -346,9 +348,9 @@ public class ProjectsMigrationScript extends
 //                    }
 //                }
 //            }
-            
+
         }
-        
+
         if (unprocessedProjectPartnerItems.size() > 0) {
             System.out.println("Processing unresolved project partner entities");
             for (Item item : unprocessedProjectPartnerItems) {
@@ -365,7 +367,7 @@ public class ProjectsMigrationScript extends
             context.reloadEntity(projectPartnersColl);
             context.reloadEntity(firstSubprojectProjectPartnerColl);
         }
-        
+
 
     }
 
@@ -374,7 +376,7 @@ public class ProjectsMigrationScript extends
             List<Collection> projectCollections)
                     throws SQLException, AuthorizeException {
         Map<String, Community> map = new HashMap<String, Community>(name2templateCommunity);
-        
+
         for (Community subComm : project.getSubcommunities()) {
             if (name2templateCommunity.containsKey(subComm.getName())) {
                 clonePolicies(context, subComm, name2templateCommunity.get(subComm.getName()), scopedRoles, true);
@@ -391,19 +393,19 @@ public class ProjectsMigrationScript extends
             map.remove(subComm.getName());
 
         }
-        
+
         for (Community templateComm : map.values()) {
             try {
                 Community newComm = communityService.create(project, context);
                 clonePolicies(context, newComm, templateComm, scopedRoles, true);
                 processCommunity(newComm, project, templateComm, false);
-                System.out.println("create new community "+ templateComm.getName() + templateComm.getID());
+                System.out.println("create new community " + templateComm.getName() + templateComm.getID());
             } catch (SQLException | AuthorizeException e) {
-                printError(e, "Erro creating new community "+ templateComm.getName() + templateComm.getID());
+                printError(e, "Erro creating new community " + templateComm.getName() + templateComm.getID());
             }
         }
     }
-    
+
     private void checkProjectCollection(Community project, Map<String, Collection> entities2templateCollection,
             Map<String, Group> scopedRoles, List<Collection> projectCollections, boolean isSubproject)
             throws SQLException, AuthorizeException {
@@ -509,12 +511,13 @@ public class ProjectsMigrationScript extends
             printError(e, "Error checkCollectionItems " + " within the collection "
                         + collection.getID().toString());
         }
-        
-        
+
+
     }
 
-    private Item createProjectItem(Community project, Map<String, Group> scopedRoles, boolean isSubproject) throws SQLException, AuthorizeException {
-        
+    private Item createProjectItem(Community project, Map<String, Group> scopedRoles, boolean isSubproject)
+            throws SQLException, AuthorizeException {
+
         Item projectItem = null;
         Iterator<Item> projectsItems;
         if (isSubproject) {
@@ -524,7 +527,7 @@ public class ProjectsMigrationScript extends
         }
 
         List<MetadataValue> projectMetadataList = communityService.getMetadataByMetadataString(project,
-                "synsicris.relation.entity_project");
+                "synsicris.relation.entity_item");
         if (projectMetadataList.size() > 0 && StringUtils.isNotBlank(projectMetadataList.get(0).getAuthority())) {
             MetadataValue projectMetadata = projectMetadataList.get(0);
             UUID uuid = UUIDUtils.fromString(projectMetadata.getAuthority());
@@ -556,10 +559,10 @@ public class ProjectsMigrationScript extends
             authorizeService.removeAllPolicies(context, projectItem);
             authorizeService.addPolicy(context, projectItem, 0, scopedRoles.get("project_template_members_group"));
 
-            communityService.replaceMetadata(context, project, "synsicris", "relation", "entity_project", null,
+            communityService.replaceMetadata(context, project, "synsicris", "relation", "entity_item", null,
                     project.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         }
-        return projectItem; 
+        return projectItem;
     }
 
     private void depositeWorkspaceItem(WorkspaceItem workspaceItem) {
@@ -607,9 +610,9 @@ public class ProjectsMigrationScript extends
     private void processCollection(Collection projectCollection, Community project, Collection templateCollection,
             boolean clear) throws SQLException {
         //if (!StringUtils.equals(projectCollection.getName(), "Projects")) {
-            cloneMetadata(context, collectionService, projectCollection, templateCollection, clear);
-            addTemplateItem(projectCollection, templateCollection);
-            context.reloadEntity(projectCollection);
+        cloneMetadata(context, collectionService, projectCollection, templateCollection, clear);
+        addTemplateItem(projectCollection, templateCollection);
+        context.reloadEntity(projectCollection);
         //}
     }
 
@@ -632,13 +635,13 @@ public class ProjectsMigrationScript extends
                     try {
                         List<MetadataValue> mList = itemService.getMetadata(item, "dc", "relation", "project",
                                 null);
-                        String relationProject = (mList != null && mList.size() > 0) ?
+                        String relationProject = mList != null && mList.size() > 0 ?
                                 mList.get(0).getAuthority() : null;
                         if (relationProject != null && relationProject.equals(subprojectItem.getID().toString())) {
                             int index = unprocessedProjectPartnerItems.indexOf(item);
-                            if(index != -1) {
+                            if (index != -1) {
                                 unprocessedProjectPartnerItems.remove(index);
-                            }                            
+                            }
 
                             try {
                                 itemService.move(context, item, projectPartnersColl, targetCollection, true);
@@ -654,7 +657,7 @@ public class ProjectsMigrationScript extends
                                 unprocessedProjectPartnerItems.add(item);
                             }
                         }
-                        
+
                     } catch (SQLException e) {
                         printError(e, "Error processing Item " + itemID
                                 + " within the collection " + targetCollection.getID().toString());
@@ -671,8 +674,8 @@ public class ProjectsMigrationScript extends
     private void processCommunity(Community projectCommunity, Community project, Community templateCommunity,
             boolean clear) throws SQLException {
         //if (!StringUtils.equals(projectCollection.getName(), "Projects")) {
-            cloneMetadata(context, communityService, projectCommunity, templateCommunity, clear);
-            context.reloadEntity(projectCommunity);
+        cloneMetadata(context, communityService, projectCommunity, templateCommunity, clear);
+        context.reloadEntity(projectCommunity);
         //}
     }
 
@@ -699,10 +702,10 @@ public class ProjectsMigrationScript extends
 
     private void renameGroup(Community community, Map<String, Group> scopedRoles, EPerson coordinator,
             boolean isSubproject) throws SQLException, AuthorizeException {
-        String submitterGroupId = configurationService.getProperty("project.creation.group");
+        String submitterGroupId = configurationService.getProperty("system_members.group");
         Group submitterGroup = groupService.findByIdOrLegacyId(context, submitterGroupId);
-        
-        
+
+
         StringBuilder groupName = new StringBuilder("project_")
                                             .append(community.getID().toString())
                                             .append("_group");
@@ -712,7 +715,7 @@ public class ProjectsMigrationScript extends
 
         Group adminGroup = groupService.findByName(context, groupName.toString());
         if (!Objects.isNull(adminGroup)) {
-        
+
             groupService.setName(adminGroup, newAdminName.toString());
             groupService.update(context, adminGroup);
 
@@ -732,7 +735,7 @@ public class ProjectsMigrationScript extends
         if (!isSubproject) {
             parentProjectAdminGroup = adminGroup;
         }
-        scopedRoles.put("project_template_admin_group", adminGroup);
+        scopedRoles.put("project_template_coordinators_group", adminGroup);
 
         StringBuilder memberGroupName = new StringBuilder("project_")
                                                   .append(community.getID().toString())
@@ -741,10 +744,10 @@ public class ProjectsMigrationScript extends
         Group newMemberGroup = groupService.findByName(context, memberGroupName.toString());
         if (Objects.isNull(newMemberGroup)) {
             newMemberGroup = groupService.create(context);
-    
+
             groupService.setName(newMemberGroup, memberGroupName.toString());
             groupService.update(context, newMemberGroup);
-    
+
             for (EPerson member : adminGroup.getMembers()) {
                 groupService.addMember(context, newMemberGroup, member);
                 groupService.addMember(context, submitterGroup, member);
@@ -810,7 +813,7 @@ public class ProjectsMigrationScript extends
 
     private Map<String, Collection> getCollectionsEntityOfSubprojectTemplate() throws SQLException {
         Map<String, Collection>  collectionEntities = new HashMap<String, Collection>();
-        Community projectTemplateCommunity = getCommunityByProperty("subproject.template-id");
+        Community projectTemplateCommunity = getCommunityByProperty("funding.template-id");
         if (Objects.isNull(projectTemplateCommunity)) {
             throw new RuntimeException(
                     "The project-template Community has not been found, check the propery : project.template-id");
@@ -838,7 +841,7 @@ public class ProjectsMigrationScript extends
                 }
                 service.clearMetadata(context, target, metadata.getSchema(), metadata.getElement(),
                         metadata.getQualifier(), null);
-            } 
+            }
         }
         for (MetadataValue metadata : dsoToClone.getMetadata()) {
             if (isMetadataToSkip(service, target, metadata)) {
@@ -868,10 +871,10 @@ public class ProjectsMigrationScript extends
         if (targetItem == null) {
             return false;
         }
-        
+
         List<MetadataValue> mList = itemService.getMetadataByMetadataString(targetItem,
                 metadata.getMetadataField().toString('.'));
-        
+
         return mList != null && mList.size() > 0;
     }
 
@@ -881,7 +884,7 @@ public class ProjectsMigrationScript extends
         log.error(errMsg + " Exception Error: " + e.getMessage());
     }
 
-    private void migrateItemMetadata(Item targetItem, String entityType, Item templateItem, 
+    private void migrateItemMetadata(Item targetItem, String entityType, Item templateItem,
             Map<String, Group> scopedRoles, Item projectItem, Item subprojectItem) throws SQLException {
         if (!Objects.isNull(targetItem)) {
             String itemEntityType = itemService.getMetadataFirstValue(targetItem, "dspace", "entity", "type", null);
@@ -890,7 +893,8 @@ public class ProjectsMigrationScript extends
 //            }
             System.out.println("Migrate Item " + targetItem.getID() + " with type " + itemEntityType);
             if (StringUtils.isBlank(itemEntityType) || !itemEntityType.equals(entityType)) {
-                System.out.println("replace metadata dspace.entity.type" + " item id: " + targetItem.getID().toString());
+                System.out
+                        .println("replace metadata dspace.entity.type" + " item id: " + targetItem.getID().toString());
                 itemService.replaceMetadata(context, targetItem, "dspace", "entity", "type", null,
                         entityType, null, Choices.CF_UNSET, 0);
             }
@@ -905,14 +909,13 @@ public class ProjectsMigrationScript extends
                             continue;
                         }
                         if (metadata.getMetadataField().toString('.').equals("cris.project.shared")
-                                && hasMetadata(targetItem, metadata)) {                            
+                                && hasMetadata(targetItem, metadata)) {
                             continue;
                         }
-                        if (metadata.getMetadataField().toString('.').equals("cris.policy.group")) {                            
-                            if (hasMetadata(targetItem, metadata) && 
-                                    !itemService.getMetadataByMetadataString(targetItem, metadata.getMetadataField().toString('.'))
-                                        .get(0).getValue().contains("GROUP_POLICY_PLACEHOLDER")
-                                    ) {
+                        if (metadata.getMetadataField().toString('.').equals("cris.policy.group")) {
+                            if (hasMetadata(targetItem, metadata) && !itemService
+                                    .getMetadataByMetadataString(targetItem, metadata.getMetadataField().toString('.'))
+                                    .get(0).getValue().contains("GROUP_POLICY_PLACEHOLDER")) {
                                 continue;
                             }
 
@@ -935,8 +938,8 @@ public class ProjectsMigrationScript extends
                             authority = parentProjectMemberGroup.getID().toString();
                             confidence = Choices.CF_ACCEPTED;
                         }
-                        System.out.println("replace metadata " + metadata.getMetadataField().toString('.') +  " place " +
-                                metadata.getPlace() + " item id: " + targetItem.getID().toString());
+                        System.out.println("replace metadata " + metadata.getMetadataField().toString('.') + " place "
+                                + metadata.getPlace() + " item id: " + targetItem.getID().toString());
                         itemService.replaceMetadata(context, targetItem, metadata.getSchema(), metadata.getElement(),
                                 metadata.getQualifier(), metadata.getLanguage(), value, authority,
                                 confidence, metadata.getPlace());
@@ -945,10 +948,10 @@ public class ProjectsMigrationScript extends
                                 + " for item " + targetItem.getID().toString());
                         continue;
                     }
-                    
+
                 }
             }
-            
+
             if (migrateMetadata) {
                 List<MetadataValue> itemMetadata = targetItem.getMetadata();
                 List<MetadataField> metadataFields = new ArrayList<MetadataField>();
@@ -957,23 +960,23 @@ public class ProjectsMigrationScript extends
                         metadataFields.add(metadata.getMetadataField());
                     }
                 }
-                
-                
+
+
                 for (MetadataField metadataField : metadataFields) {
                     try {
                         System.out.println("process " + metadataField.toString('.') + " item " + targetItem.getID());
                         migrateMetadata(targetItem, entityType, metadataField);
                     } catch (SQLException e) {
-                        printError(e, "Error migrating metadata " + metadataField.toString('.')
-                        + "for item " + targetItem.getID().toString());
+                        printError(e, "Error migrating metadata " + metadataField.toString('.') + "for item "
+                                + targetItem.getID().toString());
                         continue;
                     }
-    
+
                 }
             }
         }
     }
-    
+
     private void migrateMetadata(Item targetItem, String entityType, MetadataField metadataField) throws SQLException {
         if (!Objects.isNull(targetItem) && !Objects.isNull(metadataField)) {
             if (metadataMigrationMap.containsKey(metadataField.toString('.'))) {
@@ -990,7 +993,7 @@ public class ProjectsMigrationScript extends
         MetadataMigrateAction matchingAction = null;
         if (!Objects.isNull(metadataMigrate)) {
             MetadataMigrateAction generalAction = null;
-            for(MetadataMigrateAction action: metadataMigrate.actions) {
+            for (MetadataMigrateAction action : metadataMigrate.actions) {
                 if (action.entityType.equals("ALL")) {
                     generalAction = action;
                 }
@@ -1003,7 +1006,7 @@ public class ProjectsMigrationScript extends
                 matchingAction = generalAction;
             }
         }
-        
+
         return matchingAction;
     }
 
@@ -1020,20 +1023,21 @@ public class ProjectsMigrationScript extends
                     break;
                 case "rename":
                     MetadataFieldConfig newMetdata = matchingAction.getMetadata();
-                    System.out.println("Replace metdata " + metadataField.toString('.') + " with metadata " +
-                            newMetdata.toString() + " item " + targetItem.getID());
+                    System.out.println("Replace metdata " + metadataField.toString('.') + " with metadata "
+                            + newMetdata.toString() + " item " + targetItem.getID());
                     for (MetadataValue metadata : metadataValues) {
                         itemService.addMetadata(context, targetItem, newMetdata.getSchema(), newMetdata.getElement(),
                                 newMetdata.getQualifier(), metadata.getLanguage(), metadata.getValue(),
                                 metadata.getAuthority(), metadata.getConfidence(), metadata.getPlace());
-                    }     
+                    }
                     itemService.removeMetadataValues(context, targetItem, metadataValues);
+                    break;
                 default:
                     break;
-                }
+            }
         }
     }
-    
+
     private <T extends DSpaceObject> boolean isMetadataToSkip(DSpaceObjectService<T> service, T target,
             MetadataValue metadata) {
         String metadataName = metadata.getSchema() + "." + metadata.getElement();
@@ -1055,10 +1059,11 @@ public class ProjectsMigrationScript extends
         if (uuid != null) {
             ePerson = EPersonServiceFactory.getInstance().getEPersonService().find(context, uuid);
         } else {
-            ePerson = EPersonServiceFactory.getInstance().getEPersonService().findByEmail(context, "shared@synsicris.de");
+            ePerson = EPersonServiceFactory.getInstance().getEPersonService().findByEmail(context,
+                    "shared@synsicris.de");
         }
         context.setCurrentUser(ePerson);
     }
-    
+
 
 }

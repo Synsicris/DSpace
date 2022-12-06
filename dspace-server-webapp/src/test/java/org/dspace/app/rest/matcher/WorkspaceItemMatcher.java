@@ -17,6 +17,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 
 import org.dspace.content.WorkspaceItem;
+import org.dspace.eperson.Group;
 import org.hamcrest.Matcher;
 
 /**
@@ -143,10 +144,10 @@ public class WorkspaceItemMatcher {
     }
 
     public static Matcher<? super Object> matchPolicyGroupAndSharedMetadata(
-                                  String shared, String policyGroup) {
+                                  String shared, Group policyGroup) {
         return allOf(hasJsonPath("$._embedded.item.metadata",
                allOf(
                      matchMetadata("cris.project.shared", shared),
-                     matchMetadata("cris.policy.group", policyGroup))));
+                     matchMetadata("cris.policy.group", policyGroup.getName(), policyGroup.getID().toString(), 0))));
     }
 }

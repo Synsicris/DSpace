@@ -1,118 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="CORE 2021-10-22">
+<node id="ResourceTypeGenres" label="CORE 2022-11-22">
   <isComposedBy>
-    <node id="COR_10" label="Ressourcen-Aspekte" selectable="false">
+    <node id="COR_10" label="Resource protection" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="COR_11" label="Effiziente Nutzung natürlicher Ressourcen (z.B. Boden, Wasser, Rohstoffe) / Reduzierung des Verbrauchs natürlicher Ressourcen" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_11" label="Efficient use of natural resources (e.g. soil, water, raw materials)" selectable="true">
+        <hasNote>Durch die effizientere Nutzung von Ressourcen kann aus einem gleich bleibendem Ressourcenaufwand ein größerer Nutzen (Produkte, Energie, etc.) gewonnen werden bzw. ein gleich bleibender Nutzen mit einem geringeren Ressourcenaufwand erzielt werden. Bitte überlegen Sie auch, ob Einsparungen durch Effizienzsteigerungen durch direkte oder indirekte Rebound-Effekte (zum Teil) eingebüßt werden könnten.
+
+Beispiele: 
+In der Landwirtschaft kann mittels Tröpfchenbewässerung die gleiche Fläche mit weniger Wasser versorgt werden, als mit Sprenkleranlagen.
+Durch besser Isolation von Gebäuden ist der spezifische Energieverbrauch zum Heizen (kWh pro Quadratmeter Wohnfläche) in Deutschland in den vergangenen Jahrzehnten gesunken. Der Gesamtenergiebedarf zum Heizen hat sich jedoch nicht stark verändert, da gleichzeitig die Wohnfläche pro Kopf gestiegen ist.</hasNote>
         </node>
-        <node id="COR_12" label="Nutzung von nachwachsenden Rohstoffen" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_12" label="Reducing natural resource consumption" selectable="true">
+        <hasNote>Eine absolute Verringerung des Ressourcenverbrauchs kann erreicht werden durch:
+- gesteigerte Suffizienz, also eine Minderung im Bedarf an einem Produkt, einer Dienstleistung oder Energie
+- erhöhte Effizienz, also eine effizientere Gewinnung oder Nutzung von Ressourcen
+
+Bitte überlegen Sie auch, ob die Verringerung des Verbrauchs einer bestimmten Ressource durch eine gesteigerte Nutzung einer anderen Ressource oder die gesteigerte Nutzung der Ressource an einem anderen Ort zusammenhängen könnte (Verlagerungseffekte) und ob Einsparungen durch Effizienzsteigerungen durch direkte oder indirekte Reboundeffekte (zum Teil) ausgeglichen werden könnten.
+
+Beispiele: 
+Zwischen 1995 und 2015 ist der Abbau von fossilen Rohstoffen in Deutschland durch eine Minderung des Bedarfs gesunken. Gleichzeitig ist jedoch die Nutzung nachwachsender Rohstoffe gestiegen.
+
+Der Gesamtkonsum an Fleisch ist in Deutschland seit mehreren Jahrzehnten leicht rückläufig, was einen geringeren Ressourcenaufwand für die landwirtschaftliche Produktion von Fleisch bedingt.</hasNote>
         </node>
-        <node id="COR_13" label="Reduzierung Flächenverbrauch" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_13" label="Responsible use of renewable resources" selectable="true">
+        <hasNote>Nutzung nachwachsender Rohstoffe in einem Rahmen, der die Regenerationsfähigkeit von Ökosystemen und damit die zukünftige Nutzung dieser Ressourcen sowie Menschen nicht gefährdet.
+
+Beispiele: 
+Es wird nur so viel Holz aus einem Wald entnommen, wie in der selben Zeit nachwachsen kann.
+
+Vermehrte Nutzung von Ackerflächen für die direkte menschliche Ernährung anstatt für den Futterpflanzenanbau, um den Flächendruck zu verringern und die globale Ernährungssicherung zu verbessern.</hasNote>
         </node>
-        <node id="COR_14" label="Reduzierung von Abfällen" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_14" label="Reducing land consumption" selectable="true">
+        <hasNote>Eine absolute Reduzierung des Flächenverbrauchs (innerhalb eines Sektors oder einer Region) wird erreicht, wenn in absoluten Zahlen weniger Flächen für menschliche Zwecke genutzt werden als zu einem früheren Zeitpunkt. Sinkt lediglich die Rate, mit der Flächen in die Nutzung genommen werden, handelt es sich um eine relative Reduzierung des Flächenverbrauchs.
+
+Beispiele: 
+Zwischen 2000 und 2020 ging der tägliche Flächenverbrauch durch Versiegelung in Deutschland von ca. 130 ha/Tag auf ca. 60 ha/Tag zurück. 
+
+Durch Renaturierung von Tagebauflächen kann der Flächenverbrauch lokal in absoluten Zahlen gesenkt werden.</hasNote>
         </node>
-        <node id="COR_15" label="Verantwortungsvolle Entsorgung von Abfällen" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_15" label="Reducing waste" selectable="true">
+        <hasNote>Absolute Reduktion von Abfällen. Bitte überlegen Sie, ob eine Reduktion von Abfällen nicht durch unerwünschte Verlagerungseffekte begleitet wird. 
+
+Beispiele: 
+Substitution von Einweggeschirr in der Außer-Haus-Verpflegung durch Pfandsysteme.
+
+Verringerung der Menge an Textilabfällen durch gesteigerte Wiederverwertung von Altkleidern. Bei gesteigerten Exporten von Altkleidern in Drittländer könnte dort jedoch das Abfallaufkommen steigen und eine stärker umweltbelastende Entsorgung erfolgen.</hasNote>
         </node>
-        <node id="COR_16" label="Wiederverwertung/ Recycling nicht mehr genutzter Stoffe aus Konsum und Produktion" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_16" label="Responsible waste disposal" selectable="true">
+        <hasNote>Betrifft die Entsorgung von Abfällen, so dass Schäden für Ökosysteme und Menschen vermieden oder möglichst gering gehalten werden.
+
+Beispiele:
+Die Deponierung von Klärschlamm wurde in Deutschland wegen zu hoher räumlicher Belastungen und hoher Treibhausgasemissionen (z.B. Methan) durch die weniger problematische Klärschlammverbrennung abgelöst.
+
+Verringerung von Schadstoffausstößen bei der Müllverbrennung durch Weiterentwicklung von Abgasfilter- und Abscheideanlagen.</hasNote>
+        </node>
+        <node id="COR_17" label="Reuse and recycling of materials from production and consumption processes" selectable="true">
+        <hasNote>Betrifft den Einsatz in anderen Produktions- oder Konsumprozessen nicht mehr verwendeter Materialien bzw. die Nutzung von Abfällen und deren Aufarbeitung zu Sekundärrohstoffen. 
+
+Beispiele: 
+Wiederverwendung von Konsumgütern für ihren ursprünglichen Zweck, z.B. Gebrauchtwaren und Second-Hand-Kleidung.
+
+Aufarbeitung von Altglas und Altmetallen zu Sekundärrohstoffen durch Einschmelzen.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="COR_20" label="Klima-Aspekte" selectable="false">
+    <node id="COR_20" label="Climate protection and climate adaption" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="COR_21" label="Reduzierung des Ausstoßes klimarelevanter Gase" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_21" label="Reducing greenhouse gas emissions" selectable="true">
+        <hasNote>Eine absolute Verringerung des Treibhausgasausstoßes auf gesamtgesellschaftlicher, sektoraler oder individueller Ebene kann erreicht werden durch:
+- gesteigerte Suffizienz, also eine Minderung im Bedarf an Produkten, Dienstleistungen oder Energie
+- erhöhte Effizienz, also verringerte THG-Emissionen pro genutzter Ressourcen- oder Energieeinheit oder gewonnener Produkteinheit
+- Konsistenz, also der Einsatz von Technologien und Innovationen, welche grundsätzlich mit einem umweltverträglichen Maß an Treibhausgasemissionen vereinbar sind.
+
+Bitte überlegen Sie auch, ob die Verringerung der Treibhausgasemissionen an einem Ort oder zu einer Zeit mit ansteigenden Treibhausgasemissionen an einem anderen Ort oder zu einer anderen Zeit zusammenhängen könnte (Verlagerungseffekte) und ob Einsparungen durch Effizienzsteigerungen durch direkte oder indirekte Reboundeffekte (zum Teil) ausgeglichen werden könnten.
+
+Beispiele: 
+Verbesserte Isolation von Gebäuden ermöglicht effizienteres Heizen. Durch den zusätzlichen Materialaufwand entstehen zwar zusätzliche Emissionen, diese können jedoch i.d.R. durch Einsparungen bei der Heizenergie kompensiert werden.
+
+Der Gesamtkonsum an Fleisch ist in Deutschland seit mehreren Jahrzehnten leicht rückläufig. Die ernährungsbedingten Emissionen könnten dadurch sinken.
+
+Verringerung der THG-Emissionen durch veränderte Landnutzung, Management von Deponien, Prozessanpassung bei der industriellen Produktion.
+
+
+Verringerung der THG-Emissionen durch veränderte Landnutzung, Management von Deponien, Prozessanpassung bei der industriellen Produktion.</hasNote>
         </node>
-        <node id="COR_22" label="Steigerung der CO2 -Bindung" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_22" label="Increasing CO2 sequestration" selectable="true">
+        <hasNote>Betrifft sämtliche Treibhausgassenken, die durch den Menschen beeinflusst werden können. 
+
+Beispiele:
+Beim Enhanced Rock Weathering wird z.B. durch die flächige Ausbringung von gemahlenem silikathaltigem Gestein die verwitterungsbedingte Aufnahme von CO2 durch diese Silikate beschleunigt. Entscheidend ist, ob die zusätzlichen Treibhausgasemissionen durch Abbau, Transport und Zerkleinerung der Gesteine durch die CO2-Aufnahme durch die Silikate kompensiert werden kann.
+
+Beim Direct Air Capture and Storage wird CO2 direkt aus der Luft gefiltert und konzentriert, um dauerhaft (z.B. im Boden) gespeichert zu werden. Entscheidend ist, ob sich diese Technologie auch bei ihrem (derzeit relativ hohen) Energieeinsatz lohnt und ob Speichermöglichkeiten von CO2 sicher und dauerhaft sind.</hasNote>
         </node>
-        <node id="COR_23" label="Reduzierung der Nutzung nicht erneuerbarer Ressourcen und fossiler Energieträger" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_23" label="Reducing the use of fossil fuels" selectable="true">
+        <hasNote>Betrifft die absolute Verringerung des Abbaus von fossilen Energieträgern wie Öl, Kohle und Gas. 
+ 
+Bitte überlegen Sie auch, ob die Verringerung des Verbrauchs einer bestimmten fossilen Ressource durch eine gesteigerte Nutzung einer anderen (fossilen) Ressource oder die vermehrte Nutzung der Ressource an einem anderen Ort zusammenhängen könnte (Verlagerungseffekte).
+
+Beispiele: 
+Die Entnahme von Öl, Kohle und Gas ist in Deutschland zwischen 1994 und 2015 gesunken. Im gleichen Zeitraum ist jedoch der Verbrauch von fossilen Energieträgern durch indirekte und direkte Importe gestiegen.
+
+Die Förderung von Technologien, die ohne fossile Energieträger funktionieren, z.B. Wärmepumpen anstatt Gasheizungen oder Elektromotoren anstatt Verbrennungsmotoren.</hasNote>
         </node>
-        <node id="COR_24" label="Erzeugung erneuerbarer Energien" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_24" label="Expansion of renewable energy" selectable="true">
+        <hasNote>Betrifft den Ausbau erneuerbarer Energien, um die Energiegewinnung aus fossilen Energieträgern abzulösen.
+
+Beispiele:
+Ausbau von Windkraft-, Wasserkraft- und Solaranlagen, Geothermie und Bioenergie.</hasNote>
         </node>
-        <node id="COR_25" label="Effiziente Energienutzung / Reduzierung des Energieverbrauchs" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_25" label="Increasing efficiency of energy use / reducing energy consumption" selectable="true">
+        <hasNote>Betrifft die effizientere Energienutzung bzw. die absolute Verringerung des Energieverbrauchs. Die Absolute Verringerung kann erreicht werden durch:
+- gesteigerte Suffizienz, also eine Minderung im Bedarf an Energie
+- erhöhte Effizienz, also verringerter Energiebedarf pro gewonnener Nutzeneinheit (wenn keine Reboundeffekte auftreten).
+
+Beispiele: 
+Durch besser Isolation von Gebäuden ist der spezifische Energieverbrauch zum Heizen (kWh pro Quadratmeter Wohnfläche) in Deutschland in den vergangenen Jahrzehnten gesunken. Der Gesamtenergiebedarf zum Heizen hat sich jedoch nicht stark verändert, da gleichzeitig die Wohnfläche pro Kopf gestiegen ist.
+
+Auf Kläranlagen wird in Faulbehältern erzeugtes Gas direkt verbrannt. Durch den Ersatz von Heizkesseln durch Blockheizkraftwerke kann der Bedarf der Anlage an externem Strom reduziert werden.</hasNote>
+        </node>
+        <node id="COR_26" label="Adapting to extreme weather events" selectable="true">
+        <hasNote>Betrifft die Anpassung an potenziell häufigere Extremwetterereignisse durch Klimaveränderungen.
+
+Beispiele:
+Vorbereitung auf Starkregenereignisse durch indirekte (z.B. veränderte Wasserinfrastruktursysteme, verbesserte Infiltrationskapazitäten von Böden) oder direkte (z.B. Dämme) Schutzmaßnahmen.</hasNote>
+        </node>
+        <node id="COR_27" label="Increasing climate resilience of land use systems" selectable="true">
+        <hasNote>Betrifft die Anpassung von Systemen der Land-, Forst -und Fischereiwirtschaft an veränderte Klimabedingungen und Wetterereignisse.
+
+Beispiele:
+Züchtung, Erforschung und Pflanzung von dürretoleranten Baumarten in Forsten.
+
+Minderung der Erosionsgefahr durch Starkregenereignisse mittels ganzjähriger Bodenbedeckung und mehrjährigen Pflanzen in der Landwirtschaft.</hasNote>
+        </node>
+        <node id="COR_28" label="Increasing climate resilience of urban areas" selectable="true">
+        <hasNote>Betrifft die Anpassung von urbanen Räumen an veränderte Klimabedingungen und Wetterereignisse.
+
+Beispiele:
+Erhalt und Schaffung von Grünflächen zum Abpuffern von Hitze- und Starkregenereignissen sowie dem Erhalt der Gesundheit.
+
+An Hitze angepasstes Bauen.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="COR_30" label="Schutz-Aspekte" selectable="false">
+    <node id="COR_30" label="Environmental protection" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="COR_31" label="Reduzierung von Emissionen (Ausstoß von Schadstoffen)" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_31" label="Reducing harmful emissions and immissions" selectable="true">
+        <hasNote>Betrifft die Reduktion von Emissionen, die sich negativ auf menschliche Gesundheit und Ökosysteme auswirken außer Emissionen von Gasen, die Ausschließlich Treibhausgaswirkung zeigen (siehe dazu "Reduzierung des Ausstoßes klimarelevanter Gase"). 
+
+Beispiele:
+Verringerter Ausstoß von Ammoniak und Stickoxiden aus Tierhaltung durch verringerte Bestände oder verbesserte Luftfiltertechnologien.
+
+Verringerte Smogbelastung in Städten durch Verdrängung von Individualverkehr durch ÖPNV oder emissionsfreie Antriebstechnologien.</hasNote>
         </node>
-        <node id="COR_32" label="Reduzierung von Immissionen (Einwirkung von Schadstoffen auf Menschen oder Ökosysteme)" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_32" label="Enhancing nature conservation / conservation and protection of biodiversity" selectable="true">
+        <hasNote>Betrifft die Stärkung von Naturschutz und den Schutz der genetischen Vielfalt in natürlichen und anthropogen geformten Ökosystemen.
+
+Beispiele:
+Bereitstellung von diversen Habitaten für eine große Vielzahl an Insektenarten in landwirtschaftlichen Systemen durch kleinräumige Strukturen, vielgliedrigen Fruchtfolgen, Blühstreifen und ganzjährige Bodenbedeckung.
+
+Kleinstrukturierte Nutztierhaltung, die natürlich vorkommende Arten nicht verdrängt, z.B. durch Reduktion der Bienenhaltung in Gebieten, in denen Wildbienen durch Honigbienen verdrängt werden könnten.</hasNote>
         </node>
-        <node id="COR_33" label="Erhalt und Schutz biologischer Vielfalt" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_33" label="Conservation of ecosystem services" selectable="true">
+        <hasNote>Betrifft Maßnahmen zur Aufrechterhaltung und Stabilisierung von Ökosystemfunktionen und Ökosystemintegrität.
+
+Beispiele:
+Um Funktionen von Wäldern (z.B. Kohlenstoffbindung, Habitatbereitstellung, Wasserrückhalt) auch bei veränderten Klimabedingungen aufrechtzuerhalten, muss die Artenzusammensetzung in einigen Gebieten aktiv angepasst werden (z.B. trockenresistentere Baumarten, ggf. Neophyten).
+
+Erosion gefährdet die natürlichen Bodenfunktionen. Je nach Standort und Erosionsart lässt sich die Gefährdung von Böden durch Erosion minimieren (z.B. ganzjährige Bodenbedeckung, Landschaftselemente als Windschutz).</hasNote>
         </node>
-        <node id="COR_34" label="Naturschutz" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_34" label="Increasing sustainablity of land use systems" selectable="true">
+        <hasNote>Betrifft die Transformation von land- und forstwirtschaftlichen Systemen zur Verringerung negativer Einflüsse auf Ökosysteme und anthropogene Systeme.
+
+Beispiele:
+Die graduelle Umwandlung von Fichtenmonokulturen in diversifizierte Forste kann deren Resilienz gegenüber Klimaveränderungen sowie deren Leistungen als vielfältiger Lebensraum steigern.
+
+Die Erprobung, Verbreitung und Etablierung standortgerechter, ressourcen- und umweltschonender landwirtschaftlicher Praktiken (z.B. Zwischenfruchtanbau, optimierter Einsatz von Dünge- und Pflanzenschutzmitteln, reduzierte Bodenbearbeitung, Agroforst) kann die Landnutzung nachhaltiger machen.</hasNote>
         </node>
-        <node id="COR_35" label="Schutz von Ökosystemen" selectable="true">
-        <hasNote></hasNote>
-        </node>
-        <node id="COR_36" label="Ausbau/ Unterstützung Ökolandbau" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_35" label="Expanding / strengthening organic agriculture" selectable="true">
+        <hasNote>Betrifft Maßnahmen zur Verbreitung, Etablierung und Verbesserung von Praktiken des Ökolandbaus. 
+
+Beispiele: 
+Öffentliche Fachveranstaltungen, wie die Öko-Feldtage fördern den fachlichen Austausch und die Verbreitung von Ideen zur Weiterentwicklung des Ökolandbaus.
+
+Die ökologische Bewirtschaftung wird mit EU-, Bundes- oder Landesmitteln mit Flächenprämien gefördert.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="COR_40" label="soziale und ökonomische Aspekte" selectable="false">
+    <node id="COR_40" label="Participation and justice" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="COR_41" label="Bildung" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_41" label="Protecting human health" selectable="true">
+        <hasNote>Betrifft Maßnahmen zum Schutz der menschlichen Gesundheit vor potenziellen Schäden oder zur vorbeugenden Stärkung menschlicher Gesundheit.
+
+Beispiele: 
+Entwicklung neuer Technologien zum Schutz vor Chemikalien und hohen Strahlungslasten am Arbeitsplatz (Schutzkleidung, Einrichtungen zur Abschirmung).
+
+Verbesserung von Testverfahren zur Prüfung von Medikamenten vor der Marktzulassung.</hasNote>
         </node>
-        <node id="COR_42" label="Schutz menschlicher Gesundheit" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_42" label="Strengthening social and political participation" selectable="true">
+        <hasNote>Betrifft Maßnahmen, die es ermöglichen sollen, dass alle Menschen gleichermaßen an sozialen Aktivitäten und politischen Entscheidungen mitwirken und teilhaben können.
+
+Beispiele: 
+Erprobung und Etablierung von inklusiven und niedrigschwelligen Instrumenten zur politischen Mitbestimmung (z.B. Bürgerräte mit Losverfahren, Petitionen).
+
+Erprobung und Etablierung von generationenübergreifenden Konzepten zur intensiveren sozialen Einbindung von Menschen im Alter oder mit Beeinträchtigungen (z.B. Wohnen für Hilfe, barrierefreie Wohnparks).</hasNote>
         </node>
-        <node id="COR_43" label="Soziale Teilhabe" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_43" label="Strengthening social justice" selectable="true">
+        <hasNote>Betrifft die Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten unabhängig von Hintergründen und Ausgangsvoraussetzungen  einer Person (z.B. Religion, Bildungsstand Herkunft) und die Beseitigung systematischer und kulturell bedingter Diskriminierung. 
+
+Beispiele: (Teilweiser) Ausgleich unterschiedlicher Einkommensverhältnisse durch progressive Besteuerung.
+
+Untersuchung und Abschaffung systematischer Ungleichbehandlung von Menschen unterschiedlicher Hintergründe in Schulen und Ämtern.</hasNote>
         </node>
-        <node id="COR_44" label="Versorgungssicherheit (z.B. gesicherte Versorgung mit Energie, Lebensmittel, medizinischer Versorgung)" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_44" label="Strengthening gender equality" selectable="true">
+        <hasNote>Betrifft Maßnahmen zur Herstellung gerechter Lebensverhältnisse, Chancen und Möglichkeiten zur Teilhabe zwischen Menschen unterschiedlicher Geschlechterzugehörigkeit.
+
+Beispiele: 
+Untersuchung und Ausgleich systematischer Ungleichheiten in der Zuteilung politischer Verantwortung in Abhängigkeit vom Geschlecht.
+
+Schaffung gleicher Zugangsmöglichkeiten zu Berufen, politischen Positionen und Bildungsmöglichkeiten unabhängig vom Geschlecht.</hasNote>
         </node>
-        <node id="COR_45" label="Erhalt ländlicher Räume als attraktive Wirtschafts- und Lebensräume" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_45" label="Strengthening human rights and social standards along (global) value chains" selectable="true">
+        <hasNote>Betrifft Maßnahmen zur Einhaltung von Menschenrechten und Verbesserung sozialer Standards für alle Beteiligten in Produktions- und Lieferketten.
+
+Beispiele: 
+Staatliche Kontrolle und Überprüfung von Produktlabels, die faire Lieferbeziehungen versprechen.
+
+Stärkung von Arbeitnehmerrechten in Produktionsländern.</hasNote>
         </node>
-        <node id="COR_46" label="Geschlechtergerechtigkeit" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_46" label="Increasing supply security (e.g. secure supply of energy, food, medical treatment)" selectable="true">
+        <hasNote>Betrifft die nachhaltige Absicherung der materiellen Versorgung zur Befriedigung von Grundbedürfnissen.
+
+Beispiele: 
+Etablierung vielfältiger Versorgungsinfrastrukturen mit Fokus auf regionaler und nationaler Erzeugung.
+
+Instrumente zur Begrenzung des absoluten Ressourcenverbrauchs zur Verringerung des Risikos von Versorgungseinbrüchen durch Übernutzung und Ökosystemschäden.</hasNote>
         </node>
-        <node id="COR_47" label="Integrierte Stadtentwicklung (Ganzheitliche Entwicklung von Siedlung, Verkehr, Umwelt und sozialer Belange)" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_47" label="Strengthening integratet urban development (holistic development of traffic, settlements, environment and social concerns)" selectable="true">
+        <hasNote>Betrifft die Ausrichtung von Stadtplanung und -entwicklung, Bau- und Strukturvorhaben an einem holistischen Verständnis zur Integration von sozialen, ökologischen und wirtschaftlichen Belangen.
+
+Beispiele:
+In Gebieten mit hoher Feinstaubbelastung kann die Umstrukturierung der Verkehrsinfrastruktur zugunsten von emissionsarmen Verkehrsmitteln (ÖPNV, Fahrradverkehr) negative Einflüsse auf Gesundheit und Umwelt verringern. Bei der Umstrukturierung wird darauf geachtet, dass ein Umstieg vom motorisierten Individualverkehr auf andere Verkehrsmittel für Verkehrsteilnehmer machbar und wirtschaftlich ist.
+
+Ausrichtung von Bauvorhaben an den Belangen der Betroffenen (Anwohner*innen, Nutzende des zu bebauenden öffentlichen Raumes) und ökologischen Gesichtspunkten (Wird Fläche versiegelt, die wichtig für Versickerung wäre? Wie verändert sich das Stadtklima/Infrastruktur durch den Bau?)</hasNote>
         </node>
-        <node id="COR_48" label="Technologische Innovationen für Nachhaltige Entwicklung" selectable="true">
-        <hasNote></hasNote>
-        </node>
-        <node id="COR_49" label="Einhaltung von Menschenrechten und sozialer
-Standards entlang (globaler) Wertschöpfungsketten" selectable="true">
-        <hasNote></hasNote>
+        <node id="COR_48" label="Development of rural areas towards attractive living spaces and economic areas" selectable="true">
+        <hasNote>Betrifft die Gestaltung und Entwicklung von sozialer und technischer Infrastruktur, Arbeits- und Lebensumfeldern in ländlichen Räumen.
+
+Beispiele: 
+Verbesserung der Anbindung und Versorgung durch Ausbau des ÖPNV und Förderung von kleinstrukturierten, lokalen Einkaufsmöglichkeiten.
+
+Förderung sozialer Landwirtschaft zur Schaffung von Lern- und Arbeitsangeboten auf dem Land.</hasNote>
         </node>
       </isComposedBy>
     </node>
-    <node id="COR_60" label="Sonstiges" selectable="true">
+    <node id="COR_50" label="Education and innovation" selectable="false">
     <hasNote></hasNote>
       <isComposedBy>
-        <node id="COR_61" label="Sonstiges - ökologisch" selectable="true">
+        <node id="COR_51" label="Strengthening / improving education" selectable="true">
+        <hasNote>Betrifft Maßnahmen zur Fortentwicklung und Anpassung von Bildungseinrichtungen an Bedürfnisse der Gesellschaft, zur Schaffung inklusiver und universell zugänglicher Bildungsangebote sowie zur kritischen Evaluation und Überarbeitung von Bildungskonzepten und -paradigmen.
+
+Beispiele: 
+Erprobung und Evaluation neuer Schulformen und Lernformate (z.B. demokratische Schulen, selbstbestimmtes Lernen).
+
+Schaffung zielgruppengerechter Bildungsangebote (z.B. Unterricht für unterschiedliche sprachliche Voraussetzungen, praxisorientierte Lernangebote neben ausschließlich akademisch ausgerichteten Schulunterrichts).</hasNote>
+        </node>
+        <node id="COR_52" label="Promoting technical innovations for sustainable development" selectable="true">
+        <hasNote>Betrifft die Entwicklung und Erprobung von technischen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele.
+
+Beispiele:
+Weiterentwicklung von Technologien zur Nutzung erneuerbarer Energien und deren Speichermöglichkeiten zur Ablösung fossiler Energieträger.
+
+Entwicklung von Technologien zur Erleichterung der kollektiven Nutzung von Ressourcen und Produkten (z.B. Carsharing, Tauschbörsen).</hasNote>
+        </node>
+        <node id="COR_53" label="Promoting social innovations for sustainable development" selectable="true">
+        <hasNote>Betrifft die Entwicklung und Erprobung von sozialen und kulturellen Neuerungen mit Ausrichtung auf Nachhaltigkeitsziele.
+
+Beispiele:
+Veränderung von Konsumtrends hin zu ressourcenschonendere und nachhaltigeren Konsumverhalten (z.B. Trend zu weniger Fleischkonsum, Tauschkultur und Zweitnutzung von Produkten).
+
+Erprobung und Verbreitung von Instrumenten für gesellschaftlichen Zusammenhalt, Dialog und partizipativer Entscheidungsfindung für die Sicherung demokratischer Strukturen und Kultur (z.B. Bürgerräte, politische Workshops).</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="COR_60" label="Miscellaneous" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="COR_61" label="Miscellaneous - ecologic" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="COR_62" label="Sonstiges - ökonomisch" selectable="true">
+        <node id="COR_62" label="Miscellaneous - economic" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="COR_63" label="Sonstiges - sozial-kulturell" selectable="true">
+        <node id="COR_63" label="Miscellaneous - socio-cultural" selectable="true">
         <hasNote></hasNote>
         </node>
-        <node id="COR_64" label="Sonstiges - governance" selectable="true">
+        <node id="COR_64" label="Miscellaneous - governance" selectable="true">
         <hasNote></hasNote>
         </node>
       </isComposedBy>

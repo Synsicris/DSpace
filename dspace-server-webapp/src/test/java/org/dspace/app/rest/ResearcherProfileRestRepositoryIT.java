@@ -621,7 +621,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                                           .withName("Internal Group")
                                           .build();
 
-        configurationService.setProperty("project.creation.group", internalGroup.getID());
+        configurationService.setProperty("system_members.group", internalGroup.getID());
 
         context.restoreAuthSystemState();
 
@@ -715,7 +715,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                                           .withName("Internal Group")
                                           .build();
 
-        configurationService.setProperty("project.creation.group", internalGroup.getID());
+        configurationService.setProperty("system_members.group", internalGroup.getID());
 
         context.restoreAuthSystemState();
 
@@ -761,7 +761,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
                                           .withName("Internal Group")
                                           .build();
 
-        configurationService.setProperty("project.creation.group", internalGroup.getID());
+        configurationService.setProperty("system_members.group", internalGroup.getID());
 
         context.restoreAuthSystemState();
 

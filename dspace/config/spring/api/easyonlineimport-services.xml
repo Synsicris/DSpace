@@ -12,12 +12,12 @@
 
     <context:annotation-config /> <!-- allows us to use spring annotations in beans -->
 
-    <bean id="projectEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
+    <bean id="fundingEasyLiveImportItemBuilder" class="org.dspace.app.easyliveimport.ProjectEasyLiveImportItemBuilder">
         <constructor-arg>
 			<map>
 				<entry 
                     key-ref="project-Akronym"
-                    value-ref= "oairecerif.acronym">
+                    value-ref="oairecerif.acronym">
                 </entry>
                 <entry 
                     key-ref="project-Thema"
@@ -25,16 +25,8 @@
                 </entry>
                 <entry 
                     key-ref="project-fremd_Thema"
-                    value-ref="dc.title.alternative">
+                    value-ref="synsicris.title.alternative">
                 </entry>
-                <entry 
-                    key-ref="project-Beschreibung1"
-                    value-ref="dc.description.abstract">
-                </entry>
-                <entry 
-                    key-ref="project-Beschreibung2"
-                    value-ref="synsicris.description.workplan">
-                </entry> 
                 <entry 
                     key-ref="project-von"
                     value-ref="oairecerif.project.startDate">
@@ -87,13 +79,17 @@
                     key-ref="partner-TelefonNr_ST"
                     value-ref="synsicris.orgunits.phone">
                 </entry>
+                <entry
+                    key-ref="partner-PLZ_Postfach_ST"
+                    value-ref="synsicris.address.addressPostcodePostbox">
+                </entry>
+                <entry
+                    key-ref="partner-Ort_Postfach_ST"
+                    value-ref="synsicris.address.addressCityPostbox">
+                </entry>
                 <entry 
                     key-ref="partner-Rechtsform"
                     value-ref="synsicris.type.legalform">
-                </entry>
-                <entry 
-                    key-ref="partner-RegisterNr"
-                    value-ref="synsicris.identifier.registernumber">
                 </entry>
                 <entry 
                     key-ref="partner-akad_Grad_PL"
@@ -139,10 +135,6 @@
                     key-ref="partner-KmuAndMittelstand"
                     value-ref="synsicris.type.orgform">
                 </entry>
-                <entry 
-                    key-ref="partner-AmtsgerichtHWK"
-                    value-ref="synsicris.title.registercourt">
-                </entry>                                          
 			</map>
 		</constructor-arg>
 	</bean>
@@ -159,12 +151,8 @@
         <constructor-arg value="synsicris.title"/>
     </bean>
 
-    <bean id="dc.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
-        <constructor-arg value="dc.title.alternative"/>
-    </bean>
-
-    <bean id="dc.description.abstract" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
-        <constructor-arg value="dc.description.abstract"/>
+    <bean id="synsicris.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.title.alternative"/>
     </bean>
 
     <bean id="synsicris.description.workplan" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
@@ -209,6 +197,14 @@
 
     <bean id="synsicris.orgunits.phone" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="synsicris.orgunits.phone"/>
+    </bean>
+
+    <bean id="synsicris.address.addressPostcodePostbox" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressPostcodePostbox"/>
+    </bean>
+
+    <bean id="synsicris.address.addressCityPostbox" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
+        <constructor-arg value="synsicris.address.addressCityPostbox"/>
     </bean>
 
     <bean id="synsicris.type.legalform" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
@@ -280,14 +276,6 @@
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:fremd_Thema/text()" />
     </bean>
 
-    <bean id="project-Beschreibung1" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
-        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Beschreibung1/text()" />
-    </bean>
-
-    <bean id="project-Beschreibung2" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
-        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_Vorhabenbeschreibung/xf:Maske_Vorhabenbeschreibung/xf:Einzelposition/xf:Beschreibung2/text()" />
-    </bean>
-
     <bean id="project-von" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Basisdaten/xf:Feldgruppe_KerndatenFinanzplan/xf:Maske_KerndatenFinanzplan/xf:Einzelposition/xf:von/text()" />
     </bean>
@@ -333,12 +321,24 @@
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:TelefonNr_ST/text()" />
     </bean>
 
-    <bean id="partner-Rechtsform" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
-        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Rechtsform/text()" />
+    <bean id="partner-PLZ_Postfach_ZE" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:PLZ_Postfach_ZE/text()"/>
     </bean>
 
-    <bean id="partner-RegisterNr" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
-        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:RegisterNr/text()" />
+    <bean id="partner-PLZ_Postfach_ST" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:PLZ_Postfach_ST/text()"/>
+    </bean>
+
+    <bean id="partner-Ort_Postfach_ZE" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Ort_Postfach_ZE/text()"/>
+    </bean>
+
+    <bean id="partner-Ort_Postfach_ST" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_Institution_ST/xf:Maske_Institution_ST/xf:Maske_Institution_ST/xf:Einzelposition/xf:Ort_Postfach_ST/text()"/>
+    </bean>
+
+    <bean id="partner-Rechtsform" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
+        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:Rechtsform/text()" />
     </bean>
 
     <bean id="partner-akad_Grad_PL" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
@@ -351,10 +351,6 @@
 
     <bean id="partner-Email_PL" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
         <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Ansprechpartner/xf:Feldgruppe_Ansprechpartner_PL/xf:Maske_Ansprechpartner_PL/xf:Einzelposition/xf:Email_PL/text()" />
-    </bean>
-
-    <bean id="partner-AmtsgerichtHWK" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">
-        <property name="path" value="//xf:Feldgruppe_Formular/xf:Feldgruppe_Institutionen/xf:Feldgruppe_InstitutionVertraege_ZE/xf:Feldgruppe_Institution_ZE/xf:Maske_Institution_ZE/xf:Einzelposition/xf:AmtsgerichtHWK/text()" />
     </bean>
 
     <bean id="partner-akad_Grad_PA" class="org.dspace.app.easyliveimport.EasyOnlineImportSimpleXPath">

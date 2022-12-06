@@ -28,11 +28,11 @@
 				<entry key="person-csv" value-ref="csvCrosswalkPerson"></entry>
 				<entry key="person-xls" value-ref="xlsCrosswalkPerson"></entry>
 
-				<entry key="project-cerif-xml" value-ref="referCrosswalkProjectCerifXml"></entry>
+<!-- 				<entry key="project-cerif-xml" value-ref="referCrosswalkProjectCerifXml"></entry>
 				<entry key="project-json" value-ref="referCrosswalkProjectJson"></entry>
 				<entry key="project-pdf" value-ref="pdfCrosswalkProject"></entry>
 				<entry key="project-csv" value-ref="csvCrosswalkProject"></entry>
-				<entry key="project-xls" value-ref="xlsCrosswalkProject"></entry>
+				<entry key="project-xls" value-ref="xlsCrosswalkProject"></entry> -->
 
 				<entry key="orgUnit-xml" value-ref="referCrosswalkOrgUnitXml"></entry>
 				<entry key="orgUnit-cerif-xml" value-ref="referCrosswalkOrgUnitCerifXml"></entry>
@@ -65,7 +65,13 @@
 				
 				<entry key="collection-xls" value-ref="xlsCrosswalkCollection"></entry>
 
-				<entry key="parentproject-pdf" value-ref="pdfCrosswalkParentProject"></entry>
+				<entry key="project-overview-pdf" value-ref="pdfCrosswalkProjectOverview"></entry>
+				<!--<entry key="parentproject-pdf" value-ref="pdfCrosswalkProject"></entry> -->
+
+				<entry key="process_event-pdf" value-ref="pdfCrosswalkProcessEvent"></entry>
+
+				<entry key="ethic-pdf" value-ref="pdfCrosswalkEthic"></entry>
+
 			</map>
 		</constructor-arg>
 	</bean>
@@ -149,7 +155,7 @@
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE}"/>
 	</bean>
 	
-	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectCerifXml">
+<!-- 	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectCerifXml">
 		<property name="templateFileName" value="crosswalks/template/project-cerif-xml.template"/>
 		<property name="mimeType" value="application/xml; charset=UTF-8"/>
 		<property name="fileName" value="project.xml"/>
@@ -157,7 +163,7 @@
 		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-xml.template"/>
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
 		<property name="converter" ref="xmlValueConverter" />
-	</bean>
+	</bean> -->
 
 	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectJson">
 		<property name="templateFileName" value="crosswalks/template/project-json.template"/>
@@ -306,14 +312,6 @@
 		<property name="mimeType" value="application/pdf"/>
 		<property name="entityType" value="Publication"/>
 		<property name="referCrosswalk" ref="referCrosswalkPublicationCerifXml"/>
-	</bean>
-	
-	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProject">
-		<property name="templateFileName" value="crosswalks/template/project-template.xsl"/>
-		<property name="fileName" value="project.pdf"/>
-		<property name="mimeType" value="application/pdf"/>
-		<property name="entityType" value="Project"/>
-		<property name="referCrosswalk" ref="referCrosswalkProjectCerifXml"/>
 	</bean>
 
 	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkEquipment">
@@ -468,22 +466,80 @@
 	
 	<bean class="org.dspace.content.integration.crosswalks.postprocessors.JsonPostProcessor" id="jsonPostProcessor" />
 
-	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkParentProjectCerifXml">
-		<property name="templateFileName" value="crosswalks/template/parentproject-cerif-xml.template"/>
+	<!-- report template for project -->
+	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectCerifXml">
+		<property name="templateFileName" value="crosswalks/template/project-cerif-xml.template"/>
 		<property name="mimeType" value="application/xml; charset=UTF-8"/>
-		<property name="fileName" value="parentproject.xml"/>
-		<property name="entityType" value="parentproject"/>
-		<property name="multipleItemsTemplateFileName" value="crosswalks/template/parentprojects-xml.template"/>
+		<property name="fileName" value="project.xml"/>
+		<property name="entityType" value="Project"/>
+		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-xml.template"/>
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
 		<property name="converter" ref="xmlValueConverter" />
 	</bean>
 	
-	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkParentProject">
-		<property name="templateFileName" value="crosswalks/template/parentproject-template.xsl"/>
-		<property name="fileName" value="parentproject.pdf"/>
+	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProject">
+		<property name="templateFileName" value="crosswalks/template/project-template.xsl"/>
+		<property name="fileName" value="project.pdf"/>
 		<property name="mimeType" value="application/pdf"/>
-		<property name="entityType" value="parentproject"/>
-		<property name="referCrosswalk" ref="referCrosswalkParentProjectCerifXml"/>
+		<property name="entityType" value="Project"/>
+		<property name="referCrosswalk" ref="referCrosswalkProjectCerifXml"/>
+	</bean>
+
+	<!-- report template for project overview -->
+	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectOverviewCerifXml">
+		<property name="templateFileName" value="crosswalks/template/project-overview-cerif-xml.template"/>
+		<property name="mimeType" value="application/xml; charset=UTF-8"/>
+		<property name="fileName" value="project-overview.xml"/>
+		<property name="entityType" value="Project"/>
+		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-overview-xml.template"/>
+		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
+		<property name="converter" ref="xmlValueConverter" />
+	</bean>
+	
+	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProjectOverview">
+		<property name="templateFileName" value="crosswalks/template/project-overview.xsl"/>
+		<property name="fileName" value="project-overview.pdf"/>
+		<property name="mimeType" value="application/pdf"/>
+		<property name="entityType" value="Project"/>
+		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewCerifXml"/>
+	</bean>
+
+	<!-- report template for process events -->	
+	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProcessEventCerifXml">
+		<property name="templateFileName" value="crosswalks/template/process_event-cerif-xml.template"/>
+		<property name="mimeType" value="application/xml; charset=UTF-8"/>
+		<property name="fileName" value="process_event.xml"/>
+		<property name="entityType" value="process_event"/>
+		<property name="multipleItemsTemplateFileName" value="crosswalks/template/process_events-xml.template"/>
+		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
+		<property name="converter" ref="xmlValueConverter" />
+	</bean>
+
+ 	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProcessEvent">
+		<property name="templateFileName" value="crosswalks/template/process_event-template.xsl"/>
+		<property name="fileName" value="process_event.pdf"/>
+		<property name="mimeType" value="application/pdf"/>
+		<property name="entityType" value="process_event"/>
+		<property name="referCrosswalk" ref="referCrosswalkProcessEventCerifXml"/>
+	</bean>
+
+	<!-- report template for ethics -->		
+	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkEthicCerifXml">
+		<property name="templateFileName" value="crosswalks/template/ethic-cerif-xml.template"/>
+		<property name="mimeType" value="application/xml; charset=UTF-8"/>
+		<property name="fileName" value="ethic.xml"/>
+		<property name="entityType" value="ethic"/>
+		<property name="multipleItemsTemplateFileName" value="crosswalks/template/ethics-xml.template"/>
+		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
+		<property name="converter" ref="xmlValueConverter" />
+	</bean>
+
+	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkEthic">
+		<property name="templateFileName" value="crosswalks/template/ethic-template.xsl"/>
+		<property name="fileName" value="ethic.pdf"/>
+		<property name="mimeType" value="application/pdf"/>
+		<property name="entityType" value="ethic"/>
+		<property name="referCrosswalk" ref="referCrosswalkEthicCerifXml"/>
 	</bean>
 
 	<!-- VIRTUAL FIELDS CONFIGURATION -->

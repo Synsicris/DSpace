@@ -27,15 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implementation of {@link TemplateValueGenerator} that generates a value related to
- * the current parentproject/project item.
+ * the current project/funding item.
  * <p>
- * Syntax is: ###CURRENTPROJECT.[parentproject|project]###, so for example
- * ###CURRENTPROJECT.parentproject### will set metadata with value of item that represent
- * the parentproject entity.
+ * Syntax is: ###CURRENTPROJECT.[project|funding]###, so for example
+ * ###CURRENTPROJECT.project### will set metadata with value of item that represent
+ * the project entity.
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  */
-public class CurrentProjectGenerator extends AbstractGenerator {
+public class CurrentProjectGenerator extends AbstractProjectGenerator {
 
     private static final Logger log = LoggerFactory.getLogger(CurrentProjectGenerator.class);
 
@@ -53,11 +53,11 @@ public class CurrentProjectGenerator extends AbstractGenerator {
         try {
             Community projectCommunity;
             switch (extraParams) {
-                case ProjectConstants.PARENTPROJECT:
-                    projectCommunity = getParentProjectCommunity(templateItem);
-                    break;
                 case ProjectConstants.PROJECT:
                     projectCommunity = getProjectCommunity(templateItem);
+                    break;
+                case ProjectConstants.FUNDING:
+                    projectCommunity = getOwningCommunity(templateItem);
                     break;
                 default:
                     throw new IllegalArgumentException("Unable to find mapper for : " + extraParams);
@@ -75,8 +75,8 @@ public class CurrentProjectGenerator extends AbstractGenerator {
             return new MetadataValueVO("");
         }
         List<MetadataValue> values = communityService.getMetadata(projectCommunity,
-                ProjectConstants.MD_PROJECT_ENTITY.schema, ProjectConstants.MD_PROJECT_ENTITY.element,
-                ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
         if (values.isEmpty()) {
             return new MetadataValueVO("");
         } else {
@@ -87,7 +87,7 @@ public class CurrentProjectGenerator extends AbstractGenerator {
                     return new MetadataValueVO(itemProject.getName(), UUIDUtils.toString(itemProject.getID()),
                         value.getConfidence());
                 } else {
-                    return new MetadataValueVO(""); 
+                    return new MetadataValueVO("");
                 }
             } catch (SQLException e) {
                 return new MetadataValueVO("");

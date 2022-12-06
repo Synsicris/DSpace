@@ -19,12 +19,10 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
-import org.dspace.content.WorkspaceItem;
 import org.dspace.content.crosswalk.CrosswalkException;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
-import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 
@@ -53,8 +51,6 @@ public abstract class AbstractPackageDisseminator
 
     protected final CommunityService communityService = ContentServiceFactory.getInstance().getCommunityService();
     protected final ItemService itemService = ContentServiceFactory.getInstance().getItemService();
-    protected final WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance()
-                                                                                     .getWorkspaceItemService();
 
     /**
      * Recursively export one or more DSpace Objects as a series of packages.
@@ -134,16 +130,6 @@ public abstract class AbstractPackageDisseminator
                             disseminateAll(context, item, params, new File(childFileName));
                         }
 
-                        Iterator<WorkspaceItem> wsiIterator = workspaceItemService
-                                .findByCollection(context, collection).iterator();
-                        while (wsiIterator.hasNext()) {
-                            WorkspaceItem wsi = wsiIterator.next();
-
-                            //disseminate all items (recursively!)
-                            String childFileName = pkgDirectory
-                                                   + PackageUtils.getPackageName(wsi.getItem(), fileExtension);
-                            disseminateAll(context, wsi.getItem(), params, new File(childFileName));
-                        }
                         break;
                     case Constants.COMMUNITY:
                         //Also find all SubCommunities in this Community and disseminate

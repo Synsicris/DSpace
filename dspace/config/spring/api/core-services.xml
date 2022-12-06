@@ -79,7 +79,7 @@
     <bean class="org.dspace.content.EasyonlineimportServiceImpl">
         <constructor-arg>
 		 <map>
-		    <entry key="Project" value-ref="projectEasyLiveImportItemBuilder"/>
+		    <entry key="Funding" value-ref="fundingEasyLiveImportItemBuilder"/>
 		    <entry key="projectpartner" value-ref="projectPartnersEasyLiveImportItemBuilder"/>
 		 </map>
 		</constructor-arg>

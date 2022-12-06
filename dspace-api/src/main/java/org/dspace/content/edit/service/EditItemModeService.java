@@ -51,6 +51,16 @@ public interface EditItemModeService {
      */
     EditItemMode findMode(Context context, Item item, String name) throws SQLException;
 
+    /**
+     * Finds all edit mode by item and edit name, returns null if not exists
+     * @param context DSpace context
+     * @param itemId UUID Item
+     * @param name edit mode name
+     * @return
+     * @throws SQLException
+     */
+    List<EditItemMode> findModes(Context context, Item item, String name) throws SQLException;
+    
     public List<EditItemMode> findModes(Context context, Item item, boolean checkSecurity)
         throws SQLException, AuthorizeException;
 }

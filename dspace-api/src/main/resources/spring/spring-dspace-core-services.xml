@@ -57,7 +57,9 @@
             </list>
         </constructor-arg>
     </bean>
-    
+
+    <bean class="org.dspace.content.template.generator.ProjectGeneratorServiceImpl" id="org.dspace.content.template.generator.ProjectGeneratorServiceImpl" />
+
     <bean class="org.dspace.content.template.generator.AgrovocKeywordsGenerator" id="agrovocKeywordsGenerator" />
 
     <bean id="placeholderTemplateItemValue" class="org.dspace.content.template.PlaceholderTemplateItemValue">
@@ -87,7 +89,13 @@
                 <entry key="currentprojectgroup">
                     <bean class="org.dspace.content.template.generator.CurrentProjectGroupGenerator" />
                 </entry>
+                <entry key="currentprojectgroupbyfundingpolicy">
+                    <bean class="org.dspace.content.template.generator.CurrentProjectGroupByFundingPolicyGenerator" />
+                </entry>
                 <entry key="agrovockeywords" value-ref="agrovocKeywordsGenerator" />
+                <entry key="currentresearcherprofile">
+                    <bean class="org.dspace.content.template.generator.CurrentResearcherProfileGenerator" />
+                </entry>
             </map>
         </constructor-arg>
     </bean>

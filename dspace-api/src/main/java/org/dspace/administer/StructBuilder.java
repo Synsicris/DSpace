@@ -16,6 +16,7 @@ import static org.dspace.content.service.DSpaceObjectService.MD_NAME;
 import static org.dspace.content.service.DSpaceObjectService.MD_PROVENANCE_DESCRIPTION;
 import static org.dspace.content.service.DSpaceObjectService.MD_SHORT_DESCRIPTION;
 import static org.dspace.content.service.DSpaceObjectService.MD_SIDEBAR_TEXT;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,6 +54,7 @@ import org.dspace.content.MetadataFieldName;
 import org.dspace.content.MetadataSchemaEnum;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
@@ -102,6 +104,9 @@ public class StructBuilder {
     /** Name of the root element for the document to be imported. */
     static final String INPUT_ROOT = "import_structure";
 
+    /** Name of the root element for the document to be imported. */
+    static final String COMMUNITIES_ROOT = "communities";
+
     /*
      * Name of the root element for the document produced by importing.
      * Community and collection elements are annotated with their identifiers.
@@ -134,8 +139,11 @@ public class StructBuilder {
             = ContentServiceFactory.getInstance().getWorkspaceItemService();
     protected static InstallItemService installItemService
             = ContentServiceFactory.getInstance().getInstallItemService();
-    public static final MetadataFieldName MD_SUBPROJECT_COMMUNITY
-            = new MetadataFieldName("synsicris", "subproject", "community");
+    public static final MetadataFieldName MD_FUNDING_COMMUNITY
+            = new MetadataFieldName("synsicris", "funding", "community");
+
+    static String itemReferenceName = null;
+    static String itemReferenceUUID = null;
 
     /**
      * Default constructor
@@ -301,8 +309,9 @@ public class StructBuilder {
         communityMap.put("intro", MD_INTRODUCTORY_TEXT);
         communityMap.put("copyright", MD_COPYRIGHT_TEXT);
         communityMap.put("sidebar", MD_SIDEBAR_TEXT);
-        communityMap.put("subproject-comm", MD_SUBPROJECT_COMMUNITY);
+        communityMap.put("funding-comm", MD_FUNDING_COMMUNITY);
         communityMap.put("policy-group", null);
+        communityMap.put("has-item-reference", null);
 
         collectionMap.put("name", MD_NAME);
         collectionMap.put("entity-type", CrisConstants.MD_ENTITY_TYPE);
@@ -319,10 +328,24 @@ public class StructBuilder {
         collectionMap.put("item-template", null);
         collectionMap.put("item", null);
 
-        Element[] elements = new Element[]{};
+        try {
+            // get the group list
+            NodeList first = XPathAPI.selectNodeList(document, "/import_structure/groups/group");
+
+            // run the import for groups
+            handleGroups(context, first);
+        } catch (TransformerException ex) {
+            System.err.format("Input content not understood:  %s%n", ex.getMessage());
+            System.exit(1);
+        } catch (AuthorizeException ex) {
+            System.err.format("Not authorized:  %s%n", ex.getMessage());
+            System.exit(1);
+        }
+
+        Element[] elements = null;
         try {
             // get the top level community list
-            NodeList first = XPathAPI.selectNodeList(document, "/import_structure/community");
+            NodeList first = XPathAPI.selectNodeList(document, "/import_structure/communities/community");
 
             // run the import starting with the top level communities
             elements = handleCommunities(context, first, null);
@@ -463,8 +486,11 @@ public class StructBuilder {
             System.exit(1);
         }
 
+        Element communitiesNode = new Element(COMMUNITIES_ROOT);
+        rootElement.addContent(communitiesNode);
+
         for (Community community : communities) {
-            rootElement.addContent(exportACommunity(community));
+            communitiesNode.addContent(exportACommunity(community));
         }
 
         // Now write the structure out.
@@ -520,14 +546,25 @@ public class StructBuilder {
         err.append("The following errors were encountered parsing the source XML.\n");
         err.append("No changes have been made to the DSpace instance.\n\n");
 
-        NodeList first = XPathAPI.selectNodeList(document, "/import_structure/community");
-        if (first.getLength() == 0) {
+        NodeList groupNodes = XPathAPI.selectNodeList(document, "/import_structure/groups/group");
+        if (groupNodes != null && groupNodes.getLength() != 0) {
+            String groupErrors = validateGroups(groupNodes);
+            if (StringUtils.isNotBlank(groupErrors)) {
+                err.append("-There are errors in the groups.\n");
+                err.append(groupErrors);
+                System.out.println(err.toString());
+                System.exit(1);
+            }
+        }
+
+        NodeList communityNodes = XPathAPI.selectNodeList(document, "/import_structure/communities/community");
+        if (communityNodes.getLength() == 0) {
             err.append("-There are no top level communities in the source document.");
             System.out.println(err.toString());
             System.exit(1);
         }
 
-        String errs = validateCommunities(first, 1);
+        String errs = validateCommunities(communityNodes, 1);
         if (errs != null) {
             err.append(errs);
             trip = true;
@@ -537,6 +574,33 @@ public class StructBuilder {
             System.out.println(err.toString());
             System.exit(1);
         }
+    }
+
+    /**
+     * Takes the node list of groups and validate them by checking
+     * their content that should be a simple not-empty string
+     *
+     * @param groupNodes the node list of groups
+     * @return errors
+     */
+    private static final String validateGroups(NodeList groupNodes) {
+        StringBuilder err = new StringBuilder();
+        boolean erroneous = false;
+        String errs = null;
+        for (int i = 0; i < groupNodes.getLength(); i++) {
+            String groupName = groupNodes.item(i).getTextContent();
+            if (StringUtils.isBlank(groupName)) {
+                String pos = Integer.toString(i + 1);
+                err.append("-The group in position ").append(pos)
+                   .append(" does not contain a valid string.\n");
+                erroneous = true;
+            }
+        }
+
+        if (erroneous) {
+            errs = err.toString();
+        }
+        return errs;
     }
 
     /**
@@ -717,7 +781,7 @@ public class StructBuilder {
     private static void handleItem(Context context, Node node, Collection collection)
         throws SQLException, AuthorizeException, TransformerException {
         WorkspaceItem workspaceItem = workspaceItemService.create(context, collection, true);
-        Item templateItem = installItemService.installItem(context, workspaceItem);
+        Item item = installItemService.installItem(context, workspaceItem);
         NodeList metadataList = XPathAPI.selectNodeList(node, "metadata");
         for (int i = 0; i < metadataList.getLength(); i++) {
             String metadataName = getAttributeValue(metadataList.item(i), "name");
@@ -725,8 +789,17 @@ public class StructBuilder {
             String authority = getAttributeValue(metadataList.item(i), "authority");
             int confidence = StringUtils.isNotBlank(authority) ? 600 : -1;
             String[] elements = MetadataFieldName.parse(metadataName);
-            itemService.addMetadata(context, templateItem, elements[0], elements[1], elements[2], null, metadatavalue,
+            itemService.addMetadata(context, item, elements[0], elements[1], elements[2], null, metadatavalue,
                 authority, confidence);
+        }
+
+        NodeList itemReferenceList = XPathAPI.selectNodeList(node, "item-reference");
+        for (int i = 0; i < itemReferenceList.getLength(); i++) {
+            String value = getStringValue(itemReferenceList.item(i));
+            if (value.equals("true")) {
+                itemReferenceName = item.getName();
+                itemReferenceUUID = item.getID().toString();
+            }
         }
     }
 
@@ -789,6 +862,27 @@ public class StructBuilder {
     }
 
     /**
+     * Take a node list of groups and add all of them is they're not already
+     * created in dspace
+     *
+     * @param context context of application
+     * @param groups nodelist of groups to process
+     * @throws SQLException
+     * @throws AuthorizeException
+     */
+    private static final void handleGroups(Context context, NodeList groups) throws SQLException, AuthorizeException {
+        for (int i = 0; i < groups.getLength(); i++) {
+            String groupName = groups.item(i).getTextContent();
+            Group savedGroup = groupService.findByName(context, groupName);
+            if (savedGroup == null) {
+                Group createdGroup = groupService.create(context);
+                groupService.setName(createdGroup, groupName);
+                groupService.update(context, createdGroup);
+            }
+        }
+    }
+
+    /**
      * Take a node list of communities and build the structure from them, delegating
      * to the relevant methods in this class for sub-communities and collections
      *
@@ -803,6 +897,10 @@ public class StructBuilder {
         Element[] elements = new Element[communities.getLength()];
 
         for (int i = 0; i < communities.getLength(); i++) {
+            if (parent == null) {
+                itemReferenceName = null;
+                itemReferenceUUID = null;
+            }
             Community community;
             Element element = new Element("community");
 
@@ -822,6 +920,7 @@ public class StructBuilder {
             String policyGroupName = null;
             String policyType = null;
             boolean toDelete = true;
+            boolean hasItemReference = false;
             for (Map.Entry<String, MetadataFieldName> entry : communityMap.entrySet()) {
                 NodeList nl = XPathAPI.selectNodeList(tn, entry.getKey());
                 if (nl.getLength() > 0) {
@@ -831,6 +930,8 @@ public class StructBuilder {
                             policyGroupName = getStringValue(nl.item(j));
                             handleResourcePolicyGroup(context, policyGroupName, policyType, community, toDelete);
                             toDelete = false;
+                        } else if (entry.getKey().equals("has-item-reference")) {
+                            hasItemReference = getStringValue(nl.item(j)).equals("true");
                         } else {
                             if (getStringValue(nl.item(j)) != null) {
                                 communityService.addMetadata(context, community,
@@ -917,6 +1018,16 @@ public class StructBuilder {
             // handle collections
             NodeList collections = XPathAPI.selectNodeList(tn, "collection");
             Element[] collectionElements = handleCollections(context, collections, community);
+
+            if (hasItemReference && StringUtils.isNotBlank(itemReferenceName)
+                    && StringUtils.isNotBlank(itemReferenceUUID)) {
+
+                communityService.addMetadata(
+                    context, community, MD_RELATION_ITEM_ENTITY.schema,
+                    MD_RELATION_ITEM_ENTITY.element,
+                    MD_RELATION_ITEM_ENTITY.qualifier, null,
+                    itemReferenceName, itemReferenceUUID, Choices.CF_ACCEPTED);
+            }
 
             int j;
             for (j = 0; j < subCommunityElements.length; j++) {

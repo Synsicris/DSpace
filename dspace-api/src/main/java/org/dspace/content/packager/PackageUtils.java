@@ -167,22 +167,6 @@ public class PackageUtils {
     }
 
     /**
-     * Test that item has adequate metadata.
-     * Check item for the minimal DC metadata required to ingest a
-     * new item, and throw a PackageValidationException if test fails.
-     * Used by all SIP processors as a common sanity test.
-     *
-     * @param item - item to test.
-     * @throws SQLException
-     */
-    public static void addRelationshipMetadata(Context context, Collection parent, Item item) throws SQLException {
-        String entitType = collectionService.getMetadata(parent, "dspace.entity.type");
-        if (entitType != null) {
-            itemService.setMetadataSingleValue(context, item, "dspace", "entity", "type", null, entitType);
-        }
-    }
-
-    /**
      * Add DSpace Deposit License to an Item.
      * Utility function to add the a user-supplied deposit license or
      * a default one if none was given; creates new bitstream in the
@@ -478,44 +462,32 @@ public class PackageUtils {
 
         switch (type) {
             case Constants.COLLECTION:
-                if (parent == null || !params.containsKey("skipParentIngest") ||
-                    parent.getType() != Constants.COLLECTION) {
-                    Collection collection = collectionService.find(context, uuid);
-                    if (collection != null) {
-                        dso = collectionService.create(context, (Community) parent, handle);
-                    } else {
-                        dso = collectionService.create(context, (Community) parent, handle, uuid);
-
-                    }
+                Collection collection = collectionService.find(context, uuid);
+                if (collection != null) {
+                    dso = collectionService.create(context, (Community) parent, handle);
                 } else {
-                    dso = parent;
-                }
+                    dso = collectionService.create(context, (Community) parent, handle, uuid);
 
+                }
                 return dso;
 
             case Constants.COMMUNITY:
-                if (parent == null || !params.containsKey("skipParentIngest") ||
-                    parent.getType() != Constants.COMMUNITY) {
-                    // top-level community?
-                    if (parent == null || parent.getType() == Constants.SITE) {
-                        Community community = communityService.find(context, uuid);
-                        if (community != null) {
-                            dso = communityService.create(null, context, handle);
-                        } else {
-                            dso = communityService.create(null, context, handle, uuid);
-                        }
+                // top-level community?
+                if (parent == null || parent.getType() == Constants.SITE) {
+                    Community community = communityService.find(context, uuid);
+                    if (community != null) {
+                        dso = communityService.create(null, context, handle);
                     } else {
-                        Community community = communityService.find(context, uuid);
-                        if (community != null) {
-                            dso = communityService.createSubcommunity(context, ((Community) parent), handle);
-                        } else {
-                            dso = communityService.createSubcommunity(context, ((Community) parent), handle, uuid);
-                        }
+                        dso = communityService.create(null, context, handle, uuid);
                     }
                 } else {
-                    dso = parent;
+                    Community community = communityService.find(context, uuid);
+                    if (community != null) {
+                        dso = communityService.createSubcommunity(context, ((Community) parent), handle);
+                    } else {
+                        dso = communityService.createSubcommunity(context, ((Community) parent), handle, uuid);
+                    }
                 }
-
                 return dso;
 
             case Constants.ITEM:

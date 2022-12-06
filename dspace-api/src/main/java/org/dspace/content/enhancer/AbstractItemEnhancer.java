@@ -7,6 +7,8 @@
  */
 package org.dspace.content.enhancer;
 
+import java.util.StringTokenizer;
+
 /**
  * Abstract implementation of {@link ItemEnhancer} that provide common structure
  * for all the item enhancers.
@@ -27,11 +29,21 @@ public abstract class AbstractItemEnhancer implements ItemEnhancer {
     }
 
     protected String getVirtualMetadataField() {
-        return VIRTUAL_METADATA_SCHEMA + "." + VIRTUAL_METADATA_ELEMENT + "." + virtualQualifier;
+        StringTokenizer dcf = new StringTokenizer(virtualQualifier, ".");
+        if (dcf.countTokens() > 1) {
+            return virtualQualifier;
+        } else {
+            return VIRTUAL_METADATA_SCHEMA + "." + VIRTUAL_METADATA_ELEMENT + "." + virtualQualifier;
+        }
     }
 
     protected String getVirtualSourceMetadataField() {
-        return VIRTUAL_METADATA_SCHEMA + "." + VIRTUAL_SOURCE_METADATA_ELEMENT + "." + virtualQualifier;
+        StringTokenizer dcf = new StringTokenizer(virtualQualifier, ".");
+        if (dcf.countTokens() > 1) {
+            return virtualQualifier;
+        } else {
+            return VIRTUAL_METADATA_SCHEMA + "." + VIRTUAL_SOURCE_METADATA_ELEMENT + "." + virtualQualifier;
+        }
     }
 
 }

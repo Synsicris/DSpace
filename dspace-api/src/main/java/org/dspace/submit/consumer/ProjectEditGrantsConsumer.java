@@ -22,7 +22,7 @@ import org.dspace.utils.DSpace;
 
 /**
  * Implementation of {@link Consumer}
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ProjectEditGrantsConsumer implements Consumer {
@@ -40,7 +40,7 @@ public class ProjectEditGrantsConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        
+
         String policyMetadata = ProjectConstants.MD_POLICY_SHARED.toString().replaceAll("\\.", "_");
 
         if (event.getEventType() == Event.MODIFY_METADATA && event.getDetail() != null &&
@@ -50,7 +50,7 @@ public class ProjectEditGrantsConsumer implements Consumer {
                 return;
             }
             Object dso = event.getSubject(context);
-            if ((dso instanceof Item)) {
+            if (dso instanceof Item) {
                 Item item = (Item) dso;
                 EPerson submitter = item.getSubmitter();
                 if (Objects.isNull(submitter)) {

@@ -7,6 +7,9 @@
  */
 package org.dspace.content;
 
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -16,14 +19,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.metrics.service.CrisMetricsService;
 import org.dspace.app.util.AuthorizeUtil;
@@ -54,6 +62,7 @@ import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
@@ -69,7 +78,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     /**
      * log4j category
      */
-    private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(CommunityServiceImpl.class);
+    private static final Logger log = LogManager.getLogger(CommunityServiceImpl.class);
 
     @Autowired
     protected CommunityDAO communityDAO;
@@ -110,9 +119,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     @Autowired
     protected InstallItemService installItemService;
 
-    private String matadataToSkip[] = new String[] {
-        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type",
-        "synsicris.struct-builder.identifier" };
+    private String matadataToSkipIfAlreadyPresent[] = new String[] {
+        "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
+
+    private String matadataToSkip[] = new String[] { "synsicris.struct-builder.identifier" };
+
     protected CommunityServiceImpl() {
         super();
 
@@ -132,7 +143,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     public Community create(Community parent, Context context, String handle,
                             UUID uuid) throws SQLException, AuthorizeException {
         if (!(authorizeService.isAdmin(context) ||
-                (parent != null && authorizeService.authorizeActionBoolean(context, parent, Constants.ADD)))) {
+                parent != null && authorizeService.authorizeActionBoolean(context, parent, Constants.ADD))) {
             throw new AuthorizeException(
                     "Only administrators can create communities");
         }
@@ -260,7 +271,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         // Check authorisation
         // authorized to remove the logo when DELETE rights
         // authorized when canEdit
-        if (!((is == null) && authorizeService.authorizeActionBoolean(
+        if (!(is == null && authorizeService.authorizeActionBoolean(
                 context, community, Constants.DELETE))) {
             canEdit(context, community);
         }
@@ -754,22 +765,32 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         Community newCommunity = create(parent, context);
         setCommunityName(context, newCommunity, name);
         UUID rootCommunityUUID = newCommunity.getID();
-        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity);
-        String stringValue = this.getMetadataFirstValue(template, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null);
-        UUID uuidProjectItem = extractItemUuid(stringValue);
-        newCommunity = cloneCommunity(context, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name, grants, newItems, oldItem2clonedItem);
-//        setCommunityName(context, newCommunity, name);
+        String projectRootCommId = configurationService.getProperty("project.parent-community-id", "");
+        boolean isProject = Objects.nonNull(parent) && parent.getID().toString().equals(projectRootCommId);
+        boolean isFunding = !isProject;
+        Map<UUID, Group> scopedRoles = createScopedRoles(context, newCommunity, parent, projectRootCommId, isProject);
+
+        List<MetadataValue> relationMd =
+            this.getMetadata(
+                template,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null
+        );
+        UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
+        newCommunity = cloneCommunity(context, parent, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                                      name, grants, newItems, oldItem2clonedItem, isFunding);
+
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
         return newCommunity;
     }
 
-    private Community cloneCommunity(Context context, Community communityToClone, Community clone,
-            Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
-            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem)
-            throws SQLException, AuthorizeException {
+    private Community cloneCommunity(Context context, Community parentCommunity, Community communityToClone,
+            Community clone, Map<UUID, Group> scopedRoles, UUID uuidProjectItem, UUID rootCommunityUUID,
+            String newName, String grants, List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem,
+            boolean isFunding) throws SQLException, AuthorizeException {
 
         List<Community> subCommunities = communityToClone.getSubcommunities();
         List<Collection> subCollections = communityToClone.getCollections();
@@ -778,8 +799,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
-            cloneCommunity(context, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                           newName, grants, newItems, oldItem2clonedItem);
+            cloneCommunity(context, parentCommunity, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                           newName, grants, newItems, oldItem2clonedItem, isFunding);
         }
 
         for (Collection collection : subCollections) {
@@ -787,8 +808,8 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             cloneMetadata(context, collectionService, newCollection, collection);
             cloneTemplateItem(context, newCollection, collection);
             cloneCollectionGroups(context, newCollection, collection, scopedRoles);
-            cloneCollectionItems(context, newCollection, collection, uuidProjectItem, rootCommunityUUID,
-                    newName, grants,newItems, oldItem2clonedItem);
+            cloneCollectionItems(context, parentCommunity, newCollection, collection, uuidProjectItem,
+                    rootCommunityUUID, newName, grants,newItems, oldItem2clonedItem, isFunding);
         }
 
         return clone;
@@ -812,9 +833,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
     }
 
-    private void cloneCollectionItems(Context context, Collection newCollection, Collection collection,
-            UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
-            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem) throws SQLException {
+    private void cloneCollectionItems(Context context, Community parentCommunity, Collection newCollection,
+            Collection collection, UUID uuidProjectItem, UUID rootCommunityUUID, String newName, String grants,
+            List<Item> newItems, Map<UUID, CloneDTO> oldItem2clonedItem, boolean isFunding) throws SQLException {
         Iterator<Item> items = itemService.findAllByCollection(context, collection);
         try {
             while (items.hasNext()) {
@@ -825,7 +846,11 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 cloneMetadata(context, itemService, newItem, item);
                 if (Objects.nonNull(uuidProjectItem)) {
                     if (item.getID().equals(uuidProjectItem)) {
-                        replacePlaceholderValue(context, rootCommunityUUID, newItem, newName, grants);
+                        Community rootCommunity = this.find(context, rootCommunityUUID);
+                        replacePlaceholderValue(context, rootCommunity, newItem, newName, grants);
+                        if (isFunding) {
+                            setCrisPolicy(context, parentCommunity, rootCommunity, newItem, grants);
+                        }
                     }
                 }
                 newItems.add(newItem);
@@ -836,20 +861,43 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
     }
 
-    private void replacePlaceholderValue(Context context, UUID rootCommunityUUID, Item newItem, String newName,
+    private void setCrisPolicy(Context context, Community parentCommunity, Community newRootCommunity, Item newItem,
             String grants) throws SQLException {
-        Community rootCommunity = this.find(context, rootCommunityUUID);
-        StringBuilder relationPlaceholder = new StringBuilder();
-        relationPlaceholder.append("project_").append(newItem.getID().toString()).append("_item");
-        this.replaceMetadata(context, rootCommunity, ProjectConstants.MD_PROJECT_ENTITY.schema,
-                ProjectConstants.MD_PROJECT_ENTITY.element, ProjectConstants.MD_PROJECT_ENTITY.qualifier, null,
-                             relationPlaceholder.toString(), newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
+
+        if (StringUtils.isBlank(grants)) {
+            grants = ProjectConstants.PROJECT;
+        }
+        
+        itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
+                Choices.CF_UNSET, 0);
+        
+        String groupName = null;
+        Group group;
+        switch (grants) {
+            case ProjectConstants.PROJECT:
+                groupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        parentCommunity.getParentCommunities().get(0).getID().toString());
+                break;
+            case ProjectConstants.FUNDING:
+                groupName = String.format(FUNDING_MEMBERS_GROUP_TEMPLATE, newRootCommunity.getID().toString());
+                break;
+        }
+        group = groupService.findByName(context, groupName);
+        if (Objects.nonNull(group)) {
+            itemService.replaceMetadata(context, newItem, ProjectConstants.MD_POLICY_GROUP.schema,
+                    ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
+                    null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
+        }
+        
+    }
+
+    private void replacePlaceholderValue(Context context, Community newRootCommunity, Item newItem, String newName,
+            String grants) throws SQLException {
+        this.replaceMetadata(context, newRootCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+                ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
+                null, newName, newItem.getID().toString(), Choices.CF_ACCEPTED, 0);
         context.reloadEntity(newItem);
         itemService.replaceMetadata(context, newItem, "dc", "title", null, null, newName, null, Choices.CF_UNSET, 0);
-        if (StringUtils.isNoneBlank(grants)) {
-            itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
-                                        Choices.CF_UNSET, 0);
-        }
     }
 
     private void cloneTemplateItem(Context context, Collection col, Collection collection)
@@ -888,22 +936,24 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
             metadataName += "." + metadata.getQualifier();
         }
 
-        if (Arrays.stream(matadataToSkip).anyMatch(metadataName::equals)) {
+        if (Arrays.stream(matadataToSkipIfAlreadyPresent).anyMatch(metadataName::equals)) {
             List<MetadataValue> metadataList = service.getMetadataByMetadataString(target, metadataName);
+
             return metadataList.size() > 0;
         }
-        return false;
+
+        return Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
     }
 
     private UUID extractItemUuid(String value) {
         UUID itemUuid = null;
         if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|subproject_))(.*)(_.*)$");
+            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)$");
             Matcher matcher = pattern.matcher(value);
             if (matcher.matches()) {
                 itemUuid = UUID.fromString(matcher.group(2));
             } else {
-                throw new RuntimeException("Metadata value of synsicris.relation.entity_project : " + value
+                throw new RuntimeException("Metadata value of synsicris.relation.entity_item : " + value
                         + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
             }
         }
@@ -1002,35 +1052,187 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
      * @return a map between the institutional roles and the related scopes for the
      *         institution community
      */
-    private Map<UUID, Group> createScopedRoles(Context context, Community project)
-            throws SQLException, AuthorizeException {
+    private Map<UUID, Group> createScopedRoles(Context context, Community project, Community parent,
+            String projectRootCommunityID, boolean isProject) throws SQLException, AuthorizeException {
+        Map<UUID, Group> groupsMap;
+        Map<UUID, Group> scopedRolesMap;
+        String[] projectTemplates = configurationService.getArrayProperty("project.template.groups-name");
+        if (isProject || Objects.isNull(parent)) {
+            String[] projectUserGroups = configurationService.getArrayProperty("project.template.add-user-groups");
+            groupsMap = new HashMap<>(projectTemplates.length + projectUserGroups.length);
+            groupsMap.putAll(
+                createTemplateGroups(
+                    context,
+                    project,
+                    projectUserGroups
+                )
+            );
+            Map<UUID, Group> projectGroupsMap =
+                createTemplateGroups(
+                    context,
+                    project,
+                    projectTemplates
+                );
+            if (!isProject) {
+                groupsMap.putAll(projectGroupsMap);
+            }
+            scopedRolesMap =
+                Stream.concat(groupsMap.entrySet().stream(), projectGroupsMap.entrySet().stream())
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (a, b) -> b));
+        } else {
+            String[] fundingTemplates = configurationService.getArrayProperty("project.funding-template.groups-name");
+            groupsMap = new HashMap<>(fundingTemplates.length + projectTemplates.length);
+            groupsMap.putAll(
+                createTemplateGroups(
+                    context,
+                    project,
+                    fundingTemplates
+                )
+            );
+            Community projectComm =
+                Optional.ofNullable(parent.getParentCommunities())
+                    .filter(l -> !l.isEmpty())
+                    .map(l -> l.get(0))
+                    .orElse(null);
+            Community parentProjComm =
+                Optional.ofNullable(projectComm)
+                    .map(Community::getParentCommunities)
+                    .filter(l -> !l.isEmpty())
+                    .map(l -> l.get(0))
+                    .orElse(null);
+            Map<UUID, Group> projectGroupsMap = Map.of();
+            if (
+                    projectComm != null &&
+                    parentProjComm != null &&
+                    parentProjComm.getID().toString().equals(projectRootCommunityID)
+            ) {
 
-        Map<UUID, Group> groupsMap = new HashMap<>();
-        String[] templateGroupsName = configurationService.getArrayProperty("project.template.groups-name");
-        if (templateGroupsName.length > 0) {
-            for (int i = 0; i < templateGroupsName.length; i++) {
-                Group templateGroup = groupService.findByName(context, templateGroupsName[i]);
-                if (templateGroup != null && StringUtils.isNotBlank(templateGroup.getName())) {
-                    String[] name_parts = extractName(templateGroup.getName());
-                    if (name_parts.length == 2) {
-                        Group scopedRole = groupService.create(context);
-                        groupService.addMember(context, scopedRole, context.getCurrentUser());
-                        String roleName = name_parts[0] + project.getID().toString() + name_parts[1] + "_group";
-                        groupService.setName(scopedRole, roleName);
-                        groupsMap.put(templateGroup.getID(), scopedRole);
-                    } else {
-                        throw new RuntimeException("The group name : " + templateGroup.getName()
-                              + " is bad formed! It should have the following format : project_<UUID>_<NAME>_group");
-                    }
+                projectGroupsMap = new HashMap<UUID, Group>(projectTemplates.length);
+
+                addCommunityGroupsFromTemplate(
+                    context,
+                    projectComm,
+                    projectGroupsMap,
+                    projectTemplates
+                );
+            }
+            scopedRolesMap =
+                Stream.concat(groupsMap.entrySet().stream(), projectGroupsMap.entrySet().stream())
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (a, b) -> b));
+        }
+
+        groupsMap.forEach((uuid, group) -> groupService.addMember(context, group, context.getCurrentUser()));
+
+        return scopedRolesMap;
+    }
+
+    private Map<UUID, Group> createTemplateGroups(
+        Context context,
+        Community project,
+        String[] templateGroupsName
+    ) throws SQLException, AuthorizeException {
+        if (templateGroupsName == null || templateGroupsName.length == 0) {
+            return Map.of();
+        }
+        Map<UUID, Group> groupsMap = new HashMap<>(templateGroupsName.length);
+        for (int i = 0; i < templateGroupsName.length; i++) {
+            String currentTemplateGroup = templateGroupsName[i];
+            Group templateGroup = groupService.findByName(context, currentTemplateGroup);
+            if (isValidGroup(templateGroup)) {
+                String projectId = project.getID().toString();
+                String[] name_parts = getValidGroupTemplateParts(templateGroup);
+                Group scopedRole = groupService.findByName(context, formatGroup(projectId, name_parts));
+                if (scopedRole == null) {
+                    scopedRole = createGroupFromTemplate(context, projectId, name_parts);
                 }
+                groupsMap.put(templateGroup.getID(), scopedRole);
+            } else {
+                log.warn("Cannot find a valid group for properties group template {}", currentTemplateGroup);
             }
         }
         return groupsMap;
     }
 
+    private void addCommunityGroupsFromTemplate(
+        Context context,
+        Community project,
+        Map<UUID, Group> groupsMap,
+        String[] templateGroupsName
+    ) throws SQLException, AuthorizeException {
+        if (templateGroupsName == null || templateGroupsName.length == 0) {
+            return;
+        }
+        for (int i = 0; i < templateGroupsName.length; i++) {
+            String currentTemplateGroup = templateGroupsName[i];
+            Group templateGroup = groupService.findByName(context, currentTemplateGroup);
+            if (isValidGroup(templateGroup)) {
+                String[] name_parts = getValidGroupTemplateParts(templateGroup);
+                Group scopedRole = getValidProjectGroup(context, project.getID().toString(), name_parts);
+                groupsMap.put(templateGroup.getID(), scopedRole);
+            } else {
+                log.warn("Cannot find a valid group for properties group template {}", currentTemplateGroup);
+            }
+        }
+    }
+
+    private Group getValidProjectGroup(Context context, String projectId, String[] name_parts) throws SQLException {
+        Group scopedRole = groupService.findByName(context, formatGroup(projectId, name_parts));
+        if (!isValidGroup(scopedRole)) {
+            throw new RuntimeException(
+                "Cannot find project community for funding tamplate " +
+                projectId
+            );
+        }
+        return scopedRole;
+    }
+
+    private String[] getValidGroupTemplateParts(Group templateGroup) {
+        String[] name_parts = extractName(templateGroup.getName());
+        if (!isValidTemplate(name_parts)) {
+            throw new RuntimeException(
+                "The group name : " +
+                templateGroup.getName() +
+                " is bad formed! It should have the following format : project_<UUID>_<NAME>_group"
+            );
+        }
+        return name_parts;
+    }
+
+
+    private Group createGroupFromTemplate(
+        Context context,
+        String projectId,
+        String[] name_parts
+    ) throws SQLException, AuthorizeException {
+        Group scopedRole = groupService.create(context);
+        groupService.setName(scopedRole, formatGroup(projectId, name_parts));
+        return scopedRole;
+    }
+
+    private String formatGroup(String projectId, String[] name_parts) {
+        return new StringBuilder(name_parts[0])
+                    .append(projectId)
+                    .append(name_parts[1])
+                    .append("_group")
+                    .toString();
+    }
+
+    private boolean isValidTemplate(String[] name_parts) {
+        return name_parts != null && name_parts.length == 2;
+    }
+
+    private boolean isValidGroup(Group templateGroup) {
+        return templateGroup != null && StringUtils.isNotBlank(templateGroup.getName());
+    }
+
     private String[] extractName(String groupName) {
-        Pattern pattern = Pattern.compile("^((?:project_|subproject_)).*(_.*)(_group)$");
+        if (groupName == null) {
+            return null;
+        }
+
+        Pattern pattern = Pattern.compile("^((?:project_|funding_)).*(_.*)(_group)$");
         Matcher matcher = pattern.matcher(groupName);
+
         if (matcher.matches()) {
             return new String[] {matcher.group(1),matcher.group(2)};
         } else {

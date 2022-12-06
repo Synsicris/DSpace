@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE input-forms SYSTEM "submission-forms.dtd">
-
 <input-forms>
   <form-definitions>
     <form name="edit_grants">
@@ -510,7 +509,7 @@
           <label>Please confirm the preselection.</label>
           <input-type value-pairs-name="impactpathway_step_type_6_task_type">list</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -1068,18 +1067,6 @@
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>exploitationplan</dc-qualifier>
-          <label>Relation exploitation plan</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>exploitationplan</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
@@ -1110,6 +1097,259 @@
           <label>Are applications for property rights being considered or have property rights already been granted?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_1_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_1_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_2_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_2_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_3_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_3_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_4_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_4_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_step_type_5_task_form">
+      <row>
+        <field>
+          <dc-schema>dspace</dc-schema>
+          <dc-element>entity</dc-element>
+          <dc-qualifier>type</dc-qualifier>
+          <label>Please select an area:</label>
+          <input-type value-pairs-name="interim_report_step_type_5_task_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report_task_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="interim_report-edit_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>task</dc-qualifier>
+          <label>Relation task</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>interim_report</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>step</dc-qualifier>
+          <label>Relation step</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
           <required />
           <hint />
         </field>
@@ -1203,6 +1443,17 @@
           <hint />
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>audience</dc-element>
+          <label>Target audience(s)</label>
+          <input-type value-pairs-name="target_audience">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Select the target audience(s).</hint>
+        </field>
+      </row>
     </form>
     <form name="publications-dc-contributor-author">
       <row>
@@ -1213,9 +1464,11 @@
           <label>Author</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint>Enter the names of the authors of this item in the form Lastname, Firstname [i.e. Smith, Josh or Smith, J].</hint>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>author</dc-element>
@@ -1225,6 +1478,32 @@
           <repeatable>false</repeatable>
           <required />
           <hint>Enter the affiliation of the author as stated on the publication.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="publications-dc-contributor-editor">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>editor</dc-qualifier>
+          <label>Editor</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint>The editors of this publication.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>editor</dc-element>
+          <dc-qualifier>affiliation</dc-qualifier>
+          <label>Affiliation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Enter the affiliation of the editor as stated on the publication.</hint>
         </field>
       </row>
     </form>
@@ -1279,9 +1558,21 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>editor</dc-qualifier>
+          <label>Editor(s)</label>
+          <input-type>group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>The editors of this publication.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
-          <label>Date of issue</label>
+          <label>Date issued</label>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1296,47 +1587,20 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Optionally enter the publisher here.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
+          <hint />
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>publication</dc-qualifier>
-          <label>Part of</label>
+          <dc-qualifier>publications</dc-qualifier>
+          <label>Is Part of</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>The publication where this publication is included. E.g. a book chapter lists here the book, a contribution to a conference lists here the conference proceeding.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>isbn</dc-qualifier>
-          <label>ISBN (of the container)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>If the publication has an ISBN (International Standard Book Number), please enter it here.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>doi</dc-qualifier>
-          <label>DOI (of the container)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>If the publication has a DOI, please enter it here.</hint>
-          <type-bind>coar:c_3248, coar:c_5794</type-bind>
+          <type-bind>coar:c_3248, coar:c_5794, coar:c_6670</type-bind>
         </field>
       </row>
       <row>
@@ -1344,25 +1608,11 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>dc</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>ispartof</dc-qualifier>
-          <label>In Journal or Serie</label>
+          <label>Journal or Serie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint>The journal or serie where this publication has been published.</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f, coar:c_ecc8, coar:c_8a7e, coar:c_18cc</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>issn</dc-qualifier>
-          <label>ISSN (of the container)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>The journal or Serie ISSN if it was not found in the system</hint>
-          <type-bind>coar:c_6501, coar:c_3e5a, coar:c_998f</type-bind>
         </field>
       </row>
       <row>
@@ -1408,18 +1658,6 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Publisher link</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
           <hint />
         </field>
       </row>
@@ -1484,18 +1722,6 @@ it, please select a type and enter the actual number or code.</hint>
           <hint>Select the target audience(s).</hint>
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>product</dc-qualifier>
-          <label>Data set</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Link the item to one or more existent dataset in the repository used or described by the publication or, put here the dataset citation</hint>
-        </field>
-      </row>
     </form>
     <form name="patents_result_import-dc-contributor-author">
       <row>
@@ -1506,7 +1732,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Author</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -1532,7 +1758,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -1573,26 +1799,26 @@ it, please select a type and enter the actual number or code.</hint>
     <form name="patents_result">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>applicationnumber</dc-qualifier>
           <label>Application number</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>filled</dc-qualifier>
-          <label>Date of filing the application</label>
-          <input-type>calendar</input-type>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateSubmitted</dc-element>
+          <label>Registration Date</label>
+          <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
-          <hint />
+          <style>col-md-6</style>
+          <hint>Date on which the application was physically received at the Patent Authority. Also named Filling Date</hint>
         </field>
         <field>
           <dc-schema>dcterms</dc-schema>
@@ -1602,7 +1828,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint />
+          <hint>The holders of this patent</hint>
         </field>
       </row>
     </form>
@@ -1616,54 +1842,65 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateAccepted</dc-element>
+          <label>Approval Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Date on which the application has been granted by the Patent Office.</hint>
         </field>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
           <dc-qualifier>issued</dc-qualifier>
           <label>Publication date</label>
-          <input-type>calendar</input-type>
+          <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Inventor(s)</label>
-          <input-type>onebox</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-4</style>
-          <hint>INID code 72 for this item, if published</hint>
+          <hint>The inventor: The actual devisor of an invention that is the subject of a patent.(INID code 72 for this item, if published)</hint>
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>publisher</dc-element>
+          <label>Issuer</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>The issuer of the patent: the patent office</hint>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
           <dc-qualifier>ipc</dc-qualifier>
           <label>IPC-class</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-6</style>
           <hint>INID code 51 for this item</hint>
-        </field>
-        <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>dateAccepted</dc-element>
-          <label>Approval Date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <type-bind>patent</type-bind>
         </field>
       </row>
       <row>
@@ -1687,23 +1924,11 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Web address</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
           <hint />
         </field>
       </row>
     </form>
-    <form name="parentprojects">
+    <form name="projects">
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
@@ -1713,7 +1938,8 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <style>col-md-6</style>
-          <hint>Please enter the correct acronym.</hint>
+          <hint />
+          <type-bind>Please enter the correct acronym.</type-bind>
         </field>
       </row>
       <row>
@@ -1724,8 +1950,8 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
-          <validation>/[a-ü\D]+/gmi</validation>
+          <hint />
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
         </field>
       </row>
       <row>
@@ -1737,7 +1963,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -1756,137 +1982,8 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Coordinating project</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="parentprojects_calc">
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>project</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Start date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Data on the project duration is required in order to create a work plan in the system. Please enter the data or import the easy-online form. If the project is funded, the data will be updated regularly from profi.</hint>
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>project</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>End date</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>duration</dc-element>
-          <label>Duration (Month)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Calculated from the start and end date of the project</hint>
-          <validation>/[^a-ü,.]/img</validation>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>project</dc-element>
-          <dc-qualifier>status</dc-qualifier>
-          <label>Status</label>
-          <input-type value-pairs-name="project_status">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>is imported from the information of the subprojects</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>fundingParent</dc-element>
-          <label>Funding programme</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>is imported from the information of the subprojects</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>amount</dc-element>
-          <label>Grant total</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>is calculated from the data of the subprojects</hint>
-          <validation>^[0-9]\d*(\.\d+)?$</validation>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Grant for personnel</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint>is calculated from the data of the subprojects</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>budget</dc-qualifier>
-          <label>Overall budget of the project (grant and own contribution)</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint>is calculated from the data of the subprojects</hint>
-        </field>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>currency</dc-qualifier>
-          <label>Currency</label>
-          <input-type value-pairs-name="currency">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="projects">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Organisation Name and Subproject Shorttitle</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>internalid</dc-element>
-          <label>Subproject ID</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1898,7 +1995,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>identifier</dc-element>
           <dc-qualifier>url</dc-qualifier>
-          <label>Project URL</label>
+          <label>Websites of the project</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1906,29 +2003,71 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="projects_import">
+    <form name="projects_calc">
       <row>
         <field>
-          <dc-schema>crispj</dc-schema>
-          <dc-element>partnerou</dc-element>
-          <label>Partner Organization(s)</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Acronym</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>jointproject</dc-qualifier>
+          <label>Type joint project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
           <hint />
+          <readonly>all</readonly>
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>project</dc-qualifier>
+          <label>Type project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>startDate</dc-qualifier>
+          <label>Start date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>endDate</dc-qualifier>
+          <label>End date</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>duration</dc-element>
+          <label>Duration (Month)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
@@ -1937,9 +2076,355 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="project_status">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-10</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>currency</dc-qualifier>
+          <label>Currency</label>
+          <input-type value-pairs-name="currency">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>amount</dc-element>
+          <label>Grant total</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>grantpersonnel</dc-qualifier>
+          <label>Grant for personnel</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>budget</dc-qualifier>
+          <label>Overall budget of the project (grant and own contribution)</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>call</dc-qualifier>
+          <label>Call / funding area</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visibility</dc-qualifier>
+          <label>Settings public visibility</label>
+          <input-type value-pairs-name="public_visibility">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Related SDGs</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel1</dc-qualifier>
+          <label>Project label transfer</label>
+          <input-type value-pairs-name="funderlabel1">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel2</dc-qualifier>
+          <label>Projekt label Placeholder</label>
+          <input-type value-pairs-name="funderlabel2">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>funderlabel3</dc-qualifier>
+          <label>Projekt label other Placeholder</label>
+          <input-type value-pairs-name="funderlabel3">list</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="projects_funder-synsicris-type-sdg">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>sdg</dc-qualifier>
+          <label>Related SDG</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+          <vocabulary closed="true">sdg</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Contribution of the project to the SDG</label>
+          <input-type value-pairs-name="sdg_influence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>influence</dc-qualifier>
+          <label>Explanation</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-12</style>
+          <hint>If necessary, you can explain your assessment here.</hint>
+        </field>
+      </row>
+    </form>
+    <form name="projects_versioning">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>visible</dc-qualifier>
+          <label>Visible</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>official</dc-qualifier>
+          <label>Official</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>version</dc-element>
+          <dc-qualifier>notes</dc-qualifier>
+          <label>Notes</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="funding">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Organisation Name and Subproject Shorttitle</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>Mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funding</dc-element>
+          <dc-qualifier>identifier</dc-qualifier>
+          <label>funding identifier of the project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="funding_import">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Last modified</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>profi-ID of the project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>parentprojectid</dc-element>
+          <label>ID of the joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <style>col-md-6</style>
           <hint />
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>project</dc-qualifier>
+          <label>Related joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>project</dc-element>
+          <dc-qualifier>status</dc-qualifier>
+          <label>Status</label>
+          <input-type value-pairs-name="project_status">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>crispj</dc-schema>
+          <dc-element>partnerou</dc-element>
+          <label>Partner Organization(s)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -1955,7 +2440,7 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>title</dc-element>
           <dc-qualifier>alternative</dc-qualifier>
           <label>Title in other language</label>
@@ -1968,13 +2453,23 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Acronym</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
           <dc-element>project</dc-element>
           <dc-qualifier>startDate</dc-qualifier>
           <label>Start date</label>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -1985,7 +2480,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>calendar</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2005,8 +2500,8 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>workplan</dc-qualifier>
-          <label>Work plan from easy-online</label>
+          <dc-qualifier>alternative</dc-qualifier>
+          <label>Project description (english)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2016,180 +2511,9 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>histLP</dc-qualifier>
-          <label>LP-code</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>textLP</dc-qualifier>
-          <label>LP-text</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort</dc-qualifier>
-          <label>Sorter</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort1</dc-qualifier>
-          <label>Sorter 1</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort2</dc-qualifier>
-          <label>Sorter 2</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort3</dc-qualifier>
-          <label>Sorter 3</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort4</dc-qualifier>
-          <label>Sorter 4</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort5</dc-qualifier>
-          <label>Sorter 5</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort6</dc-qualifier>
-          <label>Sorter 6</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort7</dc-qualifier>
-          <label>Sorter 7</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort8</dc-qualifier>
-          <label>Sorter 8</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort9</dc-qualifier>
-          <label>Sorter 9</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>sort10</dc-qualifier>
-          <label>Sorter 10</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-    </form>
-    <form name="funding">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
-          <label>Sub-project</label>
+          <dc-element>type</dc-element>
+          <dc-qualifier>finance</dc-qualifier>
+          <label>Type of finance</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2197,45 +2521,11 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>funding</dc-element>
-          <dc-qualifier>identifier</dc-qualifier>
-          <label>funding identifier</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>proportion</dc-qualifier>
+          <label>Proportion of funding</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>amount</dc-element>
-          <label>Grant total sub-project</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>grantpersonnel</dc-qualifier>
-          <label>Grant for personnel sub-project</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>amount</dc-element>
-          <dc-qualifier>budget</dc-qualifier>
-          <label>Overall budget of the sub-project (grant and own contribution)</label>
-          <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-3</style>
@@ -2256,13 +2546,316 @@ it, please select a type and enter the actual number or code.</hint>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>fundingParent</dc-element>
-          <label>Program</label>
+          <dc-element>amount</dc-element>
+          <label>Grant total project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>grantpersonnel</dc-qualifier>
+          <label>Grant for personnel roject</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>budget</dc-qualifier>
+          <label>Overall budget of the project (grant and own contribution)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>own</dc-qualifier>
+          <label>Own funds of the grantee</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>amount</dc-element>
+          <dc-qualifier>external</dc-qualifier>
+          <label>Third party funds</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>prog</dc-qualifier>
+          <label>programme classification funding body</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>researchfocus</dc-qualifier>
+          <label>Researchfocus</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>research</dc-qualifier>
+          <label>type of research</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>project</dc-qualifier>
+          <label>Type of Project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>relevance-development</dc-qualifier>
+          <label>Relevance for development cooperation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>development-countries</dc-qualifier>
+          <label>Relevant countries for development cooperation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace-use</dc-qualifier>
+          <label>Potential application</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>histLP</dc-qualifier>
+          <label>LP-code</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>textLP</dc-qualifier>
+          <label>LP-text</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>funder</dc-element>
+          <label>Funder (ministry)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>funder</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Funder Department (ministry)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <label>Funding body</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Funding body department</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>fundingagency</dc-element>
+          <dc-qualifier>detail</dc-qualifier>
+          <label>Funding body (detail)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort-primary</dc-qualifier>
+          <label>Keyword Primary-Sorter</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Keywords all Sorter</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>sort</dc-qualifier>
+          <label>Keyword individual</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>fundingParent</dc-element>
+          <label>Funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>Acronym funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <label>profi-ID funding programme</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2270,15 +2863,66 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Call / funding area</label>
+          <label>Call</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>is imported from the information of the subprojects</hint>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>acronym</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>Acronym call</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-call</dc-qualifier>
+          <label>profi-ID call</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>jointproject</dc-qualifier>
+          <label>Type joint project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>application</dc-qualifier>
+          <label>Type of application</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
@@ -2289,21 +2933,12 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <readonly>all</readonly>
         </field>
       </row>
     </form>
     <form name="projectpartners">
       <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Acronym or short form of title</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
@@ -2312,6 +2947,16 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Acronym or short form of title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
           <style>col-md-6</style>
           <hint />
         </field>
@@ -2356,6 +3001,20 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>economic sector of the organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy</type-bind>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>organization</dc-schema>
           <dc-element>identifier</dc-element>
           <label>Identifiers</label>
@@ -2364,11 +3023,61 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <hint>If the item has any identification numbers or codes associated with
 it, please select a type and enter the actual number or code.</hint>
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
     <form name="projectpartners_import">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Latest modified from profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Automatically filled</hint>
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Internal-name-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Automatically filled</hint>
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Internal-adress-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Automatically filled</hint>
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Internal-name-id profi of parent organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint>Automatically filled</hint>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>organization</dc-schema>
@@ -2377,7 +3086,6 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2397,11 +3105,11 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Steetname and building number</label>
+          <label>Streetname and building number</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-5</style>
           <hint />
         </field>
         <field>
@@ -2423,18 +3131,42 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-5</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressPostbox</dc-qualifier>
+          <label>Post office box</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
-          <dc-qualifier>addressPostbox</dc-qualifier>
-          <label>Post box office</label>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postcode of the post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>City of the post office box</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -2443,13 +3175,37 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>organization</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Country</label>
+          <label>Country / Federal state</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>Municipality identifier</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - national category</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <readonly>all</readonly>
         </field>
       </row>
       <row>
@@ -2499,7 +3255,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
-          <readonly>all</readonly>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -2516,42 +3271,14 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>publicfunded</dc-qualifier>
-          <label>The organisation is mainly financed by public funding.</label>
-          <input-type value-pairs-name="yes_no">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-          <readonly>all</readonly>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>recipient-stats</dc-qualifier>
           <label>profi recipient stats</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <readonly>all</readonly>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>economic sector of the organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <type-bind>Economy</type-bind>
-          <readonly>all</readonly>
-          <vocabulary closed="true">nace</vocabulary>
         </field>
       </row>
       <row>
@@ -2670,6 +3397,19 @@ it, please select a type and enter the actual number or code.</hint>
           <readonly>all</readonly>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-personleader</dc-qualifier>
+          <label>Person-Nr. Projectleader profi (PERS_NR_PL)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
     </form>
     <form name="projectpartners_import_leadadmin">
       <row>
@@ -2735,6 +3475,19 @@ it, please select a type and enter the actual number or code.</hint>
           <readonly>all</readonly>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-personadmin</dc-qualifier>
+          <label>Person-Nr. Projectcoordination - admin profi (PERS_NR_PL)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <readonly>all</readonly>
+        </field>
+      </row>
     </form>
     <form name="cooperationpartners_orgunit">
       <row>
@@ -2757,6 +3510,17 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
+          <style>col-md-8</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>acronym</dc-element>
+          <label>Acronym or short form of title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -2769,7 +3533,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2780,7 +3544,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -2791,9 +3555,11 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-4</style>
           <hint />
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
@@ -2802,7 +3568,29 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-3</style>
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postcode of the post office box</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-2</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>City of the post office box</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -2811,13 +3599,37 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>organization</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Country</label>
+          <label>Country / Federal state</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>Municipality identifier</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - national category</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -2867,22 +3679,22 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-6</style>
           <hint>If the item has any identification numbers or codes associated with
 it, please select a type and enter the actual number or code.</hint>
-          <visibility>workflow</visibility>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
         <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Acronym or short form of title</label>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>legalform</dc-qualifier>
+          <label>Legal form</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
+          <visibility>hidden</visibility>
         </field>
-      </row>
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
@@ -2893,257 +3705,72 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Latest modified from profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Internal-name-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Internal-adress-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Internal-name-id profi of parent organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
     <form name="cooperationpartners">
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Societal area of the organisation</label>
-          <input-type value-pairs-name="sector_type">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>The basic classification of the stakeholder group into a societal area determines further queries, e.g. on the economic sector, the policy-making level and civil society</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>nace</dc-qualifier>
-          <label>economic sector of the organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>Economy</type-bind>
-          <vocabulary closed="true">nace</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>destatis</dc-qualifier>
-          <label>Discipline</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-          <type-bind>Research</type-bind>
-          <vocabulary closed="true">destatis</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>subject</dc-element>
-          <dc-qualifier>political</dc-qualifier>
-          <label>Policy level of the organisation</label>
-          <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-          <type-bind>Public institutions</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>cooperation</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Start date (when different from project duration)</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>cooperation</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>End date (when different from project duration)</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>contribution</dc-qualifier>
-          <label>Main contribution to project / Aim of cooperation</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="subcontractors_orgunit">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>orgunit</dc-qualifier>
-          <label>Search for cooperating organisation</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Organization name</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressStreetnamenumber</dc-qualifier>
-          <label>Steetname and building number</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressPostcode</dc-qualifier>
-          <label>Postcode</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressCity</dc-qualifier>
-          <label>City / Town / Locality</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressPostbox</dc-qualifier>
-          <label>Post box office</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-3</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>address</dc-element>
-          <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Country</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">countries2</vocabulary>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Web address</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>Email</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>orgunits</dc-element>
-          <dc-qualifier>phone</dc-qualifier>
-          <label>Fon</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>identifier</dc-element>
-          <label>Identifiers</label>
-          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>If the item has any identification numbers or codes associated with
-it, please select a type and enter the actual number or code.</hint>
-          <visibility>workflow</visibility>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>oairecerif</dc-schema>
-          <dc-element>acronym</dc-element>
-          <label>Acronym or short form of title</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>orgform</dc-qualifier>
-          <label>Organisationform</label>
-          <input-type value-pairs-name="organisationform">dropdown</input-type>
+          <dc-qualifier>cooperation</dc-qualifier>
+          <label>Type of Cooperation</label>
+          <input-type value-pairs-name="cooperation_type">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
         </field>
       </row>
-    </form>
-    <form name="subcontractors">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -3230,32 +3857,57 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>project</dc-qualifier>
-          <label>Related project</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Automatically filled</hint>
         </field>
       </row>
     </form>
     <form name="orgunits">
       <row>
         <field>
-          <dc-schema>organization</dc-schema>
-          <dc-element>identifier</dc-element>
-          <label>Identifiers</label>
-          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
-          <repeatable>true</repeatable>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Latest modified from profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>If the item has any identification numbers or codes associated with
-it, please select a type and enter the actual number or code.</hint>
+          <style>col-md-3</style>
+          <hint />
         </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name</dc-qualifier>
+          <label>Internal-name-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-address</dc-qualifier>
+          <label>Internal-adress-id profi</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>internalid</dc-element>
+          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <label>Internal-name-id profi of parent organisation</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-3</style>
+          <hint />
+        </field>
+      </row>
+      <row>
         <field>
           <dc-schema>organization</dc-schema>
           <dc-element>parentOrganization</dc-element>
@@ -3266,6 +3918,17 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-6</style>
           <hint />
         </field>
+        <field>
+          <dc-schema>organization</dc-schema>
+          <dc-element>identifier</dc-element>
+          <label>Identifiers</label>
+          <input-type value-pairs-name="orgunit_identifiers">qualdrop_value</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>If the item has any identification numbers or codes associated with
+it, please select a type and enter the actual number or code.</hint>
+        </field>
       </row>
       <row>
         <field>
@@ -3316,7 +3979,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostbox</dc-qualifier>
-          <label>Post box office</label>
+          <label>Post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3326,16 +3989,62 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>organization</dc-schema>
+          <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
-          <dc-qualifier>addressCountry</dc-qualifier>
-          <label>Country</label>
+          <dc-qualifier>addressPostcodePostbox</dc-qualifier>
+          <label>Postcode of the post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCityPostbox</dc-qualifier>
+          <label>City of the post office box</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>organization</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>addressCountry</dc-qualifier>
+          <label>Country / Federal state</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
           <vocabulary closed="true">countries2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>identifier</dc-element>
+          <dc-qualifier>municipality</dc-qualifier>
+          <label>Municipality identifier</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>address</dc-element>
+          <dc-qualifier>countryclassification</dc-qualifier>
+          <label>profi - Landeskennung</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
         </field>
       </row>
       <row>
@@ -3392,17 +4101,6 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-qualifier>orgform</dc-qualifier>
           <label>Organisationform</label>
           <input-type value-pairs-name="organisationform">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>publicfunded</dc-qualifier>
-          <label>The organisation is mainly financed by public funding.</label>
-          <input-type value-pairs-name="yes_no">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
@@ -3655,6 +4353,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3703,6 +4402,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>^[0-9]\d*(\.\d+)?$</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3847,6 +4547,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-2</style>
           <hint />
+          <regex>/[^a-ü,.]/img</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3858,6 +4559,7 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-4</style>
           <hint />
+          <regex>/[a-ü\D]+/gmi</regex>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -3994,6 +4696,8 @@ it, please select a type and enter the actual number or code.</hint>
           <style>col-md-3</style>
           <hint>Please provide an approx. time frame in which the described tasks are undertaken.</hint>
         </field>
+      </row>
+      <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
@@ -4001,8 +4705,19 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-9</style>
-          <hint>Please describe the task and, if possible, indicate its financing.</hint>
+          <style>col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>finance</dc-qualifier>
+          <label>Financing  of the task</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Please describe the financing of the task. This information is not published, even when the item is made public.</hint>
         </field>
       </row>
     </form>
@@ -4078,20 +4793,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="workpackages_result">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>changes</dc-qualifier>
-          <label>Comments on chages</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>Please describe reasons for changes, made during the project.</hint>
-        </field>
-      </row>
-    </form>
     <form name="tasks">
       <row>
         <field>
@@ -4164,32 +4865,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="innovationpotentials-dc-type">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Addressed stakeholder groups</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Which stakeholder groups are involved or addressed by the social innovation/ use of results?</hint>
-        </field>
-      </row>
-    </form>
     <form name="innovationpotentials">
       <row>
         <field>
@@ -4206,11 +4881,24 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Type and stakeholder groups of the solution, change or innovation</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <label>Type</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
+          <vocabulary closed="true">all-innovation</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Addressed stakeholder group(s)</label>
+          <input-type>onebox</input-type>
+          <repeatable>true</repeatable>
+          <required />
+          <hint>Which stakeholder groups are involved or addressed by the social innovation/ use of results?</hint>
         </field>
       </row>
       <row>
@@ -4287,44 +4975,29 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="innovationpotentials_regional_scope-synsicris-coverage-regional">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>regional-status</dc-qualifier>
-          <label>Selection of the reference point</label>
-          <input-type value-pairs-name="status_regional">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Selection of the region</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">nuts2</vocabulary>
-        </field>
-      </row>
-    </form>
     <form name="innovationpotentials_regional_scope">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional</dc-qualifier>
-          <label>Regional outreach/scope</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>regional-primary</dc-qualifier>
+          <label>1. Primary field of application</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Region in which the solution / change / innovation should be applied</hint>
+          <vocabulary closed="true">nuts2</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>coverage</dc-element>
+          <dc-qualifier>regional-secondary</dc-qualifier>
+          <label>2. Later dissemination</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Possible area for later transfer and dissemination</hint>
+          <vocabulary closed="true">nuts2</vocabulary>
         </field>
       </row>
       <row>
@@ -4369,31 +5042,6 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>rl-status</dc-qualifier>
-          <label>Information about  Readiness Level</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please describe the actual, the intended and at the end of the project the reached Solution-Readiness-Level.</hint>
-        </field>
-      </row>
-    </form>
-    <form name="innovationpotentials_srl_trl-synsicris-type-rl-status">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>rl-status</dc-qualifier>
-          <label>Status of SRL</label>
-          <input-type value-pairs-name="status_rl">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-4</style>
-          <hint>Choose the status of your description.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
           <dc-qualifier>srl-trl</dc-qualifier>
           <label>Selection TRL / SRL</label>
           <input-type value-pairs-name="srl_trl">list</input-type>
@@ -4405,40 +5053,24 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
-          <label>Readiness Level</label>
-          <input-type>number</input-type>
+          <dc-qualifier>rl-start</dc-qualifier>
+          <label>1. Readinesslevel at project start</label>
+          <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
           <hint />
         </field>
-      </row>
-    </form>
-    <form name="applications-synsicris-type-innovation">
-      <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Type of solution / change / innovation</label>
-          <input-type>onebox</input-type>
+          <dc-element>level</dc-element>
+          <dc-qualifier>rl-end</dc-qualifier>
+          <label>2. Readinesslevel intended to reach at the end of the project</label>
+          <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
-          <vocabulary closed="true">all-innovation</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Customer / Usergroup</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Select which stakeholder groups are potential customers or users?</hint>
         </field>
       </row>
     </form>
@@ -4456,56 +5088,55 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Please select:</label>
-          <input-type value-pairs-name="innovation_link_new">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>innovationpotential</dc-qualifier>
           <label>Related  innovation</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Please choose an intended  innovationl. If there is no relation to an already described innovation potential, please leave the field empty and add information in the section "innovation type".</hint>
-          <type-bind>link</type-bind>
         </field>
       </row>
       <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Unit (Selection list)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Please choose a suitable unit or enter a new one.</hint>
+          <vocabulary closed="true">units</vocabulary>
+        </field>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Type of innovation and customer/ user group</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
+          <dc-qualifier>quantifier-own</dc-qualifier>
+          <label>Free-defined unit</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
           <required />
-          <hint>You can choose as much areas as required.</hint>
-          <type-bind>new</type-bind>
+          <style>col-md-6</style>
+          <hint>Please enter a unit, if predefined ones does not fit.</hint>
+          <type-bind>units:UI50</type-bind>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>innovation</dc-qualifier>
-          <label>Description of the solution, change or innovation</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
+          <dc-element>date</dc-element>
+          <dc-qualifier>referenceyear</dc-qualifier>
+          <label>Quantification and development of the application success</label>
+          <input-type>inline-group</input-type>
+          <repeatable>true</repeatable>
           <required />
-          <hint />
-          <type-bind>new</type-bind>
+          <hint>Please provide details about the scope and development of the application success, if possible.</hint>
         </field>
       </row>
     </form>
-    <form name="applications_quant-synsicris-date-referenceyear">
+    <form name="applications-synsicris-date-referenceyear">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -4520,11 +5151,10 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>baseline</dc-qualifier>
-          <label>Baseline-value</label>
-          <input-type value-pairs-name="yes">list</input-type>
-          <repeatable>true</repeatable>
+          <dc-element>quantity</dc-element>
+          <label>Quantity</label>
+          <input-type>number</input-type>
+          <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
           <hint />
@@ -4543,39 +5173,6 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier</dc-qualifier>
-          <label>Unit (Selection list)</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Please choose a suitable unit or enter a new one.</hint>
-          <vocabulary closed="true">units</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>quantifier-own</dc-qualifier>
-          <label>Free-defined unit</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-5</style>
-          <hint>Please enter a unit, if predefined ones does not fit.</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>quantity</dc-element>
-          <label>Quantity</label>
-          <input-type>number</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-2</style>
-          <hint />
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>description</dc-qualifier>
           <label>Description</label>
@@ -4584,20 +5181,6 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-12</style>
           <hint />
-        </field>
-      </row>
-    </form>
-    <form name="applications_quant">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>date</dc-element>
-          <dc-qualifier>referenceyear</dc-qualifier>
-          <label>Quantification and development of the application success</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Please provide details about the scope and development of the application success, if possible.</hint>
         </field>
       </row>
     </form>
@@ -5360,80 +5943,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
-    <form name="pot_societalimpact">
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>title</dc-element>
-          <label>Title</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required>mandatory</required>
-          <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type of expected societal impact (selection determines subsequent queries)</label>
-          <input-type value-pairs-name="societalimpact">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>The selection of the type of expected impact determines further queries. (For ecological effects, the "ecological area" is queried, for all other effects, the "actor group" affected).</hint>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>direction</dc-qualifier>
-          <label>Selection of the direction of impact</label>
-          <input-type value-pairs-name="societalimpact_direction">list</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>ecological</dc-qualifier>
-          <label>Specific ecological area (multiple items possible)</label>
-          <input-type value-pairs-name="ecological_field">dropdown</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>Input is only possible/foreseen in the case of expected ecological effects.</hint>
-          <type-bind>Ecological</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>relation</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Selection of the group of actors affected by the impact</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint>No input is possible for ecological impacts.
-Groups of actors that have already been recorded for the project can be selected. If relevant group of actors are missing, please add them in the section "Group of actors" and then assign them here.</hint>
-          <type-bind>Economic, Social and cultural, Governance</type-bind>
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description and, if applicable, quantification of the expected impact</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint>In addition to the description, please quantify the expected impact if this is required by the funding programme or if information on this has been obtained in your research project.</hint>
-        </field>
-      </row>
-    </form>
     <form name="exp_societalimpact">
       <row>
         <field>
@@ -5459,11 +5968,36 @@ Groups of actors that have already been recorded for the project can be selected
       </row>
       <row>
         <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform</dc-qualifier>
+          <label>Area of transition</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Charakterisation of the expected impact</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>evidence</dc-qualifier>
+          <label>Basis of the information about the expected impact</label>
+          <input-type value-pairs-name="impact_evidence">list</input-type>
+          <repeatable>false</repeatable>
           <required />
           <hint />
         </field>
@@ -5474,25 +6008,13 @@ Groups of actors that have already been recorded for the project can be selected
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <label>Core element of transition</label>
+          <label>Core element of sustainability</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
           <vocabulary closed="true">core</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>transform</dc-qualifier>
-          <label>Area of transition</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">transform</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5502,7 +6024,7 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type value-pairs-name="impact_positive">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -5513,16 +6035,51 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
     </form>
-    <form name="exp_societalimpact_neg">
+    <form name="neg_sideeffect">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title / Key information</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type-n</dc-element>
+          <dc-element>type</dc-element>
+          <dc-qualifier>transform</dc-qualifier>
+          <label>Area of transition</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <vocabulary closed="true">transform</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Charakterisation of the expected negativ side effects</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -5530,31 +6087,31 @@ Groups of actors that have already been recorded for the project can be selected
           <hint />
         </field>
       </row>
-    </form>
-    <form name="exp_societalimpact_neg-synsicris-type-n">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>type-n</dc-element>
+          <dc-element>type</dc-element>
+          <dc-qualifier>evidence</dc-qualifier>
+          <label>Basis of the information about the expected impact</label>
+          <input-type value-pairs-name="impact_evidence">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="neg_sideeffect-dc-type">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
           <label>Core element of transition</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint />
-          <vocabulary closed="true">core</vocabulary>
-        </field>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>type</dc-element>
-          <dc-qualifier>transform-n</dc-qualifier>
-          <label>Area of transition</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint />
-          <vocabulary closed="true">transform</vocabulary>
+          <vocabulary closed="true">core-n</vocabulary>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5564,7 +6121,7 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -5575,7 +6132,7 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -5769,7 +6326,7 @@ Groups of actors that have already been recorded for the project can be selected
           <repeatable>false</repeatable>
           <required />
           <style>col-md-4</style>
-          <hint>Achieving a balanced gender ratio among the employees in the project can be difficult, e.g. in subject areas where there is an unequal number of women or men working.</hint>
+          <hint>Answer this question only at the end of the project.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5780,7 +6337,7 @@ Groups of actors that have already been recorded for the project can be selected
           <repeatable>false</repeatable>
           <required />
           <style>col-md-8</style>
-          <hint />
+          <hint>Explain if it was not possible to achieve a balanced gender ratio in the project team. This may be challenging, for example, in subject areas where gender ratios are very unequal, or may be due to technical suitability or very small project teams.</hint>
         </field>
       </row>
     </form>
@@ -5803,10 +6360,10 @@ Groups of actors that have already been recorded for the project can be selected
           <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
           <label>Type of ethical aspect</label>
-          <input-type value-pairs-name="ethics">list</input-type>
+          <input-type value-pairs-name="ethics">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
         <field>
@@ -5817,7 +6374,7 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-12</style>
           <hint />
         </field>
       </row>
@@ -5845,6 +6402,18 @@ Groups of actors that have already been recorded for the project can be selected
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>ethic-docs</dc-qualifier>
+          <label>Are there any further documents on the relevant ethical aspects?</label>
+          <input-type value-pairs-name="yes_no">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
         </field>
       </row>
     </form>
@@ -5896,7 +6465,7 @@ Groups of actors that have already been recorded for the project can be selected
         </field>
       </row>
     </form>
-    <form name="others">
+    <form name="research_results">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5905,22 +6474,22 @@ Groups of actors that have already been recorded for the project can be selected
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint>Please formulate a clear and easily understandable title, because this will be displayed in overviews.</hint>
+          <hint>Please formulate a clear and distinguishable title. This is important because the title is displayed in overviews.</hint>
         </field>
       </row>
       <row>
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Description</label>
+          <label>Summary</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Please give a brief summary of the main findings.</hint>
         </field>
       </row>
     </form>
-    <form name="research_results">
+    <form name="open_researchquestions">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5953,7 +6522,7 @@ Groups of actors that have already been recorded for the project can be selected
           <label>Author</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint />
         </field>
       </row>
@@ -5981,6 +6550,7 @@ Groups of actors that have already been recorded for the project can be selected
           <required />
           <hint>If the item has any identification numbers or codes associated with
 it, please enter the types and the actual numbers or codes.</hint>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -6011,9 +6581,9 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-element>contributor</dc-element>
           <dc-qualifier>author</dc-qualifier>
           <label>Authors</label>
-          <input-type>onebox</input-type>
+          <input-type>group</input-type>
           <repeatable>true</repeatable>
-          <required />
+          <required>mandatory</required>
           <hint>Enter the names of the authors of this item.</hint>
         </field>
       </row>
@@ -6026,7 +6596,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <input-type>date</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-4</style>
           <hint>Please give the date of previous publication or public distribution. You can leave out the day and/or month if they aren't applicable.</hint>
         </field>
         <field>
@@ -6036,7 +6606,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-6</style>
+          <style>col-md-8</style>
           <hint>The publisher or publishers of this product</hint>
         </field>
       </row>
@@ -6062,6 +6632,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <required />
           <style>col-md-6</style>
           <hint>Select, if applicable, the language of the main content of the item.  If the language does not appear in the list, please select 'Other'.  If the content does not really have a language (for example, if it is a dataset or an image) please select 'N/A'.</hint>
+          <visibility>hidden</visibility>
         </field>
       </row>
       <row>
@@ -6115,47 +6686,35 @@ it, please enter the types and the actual numbers or codes.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>title</dc-element>
-          <dc-qualifier>ressort</dc-qualifier>
-          <label>Funding Ministry</label>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>Internal Identifier</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
-        </field>
-      </row>
-    </form>
-    <form name="calls-synsicris-contact">
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <label>Contact</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <dc-qualifier>email</dc-qualifier>
-          <label>Email</label>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visiblity</dc-qualifier>
+          <label>Visibility in easy online</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>funding-guideline</dc-qualifier>
+          <label>Reference to the key of the overarching funding guideline</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -6185,28 +6744,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <label>Description</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>type</dc-element>
-          <label>Type</label>
-          <input-type value-pairs-name="project_types">dropdown</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>fundingParent</dc-element>
           <label>Program</label>
@@ -6219,33 +6756,9 @@ it, please enter the types and the actual numbers or codes.</hint>
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
-          <dc-element>contact</dc-element>
-          <label>Contact information</label>
-          <input-type>inline-group</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>call</dc-element>
-          <dc-qualifier>startDate</dc-qualifier>
-          <label>Start Date of the call</label>
-          <input-type>calendar</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>synsicris</dc-schema>
-          <dc-element>call</dc-element>
-          <dc-qualifier>endDate</dc-qualifier>
-          <label>End Date of the call</label>
-          <input-type>calendar</input-type>
+          <dc-element>fundingagency</dc-element>
+          <label>Key of the related mandate or funding body</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
@@ -6254,12 +6767,57 @@ it, please enter the types and the actual numbers or codes.</hint>
       <row>
         <field>
           <dc-schema>oairecerif</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>url</dc-qualifier>
-          <label>Website(s)</label>
+          <dc-element>funder</dc-element>
+          <label>Key of the related mandate</label>
           <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
+          <repeatable>false</repeatable>
           <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>funder</dc-element>
+          <dc-qualifier>unit</dc-qualifier>
+          <label>Disposition unit of the related mandate</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>visiblity</dc-qualifier>
+          <label>Visibility in easy online</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>oairecerif</dc-schema>
+          <dc-element>internalid</dc-element>
+          <label>Internal Identifier</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>lastmodified</dc-element>
+          <dc-qualifier>profi</dc-qualifier>
+          <label>Last modified</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
           <hint />
         </field>
       </row>
@@ -6377,6 +6935,118 @@ it, please enter the types and the actual numbers or codes.</hint>
           <input-type value-pairs-name="stat_col6">list</input-type>
           <repeatable>false</repeatable>
           <required />
+          <hint />
+        </field>
+      </row>
+    </form>
+    <form name="comments">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>title</dc-element>
+          <label>Title of the comment</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>mandatory</required>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <label>Type of comment</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <vocabulary closed="true">comment</vocabulary>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>reminder</dc-qualifier>
+          <label>Date for reminder</label>
+          <input-type>calendar</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Comment</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>date</dc-element>
+          <dc-qualifier>creation</dc-qualifier>
+          <label>Written at</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>creator</dc-element>
+          <label>Written by</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>item</dc-qualifier>
+          <label>Related item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+    </form>
+    <form name="internalacc">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Task</label>
+          <input-type value-pairs-name="internal_purpose">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-4</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>description</dc-element>
+          <dc-qualifier>internal</dc-qualifier>
+          <label>Notes</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-8</style>
           <hint />
         </field>
       </row>
@@ -6696,12 +7366,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Pound sterling</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="yes" dc-term="yes">
-      <pair>
-        <displayed-value>Yes</displayed-value>
-        <stored-value>yes</stored-value>
-      </pair>
-    </value-pairs>
     <value-pairs value-pairs-name="project_contribution" dc-term="project_contribution">
       <pair>
         <displayed-value>Project organised the Event (thematic and organisational conception  is carried out by the project  - if necessary with other partners)</displayed-value>
@@ -6718,24 +7382,12 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="event_purpose" dc-term="event_purpose">
       <pair>
-        <displayed-value>Sharpen the problem definition</displayed-value>
+        <displayed-value>Reflect problem definition</displayed-value>
         <stored-value>Problem definition</stored-value>
       </pair>
       <pair>
         <displayed-value>Concretise project design (e.g. research question, methods)</displayed-value>
         <stored-value>Project design</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Further develop the project's impact pathway</displayed-value>
-        <stored-value>Impact pathway reflection</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Develop transfer and dissemination strategies</displayed-value>
-        <stored-value>Transfer strategies</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Reflect on the ongoing research and development process</displayed-value>
-        <stored-value>Research process reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Collect data / carry out experiments</displayed-value>
@@ -6750,8 +7402,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Practice knowledge integration</stored-value>
       </pair>
       <pair>
-        <displayed-value>Develop results</displayed-value>
-        <stored-value>Joint development</stored-value>
+        <displayed-value>Reflect the research and development process</displayed-value>
+        <stored-value>Research process reflection</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Develop transfer and dissemination strategies</displayed-value>
+        <stored-value>Transfer strategies</stored-value>
       </pair>
       <pair>
         <displayed-value>Discuss project results</displayed-value>
@@ -6762,20 +7418,20 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Research process - others</stored-value>
       </pair>
       <pair>
-        <displayed-value>Illuminate practicality/applicability of the results</displayed-value>
+        <displayed-value>Reflect practicality/applicability of the results</displayed-value>
         <stored-value>Reflect applicability</stored-value>
       </pair>
       <pair>
-        <displayed-value>Promote desired social effects of the project / results</displayed-value>
-        <stored-value>Reflect desired societal impacts</stored-value>
+        <displayed-value>Reflect expected societal impacts</displayed-value>
+        <stored-value>Reflect expected societal impacts</stored-value>
       </pair>
       <pair>
-        <displayed-value>Reflect on ethical aspects of the project and the results</displayed-value>
-        <stored-value>Ethical reflection</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Weigh risks and consequences/side-effects of the project results</displayed-value>
+        <displayed-value>Reflect risks and consequences/side-effects</displayed-value>
         <stored-value>Risk reflection</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Reflect on ethical aspects</displayed-value>
+        <stored-value>Ethical reflection</stored-value>
       </pair>
       <pair>
         <displayed-value>Regional networking</displayed-value>
@@ -6984,6 +7640,84 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>Completed</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="public_visibility" dc-term="public_visibility">
+      <pair>
+        <displayed-value>Project holders can publish further information from the in the monitoring tool</displayed-value>
+        <stored-value>open</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Basic information becomes public - project holders cannot publish further information in the monitoring tool</displayed-value>
+        <stored-value>limited</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>No information becomes public</displayed-value>
+        <stored-value>closed</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel1" dc-term="funderlabel1">
+      <pair>
+        <displayed-value>Lighthouse project/success story</displayed-value>
+        <stored-value>success story</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Knowledge Transfer Food (BZfE)</displayed-value>
+        <stored-value>transfer food</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Knowledge Transfer Agriculture (BZL)</displayed-value>
+        <stored-value>transfer farming</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Topic of public controversy</displayed-value>
+        <stored-value>public controversy</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel2" dc-term="funderlabel2">
+      <pair>
+        <displayed-value>placeholder 1</displayed-value>
+        <stored-value>placeholder 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>placeholder 2</displayed-value>
+        <stored-value>placeholder 2</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="funderlabel3" dc-term="funderlabel3">
+      <pair>
+        <displayed-value>placeholder 1</displayed-value>
+        <stored-value>placeholder 1</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>placeholder 2</displayed-value>
+        <stored-value>placeholder 2</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="sdg_influence" dc-term="sdg_influence">
+      <pair>
+        <displayed-value>Strong positive Impact</displayed-value>
+        <stored-value>strong positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Medium positive Impact</displayed-value>
+        <stored-value>medium positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Slight positive Impact</displayed-value>
+        <stored-value>sligh positive</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Slight negative Impact</displayed-value>
+        <stored-value>slight negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Medium negative Impact</displayed-value>
+        <stored-value>medium negative</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Strong negative Impact</displayed-value>
+        <stored-value>strong negative</stored-value>
+      </pair>
+    </value-pairs>
     <value-pairs value-pairs-name="gender" dc-term="gender">
       <pair>
         <displayed-value>Unknown</displayed-value>
@@ -7070,6 +7804,16 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>private / public combined</displayed-value>
         <stored-value>private/public</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="cooperation_type" dc-term="cooperation_type">
+      <pair>
+        <displayed-value>Subcontractor</displayed-value>
+        <stored-value>Subcontract</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation partner</displayed-value>
+        <stored-value>Coperation</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="physicalobjects_type" dc-term="physicalobjects_type">
@@ -7229,7 +7973,11 @@ it, please enter the types and the actual numbers or codes.</hint>
       </pair>
       <pair>
         <displayed-value>Expected societal impacts</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible negative side effects</displayed-value>
+        <stored-value>neg_sideeffects</stored-value>
       </pair>
       <pair>
         <displayed-value>Ethical reflection</displayed-value>
@@ -7296,10 +8044,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>gender</stored-value>
       </pair>
       <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
-      <pair>
         <displayed-value>State of knowledge and addressed problem</displayed-value>
         <stored-value>stateofart</stored-value>
       </pair>
@@ -7336,32 +8080,50 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="srl_trl" dc-term="srl_trl">
       <pair>
-        <displayed-value>Solution Readiness Level</displayed-value>
-        <stored-value>SRL</stored-value>
-      </pair>
-      <pair>
         <displayed-value>Technology Readiness Level</displayed-value>
         <stored-value>TRL</stored-value>
       </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="status_regional" dc-term="status_regional">
       <pair>
-        <displayed-value>1. Primary field of application</displayed-value>
-        <stored-value>Region in which the application is envisaged</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>2. Later dissemination</displayed-value>
-        <stored-value>Possible region for transmission and dissemination</stored-value>
+        <displayed-value>Solution Readiness Level</displayed-value>
+        <stored-value>SRL</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="innovation_link_new" dc-term="innovation_link_new">
+    <value-pairs value-pairs-name="readiness_level" dc-term="readiness_level">
       <pair>
-        <displayed-value>A: The application belongs to an already documented solution / change / innovation or to a patent.</displayed-value>
-        <stored-value>link</stored-value>
+        <displayed-value>1</displayed-value>
+        <stored-value>1</stored-value>
       </pair>
       <pair>
-        <displayed-value>B: The application relates to a new / not yet documented solution / change / innovation that may have been developed by a third party.</displayed-value>
-        <stored-value>new</stored-value>
+        <displayed-value>2</displayed-value>
+        <stored-value>2</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>3</displayed-value>
+        <stored-value>3</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>4</displayed-value>
+        <stored-value>4</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>5</displayed-value>
+        <stored-value>5</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>6</displayed-value>
+        <stored-value>6</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>7</displayed-value>
+        <stored-value>7</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8</displayed-value>
+        <stored-value>8</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>9</displayed-value>
+        <stored-value>9</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="year" dc-term="year">
@@ -7499,18 +8261,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>State of knowledge / problem definition</displayed-value>
         <stored-value>stateofart</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Gender reflection</displayed-value>
-        <stored-value>gender</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Ethic reflection</displayed-value>
-        <stored-value>ethic</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_type" dc-term="impactpathway_step_type_2_task_type">
       <pair>
@@ -7525,10 +8275,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_2_task_objective_type" dc-term="impactpathway_step_type_2_task_objective_type">
       <pair>
@@ -7539,10 +8285,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_type" dc-term="impactpathway_step_type_3_task_type">
       <pair>
@@ -7552,10 +8294,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>(Intermediate) result / problem</displayed-value>
         <stored-value>unexpected_result</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_3_task_objective_type" dc-term="impactpathway_step_type_3_task_objective_type">
@@ -7586,10 +8324,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_4_task_type" dc-term="impactpathway_step_type_4_task_type">
@@ -7625,19 +8359,15 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Award</displayed-value>
         <stored-value>award</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_5_task_type" dc-term="impactpathway_step_type_5_task_type">
       <pair>
         <displayed-value>Expected societal impact</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
+        <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Expected societal impact (new)</displayed-value>
-        <stored-value>exp_societalimpact</stored-value>
+        <displayed-value>Possible negative side effects</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impactpathway_step_type_6_task_type" dc-term="impactpathway_step_type_6_task_type">
@@ -7808,140 +8538,56 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="impact_positive" dc-term="impact_positive">
       <pair>
-        <displayed-value>[+++] strong</displayed-value>
+        <displayed-value>Strong positive Impact</displayed-value>
         <stored-value>strong positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[++]medium</displayed-value>
+        <displayed-value>Medium positive Impact</displayed-value>
         <stored-value>medium positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[+] low</displayed-value>
-        <stored-value>slightly positive</stored-value>
+        <displayed-value>Slight positive Impact</displayed-value>
+        <stored-value>sligh positive</stored-value>
       </pair>
       <pair>
-        <displayed-value>[?] not yet assessable</displayed-value>
+        <displayed-value>Not yet assessable</displayed-value>
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="impact_negative" dc-term="impact_negative">
       <pair>
-        <displayed-value>[---] strong</displayed-value>
+        <displayed-value>Strong negative Sideeffect</displayed-value>
         <stored-value>strong negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[--]  medium</displayed-value>
+        <displayed-value>Medium negative Sideeffect</displayed-value>
         <stored-value>medium negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[-] low</displayed-value>
-        <stored-value>slightly negative</stored-value>
+        <displayed-value>Slight negative Sideeffect</displayed-value>
+        <stored-value>slight negative</stored-value>
       </pair>
       <pair>
-        <displayed-value>[?] not yet assessable</displayed-value>
+        <displayed-value>Not yet assessable</displayed-value>
         <stored-value>not yet assessable</stored-value>
       </pair>
     </value-pairs>
-    <value-pairs value-pairs-name="societalimpact" dc-term="societalimpact">
+    <value-pairs value-pairs-name="impact_evidence" dc-term="impact_evidence">
       <pair>
-        <displayed-value>Ecological</displayed-value>
-        <stored-value>Ecological</stored-value>
+        <displayed-value>Results from the project</displayed-value>
+        <stored-value>project results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Economic</displayed-value>
-        <stored-value>Economic</stored-value>
+        <displayed-value>External results / literature</displayed-value>
+        <stored-value>external results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Social and cultural</displayed-value>
-        <stored-value>Social and cultural</stored-value>
+        <displayed-value>Hypotheses - scientifically derived</displayed-value>
+        <stored-value>scientific hypothesis</stored-value>
       </pair>
       <pair>
-        <displayed-value>Governance</displayed-value>
-        <stored-value>Governance</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="societalimpact_direction" dc-term="societalimpact_direction">
-      <pair>
-        <displayed-value>(++) positive</displayed-value>
-        <stored-value>(++) positive</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(+) rather positive</displayed-value>
-        <stored-value>(+) rather positive</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(+/-) ambivalent</displayed-value>
-        <stored-value>(+/-) ambivalent</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(-) rather negative</displayed-value>
-        <stored-value>(-) rather negative</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>(--) negative</displayed-value>
-        <stored-value>(--) negative</stored-value>
-      </pair>
-    </value-pairs>
-    <value-pairs value-pairs-name="ecological_field" dc-term="ecological_field">
-      <pair>
-        <displayed-value>Land use</displayed-value>
-        <stored-value>Land use</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Soil quality or resources</displayed-value>
-        <stored-value>Soil quality or resources</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Water quality and resources - fresh water</displayed-value>
-        <stored-value>Water quality and resources - fresh water</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Water quality and resources - oceans</displayed-value>
-        <stored-value>Water quality and resources - oceans</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Air quality</displayed-value>
-        <stored-value>Air quality</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Noise</displayed-value>
-        <stored-value>Noise</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Climate</displayed-value>
-        <stored-value>Climate</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Transport and the use of energy</displayed-value>
-        <stored-value>Transport and the use of energy</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Biodiversity, flora, fauna and landscapes</displayed-value>
-        <stored-value>Biodiversity, flora, fauna and landscapes</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Animal welfare</displayed-value>
-        <stored-value>Animal welfare</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Waste production/generation/ recycling</displayed-value>
-        <stored-value>Waste production/generation/ recycling</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Likelihood or scale of environmental risks</displayed-value>
-        <stored-value>Likelihood or scale of environmental risks</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Environmental consquences of firms and consumers</displayed-value>
-        <stored-value>Environmental consquences of firms and consumers</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Renewable and non-renewable resources</displayed-value>
-        <stored-value>Renewable and non-renewable resources</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>International environmental impacts</displayed-value>
-        <stored-value>International environmental impacts</stored-value>
+        <displayed-value>Assumptions - not yet scientifically derived</displayed-value>
+        <stored-value>non-scientific assumptions</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="type_conditions" dc-term="type_conditions">
@@ -7976,27 +8622,27 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="influence_conditions" dc-term="influence_conditions">
       <pair>
-        <displayed-value>[++] Strongly supporting</displayed-value>
+        <displayed-value>Strongly supporting</displayed-value>
         <stored-value>Strongly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ + ] Slightly supporting</displayed-value>
+        <displayed-value>Slightly supporting</displayed-value>
         <stored-value>Slightly supporting</stored-value>
       </pair>
       <pair>
-        <displayed-value>[+/-] Both facilitating and hampering</displayed-value>
+        <displayed-value>Both facilitating and hampering</displayed-value>
         <stored-value>facilitating and hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ - ] Slightly hampering</displayed-value>
+        <displayed-value>Slightly hampering</displayed-value>
         <stored-value>Slightly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ -- ] Strongly hampering</displayed-value>
+        <displayed-value>Strongly hampering</displayed-value>
         <stored-value>Strongly hampering</stored-value>
       </pair>
       <pair>
-        <displayed-value>[ ? ] Influence not yet assessable</displayed-value>
+        <displayed-value>Influence not yet assessable</displayed-value>
         <stored-value>Influence not yet assessable</stored-value>
       </pair>
     </value-pairs>
@@ -8012,15 +8658,15 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="gender_balance" dc-term="gender_balance">
       <pair>
-        <displayed-value>Yes, the gender ratio is balanced (at least 40/60)</displayed-value>
+        <displayed-value>The gender ratio is balanced (at least 40/60)</displayed-value>
         <stored-value>balanced gender ratio</stored-value>
       </pair>
       <pair>
-        <displayed-value>No - the proportion of women employed is greater than 60 %</displayed-value>
+        <displayed-value>The proportion of women employed is greater than 60 %</displayed-value>
         <stored-value>proportion of women above 60 %</stored-value>
       </pair>
       <pair>
-        <displayed-value>No - the proportion of men employed is greater than 60 %</displayed-value>
+        <displayed-value>The proportion of men employed is greater than 60 %</displayed-value>
         <stored-value>proportion of men above 60 %</stored-value>
       </pair>
     </value-pairs>
@@ -8046,20 +8692,32 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>harmful-env</stored-value>
       </pair>
       <pair>
-        <displayed-value>6) R&amp;D results touch on boundaries of ethical acceptability</displayed-value>
+        <displayed-value>6) The research with human cells or tissues.</displayed-value>
+        <stored-value>human-cells-tissues</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>7) Research with human embryonic stem cells</displayed-value>
+        <stored-value>human-embryonic stem-cells</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>8) R&amp;D results touch on boundaries of ethical acceptability</displayed-value>
         <stored-value>aceptance</stored-value>
       </pair>
       <pair>
-        <displayed-value>7) R&amp;D results involve dual-use goods</displayed-value>
+        <displayed-value>9) R&amp;D results involve dual-use goods</displayed-value>
         <stored-value>dualuse</stored-value>
       </pair>
       <pair>
-        <displayed-value>8) Potential for misuse of research results</displayed-value>
+        <displayed-value>10) Potential for misuse of research results</displayed-value>
         <stored-value>misuse-results</stored-value>
       </pair>
       <pair>
-        <displayed-value>9) Other ethical aspects</displayed-value>
+        <displayed-value>11) Other ethical aspects</displayed-value>
         <stored-value>others</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>12) The project affects no ethical aspect</displayed-value>
+        <stored-value>no</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="working_plan_workpackage_type" dc-term="working_plan_workpackage_type">
@@ -8128,12 +8786,12 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>Editable by all project members</displayed-value>
-        <stored-value>parentproject</stored-value>
+        <displayed-value>A: Editable by all members of consortium</displayed-value>
+        <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>Editable by only sub-project members</displayed-value>
-        <stored-value>project</stored-value>
+        <displayed-value>B: Editable by only project  members</displayed-value>
+        <stored-value>funding</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_1_task_type" dc-term="exploitation_plan_step_type_1_task_type">
@@ -8161,10 +8819,6 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Spin-off (incl. association)</displayed-value>
         <stored-value>spinoff</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_2_task_type" dc-term="exploitation_plan_step_type_2_task_type">
       <pair>
@@ -8188,16 +8842,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>application</stored-value>
       </pair>
       <pair>
-        <displayed-value>Expected societal impact (Var. x)</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Expected societal impact (Var. y)</displayed-value>
+        <displayed-value>Expected societal impact</displayed-value>
         <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
+        <displayed-value>Negative side effects</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
         <displayed-value>Planned Publications</displayed-value>
@@ -8238,10 +8888,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Award</displayed-value>
         <stored-value>award</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_3_task_type" dc-term="exploitation_plan_step_type_3_task_type">
@@ -8302,16 +8948,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>condition</stored-value>
       </pair>
       <pair>
-        <displayed-value>Expected societal impact (Var. x)</displayed-value>
-        <stored-value>pot_societalimpact</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Expected societal impact (Var. y)</displayed-value>
+        <displayed-value>Expected societal impact</displayed-value>
         <stored-value>exp_societalimpact</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
+        <displayed-value>Negative side effects</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
       <pair>
         <displayed-value>Workpackage</displayed-value>
@@ -8320,10 +8962,6 @@ it, please enter the types and the actual numbers or codes.</hint>
       <pair>
         <displayed-value>Task</displayed-value>
         <stored-value>task</stored-value>
-      </pair>
-      <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="exploitation_plan_step_type_4_task_type" dc-term="exploitation_plan_step_type_4_task_type">
@@ -8336,9 +8974,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>step</stored-value>
       </pair>
       <pair>
-        <displayed-value>Contributions to funding programme objectives</displayed-value>
-        <stored-value>contribution_fundingprogramme</stored-value>
+        <displayed-value>Research result</displayed-value>
+        <stored-value>research_result</stored-value>
       </pair>
+      <pair>
+        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Open research question</displayed-value>
+        <stored-value>open_researchquestion</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_1_task_type" dc-term="interim_report_step_type_1_task_type">
       <pair>
         <displayed-value>Research result</displayed-value>
         <stored-value>research_result</stored-value>
@@ -8348,8 +8996,160 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>unexpected_result</stored-value>
       </pair>
       <pair>
-        <displayed-value>Others</displayed-value>
-        <stored-value>other</stored-value>
+        <displayed-value>Event</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation / Participation / Exchange process</displayed-value>
+        <stored-value>process_event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Publication</displayed-value>
+        <stored-value>Publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Reserach data</displayed-value>
+        <stored-value>Product</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Object /material</displayed-value>
+        <stored-value>physical_object</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Work package</displayed-value>
+        <stored-value>workpackage</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Task</displayed-value>
+        <stored-value>task</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestone</displayed-value>
+        <stored-value>milestone</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Award</displayed-value>
+        <stored-value>award</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_2_task_type" dc-term="interim_report_step_type_2_task_type">
+      <pair>
+        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Event</displayed-value>
+        <stored-value>Event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Cooperation / Participation / Exchange process</displayed-value>
+        <stored-value>process_event</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Work package</displayed-value>
+        <stored-value>workpackage</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Task</displayed-value>
+        <stored-value>task</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Milestone</displayed-value>
+        <stored-value>milestone</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_3_task_type" dc-term="interim_report_step_type_3_task_type">
+      <pair>
+        <displayed-value>External condition</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Research and development objective</displayed-value>
+        <stored-value>proj_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Target for interaction and transfer</displayed-value>
+        <stored-value>ia_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Planned publications</displayed-value>
+        <stored-value>plan_publication</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible solution / change / innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Idea for the use of project results</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents or utility patent</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Expected societal impact</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative side effect</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_4_task_type" dc-term="interim_report_step_type_4_task_type">
+      <pair>
+        <displayed-value>External condition</displayed-value>
+        <stored-value>condition</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>State of knowledge / problem definition</displayed-value>
+        <stored-value>stateofart</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>(Intermediate) result / problem that causes change</displayed-value>
+        <stored-value>unexpected_result</stored-value>
+      </pair>
+    </value-pairs>
+    <value-pairs value-pairs-name="interim_report_step_type_5_task_type" dc-term="interim_report_step_type_5_task_type">
+      <pair>
+        <displayed-value>Research and development objective</displayed-value>
+        <stored-value>proj_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Target for interaction and transfer</displayed-value>
+        <stored-value>ia_objective</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Possible solution / change / innovation</displayed-value>
+        <stored-value>innovationpotential</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Idea for the use of project results</displayed-value>
+        <stored-value>innovationidea</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Patents or utility patent</displayed-value>
+        <stored-value>Patent</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Expected societal impact</displayed-value>
+        <stored-value>exp_societalimpact</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Negative side effect</displayed-value>
+        <stored-value>neg_sideeffect</stored-value>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="dataset_types" dc-term="dataset_types">
@@ -9424,6 +10224,19 @@ it, please enter the types and the actual numbers or codes.</hint>
         <stored-value>ZW</stored-value>
       </pair>
     </value-pairs>
+    <value-pairs value-pairs-name="internal_purpose" dc-term="internal_purpose">
+      <pair>
+        <displayed-value>Exchange required</displayed-value>
+        <stored-value>exchange</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Edit</displayed-value>
+        <stored-value>edit</stored-value>
+      </pair>
+      <pair>
+        <displayed-value>Done</displayed-value>
+        <stored-value>done</stored-value>
+      </pair>
+    </value-pairs>
   </form-value-pairs>
 </input-forms>
-

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE item-submission SYSTEM "item-submission.dtd">
-
 <item-submission>
   <submission-map>
     <name-map collection-handle="default" submission-name="edit_grants" />
@@ -79,6 +78,28 @@
       <type>submission-form</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
     </step-definition>
+    <step-definition id="interim_report_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="interim_report_step_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_step_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="interim_report_task_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report_task_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="interim_report-edit_form" mandatory="true">
+      <heading>submit.progressbar.describe.interim_report-edit_form</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+      <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
     <step-definition id="upload" mandatory="true" opened="false">
       <heading>submit.progressbar.upload</heading>
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
@@ -104,28 +125,33 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="parentprojects" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.parentprojects</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="parentprojects_calc" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.parentprojects_calc</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="projects" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.projects</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="projects_import" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.projects_import</heading>
+    <step-definition id="projects_calc" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.projects_calc</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="funding" mandatory="true">
+    <step-definition id="projects_funder" mandatory="true" opened="true">
+      <heading>submit.progressbar.describe.projects_funder</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="projects_versioning" mandatory="true" opened="true">
+      <heading>submit.progressbar.describe.projects_versioning</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="funding" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.funding</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="funding_import" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.funding_import</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -209,13 +235,8 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="workpackages" mandatory="true" opened="false">
+    <step-definition id="workpackages" mandatory="true">
       <heading>submit.progressbar.describe.workpackages</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="workpackages_result" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.workpackages_result</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -279,18 +300,13 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="pot_societalimpact" mandatory="true">
-      <heading>submit.progressbar.describe.pot_societalimpact</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="exp_societalimpact" mandatory="true" opened="false">
+    <step-definition id="exp_societalimpact" mandatory="true">
       <heading>submit.progressbar.describe.exp_societalimpact</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="exp_societalimpact_neg" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.exp_societalimpact_neg</heading>
+    <step-definition id="neg_sideeffect" mandatory="true">
+      <heading>submit.progressbar.describe.neg_sideeffect</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -384,18 +400,13 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="subcontractors_orgunit" mandatory="true">
-      <heading>submit.progressbar.describe.subcontractors_orgunit</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="subcontractors" mandatory="true">
-      <heading>submit.progressbar.describe.subcontractors</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="research_results" mandatory="true">
       <heading>submit.progressbar.describe.research_results</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="open_researchquestions" mandatory="true">
+      <heading>submit.progressbar.describe.open_researchquestions</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
@@ -424,16 +435,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="applications_quant" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.applications_quant</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
-    <step-definition id="others" mandatory="true">
-      <heading>submit.progressbar.describe.others</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="tests" mandatory="true">
       <heading>submit.progressbar.describe.tests</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -459,11 +460,36 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="comments" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.comments</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="extractionstep" mandatory="true">
       <heading>submit.progressbar.ExtractMetadataStep</heading>
       <processing-class>org.dspace.app.rest.submit.step.ExtractMetadataStep</processing-class>
       <type>extract</type>
       <scope visibility="hidden" visibilityOutside="hidden">submission</scope>
+    </step-definition>
+    <step-definition id="internalacc" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.internalacc</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
+    <step-definition id="detect-duplicate" mandatory="true">
+      <heading>submit.progressbar.detect-duplicate</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DetectPotentialDuplicateStep</processing-class>
+      <type>detect-duplicate</type>
+    </step-definition>
+    <step-definition id="license" mandatory="false">
+      <heading>submit.progressbar.license</heading>
+      <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
+      <type>license</type>
+    </step-definition>
+    <step-definition id="cclicense" mandatory="false">
+      <heading>submit.progressbar.CClicense</heading>
+      <processing-class>org.dspace.app.rest.submit.step.CCLicenseStep</processing-class>
+      <type>cclicense</type>
     </step-definition>
   </step-definitions>
   <submission-definitions>
@@ -500,21 +526,32 @@
     <submission-process name="exploitation_plan-edit_form">
       <step id="exploitation_plan-edit_form" />
     </submission-process>
+    <submission-process name="interim_report_form">
+      <step id="interim_report_form" />
+    </submission-process>
+    <submission-process name="interim_report_step_form">
+      <step id="interim_report_step_form" />
+    </submission-process>
+    <submission-process name="interim_report-edit_form">
+      <step id="interim_report-edit_form" />
+    </submission-process>
     <submission-process name="patents">
       <step id="patents" />
+      <step id="extractionstep" />
       <step id="patents_result" />
       <step id="patents_result_import" />
       <step id="statusacc2" />
-      <step id="extractionstep" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="patents-edit">
       <step id="patents" />
+      <step id="extractionstep" />
       <step id="patents_result" />
       <step id="patents_result_import" />
       <step id="statusacc2" />
-      <step id="extractionstep" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="orgunits">
       <step id="orgunits" />
@@ -524,31 +561,38 @@
       <step id="orgunits" />
       <step id="upload" />
     </submission-process>
-    <submission-process name="parentprojects">
-      <step id="parentprojects" />
-      <step id="agrovoc_keywords_parentproject" />
-      <step id="parentprojects_calc" />
-      <step id="upload" />
-    </submission-process>
-    <submission-process name="parentprojects-edit">
-      <step id="parentprojects" />
-      <step id="agrovoc_keywords_parentproject" />
-      <step id="parentprojects_calc" />
-      <step id="upload" />
-    </submission-process>
     <submission-process name="projects">
       <step id="projects" />
-      <step id="projects_import" />
+      <step id="projects_calc" />
+      <step id="agrovoc_keywords_parentproject" />
+      <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="projects-edit">
       <step id="projects" />
-      <step id="projects_import" />
+      <step id="projects_calc" />
+      <step id="agrovoc_keywords_parentproject" />
+      <step id="upload" />
+      <step id="internalacc" />
+    </submission-process>
+    <submission-process name="projects_funder">
+      <step id="projects_funder" />
+    </submission-process>
+    <submission-process name="projects_funder-edit">
+      <step id="projects_funder" />
+    </submission-process>
+    <submission-process name="projects_versioning-edit">
+      <step id="projects_versioning" />
     </submission-process>
     <submission-process name="funding">
       <step id="funding" />
+      <step id="funding_import" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="funding-edit">
       <step id="funding" />
+      <step id="funding_import" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="persons">
       <step id="persons" />
@@ -565,6 +609,7 @@
       <step id="spinoffs_result_performance" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
@@ -575,26 +620,36 @@
       <step id="spinoffs_result_performance" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="publications">
+      <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
+      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="extractionstep" />
+      <step id="cclicense" />
+      <step id="license" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="publications-edit">
+      <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
+      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
       <step id="upload" />
-      <step id="extractionstep" />
+      <step id="cclicense" />
+      <step id="license" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="plan_publications">
       <step id="plan_publications" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -602,53 +657,61 @@
     <submission-process name="plan_publications-edit">
       <step id="plan_publications" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="awards">
       <step id="awards" />
       <step id="upload" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="awards-edit">
       <step id="awards" />
       <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="steps">
       <step id="steps" />
       <step id="statusacc3" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="steps-edit">
       <step id="steps" />
       <step id="statusacc3" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="innovationideas">
       <step id="innovationideas" />
       <step id="statusacc3" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="innovationideas-edit">
       <step id="innovationideas" />
       <step id="statusacc3" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="workpackages">
       <step id="workpackages" />
-      <step id="workpackages_result" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="workpackages-edit">
       <step id="workpackages" />
-      <step id="workpackages_result" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="tasks">
       <step id="tasks" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -656,49 +719,59 @@
     <submission-process name="tasks-edit">
       <step id="tasks" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="milestones">
       <step id="milestones" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="working_plan_form" />
       <step id="working_plan_step_form" />
     </submission-process>
     <submission-process name="milestones-edit">
       <step id="milestones" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="stateofart">
       <step id="stateofart" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="stateofart-edit">
       <step id="stateofart" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme">
       <step id="contribution_fundingprogramme" />
       <step id="statusacc4" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme-edit">
       <step id="contribution_fundingprogramme" />
       <step id="statusacc4" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="unexpected_results">
       <step id="unexpected_results" />
       <step id="unexpected_results_publication" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="unexpected_results-edit">
       <step id="unexpected_results" />
       <step id="unexpected_results_publication" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="events">
       <step id="events" />
       <step id="events_result" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -708,6 +781,7 @@
       <step id="events_result" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="process_events">
       <step id="process_events" />
@@ -715,6 +789,7 @@
       <step id="process_events_date" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -725,11 +800,13 @@
       <step id="process_events_date" />
       <step id="upload" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="physical_objects">
       <step id="physical_objects" />
       <step id="physical_objects_result" />
       <step id="statusacc2" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
@@ -738,92 +815,111 @@
       <step id="physical_objects" />
       <step id="physical_objects_result" />
       <step id="statusacc2" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="targetgroups">
       <step id="targetgroups" />
       <step id="targetgroups_classification" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="targetgroups-edit">
       <step id="targetgroups" />
       <step id="targetgroups_classification" />
-    </submission-process>
-    <submission-process name="pot_societalimpact">
-      <step id="pot_societalimpact" />
-      <step id="statusacc3" />
-      <step id="impact_pathway_task_form" />
-      <step id="exploitation_plan_task_form" />
-    </submission-process>
-    <submission-process name="pot_societalimpact-edit">
-      <step id="pot_societalimpact" />
-      <step id="statusacc3" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="exp_societalimpact">
       <step id="exp_societalimpact" />
-      <step id="exp_societalimpact_neg" />
       <step id="statusacc3" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="exp_societalimpact-edit">
       <step id="exp_societalimpact" />
-      <step id="exp_societalimpact_neg" />
       <step id="statusacc3" />
+      <step id="internalacc" />
+    </submission-process>
+    <submission-process name="neg_sideeffect">
+      <step id="neg_sideeffect" />
+      <step id="statusacc3" />
+      <step id="internalacc" />
+      <step id="impact_pathway_task_form" />
+      <step id="exploitation_plan_task_form" />
+    </submission-process>
+    <submission-process name="neg_sideeffect-edit">
+      <step id="neg_sideeffect" />
+      <step id="statusacc3" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="conditions">
       <step id="conditions" />
       <step id="statusacc1" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="conditions-edit">
       <step id="conditions" />
       <step id="statusacc1" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="gender">
       <step id="gender_reflection" />
       <step id="gender" />
       <step id="statusacc1" />
-      <step id="impact_pathway_task_form" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="gender-edit">
       <step id="gender_reflection" />
       <step id="gender" />
       <step id="statusacc1" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="ethics">
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
-      <step id="impact_pathway_task_form" />
+      <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="ethics-edit">
       <step id="ethics_reflection" />
       <step id="ethics" />
       <step id="statusacc1" />
+      <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="ia_objectives">
       <step id="ia_objectives" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="ia_objectives-edit">
       <step id="ia_objectives" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="proj_objectives">
       <step id="proj_objectives" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
     </submission-process>
     <submission-process name="proj_objectives-edit">
       <step id="proj_objectives" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="products">
       <step id="products" />
       <step id="products_references" />
+      <step id="agrovoc_keywords_others" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="products-edit">
       <step id="products" />
       <step id="products_references" />
+      <step id="agrovoc_keywords_others" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="programmes">
       <step id="programmes" />
@@ -849,6 +945,7 @@
       <step id="projectpartners_import_lead" />
       <step id="projectpartners_import_leadadmin" />
       <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="projectpartners-edit">
       <step id="projectpartners" />
@@ -856,30 +953,36 @@
       <step id="projectpartners_import_lead" />
       <step id="projectpartners_import_leadadmin" />
       <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="cooperationpartners">
       <step id="cooperationpartners_orgunit" />
       <step id="cooperationpartners" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="cooperationpartners-edit">
       <step id="cooperationpartners_orgunit" />
       <step id="cooperationpartners" />
-    </submission-process>
-    <submission-process name="subcontractors">
-      <step id="subcontractors_orgunit" />
-      <step id="subcontractors" />
-    </submission-process>
-    <submission-process name="subcontractors-edit">
-      <step id="subcontractors_orgunit" />
-      <step id="subcontractors" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="research_results">
       <step id="research_results" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="research_results-edit">
       <step id="research_results" />
+      <step id="internalacc" />
+    </submission-process>
+    <submission-process name="open_researchquestions">
+      <step id="open_researchquestions" />
+      <step id="internalacc" />
+      <step id="exploitation_plan_task_form" />
+    </submission-process>
+    <submission-process name="open_researchquestions-edit">
+      <step id="open_researchquestions" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="innovationpotentials">
       <step id="innovationpotentials" />
@@ -887,6 +990,7 @@
       <step id="innovationpotentials_regional_scope" />
       <step id="innovationpotentials_srl_trl" />
       <step id="statusacc3" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
@@ -896,30 +1000,28 @@
       <step id="innovationpotentials_regional_scope" />
       <step id="innovationpotentials_srl_trl" />
       <step id="statusacc3" />
+      <step id="internalacc" />
     </submission-process>
     <submission-process name="applications">
       <step id="applications" />
-      <step id="applications_quant" />
       <step id="upload" />
+      <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
     </submission-process>
     <submission-process name="applications-edit">
       <step id="applications" />
-      <step id="applications_quant" />
       <step id="upload" />
+      <step id="internalacc" />
     </submission-process>
-    <submission-process name="others">
-      <step id="others" />
-      <step id="impact_pathway_task_form" />
-      <step id="exploitation_plan_task_form" />
+    <submission-process name="comments">
+      <step id="comments" />
     </submission-process>
-    <submission-process name="others-edit">
-      <step id="others" />
+    <submission-process name="comments-edit">
+      <step id="comments" />
     </submission-process>
     <submission-process name="tests">
       <step id="tests" />
     </submission-process>
   </submission-definitions>
 </item-submission>
-

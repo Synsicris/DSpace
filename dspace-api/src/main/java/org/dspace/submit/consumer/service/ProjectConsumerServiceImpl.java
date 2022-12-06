@@ -162,6 +162,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public Community getProjectCommunity(Context context, Item item) throws SQLException {
         Community owningCommunity = getFirstOwningCommunity(context, item);
+        if (Objects.isNull(owningCommunity)) {
+            return null;
+        }
+
         Community parentCommunity = owningCommunity.getParentCommunities().get(0);
 
         String parentCommId = configurationService.getProperty("project.parent-community-id", null);
@@ -169,38 +173,13 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         if (parentCommunity.getID().toString().equals(parentCommId)) {
             return owningCommunity;
         } else {
-            return parentCommunity.getParentCommunities().get(0);
+            return
+                Optional.ofNullable(parentCommunity.getParentCommunities())
+                    .filter(list -> !list.isEmpty())
+                    .map(list -> list.get(0))
+                    .orElse(null);
         }
     }
-    
-//    @Override
-//    public Community getProjectCommunity(Context context, Item item) throws SQLException {
-//        Community projectCommunity = null;
-//        Collection owningCollection = null;
-//        String[] commToSkip = configurationService.getArrayProperty("project.community-name.to-skip", new String[] {});
-//
-//        WorkspaceItem workspaceItem = workspaceItemService.findByItem(context, item);
-//        if (Objects.nonNull(workspaceItem)) {
-//            owningCollection = workspaceItem.getCollection();
-//        } else {
-//            if (item.getCollections().isEmpty() || Objects.isNull(item.getCollections())) {
-//                // the item is a template item
-//                return null;
-//            }
-//            owningCollection = item.getOwningCollection();
-//        }
-//
-//        if (owningCollection == null) {
-//            // the item is a template item
-//            return null;
-//        }
-//
-//        projectCommunity = owningCollection.getCommunities().get(0);
-//        while (Arrays.stream(commToSkip).anyMatch(projectCommunity.getName()::equals)) {
-//            projectCommunity = projectCommunity.getParentCommunities().get(0);
-//        }
-//        return projectCommunity;
-//    }
 
     @Override
     public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
@@ -419,11 +398,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (StringUtils.isBlank(policyValue)) {
                 policyValue = ProjectConstants.PROJECT;
             }
-            
+
+            if (policyValue.equals(ProjectConstants.FUNDING) && Objects.isNull(fundingCommunity)) {
+                return;
+            }
+
             itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_SHARED.schema,
                     ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier,
                     null, policyValue, null, Choices.CF_UNSET, 0);
-            
+
             Group group;
             switch (policyValue) {
                 case ProjectConstants.PROJECT:
@@ -436,6 +419,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                     throw new IllegalArgumentException("Unable to find policy named : " + policyValue);
             }
 
+            if (Objects.isNull(group)) {
+                return;
+            }
             itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_GROUP.schema,
                     ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
                     null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
@@ -535,7 +521,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     public Item getRelationItemByCommunity(Context context, Community community) {
         Item projectItem = null;
-        
+
         List<MetadataValue> values = communityService.getMetadata(community,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.schema, ProjectConstants.MD_RELATION_ITEM_ENTITY.element,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier, null);
@@ -551,16 +537,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             log.warn("Communitiy {} has no project items, unable to proceed", community.getID().toString());
             return projectItem;
         }
-        
+
         try {
             projectItem = itemService.find(context, UUIDUtils.fromString(itemUUID));
         } catch (SQLException e) {
             return projectItem;
         }
-        
+
         return projectItem;
     }
-    
+
     @Override
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) {
         Item projectItem = null;

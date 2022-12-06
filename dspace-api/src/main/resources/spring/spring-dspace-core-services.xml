@@ -89,6 +89,9 @@
                 <entry key="currentprojectgroup">
                     <bean class="org.dspace.content.template.generator.CurrentProjectGroupGenerator" />
                 </entry>
+                <entry key="currentprojectgroupbyfundingpolicy">
+                    <bean class="org.dspace.content.template.generator.CurrentProjectGroupByFundingPolicyGenerator" />
+                </entry>
                 <entry key="agrovockeywords" value-ref="agrovocKeywordsGenerator" />
                 <entry key="currentresearcherprofile">
                     <bean class="org.dspace.content.template.generator.CurrentResearcherProfileGenerator" />

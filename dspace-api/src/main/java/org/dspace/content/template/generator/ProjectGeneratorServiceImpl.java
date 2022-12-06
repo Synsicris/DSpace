@@ -102,5 +102,13 @@ public class ProjectGeneratorServiceImpl implements ProjectGeneratorService {
         }
         return new MetadataValueVO(group.getName(), UUIDUtils.toString(group.getID()), Choices.CF_ACCEPTED);
     }
+    
+    @Override
+    public String getOwningFundigPolicy(Context context, Item Item) throws SQLException {
+        Community parentComm = getOwningCommunity(Item);
+        Item fundingItem = projectService.getRelationItemByCommunity(context, parentComm);
+
+        return projectService.getDefaultSharedValueByItemProject(context, fundingItem);
+    }
 
 }

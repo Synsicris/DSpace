@@ -25,7 +25,7 @@ public interface ProjectConsumerService {
 
     public void processItem(Context context, EPerson currentUser, Item item);
 
-    public void checkGrants(Context context, EPerson currentUser, Item item);
+    public void setGrantsByFundingPolicy(Context context, Item item);
 
     public boolean isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
@@ -33,10 +33,29 @@ public interface ProjectConsumerService {
     public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException;
 
+    public String getDefaultSharedValueByItemProject(Context context, Item projectItem);
+
     public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException;
 
     public Community getFundingCommunityByRelationFunding(Context context, Item item) throws SQLException;
 
+    public String getOwningFundigPolicy(Context context, Item item) throws SQLException;
+
+    /**
+     * Get the first parent community which the given item belong to. If the given entity is a project's one
+     * it returns the Project community. If the item is a funding's entity it returns the Funding community 
+     *
+     * @param context
+     * @param item
+     */
+    public Community getFirstOwningCommunity(Context context, Item item) throws SQLException;
+
+    /**
+     * Get the community that represent the Project which the given item belong to.
+     *
+     * @param context
+     * @param item
+     */
     public Community getProjectCommunity(Context context, Item item) throws SQLException;
 
     public Item getParentProjectItemByCollectionUUID(Context context, UUID collectionUUID) throws SQLException;

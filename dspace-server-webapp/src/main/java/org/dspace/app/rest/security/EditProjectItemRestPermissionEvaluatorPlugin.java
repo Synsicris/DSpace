@@ -159,7 +159,11 @@ public class EditProjectItemRestPermissionEvaluatorPlugin extends RestObjectPerm
             String[] path = op.getPath().substring(1).split("/", 3);
             String sections = path[0];
             if (OPERATION_PATH_SECTIONS.equals(sections) && path.length > 2 ) {
-                String patchedMetadata = path[2];
+                String patchedMetadata =
+                    Optional.ofNullable(path[2])
+                        .filter(m -> m.contains("/"))
+                        .map(m -> m.split("/")[0])
+                        .orElse(path[2]);
                 if (!isMetadataAllowed(metadatas, patchedMetadata)) {
                     return false;
                 }

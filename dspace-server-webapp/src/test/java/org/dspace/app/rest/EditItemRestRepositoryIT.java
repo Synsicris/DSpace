@@ -9,6 +9,8 @@ package org.dspace.app.rest;
 
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static java.util.List.of;
+import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
+import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.contains;
@@ -43,16 +45,13 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.Item;
-import org.dspace.content.MetadataFieldName;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.edit.EditItem;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
-import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.Version;
-import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
@@ -61,28 +60,20 @@ import org.springframework.mock.web.MockMultipartFile;
 
 /**
  * Test suite for the EditItem endpoint
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest {
+
+    private static final String VERSION_METADATA_TO_PATCH = "project.version.metadata-to-patch";
 
     @Autowired
     private ItemService itemService;
 
     @Autowired
-    private VersioningService versioningService;
-
-    @Autowired
     private ConfigurationService configurationService;
 
-    public static final MetadataFieldName MD_VERSION_VISIBLE =
-        new MetadataFieldName("synsicris", "version", "visible");
-
-    public static final MetadataFieldName MD_LAST_VERSION =
-        new MetadataFieldName("synsicris", "isLastVersion", null);
-
-    private final String VERSION_METADATA_TO_PATCH = "project.version.metadata-to-patch";
-
+    @Override
     @After
     public void destroy() throws Exception {
         configurationService.setProperty(VERSION_METADATA_TO_PATCH , null);
@@ -1587,7 +1578,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
-        itemService.setMetadataSingleValue(context, versionedItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true");
+        itemService.setMetadataSingleValue(context, versionedItem, MD_VERSION_VISIBLE, null, "true");
 
         EditItem editItem = new EditItem(context, versionedItem);
 
@@ -1669,7 +1660,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
-        itemService.setMetadataSingleValue(context, versionedItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true");
+        itemService.setMetadataSingleValue(context, versionedItem, MD_VERSION_VISIBLE, null, "true");
 
         EditItem editItem = new EditItem(context, versionedItem);
 
@@ -1742,7 +1733,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
-        itemService.setMetadataSingleValue(context, versionedItem, ProjectConstants.MD_VERSION_VISIBLE, null, "true");
+        itemService.setMetadataSingleValue(context, versionedItem, MD_VERSION_VISIBLE, null, "true");
 
         EditItem editItem = new EditItem(context, versionedItem);
 

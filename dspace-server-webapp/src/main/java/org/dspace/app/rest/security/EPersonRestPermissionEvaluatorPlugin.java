@@ -86,8 +86,8 @@ public class EPersonRestPermissionEvaluatorPlugin extends RestObjectPermissionEv
             } else if (authorizeService.isCollectionAdmin(context)
                 && AuthorizeUtil.canCollectionAdminManageAccounts()) {
                 return true;
-            } else if (DSpaceRestPermission.READ.equals(restPermission) && 
-                    isFunderOganizationalManager(context, ePerson)) {
+            } else if (DSpaceRestPermission.READ.equals(restPermission)
+                && isFunderOganizationalManager(context, ePerson)) {
                 return true;
             }
         } catch (SQLException e) {
@@ -130,14 +130,14 @@ public class EPersonRestPermissionEvaluatorPlugin extends RestObjectPermissionEv
          */
         for (Operation op: operations) {
             if (!(op.getPath().contentEquals(EPersonPasswordAddOperation.OPERATION_PASSWORD_CHANGE)
-                || (op.getPath().startsWith(DSpaceObjectMetadataPatchUtils.OPERATION_METADATA_PATH)))) {
+                || op.getPath().startsWith(DSpaceObjectMetadataPatchUtils.OPERATION_METADATA_PATH))) {
                 return false;
             }
         }
 
         return true;
     }
-    
+
     private boolean isFunderOganizationalManager(Context context, EPerson ePerson ) {
         try {
             return groupService.isOrganisationalManager(context, ePerson);

@@ -480,6 +480,15 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -750,6 +759,15 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -826,6 +844,15 @@
                                     <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
                         </bean>
                     </list>
                 </entry>
@@ -1116,6 +1143,15 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -1194,6 +1230,15 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
@@ -1270,6 +1315,15 @@
                                     <value>synsicris.member-policy.group</value>
                                 </list>
                             </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="WORKINGPLAN" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="working_plan-edit_form" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="IMPACTPATHWAY_LINK" />

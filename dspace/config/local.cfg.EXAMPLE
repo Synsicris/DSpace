@@ -334,7 +334,7 @@ project.entity.edit-mode = CUSTOM
 ############## Projects configuration local #################
 system_members.group =
 funder-organisational-managers.group =
-funders-project-namagers.group =
+funders-project-managers.group =
 project.template-id =
 funding.template-id =
 project.parent-community-id =

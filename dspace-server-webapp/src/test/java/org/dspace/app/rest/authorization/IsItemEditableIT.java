@@ -82,6 +82,7 @@ public class IsItemEditableIT extends AbstractControllerIntegrationTest {
         context.setCurrentUser(admin);
 
         configurationService.setProperty("project.entity.edit-mode", "MODE1");
+        configurationService.addPropertyValue("project.entity.edit-mode", "CUSTOM");
 
         ItemRest itemRest = itemConverter.convert(itemA, Projection.DEFAULT);
 

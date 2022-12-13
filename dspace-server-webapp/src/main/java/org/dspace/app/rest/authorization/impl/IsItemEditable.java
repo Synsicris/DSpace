@@ -8,6 +8,7 @@
 package org.dspace.app.rest.authorization.impl;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -56,9 +57,9 @@ public class IsItemEditable implements AuthorizationFeature {
     }
 
     private boolean hasMode(List<EditItemMode> modes) {
-        String editMode = configurationService.getProperty("project.entity.edit-mode");
+        String[] editModes = configurationService.getArrayProperty("project.entity.edit-mode");
         return modes.stream()
-                    .anyMatch(mode -> mode.getName().equals(editMode));
+                    .anyMatch(mode -> Arrays.stream(editModes).anyMatch(mode.getName()::equals));
     }
 
     @Override

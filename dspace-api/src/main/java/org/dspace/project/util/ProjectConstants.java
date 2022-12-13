@@ -131,6 +131,8 @@ public class ProjectConstants {
         new MetadataFieldName("synsicris", "member-policy", "group");
     public static final MetadataFieldName MD_COORDINATOR_POLICY_GROUP =
         new MetadataFieldName("synsicris", "coordinator-policy", "group");
+    public static final MetadataFieldName MD_UNIQUE_ID =
+        new MetadataFieldName("synsicris", "uniqueid");
 
     /**
      * Default constructor

@@ -1,6 +1,7 @@
 package org.dspace.versioning;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
+import static org.dspace.project.util.ProjectConstants.MD_VERSION_OFFICIAL;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.junit.Assert.assertEquals;
 
@@ -158,13 +159,22 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
         Item versionedItemTwo = context.reloadEntity(versionTwo.getItem());
         Item versionedItemThree = context.reloadEntity(versionThree.getItem());
 
-        itemService.addMetadata(context, versionedItemOne, "synsicris", "version", "official", null, "");
+        itemService.addMetadata(
+            context, versionedItemOne, MD_VERSION_OFFICIAL.schema, MD_VERSION_OFFICIAL.element,
+            MD_VERSION_OFFICIAL.qualifier, null, Boolean.TRUE.toString()
+        );
         itemService.update(context, versionedItemOne);
 
-        itemService.addMetadata(context, versionedItemTwo, "synsicris", "version", "official", null, "");
+        itemService.addMetadata(
+            context, versionedItemTwo, MD_VERSION_OFFICIAL.schema, MD_VERSION_OFFICIAL.element,
+            MD_VERSION_OFFICIAL.qualifier, null, Boolean.TRUE.toString()
+        );
         itemService.update(context, versionedItemTwo);
 
-        itemService.addMetadata(context, versionedItemThree, "synsicris", "version", "official", null, "");
+        itemService.addMetadata(
+            context, versionedItemThree, MD_VERSION_OFFICIAL.schema, MD_VERSION_OFFICIAL.element,
+            MD_VERSION_OFFICIAL.qualifier, null, Boolean.TRUE.toString()
+        );
         itemService.update(context, versionedItemThree);
 
         context.commit();
@@ -304,7 +314,9 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
         // 4 Versions:
         //  - 1 Official;
         //  - 3 Not-Official;
-        itemService.addMetadata(context, versionedItemOne, "synsicris", "version", "official", null, "true");
+        itemService.addMetadata(
+            context, versionedItemOne, MD_VERSION_OFFICIAL.schema, MD_VERSION_OFFICIAL.element,
+            MD_VERSION_OFFICIAL.qualifier, null, "true");
         itemService.update(context, versionedItemOne);
 
         context.commit();

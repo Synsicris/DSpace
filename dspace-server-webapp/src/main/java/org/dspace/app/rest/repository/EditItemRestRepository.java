@@ -43,8 +43,10 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.EPersonServiceImpl;
+import org.dspace.services.ConfigurationService;
 import org.dspace.validation.model.ValidationError;
 import org.dspace.validation.service.ValidationService;
+import org.dspace.versioning.service.VersioningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -70,7 +72,7 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
     private SubmissionConfigReader submissionConfigReader;
 
     @Autowired
-    EditItemService eis;
+    EditItemService editItemService;
 
     @Autowired
     AuthorizeService authorizeService;
@@ -86,6 +88,12 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
 
     @Autowired
     private ValidationService validationService;
+
+    @Autowired
+    VersioningService versioningService;
+
+    @Autowired
+    ConfigurationService configurationService;
 
     public EditItemRestRepository() throws SubmissionConfigReaderException {
         submissionConfigReader = new SubmissionConfigReader();
@@ -115,7 +123,7 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
             if (item == null) {
                 throw new ResourceNotFoundException("No such item with uuid : " + itemUuid);
             }
-            editItem = eis.find(context, item, modeName);
+            editItem = editItemService.find(context, item, modeName);
         } catch (NotFoundException nfe) {
             throw new ResourceNotFoundException("No such mode configuration : " + modeName);
         } catch (AuthorizeException ae) {
@@ -139,8 +147,8 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
         List<EditItem> items = new ArrayList<EditItem>();
         int total = 0;
         try {
-            total = eis.countTotal(context);
-            it = eis.findAll(context, pageable.getPageSize(), pageable.getOffset());
+            total = editItemService.countTotal(context);
+            it = editItemService.findAll(context, pageable.getPageSize(), pageable.getOffset());
             while (it.hasNext()) {
                 EditItem i = it.next();
                 items.add(i);
@@ -184,7 +192,7 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
         EditItemRest eir = findOne(context, data);
         EditItem source = null;
         try {
-            source = eis.find(context, item, modeName);
+            source = editItemService.find(context, item, modeName);
         } catch (AuthorizeException e1) {
             throw new AccessDeniedException(e1.getMessage());
         }
@@ -246,6 +254,7 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
     }
 
     @Override
+    @PreAuthorize("hasPermission(#data, 'ITEM', #patch)")
     public void patch(Context context, HttpServletRequest request, String apiCategory, String model, String data,
                       Patch patch) throws SQLException, AuthorizeException {
         List<Operation> operations = patch.getOperations();
@@ -265,12 +274,14 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
         if (item == null) {
             throw new ResourceNotFoundException("No such item with uuid : " + itemUuid);
         }
-        EditItem source = eis.find(context, item, modeName);
+
+        EditItem source = editItemService.find(context, item, modeName);
         if (source != null && source.getMode() == null) {
             // The user is not allowed to give edit mode, return 403
             throw new AccessDeniedException(
                     "The current user does not have rights to edit mode <" + modeName + ">");
         }
+
         context.turnOffAuthorisationSystem();
 
         EditItemRest eir = findOne(context, data);
@@ -291,7 +302,7 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
             throw new UnprocessableEditException(errors);
         }
 
-        eis.update(context, source);
+        editItemService.update(context, source);
         context.restoreAuthSystemState();
     }
 
@@ -349,12 +360,13 @@ public class EditItemRestRepository extends DSpaceRestRepository<EditItemRest, S
         try {
             Context context = obtainContext();
             EPerson ep = epersonService.find(context, submitterID);
-            long total = eis.countBySubmitter(context, ep);
-            List<EditItem> witems = eis.findBySubmitter(context, ep, pageable.getPageSize(),
+            long total = editItemService.countBySubmitter(context, ep);
+            List<EditItem> witems = editItemService.findBySubmitter(context, ep, pageable.getPageSize(),
                     Math.toIntExact(pageable.getOffset()));
             return converter.toRestPage(witems, pageable, total, utils.obtainProjection());
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
+
 }

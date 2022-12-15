@@ -112,10 +112,40 @@
 						<xsl:with-param name="fontSize" select="$sectionTitleFontSize"/>
 					</xsl:call-template>
 
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Spinoff Title'"/>
+						<xsl:with-param name="value" select="cerif:Spinoff/cerif:Title"/>
+				  </xsl:call-template>
+
 					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Politikebene(n) der Organisationseinheit'"/>
-						<xsl:with-param name="value" select="cerif:ProjectPartner/cerif:Index/cerif:PoliticalLevel"/>
-				  </xsl:call-template>		
+						<xsl:with-param name="key" select="'Spinoff Performance Year'"/>
+						<xsl:with-param name="value" select="cerif:Spinoff/cerif:Performance/cerif:Index/cerif:Year"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Spinoff Performance Amount'"/>
+						<xsl:with-param name="value" select="cerif:Spinoff/cerif:Performance/cerif:Index/cerif:Amount"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Spinoff Performance Currency'"/>
+						<xsl:with-param name="value" select="cerif:Spinoff/cerif:Performance/cerif:Index/cerif:Currency"/>
+				  </xsl:call-template>					
+
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Process Event Title'"/>
+						<xsl:with-param name="value" select="cerif:ProcessEvent/cerif:Title"/>
+				  </xsl:call-template>	
+
+					<!-- <xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Process Event Date'"/>
+						<xsl:with-param name="value" select="cerif:ProcessEvent/cerif:Date/cerif:StartDate"/>
+				  </xsl:call-template>
+					
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="'Test App Erfolg Referenzjahr'"/>
+						<xsl:with-param name="value" select="cerif:Application/cerif:SuccessQuantification/cerif:ReferenceYear"/>
+					</xsl:call-template>					 -->
 
 					<!-- new page -->
           <fo:block break-after='page'/>
@@ -135,6 +165,7 @@
 					<!-- contents -->
 					<xsl:call-template name="project"/>
 					<xsl:call-template name="projectpartner"/>
+					<xsl:call-template name="stateofart"/>
 
 					<!-- new page -->
           <fo:block break-after='page'/>
@@ -382,7 +413,7 @@
 						<xsl:with-param name="value" select="cerif:NACE"/>
 				  </xsl:call-template>	
 					
-					<xsl:call-template name="key-value-comma-list"> <!-- TODO: this should multiple items but it does not, only when a single value template is used the first item is shown -->
+					<xsl:call-template name="key-value-comma-list">
 						<xsl:with-param name="key" select="'Politikebene(n) der Organisationseinheit'"/>
 						<xsl:with-param name="value" select="cerif:PoliticalLevel"/>
 				  </xsl:call-template>						
@@ -391,19 +422,42 @@
 						<xsl:with-param name="margin" select="$gapMarginTop"/>
 					</xsl:call-template>
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single"> <!-- TODO: not shown -->
 						<xsl:with-param name="key" select="'Übergeordnete Organisation'"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:ParentOrganisation"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> <!-- TODO: not shown -->
+					<xsl:call-template name="key-value-single"> 
 						<xsl:with-param name="key" select="'Name der ausführenden Stelle / Organisationseinheit'"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationName"/>
 				  </xsl:call-template>					
 
-					<xsl:call-template name="postcode-city-country">
+					<xsl:call-template name="key-postcode-city-country">
 						<xsl:with-param name="key" select="'PLZ / Stadt / Land'"/>
 						<xsl:with-param name="postcode" select="cerif:Import/cerif:PostCode"/>
+						<xsl:with-param name="city" select="cerif:Import/cerif:City"/>
+						<xsl:with-param name="country" select="cerif:Import/cerif:Country"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="'Webadresse'"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:WebAddress"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="'Organisationsform'"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationType"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="vertical-gap">
+						<xsl:with-param name="margin" select="$gapMarginTop"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-name-degree-gender">
+						<xsl:with-param name="key" select="'Projektleitung'"/>
+						<xsl:with-param name="name" select="cerif:ImportLead/cerif:Name"/>
+						<xsl:with-param name="degree" select="cerif:ImportLead/cerif:Degree"/>
+						<xsl:with-param name="gender" select="cerif:ImportLead/cerif:Gender"/>
 				  </xsl:call-template>	
 
 				</fo:block> 		
@@ -412,6 +466,53 @@
 
 	  </xsl:if>
 
+	</xsl:template>
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE STATE OF ART/SCIENCE ENTITY -->	
+<!--########################################################################-->
+
+<xsl:template name = "stateofart">
+
+		<xsl:if test="cerif:StateOfArt">
+
+			<xsl:call-template name="vertical-gap">  <!-- make a small gap first to indicate a separation from the items above-->
+				<xsl:with-param name="margin" select="$gapMarginTop"/>
+			</xsl:call-template>
+
+			<xsl:call-template name="key-only">  <!-- partner key -->
+				<xsl:with-param name="key" select="'Stand der Wissenschaft und Technik'"/>
+			</xsl:call-template>	
+
+			<xsl:for-each select="cerif:StateOfArt/cerif:Index">
+
+				<fo:block border-width="{$borderWidth}"
+									border-color="{$borderColour}"
+									border-style="{$borderStyle}"
+									margin-top="{$mainMarginTop}"
+									margin-left="{$borderMarginLeft}"
+									margin-right="{$borderMarginRight}"
+									padding-before="{$borderPaddingBefore}"
+									padding-after="{$borderPaddingAfter}"
+									padding-start="{$borderPaddingStart}"
+									padding-end="{$borderPaddingEnd}">
+							
+									<xsl:call-template name="key-value-single">
+										<xsl:with-param name="key" select="'Name'"/>
+										<xsl:with-param name="value" select="cerif:TitleSOA"/>
+								  </xsl:call-template>	
+
+								  <xsl:call-template name="key-value-single">
+									<xsl:with-param name="key" select="'Beschreibung'"/>
+									<xsl:with-param name="value" select="cerif:DescriptionSOA"/>
+							  </xsl:call-template>
+
+				</fo:block> 		
+
+			</xsl:for-each> -->
+	
+		</xsl:if>
+	
 	</xsl:template>
 
 <!--########################################################################-->
@@ -545,12 +646,106 @@
 	  </xsl:if>
 	</xsl:template>
 
+	<!-- key: postcode city / country -->
+	<xsl:template name = "key-postcode-city-country" >
+		<xsl:param name = "key"/>
+	  <xsl:param name = "postcode"/>
+	  <xsl:param name = "city"/>
+		<xsl:param name = "country"/>
+
+	  <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
+			<fo:block margin-left="{$textMarginLeft}"
+								font-size="{$standardFontSize}" 
+								margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="{$keyFontWeight}" 
+										text-align="{$keyTextAlignment}">
+					<xsl:value-of select="$key"/> 
+				</fo:inline>
+
+				<xsl:text>:</xsl:text>
+
+				<xsl:if test="$postcode"> 
+					<xsl:text> </xsl:text>
+					<fo:inline font-weight="{$valueFontWeight}" 
+											text-align="{$valueTextAlignment}">
+						<xsl:value-of select="$postcode"/> 
+					</fo:inline>
+			  </xsl:if>
+
+				<xsl:text> </xsl:text>
+
+				<fo:inline font-weight="{$valueFontWeight}" 
+										text-align="{$valueTextAlignment}">
+					<xsl:value-of select="$city"/> 
+				</fo:inline>
+
+				<xsl:if test="$country">
+					<xsl:text> / </xsl:text>
+					<fo:inline font-weight="{$valueFontWeight}" 
+											text-align="{$valueTextAlignment}">
+						<xsl:value-of select="$country"/> 
+					</fo:inline>
+			  </xsl:if>
+
+			</fo:block>
+
+	  </xsl:if>
+	</xsl:template>
+
+	<!-- key: name degree (gender) -->
+	<xsl:template name = "key-name-degree-gender" >
+		<xsl:param name = "key"/>
+	  <xsl:param name = "name"/>
+	  <xsl:param name = "degree"/>
+		<xsl:param name = "gender"/>
+
+	  <xsl:if test="$name"> <!--  use only name for check which is the most important input -->
+			<fo:block margin-left="{$textMarginLeft}"
+								font-size="{$standardFontSize}" 
+								margin-top="{$mainMarginTop}">
+
+				<fo:inline font-weight="{$keyFontWeight}" 
+										text-align="{$keyTextAlignment}">
+					<xsl:value-of select="$key"/> 
+				</fo:inline>
+
+				<xsl:text>: </xsl:text>
+
+				<fo:inline font-weight="{$valueFontWeight}" 
+										text-align="{$valueTextAlignment}">
+					<xsl:value-of select="$name"/> 
+				</fo:inline>
+
+				<xsl:if test="$degree">
+				  <xsl:text>, </xsl:text>
+
+					<fo:inline font-weight="{$valueFontWeight}" 
+											text-align="{$valueTextAlignment}">
+						<xsl:value-of select="$degree"/> 
+					</fo:inline>
+			  </xsl:if>
+
+				<xsl:if test="$gender">
+					<xsl:text> (</xsl:text>
+					<fo:inline font-weight="{$valueFontWeight}" 
+											text-align="{$valueTextAlignment}">
+						<xsl:value-of select="$gender"/> 
+					</fo:inline>
+					<xsl:text>)</xsl:text>
+			  </xsl:if>
+
+			</fo:block>
+
+	  </xsl:if>
+	</xsl:template>
+
 	<!-- key: value list separated by commas -->
 	<xsl:template name = "key-value-comma-list" >
 		<xsl:param name = "key"/>
-	  <xsl:param name = "values"/>
+	  <xsl:param name = "value"/>
 
-	  <xsl:if test="$values">
+	  <xsl:if test="$value">
 		  <fo:block margin-left="{$textMarginLeft}" 
 								font-size="{$standardFontSize}" 
 			          margin-top="{$mainMarginTop}">
@@ -564,7 +759,7 @@
 
 				<fo:inline font-weight="{$valueFontWeight}" 
 									 text-align="{$valueTextAlignment}">
-					<xsl:for-each select="$values">
+					<xsl:for-each select="$value">
 					  <xsl:value-of select="current()"/>
 					  <xsl:if test="position() != last()">, </xsl:if> <!-- do only this for the last item -->
 					</xsl:for-each>
@@ -577,9 +772,9 @@
 	<!-- key: every value in a separated line -->
 	<xsl:template name = "key-value-line-list" >
 		<xsl:param name = "key"/>
-	  <xsl:param name = "values"/>
+	  <xsl:param name = "value"/>
 
-		<xsl:if test="$values"> <!-- do only if there are values -->
+		<xsl:if test="$value"> <!-- do only if there are values -->
 
 			<fo:block margin-left="{$textMarginLeft}"
 								font-size="{$standardFontSize}" 
@@ -595,7 +790,7 @@
 			<fo:list-block margin-left="{$textMarginLeft}"
 			               font-size="{$standardFontSize}"
 										 margin-top="{$mainMarginTop}">
-				<xsl:for-each select="$values">
+				<xsl:for-each select="$value">
 					<fo:list-item>
 
 						<fo:list-item-label>      <!-- for whatever reason there is no space between label and body --> 

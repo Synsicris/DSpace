@@ -18,14 +18,14 @@
 	<!-- attributes from the impact pathway entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-	<ContributingFundingProgramme>
+	<ImpactPathway>
 		@relation.impactpathway.start@
 		
 		  <!-- direct attributes (basic accordion) -->
 			<Description>@dc.description.textarea@</Description>
 
 			@relation.impactpathway.end@	
-	</ContributingFundingProgramme>
+	</ImpactPathway>
 
 	<!--########################################################################-->
   <!-- attributes from the ethics entity (based on the discovery.xml) -->
@@ -106,8 +106,8 @@
 				<Index>
 
 				<!-- direct attributes (basic accordion) -->
-					<TitleSOA>@dc.title@</TitleSOA>
-					<DescriptionSOA>@dc.description@</DescriptionSOA>
+					<Title>@dc.title@</Title>
+					<Description>@dc.description@</Description>
 
 				</Index>
 			@relation.stateofart.end@

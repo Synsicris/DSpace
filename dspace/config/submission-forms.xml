@@ -3151,7 +3151,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3162,7 +3162,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3407,7 +3407,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -3485,7 +3485,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -3575,7 +3575,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3586,7 +3586,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3992,7 +3992,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4003,7 +4003,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5877,8 +5877,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <hint />
         </field>
       </row>
-    </form>
-    <form name="targetgroups_classification">
       <row>
         <field>
           <dc-schema>dc</dc-schema>

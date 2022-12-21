@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.solr.common.SolrInputDocument;
 import org.dspace.content.dao.RelationshipDAO;
 import org.dspace.content.service.RelationshipPlacesIndexingService;
 import org.dspace.core.Context;
@@ -39,6 +40,7 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
     @Override
     public void updateRelationReferences(final Context context, final Relationship relationship) throws SQLException {
 
+        final List<SolrInputDocument> relationDocuments = new LinkedList<>();
         // If only left position is used to sort this relation, we index all other impacted item positions starting
         // from left item
         if (singleDirectionRelationship("left", relationship.getRelationshipType())) {
@@ -49,7 +51,8 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
             List<String> rightItemsIdsToAdd = new LinkedList<>();
 
             for (final Relationship relation : relations) {
-                addLeftItemsReferences(context, relationship, relation);
+                Optional.ofNullable(addLeftItemsReferences(context, relationship, relation))
+                    .ifPresent(relationDocuments::add);
 
                 int times = 1;
                 if (singleDirectionRelationship("right", relationship.getRelationshipType())) {
@@ -58,10 +61,14 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
                 rightItemsIdsToAdd.addAll(Collections.nCopies(times, relation.getRightItem().getID().toString()));
             }
             if (!rightItemsIdsToAdd.isEmpty()) {
-
-                indexingService.updateRelationForItem(leftItem.getID().toString(),
-                                                      relationship.getRelationshipType().getRightwardType(),
-                                                      rightItemsIdsToAdd);
+                Optional.ofNullable(
+                    indexingService.generateSolrRelationDocumentForItem(
+                        leftItem.getID().toString(),
+                        relationship.getRelationshipType().getRightwardType(),
+                        rightItemsIdsToAdd
+                    )
+                )
+                    .ifPresent(relationDocuments::add);
             }
         } else {
             // if both or only right place is used to sort relationship, impacted items are indexed starting from
@@ -73,7 +80,8 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
             List<String> leftItemsIdsToAdd = new LinkedList<>();
 
             for (final Relationship relation : relations) {
-                addRightItemsReferences(context, relationship, relation);
+                Optional.ofNullable(addRightItemsReferences(context, relationship, relation))
+                    .ifPresent(relationDocuments::add);
 
                 int times = 1;
                 if (singleDirectionRelationship("left", relationship.getRelationshipType())) {
@@ -82,21 +90,27 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
                 leftItemsIdsToAdd.addAll(Collections.nCopies(times, relation.getLeftItem().getID().toString()));
             }
             if (!leftItemsIdsToAdd.isEmpty()) {
-
-                indexingService.updateRelationForItem(rightItem.getID().toString(),
-                                                      relationship.getRelationshipType().getRightwardType(),
-                                                      leftItemsIdsToAdd);
+                Optional.ofNullable(
+                    indexingService.generateSolrRelationDocumentForItem(
+                        rightItem.getID().toString(),
+                        relationship.getRelationshipType().getRightwardType(),
+                        leftItemsIdsToAdd
+                    )
+                )
+                    .ifPresent(relationDocuments::add);
             }
         }
+        this.indexingService.updateSolrDocuments(relationDocuments);
     }
 
 
-    private void addRightItemsReferences(final Context context, final Relationship relationship,
+    private SolrInputDocument addRightItemsReferences(final Context context, final Relationship relationship,
                                          final Relationship relation) throws SQLException {
         final Item leftItem = relation.getLeftItem();
         final List<Relationship> leftItemRelationships = relationshipDAO.findByItem(context, leftItem,
                                                                                     -1, -1, false);
         List<String> rightItemsToAdd = new LinkedList<>();
+        SolrInputDocument solrDoc = null;
         for (final Relationship leftItemRelation : leftItemRelationships) {
             int times = 1;
             if (singleDirectionRelationship("right", relationship.getRelationshipType())) {
@@ -105,18 +119,23 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
             rightItemsToAdd.addAll(Collections.nCopies(times, leftItemRelation.getRightItem().getID().toString()));
         }
         if (!rightItemsToAdd.isEmpty())  {
-            indexingService.updateRelationForItem(leftItem.getID().toString(),
-                                                  relation.getRelationshipType().getLeftwardType(),
-                                                  rightItemsToAdd);
+            solrDoc =
+                indexingService.generateSolrRelationDocumentForItem(
+                    leftItem.getID().toString(),
+                    relation.getRelationshipType().getLeftwardType(),
+                    rightItemsToAdd
+                );
         }
+        return solrDoc;
     }
 
-    private void addLeftItemsReferences(final Context context, final Relationship relationship,
+    private SolrInputDocument addLeftItemsReferences(final Context context, final Relationship relationship,
                                          final Relationship relation) throws SQLException {
         final Item rightItem = relation.getRightItem();
         final List<Relationship> leftItemRelationships = relationshipDAO.findByItem(context, rightItem,
                                                                                     -1, -1, false);
         List<String> rightItemsToAdd = new LinkedList<>();
+        SolrInputDocument solrDoc = null;
         for (final Relationship leftItemRelation : leftItemRelationships) {
             int times = 1;
             if (singleDirectionRelationship("left", relationship.getRelationshipType())) {
@@ -125,10 +144,14 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
             rightItemsToAdd.addAll(Collections.nCopies(times, leftItemRelation.getLeftItem().getID().toString()));
         }
         if (!rightItemsToAdd.isEmpty())  {
-            indexingService.updateRelationForItem(rightItem.getID().toString(),
-                                                  relation.getRelationshipType().getRightwardType(),
-                                                  rightItemsToAdd);
+            solrDoc =
+                indexingService.generateSolrRelationDocumentForItem(
+                    rightItem.getID().toString(),
+                    relation.getRelationshipType().getRightwardType(),
+                    rightItemsToAdd
+                );
         }
+        return solrDoc;
     }
 
 

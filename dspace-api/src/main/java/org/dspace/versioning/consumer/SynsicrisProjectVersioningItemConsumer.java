@@ -139,8 +139,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             String version = entry.getValue().getRight();
             Boolean isVersionVisible =
                 Boolean.valueOf(this.itemService.getMetadataFirstValue(item, MD_VERSION_VISIBLE, null));
+            ctx.turnOffAuthorisationSystem();
             this.consumeProjectItem(ctx, item, isVersionVisible, version);
             this.itemService.update(ctx, item);
+            ctx.restoreAuthSystemState();
             this.itemsToProcess.remove(entry.getKey());
         }
         ctx.commit();

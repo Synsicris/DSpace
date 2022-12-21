@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrInputDocument;
 import org.dspace.app.metrics.CrisMetrics;
 import org.dspace.core.Context;
 
@@ -71,4 +72,10 @@ public interface IndexingService {
     public QueryResponse retriveSolrDocByUniqueID(String uniqueID);
 
     void updateRelationForItem(String itemId, String relationLabel, List<String> relatedItems);
+
+    SolrInputDocument generateSolrRelationDocumentForItem(
+        String itemId, String relationLabel, List<String> relatedItems
+    );
+
+    void updateSolrDocuments(List<SolrInputDocument> relatedItemsDocument);
 }

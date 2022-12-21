@@ -515,7 +515,7 @@ public class RelationshipServiceImpl implements RelationshipService {
             }
 
             for (Item item : itemsToUpdate) {
-                updateItem(context, item);
+                updateItem(context, this.itemService.find(context, item.getID()));
             }
         } catch (AuthorizeException e) {
             log.error("Authorization Exception while authorization has been disabled", e);
@@ -720,6 +720,7 @@ public class RelationshipServiceImpl implements RelationshipService {
         return true;
     }
 
+    @Override
     public List<Relationship> findByItemAndRelationshipType(Context context, Item item,
                                                             RelationshipType relationshipType, boolean isLeft)
         throws SQLException {

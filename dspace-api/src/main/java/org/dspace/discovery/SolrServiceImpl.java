@@ -352,6 +352,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
     /**
      * Removes all documents from the Lucene index
      */
+    @Override
     public void deleteIndex() {
         try {
             final List<IndexFactory> indexableObjectServices = indexObjectServiceFactory.
@@ -604,7 +605,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
 
                     locationQuery.append("m").append(community.getID());
 
-                    if (i != (communitiesPolicies.size() - 1)) {
+                    if (i != communitiesPolicies.size() - 1) {
                         locationQuery.append(" OR ");
                     }
                     allCollections.addAll(ContentServiceFactory.getInstance().getCommunityService()
@@ -702,7 +703,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
 
     public String locationToName(Context context, String field, String value) throws SQLException {
         if ("location.comm".equals(field) || "location.coll".equals(field)) {
-            int type = ("location.comm").equals(field) ? Constants.COMMUNITY : Constants.COLLECTION;
+            int type = "location.comm".equals(field) ? Constants.COMMUNITY : Constants.COLLECTION;
             DSpaceObject commColl = null;
             if (StringUtils.isNotBlank(value)) {
                 commColl = contentServiceFactory.getDSpaceObjectService(type).find(context, UUID.fromString(value));
@@ -1311,13 +1312,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
             //Add a comma separated list of the similar fields
             @SuppressWarnings("unchecked")
             java.util.Collection<String> similarityMetadataFields = CollectionUtils
-                .collect(mltConfig.getSimilarityMetadataFields(), new Transformer() {
-                    @Override
-                    public Object transform(Object input) {
-                        //Add the mlt appendix !
-                        return input + "_mlt";
-                    }
-                });
+                .collect(mltConfig.getSimilarityMetadataFields(), (Transformer) input -> input + "_mlt");
 
             solrQuery.setParam(MoreLikeThisParams.SIMILARITY_FIELDS, StringUtils.join(similarityMetadataFields, ','));
             solrQuery.setParam(MoreLikeThisParams.MIN_TERM_FREQ, String.valueOf(mltConfig.getMinTermFrequency()));
@@ -1593,7 +1588,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
     public QueryResponse retriveSolrDocByUniqueID(String uniqueID) {
         SolrClient solrClient =  solrSearchCore.getSolr();
         SolrQuery q = new SolrQuery(SearchUtils.RESOURCE_UNIQUE_ID + ":Item-" + uniqueID);
-        QueryResponse queryResponse = null;;
+        QueryResponse queryResponse = null;
         try {
             queryResponse = solrClient.query(q);
         } catch (SolrServerException | IOException e) {
@@ -1610,20 +1605,44 @@ public class SolrServiceImpl implements SearchService, IndexingService {
         SolrClient solrClient =  solrSearchCore.getSolr();
 
         try {
-            SolrInputDocument solrInDoc = new SolrInputDocument();
-            String itemType = IndexableItem.TYPE;
-            solrInDoc.addField(SearchUtils.RESOURCE_UNIQUE_ID, itemType + "-" + itemId);
-            solrInDoc.addField(SearchUtils.RESOURCE_TYPE_FIELD, itemType);
-            solrInDoc.addField(SearchUtils.RESOURCE_ID_FIELD, itemId);
-            final String field = "relation." + relationLabel;
-            solrInDoc.addField(field,
-                               Collections.<String, Object>singletonMap("set", relatedItems));
+            SolrInputDocument solrInDoc = generateSolrRelationDocumentForItem(itemId, relationLabel, relatedItems);
             req.add(solrInDoc);
             solrClient.request(req);
             solrClient.commit();
         } catch (SolrServerException | SolrException | IOException e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public void updateSolrDocuments(final List<SolrInputDocument> solrDocuments) {
+
+        UpdateRequest req = new UpdateRequest();
+        SolrClient solrClient =  solrSearchCore.getSolr();
+
+        try {
+            req.add(solrDocuments);
+            solrClient.request(req);
+            solrClient.commit();
+        } catch (SolrServerException | SolrException | IOException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+
+    @Override
+    public SolrInputDocument generateSolrRelationDocumentForItem(
+        final String itemId, final String relationLabel, final List<String> relatedItems
+    ) {
+        SolrInputDocument solrInDoc = new SolrInputDocument();
+        String itemType = IndexableItem.TYPE;
+        solrInDoc.addField(SearchUtils.RESOURCE_UNIQUE_ID, itemType + "-" + itemId);
+        solrInDoc.addField(SearchUtils.RESOURCE_TYPE_FIELD, itemType);
+        solrInDoc.addField(SearchUtils.RESOURCE_ID_FIELD, itemId);
+        final String field = "relation." + relationLabel;
+        solrInDoc.addField(field,
+                           Collections.<String, Object>singletonMap("set", relatedItems));
+        return solrInDoc;
     }
 
     private String itemType(Context context, DSpaceObject resource) {

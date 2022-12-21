@@ -3270,7 +3270,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>recipient-stats</dc-qualifier>
-          <label>Empfängerstatistik (wird aus profi importiert)</label>
+          <label>Empfängerstatistik (aus profi)</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3405,7 +3405,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -3483,7 +3483,7 @@
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -4641,7 +4641,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
+          <label>Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4882,7 +4882,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint>Wählen Sie bitte aus, wie Projektergebnisse genutzt werden können bzw. zu welcher Art der Lösung, Veränderung oder Innovation sie beitragen können.</hint>
+          <hint />
           <vocabulary closed="true">all-innovation</vocabulary>
         </field>
       </row>
@@ -4950,7 +4950,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <hint>Leitfragen:
-- Wie gut ist die Vereinbarkeit mit bestehenden Praktiken? 
+- Wie gut ist die Vereinbarkeit mit bestehenden Praktiken, Nutzungskontexten oder Lebenswirklichkeiten? 
 - Inwieweit können die Innovation von den Nutzenden ausprobiert und Effekte beobachtet werden? 
 - Inwieweit kann die Lösung, Veränderung oder Innovation von den Nutzenden flexibel an ihre Bedürfnisse angepasst oder in ihren Nutzungskontext eingebettet werden?</hint>
         </field>
@@ -5015,11 +5015,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
           <dc-qualifier>regional</dc-qualifier>
-          <label>Erläuterungen</label>
+          <label>Erläuterungen (bei Bedarf)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Nutzen Sie das Textfeld nur, wenn Sie noch etwas erläutern möchten.</hint>
         </field>
       </row>
     </form>
@@ -5162,12 +5162,12 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>quantity</dc-element>
-          <label>Menge / Anzahl</label>
+          <label>Menge / Anzahl (Steigerung)</label>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-2</style>
-          <hint />
+          <hint>Wenn durch das Projekt eine Steigerung einer bisher vorhandenen Entwicklung erzielt wurde, geben Sie nur die Steigerung an. Beispiel: Bevor das Projekt einen Einfluss hatte, nutzten 300 Betriebe eine bestimmte Form der Kompostierung. Nachdem das Projekt das Verfahren verbessert und darüber informiert hat, ist die Zahl im Jahr 2002 auf 800 Betriebe gestiegen. Entsprechend ist die einzutragende Steigerung 500 Betriebe.</hint>
         </field>
         <field>
           <dc-schema>synsicris</dc-schema>
@@ -5320,7 +5320,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
+          <label>Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5415,7 +5415,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>partner</dc-qualifier>
-          <label>Beteiligte Projektpartner, Unterauftragnehmer und Kooperationspartner</label>
+          <label>Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -5886,8 +5886,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <hint />
         </field>
       </row>
-    </form>
-    <form name="targetgroups_classification">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -8592,7 +8590,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <stored-value>external results</stored-value>
       </pair>
       <pair>
-        <displayed-value>Hypothesen – fachliche abgeleitet</displayed-value>
+        <displayed-value>Hypothesen – fachlich abgeleitet</displayed-value>
         <stored-value>scientific hypothesis</stored-value>
       </pair>
       <pair>

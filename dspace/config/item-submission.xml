@@ -295,11 +295,6 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="targetgroups_classification" mandatory="true" opened="false">
-      <heading>submit.progressbar.describe.targetgroups_classification</heading>
-      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
-      <type>submission-form</type>
-    </step-definition>
     <step-definition id="exp_societalimpact" mandatory="true">
       <heading>submit.progressbar.describe.exp_societalimpact</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -476,17 +471,17 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
-    <step-definition id="detect-duplicate" mandatory="true">
+    <step-definition id="detect-duplicate" mandatory="true" opened="false">
       <heading>submit.progressbar.detect-duplicate</heading>
       <processing-class>org.dspace.app.rest.submit.step.DetectPotentialDuplicateStep</processing-class>
       <type>detect-duplicate</type>
     </step-definition>
-    <step-definition id="license" mandatory="false">
+    <step-definition id="license" mandatory="false" opened="false">
       <heading>submit.progressbar.license</heading>
       <processing-class>org.dspace.app.rest.submit.step.LicenseStep</processing-class>
       <type>license</type>
     </step-definition>
-    <step-definition id="cclicense" mandatory="false">
+    <step-definition id="cclicense" mandatory="false" opened="false">
       <heading>submit.progressbar.CClicense</heading>
       <processing-class>org.dspace.app.rest.submit.step.CCLicenseStep</processing-class>
       <type>cclicense</type>
@@ -819,12 +814,10 @@
     </submission-process>
     <submission-process name="targetgroups">
       <step id="targetgroups" />
-      <step id="targetgroups_classification" />
       <step id="internalacc" />
     </submission-process>
     <submission-process name="targetgroups-edit">
       <step id="targetgroups" />
-      <step id="targetgroups_classification" />
       <step id="internalacc" />
     </submission-process>
     <submission-process name="exp_societalimpact">

@@ -2657,7 +2657,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>relevance-development</dc-qualifier>
+          <dc-qualifier>development</dc-qualifier>
           <label>Relevance for development cooperation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2669,7 +2669,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>development-countries</dc-qualifier>
+          <dc-qualifier>countries</dc-qualifier>
           <label>Relevant countries for development cooperation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2683,7 +2683,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>nace-use</dc-qualifier>
+          <dc-qualifier>nace</dc-qualifier>
           <label>Potential application</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -2784,7 +2784,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>sort-primary</dc-qualifier>
+          <dc-qualifier>sortprimary</dc-qualifier>
           <label>Keyword Primary-Sorter</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2834,7 +2834,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <dc-qualifier>fundingParent</dc-qualifier>
           <label>Acronym funding programme</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2848,7 +2848,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <dc-qualifier>fundingParent</dc-qualifier>
           <label>profi-ID funding programme</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2874,7 +2874,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-call</dc-qualifier>
+          <dc-qualifier>call</dc-qualifier>
           <label>Acronym call</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2888,7 +2888,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-call</dc-qualifier>
+          <dc-qualifier>call</dc-qualifier>
           <label>profi-ID call</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2942,7 +2942,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>easy-import</dc-qualifier>
+          <dc-qualifier>easyimport</dc-qualifier>
           <label>Executing Organisation in the official proposal (easy-online)</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
@@ -3044,7 +3044,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Internal-name-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3056,7 +3056,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Internal-adress-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3068,7 +3068,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Internal-name-id profi of parent organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3151,7 +3151,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3162,7 +3162,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3271,7 +3271,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>recipient-stats</dc-qualifier>
+          <dc-qualifier>recipient</dc-qualifier>
           <label>profi recipient stats</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3401,13 +3401,13 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-personleader</dc-qualifier>
+          <dc-qualifier>personleader</dc-qualifier>
           <label>Person-Nr. Projectleader profi (PERS_NR_PL)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -3479,13 +3479,13 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-personadmin</dc-qualifier>
+          <dc-qualifier>personadmin</dc-qualifier>
           <label>Person-Nr. Projectcoordination - admin profi (PERS_NR_PL)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <hint />
-          <readonly>all</readonly>
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -3575,7 +3575,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3586,7 +3586,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -3723,7 +3723,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Internal-name-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3735,7 +3735,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Internal-adress-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3747,7 +3747,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Internal-name-id profi of parent organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3876,7 +3876,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Internal-name-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3887,7 +3887,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Internal-adress-id profi</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3898,7 +3898,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Internal-name-id profi of parent organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3992,7 +3992,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressPostcodePostbox</dc-qualifier>
-          <label>Postcode of the post office box</label>
+          <label>Postcode of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4003,7 +4003,7 @@ it, please select a type and enter the actual number or code.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>address</dc-element>
           <dc-qualifier>addressCityPostbox</dc-qualifier>
-          <label>City of the post office box</label>
+          <label>City of post office box</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -4330,12 +4330,12 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_performance-synsicris-date-reference-year-performance">
+    <form name="spinoffs_result_performance-synsicris-date-performance">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-performance</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Reference year</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4346,7 +4346,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>annual-sales</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Annual sales</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4358,7 +4358,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>currency-annual-sales</dc-qualifier>
+          <dc-qualifier>currencyperformance</dc-qualifier>
           <label>Currency</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4368,12 +4368,12 @@ it, please select a type and enter the actual number or code.</hint>
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_funding-synsicris-date-reference-year-funding">
+    <form name="spinoffs_result_funding-synsicris-date-funding">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-funding</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Reference year</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4407,7 +4407,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>currency-funding</dc-qualifier>
+          <dc-qualifier>currencyfunding</dc-qualifier>
           <label>Currency</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4604,7 +4604,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-funding</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Funding of the spin-off</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -4629,7 +4629,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-performance</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Reference year performance</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -4980,7 +4980,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional-primary</dc-qualifier>
+          <dc-qualifier>regionalprimary</dc-qualifier>
           <label>1. Primary field of application</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4991,7 +4991,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional-secondary</dc-qualifier>
+          <dc-qualifier>regionalsecondary</dc-qualifier>
           <label>2. Later dissemination</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5018,7 +5018,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>rl-start</dc-qualifier>
+          <dc-qualifier>start</dc-qualifier>
           <label>Description state of development at projectstart</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5030,7 +5030,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>rl-end</dc-qualifier>
+          <dc-qualifier>end</dc-qualifier>
           <label>Description state of development at projectend</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5042,7 +5042,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
+          <dc-qualifier>level</dc-qualifier>
           <label>Selection TRL / SRL</label>
           <input-type value-pairs-name="srl_trl">list</input-type>
           <repeatable>false</repeatable>
@@ -5053,7 +5053,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>rl-start</dc-qualifier>
+          <dc-qualifier>start</dc-qualifier>
           <label>1. Readinesslevel at project start</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5064,7 +5064,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>rl-end</dc-qualifier>
+          <dc-qualifier>end</dc-qualifier>
           <label>2. Readinesslevel intended to reach at the end of the project</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5113,7 +5113,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>quantifier-own</dc-qualifier>
+          <dc-qualifier>quantifierown</dc-qualifier>
           <label>Free-defined unit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5252,7 +5252,7 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>project-contribution</dc-qualifier>
+          <dc-qualifier>contribution</dc-qualifier>
           <label>Nature of the project's participation in the event</label>
           <input-type value-pairs-name="project_contribution">list</input-type>
           <repeatable>false</repeatable>
@@ -5460,12 +5460,11 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
-    <form name="process_events_frequency-synsicris-type-process-event-frequency">
+    <form name="process_events_frequency-dc-type">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-frequency</dc-qualifier>
           <label>Type</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5510,9 +5509,8 @@ For example topics, specific methods, procedures, peculiarities of the participa
     <form name="process_events_frequency">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-frequency</dc-qualifier>
           <label>Information on frequency</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -5521,12 +5519,11 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
-    <form name="process_events_date-synsicris-type-process-event-date">
+    <form name="process_events_date-synsicris-type">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-date</dc-qualifier>
           <label>Type of interaction/event</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5617,7 +5614,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-date</dc-qualifier>
           <label>details of important events</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -5877,8 +5873,6 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <hint />
         </field>
       </row>
-    </form>
-    <form name="targetgroups_classification">
       <row>
         <field>
           <dc-schema>dc</dc-schema>
@@ -5908,7 +5902,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>enterprise-size</dc-qualifier>
+          <dc-qualifier>enterprise</dc-qualifier>
           <label>Size of business</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5934,7 +5928,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>urban-rural</dc-qualifier>
+          <dc-qualifier>urbanrural</dc-qualifier>
           <label>Locating the group of actors</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
           <repeatable>false</repeatable>
@@ -6019,7 +6013,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>positive-direction</dc-qualifier>
+          <dc-qualifier>intensity</dc-qualifier>
           <label>intensity of impact</label>
           <input-type value-pairs-name="impact_positive">list</input-type>
           <repeatable>false</repeatable>
@@ -6116,7 +6110,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>negative-direction</dc-qualifier>
+          <dc-qualifier>intensity</dc-qualifier>
           <label>intensity of impact</label>
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
@@ -6408,7 +6402,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>ethic-docs</dc-qualifier>
+          <dc-qualifier>docs</dc-qualifier>
           <label>Are there any further documents on the relevant ethical aspects?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
@@ -6709,7 +6703,7 @@ it, please enter the types and the actual numbers or codes.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>funding-guideline</dc-qualifier>
+          <dc-qualifier>guideline</dc-qualifier>
           <label>Reference to the key of the overarching funding guideline</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -9160,6 +9154,10 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col1" dc-term="stat_col1">
       <pair>
+        <displayed-value>Planned</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Changed</displayed-value>
         <stored-value>changed</stored-value>
       </pair>
@@ -9169,6 +9167,10 @@ it, please enter the types and the actual numbers or codes.</hint>
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col23" dc-term="stat_col23">
+      <pair>
+        <displayed-value>Planned</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
       <pair>
         <displayed-value>Changed</displayed-value>
         <stored-value>changed</stored-value>
@@ -9188,6 +9190,10 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col45" dc-term="stat_col45">
       <pair>
+        <displayed-value>Planned</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Changed</displayed-value>
         <stored-value>changed</stored-value>
       </pair>
@@ -9203,12 +9209,12 @@ it, please enter the types and the actual numbers or codes.</hint>
         <displayed-value>Archieved</displayed-value>
         <stored-value>archieved</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Canceled</displayed-value>
-        <stored-value>canceled</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col6" dc-term="stat_col6">
+      <pair>
+        <displayed-value>Planned</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
       <pair>
         <displayed-value>Changed</displayed-value>
         <stored-value>changed</stored-value>

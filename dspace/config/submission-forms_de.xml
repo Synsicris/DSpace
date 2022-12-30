@@ -2656,7 +2656,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>relevance-development</dc-qualifier>
+          <dc-qualifier>development</dc-qualifier>
           <label>Relevanz für Entwicklungszusammenarbeit (ODA-Relevanz)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2668,7 +2668,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>development-countries</dc-qualifier>
+          <dc-qualifier>countries</dc-qualifier>
           <label>Relevante Länder Entwicklungszusammenarbeit</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2682,7 +2682,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>nace-use</dc-qualifier>
+          <dc-qualifier>nace</dc-qualifier>
           <label>Anwendungspotenzial</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
@@ -2783,7 +2783,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>sort-primary</dc-qualifier>
+          <dc-qualifier>sortprimary</dc-qualifier>
           <label>Schlagwort Primärsorter</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2833,7 +2833,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <dc-qualifier>fundingParent</dc-qualifier>
           <label>Akronym Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2847,7 +2847,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-fundingParent</dc-qualifier>
+          <dc-qualifier>fundingParent</dc-qualifier>
           <label>profi-ID Fördermaßnahme/Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2873,7 +2873,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>acronym</dc-element>
-          <dc-qualifier>profi-call</dc-qualifier>
+          <dc-qualifier>call</dc-qualifier>
           <label>Acronym Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2887,7 +2887,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-call</dc-qualifier>
+          <dc-qualifier>call</dc-qualifier>
           <label>profi-ID Förderbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -2941,7 +2941,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>easy-import</dc-qualifier>
+          <dc-qualifier>easyimport</dc-qualifier>
           <label>Ausführende Stelle im easy-online-Antrag</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
@@ -3042,7 +3042,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Interne Namen-Kennung (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3054,7 +3054,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Interne Adress-Kennung (AD_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3066,7 +3066,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3269,7 +3269,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>recipient-stats</dc-qualifier>
+          <dc-qualifier>recipient</dc-qualifier>
           <label>Empfängerstatistik (aus profi)</label>
           <input-type value-pairs-name="recipient_stats">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -3399,7 +3399,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-personleader</dc-qualifier>
+          <dc-qualifier>personleader</dc-qualifier>
           <label>Personen-Nr. Projektleitung profi (PERS_NR_PL)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3477,7 +3477,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-personadmin</dc-qualifier>
+          <dc-qualifier>personadmin</dc-qualifier>
           <label>Personen-Nr. Projektkoordination / administration profi (PERS_NR_PL)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3720,7 +3720,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Interne Namen-Kennung (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3732,7 +3732,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Interne Adress-Kennung (AD_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3744,7 +3744,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3873,7 +3873,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name</dc-qualifier>
+          <dc-qualifier>name</dc-qualifier>
           <label>Interne Namen-Kennung (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3884,7 +3884,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-address</dc-qualifier>
+          <dc-qualifier>address</dc-qualifier>
           <label>Interne Adress-Kennung (AD_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -3895,7 +3895,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>internalid</dc-element>
-          <dc-qualifier>profi-name-parentOrganization</dc-qualifier>
+          <dc-qualifier>nameparentOrganization</dc-qualifier>
           <label>Interne Namen-Kennung der übergeordneten Organisation (N_NR)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4327,12 +4327,12 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_performance-synsicris-date-reference-year-performance">
+    <form name="spinoffs_result_performance-synsicris-date-performance">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-performance</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Referenzjahr</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4343,7 +4343,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>annual-sales</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Jahresumsatz</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -4355,7 +4355,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>currency-annual-sales</dc-qualifier>
+          <dc-qualifier>currencyperformance</dc-qualifier>
           <label>Währung</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4365,12 +4365,12 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="spinoffs_result_funding-synsicris-date-reference-year-funding">
+    <form name="spinoffs_result_funding-synsicris-date-funding">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-funding</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Jahr der Förderung</label>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4404,7 +4404,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>amount</dc-element>
-          <dc-qualifier>currency-funding</dc-qualifier>
+          <dc-qualifier>currencyfunding</dc-qualifier>
           <label>Währung</label>
           <input-type value-pairs-name="currency">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -4601,7 +4601,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-funding</dc-qualifier>
+          <dc-qualifier>funding</dc-qualifier>
           <label>Angaben zur Förderung</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -4626,7 +4626,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>date</dc-element>
-          <dc-qualifier>reference-year-performance</dc-qualifier>
+          <dc-qualifier>performance</dc-qualifier>
           <label>Übersicht zur wirtschaftlichen Entwicklung</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -4990,7 +4990,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional-primary</dc-qualifier>
+          <dc-qualifier>regionalprimary</dc-qualifier>
           <label>1. primärer Einsatzbereich</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5001,7 +5001,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>coverage</dc-element>
-          <dc-qualifier>regional-secondary</dc-qualifier>
+          <dc-qualifier>regionalsecondary</dc-qualifier>
           <label>2. spätere Verbreitung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5028,7 +5028,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>rl-start</dc-qualifier>
+          <dc-qualifier>start</dc-qualifier>
           <label>Beschreibung Entwicklungsstand zum Projektbeginn (Startwert)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5040,7 +5040,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>description</dc-element>
-          <dc-qualifier>rl-end</dc-qualifier>
+          <dc-qualifier>end</dc-qualifier>
           <label>Beschreibung Entwicklungsstand zum Projektende (Zielwert)</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
@@ -5052,7 +5052,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>srl-trl</dc-qualifier>
+          <dc-qualifier>level</dc-qualifier>
           <label>Auswahl TRL/SRL</label>
           <input-type value-pairs-name="srl_trl">list</input-type>
           <repeatable>false</repeatable>
@@ -5063,7 +5063,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>rl-start</dc-qualifier>
+          <dc-qualifier>start</dc-qualifier>
           <label>1. Reifegrad der Lösung / Innovation zum Projektbeginn (Startwert)</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5074,7 +5074,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>level</dc-element>
-          <dc-qualifier>rl-end</dc-qualifier>
+          <dc-qualifier>end</dc-qualifier>
           <label>2. Reifegrad der Lösung / Innovation zum Projektende (Zielwert)</label>
           <input-type value-pairs-name="readiness_level">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5123,7 +5123,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>quantifier-own</dc-qualifier>
+          <dc-qualifier>quantifierown</dc-qualifier>
           <label>Einheit (eigene Angaben)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5262,7 +5262,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>project-contribution</dc-qualifier>
+          <dc-qualifier>contribution</dc-qualifier>
           <label>Art der Beteiligung des Projektes</label>
           <input-type value-pairs-name="project_contribution">list</input-type>
           <repeatable>false</repeatable>
@@ -5469,12 +5469,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="process_events_frequency-synsicris-type-process-event-frequency">
+    <form name="process_events_frequency-dc-type">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-frequency</dc-qualifier>
           <label>Art</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5519,9 +5518,8 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
     <form name="process_events_frequency">
       <row>
         <field>
-          <dc-schema>synsicris</dc-schema>
+          <dc-schema>dc</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-frequency</dc-qualifier>
           <label>Angaben zur Häufigkeit</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -5530,12 +5528,11 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         </field>
       </row>
     </form>
-    <form name="process_events_date-synsicris-type-process-event-date">
+    <form name="process_events_date-synsicris-type">
       <row>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-date</dc-qualifier>
           <label>Art</label>
           <input-type value-pairs-name="process_event_type">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5626,7 +5623,6 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>process-event-date</dc-qualifier>
           <label>Daten zum Treffen/Veranstaltung</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
@@ -5916,7 +5912,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>enterprise-size</dc-qualifier>
+          <dc-qualifier>enterprise</dc-qualifier>
           <label>Unternehmensgröße</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
           <repeatable>false</repeatable>
@@ -5942,7 +5938,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>subject</dc-element>
-          <dc-qualifier>urban-rural</dc-qualifier>
+          <dc-qualifier>urbanrural</dc-qualifier>
           <label>Verortung der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
           <repeatable>false</repeatable>
@@ -6027,7 +6023,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>positive-direction</dc-qualifier>
+          <dc-qualifier>intensity</dc-qualifier>
           <label>Wirkungsintensität</label>
           <input-type value-pairs-name="impact_positive">list</input-type>
           <repeatable>false</repeatable>
@@ -6124,7 +6120,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>negative-direction</dc-qualifier>
+          <dc-qualifier>intensity</dc-qualifier>
           <label>Intensität der neg. Nebenwirkung</label>
           <input-type value-pairs-name="impact_negative">list</input-type>
           <repeatable>false</repeatable>
@@ -6417,7 +6413,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
-          <dc-qualifier>ethic-docs</dc-qualifier>
+          <dc-qualifier>docs</dc-qualifier>
           <label>Gibt es weitergehende Dokumente zu den relevanten ethischen Aspekten?</label>
           <input-type value-pairs-name="yes_no">list</input-type>
           <repeatable>false</repeatable>
@@ -6717,7 +6713,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>funding-guideline</dc-qualifier>
+          <dc-qualifier>guideline</dc-qualifier>
           <label>Schlüssel der übergeordneten Förderrichtlinie</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -9168,6 +9164,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="stat_col1" dc-term="stat_col1">
       <pair>
+        <displayed-value>Geplant</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Geändert</displayed-value>
         <stored-value>changed</stored-value>
       </pair>
@@ -9177,6 +9177,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
       </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col23" dc-term="stat_col23">
+      <pair>
+        <displayed-value>Geplant</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
       <pair>
         <displayed-value>Geändert</displayed-value>
         <stored-value>changed</stored-value>
@@ -9196,6 +9200,10 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="stat_col45" dc-term="stat_col45">
       <pair>
+        <displayed-value>Geplant</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
+      <pair>
         <displayed-value>Geändert</displayed-value>
         <stored-value>changed</stored-value>
       </pair>
@@ -9211,12 +9219,12 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
         <displayed-value>Erreicht</displayed-value>
         <stored-value>archieved</stored-value>
       </pair>
-      <pair>
-        <displayed-value>Gestrichen</displayed-value>
-        <stored-value>canceled</stored-value>
-      </pair>
     </value-pairs>
     <value-pairs value-pairs-name="stat_col6" dc-term="stat_col6">
+      <pair>
+        <displayed-value>Geplant</displayed-value>
+        <stored-value>planned</stored-value>
+      </pair>
       <pair>
         <displayed-value>Geändert</displayed-value>
         <stored-value>changed</stored-value>

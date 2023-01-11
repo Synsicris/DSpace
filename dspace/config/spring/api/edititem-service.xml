@@ -1400,7 +1400,7 @@
                                     ADMIN
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffect-edit" />
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="EDIT_GRANTS" />
@@ -1423,7 +1423,7 @@
                                     CUSTOM
                                 </value>
                             </property>
-                            <property name="submissionDefinition" value="neg_sideeffects-edit" />
+                            <property name="submissionDefinition" value="neg_sideeffect-edit" />
                             <property name="groups">
                                 <list>
                                     <value>cris.policy.group</value>

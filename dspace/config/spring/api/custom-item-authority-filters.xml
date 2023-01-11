@@ -23,14 +23,15 @@
 				<value>ethic</value>
 				<value>Event</value>
 				<value>Funding</value>
-				<value>pot_societalimpact</value>
+				<value>exp_societalimpact</value>
 				<value>condition</value>
 				<value>gender</value>
+				<value>ia_objective</value>
 				<value>innovationidea</value>
 				<value>milestone</value>
+				<value>neg_sideeffect</value>			
 				<value>step</value>
 				<value>physical_object</value>
-				<value>other</value>
 				<value>Patent</value>
 				<value>plan_publication</value>
 				<value>process_event</value>
@@ -40,14 +41,14 @@
 				<value>Product</value>
 				<value>research_result</value>
 				<value>innovationpotential</value>
+				<value>open_researchquestion</value>				
 				<value>spinoff</value>
 				<value>stateofart</value>
-				<value>subcontractor</value>
 				<value>targetgroup</value>
 				<value>task</value>
-				<value>team</value>
 				<value>unexpected_result</value>
 				<value>workpackage</value>
+				<value>workingplan</value>
 				<value>exploitationplanstep</value>
 				<value>exploitationplan</value>
 				<value>interim_report_step</value>

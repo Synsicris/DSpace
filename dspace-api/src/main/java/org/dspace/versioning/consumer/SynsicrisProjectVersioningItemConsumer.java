@@ -291,11 +291,16 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                 if (isLastVisibleProjectVersion) {
                     addLastVersionVisible(ctx, actual);
                 }
+                
+                if (!this.projectConsumerService.isProjectItem(actual)) {
+                    addVersionVisible(ctx, actual);
+                }
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addVersionPolicyGroups(ctx, actual, fundersGroup, readersGroup, membersGroup);
             // hides versioned project and all its items to the funder role of the project-community
             } else {
+                clearVersionVisible(ctx, actual);
                 addMetadataPolicies(ctx, community, actual);
                 removeReadPolicy(ctx, actual, fundersGroup);
                 removeVersionPolicyGroup(ctx, actual, fundersGroup, readersGroup, membersGroup);
@@ -329,12 +334,34 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             throw new RuntimeException(e);
         }
     }
+    
+    private void addVersionVisible(Context ctx, Item actual) {
+        try {
+            this.itemService.setMetadataSingleValue(
+                ctx, actual, MD_VERSION_VISIBLE.schema, MD_VERSION_VISIBLE.element,
+                MD_VERSION_VISIBLE.qualifier, null, Boolean.TRUE.toString()
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private void clearLastVersionVisible(Context ctx, Item actual) {
         try {
             this.itemService.setMetadataSingleValue(
                 ctx, actual, MD_LAST_VERSION_VISIBLE.schema, MD_LAST_VERSION_VISIBLE.element,
                 MD_LAST_VERSION_VISIBLE.qualifier, null, Boolean.FALSE.toString()
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    private void clearVersionVisible(Context ctx, Item actual) {
+        try {
+            this.itemService.setMetadataSingleValue(
+                ctx, actual, MD_VERSION_VISIBLE.schema, MD_VERSION_VISIBLE.element,
+                MD_VERSION_VISIBLE.qualifier, null, Boolean.FALSE.toString()
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -418,7 +418,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.gender", "m")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.personleader.phone",
                                                                        "+49 721 16006-256")))
-                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.easy-import", "Yes")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.easyimport", "Yes")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.legalform", "GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.orgform", "SME")));
         } finally {

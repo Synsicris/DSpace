@@ -85,7 +85,7 @@ public class ProjectConstants {
         new MetadataFieldName("synsicris", "relation", "funding");
 
     public static final MetadataFieldName MD_EASYIMPORT =
-        new MetadataFieldName("synsicris", "type", "easy-import");
+        new MetadataFieldName("synsicris", "type", "easyimport");
 
     public static final MetadataFieldName MD_AGROVOC = new MetadataFieldName("synsicris", "subject", "agrovoc");
 

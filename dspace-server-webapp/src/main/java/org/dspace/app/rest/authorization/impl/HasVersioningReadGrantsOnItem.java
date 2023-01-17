@@ -32,17 +32,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Checks if the given user has edit policy on the given item
+ * Checks if the given user has versioning read policy on the given item
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.com)
  *
  */
 @Component
-@AuthorizationFeatureDocumentation(name = HasEditGrantsOnItem.NAME,
+@AuthorizationFeatureDocumentation(name = HasVersioningReadGrantsOnItem.NAME,
     description = "Used to verify if the given user has policy grants on the given item")
-public class HasEditGrantsOnItem implements AuthorizationFeature {
+public class HasVersioningReadGrantsOnItem implements AuthorizationFeature {
 
-    public static final String NAME = "hasEditGrantsOnItem";
+    public static final String NAME = "hasVersioningReadGrantsOnItem";
 
     @Autowired
     private GroupService groupService;
@@ -72,7 +72,7 @@ public class HasEditGrantsOnItem implements AuthorizationFeature {
         }
         
         List<MetadataValue> mdList = itemService.getMetadataByMetadataString(item,
-                ProjectConstants.MD_POLICY_GROUP.toString());
+                ProjectConstants.MD_VERSION_READ_POLICY_GROUP.toString());
         
         if (mdList.size() == 0) {
             return false;

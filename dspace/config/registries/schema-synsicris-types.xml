@@ -33,7 +33,7 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>type</element>
-        <qualifier>easy-import</qualifier>
+        <qualifier>easyimport</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

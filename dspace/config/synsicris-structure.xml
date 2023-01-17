@@ -1393,7 +1393,7 @@
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
 	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
 	      <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>         
-	      <metadata name="synsicris.type.easy-import">No</metadata>
+	      <metadata name="synsicris.type.easyimport">No</metadata>
 	    </item-template>
 	  </collection>
 	  <collection>

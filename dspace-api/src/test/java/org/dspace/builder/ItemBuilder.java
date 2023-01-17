@@ -785,7 +785,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
     }
 
     public ItemBuilder withEasyImport(String value) {
-        return addMetadataValue(item, "synsicris", "type", "easy-import", value);
+        return addMetadataValue(item, "synsicris", "type", "easyimport", value);
     }
 
     public ItemBuilder withUniqueId(String value) {

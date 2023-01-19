@@ -10,7 +10,6 @@ package org.dspace.layout.service.impl;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -174,6 +173,8 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasWorkingPlanBoxContent(box, values);
             case "EXPLOITATIONPLAN":
                 return hasExploitationPlanBoxContent(box, values);
+            case "COMMENT":
+                return hasCommentBoxContent(box, values);
             case "METADATA":
             default:
                 return hasMetadataBoxContent(box, item);
@@ -260,6 +261,11 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         return true;
     }
 
+    private boolean hasCommentBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The box has no associated content
+        return true;
+    }
+
 
     protected boolean hasMetricsBoxContent(Context context, CrisLayoutBox box, Item item) {
 
@@ -323,6 +329,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
             .orElse(null);
     }
 
+    @Override
     public List<CrisLayoutBox> findByEntityAndType(Context context,String entity, String type) {
 
         try {

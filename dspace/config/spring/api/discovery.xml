@@ -139,6 +139,8 @@
                 <entry key="RELATION.Project.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
 
                 <!-- Synsicris Funding Related items -->
+                <entry key="COMMENT.Funding.comment_funding_all" value-ref="commentItemCommentsConfiguration"/>
+                <entry key="COMMENT.Funding.comment" value-ref="commentItemCommentsConfiguration"/>
                 <entry key="RELATION.Funding.exploitationplan" value-ref="relationFundingExploitationplansConfiguration"/>
                 <entry key="RELATION.Funding.projectpartner" value-ref="relationFundingProjectpartnersConfiguration"/>
                 <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -155,8 +157,8 @@
                 
 
                 <!-- Synsicris Project comments configuration -->
-                <entry key="RELATION.Project.comment" value-ref="relationItemCommentsConfiguration"/>
-				<entry key="RELATION.application.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Project.comment_project_all" value-ref="commentItemCommentsConfiguration"/>
+                <entry key="COMMENT.Project.comment" value-ref="commentItemCommentsConfiguration"/>
                 <entry key="RELATION.award.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.contribution_fundingprogramme.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -2983,6 +2985,31 @@
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
                 <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:projectpartner</value>
+            </list>
+        </property>
+    </bean>
+    
+        <bean id="commentItemCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortLastCommentCreated" />
+                        <ref bean="sortTitle" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.relation.commentItem_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
             </list>
         </property>
     </bean>

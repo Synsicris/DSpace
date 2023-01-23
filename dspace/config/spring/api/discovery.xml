@@ -157,8 +157,8 @@
                 
 
                 <!-- Synsicris Project comments configuration -->
-                <entry key="COMMENT.Project.comment_project_all" value-ref="commentItemCommentsConfiguration"/>
-                <entry key="COMMENT.Project.comment" value-ref="commentItemCommentsConfiguration"/>
+                <entry key="COMMENT.Project.comment_project_all" value-ref="allCommentsOfProjectConfiguration"/>
+                <entry key="COMMENT.Project.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.award.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.contribution_fundingprogramme.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
@@ -194,6 +194,8 @@
                 <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="RELATION.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.application.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="RELATION.impactpathwaystep.comment" value-ref="relationItemCommentsConfiguration"/>
 
                 <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
@@ -2988,8 +2990,8 @@
             </list>
         </property>
     </bean>
-    
-        <bean id="commentItemCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+
+    <bean id="allCommentsOfProjectConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3009,7 +3011,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.commentItem_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
+                <value>synsicris.relation.commentProject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
             </list>
         </property>
     </bean>
@@ -3034,7 +3036,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.item_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
+                <value>synsicris.relation.commentItem_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
             </list>
         </property>
     </bean>

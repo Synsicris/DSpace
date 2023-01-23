@@ -307,6 +307,22 @@
 						<xsl:with-param name="fontSize" select="$subSectionTitleFontSize"/>
 					</xsl:call-template>
 
+<!--########################################################################-->
+<!-- AREA FOR TESTING -->	
+<!--########################################################################-->
+
+					<xsl:call-template name="key-value-line-list" >
+						<xsl:with-param name = "key" select="'Test'"/>
+						<xsl:with-param name = "value" select="cerif:WorkPackage/cerif:Index/cerif:Acronym" />
+						<xsl:with-param name="fontSize" select="$keyValueFontSize"/>
+					<xsl:with-param name="fontWeight" select="$keyValueFontWeight"/>
+					</xsl:call-template>
+
+
+<!--########################################################################-->
+<!-- AREA FOR TESTING-->	
+<!--########################################################################-->
+
 					<!-- new page -->
           <fo:block break-after='page'/>
 
@@ -872,7 +888,7 @@
 													<xsl:with-param name="title" select="'Verantwortlicher Partner'"/>
 													<xsl:with-param name="fontSize" select="$subSubSectionTitleFontSize"/>
 												</xsl:call-template>
-												<xsl:value-of select="cerif:ProjectPartner/cerif:Index/cerif:Import/cerif:OrganisationName" />
+												<xsl:value-of select="cerif:Acronym" />
 												</fo:block>
 
 										</fo:table-cell>

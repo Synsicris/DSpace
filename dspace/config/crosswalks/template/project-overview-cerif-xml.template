@@ -162,17 +162,22 @@
 
 	<WorkPackage>
 		@relation.workpackage.start@
-
+		
 		  <Index>
-
+			
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
 				<Requirement>@synsicris.description.requirements@</Requirement>
-
+			
+				@relation.projectpartner.start@
+					Acronym>@oairecerif.acronym@</Acronym>
+				@relation.projectpartner.end@
+			
 			</Index>
 
 		@relation.workpackage.end@
+
 	</WorkPackage>
 
 	<!--########################################################################-->
@@ -589,9 +594,11 @@
 				<Donor>@synsicris.contributor.donor@</Donor>
 				<TargetGroup>@dc.description.targetgroup@</TargetGroup>
 
+
 			</Index>
 
 		@relation.award.end@
+
 	</Award>
 
 	<!--########################################################################-->

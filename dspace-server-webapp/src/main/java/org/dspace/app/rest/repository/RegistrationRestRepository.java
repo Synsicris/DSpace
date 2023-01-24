@@ -7,6 +7,8 @@
  */
 package org.dspace.app.rest.repository;
 
+import static org.dspace.eperson.service.CaptchaService.REGISTER_ACTION;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.rest.Parameter;
 import org.dspace.app.rest.SearchRestMethod;
@@ -37,11 +40,14 @@ import org.dspace.content.service.CommunityService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.InvalidReCaptchaException;
 import org.dspace.eperson.RegistrationData;
 import org.dspace.eperson.service.AccountService;
+import org.dspace.eperson.service.CaptchaService;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.eperson.service.RegistrationDataService;
+import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +63,7 @@ import org.springframework.stereotype.Component;
 @Component(RegistrationRest.CATEGORY + "." + RegistrationRest.NAME)
 public class RegistrationRestRepository extends DSpaceRestRepository<RegistrationRest, Integer> {
 
-    private static Logger log = org.apache.logging.log4j.LogManager.getLogger(RegistrationRestRepository.class);
+    private static Logger log = LogManager.getLogger(RegistrationRestRepository.class);
 
     @Autowired
     private EPersonService ePersonService;
@@ -67,6 +73,12 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
 
     @Autowired
     private RequestService requestService;
+
+    @Autowired
+    private CaptchaService captchaService;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Autowired
     private RegistrationDataService registrationDataService;
@@ -98,6 +110,18 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
         HttpServletRequest request = requestService.getCurrentRequest().getHttpServletRequest();
         ObjectMapper mapper = new ObjectMapper();
         RegistrationRest registrationRest;
+
+        String captchaToken = request.getHeader("X-Recaptcha-Token");
+        boolean verificationEnabled = configurationService.getBooleanProperty("registration.verification.enabled");
+
+        if (verificationEnabled) {
+            try {
+                captchaService.processResponse(captchaToken, REGISTER_ACTION);
+            } catch (InvalidReCaptchaException e) {
+                throw new InvalidReCaptchaException(e.getMessage(), e);
+            }
+        }
+
         try {
             ServletInputStream input = request.getInputStream();
             registrationRest = mapper.readValue(input, RegistrationRest.class);
@@ -111,7 +135,7 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
             try {
                 if (Objects.isNull(context.getCurrentUser())
                     || (!authorizeService.isAdmin(context)
-                        & !hasPermission(context, registrationRest.getGroups()))) {
+                        && !hasPermission(context, registrationRest.getGroups()))) {
                     throw new AccessDeniedException("Only admin users can invite new users to join groups");
                 }
             } catch (SQLException e) {
@@ -259,6 +283,10 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
             }
         }
         return uuid;
+    }
+
+    public void setCaptchaService(CaptchaService captchaService) {
+        this.captchaService = captchaService;
     }
 
 }

@@ -2093,7 +2093,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
         String token = getAuthToken(topLevelCommunityAAdmin.getEmail(), password);
 
-        // Verify the community admin gets all the communities he's admin for
+        // Verify the community admin gets all the communities they are admin for
         getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
@@ -2146,7 +2146,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
         String token = getAuthToken(subCommunityAAdmin.getEmail(), password);
 
-        // Verify the community admin gets all the communities he's admin for
+        // Verify the community admin gets all the communities they are admin for
         getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
@@ -2306,7 +2306,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
         String token = getAuthToken(eperson.getEmail(), password);
 
-        // Verify the community admins' subgroup users get all the communities he's admin for
+        // Verify the community admins' subgroup users get all the communities they are admin for
         getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(
@@ -2359,7 +2359,7 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
 
         String token = getAuthToken(eperson.getEmail(), password);
 
-        // Verify the sub-community admins' subgroup users get all the communities he's admin for
+        // Verify the sub-community admins' subgroup users get all the communities they are admin for
         getClient(token).perform(get("/api/core/communities/search/findAdminAuthorized"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.communities", Matchers.containsInAnyOrder(

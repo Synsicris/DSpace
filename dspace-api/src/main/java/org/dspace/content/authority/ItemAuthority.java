@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -51,7 +52,7 @@ import org.dspace.utils.DSpace;
  * @version $Revision $
  */
 public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
-    private static final Logger log = Logger.getLogger(ItemAuthority.class);
+    private static Logger log = LogManager.getLogger(ItemAuthority.class);
     final static String CHOICES_EXTERNALSOURCE_PREFIX = "choises.externalsource.";
 
     /** the name assigned to the specific instance by the PluginService, @see {@link NameAwarePlugin} **/
@@ -145,7 +146,9 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         return results
         .stream()
         .map(doc ->  {
-            String title = ((ArrayList<String>) doc.getFieldValue("dc.title")).get(0);
+            Object fieldValue = doc.getFieldValue("dc.title");
+            String title = fieldValue instanceof String ? (String) fieldValue :
+                ((ArrayList<String>) fieldValue).get(0);
             Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
             return new Choice((String) doc.getFieldValue("search.resourceid"),
                 title,

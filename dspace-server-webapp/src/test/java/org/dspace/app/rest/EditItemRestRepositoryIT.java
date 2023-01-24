@@ -9,12 +9,17 @@ package org.dspace.app.rest;
 
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
 import static java.util.List.of;
+import static org.dspace.app.matcher.ResourcePolicyMatcher.matches;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -22,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +39,8 @@ import org.dspace.app.rest.model.patch.AddOperation;
 import org.dspace.app.rest.model.patch.Operation;
 import org.dspace.app.rest.model.patch.RemoveOperation;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
+import org.dspace.authorize.ResourcePolicy;
+import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
@@ -41,15 +49,19 @@ import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.VersionBuilder;
+import org.dspace.content.Bitstream;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.edit.EditItem;
+import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.ItemService;
+import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.Version;
 import org.hamcrest.Matchers;
@@ -69,6 +81,15 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private BitstreamService bitstreamService;
+
+    @Autowired
+    private AuthorizeService authorizeService;
+
+    @Autowired
+    private GroupService groupService;
 
     @Autowired
     private ConfigurationService configurationService;
@@ -644,7 +665,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
                                 .withAuthor("Smith, Maria")
                                 .build();
 
-        itemService.addMetadata(context, itemA, "cris", "owner", null, null, userA.getID().toString());
+        itemService.addMetadata(context, itemA, "dspace", "object", "owner", null, userA.getID().toString());
 
         EditItem editItem = new EditItem(context, itemA);
 
@@ -684,7 +705,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
                                 .withAuthor("Smith, Maria")
                                 .build();
 
-        itemService.addMetadata(context, itemA, "cris", "owner", null, null, userA.getID().toString());
+        itemService.addMetadata(context, itemA, "dspace", "object", "owner", null, userA.getID().toString());
 
         EditItem editItem = new EditItem(context, itemA);
 
@@ -716,9 +737,8 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
                                 .withTitle("Title item A")
                                 .withIssueDate("2015-06-25")
                                 .withAuthor("Smith, Maria")
+                                .withDspaceObjectOwner(userA)
                                 .build();
-
-        itemService.addMetadata(context, itemA, "cris", "owner", null, null, userA.getID().toString());
 
         EditItem editItem = new EditItem(context, itemA);
 
@@ -830,11 +850,11 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
             .build();
 
         Item author = ItemBuilder.createItem(context, collection)
-            .withCrisOwner(firstUser)
+            .withDspaceObjectOwner(firstUser)
             .build();
 
         Item editor = ItemBuilder.createItem(context, collection)
-            .withCrisOwner(secondUser)
+            .withDspaceObjectOwner(secondUser)
             .build();
 
         Item item = ItemBuilder.createItem(context, collection)
@@ -873,9 +893,9 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         Item itemA = ItemBuilder.createItem(context, col1)
                                 .withIssueDate("2015-06-25")
-                                .withAuthor("Mykhaylo, Boychuk").build();
-
-        itemService.addMetadata(context, itemA, "cris", "owner", null, null, eperson.getID().toString());
+                                .withAuthor("Mykhaylo, Boychuk")
+                                .withDspaceObjectOwner(eperson)
+                                .build();
 
         EditItem editItem = new EditItem(context, itemA);
 
@@ -922,9 +942,9 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         Item itemA = ItemBuilder.createItem(context, col1)
                                 .withIssueDate("2015-06-25")
-                                .withAuthor("Mykhaylo, Boychuk").build();
-
-        itemService.addMetadata(context, itemA, "cris", "owner", null, null, eperson.getID().toString());
+                                .withAuthor("Mykhaylo, Boychuk")
+                                .withDspaceObjectOwner(eperson)
+                                .build();
 
         EditItem editItem = new EditItem(context, itemA);
 
@@ -1316,7 +1336,7 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         Item itemA = ItemBuilder.createItem(context, collection)
             .withTitle("My Item")
             .withIssueDate("2022")
-            .withCrisOwner(user)
+            .withDspaceObjectOwner(user)
             .build();
 
         EditItem editItem = new EditItem(context, itemA);
@@ -1401,51 +1421,332 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
     }
 
     @Test
+    public void testFindModesById() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("Parent Community")
+                                          .build();
+
+        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity)
+                                           .withEntityType("Publication")
+                                           .withName("Collection 1")
+                                           .build();
+
+        Item itemA = ItemBuilder.createItem(context, col1)
+                                .withTitle("Title item A")
+                                .withIssueDate("2015-06-25")
+                                .withAuthor("Smith, Maria")
+                                .build();
+
+        EditItem editItem = new EditItem(context, itemA);
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        getClient(tokenAdmin).perform(get("/api/core/edititems/search/findModesById")
+                                          .param("uuid" , editItem.getID()))
+                             .andExpect(status().isOk())
+                             .andExpect(jsonPath("$._embedded").exists())
+                             .andExpect(jsonPath("$.page.totalElements", greaterThanOrEqualTo(1)))
+                             .andExpect(jsonPath("$._embedded.edititemmodes[0].id" , is("MODE1")));
+    }
+
+    @Test
+    public void testFindModesForNotExistingId() throws Exception {
+
+        String id = "bef23ba3-9aeb-4f7b-b153-77b0f1fc3612";
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        getClient(tokenAdmin).perform(get("/api/core/edititems/search/findModesById")
+                                          .param("uuid" , id))
+                             .andExpect(status().isOk())
+                             .andExpect(jsonPath("$._embedded").doesNotExist())
+                             .andExpect(jsonPath("$.page.totalElements", is(0)));
+    }
+
+    @Test
+    public void testItemResourcePoliciesUpdateWithoutAppendMode() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community").build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withEntityType("Publication")
+            .withName("Collection 1")
+            .build();
+
+        Item itemA = ItemBuilder.createItem(context, collection)
+            .withTitle("Test item")
+            .withIssueDate("2015-06-25")
+            .grantLicense()
+            .withFulltext("test.pdf", "source", InputStream.nullInputStream())
+            .build();
+
+        Group anonymousGroup = groupService.findByName(context, Group.ANONYMOUS);
+
+        Group adminGroup = groupService.findByName(context, Group.ADMIN);
+
+        context.restoreAuthSystemState();
+
+        assertThat(authorizeService.getPolicies(context, itemA),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        Map<String, String> accessCondition = Map.of("name", "administrator");
+        Operation addOperation = new AddOperation("/sections/defaultAC/accessConditions", List.of(accessCondition));
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(addOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, itemA),
+            contains(matches(Constants.READ, adminGroup, ResourcePolicy.TYPE_CUSTOM)));
+
+        Operation removeOperation = new RemoveOperation("/sections/defaultAC/accessConditions/0");
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(removeOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, itemA),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+    }
+
+    @Test
+    public void testItemResourcePoliciesUpdateWithAppendMode() throws Exception {
+
+        configurationService.setProperty("core.authorization.installitem.inheritance-read.append-mode", "true");
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community").build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withEntityType("Publication")
+            .withName("Collection 1")
+            .build();
+
+        Item itemA = ItemBuilder.createItem(context, collection)
+            .withTitle("Test item")
+            .withIssueDate("2015-06-25")
+            .grantLicense()
+            .withFulltext("test.pdf", "source", InputStream.nullInputStream())
+            .build();
+
+        Group anonymousGroup = groupService.findByName(context, Group.ANONYMOUS);
+
+        Group adminGroup = groupService.findByName(context, Group.ADMIN);
+
+        context.restoreAuthSystemState();
+
+        assertThat(authorizeService.getPolicies(context, itemA),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        Map<String, String> accessCondition = Map.of("name", "administrator");
+        Operation addOperation = new AddOperation("/sections/defaultAC/accessConditions", List.of(accessCondition));
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(addOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, itemA), containsInAnyOrder(
+            matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED),
+            matches(Constants.READ, adminGroup, ResourcePolicy.TYPE_CUSTOM)));
+
+        Operation removeOperation = new RemoveOperation("/sections/defaultAC/accessConditions/0");
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(removeOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, itemA),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+    }
+
+    @Test
+    public void testBitstreamResourcePoliciesUpdateWithoutAppendMode() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community").build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withEntityType("Publication")
+            .withName("Collection 1")
+            .build();
+
+        Item itemA = ItemBuilder.createItem(context, collection)
+            .withTitle("Test item")
+            .withIssueDate("2015-06-25")
+            .grantLicense()
+            .withFulltext("test.pdf", "source", InputStream.nullInputStream())
+            .build();
+
+        Group anonymousGroup = groupService.findByName(context, Group.ANONYMOUS);
+
+        Group adminGroup = groupService.findByName(context, Group.ADMIN);
+
+        context.restoreAuthSystemState();
+
+        Bitstream bitstream = getBitstream(itemA, "test.pdf");
+        assertThat(bitstream, notNullValue());
+
+        assertThat(authorizeService.getPolicies(context, bitstream),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        Map<String, String> value = Map.of("name", "administrator");
+        Operation addOperation = new AddOperation("/sections/upload/files/0/accessConditions/-", value);
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(addOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, bitstream),
+            contains(matches(Constants.READ, adminGroup, ResourcePolicy.TYPE_CUSTOM)));
+
+        Operation removeOperation = new RemoveOperation("/sections/upload/files/0/accessConditions/0");
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(removeOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, bitstream),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+    }
+
+    @Test
+    public void testBitstreamResourcePoliciesUpdateWithAppendMode() throws Exception {
+
+        configurationService.setProperty("core.authorization.installitem.inheritance-read.append-mode", "true");
+
+        context.turnOffAuthorisationSystem();
+
+        parentCommunity = CommunityBuilder.createCommunity(context)
+            .withName("Parent Community").build();
+
+        Collection collection = CollectionBuilder.createCollection(context, parentCommunity)
+            .withEntityType("Publication")
+            .withName("Collection 1")
+            .build();
+
+        Item itemA = ItemBuilder.createItem(context, collection)
+            .withTitle("Test item")
+            .withIssueDate("2015-06-25")
+            .grantLicense()
+            .withFulltext("test.pdf", "source", InputStream.nullInputStream())
+            .build();
+
+        Group anonymousGroup = groupService.findByName(context, Group.ANONYMOUS);
+
+        Group adminGroup = groupService.findByName(context, Group.ADMIN);
+
+        context.restoreAuthSystemState();
+
+        Bitstream bitstream = getBitstream(itemA, "test.pdf");
+        assertThat(bitstream, notNullValue());
+
+        assertThat(authorizeService.getPolicies(context, bitstream),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        Map<String, String> value = Map.of("name", "administrator");
+        Operation addOperation = new AddOperation("/sections/upload/files/0/accessConditions/-", value);
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(addOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, bitstream), containsInAnyOrder(
+            matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED),
+            matches(Constants.READ, adminGroup, ResourcePolicy.TYPE_CUSTOM)));
+
+        Operation removeOperation = new RemoveOperation("/sections/upload/files/0/accessConditions/0");
+
+        getClient(tokenAdmin).perform(patch("/api/core/edititems/" + itemA.getID() + ":MODE1")
+            .content(getPatchContent(List.of(removeOperation)))
+            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+            .andExpect(status().isOk());
+
+        assertThat(authorizeService.getPolicies(context, bitstream),
+            contains(matches(Constants.READ, anonymousGroup, ResourcePolicy.TYPE_INHERITED)));
+
+    }
+
+    private Bitstream getBitstream(Item item, String name) throws SQLException {
+        return bitstreamService.getBitstreamByName(item, "ORIGINAL", name);
+    }
+
+
+    @Test
     public void patchVersionedPublicationItemByNotAdminTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
         EPerson userA =
-            EPersonBuilder.createEPerson(context)
-                          .withNameInMetadata("Simone", "Proni")
-                          .withEmail("user.b@example.com")
-                          .withPassword(password)
-                          .build();
+                EPersonBuilder.createEPerson(context)
+                        .withNameInMetadata("Simone", "Proni")
+                        .withEmail("user.b@example.com")
+                        .withPassword(password)
+                        .build();
 
         Group groupA =
-            GroupBuilder.createGroup(context)
+                GroupBuilder.createGroup(context)
                         .withName("Group A")
                         .addMember(userA)
                         .build();
 
         parentCommunity =
-            CommunityBuilder.createCommunity(context)
-                            .withName("Parent Community")
-                            .build();
+                CommunityBuilder.createCommunity(context)
+                        .withName("Parent Community")
+                        .build();
 
         // create publication collection
         Collection col1 =
-            CollectionBuilder.createCollection(context, parentCommunity)
-                             .withEntityType("Publication")
-                             .withName("Collection 1")
-                             .withSubmissionDefinition("modeA")
-                             .build();
+                CollectionBuilder.createCollection(context, parentCommunity)
+                        .withEntityType("Publication")
+                        .withName("Collection 1")
+                        .withSubmissionDefinition("modeA")
+                        .build();
 
         Item itemA =
-            ItemBuilder.createItem(context, col1)
-                       .withIssueDate("2015-06-25")
-                       .withAuthor("Mykhaylo, Boychuk")
-                       .build();
+                ItemBuilder.createItem(context, col1)
+                        .withIssueDate("2015-06-25")
+                        .withAuthor("Mykhaylo, Boychuk")
+                        .build();
 
         itemService.addMetadata(
-            context, itemA,"cris", "policy", "group", null, groupA.getName(),groupA.getID().toString(), 600
+                context, itemA,"cris", "policy", "group", null, groupA.getName(),groupA.getID().toString(), 600
         );
 
         createIsVersionRelationshipType("Publication");
 
         // create new version
         Version version =
-            VersionBuilder.createVersion(context, itemA, "test")
-                          .build();
+                VersionBuilder.createVersion(context, itemA, "test")
+                        .build();
 
         EditItem editItem = new EditItem(context, version.getItem());
 
@@ -1460,9 +1761,9 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         String authToken = getAuthToken(userA.getEmail(), password);
         getClient(authToken).perform(patch("/api/core/edititems/" + editItem.getID() + ":FIRST-CUSTOM")
-                                 .content(patchBody)
-                                 .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
-                             .andExpect(status().isForbidden());
+                        .content(patchBody)
+                        .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -1470,29 +1771,29 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         context.turnOffAuthorisationSystem();
 
         parentCommunity =
-            CommunityBuilder.createCommunity(context)
-                            .withName("Parent Community")
-                            .build();
+                CommunityBuilder.createCommunity(context)
+                        .withName("Parent Community")
+                        .build();
 
         Collection col1 =
-            CollectionBuilder.createCollection(context, parentCommunity)
-                             .withEntityType("Publication")
-                             .withName("Collection 1")
-                             .withSubmissionDefinition("modeA")
-                             .build();
+                CollectionBuilder.createCollection(context, parentCommunity)
+                        .withEntityType("Publication")
+                        .withName("Collection 1")
+                        .withSubmissionDefinition("modeA")
+                        .build();
 
         Item itemA =
-            ItemBuilder.createItem(context, col1)
-                       .withIssueDate("2015-06-25")
-                       .withAuthor("Mykhaylo, Boychuk")
-                       .build();
+                ItemBuilder.createItem(context, col1)
+                        .withIssueDate("2015-06-25")
+                        .withAuthor("Mykhaylo, Boychuk")
+                        .build();
 
         createIsVersionRelationshipType("Publication");
 
         // create new version
         Version version =
-            VersionBuilder.createVersion(context, itemA, "test")
-                          .build();
+                VersionBuilder.createVersion(context, itemA, "test")
+                        .build();
 
         EditItem editItem = new EditItem(context, version.getItem());
 
@@ -1507,20 +1808,20 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         String tokenAdmin = getAuthToken(admin.getEmail(), password);
         getClient(tokenAdmin).perform(patch("/api/core/edititems/" + editItem.getID() + ":FIRST")
-                                 .content(patchBody)
-                                 .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
-                            .andExpect(jsonPath("$.sections.titleAndIssuedDate", Matchers.allOf(
-                                hasJsonPath("$['dc.title'][0].value", is("New Title")),
-                                hasJsonPath("$['dc.date.issued'][0].value", is("2015-06-25"))
-                            )));
+                        .content(patchBody)
+                        .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(jsonPath("$.sections.titleAndIssuedDate", Matchers.allOf(
+                        hasJsonPath("$['dc.title'][0].value", is("New Title")),
+                        hasJsonPath("$['dc.date.issued'][0].value", is("2015-06-25"))
+                )));
 
         // verify that the patch changes have been persisted
         getClient(tokenAdmin).perform(get("/api/core/edititems/" + editItem.getID() + ":FIRST"))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.sections.titleAndIssuedDate", Matchers.allOf(
-                                 hasJsonPath("$['dc.title'][0].value", is("New Title")),
-                                 hasJsonPath("$['dc.date.issued'][0].value", is("2015-06-25"))
-                             )));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.titleAndIssuedDate", Matchers.allOf(
+                        hasJsonPath("$['dc.title'][0].value", is("New Title")),
+                        hasJsonPath("$['dc.date.issued'][0].value", is("2015-06-25"))
+                )));
     }
 
     @Test
@@ -1528,53 +1829,53 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         context.turnOffAuthorisationSystem();
 
         EPerson userA =
-            EPersonBuilder.createEPerson(context)
-                          .withNameInMetadata("Simone", "Proni")
-                          .withEmail("user.b@example.com")
-                          .withPassword(password)
-                          .build();
+                EPersonBuilder.createEPerson(context)
+                        .withNameInMetadata("Simone", "Proni")
+                        .withEmail("user.b@example.com")
+                        .withPassword(password)
+                        .build();
 
         Group groupA =
-            GroupBuilder.createGroup(context)
+                GroupBuilder.createGroup(context)
                         .withName("Group A")
                         .addMember(userA)
                         .build();
 
         Community projectCommunity =
-            CommunityBuilder.createCommunity(context)
-                            .withName("project's community")
-                            .build();
+                CommunityBuilder.createCommunity(context)
+                        .withName("project's community")
+                        .build();
 
         Community projectACommunity =
-            CommunityBuilder.createSubCommunity(context, projectCommunity)
-                            .withName("project a community")
-                            .build();
+                CommunityBuilder.createSubCommunity(context, projectCommunity)
+                        .withName("project a community")
+                        .build();
 
         Collection col1 =
-            CollectionBuilder.createCollection(context, projectACommunity)
-                             .withEntityType(PROJECT_ENTITY)
-                             .withSubmissionDefinition("projects_versioning-edit")
-                             .withName("Collection 1")
-                             .build();
+                CollectionBuilder.createCollection(context, projectACommunity)
+                        .withEntityType(PROJECT_ENTITY)
+                        .withSubmissionDefinition("projects_versioning-edit")
+                        .withName("Collection 1")
+                        .build();
 
         Item itemA =
-            ItemBuilder.createItem(context, col1)
-                       .withTitle("Title of item A")
-                       .withIssueDate("2015-06-25")
-                       .build();
+                ItemBuilder.createItem(context, col1)
+                        .withTitle("Title of item A")
+                        .withIssueDate("2015-06-25")
+                        .build();
 
 
         itemService.addMetadata(
-            context, itemA, "synsicris", "versioning-edit-policy", "group",
-            null, groupA.getName(), groupA.getID().toString(), 600
+                context, itemA, "synsicris", "versioning-edit-policy", "group",
+                null, groupA.getName(), groupA.getID().toString(), 600
         );
 
         createIsVersionRelationshipType(PROJECT_ENTITY);
 
         // create new version
         Version version =
-            VersionBuilder.createVersion(context, itemA, "test")
-                          .build();
+                VersionBuilder.createVersion(context, itemA, "test")
+                        .build();
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
@@ -1583,10 +1884,10 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         EditItem editItem = new EditItem(context, versionedItem);
 
         configurationService.setProperty(
-            VERSION_METADATA_TO_PATCH,
-            List.of(
-                MD_LAST_VERSION.toString()
-            )
+                VERSION_METADATA_TO_PATCH,
+                List.of(
+                        MD_LAST_VERSION.toString()
+                )
         );
 
         context.restoreAuthSystemState();
@@ -1600,9 +1901,9 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         String authToken = getAuthToken(userA.getEmail(), password);
         getClient(authToken).perform(patch("/api/core/edititems/" + editItem.getID() + ":VERSIONING-CUSTOM")
-                                 .content(patchBody)
-                                 .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
-                             .andExpect(status().isForbidden());
+                        .content(patchBody)
+                        .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -1610,53 +1911,53 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         context.turnOffAuthorisationSystem();
 
         EPerson userA =
-            EPersonBuilder.createEPerson(context)
-                          .withNameInMetadata("Simone", "Proni")
-                          .withEmail("user.b@example.com")
-                          .withPassword(password)
-                          .build();
+                EPersonBuilder.createEPerson(context)
+                        .withNameInMetadata("Simone", "Proni")
+                        .withEmail("user.b@example.com")
+                        .withPassword(password)
+                        .build();
 
         Group groupA =
-            GroupBuilder.createGroup(context)
+                GroupBuilder.createGroup(context)
                         .withName("Group A")
                         .addMember(userA)
                         .build();
 
         Community projectCommunity =
-            CommunityBuilder.createCommunity(context)
-                            .withName("project's community")
-                            .build();
+                CommunityBuilder.createCommunity(context)
+                        .withName("project's community")
+                        .build();
 
         Community projectACommunity =
-            CommunityBuilder.createSubCommunity(context, projectCommunity)
-                            .withName("project a community")
-                            .build();
+                CommunityBuilder.createSubCommunity(context, projectCommunity)
+                        .withName("project a community")
+                        .build();
 
         Collection col1 =
-            CollectionBuilder.createCollection(context, projectACommunity)
-                             .withEntityType(PROJECT_ENTITY)
-                             .withSubmissionDefinition("projects_versioning-edit")
-                             .withName("Collection 1")
-                             .build();
+                CollectionBuilder.createCollection(context, projectACommunity)
+                        .withEntityType(PROJECT_ENTITY)
+                        .withSubmissionDefinition("projects_versioning-edit")
+                        .withName("Collection 1")
+                        .build();
 
         Item itemA =
-            ItemBuilder.createItem(context, col1)
-                       .withTitle("Title of item A")
-                       .withIssueDate("2015-06-25")
-                       .build();
+                ItemBuilder.createItem(context, col1)
+                        .withTitle("Title of item A")
+                        .withIssueDate("2015-06-25")
+                        .build();
 
 
         itemService.addMetadata(
-            context, itemA, "synsicris", "versioning-edit-policy", "group",
-            null, groupA.getName(), groupA.getID().toString(), 600
+                context, itemA, "synsicris", "versioning-edit-policy", "group",
+                null, groupA.getName(), groupA.getID().toString(), 600
         );
 
         createIsVersionRelationshipType(PROJECT_ENTITY);
 
         // create new version
         Version version =
-            VersionBuilder.createVersion(context, itemA, "test")
-                          .build();
+                VersionBuilder.createVersion(context, itemA, "test")
+                        .build();
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
@@ -1665,10 +1966,10 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         EditItem editItem = new EditItem(context, versionedItem);
 
         configurationService.setProperty(
-            VERSION_METADATA_TO_PATCH,
-            List.of(
-                MD_VERSION_VISIBLE.toString()
-            )
+                VERSION_METADATA_TO_PATCH,
+                List.of(
+                        MD_VERSION_VISIBLE.toString()
+                )
         );
 
         context.restoreAuthSystemState();
@@ -1682,19 +1983,19 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         String authToken = getAuthToken(userA.getEmail(), password);
         getClient(authToken).perform(patch("/api/core/edititems/" + editItem.getID() + ":VERSIONING-CUSTOM")
-                                 .content(patchBody)
-                                 .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
-                            .andExpect(status().isOk())
-                            .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
-                                hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
-                            )));
+                        .content(patchBody)
+                        .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
+                        hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
+                )));
 
         // verify that the patch changes have been persisted
         getClient(authToken).perform(get("/api/core/edititems/" + editItem.getID() + ":VERSIONING-CUSTOM"))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
-                                 hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
-                             )));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
+                        hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
+                )));
     }
 
     @Test
@@ -1702,34 +2003,34 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         context.turnOffAuthorisationSystem();
 
         Community projectCommunity =
-            CommunityBuilder.createCommunity(context)
-                            .withName("project's community")
-                            .build();
+                CommunityBuilder.createCommunity(context)
+                        .withName("project's community")
+                        .build();
 
         Community projectACommunity =
-            CommunityBuilder.createSubCommunity(context, projectCommunity)
-                            .withName("project a community")
-                            .build();
+                CommunityBuilder.createSubCommunity(context, projectCommunity)
+                        .withName("project a community")
+                        .build();
 
         Collection col1 =
-            CollectionBuilder.createCollection(context, projectACommunity)
-                             .withEntityType(PROJECT_ENTITY)
-                             .withSubmissionDefinition("projects_versioning-edit")
-                             .withName("Collection 1")
-                             .build();
+                CollectionBuilder.createCollection(context, projectACommunity)
+                        .withEntityType(PROJECT_ENTITY)
+                        .withSubmissionDefinition("projects_versioning-edit")
+                        .withName("Collection 1")
+                        .build();
 
         Item itemA =
-            ItemBuilder.createItem(context, col1)
-                       .withTitle("Title of item A")
-                       .withIssueDate("2015-06-25")
-                       .build();
+                ItemBuilder.createItem(context, col1)
+                        .withTitle("Title of item A")
+                        .withIssueDate("2015-06-25")
+                        .build();
 
         createIsVersionRelationshipType(PROJECT_ENTITY);
 
         // create new version
         Version version =
-            VersionBuilder.createVersion(context, itemA, "test")
-                          .build();
+                VersionBuilder.createVersion(context, itemA, "test")
+                        .build();
 
         Item versionedItem = context.reloadEntity(version.getItem());
 
@@ -1738,10 +2039,10 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
         EditItem editItem = new EditItem(context, versionedItem);
 
         configurationService.setProperty(
-            VERSION_METADATA_TO_PATCH,
-            List.of(
-                MD_LAST_VERSION.toString()
-            )
+                VERSION_METADATA_TO_PATCH,
+                List.of(
+                        MD_LAST_VERSION.toString()
+                )
         );
 
         context.restoreAuthSystemState();
@@ -1755,30 +2056,30 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
 
         String tokenAdmin = getAuthToken(admin.getEmail(), password);
         getClient(tokenAdmin).perform(patch("/api/core/edititems/" + editItem.getID() + ":VERSIONING-ADMIN")
-                                 .content(patchBody)
-                                 .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
-                            .andExpect(status().isOk())
-                            .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
-                                hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
-                            )));
+                        .content(patchBody)
+                        .contentType(MediaType.APPLICATION_JSON_PATCH_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
+                        hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
+                )));
 
         // verify that the patch changes have been persisted
         getClient(tokenAdmin).perform(get("/api/core/edititems/" + editItem.getID() + ":VERSIONING-ADMIN"))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
-                                 hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
-                             )));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sections.projects_versioning", Matchers.allOf(
+                        hasJsonPath("$['synsicris.version.visible'][0].value", is("false"))
+                )));
     }
 
     private RelationshipType createIsVersionRelationshipType(String entityType) {
 
         EntityType type =
-            EntityTypeBuilder.createEntityTypeBuilder(context, entityType)
-                             .build();
+                EntityTypeBuilder.createEntityTypeBuilder(context, entityType)
+                        .build();
 
         return RelationshipTypeBuilder
-            .createRelationshipTypeBuilder(context, type, type, "isVersionOf", "hasVersion", 0, 1, 0, null)
-            .build();
+                .createRelationshipTypeBuilder(context, type, type, "isVersionOf", "hasVersion", 0, 1, 0, null)
+                .build();
     }
 
 }

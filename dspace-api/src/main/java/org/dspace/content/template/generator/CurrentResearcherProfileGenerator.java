@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import org.dspace.app.profile.ResearcherProfile;
-import org.dspace.app.profile.service.ResearcherProfileService;
+import org.dspace.profile.ResearcherProfile;
+import org.dspace.profile.service.ResearcherProfileService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
 import org.dspace.content.vo.MetadataValueVO;

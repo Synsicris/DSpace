@@ -1254,7 +1254,7 @@
                     <list>
                     	<ref bean="sortLastModified" />
                         <ref bean="sortTitleAsc" />
-                        <ref bean="sortDateIssued" />
+                        <ref bean="sortDateIssuedDesc" />
                     </list>
                 </property>
             </bean>
@@ -1429,7 +1429,7 @@
                     <list>
                     	<ref bean="sortLastModified" />
                         <ref bean="sortTitleAsc" />
-                        <ref bean="sortDateIssued" />
+                        <ref bean="sortDateIssuedDesc" />
                     </list>
                 </property>
             </bean>
@@ -1561,7 +1561,7 @@
                     <list>
                     	<ref bean="sortLastModified" />
                         <ref bean="sortTitleAsc" />
-                        <ref bean="sortDateIssued" />
+                        <ref bean="sortDateIssuedDesc" />
                     </list>
                 </property>
             </bean>
@@ -1732,7 +1732,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1772,7 +1772,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1798,7 +1798,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1824,7 +1824,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1850,7 +1850,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1876,7 +1876,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1902,7 +1902,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1928,7 +1928,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1954,7 +1954,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -1977,7 +1977,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2001,7 +2001,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2025,7 +2025,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2049,7 +2049,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2091,7 +2091,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2115,7 +2115,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2175,7 +2175,7 @@
         </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2199,7 +2199,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2239,7 +2239,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2275,7 +2275,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2299,7 +2299,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2345,7 +2345,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2381,7 +2381,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2405,7 +2405,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2441,7 +2441,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2479,7 +2479,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2503,7 +2503,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2527,7 +2527,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2551,7 +2551,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2593,7 +2593,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2617,7 +2617,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2641,7 +2641,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2684,7 +2684,7 @@
         </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2708,7 +2708,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2732,7 +2732,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2774,7 +2774,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2815,7 +2815,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2839,7 +2839,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2864,7 +2864,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2909,7 +2909,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2933,7 +2933,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2969,7 +2969,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -2993,7 +2993,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3017,7 +3017,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3066,7 +3066,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3090,7 +3090,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3115,7 +3115,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3140,7 +3140,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3164,7 +3164,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3188,7 +3188,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3212,7 +3212,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3236,7 +3236,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -3361,7 +3361,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <property name="sortFields">
                     <list>
                         <ref bean="sortScore" />
@@ -3594,7 +3594,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <property name="sortFields">
                     <list>
                         <ref bean="sortScore" />
@@ -3748,7 +3748,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -4144,7 +4144,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4198,7 +4198,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4252,7 +4252,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4306,7 +4306,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4360,7 +4360,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4414,7 +4414,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4468,7 +4468,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4522,7 +4522,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -4568,7 +4568,7 @@
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>
@@ -4723,7 +4723,7 @@
                     <list>
                         <ref bean="sortEntityType"/>
                         <ref bean="sortTitleAsc"/>
-                        <ref bean="sortDateAccessioned"/>
+                        <ref bean="sortDateAccessionedDesc"/>
                     </list>
                 </property>
             </bean>
@@ -7474,7 +7474,7 @@
         </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
                 <!--DefaultSortOrder can either be desc or asc (desc is default)-->
                 <property name="sortFields">
                     <list>

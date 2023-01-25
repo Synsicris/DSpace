@@ -40,6 +40,7 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.utils.RelationshipVersioningUtils;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RelationshipServiceImpl implements RelationshipService {
@@ -114,6 +115,7 @@ public class RelationshipServiceImpl implements RelationshipService {
         return relationship;
     }
 
+    @Override
     public Relationship create(
         Context c, Item leftItem, Item rightItem, RelationshipType relationshipType, int leftPlace, int rightPlace,
         String leftwardValue, String rightwardValue, LatestVersionStatus latestVersionStatus)
@@ -530,19 +532,19 @@ public class RelationshipServiceImpl implements RelationshipService {
             if (relationshipVersioningUtils.otherSideIsLatest(isLeft, sibling.getLatestVersionStatus())) {
                 int siblingPlace = getPlace(sibling, isLeft);
                 if (
-                    (deleted && siblingPlace > newPlace)
+                    deleted && siblingPlace > newPlace
                     // If the relationship was deleted, all relationships after it should shift left
                     // We must make the distinction between deletes and moves because for inserts oldPlace == newPlace
-                        || (movedUp && siblingPlace <= newPlace && siblingPlace > oldPlace)
+                        || movedUp && siblingPlace <= newPlace && siblingPlace > oldPlace
                             // If the relationship was moved up e.g. from place 2 to 5, all relationships
                             // with place > 2 (the old place) and <= to 5 should shift left
                 ) {
                     setPlace(sibling, isLeft, siblingPlace - 1);
                 } else if (
-                    (inserted && siblingPlace >= newPlace)
+                    inserted && siblingPlace >= newPlace
                     // If the relationship was inserted, all relationships starting from that place should shift right
                     // We must make the distinction between inserts and moves because for inserts oldPlace == newPlace
-                        || (!movedUp && siblingPlace >= newPlace && siblingPlace < oldPlace)
+                        || !movedUp && siblingPlace >= newPlace && siblingPlace < oldPlace
                             // If the relationship was moved down e.g. from place 5 to 2, all relationships
                             // with place >= 2 and < 5 (the old place) should shift right
                 ) {
@@ -557,22 +559,22 @@ public class RelationshipServiceImpl implements RelationshipService {
             //       that we are currently processing.
             int mdvPlace = mdv.getPlace();
             if (
-                (deleted && mdvPlace > newPlace)
+                deleted && mdvPlace > newPlace
                 // If the relationship was deleted, all metadata after it should shift left
                 // We must make the distinction between deletes and moves because for inserts oldPlace == newPlace
                 // If the reltionship was copied to metadata on deletion:
                 //   - the plain text can be after the relationship (in which case it's moved forward again)
                 //   - or before the relationship (in which case it remains in place)
-                    || (movedUp && mdvPlace <= newPlace && mdvPlace > oldPlace)
+                    || movedUp && mdvPlace <= newPlace && mdvPlace > oldPlace
                         // If the relationship was moved up e.g. from place 2 to 5, all metadata
                         // with place > 2 (the old place) and <= to 5 should shift left
             ) {
                 mdv.setPlace(mdvPlace - 1);
             } else if (
-                (inserted && mdvPlace >= newPlace)
+                inserted && mdvPlace >= newPlace
                 // If the relationship was inserted, all relationships starting from that place should shift right
                 // We must make the distinction between inserts and moves because for inserts oldPlace == newPlace
-                    || (!movedUp && mdvPlace >= newPlace && mdvPlace < oldPlace)
+                    || !movedUp && mdvPlace >= newPlace && mdvPlace < oldPlace
                         // If the relationship was moved down e.g. from place 5 to 2, all relationships
                         // with place >= 2 and < 5 (the old place) should shift right
             ) {
@@ -864,7 +866,13 @@ public class RelationshipServiceImpl implements RelationshipService {
             }
 
             for (Item item : itemsToUpdate) {
-                updateItem(context, this.itemService.find(context, item.getID()));
+                Item storedItem = null;
+                if (Hibernate.isInitialized(item)) {
+                    storedItem = item;
+                } else {
+                    storedItem = this.itemService.find(context, item.getID());
+                }
+                updateItem(context, storedItem);
             }
         } catch (AuthorizeException e) {
             log.error("Authorization Exception while authorization has been disabled", e);

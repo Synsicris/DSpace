@@ -139,17 +139,13 @@
                 <entry key="RELATION.Project.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
 
                 <!-- Synsicris Funding Related items -->
-                <entry key="COMMENT.Funding.comment_funding_all" value-ref="commentItemCommentsConfiguration"/>
-                <entry key="COMMENT.Funding.comment" value-ref="commentItemCommentsConfiguration"/>
                 <entry key="RELATION.Funding.exploitationplan" value-ref="relationFundingExploitationplansConfiguration"/>
                 <entry key="RELATION.Funding.projectpartner" value-ref="relationFundingProjectpartnersConfiguration"/>
-                <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
 
                 <!-- Synsicris Person Browse items -->
                 <entry key="BROWSE.Person.latestParentProjectsPreparation" value-ref="browsePersonLatestParentProjectsPreparationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsImplementation" value-ref="browsePersonLatestParentProjectsImplementationConfiguration"/>
                 <entry key="BROWSE.Person.latestParentProjectsCompleted" value-ref="browsePersonLatestParentProjectsCompletedConfiguration"/>
-                <entry key="RELATION.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
                 <entry key="RELATION.Person.programme" value-ref="relationPersonProgrammeConfiguration"/>
                 <entry key="RELATION.Person.call" value-ref="relationPersonCallConfiguration"/>
                 <entry key="RELATION.Person.fundingobjective" value-ref="relationPersonFundingobjectiveConfiguration"/>
@@ -157,45 +153,46 @@
                 
 
                 <!-- Synsicris Project comments configuration -->
+                <entry key="COMMENT.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
+                <entry key="COMMENT.Funding.comment_funding_all" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.Project.comment_project_all" value-ref="allCommentsOfProjectConfiguration"/>
-                <entry key="COMMENT.Project.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.award.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.contribution_fundingprogramme.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.cooperationpartner.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.ethic.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.Event.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.neg_sideeffect.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.exp_societalimpact.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.condition.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.gender.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.innovationidea.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.milestone.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.step.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.physical_object.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.open_researchquestion.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.Patent.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.plan_publication.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.process_event.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.proj_objective.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.ia_objective.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.Publication.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.Product.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.research_result.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.innovationpotential.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.spinoff.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.stateofart.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.targetgroup.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.task.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.unexpected_result.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.workpackage.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.impactpathway.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.exploitationplan.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.Funding.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.projectpartner.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.application.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="RELATION.impactpathwaystep.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Project.project_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.award.award_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.contribution_fundingprogramme.contribution_fundingprogramme_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.cooperationpartner.cooperationpartner_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.ethic.ethic_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Event.event_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.neg_sideeffect.neg_sideeffect_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.exp_societalimpact.exp_societalimpact_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.condition.condition_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.gender.gender_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.innovationidea.innovationidea_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.step.step_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.physical_object.physical_object_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.open_researchquestion.open_researchquestion_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Patent.Patent_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.plan_publication.plan_publication_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.process_event.process_event_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.proj_objective.proj_objective_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.ia_objective.ia_objective_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.projectpartner.projectpartner_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Publication.Publication_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Product.Product_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.research_result.research_result_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.innovationpotential.innovationpotential_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.spinoff.spinoff_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.stateofart.stateofart_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.targetgroup.targetgroup_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.task.task_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.unexpected_result.unexpected_result_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.workpackage.workpackage_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.Funding.funding_comment" value-ref="relationItemCommentsConfiguration"/>
+<!--                 <entry key="COMMENT.milestone.milestone_comment" value-ref="relationItemCommentsConfiguration"/> -->
+<!--                 <entry key="COMMENT.impactpathway.impactpathway_comment" value-ref="relationItemCommentsConfiguration"/> -->
+<!--                 <entry key="COMMENT.exploitationplan.exploitationplan_comment" value-ref="relationItemCommentsConfiguration"/> -->
+<!--                 <entry key="COMMENT.workingplan.workingplan_comment" value-ref="relationItemCommentsConfiguration"/> -->
+<!--                 <entry key="RELATION.application.application_comment" value-ref="relationItemCommentsConfiguration"/> -->
+<!--                 <entry key="RELATION.impactpathwaystep.impactpathwaystep_comment" value-ref="relationItemCommentsConfiguration"/> -->
 
                 <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>

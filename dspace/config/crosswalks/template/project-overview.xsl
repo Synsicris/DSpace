@@ -111,6 +111,25 @@
 				<!-- start page flow -->
 				<fo:flow flow-name="xsl-region-body">
 
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="cerif:Test"/>
+						<xsl:with-param name="fontSize" select="$titleFontSize"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="'WP'"/>
+						<xsl:with-param name="value" select="cerif:WorkPackage/cerif:Index/cerif:Title"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="'WP'"/>
+						<xsl:with-param name="value" select="cerif:WorkPackage/cerif:Index/cerif:OrgUnit/cerif:Acronym"/>
+				  </xsl:call-template>					
+
+					<!-- new page -->
+          <fo:block break-after='page'/>
+
+
 				  <!-- project title -->
 					<xsl:call-template name="title">
 						<xsl:with-param name="title" select="cerif:Title"/>
@@ -873,7 +892,7 @@
 							<fo:table-header>
 								<fo:table-cell column-number="1" border-width="thin"  border-style="solid">
 									<fo:block text-align="left" font-weight="bold">
-										<xsl:value-of select="cerif:Title" />
+										<xsl:value-of select="cerif:Title"/>
 									</fo:block>
 								</fo:table-cell>
 							</fo:table-header>
@@ -888,7 +907,7 @@
 													<xsl:with-param name="title" select="'Verantwortlicher Partner'"/>
 													<xsl:with-param name="fontSize" select="$subSubSectionTitleFontSize"/>
 												</xsl:call-template>
-												<xsl:value-of select="cerif:Acronym" />
+												<xsl:value-of select="cerif:Acronym"/>
 												</fo:block>
 
 										</fo:table-cell>
@@ -918,7 +937,7 @@
 												<xsl:with-param name="title" select="'Abhängigkeiten'"/>
 												<xsl:with-param name="fontSize" select="$subSubSectionTitleFontSize"/>
 											</xsl:call-template>
-											<xsl:value-of select="cerif:Requirement" />
+											<xsl:value-of select="cerif:Requirement"/>
 										</fo:block>
 									</fo:table-cell>
 

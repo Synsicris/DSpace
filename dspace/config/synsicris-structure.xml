@@ -313,6 +313,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -369,6 +370,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	   	  <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	   	  <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -397,6 +399,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -425,6 +428,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -453,6 +457,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -481,6 +486,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -537,6 +543,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -565,6 +572,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	      <metadata name="workingplan.link.status">linked</metadata>
@@ -594,6 +602,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -622,6 +631,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -650,6 +660,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -678,6 +689,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+		  <metadata name="synsicris.type.status">planned</metadata>
 		  <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 		  <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -706,6 +718,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -734,6 +747,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -913,6 +927,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -969,6 +984,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -1055,6 +1071,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
@@ -1111,6 +1128,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+	      <metadata name="synsicris.type.status">planned</metadata>
 	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	      <metadata name="workingplan.link.status">linked</metadata>

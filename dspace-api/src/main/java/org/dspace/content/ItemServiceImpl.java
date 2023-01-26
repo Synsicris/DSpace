@@ -76,6 +76,7 @@ import org.dspace.orcid.service.OrcidSynchronizationService;
 import org.dspace.orcid.service.OrcidTokenService;
 import org.dspace.profile.service.ResearcherProfileService;
 import org.dspace.services.ConfigurationService;
+import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
 import org.dspace.workflow.WorkflowItemService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
@@ -118,8 +119,6 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
     protected CollectionService collectionService;
     @Autowired(required = true)
     protected IdentifierService identifierService;
-    @Autowired(required = true)
-    protected VersioningService versioningService;
     @Autowired(required = true)
     protected HarvestedItemService harvestedItemService;
     @Autowired(required = true)
@@ -166,8 +165,21 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
     @Autowired(required = true)
     private ResearcherProfileService researcherProfileService;
 
+    protected VersioningService versioningService;
+
     protected ItemServiceImpl() {
         super();
+    }
+
+    public void init() {
+        this.versioningService = VersionServiceFactory.getInstance().getVersionService();
+    }
+
+    protected VersioningService getVersioningService() {
+        if (this.versioningService == null) {
+            this.versioningService = VersionServiceFactory.getInstance().getVersionService();
+        }
+        return versioningService;
     }
 
     @Override
@@ -263,9 +275,8 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
      * @param context
      * @param item
      * @param bundle
-     * @param metadata
+     * @param metadataField
      * @param value
-     * @param requireOriginal
      * @throws SQLException
      * @return Bitstream
      */
@@ -374,9 +385,10 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
         return itemDAO.findAll(context, true, true);
     }
 
+    @Override
     public Iterator<Item> findAllRegularItems(Context context) throws SQLException {
         return itemDAO.findAllRegularItems(context);
-    };
+    }
 
     @Override
     public Iterator<Item> findBySubmitter(Context context, EPerson eperson) throws SQLException {
@@ -977,8 +989,8 @@ public class ItemServiceImpl extends DSpaceObjectServiceImpl<Item> implements It
     }
 
     protected void removeVersion(Context context, Item item) throws AuthorizeException, SQLException {
-        if (versioningService.getVersion(context, item) != null) {
-            versioningService.removeVersion(context, item);
+        if (getVersioningService().getVersion(context, item) != null) {
+            getVersioningService().removeVersion(context, item);
         }
 
         try {

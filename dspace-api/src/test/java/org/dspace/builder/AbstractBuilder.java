@@ -176,8 +176,7 @@ public abstract class AbstractBuilder<T, S> {
         entityTypeService = ContentServiceFactory.getInstance().getEntityTypeService();
         processService = ScriptServiceFactory.getInstance().getProcessService();
         requestItemService = RequestItemServiceFactory.getInstance().getRequestItemService();
-        versioningService = DSpaceServicesFactory.getInstance().getServiceManager()
-                                 .getServiceByName(VersioningService.class.getName(), VersioningService.class);
+        versioningService = VersionServiceFactory.getInstance().getVersionService();
 
         // Temporarily disabled
         claimedTaskService = XmlWorkflowServiceFactory.getInstance().getClaimedTaskService();

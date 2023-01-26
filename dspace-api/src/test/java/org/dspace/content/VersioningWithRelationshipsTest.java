@@ -61,17 +61,27 @@ import org.dspace.core.Constants;
 import org.dspace.discovery.SolrSearchCore;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.versioning.DefaultItemVersionProvider;
+import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.Version;
+import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWithDatabase {
+
+    private static VersioningService versionServiceBean;
+    private static ItemVersionProvider itemVersionProviderBean;
+    private static ConfigurableListableBeanFactory beanFactory;
 
     private final RelationshipService relationshipService =
         ContentServiceFactory.getInstance().getRelationshipService();
@@ -107,10 +117,37 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
     protected RelationshipType isIssueOfJournalVolume;
     protected RelationshipType isProjectOfPerson;
 
+    @BeforeClass
+    public static void initClass() {
+        // WARN: This code sets the `defaultItemVersionProvider` as main provider
+        // for the `versionServiceBean`.
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("defaultItemVersionProvider", DefaultItemVersionProvider.class)
+        );
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        // WARN: This code resets the provider of the `versionServiceBean`
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
+    }
+
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
+
+//        CollectionBuilder.init();
+//        CommunityBuilder.init();
+//        EntityTypeBuilder.init();
+//        ItemBuilder.init();
+//        RelationshipBuilder.init();
+//        RelationshipTypeBuilder.init();
 
         context.turnOffAuthorisationSystem();
 
@@ -2158,29 +2195,37 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 //////////////////////////////////////////////
 
                 // relationship - person 3 & project 1
-                RelationshipBuilder.createRelationshipBuilder(context, pe3_1, pr1_1, isProjectOfPerson)
-                    .build();
+                Relationship pe3_pr1 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe3_1, pr1_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 3 & project 2
                 itemService.addMetadata(context, pe3_1, "dc", "relation", null, null, "project 2 (mdv)");
 
                 // relationship - person 1 & project 3
-                RelationshipBuilder.createRelationshipBuilder(context, pe1_1, pr3_1, isProjectOfPerson)
-                    .build();
+                Relationship pe1_pr3 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe1_1, pr3_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 2 & project 3
                 itemService.addMetadata(context, pr3_1, "dc", "contributor", "author", null, "person 2 (mdv)");
 
                 // relationship - person 3 & project 3
-                RelationshipBuilder.createRelationshipBuilder(context, pe3_1, pr3_1, isProjectOfPerson)
-                    .build();
+                Relationship pe3_pr3 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe3_1, pr3_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 4 & project 3
                 itemService.addMetadata(context, pr3_1, "dc", "contributor", "author", null, "person 4 (mdv)");
 
                 // relationship - person 5 & project 3
-                RelationshipBuilder.createRelationshipBuilder(context, pe5_1, pr3_1, isProjectOfPerson)
-                    .build();
+                Relationship pe5_pr3 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe5_1, pr3_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 6 & project 3
                 itemService.addMetadata(context, pr3_1, "dc", "contributor", "author", null, "person 6 (mdv)");
@@ -2189,15 +2234,19 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 itemService.addMetadata(context, pr5_1, "dc", "contributor", "author", null, "person 7 (mdv)");
 
                 // relationship - person 5 & project 5
-                RelationshipBuilder.createRelationshipBuilder(context, pe5_1, pr5_1, isProjectOfPerson)
-                    .build();
+                Relationship pe5_pr5 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe5_1, pr5_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 3 & project 4
                 itemService.addMetadata(context, pe3_1, "dc", "relation", null, null, "project 4 (mdv)");
 
                 // relationship - person 3 & project 5
-                RelationshipBuilder.createRelationshipBuilder(context, pe3_1, pr5_1, isProjectOfPerson)
-                    .build();
+                Relationship pe3_pr5 =
+                    RelationshipBuilder
+                        .createRelationshipBuilder(context, pe3_1, pr5_1, isProjectOfPerson)
+                        .build();
 
                 // metadata - person 3 & project 6
                 itemService.addMetadata(context, pe3_1, "dc", "relation", null, null, "project 6 (mdv)");
@@ -2332,6 +2381,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after version creation - verify person 3.1 //
                 ////////////////////////////////////////////////
 
+                //pe3_1 = context.reloadEntity(pe3_1);
                 assertThat(
                     relationshipService.findByItem(context, pe3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2342,7 +2392,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 );
 
                 List<MetadataValue> mdvs4 = itemService.getMetadata(
-                    pe3_1, "dc", "relation", null, Item.ANY
+                    context.reloadEntity(pe3_1), "dc", "relation", null, Item.ANY
                 );
                 assertEquals(6, mdvs4.size());
 
@@ -2374,6 +2424,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after version creation - verify project 3.1 //
                 /////////////////////////////////////////////////
 
+                //pr3_1 = context.reloadEntity(pr3_1);
                 assertThat(
                     relationshipService.findByItem(context, pr3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2385,7 +2436,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 );
 
                 List<MetadataValue> mdvs5 = itemService.getMetadata(
-                    pr3_1, "dc", "contributor", "author", Item.ANY
+                    context.reloadEntity(pr3_1), "dc", "contributor", "author", Item.ANY
                 );
                 assertEquals(6, mdvs5.size());
 
@@ -2418,7 +2469,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 /////////////////////////////////////////////////
 
                 assertThat(
-                    relationshipService.findByItem(context, pr5_1, -1, -1, false, false),
+                    relationshipService.findByItem(context, context.reloadEntity(pr5_1), -1, -1, false, false),
                     containsInAnyOrder(List.of(
                         isRel(pe5_1, isProjectOfPerson, pr5_1, BOTH, 1, 1),
                         isRel(pe3_1, isProjectOfPerson, pr5_1, RIGHT_ONLY, 4, 2),
@@ -2427,7 +2478,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 );
 
                 List<MetadataValue> mdvs6 = itemService.getMetadata(
-                    pr5_1, "dc", "contributor", "author", Item.ANY
+                    context.reloadEntity(pr5_1), "dc", "contributor", "author", Item.ANY
                 );
                 assertEquals(3, mdvs6.size());
 
@@ -2447,6 +2498,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after version creation - verify volume 3.2 //
                 ////////////////////////////////////////////////
 
+                pe3_2 = context.reloadEntity(pe3_2);
                 assertThat(
                     relationshipService.findByItem(context, pe3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2490,6 +2542,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after version creation - verify project 3.2 //
                 /////////////////////////////////////////////////
 
+                pr3_2 = context.reloadEntity(pr3_2);
                 assertThat(
                     relationshipService.findByItem(context, pr3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2552,6 +2605,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 1 - verify person 3.1 //
                 ////////////////////////////////////////
 
+                pe3_1 = context.reloadEntity(pe3_1);
                 assertThat(
                     relationshipService.findByItem(context, pe3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2594,6 +2648,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 1 - verify project 3.1 //
                 /////////////////////////////////////////
 
+                pr3_1 = context.reloadEntity(pr3_1);
                 assertThat(
                     relationshipService.findByItem(context, pr3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2637,6 +2692,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 1 - verify project 5.1 //
                 /////////////////////////////////////////
 
+                pr5_1 = context.reloadEntity(pr5_1);
                 assertThat(
                     relationshipService.findByItem(context, pr5_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2668,6 +2724,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 1 - verify person 3.2 //
                 ////////////////////////////////////////
 
+                pe3_2 = context.reloadEntity(pe3_2);
                 assertThat(
                     relationshipService.findByItem(context, pe3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2707,6 +2764,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 1 - verify project 3.2 //
                 /////////////////////////////////////////
 
+                pr3_2 = context.reloadEntity(pr3_2);
                 assertThat(
                     relationshipService.findByItem(context, pr3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2761,6 +2819,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 2 - verify person 3.1 //
                 ////////////////////////////////////////
 
+                pe3_1 = context.reloadEntity(pe3_1);
                 assertThat(
                     relationshipService.findByItem(context, pe3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2803,6 +2862,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 2 - verify project 3.1 //
                 /////////////////////////////////////////
 
+                pr3_1 = context.reloadEntity(pr3_1);
                 assertThat(
                     relationshipService.findByItem(context, pr3_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2846,6 +2906,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 2 - verify project 5.1 //
                 /////////////////////////////////////////
 
+                pr5_1 = context.reloadEntity(pr5_1);
                 assertThat(
                     relationshipService.findByItem(context, pr5_1, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2877,6 +2938,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 2 - verify person 3.2 //
                 ////////////////////////////////////////
 
+                pe3_2 = context.reloadEntity(pe3_2);
                 assertThat(
                     relationshipService.findByItem(context, pe3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(
@@ -2912,6 +2974,7 @@ public class VersioningWithRelationshipsTest extends AbstractIntegrationTestWith
                 // after remove 2 - verify project 3.2 //
                 /////////////////////////////////////////
 
+                pr3_2 = context.reloadEntity(pr3_2);
                 assertThat(
                     relationshipService.findByItem(context, pr3_2, -1, -1, false, false),
                     containsInAnyOrder(List.of(

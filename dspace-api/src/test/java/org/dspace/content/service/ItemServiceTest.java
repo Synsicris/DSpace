@@ -42,16 +42,27 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.orcid.client.OrcidClient;
 import org.dspace.orcid.factory.OrcidServiceFactory;
 import org.dspace.orcid.factory.OrcidServiceFactoryImpl;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.versioning.DefaultItemVersionProvider;
+import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.Version;
+import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.orcid.jaxb.model.v3.release.search.expanded.ExpandedSearch;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 public class ItemServiceTest extends AbstractIntegrationTestWithDatabase {
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(ItemServiceTest.class);
+
+    private static VersioningService versionServiceBean;
+    private static ItemVersionProvider itemVersionProviderBean;
+    private static ConfigurableListableBeanFactory beanFactory;
 
     protected RelationshipService relationshipService = ContentServiceFactory.getInstance().getRelationshipService();
     protected RelationshipTypeService relationshipTypeService = ContentServiceFactory.getInstance()
@@ -80,6 +91,26 @@ public class ItemServiceTest extends AbstractIntegrationTestWithDatabase {
     String subjectElement = "subject";
     String descriptionElement = "description";
     String abstractQualifier = "abstract";
+
+    @BeforeClass
+    public static void initClass() {
+        // WARN: This code sets the `defaultItemVersionProvider` as main provider
+        // for the `versionServiceBean`.
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("defaultItemVersionProvider", DefaultItemVersionProvider.class)
+        );
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        // WARN: This code resets the provider of the `versionServiceBean`
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
+    }
 
     /**
      * This method will be run before every test as per @Before. It will

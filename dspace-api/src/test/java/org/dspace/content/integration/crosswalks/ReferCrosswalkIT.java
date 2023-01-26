@@ -575,6 +575,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             .withType("Internal Funding")
             .withFunder("Test Funder")
             .withRelationProject("Test Project", project.getID().toString())
+            .withParentproject("Test Project", project.getID().toString())
             .build();
 
         Item funding = ItemBuilder.createItem(context, collection)
@@ -611,6 +612,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             .withEditor("Editor", "25887329-a648-46f9-a2ac-99319b8e9766")
             .withEditorAffiliation("Editor Affiliation")
             .withRelationProject("Test Project", project.getID().toString())
+            .withParentproject("Test Project", project.getID().toString())
             .withRelationFunding("Another Test Funding", funding.getID().toString())
             .withRelationConference("The best Conference")
             .withRelationProduct("DataSet")
@@ -655,8 +657,8 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             .withEntityType("Funding")
             .withTitle("Test Funding")
             .withType("Internal Funding")
-            .withFunder("Test Funder", orgUnit.getID().toString())
-            .withRelationProject("Test Project", project.getID().toString())
+            .withFunder(orgUnit.getName(), orgUnit.getID().toString())
+            .withParentproject("Test Project", project.getID().toString())
             .build();
 
         Item funding = ItemBuilder.createItem(context, collection)
@@ -836,6 +838,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             .withType("Award")
             .withFunder("OrgUnit Funder")
             .withRelationProject("Test Project", project.getID().toString())
+            .withParentproject("Test Project", project.getID().toString())
             .build();
 
         context.restoreAuthSystemState();
@@ -895,7 +898,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             .withTitle("Test funding")
             .withType("Award")
             .withFunder("OrgUnit Funder")
-            .withRelationProject("Test Project", project.getID().toString())
+            .withParentproject("Test Project", project.getID().toString())
             .build();
 
         context.restoreAuthSystemState();

@@ -935,7 +935,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     public boolean isAccountManager(Context context) {
         try {
             return (canCommunityAdminManageAccounts() && isCommunityAdmin(context)
-                || canCollectionAdminManageAccounts() && isCollectionAdmin(context));
+                || canCollectionAdminManageAccounts() && isCollectionAdmin(context)
+                || groupService.isOrganisationalManager(context, context.getCurrentUser()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

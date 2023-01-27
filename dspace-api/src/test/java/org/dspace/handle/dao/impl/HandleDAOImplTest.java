@@ -33,11 +33,9 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.handle.dao.HandleDAO;
 import org.dspace.utils.DSpace;
 import org.dspace.versioning.DefaultItemVersionProvider;
-import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.ProjectVersionProvider;
 import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.factory.VersionServiceFactory;
-import org.dspace.versioning.service.VersioningService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +66,8 @@ public class HandleDAOImplTest extends AbstractUnitTest {
     protected BitstreamService bitstreamService = ContentServiceFactory.getInstance().getBitstreamService();
     protected WorkspaceItemService workspaceItemService = ContentServiceFactory.getInstance().getWorkspaceItemService();
     protected InstallItemService installItemService = ContentServiceFactory.getInstance().getInstallItemService();
-    protected VersioningServiceImpl versioningService = (VersioningServiceImpl) VersionServiceFactory.getInstance().getVersionService();
+    protected VersioningServiceImpl versioningService =
+        (VersioningServiceImpl) VersionServiceFactory.getInstance().getVersionService();
     protected DefaultItemVersionProvider itemVersionProvider = new DSpace().getServiceManager()
             .getServiceByName("defaultItemVersionProvider", DefaultItemVersionProvider.class);
     protected ProjectVersionProvider projectItemVersionProvider = new DSpace().getServiceManager()
@@ -91,7 +90,7 @@ public class HandleDAOImplTest extends AbstractUnitTest {
         try {
             //we have to create a new community in the database
             context.turnOffAuthorisationSystem();
-            versioningService.setProvider((ItemVersionProvider) itemVersionProvider);
+            versioningService.setProvider(itemVersionProvider);
             this.owningCommunity = communityService.create(null, context);
             Collection collection = collectionService.create(context, owningCommunity);
 

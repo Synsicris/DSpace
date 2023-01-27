@@ -24,8 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link PostLoggedInAction} that perform an automatic creation 
- * of the researcher profile if the current user doesn't have one.
+ * Implementation of {@link PostLoggedInAction} that perform an automatic
+ * creation of the researcher profile if the current user doesn't have one.
  *
  * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
@@ -70,7 +70,8 @@ public class ResearcherProfileAutomaticCreation implements PostLoggedInAction {
 
     }
 
-    private void claimProfile(Context context, EPerson currentUser) throws SQLException, AuthorizeException, SearchServiceException {
+    private void claimProfile(Context context, EPerson currentUser)
+        throws SQLException, AuthorizeException, SearchServiceException {
 
         UUID id = currentUser.getID();
         String fullName = currentUser.getFullName();

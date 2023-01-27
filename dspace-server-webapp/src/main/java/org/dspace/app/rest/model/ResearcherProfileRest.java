@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.dspace.profile.ResearcherProfileVisibility;
 import org.dspace.app.rest.RestResourceController;
+import org.dspace.profile.ResearcherProfileVisibility;
 
 /**
  * The Researcher Profile REST resource.

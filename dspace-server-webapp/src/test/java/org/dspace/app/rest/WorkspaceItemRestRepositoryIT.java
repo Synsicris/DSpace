@@ -2280,7 +2280,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             .withTitle("Parent Project Item Title")
             .build();
 
-        final String projectItemID = "project_" + projectItem.getID().toString() + "_item";       
+        final String projectItemID = "project_" + projectItem.getID().toString() + "_item";
         communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                 null, projectItemID, projectItem.getID().toString(), Choices.CF_ACCEPTED);

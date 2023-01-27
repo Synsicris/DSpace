@@ -13,13 +13,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import org.dspace.profile.ResearcherProfile;
-import org.dspace.profile.service.ResearcherProfileService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
 import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
+import org.dspace.profile.ResearcherProfile;
+import org.dspace.profile.service.ResearcherProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

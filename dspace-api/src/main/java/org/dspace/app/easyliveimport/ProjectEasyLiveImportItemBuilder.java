@@ -49,8 +49,11 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
             if (StringUtils.isNotBlank(value)) {
                 String authorityValue = null;
                 MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
-                String authorityName = cas.getChoiceAuthorityName(metadataField.getSchema(), metadataField.getElement(),
-                                                           metadataField.getQualifier(), Constants.ITEM, item.getOwningCollection());
+                String authorityName =
+                    cas.getChoiceAuthorityName(
+                        metadataField.getSchema(), metadataField.getElement(),
+                        metadataField.getQualifier(), Constants.ITEM, item.getOwningCollection()
+                    );
                 if (StringUtils.isNotBlank(authorityName)) {
                     ChoiceAuthority authority = cas.getChoiceAuthorityByAuthorityName(authorityName);
                     Choices choices = authority.getBestMatch(value, context.getCurrentLocale().toString());

@@ -43,7 +43,7 @@ public interface EditItemModeService {
     /**
      * Finds an edit mode by item and edit name, returns null if not exists
      * @param context DSpace context
-     * @param itemId UUID Item
+     * @param item Item
      * @param name edit mode name
      * @return
      * @throws SQLException
@@ -53,13 +53,13 @@ public interface EditItemModeService {
     /**
      * Finds all edit mode by item and edit name, returns null if not exists
      * @param context DSpace context
-     * @param itemId UUID Item
+     * @param item Item
      * @param name edit mode name
      * @return
      * @throws SQLException
      */
     List<EditItemMode> findModes(Context context, Item item, String name) throws SQLException;
-    
+
     /**
      * Check if the current user can edit the given item, based on the all the
      * configured edit modes (verifying if there is at least one edit mode enabled

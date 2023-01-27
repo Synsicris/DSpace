@@ -70,7 +70,7 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
             .withName("project_" + testProject.getID() + "_members_group")
             .addMember(eperson)
             .build();
-        
+
         Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
         parentProjectEntity = ItemBuilder.createItem(context, joinProject)
             .withTitle("Test project")

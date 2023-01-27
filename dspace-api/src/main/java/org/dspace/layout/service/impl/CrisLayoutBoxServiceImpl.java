@@ -10,7 +10,6 @@ package org.dspace.layout.service.impl;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -31,7 +30,6 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.exception.SQLRuntimeException;
-import org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService;
 import org.dspace.layout.CrisLayoutBox;
 import org.dspace.layout.CrisLayoutBoxConfiguration;
 import org.dspace.layout.CrisLayoutField;
@@ -57,9 +55,6 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Autowired
     private CrisLayoutBoxAccessService crisLayoutBoxAccessService;
-
-    @Autowired
-    private DiscoveryConfigurationUtilsService searchConfigurationUtilsService;
 
     @Autowired
     private CrisItemMetricsService crisMetricService;
@@ -220,7 +215,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean isMetadataPresent(Bitstream bitstream, MetadataField metadataField, String value) {
-        return (Objects.isNull(metadataField) && StringUtils.isBlank(value)) || bitstream.getMetadata().stream()
+        return Objects.isNull(metadataField) && StringUtils.isBlank(value) || bitstream.getMetadata().stream()
             .filter(metadataValue -> Objects.equals(metadataField, metadataValue.getMetadataField()))
             .anyMatch(metadataValue -> Objects.equals(value, metadataValue.getValue()));
     }
@@ -291,6 +286,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         }
     }
 
+    @Override
     public List<CrisLayoutBox> findByEntityAndType(Context context,String entity, String type) {
 
         try {

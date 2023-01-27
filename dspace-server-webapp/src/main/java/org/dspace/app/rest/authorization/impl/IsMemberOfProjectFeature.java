@@ -61,21 +61,23 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
         if (!(object instanceof ItemRest) && !(object instanceof CommunityRest)) {
             return false;
         }
-        
+
         if (context.getCurrentUser() == null) {
             return false;
         }
 
         Item item = null;
-        if ((object instanceof CommunityRest)) {
+        if (object instanceof CommunityRest) {
             Community comm = communityService.find(context, UUID.fromString(((CommunityRest) object).getUuid()));
             if (comm == null) {
-                throw new IllegalArgumentException("No community found with the given id: " + ((CommunityRest) object).getUuid());
+                throw new IllegalArgumentException(
+                    "No community found with the given id: " + ((CommunityRest) object).getUuid()
+                );
             }
-            
+
             item = projectConsumerService.getParentProjectItemByCommunityUUID(context, comm.getID());
         } else {
-            
+
             item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
         }
@@ -89,9 +91,9 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
 
     @Override
     public String[] getSupportedTypes() {
-        return new String[] { 
-                CommunityRest.CATEGORY + "." + CommunityRest.NAME,
-                ItemRest.CATEGORY + "." + ItemRest.NAME
+        return new String[] {
+            CommunityRest.CATEGORY + "." + CommunityRest.NAME,
+            ItemRest.CATEGORY + "." + ItemRest.NAME
         };
     }
 

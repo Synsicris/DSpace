@@ -156,8 +156,11 @@ public class DiscoveryRestController implements InitializingBean {
         String queryDecoded = StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
         //Get the Search results in JSON format
         try {
-            SearchResultsRest searchResultsRest = discoveryRestRepository.getSearchObjects(queryDecoded, dsoTypes, dsoScope,
-                configuration, searchFilters, page, utils.obtainProjection());
+            SearchResultsRest searchResultsRest =
+                discoveryRestRepository.getSearchObjects(
+                    queryDecoded, dsoTypes, dsoScope,
+                    configuration, searchFilters, page, utils.obtainProjection()
+                );
 
             //Convert the Search JSON results to paginated HAL resources
             SearchResultsResource searchResultsResource = new SearchResultsResource(searchResultsRest, utils, page);
@@ -214,9 +217,13 @@ public class DiscoveryRestController implements InitializingBean {
         }
 
         try {
-            String queryDecoded = StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
-            FacetResultsRest facetResultsRest = discoveryRestRepository
-                .getFacetObjects(facetName, prefix, queryDecoded, dsoTypes, dsoScope, configuration, searchFilters, page);
+            String queryDecoded =
+                StringUtils.isNotBlank(query) ? URLDecoder.decode(query, StandardCharsets.UTF_8) : query;
+            FacetResultsRest facetResultsRest =
+                discoveryRestRepository
+                    .getFacetObjects(
+                        facetName, prefix, queryDecoded, dsoTypes, dsoScope, configuration, searchFilters, page
+                    );
 
             FacetResultsResource facetResultsResource = converter.toResource(facetResultsRest);
 

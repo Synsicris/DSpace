@@ -160,9 +160,9 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     private VersionHistoryService versionHistoryService;
 
     private Community projectTemplate;
-    
+
     private Community fundingTemplate;
-    
+
     private Group adminGroup;
     private Group funderGroup;
     private Group membersGroup;
@@ -170,18 +170,18 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
     private Group fundingMemberGroup;
     private Group readGroup;
     private Group projAdminGroup;
-    
-    
+
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
 
         context.turnOffAuthorisationSystem();
-        
-        adminGroup = GroupBuilder.createGroup(context)
-                                 .withName(project_template_coordinators_group) 
-                                 .build();
+
+        adminGroup =
+            GroupBuilder.createGroup(context)
+                .withName(project_template_coordinators_group)
+                .build();
         funderGroup = GroupBuilder.createGroup(context)
                                   .withName(project_template_funders_group)
                                   .build();
@@ -191,9 +191,10 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         fundingMemberGroup = GroupBuilder.createGroup(context)
                                          .withName(funding_template_members_group)
                                          .build();
-        fundingCoordGroup = GroupBuilder.createGroup(context)
-                                        .withName(funding_template_coordinators_group)    
-                                        .build();
+        fundingCoordGroup =
+            GroupBuilder.createGroup(context)
+                .withName(funding_template_coordinators_group)
+                .build();
         readGroup = GroupBuilder.createGroup(context)
                                 .withName(project_template_readers_group)
                                 .build();
@@ -210,7 +211,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                 project_template_members_group
             )
         );
-        
+
         configurationService.setProperty(
             funding_template_groups_name,
             List.of(
@@ -232,13 +233,13 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
 
         CommunityBuilder.createSubCommunity(context, projectTemplate)
                         .withName("Funding").build();
-        
+
         Collection projectColl = CollectionBuilder.createCollection(context, projectTemplate)
                                                   .withEntityType(ProjectConstants.PROJECT_ENTITY)
                                                   .withTemplateItem()
                                                   .withSubmitterGroup(membersGroup)
                                                   .withName("Project").build();
-        
+
         Item templateItem = projectColl.getTemplateItem();
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
                 ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
@@ -246,7 +247,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_SHARED.schema,
                 ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, null,
                 ProjectConstants.PROJECT);
-        
+
         Item projectItem = ItemBuilder.createItem(context, projectColl)
                    .withTitle("project_item_name")
                    .build();
@@ -254,14 +255,14 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         communityService.addMetadata(context, projectTemplate, MD_RELATION_ITEM_ENTITY.schema,
                 MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
                 null, projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-        
+
         Collection publicationColl = CollectionBuilder.createCollection(context, projectTemplate)
                                                       .withName("Publication Collection")
                                                       .withEntityType("Publication")
                                                       .withSubmitterGroup(membersGroup)
                                                       .withTemplateItem()
                                                       .build();
-        
+
         templateItem = publicationColl.getTemplateItem();
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
                 ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
@@ -276,13 +277,13 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         fundingTemplate = CommunityBuilder.createCommunity(context)
                 .withTitle("funding-template")
                 .build();
-        
+
         Collection fundingColl = CollectionBuilder.createCollection(context, fundingTemplate)
                                 .withEntityType(ProjectConstants.FUNDING_ENTITY)
                                 .withTemplateItem()
                                 .withSubmitterGroup(fundingMemberGroup)
                                 .withName("Funding").build();
-        
+
         templateItem = fundingColl.getTemplateItem();
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
                 ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
@@ -290,15 +291,15 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
                 ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
                 null, "###CURRENTPROJECT.project###");
-        
+
         Item fundingItem = ItemBuilder.createItem(context, fundingColl)
                                       .withTitle("funding_item_name")
                                       .build();
-        
+
         communityService.addMetadata(context, fundingTemplate, MD_RELATION_ITEM_ENTITY.schema,
                 MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
                 null, fundingItem.getName(), fundingItem.getID().toString(), Choices.CF_ACCEPTED);
-        
+
         Collection projectPartnerColl = CollectionBuilder.createCollection(context, fundingTemplate)
                                                          .withSubmitterGroup(fundingMemberGroup)
                                                          .withEntityType(ProjectConstants.PROJECTPARTNER_ENTITY)
@@ -318,9 +319,9 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                 "###CURRENTPROJECT.funding###");
 
         context.restoreAuthSystemState();
-        
+
     }
-    
+
     @Test
     public void cloneCommunityRootTest() throws Exception {
         context.turnOffAuthorisationSystem();
@@ -1223,7 +1224,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         AtomicReference<UUID> idRef = new AtomicReference<>();
         try {
             String token = getAuthToken(eperson.getEmail(), password);
-    
+
             getClient(token).perform(post("/api/core/communities")
                     .param("projection", "full")
                     .param("name", "My new Project")
@@ -1237,14 +1238,13 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                     .andExpect(jsonPath("$",Matchers.allOf(hasJsonPath("$.name", is("My new Project")),
                                hasJsonPath("$.id", is(idRef.get().toString())),
                                hasJsonPath("$.id", not(projectTemplate.getID().toString())))));
-            
+
             projects = context.reloadEntity(projects);
-            
+
             Community projectCommunity = projects.getSubcommunities().get(0);
-            
+
             Community projectFundingCommunity = projectCommunity.getSubcommunities().get(0);
-            
-            
+
             Collection colProject = projectCommunity.getCollections().get(0);
             // check that the new cloned collection has a new item project
             Iterator<Item> items = itemService.findAllByCollection(context, colProject);

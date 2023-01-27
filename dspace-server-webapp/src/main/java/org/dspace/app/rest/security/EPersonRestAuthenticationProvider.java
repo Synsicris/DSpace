@@ -213,16 +213,17 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
 
             if (isAdmin) {
                 authorities.add(new SimpleGrantedAuthority(ADMIN_GRANT));
-            } else
+            } else {
                 try {
-                    if ((isCommunityAdmin && AuthorizeUtil.canCommunityAdminManageAccounts())
-                               || (isCollectionAdmin && AuthorizeUtil.canCollectionAdminManageAccounts())
+                    if (isCommunityAdmin && AuthorizeUtil.canCommunityAdminManageAccounts()
+                               || isCollectionAdmin && AuthorizeUtil.canCollectionAdminManageAccounts()
                                || groupService.isOrganisationalManager(context, eperson)) {
                         authorities.add(new SimpleGrantedAuthority(MANAGE_ACCESS_GROUP));
                     }
                 } catch (SQLException e) {
                     authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
                 }
+            }
 
             authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
         }

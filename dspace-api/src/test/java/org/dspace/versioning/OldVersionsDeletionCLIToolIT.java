@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * http://www.dspace.org/license/
+ */
 package org.dspace.versioning;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
@@ -32,6 +39,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ *
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDatabase {
 
     private Community projectCommunity;

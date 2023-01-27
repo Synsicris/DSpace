@@ -291,7 +291,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                 if (isLastVisibleProjectVersion) {
                     addLastVersionVisible(ctx, actual);
                 }
-                
+
                 if (!this.projectConsumerService.isProjectItem(actual)) {
                     addVersionVisible(ctx, actual);
                 }
@@ -334,7 +334,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void addVersionVisible(Context ctx, Item actual) {
         try {
             this.itemService.setMetadataSingleValue(
@@ -356,7 +356,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void clearVersionVisible(Context ctx, Item actual) {
         try {
             this.itemService.setMetadataSingleValue(

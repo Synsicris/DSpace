@@ -112,12 +112,14 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
 
         Authorization expectedAuthorization = new Authorization(funder, isFunderOfProject, itemRest);
 
-        getClient(token).perform(get("/api/authz/authorizations/search/object")
-                            .param("uri", getItemUri(itemRest))
-                            .param("eperson", String.valueOf(funder.getID()))
-                            .param("feature", IsFunderOfProjectFeature.NAME))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
+        getClient(token).perform(
+            get("/api/authz/authorizations/search/object")
+                .param("uri", getItemUri(itemRest))
+                .param("eperson", String.valueOf(funder.getID()))
+                .param("feature", IsFunderOfProjectFeature.NAME)
+        )
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
     }
 
     @Test
@@ -160,10 +162,11 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
                                      .withCanLogin(true)
                                      .build();
 
-        Item publication = ItemBuilder.createItem(context, subPublications)
-                                      .withTitle("Publication")
-                                      .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
-                                      .build();
+        Item publication =
+            ItemBuilder.createItem(context, subPublications)
+                .withTitle("Publication")
+                .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
+                .build();
 
         GroupBuilder.createGroup(context)
                     .withName("funding_" + subProject.getID() + "_funders_group")

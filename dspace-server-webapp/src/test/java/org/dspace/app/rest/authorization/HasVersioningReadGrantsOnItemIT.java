@@ -13,7 +13,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.dspace.app.rest.authorization.impl.HasEditGrantsOnItem;
 import org.dspace.app.rest.authorization.impl.HasVersioningReadGrantsOnItem;
 import org.dspace.app.rest.converter.ItemConverter;
 import org.dspace.app.rest.model.ItemRest;
@@ -51,11 +50,11 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
     private Item closeGrantsEntity;
 
     private Item withoutGrantsEntity;
-    
+
     private Item wrongGrantsEntity;
 
     private Community testProject;
-    
+
     private Group adminGroup;
 
     private Group membersGroup;
@@ -83,26 +82,40 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
             .build();
 
         Collection fundingColl = createCollection("Fundings", ProjectConstants.PROJECT, testProject);
-        openGrantsEntity = ItemBuilder.createItem(context, fundingColl)
-            .withTitle("Test funding")
-            .withAuthorityMetadata(ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema, ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
-                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, adminGroup.getName(), adminGroup.getID().toString())
-            .build();
-        
-        closeGrantsEntity = ItemBuilder.createItem(context, fundingColl)
+        openGrantsEntity =
+            ItemBuilder.createItem(context, fundingColl)
+                .withTitle("Test funding")
+                .withAuthorityMetadata(
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, adminGroup.getName(),
+                    adminGroup.getID().toString()
+                )
+                .build();
+
+        closeGrantsEntity =
+            ItemBuilder.createItem(context, fundingColl)
                 .withTitle("Test close funding")
-                .withAuthorityMetadata(ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema, ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
-                        ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, membersGroup.getName(), membersGroup.getID().toString())
+                .withAuthorityMetadata(
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, membersGroup.getName(),
+                    membersGroup.getID().toString()
+                )
                 .build();
 
         withoutGrantsEntity = ItemBuilder.createItem(context, fundingColl)
                 .withTitle("Test funding without grants")
                 .build();
 
-        wrongGrantsEntity = ItemBuilder.createItem(context, fundingColl)
+        wrongGrantsEntity =
+            ItemBuilder.createItem(context, fundingColl)
                 .withTitle("Test funding without grants")
-                .withMetadata(ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema, ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
-                        ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, "test wrong")
+                .withMetadata(
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.schema,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.element,
+                    ProjectConstants.MD_VERSION_READ_POLICY_GROUP.qualifier, "test wrong"
+                )
                 .build();
         context.restoreAuthSystemState();
 
@@ -144,7 +157,7 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
         ItemRest itemRest = itemConverter.convert(openGrantsEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
-        
+
         Authorization expectedAuthorization = new Authorization(admin, hasVersioningReadGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
@@ -153,9 +166,9 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
             .param("feature", HasVersioningReadGrantsOnItem.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
-        
+
         token = getAuthToken(eperson.getEmail(), password);
-        
+
         expectedAuthorization = new Authorization(eperson, hasVersioningReadGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
@@ -165,14 +178,14 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
     }
-    
+
     @Test
     public void testItemWithClosedGrants() throws Exception {
 
         ItemRest itemRest = itemConverter.convert(closeGrantsEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
-        
+
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
@@ -180,9 +193,9 @@ public class HasVersioningReadGrantsOnItemIT extends AbstractControllerIntegrati
             .param("feature", HasVersioningReadGrantsOnItem.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
-        
+
         token = getAuthToken(eperson.getEmail(), password);
-        
+
         Authorization expectedAuthorization = new Authorization(eperson, hasVersioningReadGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")

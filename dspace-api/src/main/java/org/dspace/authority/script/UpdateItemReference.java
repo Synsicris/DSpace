@@ -38,7 +38,7 @@ import org.dspace.utils.DSpace;
 
 /**
  * Implementation of {@link DSpaceRunnable} to update stale item references.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class UpdateItemReference
@@ -117,7 +117,7 @@ public class UpdateItemReference
                     String searchedItemEntityType = itemService.getMetadataFirstValue(searchedItem,
                             "dspace", "entity", "type", Item.ANY);
                     boolean contains = Arrays.stream(entityTypeList).anyMatch(searchedItemEntityType::equals);
-                    
+
                     if (contains || entityTypeList.length == 0) {
                         setReferences(metadata, searchedItem, checkWhetherTitleNeedsToBeSet());
                         referencesResolved.add("The starting item with uuid: " + item.getID() + " and reference value "

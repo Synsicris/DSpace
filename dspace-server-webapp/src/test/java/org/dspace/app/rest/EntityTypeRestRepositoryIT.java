@@ -339,7 +339,9 @@ public class EntityTypeRestRepositoryIT extends AbstractEntityIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.entitytypes", containsInAnyOrder(
                         EntityTypeMatcher.matchEntityTypeEntry(entityTypeService.findByEntityType(context, "Project")),
-                        EntityTypeMatcher.matchEntityTypeEntry(entityTypeService.findByEntityType(context, "Publication"))
+                        EntityTypeMatcher.matchEntityTypeEntry(
+                            entityTypeService.findByEntityType(context, "Publication")
+                        )
                     )))
                 .andExpect(jsonPath("$._embedded.entitytypes", Matchers.not(containsInAnyOrder(
                     EntityTypeMatcher

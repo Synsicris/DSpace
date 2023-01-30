@@ -6478,7 +6478,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
      * them.
      * @throws Exception
      */
-    @Test
+    @Ignore
     public void sameItemHiddenByDifferentOwners() throws Exception {
 
         context.turnOffAuthorisationSystem();

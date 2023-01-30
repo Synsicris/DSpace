@@ -25,6 +25,7 @@ import org.dspace.content.Collection;
 import org.dspace.content.EntityType;
 import org.dspace.external.provider.AbstractExternalDataProvider;
 import org.dspace.external.service.ExternalDataService;
+import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ExternalSourcesByEntityTypesIT extends AbstractControllerIntegrationTest {
     @Autowired
     private ExternalDataService externalDataService;
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Test
     public void findExternalSourcesByEntityType() throws Exception {
@@ -77,80 +80,43 @@ public class ExternalSourcesByEntityTypesIT extends AbstractControllerIntegratio
     @Test
     public void findAllByAuthorizedExternalSource() throws Exception {
         context.turnOffAuthorisationSystem();
-        EntityType publicationType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
-        EntityType orgUnitType = EntityTypeBuilder.createEntityTypeBuilder(context, "OrgUnit").build();
-        EntityType projectType = EntityTypeBuilder.createEntityTypeBuilder(context, "Project").build();
-        EntityType fundingType = EntityTypeBuilder.createEntityTypeBuilder(context, "Funding").build();
-        // ** GIVEN **
-        // 1. A community-collection structure with one parent community with
-        // sub-community and one collection.
-        parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
-        Collection col1 = CollectionBuilder.createCollection(context, parentCommunity).withEntityType("OrgUnit")
-                .withName("Collection 1").build();
-        Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
-                .withEntityType("Publication").withSubmitterGroup(eperson).withName("Collection 2").build();
-        Collection col3 = CollectionBuilder.createCollection(context, parentCommunity).withEntityType("Project")
-                .withSubmitterGroup(eperson).withName("Collection 3").build();
-        Collection col4 = CollectionBuilder.createCollection(context, parentCommunity).withEntityType("Funding")
-                .withSubmitterGroup(eperson).withName("Collection 4").build();
-
-        context.restoreAuthSystemState();
-
-        String token = getAuthToken(eperson.getEmail(), password);
-        getClient(token).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.entitytypes",
-                        containsInAnyOrder(
-                                EntityTypeMatcher.matchEntityTypeEntry(publicationType),
-                                EntityTypeMatcher.matchEntityTypeEntry(fundingType),
-                                EntityTypeMatcher.matchEntityTypeEntry(projectType))))
-                .andExpect(jsonPath("$.page.totalElements", Matchers.is(3)));
-
-        String adminToken = getAuthToken(admin.getEmail(), password);
-        getClient(adminToken).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.entitytypes",
-                        containsInAnyOrder(
-                                EntityTypeMatcher.matchEntityTypeEntry(orgUnitType),
-                                EntityTypeMatcher.matchEntityTypeEntry(fundingType),
-                                EntityTypeMatcher.matchEntityTypeEntry(projectType),
-                                EntityTypeMatcher.matchEntityTypeEntry(publicationType))))
-                .andExpect(jsonPath("$.page.totalElements", Matchers.is(4)));
-        getClient(adminToken)
-                .perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource").param("size", "1")
-                        .param("page", "1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$._embedded.entitytypes", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$.page.totalElements", Matchers.is(4)));
-
-        List<String> mockSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
-            .getExternalDataProvider("mock")).getSupportedEntityTypes();
-
-        List<String> suggestionSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
-            .getExternalDataProvider("suggestion")).getSupportedEntityTypes();
-
-        List<String> pubmedSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
-            .getExternalDataProvider("pubmed")).getSupportedEntityTypes();
-
-        // temporary alter the mock, orcid, suggestion data providers to restrict them to Publication
+        String[] skippableEntities = this.configurationService.getArrayProperty("project.entity-name.to-skip");
         try {
+            this.configurationService.setProperty("project.entity-name.to-skip", new String[] {});
 
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("mock"))
-                    .setSupportedEntityTypes(Arrays.asList("Publication"));
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("suggestion"))
-                    .setSupportedEntityTypes(Arrays.asList("Publication"));
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("pubmed"))
-                    .setSupportedEntityTypes(Arrays.asList("Publication"));
+            EntityType publicationType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+            EntityType orgUnitType = EntityTypeBuilder.createEntityTypeBuilder(context, "OrgUnit").build();
+            EntityType projectType = EntityTypeBuilder.createEntityTypeBuilder(context, "Project").build();
+            EntityType fundingType = EntityTypeBuilder.createEntityTypeBuilder(context, "Funding").build();
+            // ** GIVEN **
+            // 1. A community-collection structure with one parent community with
+            // sub-community and one collection.
+            parentCommunity = CommunityBuilder.createCommunity(context).withName("Parent Community").build();
+            Collection col1 =
+                CollectionBuilder.createCollection(context, parentCommunity)
+                    .withEntityType("OrgUnit")
+                    .withName("Collection 1")
+                    .build();
+            Collection col2 = CollectionBuilder.createCollection(context, parentCommunity)
+                    .withEntityType("Publication").withSubmitterGroup(eperson).withName("Collection 2").build();
+            Collection col3 = CollectionBuilder.createCollection(context, parentCommunity).withEntityType("Project")
+                    .withSubmitterGroup(eperson).withName("Collection 3").build();
+            Collection col4 = CollectionBuilder.createCollection(context, parentCommunity).withEntityType("Funding")
+                    .withSubmitterGroup(eperson).withName("Collection 4").build();
 
+            context.restoreAuthSystemState();
+
+            String token = getAuthToken(eperson.getEmail(), password);
             getClient(token).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$._embedded.entitytypes",
                             containsInAnyOrder(
                                     EntityTypeMatcher.matchEntityTypeEntry(publicationType),
-                                    EntityTypeMatcher.matchEntityTypeEntry(projectType),
-                                    EntityTypeMatcher.matchEntityTypeEntry(fundingType))))
+                                    EntityTypeMatcher.matchEntityTypeEntry(fundingType),
+                                    EntityTypeMatcher.matchEntityTypeEntry(projectType))))
                     .andExpect(jsonPath("$.page.totalElements", Matchers.is(3)));
 
+            String adminToken = getAuthToken(admin.getEmail(), password);
             getClient(adminToken).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$._embedded.entitytypes",
@@ -160,14 +126,61 @@ public class ExternalSourcesByEntityTypesIT extends AbstractControllerIntegratio
                                     EntityTypeMatcher.matchEntityTypeEntry(projectType),
                                     EntityTypeMatcher.matchEntityTypeEntry(publicationType))))
                     .andExpect(jsonPath("$.page.totalElements", Matchers.is(4)));
+            getClient(adminToken)
+                    .perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource").param("size", "1")
+                            .param("page", "1"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$._embedded.entitytypes", Matchers.hasSize(1)))
+                    .andExpect(jsonPath("$.page.totalElements", Matchers.is(4)));
 
+            List<String> mockSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
+                .getExternalDataProvider("mock")).getSupportedEntityTypes();
+
+            List<String> suggestionSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
+                .getExternalDataProvider("suggestion")).getSupportedEntityTypes();
+
+            List<String> pubmedSupportedEntityTypes = ((AbstractExternalDataProvider) externalDataService
+                .getExternalDataProvider("pubmed")).getSupportedEntityTypes();
+
+            // temporary alter the mock, orcid, suggestion data providers to restrict them to Publication
+            try {
+
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("mock"))
+                        .setSupportedEntityTypes(Arrays.asList("Publication"));
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("suggestion"))
+                        .setSupportedEntityTypes(Arrays.asList("Publication"));
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("pubmed"))
+                        .setSupportedEntityTypes(Arrays.asList("Publication"));
+
+                getClient(token).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$._embedded.entitytypes",
+                                containsInAnyOrder(
+                                        EntityTypeMatcher.matchEntityTypeEntry(publicationType),
+                                        EntityTypeMatcher.matchEntityTypeEntry(projectType),
+                                        EntityTypeMatcher.matchEntityTypeEntry(fundingType))))
+                        .andExpect(jsonPath("$.page.totalElements", Matchers.is(3)));
+
+                getClient(adminToken).perform(get("/api/core/entitytypes/search/findAllByAuthorizedExternalSource"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$._embedded.entitytypes",
+                                containsInAnyOrder(
+                                        EntityTypeMatcher.matchEntityTypeEntry(orgUnitType),
+                                        EntityTypeMatcher.matchEntityTypeEntry(fundingType),
+                                        EntityTypeMatcher.matchEntityTypeEntry(projectType),
+                                        EntityTypeMatcher.matchEntityTypeEntry(publicationType))))
+                        .andExpect(jsonPath("$.page.totalElements", Matchers.is(4)));
+
+            } finally {
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("mock"))
+                    .setSupportedEntityTypes(mockSupportedEntityTypes);
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("suggestion"))
+                    .setSupportedEntityTypes(suggestionSupportedEntityTypes);
+                ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("pubmed"))
+                    .setSupportedEntityTypes(pubmedSupportedEntityTypes);
+            }
         } finally {
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("mock"))
-                .setSupportedEntityTypes(mockSupportedEntityTypes);
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("suggestion"))
-                .setSupportedEntityTypes(suggestionSupportedEntityTypes);
-            ((AbstractExternalDataProvider) externalDataService.getExternalDataProvider("pubmed"))
-                .setSupportedEntityTypes(pubmedSupportedEntityTypes);
+            this.configurationService.setProperty("project.entity-name.to-skip", skippableEntities);
         }
     }
 

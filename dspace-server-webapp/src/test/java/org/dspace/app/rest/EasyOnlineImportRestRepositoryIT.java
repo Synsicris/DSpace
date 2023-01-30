@@ -28,6 +28,7 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 /**
  * Integration test class for the easyonlineimport endpoint
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrationTest {
@@ -142,37 +143,13 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                               "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
                             + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
                             + " Projektträger in der Agrarforschung")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title.alternative",
+                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.title.alternative",
                            "Research Information System and Evaluation Concept for Research Contributions to Practice"
                          + " and Society – Optimized Through Pilot Studies Within Funding Agencies"
                          + " for Agricultural Research")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.description.abstract",
-                           "Das Projekt strebt eine Weiterentwicklung des im Projekt Praxis-Impact II (FKZ 2812NA102)"
-                         + " erarbeiteten Dokumentations- und Evaluierungskonzeptes an, welches eine auf praktischen"
-                         + " und gesellschaftlichen Nutzen ausgerichtete Forschungskultur fördern soll. Dieses Konzept"
-                         + " soll entlang der Anforderungen des Agrar-Innovationssystems (Förderer, Forschung,"
-                         + " Wissenstransfer/-nutzer) bis zur Anwendbarkeit im Pilotbetrieb weiterentwickelt werden."
-                         + " Das Dokumentationskonzept soll umgesetzt werden, indem ein Open Source"
-                         + " Forschungsinformationssystem (FIS) erweitert wird, a) um Leistungen der Forschung für"
-                         + " Praxis und Gesellschaft und b) um Informationen, die in der Forschungsförderung zusätzlich"
-                         + " benötigt werden (um Teile von Anträgen und Berichten zu ersetzen)."
-                         + " Das erweiterte FIS soll a) Förderentscheidungen und die Projektbegleitung unterstützen,"
-                         + " b) eine qualitativ hochwertige Evaluierung gesellschaftlicher Leistungen ermöglichen und"
-                         + " c) Qualität, Transfer und Zugänglichkeit zielgruppengerechter Outputs erhöhen."
-                         + " Das Verfahren für die Projektevaluierung soll a) durch partizipative Dokumentations-"
-                         + " und Evaluierungsprozesse die Ausrichtung der Projekte auf gesellschaftlichen Nutzen"
-                         + " steigern, b) die Wirksamkeit von Forschungsprogrammen nachweisen können und"
-                         + " c) es ermöglichen besonders erfolgreiche Projekte auszuzeichnen.")))
                    .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.acronym", "SynSICRIS")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.description.workplan",
-                           "Die Anforderungen des Agrarinnovationssystems an das erweiterte FIS und das"
-                         + " Evaluierungskonzept werden über Beteiligungs- und Erprobungsprozesse und"
-                         + " Experteneinbindung mit einem Living Lab Ansatz ermittelt und in mehreren"
-                         + " Rückkopplungsschlaufen umgesetzt. Die Erweiterung des Open Source FIS DSpace-CRIS erfolgt"
-                         + " über ein agiles Vorgehensmodell der Softwareentwicklung. Die nutzbaren Zwischenversionen"
-                         + " und das weiterentwickelte Evaluierungskonzept werden für Sichtungs- und Testprozesse im"
-                         + " Living Lab genutzt. Ca. 8 Projektträger und 5 Stiftungen werden in Sichtungen einbezogen,"
-                         + " Erprobungen finden in der BLE und bei drei weiteren Projektträgern statt." )));
+                   .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.project.startDate", "2017-06-01")))
+                   .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.project.endDate", "2022-05-31")));
     }
 
     @Test
@@ -289,52 +266,93 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
     public void easyOnlineImportTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Mykhaylo", "Boychuk")
-                                         .withEmail("mykhaylo.boychuk@email.com")
-                                         .withPassword(password).build();
+        EPerson ePerson1 =
+            EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("Mykhaylo", "Boychuk")
+                .withEmail("mykhaylo.boychuk@email.com")
+                .withPassword(password)
+                .build();
 
-        Community projectA = CommunityBuilder.createCommunity(context)
-                                             .withName("project A").build();
+        Community rootCommunity =
+            CommunityBuilder.createCommunity(context)
+                .withName("root community")
+                .build();
+
+        Community projectSharedCommunity =
+            CommunityBuilder.createSubCommunity(context, rootCommunity)
+                .withName("project shared community")
+                .build();
+
+        Community projectCommunity =
+            CommunityBuilder.createSubCommunity(context, projectSharedCommunity)
+                .withName("project's community")
+                .build();
+
+        Community projectA =
+            CommunityBuilder.createSubCommunity(context, projectCommunity)
+                .withName("project A")
+                .build();
 
 
         CollectionBuilder.createCollection(context, projectA)
-                         .withName("Project partners")
-                         .withEntityType("projectpartner")
-                         .withSubmissionDefinition("projectpartners")
-                         .withSubmitterGroup(ePerson1)
-                         .build();
+            .withName("Project partners")
+            .withEntityType("projectpartner")
+            .withSubmissionDefinition("projectpartners")
+            .withSubmitterGroup(ePerson1)
+            .build();
 
-        Collection joinProjects = CollectionBuilder.createCollection(context, projectA)
-                                           .withName("Parent Project Collection Title")
-                                           .build();
+        Collection joinProjects =
+            CollectionBuilder.createCollection(context, projectCommunity)
+                .withName("Parent Project Collection Title")
+                .build();
 
-        Item projectAItem = ItemBuilder.createItem(context, joinProjects)
-                                       .withTitle("project A")
-                                       .build();
+        Item projectAItem =
+            ItemBuilder.createItem(context, joinProjects)
+                .withTitle("project A")
+                .build();
 
-        Community fundingRootComm = CommunityBuilder.createSubCommunity(context, projectA)
-                                                         .withName("Funding").build();
+        Community fundingRootComm =
+            CommunityBuilder.createSubCommunity(context, projectCommunity)
+                .withName("Funding")
+                .build();
 
-        Community subprojectA = CommunityBuilder.createSubCommunity(context, fundingRootComm)
-                                          .withName("subproject A - project A all grants").build();
+        Community subprojectA =
+            CommunityBuilder.createSubCommunity(context, fundingRootComm)
+                .withName("subproject A - project A all grants")
+                .build();
 
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + subprojectA.getID().toString() + "_members_group")
-                       .addMember(ePerson1).build();
+        Group subprojectAGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE,
+                    subprojectA.getID().toString())
+                )
+                .addMember(ePerson1)
+                .build();
 
-        Collection Funding = CollectionBuilder.createCollection(context, subprojectA)
-                                               .withName("Funding")
-                                               .withSubmitterGroup(subprojectAGroup)
-                                               .withEntityType("Funding")
-                                               .build();
+        Collection Funding =
+            CollectionBuilder.createCollection(context, subprojectA)
+                .withName("Funding")
+                .withSubmitterGroup(subprojectAGroup)
+                .withEntityType("Funding")
+                .build();
 
-        Item fundingItem = ItemBuilder.createItem(context, Funding)
+        Collection projectPartnerColl =
+            CollectionBuilder.createCollection(context, subprojectA)
+                .withName("projectpartnerColl")
+                .withSubmitterGroup(subprojectAGroup)
+                .withEntityType("projectpartner")
+                .build();
+
+        Item fundingItem =
+            ItemBuilder.createItem(context, Funding)
                 .withTitle("Funding Item Title")
                 .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
                 .build();
 
         configurationService.setProperty("project.funding-community-name", fundingRootComm.getName());
+        String projectParentCommunity = this.configurationService.getProperty("project.parent-community-id");
+        this.configurationService.setProperty("project.parent-community-id", projectSharedCommunity.getID().toString());
 
         context.restoreAuthSystemState();
 
@@ -352,40 +370,16 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         getClient().perform(get("/api/core/items/" + fundingItem.getID()))
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.title",
-                              "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
-                            + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
-                            + " Projektträger in der Agrarforschung")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.title.alternative",
-                           "Research Information System and Evaluation Concept for Research Contributions to Practice"
-                         + " and Society – Optimized Through Pilot Studies Within Funding Agencies"
-                         + " for Agricultural Research")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("dc.description.abstract",
-                           "Das Projekt strebt eine Weiterentwicklung des im Projekt Praxis-Impact II (FKZ 2812NA102)"
-                         + " erarbeiteten Dokumentations- und Evaluierungskonzeptes an, welches eine auf praktischen"
-                         + " und gesellschaftlichen Nutzen ausgerichtete Forschungskultur fördern soll. Dieses Konzept"
-                         + " soll entlang der Anforderungen des Agrar-Innovationssystems (Förderer, Forschung,"
-                         + " Wissenstransfer/-nutzer) bis zur Anwendbarkeit im Pilotbetrieb weiterentwickelt werden."
-                         + " Das Dokumentationskonzept soll umgesetzt werden, indem ein Open Source"
-                         + " Forschungsinformationssystem (FIS) erweitert wird, a) um Leistungen der Forschung für"
-                         + " Praxis und Gesellschaft und b) um Informationen, die in der Forschungsförderung zusätzlich"
-                         + " benötigt werden (um Teile von Anträgen und Berichten zu ersetzen)."
-                         + " Das erweiterte FIS soll a) Förderentscheidungen und die Projektbegleitung unterstützen,"
-                         + " b) eine qualitativ hochwertige Evaluierung gesellschaftlicher Leistungen ermöglichen und"
-                         + " c) Qualität, Transfer und Zugänglichkeit zielgruppengerechter Outputs erhöhen."
-                         + " Das Verfahren für die Projektevaluierung soll a) durch partizipative Dokumentations-"
-                         + " und Evaluierungsprozesse die Ausrichtung der Projekte auf gesellschaftlichen Nutzen"
-                         + " steigern, b) die Wirksamkeit von Forschungsprogrammen nachweisen können und"
-                         + " c) es ermöglichen besonders erfolgreiche Projekte auszuzeichnen.")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.acronym", "SynSICRIS")))
-                   .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.description.workplan",
-                           "Die Anforderungen des Agrarinnovationssystems an das erweiterte FIS und das"
-                         + " Evaluierungskonzept werden über Beteiligungs- und Erprobungsprozesse und"
-                         + " Experteneinbindung mit einem Living Lab Ansatz ermittelt und in mehreren"
-                         + " Rückkopplungsschlaufen umgesetzt. Die Erweiterung des Open Source FIS DSpace-CRIS erfolgt"
-                         + " über ein agiles Vorgehensmodell der Softwareentwicklung. Die nutzbaren Zwischenversionen"
-                         + " und das weiterentwickelte Evaluierungskonzept werden für Sichtungs- und Testprozesse im"
-                         + " Living Lab genutzt. Ca. 8 Projektträger und 5 Stiftungen werden in Sichtungen einbezogen,"
-                         + " Erprobungen finden in der BLE und bei drei weiteren Projektträgern statt." )));
+                       "Forschungsinformationssystem und Evaluierungsverfahren für Leistungen der"
+                     + " Forschung für Praxis und Gesellschaft – ausgereift im Pilot-Betrieb für"
+                     + " Projektträger in der Agrarforschung")))
+                    .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.title.alternative",
+                            "Research Information System and Evaluation Concept for Research Contributions to Practice"
+                          + " and Society – Optimized Through Pilot Studies Within Funding Agencies"
+                          + " for Agricultural Research")))
+                    .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.acronym", "SynSICRIS")))
+                    .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.project.startDate", "2017-06-01")))
+                    .andExpect(jsonPath("$.metadata", matchMetadata("oairecerif.project.endDate", "2022-05-31")));
 
             getClient().perform(get("/api/core/items/" + idRef1.get()))
                        .andExpect(status().isOk())
@@ -401,8 +395,8 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressPostcode", "76131")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.address.addressStreetnamenumber",
                                                                        "Ludwig-Erhard-Allee 6")))
-                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.identifier.registernumber",
-                                                                       "HRB 107964")))
+                       .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.type.legalform",
+                                                                       "GmbH")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.orgunits.email", "office@disy.net")))
                        .andExpect(jsonPath("$.metadata", matchMetadata("synsicris.orgunits.phone",
                                                                        "+49 721 16006-000")))
@@ -425,6 +419,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
             if (idRef1.get() != null) {
                 ItemBuilder.deleteItem(UUID.fromString(idRef1.get()));
             }
+            this.configurationService.setProperty("project.parent-community-id", projectParentCommunity);
         }
     }
 

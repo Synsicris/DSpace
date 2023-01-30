@@ -154,10 +154,6 @@
     <bean id="synsicris.title.alternative" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="synsicris.title.alternative"/>
     </bean>
-
-    <bean id="synsicris.description.workplan" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
-        <constructor-arg value="synsicris.description.workplan"/>
-    </bean>
     
     <bean id="oairecerif.project.startDate" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="oairecerif.project.startDate"/>

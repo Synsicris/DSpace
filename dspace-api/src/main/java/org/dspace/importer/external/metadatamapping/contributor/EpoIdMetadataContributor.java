@@ -33,7 +33,7 @@ import org.springframework.beans.factory.annotation.Required;
 /**
  * Custom MetadataContributor to manage Epo ID.
  * Need as input <publication-reference> element and all children.
- * 
+ *
  * @author Pasquale Cavallo
  */
 public class EpoIdMetadataContributor implements MetadataContributor<Element> {
@@ -45,7 +45,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
     /**
      * This property will be used in ID definition.
      * If this is true, id will be in the form docType:EpoID, otherwise EpoID will be returned
-     * 
+     *
      * @param needType if true, docType will be included in id definition
      */
     public void setNeedType(boolean needType) {
@@ -77,6 +77,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
      *
      * @param metadataFieldMapping the new mapping.
      */
+    @Override
     public void setMetadataFieldMapping(
         MetadataFieldMapping<Element, MetadataContributor<Element>> metadataFieldMapping) {
         this.metadataFieldMapping = metadataFieldMapping;
@@ -156,7 +157,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
      * Depending on the retrieved node (using the query), different types of values will be added to the MetadatumDTO
      * list
      *
-     * @param t A class to retrieve metadata from.
+     * @param element
      * @return a collection of import records. Only the identifier of the found records may be put in the record.
      */
     @Override
@@ -192,7 +193,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
 
     /**
      * This class maps EPO's response metadata needs to extract epo ID.
-     * 
+     *
      * @author Pasquale Cavallo
      *
      */
@@ -259,14 +260,14 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
 
         /**
          * This method compute the epo ID from fields
-         * 
+         *
          * @return the EPO id
          */
         public String getId() {
             if (DOCDB.equals(documentIdType)) {
                 return country + "." + docNumber + "." + kind;
             } else if (EPODOC.equals(documentIdType)) {
-                return docNumber + ((kind != null) ? kind : StringUtils.EMPTY);
+                return docNumber + (kind != null ? kind : StringUtils.EMPTY);
             } else {
                 return docNumber;
             }
@@ -274,7 +275,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<Element> {
 
         public String getIdAndType() {
             if (EPODOC.equals(documentIdType)) {
-                return documentIdType + ":" + docNumber + ((kind != null) ? kind : "");
+                return documentIdType + ":" + docNumber + (kind != null ? kind : "");
             } else if (DOCDB.equals(documentIdType)) {
                 return documentIdType + ":" + country + "." + docNumber + "." + kind;
             } else {

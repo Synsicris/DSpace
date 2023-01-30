@@ -56,7 +56,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Implements a data source for querying EPO
- * 
+ *
  * @author Pasquale Cavallo (pasquale.cavallo at 4Science dot it)
  */
 public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSourceService<Element>
@@ -135,9 +135,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     /***
      * Log to EPO, bearer is valid for 20 minutes
-     * 
-     * @param consumerKey       The consumer Key
-     * @param consumerSecretKey The consumer secret key
+     *
      * @return
      * @throws IOException
      * @throws HttpException
@@ -280,6 +278,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             this.bearer = bearer;
         }
 
+        @Override
         public Integer call() throws Exception {
             return countDocument(bearer, query);
         }
@@ -301,6 +300,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             this.bearer = bearer;
         }
 
+        @Override
         public List<ImportRecord> call() throws Exception {
             int positionToSplit = id.indexOf(":");
             String docType = EpoDocumentId.EPODOC;

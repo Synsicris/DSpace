@@ -62,7 +62,7 @@ public class IsCoordinatorOfFundingFeatureIT extends AbstractControllerIntegrati
         testProject = createSubCommunity("Test Project", joinProjects);
 
         GroupBuilder.createGroup(context)
-            .withName("funding_" + testProject.getID() + "_admin_group")
+            .withName("funding_" + testProject.getID() + "_coordinators_group")
             .addMember(admin)
             .build();
 
@@ -156,7 +156,7 @@ public class IsCoordinatorOfFundingFeatureIT extends AbstractControllerIntegrati
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName("funding_" + subProject.getID() + "_admin_group")
+            .withName("funding_" + subProject.getID() + "_coordinators_group")
             .addMember(user)
             .build();
 

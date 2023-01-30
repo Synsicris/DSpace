@@ -62,7 +62,7 @@ public class IsMemberOfProjectFeatureIT extends AbstractControllerIntegrationTes
         testProject = createSubCommunity("Test Project", joinProjects);
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_admin_group")
+            .withName("project_" + testProject.getID() + "_coordinators_group")
             .addMember(admin)
             .build();
 

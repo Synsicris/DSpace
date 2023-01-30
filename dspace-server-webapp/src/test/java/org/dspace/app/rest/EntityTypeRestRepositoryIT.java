@@ -94,7 +94,7 @@ public class EntityTypeRestRepositoryIT extends AbstractEntityIntegrationTest {
         if (orgUnitType == null) {
             orgUnitType = EntityTypeBuilder.createEntityTypeBuilder(context, "OrgUnit").build();
         }
-        
+
         milestoneType = entityTypeService.findByEntityType(context, "milestone");
         if (milestoneType == null) {
             milestoneType = EntityTypeBuilder.createEntityTypeBuilder(context, "milestone").build();
@@ -304,7 +304,7 @@ public class EntityTypeRestRepositoryIT extends AbstractEntityIntegrationTest {
             CommunityBuilder.deleteCommunity(parentCommunity.getID());
         }
     }
-    
+
     @Test
     public void findAllByAuthorizedCollectionWithScope() throws Exception {
         Community parentCommunity2 = null;

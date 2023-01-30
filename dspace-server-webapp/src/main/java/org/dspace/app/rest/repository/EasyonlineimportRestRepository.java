@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,7 +39,6 @@ import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.DiscoverResultIterator;
-import org.dspace.discovery.SearchServiceException;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
@@ -53,7 +53,7 @@ import org.xml.sax.SAXException;
 
 /**
  * This is the repository responsible to manage EasyOnlineImport Rest object
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component(EasyOnlineImportRest.CATEGORY + "." + EasyOnlineImportRest.NAME)
@@ -116,8 +116,15 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
             modified.add(item.getID());
             // import project partner item
             Collection projectPartnerCollection = getProjectPartnerCollection(context, item);
-            Iterator<Item> items = findItems(context, projectPartnerCollection, item);
-            if (items.hasNext()) {
+            Iterator<Item> items =
+                Optional.ofNullable(projectPartnerCollection)
+                    .map(collection -> findItems(context, collection, item))
+                    .orElseThrow(
+                        () -> new UnprocessableEntityException(
+                            "Missing projectpartner linked collection of the item: " + item.getID().toString()
+                        )
+                    );
+            if (items != null && items.hasNext()) {
                 projectPartnerItem = items.next();
                 easyOnlineImportService.importFile(context, projectPartnerItem, document, "projectpartner");
                 modified.add(projectPartnerItem.getID());
@@ -136,7 +143,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 easyOnlineImport.setCreated(Collections.singletonList(newItem.getID()));
             }
             easyOnlineImport.setModified(modified);
-        } catch (ParserConfigurationException | SAXException | SearchServiceException | XPathExpressionException e) {
+        } catch (ParserConfigurationException | SAXException | XPathExpressionException e) {
             throw new UnprocessableEntityException(e.getMessage());
         }
         context.commit();
@@ -152,15 +159,16 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
         return null;
     }
 
-    private Iterator<Item> findItems(Context context, Collection collection, Item projectItem)
-            throws SQLException, SearchServiceException {
+    private Iterator<Item> findItems(Context context, Collection collection, Item projectItem) {
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.addFilterQueries("dspace.entity.type:" + ProjectConstants.PROJECTPARTNER_ENTITY);
         discoverQuery.addFilterQueries(ProjectConstants.MD_EASYIMPORT.toString() + ":Yes");
         discoverQuery.addFilterQueries("location.coll:" + collection.getID().toString());
-        discoverQuery.addFilterQueries(ProjectConstants.MD_FUNDING_RELATION.toString() + "_authority:" +
-                projectItem.getID().toString());
+        discoverQuery.addFilterQueries(
+            ProjectConstants.MD_FUNDING_RELATION.toString() + "_authority:" +
+                projectItem.getID().toString()
+        );
         return new DiscoverResultIterator<Item, UUID>(context, discoverQuery);
     }
 

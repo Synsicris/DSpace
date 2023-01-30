@@ -31,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Integration tests for {@link EpoImportMetadataSourceServiceImpl}
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
 public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrationTest {
@@ -147,9 +147,10 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         //define first record
         List<MetadatumDTO> metadatums  = new ArrayList<MetadatumDTO>();
         MetadatumDTO identifierOther = createMetadatumDTO("dc", "identifier", "other", "epodoc:ES2902749T");
-        MetadatumDTO identifier = createMetadatumDTO("dc", "identifier", null, "18705153");
+        MetadatumDTO patentNo = createMetadatumDTO("dc", "identifier", "patentno", "ES2902749T");
+        MetadatumDTO identifier = createMetadatumDTO("synsicris", "identifier", "applicationnumber", "18705153");
         MetadatumDTO date = createMetadatumDTO("dc", "date", "issued", "2022-01-29");
-        MetadatumDTO dateSubmitted = createMetadatumDTO("dc", "date", "submitted", "2018-01-19");
+        MetadatumDTO dateSubmitted = createMetadatumDTO("synsicris", "date", "filled", "2018-01-19");
         MetadatumDTO applicant = createMetadatumDTO("dc", "contributor", null, "PANKA BLOOD TEST GMBH");
         MetadatumDTO applicant2 = createMetadatumDTO("dc", "contributor", null, "Panka Blood Test GmbH");
         MetadatumDTO author = createMetadatumDTO("dc", "contributor", "author", "PANTEL KLAUS");
@@ -161,6 +162,7 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
                                               "G01N  33/   574            A I                    ");
 
         metadatums.add(identifierOther);
+        metadatums.add(patentNo);
         metadatums.add(identifier);
         metadatums.add(date);
         metadatums.add(dateSubmitted);
@@ -178,9 +180,11 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         //define second record
         List<MetadatumDTO> metadatums2  = new ArrayList<MetadatumDTO>();
         MetadatumDTO identifierOther2 = createMetadatumDTO("dc", "identifier", "other", "epodoc:TW202202864");
-        MetadatumDTO identifier2 = createMetadatumDTO("dc", "identifier", null, "109122801");
+        MetadatumDTO identifier2 = createMetadatumDTO("dc", "identifier", "patentno", "TW202202864");
+        MetadatumDTO applicationNumber =
+            createMetadatumDTO("synsicris", "identifier", "applicationnumber", "109122801");
         MetadatumDTO date2 = createMetadatumDTO("dc", "date", "issued", "2022-01-16");
-        MetadatumDTO dateSubmitted2 = createMetadatumDTO("dc", "date", "submitted", "2020-01-06");
+        MetadatumDTO dateSubmitted2 = createMetadatumDTO("synsicris", "date", "filled", "2020-01-06");
         MetadatumDTO applicant3 = createMetadatumDTO("dc", "contributor", null, "ADVANTEST CORP [JP]");
         MetadatumDTO applicant4 = createMetadatumDTO("dc", "contributor", null, "ADVANTEST CORPORATION");
         MetadatumDTO author5 = createMetadatumDTO("dc", "contributor", "author", "POEPPE OLAF [DE]");
@@ -196,8 +200,10 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
                 "G01R  31/   319            A I                    ");
         MetadatumDTO subject3 = createMetadatumDTO("dc", "subject", null,
                 "G01R  31/  3193            A I                    ");
+
         metadatums2.add(identifierOther2);
         metadatums2.add(identifier2);
+        metadatums2.add(applicationNumber);
         metadatums2.add(date2);
         metadatums2.add(dateSubmitted2);
         metadatums2.add(applicant3);

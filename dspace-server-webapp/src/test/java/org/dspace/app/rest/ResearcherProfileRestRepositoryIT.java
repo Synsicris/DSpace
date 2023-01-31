@@ -483,7 +483,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(id.toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.toString())))
             .andExpect(jsonPath("$.type", is("profile")))
             .andExpect(jsonPath("$", matchLinks("http://localhost/api/eperson/profiles/" + id, "item", "eperson")));
 
@@ -915,7 +915,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         getClient(authToken).perform(post("/api/eperson/profiles/")
                                          .contentType(MediaType.APPLICATION_JSON_VALUE))
                             .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$.visible", is(false)));
+                            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.toString())));
 
         getClient(authToken).perform(delete("/api/eperson/profiles/{id}", id))
                             .andExpect(status().isNoContent());
@@ -964,6 +964,23 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         // the profile item should be the same
         String secondItemId = getItemIdByProfileId(adminToken, id);
         assertEquals("The item should be the same", firstItemId, secondItemId);
+
+    }
+
+    @Test
+    public void testAutomaticProfileCreationOnLogin() throws Exception {
+
+        configurationService.setProperty("researcher-profile.automatic-creation-on-login", "true");
+
+        String id = user.getID().toString();
+
+        // the automatic claim is done after the user login
+        String userToken = getAuthToken(user.getEmail(), password);
+
+        getClient(userToken).perform(get("/api/eperson/profiles/{id}", id))
+            .andExpect(status().isOk());
+
+        configurationService.setProperty("researcher-profile.automatic-creation-on-login", "false");
 
     }
 

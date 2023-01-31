@@ -154,10 +154,10 @@
         <property name="dspaceRunnableClass" value="org.dspace.app.itemexport.ItemExportCLI"/>
     </bean>
 
-    <bean id="download-report" class="org.dspace.reports.jasper.DownloadReportFromExternalSourceCliScriptConfiguration">
+<!--     <bean id="download-report" class="org.dspace.reports.jasper.DownloadReportFromExternalSourceCliScriptConfiguration">
         <property name="description" value="Perform the download of report using external source"/>
         <property name="dspaceRunnableClass" value="org.dspace.reports.jasper.DownloadReportFromExternalSourceCli"/>
-    </bean>
+    </bean> -->
 
     <bean id="migrate-projects" class="org.dspace.content.scripts.ProjectsMigrationScriptCliScriptConfiguration">
         <property name="description" value="Perform the migrate of projects"/>

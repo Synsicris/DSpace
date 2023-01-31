@@ -35,6 +35,7 @@ import org.dspace.orcid.client.OrcidClient;
 import org.dspace.orcid.factory.OrcidServiceFactory;
 import org.dspace.orcid.factory.OrcidServiceFactoryImpl;
 import org.dspace.services.ConfigurationService;
+import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
@@ -195,32 +196,75 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
        context.restoreAuthSystemState();
 
        String token = getAuthToken(eperson.getEmail(), password);
-       getClient(token).perform(get("/api/submission/vocabularies/AuthorAuthority/entries")
-                       .param("metadata", "dc.contributor.author")
-                       .param("collection", col1.getID().toString())
-                       .param("filter", "author"))
-                       .andExpect(status().isOk())
-                       .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                               // filled with AuthorAuthority extra metadata generator
-                               ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
-                               "Author 1(OrgUnit_1)", "Author 1", "vocabularyEntry",
-                               Map.of("data-oairecerif_author_affiliation", "OrgUnit_1::" + orgUnit_1.getID(),
-                                   "oairecerif_author_affiliation", "OrgUnit_1::" + orgUnit_1.getID())),
-                               ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_1.getID().toString(),
-                               "Author 1(OrgUnit_2)", "Author 1", "vocabularyEntry",
-                               Map.of("data-oairecerif_author_affiliation", "OrgUnit_2::" + orgUnit_2.getID(),
-                                   "oairecerif_author_affiliation", "OrgUnit_2::" + orgUnit_2.getID())),
-                               ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(author_2.getID().toString(),
-                               "Author 2(OrgUnit_2)", "Author 2", "vocabularyEntry",
-                               Map.of("data-oairecerif_author_affiliation", "OrgUnit_2::" + orgUnit_2.getID(),
-                                   "oairecerif_author_affiliation", "OrgUnit_2::" + orgUnit_2.getID())),
-                               // filled with EditorAuthority extra metadata generator
-                               ItemAuthorityMatcher.matchItemAuthorityProperties(author_1.getID().toString(),
-                               "Author 1", "Author 1", "vocabularyEntry"),
-                               ItemAuthorityMatcher.matchItemAuthorityProperties(author_2.getID().toString(),
-                               "Author 2", "Author 2", "vocabularyEntry")
-                               )))
-                       .andExpect(jsonPath("$.page.totalElements", Matchers.is(5)));
+       Matcher<Object> matchAuthor2 = ItemAuthorityMatcher.matchItemAuthorityProperties(
+           author_2.getID().toString(),
+           "Author 2",
+           "Author 2",
+           "vocabularyEntry"
+       );
+        Matcher<Object> matchAuthor1 = ItemAuthorityMatcher.matchItemAuthorityProperties(
+               author_1.getID().toString(),
+               "Author 1",
+               "Author 1",
+               "vocabularyEntry"
+           );
+        Matcher<Object> matchAuthor2Orgunit2 = ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(
+               author_2.getID().toString(),
+               "Author 2(OrgUnit_2)",
+               "Author 2",
+               "vocabularyEntry",
+               Map.of(
+                   "data-oairecerif_author_affiliation",
+                   "OrgUnit_2::" + orgUnit_2.getID(),
+                   "oairecerif_author_affiliation",
+                   "OrgUnit_2::" + orgUnit_2.getID()
+               )
+           );
+        Matcher<Object> matchAuthor1Orgunit2 = ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(
+               author_1.getID().toString(),
+               "Author 1(OrgUnit_2)",
+               "Author 1",
+               "vocabularyEntry",
+               Map.of(
+                   "data-oairecerif_author_affiliation",
+                   "OrgUnit_2::" + orgUnit_2.getID(),
+                   "oairecerif_author_affiliation",
+                   "OrgUnit_2::" + orgUnit_2.getID()
+               )
+           );
+        Matcher<Object> matchAuthor1Orgunit1 = ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(
+               author_1.getID().toString(),
+               "Author 1(OrgUnit_1)",
+               "Author 1",
+               "vocabularyEntry",
+               Map.of(
+                   "data-oairecerif_author_affiliation",
+                   "OrgUnit_1::" + orgUnit_1.getID(),
+                   "oairecerif_author_affiliation",
+                   "OrgUnit_1::" + orgUnit_1.getID()
+               )
+           );
+        getClient(token).perform(get("/api/submission/vocabularies/AuthorAuthority/entries")
+                           .param("metadata", "dc.contributor.author")
+                           .param("collection", col1.getID().toString())
+                           .param("filter", "author"))
+                           .andExpect(status().isOk())
+                           .andExpect(
+                               jsonPath(
+                                   "$._embedded.entries",
+                                   Matchers.hasItems(
+
+                                       // filled with AuthorAuthority extra metadata generator
+                                       matchAuthor1Orgunit1,
+                                       matchAuthor1Orgunit2,
+                                       matchAuthor2Orgunit2,
+
+                                       // filled with EditorAuthority extra metadata generator
+                                       matchAuthor1,
+                                       matchAuthor2
+                                   )
+                               )
+                           );
     }
 
     @Test

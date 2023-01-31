@@ -133,11 +133,11 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
                 }
             }
         }
-        if (CollectionUtils.isNotEmpty(choices)) {
+        if (CollectionUtils.isNotEmpty(choices) || totFound > 0) {
             Choice[] results = new Choice[choices.size()];
             results = choices.toArray(results);
             return new Choices(results, start, (int) totFound, calculateConfidence(results),
-                               totFound > (start + limit), 0);
+                               totFound > start + limit, 0);
         }
         return new Choices(Choices.CF_UNSET);
     }
@@ -180,6 +180,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         return configurationService.getArrayProperty("cris.ItemAuthority." + authorityName + ".entityType");
     }
 
+    @Override
     public void setPluginInstanceName(String name) {
         authorityName = name;
     }
@@ -272,7 +273,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     private boolean hasValidExternalSource(String sourceIdentifier) {
         if (StringUtils.isNotBlank(sourceIdentifier)) {
             ExternalDataProvider externalsource = externalDataService.getExternalDataProvider(sourceIdentifier);
-            return (externalsource != null);
+            return externalsource != null;
         }
         return false;
     }

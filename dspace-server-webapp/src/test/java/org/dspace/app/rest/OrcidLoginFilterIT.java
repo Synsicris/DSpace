@@ -52,6 +52,7 @@ import org.dspace.orcid.client.OrcidClient;
 import org.dspace.orcid.exception.OrcidClientException;
 import org.dspace.orcid.model.OrcidTokenResponseDTO;
 import org.dspace.orcid.service.OrcidTokenService;
+import org.dspace.profile.ResearcherProfileVisibility;
 import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
 import org.junit.After;
@@ -419,7 +420,7 @@ public class OrcidLoginFilterIT extends AbstractControllerIntegrationTest {
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.id", is(ePerson.getID().toString())))
-            .andExpect(jsonPath("$.visible", is(false)))
+            .andExpect(jsonPath("$.visibility", is(ResearcherProfileVisibility.PRIVATE.toString())))
             .andExpect(jsonPath("$.type", is("profile")));
 
         MvcResult mvcResult = getClient().perform(get("/api/" + AuthnRest.CATEGORY + "/orcid")

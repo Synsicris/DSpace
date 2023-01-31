@@ -16,7 +16,6 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,9 +29,7 @@ import org.dspace.content.Item;
 import org.dspace.content.edit.EditItem;
 import org.dspace.content.edit.service.EditItemService;
 import org.dspace.content.service.ItemService;
-import org.dspace.core.Constants;
 import org.dspace.core.Context;
-import org.dspace.eperson.EPerson;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
@@ -66,33 +63,8 @@ public class EditProjectItemRestPermissionEvaluatorPlugin extends RestObjectPerm
     public boolean hasDSpacePermission(
         Authentication authentication, Serializable targetId, String targetType, DSpaceRestPermission permission
     ) {
-        
+
         return false;
-//        DSpaceRestPermission restPermission = DSpaceRestPermission.convert(permission);
-//        if (!DSpaceRestPermission.WRITE.equals(restPermission) && !DSpaceRestPermission.DELETE.equals(restPermission)) {
-//            return false;
-//        }
-//        if (Constants.getTypeID(targetType) != Constants.ITEM) {
-//            return false;
-//        }
-//
-//        AtomicReference<Request> request = new AtomicReference<>();
-//        AtomicReference<Context> context = new AtomicReference<>();
-//        AtomicReference<Item> item = new AtomicReference<>();
-//
-//        initializeAtomicReferences(targetId.toString(), request, context, item);
-//
-//        EPerson ePerson = context.get().getCurrentUser();
-//        // anonymous user
-//        if (Objects.isNull(ePerson)) {
-//            return false;
-//        }
-//
-//        if (item == null || item.get() == null) {
-//            return false;
-//        }
-//
-//        return true;
     }
 
     @Override

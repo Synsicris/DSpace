@@ -5475,7 +5475,6 @@
 
     <bean id="searchFilterTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="types" />
-        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>

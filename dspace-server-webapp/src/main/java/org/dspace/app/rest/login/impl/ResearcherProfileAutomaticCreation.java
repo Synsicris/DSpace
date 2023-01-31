@@ -8,16 +8,15 @@
 package org.dspace.app.rest.login.impl;
 
 import java.sql.SQLException;
-import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.login.PostLoggedInAction;
 import org.dspace.authorize.AuthorizeException;
-import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.discovery.SearchServiceException;
 import org.dspace.eperson.EPerson;
-import org.dspace.eperson.service.EPersonService;
 import org.dspace.profile.service.ResearcherProfileService;
+import org.dspace.services.ConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,23 +34,14 @@ public class ResearcherProfileAutomaticCreation implements PostLoggedInAction {
     private final static Logger LOGGER = LoggerFactory.getLogger(ResearcherProfileAutomaticCreation.class);
 
     @Autowired
+    private ConfigurationService configService;
+
+    @Autowired
     private ResearcherProfileService researcherProfileService;
-
-    @Autowired
-    private ItemService itemService;
-
-    @Autowired
-    private EPersonService ePersonService;
-
-    private final String ePersonField;
-
-    private final String profileFiled;
 
     public ResearcherProfileAutomaticCreation(String ePersonField, String profileField) {
         Assert.notNull(ePersonField, "An eperson field is required to perform automatic claim");
         Assert.notNull(profileField, "An profile field is required to perform automatic claim");
-        this.ePersonField = ePersonField;
-        this.profileFiled = profileField;
     }
 
     @Override
@@ -59,6 +49,12 @@ public class ResearcherProfileAutomaticCreation implements PostLoggedInAction {
 
         EPerson currentUser = context.getCurrentUser();
         if (currentUser == null) {
+            return;
+        }
+
+        String enabled = configService.getProperty("researcher-profile.automatic-creation-on-login");
+
+        if (StringUtils.isBlank(enabled) || enabled.equalsIgnoreCase("false")) {
             return;
         }
 
@@ -73,8 +69,8 @@ public class ResearcherProfileAutomaticCreation implements PostLoggedInAction {
     private void claimProfile(Context context, EPerson currentUser)
         throws SQLException, AuthorizeException, SearchServiceException {
 
-        UUID id = currentUser.getID();
-        String fullName = currentUser.getFullName();
+        currentUser.getID();
+        currentUser.getFullName();
 
         if (currentUserHasAlreadyResearcherProfile(context)) {
             return;

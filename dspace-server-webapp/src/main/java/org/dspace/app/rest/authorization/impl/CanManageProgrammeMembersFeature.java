@@ -59,8 +59,7 @@ public class CanManageProgrammeMembersFeature implements AuthorizationFeature {
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
         if (object instanceof ItemRest) {
             Item item = (Item) utils.getDSpaceAPIObjectFromRest(context, object);
-            return
-                this.itemService.getEntityType(item).equals(PROGRAMME) &&
+            return PROGRAMME.equals(this.itemService.getEntityType(item)) &&
                 doProgrammeGroupsExist(context, item) &&
                 canManageMembers(context, item);
         }

@@ -146,7 +146,7 @@ public class CrisConsumer implements Consumer {
             if (ArrayUtils.isEmpty(entityTypes)) {
                 log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
 
-                Item relatedItem = itemSearchService.search(context, crisSourceId);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, item);
 
                 if (relatedItem != null) {
                     metadata.setAuthority(relatedItem.getID().toString());
@@ -159,7 +159,7 @@ public class CrisConsumer implements Consumer {
 
             for (String entityType : entityTypes) {
 
-                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
                 boolean relatedItemAlreadyPresent = relatedItem != null;
 
                 if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {

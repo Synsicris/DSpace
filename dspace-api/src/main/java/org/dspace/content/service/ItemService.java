@@ -815,8 +815,6 @@ public interface ItemService
                                            String lang, boolean enableVirtualMetadata);
 
     /**
-<<<<<<< HEAD
-=======
      * Returns the item's entity type, if any.
      *
      * @param  item    the item
@@ -833,7 +831,6 @@ public interface ItemService
     public void setEntityType(Context context, Item item, String entityType);
 
     /**
->>>>>>> 4science-bitbucket/dspace-cris-7
      * Find all the items in the archive or not with a given authority key value in LIKE format.
      *
      * @param context         DSpace context object

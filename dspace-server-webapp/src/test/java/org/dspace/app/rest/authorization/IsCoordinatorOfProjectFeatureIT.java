@@ -29,6 +29,8 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
+import org.dspace.services.ConfigurationService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,20 +46,29 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
     @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
+    @Autowired
+    private ConfigurationService configurationService;
+
     private AuthorizationFeature isCoordinatorOfProject;
 
     private Item parentProjectEntity;
 
     private Community testProject;
 
+    private String projectCommId;
+
     @Before
     public void setup() {
+
+        projectCommId = this.configurationService.getProperty("project.parent-community-id");
 
         context.turnOffAuthorisationSystem();
 
         isCoordinatorOfProject = authorizationFeatureService.find(IsCoordinatorOfProjectFeature.NAME);
 
         Community joinProjects = createCommunity("Joint projects");
+
+        this.configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
 
         testProject = createSubCommunity("Test Project", joinProjects);
 
@@ -71,13 +82,18 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
             .addMember(eperson)
             .build();
 
-        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
-        parentProjectEntity = ItemBuilder.createItem(context, joinProject)
+        Collection parentProjects = createCollection("Parentprojects", PROJECT_ENTITY, testProject);
+        parentProjectEntity = ItemBuilder.createItem(context, parentProjects)
             .withTitle("Test project")
             .build();
 
         context.restoreAuthSystemState();
 
+    }
+
+    @After
+    public void tearDown() {
+        this.configurationService.setProperty("project.parent-community-id", projectCommId);
     }
 
     @Test

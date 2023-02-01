@@ -151,7 +151,7 @@ public interface ChoiceAuthorityService {
 
     /**
      * Return the ChoiceAuthority instance identified by the specified name
-     * 
+     *
      * @param authorityName the ChoiceAuthority instance name
      * @return the ChoiceAuthority identified by the specified name
      */
@@ -165,7 +165,7 @@ public interface ChoiceAuthorityService {
     /**
      * Get the entity types starting from the metadata field.
      *
-     * @param  field single string identifying metadata field
+     * @param  fieldKey single string identifying metadata field
      * @return the entity types as an Array
      */
     String[] getLinkedEntityType(String fieldKey);
@@ -185,7 +185,7 @@ public interface ChoiceAuthorityService {
     /**
      * Return the direct parent of an entry identified by its id in an hierarchical
      * authority.
-     * 
+     *
      * @param authorityName authority name
      * @param vocabularyId  child id
      * @param locale        explicit localization key if available, or null

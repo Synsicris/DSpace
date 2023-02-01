@@ -226,11 +226,6 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     }
 
     @Override
-    public boolean isScrollable() {
-        return configurationService.getBooleanProperty("cris.ItemAuthority." + authorityName + ".isScrollable", true);
-    }
-
-    @Override
     public Map<String, String> getExtra(String key, String locale) {
 
         SolrClient solr = searchService.getSolrSearchCore().getSolr();

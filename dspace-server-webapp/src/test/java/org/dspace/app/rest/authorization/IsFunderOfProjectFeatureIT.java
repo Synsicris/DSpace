@@ -29,6 +29,8 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
+import org.dspace.services.ConfigurationService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,9 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
     @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
+    @Autowired
+    private ConfigurationService configurationService;
+
     private AuthorizationFeature isFunderOfProject;
 
     private Item parentProjectEntity;
@@ -52,8 +57,12 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
 
     EPerson funder;
 
+    private String parentCommId;
+
     @Before
     public void setup() {
+
+        parentCommId = configurationService.getProperty("project.parent-community-id");
 
         context.turnOffAuthorisationSystem();
 
@@ -79,13 +88,21 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
                     .addMember(eperson)
                     .build();
 
-        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
-        parentProjectEntity = ItemBuilder.createItem(context, joinProject)
-                                         .withTitle("Test project")
-                                         .build();
+        Collection parentProject = createCollection("ParentProject Coll", PROJECT_ENTITY, testProject);
+        parentProjectEntity =
+            ItemBuilder.createItem(context, parentProject)
+                .withTitle("Test project")
+                .build();
+
+        configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
 
         context.restoreAuthSystemState();
 
+    }
+
+    @After
+    public void tearDown() {
+        configurationService.setProperty("project.parent-community-id", parentCommId);
     }
 
     @Test
@@ -176,7 +193,7 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
         context.restoreAuthSystemState();
 
         ItemRest itemRest = itemConverter.convert(publication, Projection.DEFAULT);
-
+//0f8d9af7-
         Authorization expectedAuthorization = new Authorization(funder, isFunderOfProject, itemRest);
         getClient(getAuthToken(funder.getEmail(), password))
             .perform(get("/api/authz/authorizations/search/object")

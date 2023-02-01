@@ -638,7 +638,12 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
        context.restoreAuthSystemState();
 
        String token = getAuthToken(eperson.getEmail(), password);
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries"))
+
+       getClient(token)
+           .perform(get("/api/submission/vocabularies/TestMultiAuthority/entries"))
+           .andExpect(status().isUnprocessableEntity());
+
+       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries").param("filter", "Title"))
                        .andExpect(status().isOk())
                        .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
                            ItemAuthorityMatcher.matchItemAuthorityProperties(

@@ -2267,10 +2267,15 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         context.turnOffAuthorisationSystem();
 
         parentCommunity = CommunityBuilder.createCommunity(context)
-            .withName("Test project")
+            .withName("Projects")
             .build();
 
-        Collection projectCollection = CollectionBuilder.createCollection(context, parentCommunity)
+        configurationService.setProperty("project.parent-community-id", parentCommunity.getID().toString());
+        Community projectCommunity = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                .withName("Test project")
+                .build();
+
+        Collection projectCollection = CollectionBuilder.createCollection(context, projectCommunity)
             .withName("Parent project")
             .withEntityType(ProjectConstants.PROJECT_ENTITY)
             .withSubmitterGroup(eperson)
@@ -2281,7 +2286,7 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
             .build();
 
         final String projectItemID = "project_" + projectItem.getID().toString() + "_item";
-        communityService.addMetadata(context, parentCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
+        communityService.addMetadata(context, projectCommunity, ProjectConstants.MD_RELATION_ITEM_ENTITY.schema,
                 ProjectConstants.MD_RELATION_ITEM_ENTITY.element, ProjectConstants.MD_RELATION_ITEM_ENTITY.qualifier,
                 null, projectItemID, projectItem.getID().toString(), Choices.CF_ACCEPTED);
 
@@ -2290,12 +2295,16 @@ public class WorkspaceItemRestRepositoryIT extends AbstractControllerIntegration
         itemService.addMetadata(context, projectItem, ProjectConstants.MD_AGROVOC.schema,
                 ProjectConstants.MD_AGROVOC.element, ProjectConstants.MD_AGROVOC.qualifier, null, "Item #2");
 
-        Collection publicationCollection = CollectionBuilder.createCollection(context, parentCommunity)
+        Collection publicationCollection = CollectionBuilder.createCollection(context, projectCommunity)
             .withName("Publications")
             .withSubmitterGroup(eperson)
+            .withEntityType("Publication")
             .withTemplateItem()
             .build();
 
+        itemService.addMetadata(context, publicationCollection.getTemplateItem(),
+                ProjectConstants.MD_PROJECT_RELATION.schema, ProjectConstants.MD_PROJECT_RELATION.element,
+                ProjectConstants.MD_PROJECT_RELATION.qualifier, null, "###CURRENTPROJECT.project###");
         itemService.addMetadata(context, publicationCollection.getTemplateItem(), ProjectConstants.MD_AGROVOC.schema,
                 ProjectConstants.MD_AGROVOC.element, ProjectConstants.MD_AGROVOC.qualifier, null,
                 "###AGROVOCKEYWORDS.project###");

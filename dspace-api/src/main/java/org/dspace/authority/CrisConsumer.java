@@ -75,7 +75,7 @@ public class CrisConsumer implements Consumer {
 
     private static Logger log = LogManager.getLogger(CrisConsumer.class);
 
-    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
+    private Set<Item> itemsToProcess = new HashSet<Item>();
 
     private ChoiceAuthorityService choiceAuthorityService;
 
@@ -121,18 +121,11 @@ public class CrisConsumer implements Consumer {
     public void consume(Context context, Event event) throws Exception {
 
         Item item = (Item) event.getSubject(context);
-        if (item == null || itemsAlreadyProcessed.contains(item) || !item.isArchived()) {
+        if (item == null || itemsToProcess.contains(item) || !item.isArchived()) {
             return;
         }
 
-        itemsAlreadyProcessed.add(item);
-
-        context.turnOffAuthorisationSystem();
-        try {
-            consumeItem(context, item);
-        } finally {
-            context.restoreAuthSystemState();
-        }
+        itemsToProcess.add(item);
 
     }
 
@@ -251,7 +244,18 @@ public class CrisConsumer implements Consumer {
 
     @Override
     public void end(Context context) throws Exception {
-        itemsAlreadyProcessed.clear();
+
+        for (Item item : itemsToProcess) {
+
+            context.turnOffAuthorisationSystem();
+            try {
+                consumeItem(context, item);
+            } finally {
+                context.restoreAuthSystemState();
+            }
+
+        }
+        itemsToProcess.clear();
     }
 
     private String getFieldKey(MetadataValue metadata) {

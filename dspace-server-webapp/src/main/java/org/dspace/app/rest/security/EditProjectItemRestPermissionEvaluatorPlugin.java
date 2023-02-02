@@ -29,7 +29,6 @@ import org.dspace.content.Item;
 import org.dspace.content.edit.EditItem;
 import org.dspace.content.edit.service.EditItemService;
 import org.dspace.content.service.ItemService;
-import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
@@ -62,43 +61,15 @@ public class EditProjectItemRestPermissionEvaluatorPlugin extends RestObjectPerm
 
     @Override
     public boolean hasDSpacePermission(
-        Authentication authentication, Serializable targetId, String targetType, DSpaceRestPermission permission
+        Authentication authentication, Serializable targetId, String targetType, DSpaceRestPermission restPermission
     ) {
-
-        DSpaceRestPermission restPermission = DSpaceRestPermission.convert(permission);
-        if (
-                !DSpaceRestPermission.WRITE.equals(restPermission) &&
-                !DSpaceRestPermission.DELETE.equals(restPermission)
-            ) {
-            return false;
-        }
-        if (Constants.getTypeID(targetType) != Constants.ITEM) {
-            return false;
-        }
-
-        AtomicReference<Request> request = new AtomicReference<>();
-        AtomicReference<Context> context = new AtomicReference<>();
-        AtomicReference<Item> item = new AtomicReference<>();
-
-        initializeAtomicReferences(targetId.toString(), request, context, item);
-
-        if (item == null || item.get() == null) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     @Override
     public boolean hasPatchPermission(
         Authentication authentication, Serializable targetId, String targetType, Patch patch
     ) {
-
-        boolean hasPermission = super.hasPatchPermission(authentication, targetId, targetType, patch);
-
-        if (!hasPermission) {
-            return false;
-        }
 
         AtomicReference<Request> requestRef = new AtomicReference<>();
         AtomicReference<Context> contextRef = new AtomicReference<>();
@@ -109,7 +80,7 @@ public class EditProjectItemRestPermissionEvaluatorPlugin extends RestObjectPerm
 
         String modeName = null;
         String[] values = uuidWithMode.split(":");
-        if (values != null && values.length > 0) {
+        if (values != null && values.length > 1) {
             modeName = values[1];
         } else {
             return false;

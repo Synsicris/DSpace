@@ -75,7 +75,7 @@ public class CrisConsumer implements Consumer {
 
     private static Logger log = LogManager.getLogger(CrisConsumer.class);
 
-    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
+    private Set<Item> itemsToProcess = new HashSet<Item>();
 
     private ChoiceAuthorityService choiceAuthorityService;
 
@@ -121,18 +121,11 @@ public class CrisConsumer implements Consumer {
     public void consume(Context context, Event event) throws Exception {
 
         Item item = (Item) event.getSubject(context);
-        if (item == null || itemsAlreadyProcessed.contains(item) || !item.isArchived()) {
+        if (item == null || itemsToProcess.contains(item) || !item.isArchived()) {
             return;
         }
 
-        itemsAlreadyProcessed.add(item);
-
-        context.turnOffAuthorisationSystem();
-        try {
-            consumeItem(context, item);
-        } finally {
-            context.restoreAuthSystemState();
-        }
+        itemsToProcess.add(item);
 
     }
 
@@ -153,7 +146,7 @@ public class CrisConsumer implements Consumer {
             if (ArrayUtils.isEmpty(entityTypes)) {
                 log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
 
-                Item relatedItem = itemSearchService.search(context, crisSourceId);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, item);
 
                 if (relatedItem != null) {
                     metadata.setAuthority(relatedItem.getID().toString());
@@ -166,7 +159,7 @@ public class CrisConsumer implements Consumer {
 
             for (String entityType : entityTypes) {
 
-                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
                 boolean relatedItemAlreadyPresent = relatedItem != null;
 
                 if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
@@ -251,7 +244,18 @@ public class CrisConsumer implements Consumer {
 
     @Override
     public void end(Context context) throws Exception {
-        itemsAlreadyProcessed.clear();
+
+        for (Item item : itemsToProcess) {
+
+            context.turnOffAuthorisationSystem();
+            try {
+                consumeItem(context, item);
+            } finally {
+                context.restoreAuthSystemState();
+            }
+
+        }
+        itemsToProcess.clear();
     }
 
     private String getFieldKey(MetadataValue metadata) {

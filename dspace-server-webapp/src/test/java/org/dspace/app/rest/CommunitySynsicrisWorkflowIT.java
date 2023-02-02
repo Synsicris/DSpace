@@ -666,9 +666,19 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                 .withTemplateItem()
                 .build();
 
+        Collection workingplanColl =
+                CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                    .withName("Workingplan")
+                    .withEntityType("workingplan")
+                    .build();
+        
+        Item workingplanItem = ItemBuilder.createItem(context, workingplanColl)
+                .withTitle("Workingplan")
+                .build();
+
         final Item colTemplateItem = consortia.getTemplateItem();
         this.itemService
-            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null, GROUP_POLICY_PLACEHOLDER);
+            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null, "###CURRENTPROJECTGROUP.project.members###");
         this.itemService
             .setMetadataSingleValue(context, colTemplateItem, ProjectConstants.MD_PROJECT_STATUS, null, DEFAULT_STATUS);
         this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_POLICY_SHARED, null, PROJECT);
@@ -683,7 +693,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
         this.itemService.setMetadataSingleValue(context, consortiaItem, "dc", "title", null, null, consortiaItemName);
         this.itemService.addMetadata(
             context, consortiaItem, "synsicris", "relation", "workingplan", null, "Workingplan",
-            "will be referenced::SB-ID::wp_001", Choices.CF_ACCEPTED
+            workingplanItem.getID().toString(), Choices.CF_ACCEPTED
         );
 
         communityService.addMetadata(
@@ -743,8 +753,9 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                 )
                 .andExpect(
                     jsonPath(
-                        "$._embedded.collections._embedded.collections", Matchers.contains(
-                            CollectionMatcher.matchClone(consortia)
+                        "$._embedded.collections._embedded.collections", Matchers.containsInAnyOrder(
+                            CollectionMatcher.matchClone(consortia),
+                            CollectionMatcher.matchClone(workingplanColl)
                         )
                     )
                 );
@@ -822,7 +833,7 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
             );
 
             assertEquals(1, communities.size());
-            assertEquals(1, collections.size());
+            assertEquals(2, collections.size());
             Community firstChild = communities.get(0);
             boolean child1Found =
                 StringUtils.equals(firstChild.getName(), funding.getName());

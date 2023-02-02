@@ -7,7 +7,6 @@
  */
 package org.dspace.harvest;
 
-import static java.lang.String.join;
 import static java.util.UUID.randomUUID;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.builder.CollectionBuilder.createCollection;
@@ -49,7 +48,6 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.AbstractIntegrationTestWithDatabase;
-import org.dspace.authority.CrisConsumer;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.HarvestedCollectionBuilder;
@@ -63,8 +61,6 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
-import org.dspace.event.factory.EventServiceFactory;
-import org.dspace.event.service.EventService;
 import org.dspace.harvest.factory.HarvestServiceFactory;
 import org.dspace.harvest.model.OAIHarvesterOptions;
 import org.dspace.harvest.model.OAIHarvesterReport;
@@ -86,9 +82,7 @@ import org.dspace.xmlworkflow.storedcomponents.service.XmlWorkflowItemService;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -105,9 +99,6 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
     private static final String OAI_PMH_DIR_PATH = "./target/testing/dspace/assetstore/oai-pmh/";
     private static final String VALIDATION_DIR = OAI_PMH_DIR_PATH + "cerif/validation/";
     private static final String CERIF_XSD_NAME = "openaire-cerif-profile.xsd";
-    private static final String CRIS_CONSUMER = CrisConsumer.CONSUMER_NAME;
-
-    private static String[] consumers;
 
     private OAIHarvester harvester = HarvestServiceFactory.getInstance().getOAIHarvester();
 
@@ -136,27 +127,6 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
     private OAIHarvesterClient oaiHarvesterClient;
 
     private OAIHarvesterClient mockClient;
-
-    @BeforeClass
-    public static void initCrisConsumer() {
-        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
-        consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
-        String newConsumers = consumers.length > 0 ? CRIS_CONSUMER + "," + join(",", consumers) : CRIS_CONSUMER;
-        configService.setProperty("event.dispatcher.default.consumers", newConsumers);
-        EventService eventService = EventServiceFactory.getInstance().getEventService();
-        eventService.reloadConfiguration();
-    }
-
-    /**
-     * Reset the event.dispatcher.default.consumers property value.
-     */
-    @AfterClass
-    public static void resetDefaultConsumers() {
-        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
-        configService.setProperty("event.dispatcher.default.consumers", consumers);
-        EventService eventService = EventServiceFactory.getInstance().getEventService();
-        eventService.reloadConfiguration();
-    }
 
     @Before
     public void beforeTests() throws Exception {

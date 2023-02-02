@@ -272,7 +272,12 @@ public class AbstractIntegrationTestWithDatabase extends AbstractDSpaceIntegrati
 
     private void cleanupCreatedGroups() throws SQLException {
         GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
-        List<Group> foundGroups = groupService.findAll(context, List.of(), 0, 0);
+        List<Group> foundGroups = List.of();
+        try {
+            foundGroups = groupService.findAll(context, List.of(), 0, 0);
+        } catch (Exception e) {
+            log.error("Error finding groups in destroy phase!", e);
+        }
         foundGroups
             .stream()
             .filter(group ->

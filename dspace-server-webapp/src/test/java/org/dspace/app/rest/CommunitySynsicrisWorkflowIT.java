@@ -671,14 +671,15 @@ public class CommunitySynsicrisWorkflowIT extends AbstractControllerIntegrationT
                     .withName("Workingplan")
                     .withEntityType("workingplan")
                     .build();
-        
+
         Item workingplanItem = ItemBuilder.createItem(context, workingplanColl)
                 .withTitle("Workingplan")
                 .build();
 
         final Item colTemplateItem = consortia.getTemplateItem();
         this.itemService
-            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null, "###CURRENTPROJECTGROUP.project.members###");
+            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null,
+                    "###CURRENTPROJECTGROUP.project.members###");
         this.itemService
             .setMetadataSingleValue(context, colTemplateItem, ProjectConstants.MD_PROJECT_STATUS, null, DEFAULT_STATUS);
         this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_POLICY_SHARED, null, PROJECT);

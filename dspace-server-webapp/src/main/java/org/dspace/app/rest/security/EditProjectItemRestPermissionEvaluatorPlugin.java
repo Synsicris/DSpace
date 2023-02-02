@@ -29,6 +29,7 @@ import org.dspace.content.Item;
 import org.dspace.content.edit.EditItem;
 import org.dspace.content.edit.service.EditItemService;
 import org.dspace.content.service.ItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.RequestService;
@@ -64,7 +65,28 @@ public class EditProjectItemRestPermissionEvaluatorPlugin extends RestObjectPerm
         Authentication authentication, Serializable targetId, String targetType, DSpaceRestPermission permission
     ) {
 
-        return false;
+        DSpaceRestPermission restPermission = DSpaceRestPermission.convert(permission);
+        if (
+                !DSpaceRestPermission.WRITE.equals(restPermission) &&
+                !DSpaceRestPermission.DELETE.equals(restPermission)
+            ) {
+            return false;
+        }
+        if (Constants.getTypeID(targetType) != Constants.ITEM) {
+            return false;
+        }
+
+        AtomicReference<Request> request = new AtomicReference<>();
+        AtomicReference<Context> context = new AtomicReference<>();
+        AtomicReference<Item> item = new AtomicReference<>();
+
+        initializeAtomicReferences(targetId.toString(), request, context, item);
+
+        if (item == null || item.get() == null) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

@@ -3150,7 +3150,7 @@
                 <property name="sortFields">
                     <list>
                         <ref bean="sortLastCommentCreated" />
-                        <ref bean="sortTitle" />
+                        <ref bean="sortTitleAsc" />
                         <ref bean="sortLastModified" />
                     </list>
                 </property>

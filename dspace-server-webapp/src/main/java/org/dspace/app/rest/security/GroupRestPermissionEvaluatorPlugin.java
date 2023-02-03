@@ -18,11 +18,9 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
-import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
-import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 /**
- * An authenticated user is allowed to view information on all the groups he or she is a member of (READ permission).
+ * An authenticated user is allowed to view information on all the groups they are a member of (READ permission).
  * This {@link RestPermissionEvaluatorPlugin} implements that requirement by validating the group membership.
  */
 @Component
@@ -45,11 +43,8 @@ public class GroupRestPermissionEvaluatorPlugin extends RestObjectPermissionEval
     private GroupService groupService;
 
     @Autowired
-    private EPersonService ePersonService;
-
-    @Autowired
     AuthorizeService authorizeService;
-    
+
     @Override
     public boolean hasDSpacePermission(Authentication authentication, Serializable targetId,
                                  String targetType, DSpaceRestPermission permission) {
@@ -68,6 +63,11 @@ public class GroupRestPermissionEvaluatorPlugin extends RestObjectPermissionEval
             UUID dsoId = UUID.fromString(targetId.toString());
 
             Group group = groupService.find(context, dsoId);
+
+            // if the group is one of the special groups of the context it is readable
+            if (context.getSpecialGroups().contains(group)) {
+                return true;
+            }
 
             // anonymous user
             if (ePerson == null) {
@@ -92,7 +92,7 @@ public class GroupRestPermissionEvaluatorPlugin extends RestObjectPermissionEval
         }
         return false;
     }
-    
+
     private boolean isFunderOganizationalManager(Context context, EPerson ePerson ) {
         try {
             return groupService.isOrganisationalManager(context, ePerson);

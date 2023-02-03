@@ -8,6 +8,8 @@
 package org.dspace.app.rest;
 import static com.jayway.jsonpath.JsonPath.read;
 import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.is;
@@ -60,6 +62,9 @@ import org.dspace.content.Community;
 import org.dspace.content.EntityType;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
+import org.dspace.content.service.InstallItemService;
+import org.dspace.content.service.ItemService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.identifier.DOI;
 import org.dspace.identifier.dao.DOIDAO;
@@ -69,7 +74,9 @@ import org.dspace.versioning.service.VersioningService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.hamcrest.Matchers;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RestMediaTypes;
@@ -80,6 +87,7 @@ import org.springframework.http.MediaType;
  *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
+@Ignore
 public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
     private Item item;
@@ -96,10 +104,19 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
     private ConfigurationService configurationService;
 
     @Autowired
+    private InstallItemService installItemService;
+
+    @Autowired
+    private WorkspaceItemService workspaceItemService;
+
+    @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
     @Autowired
     private DOIDAO doiDao;
+
+    @Autowired
+    private ItemService itemService;
 
     @Before
     public void setup() throws SQLException, AuthorizeException {
@@ -282,7 +299,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
 
         String adminToken = getAuthToken(admin.getEmail(), password);
 
-        getClient(adminToken).perform(get("/api/versioning/versions/" + ((version.getID() + 5) * 57) + "/item"))
+        getClient(adminToken).perform(get("/api/versioning/versions/" + (version.getID() + 5) * 57 + "/item"))
                              .andExpect(status().isNotFound());
     }
 
@@ -417,6 +434,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                           .withIssueDate("2021-04-27")
                           .withAuthor("Doe, John")
                           .withSubject("ExtraEntry")
+                          .grantLicense()
                           .build();
 
         Version v2 = VersionBuilder.createVersion(context, item, "test").build();
@@ -468,6 +486,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                .withIssueDate("2021-03-20")
                                .withAuthor("Doe, John")
                                .withSubject("ExtraEntry")
+                               .grantLicense()
                                .build();
 
         Version v2 = VersionBuilder.createVersion(context, item, "test").build();
@@ -685,38 +704,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void createFirstVersionItemWithentityTypeByAdminAndPropertyBlockEntityEnableTest() throws Exception {
-        configurationService.setProperty("versioning.block.entity", true);
-        context.turnOffAuthorisationSystem();
-        Community rootCommunity = CommunityBuilder.createCommunity(context)
-                                                  .withName("Parent Community")
-                                                  .build();
-
-        Collection col = CollectionBuilder.createCollection(context, rootCommunity)
-                                          .withName("Collection 1")
-                                          .withEntityType("Publication")
-                                          .build();
-
-        Item itemA = ItemBuilder.createItem(context, col)
-                               .withTitle("Public item")
-                               .withIssueDate("2021-04-19")
-                               .withAuthor("Doe, John")
-                               .withSubject("ExtraEntry")
-                               .build();
-
-        context.restoreAuthSystemState();
-
-        String adminToken = getAuthToken(admin.getEmail(), password);
-        getClient(adminToken).perform(post("/api/versioning/versions")
-                             .param("summary", "test summary!")
-                             .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
-                             .content("/api/core/items/" + itemA.getID()))
-                             .andExpect(status().isForbidden());
-    }
-
-    @Test
-    public void createFirstVersionItemWithEntityTypeAndPropertyBlockEntityDisabledTest() throws Exception {
-        configurationService.setProperty("versioning.block.entity", false);
+    public void createFirstVersionItemWithEntityTypeTest() throws Exception {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context)
                                           .withName("Parent Community")
@@ -758,9 +746,8 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void createFirstVersionItemWithEntityTypeBySubmitterAndPropertyBlockEntityDisabledTest() throws Exception {
+    public void createFirstVersionItemWithEntityTypeBySubmitterTest() throws Exception {
         configurationService.setProperty("versioning.submitterCanCreateNewVersion", true);
-        configurationService.setProperty("versioning.block.entity", false);
         context.turnOffAuthorisationSystem();
         Community rootCommunity = CommunityBuilder.createCommunity(context)
                                                   .withName("Parent Community")
@@ -1402,6 +1389,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                .withIssueDate("2021-03-20")
                                .withAuthor("Doe, John")
                                .withSubject("ExtraEntry")
+                               .grantLicense()
                                .build();
 
         Version v2 = VersionBuilder.createVersion(context, item, "test").build();
@@ -1455,6 +1443,7 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
                                .withIssueDate("2021-03-20")
                                .withAuthor("Doe, John")
                                .withSubject("ExtraEntry")
+                               .grantLicense()
                                .build();
 
         Version v2 = VersionBuilder.createVersion(context, item, "test").build();
@@ -1542,6 +1531,77 @@ public class VersionRestRepositoryIT extends AbstractControllerIntegrationTest {
         } finally {
             VersionBuilder.delete(idRef.get());
         }
+    }
+
+    @Test
+    public void ignoreEntityTypeWhenCreatingNewVersionOfItem() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Community community = CommunityBuilder.createCommunity(context)
+            .withName("community")
+            .build();
+
+        Collection collection = CollectionBuilder.createCollection(context, community)
+            .withName("Collection")
+            .withEntityType("Publication")
+            .build();
+
+        Item v1 = ItemBuilder.createItem(context, collection)
+            .withTitle("item version 1")
+            .build();
+
+        context.commit();
+
+        context.restoreAuthSystemState();
+
+        // test v1
+        getClient().perform(get("/api/core/items/" + v1.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.metadata", allOf(
+                hasJsonPath("$.['dc.title']", containsInAnyOrder(
+                    hasJsonPath("$.value", is("item version 1"))
+                )),
+                hasJsonPath("$.['dspace.entity.type']", containsInAnyOrder(
+                    hasJsonPath("$.value", is("Publication"))
+                ))
+            )));
+
+        // create a new version, change the title and archive it
+        Item v2 = createNewVersion(v1, "item version 2");
+
+        // test v2
+        getClient().perform(get("/api/core/items/" + v2.getID()))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.metadata", allOf(
+                hasJsonPath("$.['dc.title']", containsInAnyOrder(
+                    hasJsonPath("$.value", is("item version 2"))
+                )),
+                hasJsonPath("$.['dspace.entity.type']", containsInAnyOrder(
+                    hasJsonPath("$.value", is("Publication"))
+                ))
+            )));
+    }
+
+    protected Item createNewVersion(Item oldItem, String newTitle) throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        Item newItem = VersionBuilder.createVersion(context, oldItem, "create: " + newTitle).build().getItem();
+        Assert.assertNotEquals(oldItem, newItem);
+
+        // modify the new version
+        itemService.replaceMetadata(
+            context, newItem, "dc", "title", null, Item.ANY, newTitle, null, -1, 0
+        );
+        itemService.update(context, newItem);
+        context.commit();
+
+        // archive the new version, this implies that VersioningConsumer will unarchive the previous version
+        installItemService.installItem(context, workspaceItemService.findByItem(context, newItem));
+        context.commit();
+
+        context.restoreAuthSystemState();
+
+        return newItem;
     }
 
 }

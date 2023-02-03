@@ -60,13 +60,18 @@ import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
+import org.dspace.versioning.ItemVersionProvider;
+import org.dspace.versioning.ProjectVersionProvider;
 import org.dspace.versioning.Version;
+import org.dspace.versioning.VersioningServiceImpl;
 import org.dspace.versioning.service.VersioningService;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.data.rest.webmvc.RestMediaTypes;
 import org.springframework.http.MediaType;
 
@@ -75,6 +80,12 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
     public static final String CRIS_CONSUMER = "crisconsumer";
 
     private static String[] consumers;
+
+    private static ConfigurableListableBeanFactory beanFactory;
+
+    private static VersioningService versionServiceBean;
+
+    private static ItemVersionProvider itemVersionProviderBean;
 
     @Autowired
     private RelationshipService relationshipService;
@@ -111,8 +122,22 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
     private RelationshipType parentProjectIsVersionOf;
 
+    private String parentCommId;
+
     @BeforeClass
     public static void initCrisConsumer() {
+
+        // WARN: This code sets the `defaultItemVersionProvider` as main provider
+        // for the `versionServiceBean`.
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
+        );
+
         ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
         consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
         String newConsumers = consumers.length > 0 ? join(",", consumers) + "," + CRIS_CONSUMER : CRIS_CONSUMER;
@@ -123,30 +148,36 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
     @AfterClass
     public static void resetDefaultConsumers() {
+
         ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
         configService.setProperty("event.dispatcher.default.consumers", consumers);
         EventService eventService = EventServiceFactory.getInstance().getEventService();
         eventService.reloadConfiguration();
+
+        // WARN: This code resets the provider of the `versionServiceBean`
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
     }
 
     @Before
     public void setup() {
 
+        parentCommId = configurationService.getProperty("project.parent-community-id");
         context.turnOffAuthorisationSystem();
+
+        Community joinProjects = createCommunity("Joint projects");
+        configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
 
         shared = createCommunity("Shared");
         sharedPersons = createCollection("Shared Persons", "Person", shared);
-
-        Community joinProjects = createCommunity("Joint projects");
 
         Community testProject = createSubCommunity("Test Project", joinProjects);
         publications = createCollection("Publications", "Publication", testProject);
         persons = createCollection("Persons", "Person", testProject);
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_coordinators_group")
-            .addMember(eperson)
-            .build();
+        .withName("project_" + testProject.getID() + "_coordinators_group")
+        .addMember(eperson)
+        .build();
 
         Community testSubProjects = createSubCommunity("Sub projects", testProject);
         Community subProject = createSubCommunity("sub_001", testSubProjects);
@@ -163,6 +194,11 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         context.restoreAuthSystemState();
 
+    }
+
+    @After
+    public void tearDown() {
+        this.configurationService.setProperty("project.parent-community-id", parentCommId);
     }
 
     @Test

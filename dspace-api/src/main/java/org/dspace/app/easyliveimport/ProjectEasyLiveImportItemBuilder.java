@@ -17,6 +17,7 @@ import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.Choices;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,11 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
             if (StringUtils.isNotBlank(value)) {
                 String authorityValue = null;
                 MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
-                String authorityName = cas.getChoiceAuthorityName(metadataField.getSchema(), metadataField.getElement(),
-                                                           metadataField.getQualifier(), item.getOwningCollection());
+                String authorityName =
+                    cas.getChoiceAuthorityName(
+                        metadataField.getSchema(), metadataField.getElement(),
+                        metadataField.getQualifier(), Constants.ITEM, item.getOwningCollection()
+                    );
                 if (StringUtils.isNotBlank(authorityName)) {
                     ChoiceAuthority authority = cas.getChoiceAuthorityByAuthorityName(authorityName);
                     Choices choices = authority.getBestMatch(value, context.getCurrentLocale().toString());

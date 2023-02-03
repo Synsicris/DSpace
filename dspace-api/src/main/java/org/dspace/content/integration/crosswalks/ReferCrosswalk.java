@@ -39,7 +39,8 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
@@ -71,7 +72,7 @@ import org.springframework.core.convert.converter.Converter;
  */
 public class ReferCrosswalk implements ItemExportCrosswalk {
 
-    private static Logger log = Logger.getLogger(ReferCrosswalk.class);
+    private static Logger log = LogManager.getLogger(ReferCrosswalk.class);
 
     private static final Pattern FIELD_PATTERN = Pattern.compile("@(.*)@");
 
@@ -107,6 +108,7 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
 
     private String entityType;
 
+    private boolean publiclyReadable = false;
 
     private List<TemplateLine> templateLines;
 
@@ -500,6 +502,7 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
         this.entityType = entityType;
     }
 
+    @Override
     public Optional<String> getEntityType() {
         return Optional.ofNullable(entityType);
     }
@@ -508,8 +511,18 @@ public class ReferCrosswalk implements ItemExportCrosswalk {
         this.crosswalkMode = crosswalkMode;
     }
 
+    @Override
     public CrosswalkMode getCrosswalkMode() {
         return Optional.ofNullable(this.crosswalkMode).orElse(ItemExportCrosswalk.super.getCrosswalkMode());
+    }
+
+    @Override
+    public boolean isPubliclyReadable() {
+        return this.publiclyReadable;
+    }
+
+    public void setPubliclyReadable(boolean isPubliclyReadable) {
+        this.publiclyReadable = isPubliclyReadable;
     }
 
 }

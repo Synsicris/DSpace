@@ -5,6 +5,7 @@
 ## See org.dspace.core.Email for information on the format of this file.
 ##
 #set($subject = "${config.get('dspace.name')} Account Registration")
+#set($phone = ${config.get('mail.message.helpdesk.telephone')})
 Um die Registrierung für Ihren SynSICRIS-Account abzuschließen, klicken Sie bitte auf den folgenden Link:
 
   ${params[0]}

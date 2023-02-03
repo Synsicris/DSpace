@@ -29,6 +29,7 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Test for the canCreateVersion authorization feature.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest {
@@ -203,21 +204,31 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     @Test
     public void testIsAuthorized() throws SQLException {
 
-        configurationService.setProperty("versioning.enabled", true);
+        String parentCommId =
+            configurationService.getProperty("project.parent-community-id", null);
+        try {
+            configurationService.setProperty("versioning.enabled", true);
 
-        context.turnOffAuthorisationSystem();
+            context.turnOffAuthorisationSystem();
 
-        Collection collection = createCollection("Collection", PROJECT_ENTITY);
+            Community joinProjects = createCommunity("Joint projects");
+            configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
 
-        Item item = createItem("Item", collection);
+            Community testProjects = createSubCommunity("Test Projects", joinProjects);
+            Collection collection = createCollection("Projects", PROJECT_ENTITY, testProjects);
 
-        createProjectAdminGroup(parentCommunity, projectAdmin);
-        context.setCurrentUser(projectAdmin);
+            Item item = createItem("Item", collection);
 
-        context.restoreAuthSystemState();
+            createProjectCoordinatorsGroup(testProjects, projectAdmin);
+            context.setCurrentUser(projectAdmin);
 
-        ItemRest itemRest = itemConverter.convert(item, Projection.DEFAULT);
-        assertThat(canCreateVersionFeature.isAuthorized(context, itemRest), is(true));
+            context.restoreAuthSystemState();
+
+            ItemRest itemRest = itemConverter.convert(item, Projection.DEFAULT);
+            assertThat(canCreateVersionFeature.isAuthorized(context, itemRest), is(true));
+        } finally {
+            configurationService.setProperty("project.parent-community-id", parentCommId);
+        }
 
     }
 
@@ -225,6 +236,25 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
         return CollectionBuilder.createCollection(context, parentCommunity)
             .withName(name)
             .withEntityType(entityType)
+            .build();
+    }
+
+    private Collection createCollection(String name, String entityType, Community parent) {
+        return CollectionBuilder.createCollection(context, parent)
+            .withName(name)
+            .withEntityType(entityType)
+            .build();
+    }
+
+    private Community createCommunity(String name) {
+        return CommunityBuilder.createCommunity(context)
+            .withName(name)
+            .build();
+    }
+
+    private Community createSubCommunity(String name, Community subCommunity) {
+        return CommunityBuilder.createSubCommunity(context, subCommunity)
+            .withName(name)
             .build();
     }
 
@@ -239,6 +269,18 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
             .withName("project_" + community.getID() + "_admin_group")
             .addMember(ePerson)
             .build();
+    }
+
+    private void createProjectCoordinatorsGroup(Community community, EPerson ePerson) {
+        GroupBuilder.createGroup(context)
+        .withName(
+            String.format(
+                ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE,
+                community.getID().toString()
+                )
+            )
+        .addMember(ePerson)
+        .build();
     }
 
 }

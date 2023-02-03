@@ -72,6 +72,7 @@ public class ProjectConstants {
 
     public static final String SYSTEM_MEMBERS_GROUP = "system_members_group";
 
+    public static final String[] SYNSICRIS_GROUPS_PREFIXES = { "funder", "funding", "project", "programme", "system"};
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 

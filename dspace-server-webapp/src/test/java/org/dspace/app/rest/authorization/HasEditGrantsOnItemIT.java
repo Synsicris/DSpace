@@ -50,11 +50,11 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
     private Item closeGrantsEntity;
 
     private Item withoutGrantsEntity;
-    
+
     private Item wrongGrantsEntity;
 
     private Community testProject;
-    
+
     private Group adminGroup;
 
     private Group membersGroup;
@@ -87,11 +87,14 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
             .withAuthorityMetadata(ProjectConstants.MD_POLICY_GROUP.schema, ProjectConstants.MD_POLICY_GROUP.element,
                     ProjectConstants.MD_POLICY_GROUP.qualifier, adminGroup.getName(), adminGroup.getID().toString())
             .build();
-        
-        closeGrantsEntity = ItemBuilder.createItem(context, fundingColl)
+
+        closeGrantsEntity =
+            ItemBuilder.createItem(context, fundingColl)
                 .withTitle("Test close funding")
-                .withAuthorityMetadata(ProjectConstants.MD_POLICY_GROUP.schema, ProjectConstants.MD_POLICY_GROUP.element,
-                        ProjectConstants.MD_POLICY_GROUP.qualifier, membersGroup.getName(), membersGroup.getID().toString())
+                .withAuthorityMetadata(
+                    ProjectConstants.MD_POLICY_GROUP.schema, ProjectConstants.MD_POLICY_GROUP.element,
+                    ProjectConstants.MD_POLICY_GROUP.qualifier, membersGroup.getName(), membersGroup.getID().toString()
+                )
                 .build();
 
         withoutGrantsEntity = ItemBuilder.createItem(context, fundingColl)
@@ -143,7 +146,7 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
         ItemRest itemRest = itemConverter.convert(openGrantsEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
-        
+
         Authorization expectedAuthorization = new Authorization(admin, hasEditGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
@@ -152,9 +155,9 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
             .param("feature", HasEditGrantsOnItem.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
-        
+
         token = getAuthToken(eperson.getEmail(), password);
-        
+
         expectedAuthorization = new Authorization(eperson, hasEditGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
@@ -164,14 +167,14 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations", hasItem(matchAuthorization(expectedAuthorization))));
     }
-    
+
     @Test
     public void testItemWithClosedGrants() throws Exception {
 
         ItemRest itemRest = itemConverter.convert(closeGrantsEntity, Projection.DEFAULT);
 
         String token = getAuthToken(admin.getEmail(), password);
-        
+
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")
             .param("uri", getItemUri(itemRest))
@@ -179,9 +182,9 @@ public class HasEditGrantsOnItemIT extends AbstractControllerIntegrationTest {
             .param("feature", HasEditGrantsOnItem.NAME))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$._embedded.authorizations").doesNotExist());
-        
+
         token = getAuthToken(eperson.getEmail(), password);
-        
+
         Authorization expectedAuthorization = new Authorization(eperson, hasEditGrantsOnItem, itemRest);
 
         getClient(token).perform(get("/api/authz/authorizations/search/object")

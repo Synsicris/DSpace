@@ -42,8 +42,9 @@ public interface ProjectConsumerService {
     public String getOwningFundigPolicy(Context context, Item item) throws SQLException;
 
     /**
-     * Get the first parent community which the given item belong to. If the given entity is a project's one
-     * it returns the Project community. If the item is a funding's entity it returns the Funding community 
+     * Get the first parent community which the given item belong to. If the given
+     * entity is a project's one it returns the Project community. If the item is a
+     * funding's entity it returns the Funding community
      *
      * @param context
      * @param item

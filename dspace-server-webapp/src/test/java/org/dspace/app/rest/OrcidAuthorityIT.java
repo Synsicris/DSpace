@@ -22,13 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Map;
 
-import org.dspace.app.orcid.client.OrcidClient;
-import org.dspace.app.orcid.client.OrcidConfiguration;
-import org.dspace.app.orcid.exception.OrcidClientException;
-import org.dspace.app.orcid.factory.OrcidServiceFactory;
-import org.dspace.app.orcid.factory.OrcidServiceFactoryImpl;
-import org.dspace.app.orcid.model.OrcidTokenResponseDTO;
+import org.apache.commons.lang3.ArrayUtils;
 import org.dspace.app.rest.matcher.ItemAuthorityMatcher;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.builder.CollectionBuilder;
@@ -37,6 +33,14 @@ import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Item;
 import org.dspace.content.authority.OrcidAuthority;
+import org.dspace.content.authority.service.ChoiceAuthorityService;
+import org.dspace.core.service.PluginService;
+import org.dspace.orcid.client.OrcidClient;
+import org.dspace.orcid.client.OrcidConfiguration;
+import org.dspace.orcid.exception.OrcidClientException;
+import org.dspace.orcid.factory.OrcidServiceFactory;
+import org.dspace.orcid.factory.OrcidServiceFactoryImpl;
+import org.dspace.orcid.model.OrcidTokenResponseDTO;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.hamcrest.Matcher;
@@ -46,6 +50,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.orcid.jaxb.model.v3.release.search.expanded.ExpandedResult;
 import org.orcid.jaxb.model.v3.release.search.expanded.ExpandedSearch;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Integration tests for {@link OrcidAuthority}.
@@ -55,11 +60,16 @@ import org.orcid.jaxb.model.v3.release.search.expanded.ExpandedSearch;
  */
 public class OrcidAuthorityIT extends AbstractControllerIntegrationTest {
 
-    private static final String AFFILIATION_INFO = "data-oairecerif_author_affiliation";
     private static final String ORCID_INFO = OrcidAuthority.ORCID_EXTRA;
     private static final String ORCID_INSTITUTION = OrcidAuthority.INSTITUTION_EXTRA;
 
     private static final String READ_PUBLIC_TOKEN = "062d9f30-7e11-47ef-bd95-eaa2f2452565";
+
+    @Autowired
+    private PluginService pluginService;
+
+    @Autowired
+    private ChoiceAuthorityService choiceAuthorityService;
 
     private OrcidClient orcidClient = OrcidServiceFactory.getInstance().getOrcidClient();
 
@@ -75,16 +85,58 @@ public class OrcidAuthorityIT extends AbstractControllerIntegrationTest {
 
     private Collection collection;
 
+    private String[] choiceAuthorities;
+    private String choicesPluginAuthor;
+    private String choicesPresentationAuthor;
+    private String authorityControlledAuthor;
+    private String choicesPluginEditor;
+    private String choicesPresentationEditor;
+    private String authorityControlledEditor;
+
     @Before
     public void setup() {
 
         context.turnOffAuthorisationSystem();
 
+        choiceAuthorities =
+            this.configurationService.getArrayProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority");
+        String[] updatedAuthority = choiceAuthorities;
+        String orcidAuthor = "org.dspace.content.authority.OrcidAuthority = AuthorAuthority";
+        String orcidEditor = "org.dspace.content.authority.OrcidAuthority = EditorAuthority";
+        if (!ArrayUtils.contains(updatedAuthority, orcidAuthor)) {
+            updatedAuthority = ArrayUtils.add(updatedAuthority, orcidAuthor);
+        }
+        choicesPluginAuthor = configurationService.getProperty("choices.plugin.dc.contributor.author");
+        choicesPresentationAuthor = configurationService.getProperty("choices.presentation.dc.contributor.author");
+        authorityControlledAuthor = configurationService.getProperty("authority.controlled.dc.contributor.author");
+
+        configurationService.setProperty("choices.plugin.dc.contributor.author", "AuthorAuthority");
+        configurationService.setProperty("choices.presentation.dc.contributor.author", "suggest");
+        configurationService.setProperty("authority.controlled.dc.contributor.author", "true");
+
+        if (!ArrayUtils.contains(updatedAuthority, orcidEditor)) {
+            updatedAuthority = ArrayUtils.add(updatedAuthority, orcidEditor);
+        }
+        choicesPluginEditor = configurationService.getProperty("choices.plugin.dc.contributor.editor");
+        choicesPresentationEditor = configurationService.getProperty("choices.presentation.dc.contributor.editor");
+        authorityControlledEditor = configurationService.getProperty("authority.controlled.dc.contributor.editor");
+
+        configurationService.setProperty("choices.plugin.dc.contributor.editor", "EditorAuthority");
+        configurationService.setProperty("choices.presentation.dc.contributor.editor", "suggest");
+        configurationService.setProperty("authority.controlled.dc.contributor.editor", "true");
+
+        this.configurationService
+            .setProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority", updatedAuthority);
+
+        pluginService.clearNamedPluginClasses();
+        choiceAuthorityService.clearCache();
+
         parentCommunity = CommunityBuilder.createCommunity(context).build();
 
-        collection = CollectionBuilder.createCollection(context, parentCommunity)
-            .withName("Test collection")
-            .build();
+        collection =
+            CollectionBuilder.createCollection(context, parentCommunity)
+                .withName("Test collection")
+                .build();
 
         originalClientId = orcidConfiguration.getClientId();
         originalClientSecret = orcidConfiguration.getClientSecret();
@@ -104,6 +156,17 @@ public class OrcidAuthorityIT extends AbstractControllerIntegrationTest {
         orcidConfiguration.setClientId(originalClientId);
         orcidConfiguration.setClientSecret(originalClientSecret);
         ((OrcidServiceFactoryImpl) OrcidServiceFactory.getInstance()).setOrcidClient(orcidClient);
+
+        this.configurationService
+            .setProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority", choiceAuthorities);
+
+        configurationService.setProperty("choices.plugin.dc.contributor.author", choicesPluginAuthor);
+        configurationService.setProperty("choices.presentation.dc.contributor.author", choicesPresentationAuthor);
+        configurationService.setProperty("authority.controlled.dc.contributor.author", authorityControlledAuthor);
+
+        configurationService.setProperty("choices.plugin.dc.contributor.editor", choicesPluginEditor);
+        configurationService.setProperty("choices.presentation.dc.contributor.editor", choicesPresentationEditor);
+        configurationService.setProperty("authority.controlled.dc.contributor.editor", authorityControlledEditor);
     }
 
     @Test
@@ -669,7 +732,8 @@ public class OrcidAuthorityIT extends AbstractControllerIntegrationTest {
 
     private Matcher<? super Object> affiliationEntry(Item item, String title, String otherInfoValue) {
         return ItemAuthorityMatcher.matchItemAuthorityWithOtherInformations(id(item), title,
-            title, "vocabularyEntry", AFFILIATION_INFO, otherInfoValue);
+            title, "vocabularyEntry", Map.of("data-oairecerif_author_affiliation", otherInfoValue,
+                "oairecerif_author_affiliation", otherInfoValue));
     }
 
     private Matcher<? super Object> orcidEntry(String title, String authorityPrefix, String orcid) {

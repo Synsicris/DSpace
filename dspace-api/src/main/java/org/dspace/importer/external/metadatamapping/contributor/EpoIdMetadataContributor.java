@@ -7,33 +7,37 @@
  */
 package org.dspace.importer.external.metadatamapping.contributor;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Objects;
 import javax.annotation.Resource;
 
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.OMText;
-import org.apache.axiom.om.xpath.AXIOMXPath;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 import org.dspace.importer.external.metadatamapping.MetadataFieldMapping;
 import org.dspace.importer.external.metadatamapping.MetadatumDTO;
 import org.jaxen.JaxenException;
+import org.jdom2.Attribute;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
+import org.jdom2.Text;
+import org.jdom2.filter.Filters;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
  * Custom MetadataContributor to manage Epo ID.
  * Need as input <publication-reference> element and all children.
- * 
- * @author Pasquale Cavallo
  *
+ * @author Pasquale Cavallo
  */
+public class EpoIdMetadataContributor implements MetadataContributor<Element> {
 
-public class EpoIdMetadataContributor implements MetadataContributor<OMElement> {
     protected MetadataFieldConfig field;
 
     private boolean needType;
@@ -41,7 +45,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
     /**
      * This property will be used in ID definition.
      * If this is true, id will be in the form docType:EpoID, otherwise EpoID will be returned
-     * 
+     *
      * @param needType if true, docType will be included in id definition
      */
     public void setNeedType(boolean needType) {
@@ -57,14 +61,14 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
         return prefixToNamespaceMapping;
     }
 
-    protected MetadataFieldMapping<OMElement, MetadataContributor<OMElement>> metadataFieldMapping;
+    protected MetadataFieldMapping<Element, MetadataContributor<Element>> metadataFieldMapping;
 
     /**
      * Return metadataFieldMapping
      *
      * @return MetadataFieldMapping
      */
-    public MetadataFieldMapping<OMElement, MetadataContributor<OMElement>> getMetadataFieldMapping() {
+    public MetadataFieldMapping<Element, MetadataContributor<Element>> getMetadataFieldMapping() {
         return metadataFieldMapping;
     }
 
@@ -73,8 +77,9 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
      *
      * @param metadataFieldMapping the new mapping.
      */
+    @Override
     public void setMetadataFieldMapping(
-        MetadataFieldMapping<OMElement, MetadataContributor<OMElement>> metadataFieldMapping) {
+        MetadataFieldMapping<Element, MetadataContributor<Element>> metadataFieldMapping) {
         this.metadataFieldMapping = metadataFieldMapping;
     }
 
@@ -152,21 +157,21 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
      * Depending on the retrieved node (using the query), different types of values will be added to the MetadatumDTO
      * list
      *
-     * @param t A class to retrieve metadata from.
+     * @param element
      * @return a collection of import records. Only the identifier of the found records may be put in the record.
      */
     @Override
-    public Collection<MetadatumDTO> contributeMetadata(OMElement t) {
+    public Collection<MetadatumDTO> contributeMetadata(Element element) {
         List<MetadatumDTO> values = new LinkedList<>();
         try {
-            Map<String, String> namespaces = new HashMap<>();
-            AXIOMXPath xpath = new AXIOMXPath(query);
-            for (String ns : prefixToNamespaceMapping.keySet()) {
-                xpath.addNamespace(prefixToNamespaceMapping.get(ns), ns);
-                namespaces.put(prefixToNamespaceMapping.get(ns), ns);
-            }
-            List<OMElement> nodes = xpath.selectNodes(t);
-            for (OMElement el : nodes) {
+            List<Namespace> namespaces = Arrays.asList(
+                    Namespace.getNamespace("xlink", "http://www.w3.org/1999/xlink"),
+                    Namespace.getNamespace("ops", "http://ops.epo.org"),
+                    Namespace.getNamespace("ns", "http://www.epo.org/exchange"));
+            XPathExpression<Element> xpath = XPathFactory.instance().compile(query, Filters.element(), null,
+                    namespaces);
+            List<Element> elements = xpath.evaluate(element);
+            for (Element el : elements) {
                 EpoDocumentId document = new EpoDocumentId(el, namespaces);
                 MetadatumDTO metadatum = new MetadatumDTO();
                 metadatum.setElement(field.getElement());
@@ -184,22 +189,22 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
             System.err.println(query);
             throw new RuntimeException(e);
         }
-
     }
 
     /**
      * This class maps EPO's response metadata needs to extract epo ID.
-     * 
+     *
      * @author Pasquale Cavallo
      *
      */
     public static class EpoDocumentId {
+
         private String documentIdType;
         private String country;
         private String docNumber;
         private String kind;
         private String date;
-        private Map<String, String> namespaces;
+        private List<Namespace> namespaces;
 
 
         public static final String DOCDB = "docdb";
@@ -207,33 +212,20 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
         public static final String ORIGIN = "origin";
 
 
-        public EpoDocumentId(OMElement documentId, Map<String, String> namespaces) throws JaxenException {
+        public EpoDocumentId(Element documentId, List<Namespace> namespaces) throws JaxenException {
             this.namespaces = namespaces;
-            OMElement preferredId = null;
-            AXIOMXPath xpath = new AXIOMXPath("./ns:document-id[@document-id-type=\"epodoc\"]");
-            if (namespaces != null) {
-                for (Entry<String, String> entry : namespaces.entrySet()) {
-                    xpath.addNamespace(entry.getKey(), entry.getValue());
-                }
+            Element preferredId = null;
+            XPathExpression<Object> xpath = XPathFactory.instance().compile(
+                    "./ns:document-id[@document-id-type=\"epodoc\"]", Filters.fpassthrough(), null, namespaces);
+
+            List<Object> nodes = xpath.evaluate(documentId);
+            if (CollectionUtils.isNotEmpty(nodes)) {
+                preferredId = (Element) nodes.get(0);
             }
-            List<Object> nodes = xpath.selectNodes(documentId);
-            if (nodes != null && nodes.size() > 0) {
-                preferredId = (OMElement) nodes.get(0);
-            } else {
-                xpath = new AXIOMXPath("./ns:document-id");
-                if (namespaces != null) {
-                    for (Entry<String, String> entry : namespaces.entrySet()) {
-                        xpath.addNamespace(entry.getKey(), entry.getValue());
-                    }
-                }
-                nodes = xpath.selectNodes(documentId);
-                if (nodes != null && nodes.size() > 0) {
-                    preferredId = (OMElement) nodes.get(0);
-                }
-            }
-            if (preferredId == null) {
+            if (Objects.isNull(preferredId)) {
                 preferredId = documentId;
             }
+
             this.documentIdType = buildDocumentIdType(preferredId);
             this.country = buildCountry(preferredId);
             this.docNumber = buildDocNumber(preferredId);
@@ -241,23 +233,23 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
             this.date = buildDate(preferredId);
         }
 
-        private String buildDocumentIdType(OMElement documentId) throws JaxenException {
+        private String buildDocumentIdType(Element documentId) throws JaxenException {
             return getElement(documentId, "./@document-id-type");
         }
 
-        private String buildCountry(OMElement documentId) throws JaxenException {
+        private String buildCountry(Element documentId) throws JaxenException {
             return getElement(documentId, "./ns:country");
         }
 
-        private String buildDocNumber(OMElement documentId) throws JaxenException {
+        private String buildDocNumber(Element documentId) throws JaxenException {
             return getElement(documentId, "./ns:doc-number");
         }
 
-        private String buildKind(OMElement documentId) throws JaxenException {
+        private String buildKind(Element documentId) throws JaxenException {
             return getElement(documentId, "./ns:kind");
         }
 
-        private String buildDate(OMElement documentId) throws JaxenException {
+        private String buildDate(Element documentId) throws JaxenException {
             return getElement(documentId, "./ns:date");
         }
 
@@ -265,17 +257,17 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
         public String getDocumentIdType() {
             return documentIdType;
         }
+
         /**
          * This method compute the epo ID from fields
-         * 
+         *
          * @return the EPO id
          */
         public String getId() {
             if (DOCDB.equals(documentIdType)) {
                 return country + "." + docNumber + "." + kind;
-
             } else if (EPODOC.equals(documentIdType)) {
-                return docNumber + ((kind != null) ? kind : "");
+                return docNumber + (kind != null ? kind : StringUtils.EMPTY);
             } else {
                 return docNumber;
             }
@@ -283,7 +275,7 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
 
         public String getIdAndType() {
             if (EPODOC.equals(documentIdType)) {
-                return documentIdType + ":" + docNumber + ((kind != null) ? kind : "");
+                return documentIdType + ":" + docNumber + (kind != null ? kind : "");
             } else if (DOCDB.equals(documentIdType)) {
                 return documentIdType + ":" + country + "." + docNumber + "." + kind;
             } else {
@@ -292,37 +284,28 @@ public class EpoIdMetadataContributor implements MetadataContributor<OMElement> 
         }
 
 
-        private String getElement(OMElement documentId, String axiomPath) throws JaxenException {
-            if (documentId == null) {
-                return "";
+        private String getElement(Element documentId, String path) throws JaxenException {
+            if (Objects.isNull(documentId)) {
+                return StringUtils.EMPTY;
             }
-            AXIOMXPath xpath = new AXIOMXPath(axiomPath);
-            if (namespaces != null) {
-                for (Entry<String, String> entry : namespaces.entrySet()) {
-                    xpath.addNamespace(entry.getKey(), entry.getValue());
-                }
-            }
-            List<Object> nodes = xpath.selectNodes(documentId);
+            XPathExpression<Object> xpath = XPathFactory.instance().compile(path, Filters.fpassthrough(), null,
+                    namespaces);
+            List<Object> nodes = xpath.evaluate(documentId);
             //exactly one element expected for any field
-            if (nodes == null || nodes.isEmpty()) {
-                return "";
-            } else {
-                return getValue(nodes.get(0));
-            }
+            return CollectionUtils.isNotEmpty(nodes) ? getValue(nodes.get(0)) : StringUtils.EMPTY;
         }
 
         private String getValue(Object el) {
-            if (el instanceof OMElement) {
-                return ((OMElement) el).getText();
-            } else if (el instanceof OMAttribute) {
-                return ((OMAttribute) el).getAttributeValue();
+            if (el instanceof Element) {
+                return ((Element) el).getText();
+            } else if (el instanceof Attribute) {
+                return ((Attribute) el).getValue();
             } else if (el instanceof String) {
                 return (String)el;
-            } else if (el instanceof OMText) {
-                return ((OMText) el).getText();
+            } else if (el instanceof Text) {
+                return ((Text) el).getText();
             } else {
-                System.err.println("node of type: " + el.getClass());
-                return "";
+                return StringUtils.EMPTY;
             }
         }
     }

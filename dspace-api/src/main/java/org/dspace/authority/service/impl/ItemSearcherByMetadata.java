@@ -9,14 +9,22 @@ package org.dspace.authority.service.impl;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dspace.authority.service.AuthorityValueService;
 import org.dspace.authority.service.ItemReferenceResolver;
 import org.dspace.authority.service.ItemSearcher;
@@ -64,9 +72,16 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
     @Autowired
     private ConfigurationService configurationService;
 
+    private ThreadLocal<Map<String, UUID>> valuesToItemIds = ThreadLocal.withInitial(() -> new HashMap<>());
+
+    private ThreadLocal<MultiValuedMap<String, UUID>> referenceResolutionAttempts =
+        ThreadLocal.withInitial(() -> new ArrayListValuedHashMap<>());
+
     private final String metadata;
 
     private final String authorityPrefix;
+
+    private static Logger log = LogManager.getLogger(ItemSearcherByMetadata.class);
 
     public ItemSearcherByMetadata(String metadata, String authorityPrefix) {
         this.metadata = metadata;
@@ -74,11 +89,28 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
     }
 
     @Override
-    public Item searchBy(Context context, String searchParam) {
+    public Item searchBy(Context context, String searchParam, Item source) {
         try {
-            return performSearchByMetadata(context, searchParam);
+            if (source != null) {
+                referenceResolutionAttempts.get().get(searchParam).add(source.getID());
+            }
+            if (valuesToItemIds.get().containsKey(searchParam)) {
+                Item foundInCache = itemService.find(context, valuesToItemIds.get().get(searchParam));
+                if (foundInCache != null) {
+                    return foundInCache;
+                } else {
+                    UUID removedUUID = valuesToItemIds.get().remove(searchParam);
+                    log.info("No item with uuid: " + removedUUID + " was found");
+                    log.info("Removing uuid: " + removedUUID + " from cache");
+                    return performSearchByMetadata(context, searchParam);
+                }
+            } else {
+                return performSearchByMetadata(context, searchParam);
+            }
         } catch (SearchServiceException e) {
             throw new RuntimeException("An error occurs searching the item by metadata", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("An error occurs retrieving the item by identifier", e);
         }
     }
 
@@ -146,6 +178,10 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
 
     private void resolveReferences(Context context, List<MetadataValue> metadataValues, Item item)
         throws SQLException, AuthorizeException {
+        metadataValues.forEach(metadataValue -> {
+            valuesToItemIds.get().put(metadataValue.getValue(), item.getID());
+        });
+
         final boolean isValueToUpdate = checkWhetherTitleNeedsToBeSet();
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
 
@@ -159,12 +195,33 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
         while (entityIterator.hasNext()) {
             Item itemWithReference = getNextItem(entityIterator.next());
 
-            itemWithReference.getMetadata().stream()
-                .filter(metadataValue -> authorities.contains(metadataValue.getAuthority()))
-                .forEach(metadataValue -> setReferences(metadataValue, item, isValueToUpdate));
-
-            itemService.update(context, itemWithReference);
+            updateReferences(context, itemWithReference, item, authorities, isValueToUpdate);
         }
+
+        metadataValues.forEach(metadataValue -> {
+            Collection<UUID> uuids = referenceResolutionAttempts.get().get(metadataValue.getValue());
+            uuids.forEach(uuid -> {
+                try {
+                    Item itemToRes = itemService.find(context, uuid);
+                    if (itemToRes != null) {
+                        updateReferences(context, itemToRes, item, authorities, isValueToUpdate);
+                    }
+                } catch (SQLException | AuthorizeException e) {
+                    throw new RuntimeException("An error occurs while resolving references", e);
+                }
+            });
+        });
+
+    }
+
+    private void updateReferences(Context context, Item itemWithReference, Item item, List<String> authorities,
+        boolean isValueToUpdate) throws SQLException, AuthorizeException {
+
+        itemWithReference.getMetadata().stream()
+            .filter(metadataValue -> authorities.contains(metadataValue.getAuthority()))
+            .forEach(metadataValue -> setReferences(metadataValue, item, isValueToUpdate));
+
+        itemService.update(context, itemWithReference);
     }
 
     /**
@@ -216,6 +273,12 @@ public class ItemSearcherByMetadata implements ItemSearcher, ItemReferenceResolv
         return authorities.stream()
             .map(authority -> field.replaceAll("_", ".") + "_allauthority: \"" + authority + "\"")
             .collect(Collectors.joining(" OR "));
+    }
+
+    @Override
+    public void clearCache() {
+        valuesToItemIds.get().clear();
+        referenceResolutionAttempts.get().clear();
     }
 
 }

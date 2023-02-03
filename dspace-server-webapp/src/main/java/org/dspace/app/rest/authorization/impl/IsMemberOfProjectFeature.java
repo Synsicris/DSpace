@@ -8,6 +8,7 @@
 package org.dspace.app.rest.authorization.impl;
 
 import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 
 import java.sql.SQLException;
 import java.util.UUID;
@@ -24,8 +25,9 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
-import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +43,7 @@ import org.springframework.stereotype.Component;
     description = "It can be used for verify that an user is member of the given project")
 public class IsMemberOfProjectFeature implements AuthorizationFeature {
 
+    private static final Logger logger = LoggerFactory.getLogger(IsMemberOfProjectFeature.class);
     public static final String NAME = "isMemberOfProject";
 
     @Autowired
@@ -61,27 +64,36 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
         if (!(object instanceof ItemRest) && !(object instanceof CommunityRest)) {
             return false;
         }
-        
+
         if (context.getCurrentUser() == null) {
             return false;
         }
 
         Item item = null;
-        if ((object instanceof CommunityRest)) {
+        if (object instanceof CommunityRest) {
             Community comm = communityService.find(context, UUID.fromString(((CommunityRest) object).getUuid()));
             if (comm == null) {
-                throw new IllegalArgumentException("No community found with the given id: " + ((CommunityRest) object).getUuid());
+                throw new IllegalArgumentException(
+                    "No community found with the given id: " + ((CommunityRest) object).getUuid()
+                );
             }
-            
+
             item = projectConsumerService.getParentProjectItemByCommunityUUID(context, comm.getID());
+
+            if (item == null) {
+                logger.error(
+                    "No parent project item found for the given community id: " + ((CommunityRest) object).getUuid()
+                );
+                return false;
+            }
         } else {
-            
+
             item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
-        }
-
-        if (item == null) {
-            throw new IllegalArgumentException("No item found with the given id: " + ((ItemRest) object).getUuid());
+            if (item == null) {
+                logger.error("No item found with the given id: " + ((ItemRest) object).getUuid());
+                return false;
+            }
         }
 
         return isMemberOfProjectGroup(context, item);
@@ -89,9 +101,9 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
 
     @Override
     public String[] getSupportedTypes() {
-        return new String[] { 
-                CommunityRest.CATEGORY + "." + CommunityRest.NAME,
-                ItemRest.CATEGORY + "." + ItemRest.NAME
+        return new String[] {
+            CommunityRest.CATEGORY + "." + CommunityRest.NAME,
+            ItemRest.CATEGORY + "." + ItemRest.NAME
         };
     }
 
@@ -100,7 +112,7 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
 
         Community community;
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-        if (entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
+        if (PROJECT_ENTITY.equals(entityType)) {
             community = projectConsumerService.getProjectCommunity(context, item);
         } else {
             community = projectConsumerService.getProjectCommunityByRelationProject(context, item);

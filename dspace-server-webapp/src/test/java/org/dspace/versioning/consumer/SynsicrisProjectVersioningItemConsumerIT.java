@@ -69,19 +69,34 @@ import org.dspace.eperson.GroupConfiguration;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.ProjectVersionProvider;
+import org.dspace.versioning.VersioningServiceImpl;
+import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.data.rest.webmvc.RestMediaTypes;
 import org.springframework.http.MediaType;
 
 public class SynsicrisProjectVersioningItemConsumerIT extends AbstractControllerIntegrationTest {
 
+    public static final String CRIS_CONSUMER = "crisconsumer";
     private static final Logger logger = LoggerFactory.getLogger(SynsicrisProjectVersioningItemConsumerIT.class);
+
+    private static ConfigurableListableBeanFactory beanFactory;
+
+    private static VersioningService versionServiceBean;
+
+    private static ItemVersionProvider itemVersionProviderBean;
 
     private Community projectCommunity;
     private Community sharedCoummunity;
@@ -105,11 +120,35 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
     @Autowired
     private GroupService groupService;
+    private String projectCommId;
+
+    @BeforeClass
+    public static void initConfig() {
+        // WARN: This code sets the `projectItemVersionProvider` as main provider
+        // for the `versionServiceBean`.
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
+        );
+
+    }
+
+    @AfterClass
+    public static void restoreConfig() {
+        // WARN: This code resets the provider of the `versionServiceBean`
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
+    }
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
+
+        projectCommId = this.configurationService.getProperty("project.parent-community-id");
 
         context.turnOffAuthorisationSystem();
 
@@ -148,7 +187,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 .build();
 
         projectCommunity =
-            CommunityBuilder.createCommunity(context)
+            CommunityBuilder.createSubCommunity(context, parentCommunity)
                 .withName("project's community")
                 .build();
 
@@ -204,12 +243,18 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
         configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, membersGroup.getID());
         configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, funderGroup.getID());
-        configurationService.setProperty("project.parent-community-id", projectCommunity.getID().toString());
+        this.configurationService.setProperty("project.parent-community-id", parentCommunity.getID().toString());
         configurationService
             .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
 
         context.restoreAuthSystemState();
     }
+
+    @After
+    public void tearDown() {
+        this.configurationService.setProperty("project.parent-community-id", projectCommId);
+    }
+
 
     @Test
     public void verifiesMetadasOnVersionedProjectWhenMadeVisible() throws Exception {
@@ -339,7 +384,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         } finally {
             configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
             configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
-            configurationService.setProperty("project.parent-community-id", null);
+            // configurationService.setProperty("project.parent-community-id", null);
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
@@ -485,7 +530,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         } finally {
             configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
             configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
-            configurationService.setProperty("project.parent-community-id", null);
+            // configurationService.setProperty("project.parent-community-id", null);
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
@@ -959,7 +1004,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         } finally {
             configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
             configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
-            configurationService.setProperty("project.parent-community-id", null);
+            // configurationService.setProperty("project.parent-community-id", null);
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);

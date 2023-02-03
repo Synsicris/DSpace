@@ -57,7 +57,7 @@
 		]
 	},
 	"funded": [
-		@relation.fundings.start@
+		@relation.Funding.start@
 		{
 			"by": {
 				@relation.oairecerif-funder.start@
@@ -79,7 +79,7 @@
 				}
 			}
 		},
-	@relation.fundings.end@
+        @relation.Funding.end@
 	],
 	"keywords": [
 		"@dc.subject@",

@@ -452,5 +452,12 @@
         <element>version</element>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>title</element>
+        <qualifier>alternative</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
 </dspace-dc-types>

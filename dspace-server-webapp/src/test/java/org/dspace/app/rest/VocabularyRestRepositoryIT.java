@@ -137,19 +137,20 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
         getClient(token).perform(get("/api/submission/vocabularies"))
                  .andExpect(status().isOk())
                  .andExpect(jsonPath("$._embedded.vocabularies", Matchers.containsInAnyOrder(
-                     VocabularyMatcher.matchProperties("srsc", "srsc", false, true),
-                     VocabularyMatcher.matchProperties("common_types", "common_types", true, false),
-                     VocabularyMatcher.matchProperties("common_iso_languages", "common_iso_languages", true , false),
-                     VocabularyMatcher.matchProperties("SolrAuthorAuthority", "SolrAuthorAuthority", false , false),
-                     VocabularyMatcher.matchProperties("patent_types", "patent_types", true , false),
+                     VocabularyMatcher.matchProperties("patent_types", "patent_types", true, false),
                      VocabularyMatcher.matchProperties("types", "types", false , true),
                      VocabularyMatcher.matchProperties("gender", "gender", true , false),
-                     VocabularyMatcher.matchProperties("SRPublisher", "SRPublisher", false , false),
-                     VocabularyMatcher.matchProperties("SRJournalTitle", "SRJournalTitle", false , false)
+                     VocabularyMatcher.matchProperties("SolrAuthorAuthority", "SolrAuthorAuthority", false , false),
+                     VocabularyMatcher.matchProperties("SRJournalTitle", "SRJournalTitle", false , false),
+                     VocabularyMatcher.matchProperties("common_types", "common_types", true , false),
+                     VocabularyMatcher.matchProperties("srsc", "srsc", false , true),
+                     VocabularyMatcher.matchProperties("countries", "countries", false , true),
+                     VocabularyMatcher.matchProperties("common_iso_languages", "common_iso_languages", true , false),
+                     VocabularyMatcher.matchProperties("SRPublisher", "SRPublisher", false , false)
                  )))
         .andExpect(jsonPath("$._links.self.href",
             Matchers.containsString("api/submission/vocabularies")))
-        .andExpect(jsonPath("$.page.totalElements", is(9)));
+        .andExpect(jsonPath("$.page.totalElements", is(10)));
     }
 
     @Test

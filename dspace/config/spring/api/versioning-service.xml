@@ -33,6 +33,9 @@
                 <value>dspace.entity.type</value>
             </set>
         </property>
-        
+
     </bean>
+
+    <bean class="org.dspace.versioning.utils.RelationshipVersioningUtils"/>
+
 </beans>

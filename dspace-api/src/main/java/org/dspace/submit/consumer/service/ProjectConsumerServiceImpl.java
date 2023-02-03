@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -166,15 +167,22 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             return null;
         }
 
-        Community parentCommunity = owningCommunity.getParentCommunities().get(0);
+        Optional<Community> parentCommunity =
+            Optional.ofNullable(owningCommunity.getParentCommunities())
+                .filter(CollectionUtils::isNotEmpty)
+                .map(list -> list.get(0));
+
+        if (parentCommunity.isEmpty()) {
+            return null;
+        }
 
         String parentCommId = configurationService.getProperty("project.parent-community-id", null);
 
-        if (parentCommunity.getID().toString().equals(parentCommId)) {
+        if (parentCommunity.get().getID().toString().equals(parentCommId)) {
             return owningCommunity;
         } else {
-            return
-                Optional.ofNullable(parentCommunity.getParentCommunities())
+            return parentCommunity
+                    .map(Community::getParentCommunities)
                     .filter(list -> !list.isEmpty())
                     .map(list -> list.get(0))
                     .orElse(null);

@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CollectionService;
@@ -86,7 +85,7 @@ public class FundingObjectiveAuthorityFilter extends EntityTypeAuthorityFilter {
                 List<MetadataValue> values = itemService.getMetadata(projectItem,
                         ProjectConstants.MD_RELATION_CALL.schema, ProjectConstants.MD_RELATION_CALL.element,
                         ProjectConstants.MD_RELATION_CALL.qualifier, null);
-                
+
                 for (MetadataValue value : values) {
                     if (StringUtils.isNotBlank(value.getAuthority())) {
                         String filter = ProjectConstants.MD_RELATION_CALL.toString() + "_authority:" +
@@ -102,7 +101,7 @@ public class FundingObjectiveAuthorityFilter extends EntityTypeAuthorityFilter {
                             filterQuery += " OR " + programmeFilterQuery;
                         }
                     }
-                    
+
                 }
             }
         } catch (SQLException e) {
@@ -112,19 +111,19 @@ public class FundingObjectiveAuthorityFilter extends EntityTypeAuthorityFilter {
         }
         return StringUtils.isBlank(filterQuery) ? "search.resourceid:null" : filterQuery;
     }
-    
+
     String getProgrammeFilterQuery(Context context, UUID callItemUUID) {
         String filterQuery = "";
         if (callItemUUID != null) {
             try {
                 Item callItem = itemService.find(context, callItemUUID);
-                
+
                 if (callItem != null) {
                     List<MetadataValue> values = itemService.getMetadata(callItem,
                             ProjectConstants.MD_RELATION_CALLTOPROGRAMME.schema,
                             ProjectConstants.MD_RELATION_CALLTOPROGRAMME.element,
                             ProjectConstants.MD_RELATION_CALLTOPROGRAMME.qualifier, null);
-                    
+
                     for (MetadataValue value : values) {
                         if (StringUtils.isNotBlank(value.getAuthority())) {
                             String filter = ProjectConstants.MD_RELATION_FUNDINGOBJTOPROGRAMME.toString() +
@@ -137,15 +136,15 @@ public class FundingObjectiveAuthorityFilter extends EntityTypeAuthorityFilter {
                         }
                     }
                 }
-                
+
             } catch (SQLException e) {
                 log.error("Error while trying to retrieve call item for the given uuid: {}", callItemUUID,
                         e.getMessage());
                 return filterQuery;
             }
-            
+
         }
-        
+
         return filterQuery;
     }
 }

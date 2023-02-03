@@ -161,23 +161,30 @@
 	<!--########################################################################-->
 
 	<WorkPackage>
-		@relation.workpackage.start@
-		
-		  <Index>
+
+		<Index>
 			
-				<!-- direct attributes (basic accordion) -->
+			@relation.workpackage.start@
+	
+			<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
 				<Requirement>@synsicris.description.requirements@</Requirement>
-			
-				@relation.projectpartner.start@
-					Acronym>@oairecerif.acronym@</Acronym>
-				@relation.projectpartner.end@
-			
-			</Index>
+	
+			    <!-- @relation.projectpartner.start@
+					  <OrgUnit id="@virtual.id@">
+				      <Acronym>@oairecerif.acronym@</Acronym>
+					  </OrgUnit>
+			    @relation.projectpartner.end@ -->
 
-		@relation.workpackage.end@
+			@relation.workpackage.end@
 
+			@relation.projectpartner.start@
+				<Acronym>@oairecerif.acronym@</Acronym>
+			@relation.projectpartner.end@
+
+		</Index>
+		
 	</WorkPackage>
 
 	<!--########################################################################-->

@@ -7,11 +7,9 @@
  */
 package org.dspace.content.template.generator;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.vo.MetadataValueVO;
 import org.dspace.core.Context;

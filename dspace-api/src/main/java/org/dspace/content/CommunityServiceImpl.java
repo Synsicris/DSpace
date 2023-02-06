@@ -7,8 +7,8 @@
  */
 package org.dspace.content;
 
-import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -779,8 +779,10 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                 null
         );
         UUID uuidProjectItem = relationMd.size() > 0 ? UUIDUtils.fromString(relationMd.get(0).getAuthority()) : null;
-        newCommunity = cloneCommunity(context, parent, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                                      name, grants, newItems, oldItem2clonedItem, isFunding);
+        newCommunity =
+            cloneCommunity(
+                context, parent, template, newCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                name, grants, newItems, oldItem2clonedItem, isFunding);
 
         updateClonedItems(context, newItems, oldItem2clonedItem);
 
@@ -799,8 +801,9 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
         for (Community c : subCommunities) {
             Community newSubCommunity = create(clone, context);
-            cloneCommunity(context, parentCommunity, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
-                           newName, grants, newItems, oldItem2clonedItem, isFunding);
+            cloneCommunity(
+                context, parentCommunity, c, newSubCommunity, scopedRoles, uuidProjectItem, rootCommunityUUID,
+                newName, grants, newItems, oldItem2clonedItem, isFunding);
         }
 
         for (Collection collection : subCollections) {
@@ -867,19 +870,25 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         if (StringUtils.isBlank(grants)) {
             grants = ProjectConstants.PROJECT;
         }
-        
+
         itemService.replaceMetadata(context, newItem, "cris", "project", "shared", null, grants, null,
                 Choices.CF_UNSET, 0);
-        
+
         String groupName = null;
         Group group;
         switch (grants) {
             case ProjectConstants.PROJECT:
-                groupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE,
-                        parentCommunity.getParentCommunities().get(0).getID().toString());
+                groupName =
+                    String.format(
+                        PROJECT_MEMBERS_GROUP_TEMPLATE,
+                        parentCommunity.getParentCommunities().get(0).getID().toString()
+                    );
                 break;
             case ProjectConstants.FUNDING:
                 groupName = String.format(FUNDING_MEMBERS_GROUP_TEMPLATE, newRootCommunity.getID().toString());
+                break;
+            default:
+                groupName = null;
                 break;
         }
         group = groupService.findByName(context, groupName);
@@ -888,7 +897,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
                     ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
                     null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
         }
-        
+
     }
 
     private void replacePlaceholderValue(Context context, Community newRootCommunity, Item newItem, String newName,

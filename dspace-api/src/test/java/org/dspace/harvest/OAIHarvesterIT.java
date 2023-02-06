@@ -7,6 +7,7 @@
  */
 package org.dspace.harvest;
 
+import static java.lang.String.join;
 import static java.util.UUID.randomUUID;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
 import static org.dspace.builder.CollectionBuilder.createCollection;
@@ -14,7 +15,6 @@ import static org.dspace.builder.CommunityBuilder.createCommunity;
 import static org.dspace.core.CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE;
 import static org.dspace.harvest.util.NamespaceUtils.getMetadataFormatNamespace;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.emptyCollectionOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -49,6 +49,7 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.AbstractIntegrationTestWithDatabase;
+import org.dspace.authority.CrisConsumer;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.HarvestedCollectionBuilder;
@@ -62,6 +63,8 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
+import org.dspace.event.factory.EventServiceFactory;
+import org.dspace.event.service.EventService;
 import org.dspace.harvest.factory.HarvestServiceFactory;
 import org.dspace.harvest.model.OAIHarvesterOptions;
 import org.dspace.harvest.model.OAIHarvesterReport;
@@ -80,10 +83,12 @@ import org.dspace.xmlworkflow.storedcomponents.PoolTask;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.dspace.xmlworkflow.storedcomponents.service.PoolTaskService;
 import org.dspace.xmlworkflow.storedcomponents.service.XmlWorkflowItemService;
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Document;
+import org.jdom2.input.SAXBuilder;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -100,6 +105,9 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
     private static final String OAI_PMH_DIR_PATH = "./target/testing/dspace/assetstore/oai-pmh/";
     private static final String VALIDATION_DIR = OAI_PMH_DIR_PATH + "cerif/validation/";
     private static final String CERIF_XSD_NAME = "openaire-cerif-profile.xsd";
+    private static final String CRIS_CONSUMER = CrisConsumer.CONSUMER_NAME;
+
+    private static String[] consumers;
 
     private OAIHarvester harvester = HarvestServiceFactory.getInstance().getOAIHarvester();
 
@@ -128,6 +136,27 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
     private OAIHarvesterClient oaiHarvesterClient;
 
     private OAIHarvesterClient mockClient;
+
+    @BeforeClass
+    public static void initCrisConsumer() {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
+        String newConsumers = consumers.length > 0 ? CRIS_CONSUMER + "," + join(",", consumers) : CRIS_CONSUMER;
+        configService.setProperty("event.dispatcher.default.consumers", newConsumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
+    }
+
+    /**
+     * Reset the event.dispatcher.default.consumers property value.
+     */
+    @AfterClass
+    public static void resetDefaultConsumers() {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        configService.setProperty("event.dispatcher.default.consumers", consumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
+    }
 
     @Before
     public void beforeTests() throws Exception {
@@ -872,7 +901,7 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
 
             Item publication = findItemByOaiID("oai:test-harvest:Publications/3", collection);
             values = publication.getMetadata();
-            assertThat(values, hasSize(17));
+            assertThat(values, hasSize(19));
 
             assertThat(values, hasItems(with("dc.title", "Test Publication")));
             assertThat(values, hasItems(with("dc.type", "Controlled Vocabulary for Resource Type Genres::text")));
@@ -885,6 +914,9 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
             assertThat(values, hasItems(with("oairecerif.author.affiliation", PLACEHOLDER_PARENT_METADATA_VALUE)));
             assertThat(values, hasItems(with("cris.sourceId", "test-harvest::3")));
             assertThat(values, hasItems(with("dspace.entity.type", "Publication")));
+            assertThat(values, hasItems(with("cris.virtual.author-orcid", "0000-0002-9079-5932")));
+            assertThat(values, hasItems(with("cris.virtualsource.author-orcid",
+                                             UUIDUtils.toString(person.getID()))));
 
             MetadataValue author = itemService.getMetadata(publication, "dc", "contributor", "author", Item.ANY).get(0);
             assertThat(UUIDUtils.fromString(author.getAuthority()), equalTo(person.getID()));
@@ -1297,8 +1329,10 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
 
             ErrorDetails errorDetails = errors.get("oai:test-harvest:Publications/3");
             assertThat(errorDetails.getAction(), is("created"));
-            assertThat(errorDetails.getMessages(), hasSize(1));
-            assertThat(errorDetails.getMessages(), contains("error.validation.filerequired - [/sections/upload]"));
+            assertThat(errorDetails.getMessages(), hasSize(2));
+            assertThat(errorDetails.getMessages(), hasItem("error.validation.filerequired - [/sections/upload]"));
+            assertThat(errorDetails.getMessages(),
+                hasItem("error.validation.license.notgranted - [/sections/license]"));
 
             verifyNoMoreInteractions(mockClient, mockEmailSender);
 
@@ -1419,23 +1453,26 @@ public class OAIHarvesterIT extends AbstractIntegrationTestWithDatabase {
             ErrorDetails errorDetails = errors.get("oai:test-harvest:Publications/123456789/1001");
             assertThat(errorDetails.getAction(), is("created"));
             List<String> messages = errorDetails.getMessages();
-            assertThat(messages, hasSize(2));
+            assertThat(messages, hasSize(3));
             assertThat(messages, hasItem("error.validation.filerequired - [/sections/upload]"));
+            assertThat(messages, hasItem("error.validation.license.notgranted - [/sections/license]"));
             assertThat(messages, hasItem("error.validation.required - [/sections/publication/dc.date.issued]"));
 
             errorDetails = errors.get("oai:test-harvest:Publications/123456789/1002");
             assertThat(errorDetails.getAction(), is("created"));
             messages = errorDetails.getMessages();
-            assertThat(messages, hasSize(2));
+            assertThat(messages, hasSize(3));
             assertThat(messages, hasItem("error.validation.filerequired - [/sections/upload]"));
+            assertThat(messages, hasItem("error.validation.license.notgranted - [/sections/license]"));
             assertThat(errorDetails.getMessages(), hasItem(containsString("Element 'oai_cerif:Publishers' "
                 + "cannot have character [children]")));
 
             errorDetails = errors.get("oai:test-harvest:Publications/123456789/1003");
             assertThat(errorDetails.getAction(), is("created"));
             messages = errorDetails.getMessages();
-            assertThat(messages, hasSize(1));
+            assertThat(messages, hasSize(2));
             assertThat(messages, hasItem("error.validation.filerequired - [/sections/upload]"));
+            assertThat(messages, hasItem("error.validation.license.notgranted - [/sections/license]"));
 
             verifyNoMoreInteractions(mockClient, mockEmailSender);
 

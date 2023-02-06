@@ -8,9 +8,12 @@
 package org.dspace.app.rest;
 
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
+import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
@@ -29,7 +32,9 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.services.ConfigurationService;
 import org.dspace.submit.consumer.LinkProgrammeGroupWithProjectConsumer;
+import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +46,16 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerIntegrationTest {
 
+    @Autowired
+    private GroupService groupService;
+    @Autowired
+    private ConfigurationService configurationService;
+
     private Collection projectCollection;
     private Collection programmeCollection;
     private Community projectCommunity;
-
-    @Autowired
-    private GroupService groupService;
+    private Community rootCommunity;
+    private Community projectSharedCommunity;
 
     @Override
     @Before
@@ -66,8 +75,18 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
                 .withEntityType(PROGRAMME)
                 .build();
 
-        projectCommunity =
+        rootCommunity =
             CommunityBuilder.createCommunity(context)
+                .withName("root community")
+                .build();
+
+        projectSharedCommunity =
+            CommunityBuilder.createSubCommunity(context, rootCommunity)
+                .withName("project shared community")
+                .build();
+
+        projectCommunity =
+            CommunityBuilder.createSubCommunity(context, projectSharedCommunity)
                 .withName("project's community")
                 .build();
 
@@ -86,7 +105,7 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
         Group projectCommunityGroup =
             GroupBuilder.createGroup(context)
-                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectSharedCommunity.getID()))
                 .build();
 
         Group subGroup =
@@ -99,6 +118,8 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
             ItemBuilder.createItem(context, programmeCollection)
                 .withTitle("new programme")
                 .build();
+
+        deleteGroupIfExist(context, String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()));
 
         GroupBuilder.createGroup(context)
             .withName(String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()))
@@ -206,48 +227,74 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
 
     @Test
     public void testCreateProjectWithFundingParentMetadataWithProgrammeAuthority() throws Exception {
-        context.turnOffAuthorisationSystem();
 
-        Group projectCommunityGroup =
-            GroupBuilder.createGroup(context)
-                .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+        String projectParentCommunity = this.configurationService.getProperty("project.parent-community-id");
+        this.configurationService.setProperty("project.parent-community-id", projectSharedCommunity.getID().toString());
+        try {
+            context.turnOffAuthorisationSystem();
+            Group projectCommunityGroup =
+                GroupBuilder.createGroup(context)
+                    .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                    .build();
+
+            Group sub1 =
+                GroupBuilder.createGroup(context)
+                    .withName("sub-group one")
+                    .withParent(projectCommunityGroup)
+                    .build();
+
+            Group sub2 =
+                GroupBuilder.createGroup(context)
+                    .withName("sub-group two")
+                    .withParent(projectCommunityGroup)
+                    .build();
+
+            Item programmeItem =
+                ItemBuilder.createItem(context, programmeCollection)
+                    .withTitle("new programme")
+                    .build();
+
+            deleteGroupIfExist(context, String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()));
+
+            Group programmeMembersGroup =
+                GroupBuilder.createGroup(context)
+                    .withName(String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()))
+                    .build();
+
+            // create project item with Funding Parent Metadata with programme authority
+            ItemBuilder.createItem(context, projectCollection)
+                .withTitle("new project")
+                .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
                 .build();
 
-        GroupBuilder.createGroup(context)
-            .withName("sub-group one")
-            .withParent(projectCommunityGroup)
-            .build();
+            context.restoreAuthSystemState();
 
-        GroupBuilder.createGroup(context)
-            .withName("sub-group two")
-            .withParent(projectCommunityGroup)
-            .build();
+            projectCommunityGroup = context.reloadEntity(projectCommunityGroup);
+            assertEquals(2, projectCommunityGroup.getMemberGroups().size());
 
-        Item programmeItem =
-            ItemBuilder.createItem(context, programmeCollection)
-                .withTitle("new programme")
-                .build();
+            Group programmeManagerGroups =
+                this.groupService.findByName(
+                    context,
+                    String.format(
+                        PROGRAMME_MANAGERS_GROUP_TEMPLATE, programmeItem.getID()
+                        )
+                    );
 
-        Group programmeGroup =
-            GroupBuilder.createGroup(context)
-                .withName(String.format(PROGRAMME_MEMBERS_GROUP_TEMPLATE, programmeItem.getID()))
-                .build();
+            // check that member groups of projectCommunityGroup now is only programmeGroup
+            MatcherAssert.assertThat(
+                projectCommunityGroup.getMemberGroups(),
+                not(
+                    containsInAnyOrder(sub1, sub2)
+                )
+            );
+            MatcherAssert.assertThat(
+                projectCommunityGroup.getMemberGroups(),
+                containsInAnyOrder(programmeMembersGroup, programmeManagerGroups)
+            );
+        } finally {
+            this.configurationService.setProperty("project.parent-community-id", projectParentCommunity);
+        }
 
-        // create project item with Funding Parent Metadata with programme authority
-        ItemBuilder.createItem(context, projectCollection)
-            .withTitle("new project")
-            .withFundingParent(programmeItem.getName(), String.valueOf(programmeItem.getID()))
-            .build();
-
-        context.restoreAuthSystemState();
-
-        projectCommunityGroup = context.reloadEntity(projectCommunityGroup);
-        assertEquals(projectCommunityGroup.getMemberGroups().size(), 1);
-
-        // check that member groups of projectCommunityGroup now is only programmeGroup
-        assertEquals(projectCommunityGroup.getMemberGroups().get(0).getID(), programmeGroup.getID());
-        assertEquals(projectCommunityGroup.getMemberGroups().get(0).getName(), programmeGroup.getName());
-        context.restoreAuthSystemState();
     }
 
     private void deleteGroupIfExist(Context context, String groupName)

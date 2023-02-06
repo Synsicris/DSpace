@@ -51,6 +51,9 @@ public class VersioningServiceImpl implements VersioningService {
     public void setProvider(ItemVersionProvider provider) {
         this.provider = provider;
     }
+    public ItemVersionProvider getProvider() {
+        return this.provider;
+    }
 
     protected VersioningServiceImpl() {
 

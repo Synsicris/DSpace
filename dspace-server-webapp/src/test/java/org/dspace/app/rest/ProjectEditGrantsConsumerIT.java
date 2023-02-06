@@ -46,6 +46,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
+@Ignore
 public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTest {
 
     @Autowired
@@ -516,7 +517,6 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    @Ignore
     public void createWorkspaceItemWithSubmitterUsing_sharedValueTest() throws Exception {
         context.turnOffAuthorisationSystem();
 

@@ -7009,8 +7009,47 @@ it, please enter the types and the actual numbers or codes.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>item</dc-qualifier>
-          <label>Related item</label>
+          <dc-qualifier>commentItem</dc-qualifier>
+          <label>Related original item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentItemVersion</dc-qualifier>
+          <label>Related versioned item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentProject</dc-qualifier>
+          <label>Related original project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentProjectVersion</dc-qualifier>
+          <label>Related versioned project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />

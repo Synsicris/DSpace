@@ -17,5 +17,6 @@ public enum CrisLayoutBoxTypes {
     EXPLOITATIONPLAN,
     IMPACTPATHWAYS,
     WORKINGPLAN,
-    COMMENT
+    COMMENT,
+    COMMENT_ALL
 }

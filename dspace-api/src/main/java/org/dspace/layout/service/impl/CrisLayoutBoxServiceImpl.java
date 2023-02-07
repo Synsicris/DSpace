@@ -165,6 +165,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
             case "EXPLOITATIONPLAN":
                 return hasExploitationPlanBoxContent(box, values);
             case "COMMENT":
+            case "COMMENT_ALL":
                 return hasCommentBoxContent(box, values);
             case "METADATA":
             default:

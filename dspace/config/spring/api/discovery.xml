@@ -164,9 +164,9 @@
 
 
                 <!-- Synsicris Project comments configuration -->
-                <entry key="COMMENT.Person.comment" value-ref="relationPersonCommentsConfiguration"/>
-                <entry key="COMMENT.Funding.comment_funding_all" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT.Project.comment_project_all" value-ref="allCommentsOfProjectConfiguration"/>
+                <entry key="COMMENT_ALL.Person.comment_person_all" value-ref="relationPersonCommentsConfiguration"/>
+                <entry key="COMMENT_ALL.Funding.comment_funding_all" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT_ALL.Project.comment_project_all" value-ref="allCommentsOfProjectConfiguration"/>
                 <entry key="COMMENT.Project.project_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.award.award_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.contribution_fundingprogramme.contribution_fundingprogramme_comment" value-ref="relationItemCommentsConfiguration"/>

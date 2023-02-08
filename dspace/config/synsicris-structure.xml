@@ -61,7 +61,7 @@
 	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
 	    <item-template>
 	      <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
-	      <metadata name="synsicris.date.creation">###DATE###</metadata>
+	      <metadata name="synsicris.date.creation">###DATE.yyyy-MM-dd'T'HH:mm:ss'Z'###</metadata>
 	    </item-template>
 	  </collection>
 	  <collection>

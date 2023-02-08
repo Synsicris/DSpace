@@ -164,6 +164,9 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasWorkingPlanBoxContent(box, values);
             case "EXPLOITATIONPLAN":
                 return hasExploitationPlanBoxContent(box, values);
+            case "COMMENT":
+            case "COMMENT_ALL":
+                return hasCommentBoxContent(box, values);
             case "METADATA":
             default:
                 return hasMetadataBoxContent(box, item);
@@ -250,6 +253,11 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         return true;
     }
 
+    private boolean hasCommentBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The box has no associated content
+        return true;
+    }
+
 
     protected boolean hasMetricsBoxContent(Context context, CrisLayoutBox box, Item item) {
 
@@ -284,6 +292,33 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }
+    }
+
+    private boolean hasOrcidSyncBoxContent(Context context, CrisLayoutBox box, List<MetadataValue> values) {
+        return isOwnProfile(context, values)
+            && findFirstByMetadataField(values, "person.identifier.orcid") != null
+            && findFirstByMetadataField(values, "cris.orcid.access-token") != null;
+    }
+
+    private boolean hasOrcidAuthorizationsBoxContent(Context context, CrisLayoutBox box, List<MetadataValue> values) {
+        return isOwnProfile(context, values);
+    }
+
+    private boolean isOwnProfile(Context context, List<MetadataValue> values) {
+        MetadataValue crisOwner = findFirstByMetadataField(values, "cris.owner");
+
+        if (crisOwner == null || crisOwner.getAuthority() == null || context.getCurrentUser() == null) {
+            return false;
+        }
+
+        return crisOwner.getAuthority().equals(context.getCurrentUser().getID().toString());
+    }
+
+    private MetadataValue findFirstByMetadataField(List<MetadataValue> values, String metadataField) {
+        return values.stream()
+            .filter(metadata -> metadata.getMetadataField().toString('.').equals(metadataField))
+            .findFirst()
+            .orElse(null);
     }
 
     @Override

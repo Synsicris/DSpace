@@ -198,12 +198,10 @@
                 <entry key="COMMENT.unexpected_result.unexpected_result_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.workpackage.workpackage_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.Funding.funding_comment" value-ref="relationItemCommentsConfiguration"/>
-<!--                 <entry key="COMMENT.milestone.milestone_comment" value-ref="relationItemCommentsConfiguration"/> -->
-<!--                 <entry key="COMMENT.impactpathway.impactpathway_comment" value-ref="relationItemCommentsConfiguration"/> -->
-<!--                 <entry key="COMMENT.exploitationplan.exploitationplan_comment" value-ref="relationItemCommentsConfiguration"/> -->
-<!--                 <entry key="COMMENT.workingplan.workingplan_comment" value-ref="relationItemCommentsConfiguration"/> -->
-<!--                 <entry key="RELATION.application.application_comment" value-ref="relationItemCommentsConfiguration"/> -->
-<!--                 <entry key="RELATION.impactpathwaystep.impactpathwaystep_comment" value-ref="relationItemCommentsConfiguration"/> -->
+                <entry key="COMMENT.exploitationplanstep.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.interim_report_step.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.impactpathwaystep.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
 
                 <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>

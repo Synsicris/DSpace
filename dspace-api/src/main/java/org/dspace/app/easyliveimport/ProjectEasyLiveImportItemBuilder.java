@@ -15,6 +15,7 @@ import org.dspace.content.Item;
 import org.dspace.content.authority.Choice;
 import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.authority.DCInputAuthority;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
@@ -60,7 +61,7 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
                     if (choices.values.length > 0) {
                         Choice choice = choices.values[0];
                         value = choice.value;
-                        if (StringUtils.isNotBlank(choice.authority)) {
+                        if (StringUtils.isNotBlank(choice.authority) && !(authority instanceof DCInputAuthority)) {
                             authorityValue = authorityName + ":" + choice.authority;
                         }
                     }

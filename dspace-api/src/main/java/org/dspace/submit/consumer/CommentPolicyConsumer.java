@@ -9,12 +9,16 @@ package org.dspace.submit.consumer;
 
 import static org.dspace.content.Item.ANY;
 import static org.dspace.content.authority.Choices.CF_ACCEPTED;
+import static org.dspace.core.CrisConstants.MD_ENTITY_TYPE;
 import static org.dspace.event.Event.MODIFY_METADATA;
+import static org.dspace.project.util.ProjectConstants.COMMENT_ENTITY;
 import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_COMMENT_PROJECT;
 
 import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -42,7 +46,7 @@ import org.dspace.utils.DSpace;
  */
 public class CommentPolicyConsumer implements Consumer {
 
-    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
+    private Set<UUID> itemsAlreadyProcessed = new HashSet<UUID>();
 
     private ItemService itemService;
     private ProjectConsumerService projectConsumerService;
@@ -58,27 +62,37 @@ public class CommentPolicyConsumer implements Consumer {
 
     @Override
     public void consume(Context context, Event event) throws Exception {
-        if (event.getEventType() == MODIFY_METADATA && Objects.nonNull(context.getCurrentUser())) {
+        if (
+            MODIFY_METADATA == event.getEventType() &&
+            StringUtils.contains(event.getDetail(), MD_RELATION_COMMENT_PROJECT.toString().replaceAll("\\.", "_")) &&
+            context.getCurrentUser() != null && !itemsAlreadyProcessed.contains(event.getSubjectID())
+        ) {
             Object dso = event.getSubject(context);
             if (dso instanceof Item) {
                 Item commentItem = (Item) dso;
-                String entityType = itemService.getMetadataFirstValue(commentItem, "dspace", "entity", "type", ANY);
-                if (!StringUtils.equals("comment", entityType)) {
+                String entityType = itemService.getMetadataFirstValue(commentItem, MD_ENTITY_TYPE, ANY);
+                if (!StringUtils.equals(COMMENT_ENTITY, entityType)) {
                     return;
                 }
-                var metadaValues = itemService.getMetadataByMetadataString(commentItem,
-                        "synsicris.relation.commentProject");
-                if (CollectionUtils.isNotEmpty(metadaValues)) {
-                    MetadataValue mv = metadaValues.get(0);
+                List<MetadataValue> metadataValues =
+                    itemService.getMetadata(
+                        commentItem,
+                        MD_RELATION_COMMENT_PROJECT.schema,
+                        MD_RELATION_COMMENT_PROJECT.element,
+                        MD_RELATION_COMMENT_PROJECT.qualifier,
+                        ANY
+                    );
+                MetadataValue mv = null;
+                if (CollectionUtils.isNotEmpty(metadataValues) && (mv = metadataValues.get(0)) != null) {
                     String uuidOfProjectItem = mv.getAuthority();
                     if (StringUtils.isNotBlank(uuidOfProjectItem)) {
                         Group group = getPolicyGroup(context, uuidOfProjectItem);
-                        if (Objects.nonNull(group)) {
+                        if (group != null) {
                             setFunderPolicyGroupMetadata(context, commentItem, group);
+                            itemsAlreadyProcessed.add(event.getSubjectID());
                         }
                     }
                 }
-                itemsAlreadyProcessed.add(commentItem);
             }
         }
     }
@@ -86,13 +100,30 @@ public class CommentPolicyConsumer implements Consumer {
     private void setFunderPolicyGroupMetadata(Context context, Item item, Group group) throws SQLException {
         String value = group.getName();
         String authority = group.getID().toString();
-        String funderPolicyGroup = itemService.getMetadataFirstValue(item, "synsicris", "funder-policy", "group", ANY);
+        String funderPolicyGroup =
+            itemService.getMetadataFirstValue(
+                item,
+                MD_FUNDER_POLICY_GROUP.schema,
+                MD_FUNDER_POLICY_GROUP.element,
+                MD_FUNDER_POLICY_GROUP.qualifier,
+                ANY
+            );
         if (StringUtils.isNotBlank(funderPolicyGroup)) {
-            itemService.replaceMetadata(context, item, "synsicris", "funder-policy", "group", null, value, authority,
-                    CF_ACCEPTED, 0);
+            itemService.replaceMetadata(
+                context, item,
+                MD_FUNDER_POLICY_GROUP.schema,
+                MD_FUNDER_POLICY_GROUP.element,
+                MD_FUNDER_POLICY_GROUP.qualifier,
+                null, value, authority, CF_ACCEPTED, 0
+            );
         } else {
-            itemService.addMetadata(context, item, "synsicris", "funder-policy", "group", null, value, authority,
-                    CF_ACCEPTED, 0);
+            itemService.addMetadata(
+                context, item,
+                MD_FUNDER_POLICY_GROUP.schema,
+                MD_FUNDER_POLICY_GROUP.element,
+                MD_FUNDER_POLICY_GROUP.qualifier,
+                null, value, authority, CF_ACCEPTED, 0
+            );
         }
     }
 

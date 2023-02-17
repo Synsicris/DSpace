@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest;
 
+import static org.hamcrest.Matchers.empty;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,7 +59,8 @@ public class ZDBAuthorityIT extends AbstractControllerIntegrationTest {
         String token = getAuthToken(eperson.getEmail(), password);
         getClient(token).perform(get("/api/submission/vocabularies/ZDBAuthority/entries")
             .param("filter", ""))
-            .andExpect(status().isUnprocessableEntity());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.entries", empty()));
     }
 
     @Test

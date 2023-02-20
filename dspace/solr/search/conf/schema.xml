@@ -299,9 +299,6 @@
     <field name="lastModified" type="date" indexed="true" stored="true" default="NOW" multiValued="false" omitNorms="true" />
     <field name="lastModified_dt" type="date" indexed="true" stored="true" default="NOW" multiValued="false" omitNorms="true" docValues="true"/>
 
-    <field name="synsicris.date.creation" type="date" indexed="true" stored="true" default="NOW" multiValued="false" omitNorms="true" />
-    <field name="synsicris.date.creation_dt" type="date" indexed="true" stored="true" default="NOW" multiValued="false" omitNorms="true" docValues="true"/>
-
     <!-- used to filter out items that are older versions of another item -->
     <field name="latestVersion" type="boolean" indexed="true" stored="true" default="true" multiValued="false" omitNorms="true"/>
 
@@ -390,7 +387,6 @@
 
  <copyField source="*" dest="search_text"/>
  <copyField source="lastModified" dest="lastModified_dt"/>
- <copyField source="synsicris.date.creation" dest="synsicris.date.creation_dt"/>
  <copyField source="title" dest="itemauthoritylookup"/>
  <copyField source="title" dest="itemauthoritylookupexactmatch"/>
  <copyField source="dspace.entity.type" dest="search.entitytype"/>

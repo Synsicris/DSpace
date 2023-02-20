@@ -3191,6 +3191,17 @@
 
     <bean id="relationPersonCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
+        <property name="indexAlways" value="true"/>
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="searchFilterPersonCommentDateReminder" />
+            </list>
+        </property>
+        <property name="searchFilters">
+	        <list>
+                <ref bean="searchFilterPersonCommentDateReminder" />
+	        </list>
+        </property>
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
@@ -6550,6 +6561,11 @@
         <property name="exposeTotalElements" value="true" />
     </bean>
 
+    <bean id="sortDateIssuedAsc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.date.issued"/>
+        <property name="type" value="date"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
 
 
     <bean id="graphCoopPartByType" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
@@ -7355,10 +7371,21 @@
         <property name="defaultSortOrder" value="desc"/>
     </bean>
 
-    <bean id="sortDateIssuedAsc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
-        <property name="metadataField" value="dc.date.issued"/>
+    <bean id="searchFilterPersonCommentDateReminder" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="dateReminder"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.date.reminder</value>
+            </list>
+        </property>
         <property name="type" value="date"/>
-        <property name="defaultSortOrder" value="asc"/>
+        <property name="facetLimit" value="5"/>
+        <property name="sortOrderSidebar" value="COUNT"/>
+        <property name="sortOrderFilterPage" value="COUNT"/>
+        <property name="isOpenByDefault" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="exposeMinAndMaxValue" value="true"/>
+
     </bean>
 
     <bean id="sortDateIssuedDesc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">

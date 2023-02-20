@@ -261,6 +261,11 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
         return new HashMap<String, String>();
     }
 
+    @Override
+    public boolean isScrollable() {
+        return true;
+    }
+
     protected int calculateConfidence(Choice[] choices) {
         return ArrayUtils.isNotEmpty(choices) ? Choices.CF_AMBIGUOUS : Choices.CF_UNSET;
     }

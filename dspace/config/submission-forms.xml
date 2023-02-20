@@ -1938,8 +1938,7 @@ it, please select a type and enter the actual number or code.</hint>
           <repeatable>false</repeatable>
           <required>mandatory</required>
           <style>col-md-6</style>
-          <hint />
-          <type-bind>Please enter the correct acronym.</type-bind>
+          <hint>Please enter the correct acronym.</hint>
         </field>
       </row>
       <row>
@@ -1950,8 +1949,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>
@@ -2152,8 +2150,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>
@@ -7010,7 +7007,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentItem</dc-qualifier>
-          <label>Related original item</label>
+          <label>Related item</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7023,7 +7020,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentItemVersion</dc-qualifier>
-          <label>Related versioned item</label>
+          <label>Related Versioned item</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7036,7 +7033,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentProject</dc-qualifier>
-          <label>Related original project</label>
+          <label>Related Project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -7049,7 +7046,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentProjectVersion</dc-qualifier>
-          <label>Related versioned project</label>
+          <label>Related Project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />

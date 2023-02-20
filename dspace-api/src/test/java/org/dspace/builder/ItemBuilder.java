@@ -11,6 +11,7 @@ import static org.dspace.content.LicenseUtils.getLicenseText;
 import static org.dspace.content.MetadataSchemaEnum.CRIS;
 import static org.dspace.content.MetadataSchemaEnum.DC;
 import static org.dspace.content.authority.Choices.CF_ACCEPTED;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_COMMENT_PROJECT;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -392,6 +393,13 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withRelationProject(String project, String authority) {
         return addMetadataValue(item, DC.getName(), "relation", "project", null, project, authority, 600);
+    }
+
+    public ItemBuilder withRelationCommentProject(String project, String authority) {
+        return addMetadataValue(
+            item, MD_RELATION_COMMENT_PROJECT.schema, MD_RELATION_COMMENT_PROJECT.element,
+            MD_RELATION_COMMENT_PROJECT.qualifier, null, project, authority, 600
+        );
     }
 
     public ItemBuilder withRelationFunding(String funding, String authority) {

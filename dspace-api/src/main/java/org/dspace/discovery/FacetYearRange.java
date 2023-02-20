@@ -107,7 +107,9 @@ public class FacetYearRange {
         yearRangeQuery.addSearchField(dateFacet);
         boolean isRelatedEntity =
             StringUtils.isNotBlank(parentQuery.getDiscoveryConfigurationName()) &&
-            parentQuery.getDiscoveryConfigurationName().toUpperCase().startsWith("RELATION");
+            (parentQuery.getDiscoveryConfigurationName().toUpperCase().startsWith("RELATION") ||
+             parentQuery.getDiscoveryConfigurationName().toUpperCase().startsWith("COMMENT") ||
+             parentQuery.getDiscoveryConfigurationName().toUpperCase().startsWith("COMMENT_ALL"));
         DiscoverResult lastYearResult = null;
         if (isRelatedEntity) {
             lastYearResult = searchService.search(context, yearRangeQuery);

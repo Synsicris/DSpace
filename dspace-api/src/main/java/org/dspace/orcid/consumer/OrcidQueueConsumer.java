@@ -154,6 +154,10 @@ public class OrcidQueueConsumer implements Consumer {
 
             Item owner = itemService.find(context, relatedItemUuid);
 
+            if (owner == null) {
+                continue;
+            }
+
             if (isNotProfileItem(owner) || isNotLinkedToOrcid(context, owner)) {
                 continue;
             }

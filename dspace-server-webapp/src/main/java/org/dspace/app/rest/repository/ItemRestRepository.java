@@ -194,8 +194,10 @@ public class ItemRestRepository extends DSpaceObjectRestRepository<Item, ItemRes
             throw new RuntimeException(e.getMessage(), e);
         }
         try {
+            context.turnOffAuthorisationSystem();
             deleteMultipleRelationshipsCopyVirtualMetadata(context, copyVirtual, item);
             itemService.delete(context, item);
+            context.restoreAuthSystemState();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }

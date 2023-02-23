@@ -36,7 +36,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +58,6 @@ import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
-import org.dspace.builder.VersionBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
@@ -68,7 +66,6 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
-import org.dspace.discovery.SearchServiceException;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.GroupConfiguration;
 import org.dspace.eperson.service.GroupService;
@@ -1173,8 +1170,8 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             .filter(Objects::nonNull)
             .forEach(t -> {
                 try {
-                    VersionBuilder.delete(t.getID());
-                } catch (SQLException | IOException | SearchServiceException e) {
+                    versionServiceBean.delete(context, t);
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             });

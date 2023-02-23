@@ -119,7 +119,7 @@ public class VersioningServiceImpl implements VersioningService {
             // create new nested version
             Version version =
                 createNewVersion(
-                    c, vh, item, actualVersion.getSummary(), actualVersion.getVersionDate(),
+                    c, vh, itemNew, actualVersion.getSummary(), actualVersion.getVersionDate(),
                     actualVersion.getVersionNumber()
                 );
 

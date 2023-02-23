@@ -7,6 +7,8 @@
  */
 package org.dspace.app.rest.authorization.impl;
 
+import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
+
 import java.sql.SQLException;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
@@ -30,6 +32,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.synsicris.security.SecuritySynsicrisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -61,6 +64,8 @@ public class DeleteFeature implements AuthorizationFeature {
     private AuthorizeService authorizeService;
     @Autowired
     private ContentServiceFactory contentServiceFactory;
+    @Autowired
+    private SecuritySynsicrisService securitySynsicrisService;
 
     @Override
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
@@ -86,7 +91,7 @@ public class DeleteFeature implements AuthorizationFeature {
                             Constants.REMOVE, true)
                         && authorizeServiceRestUtil.authorizeActionBoolean(context, object,
                             DSpaceRestPermission.DELETE)
-                        );
+                        ) || isAuthrizedForSynsicrisItems(context, (Item) dSpaceObject);
                 case CollectionRest.NAME:
                 case CommunityRest.NAME:
                 case BundleRest.NAME:
@@ -104,6 +109,10 @@ public class DeleteFeature implements AuthorizationFeature {
             }
         }
         return false;
+    }
+
+    private boolean isAuthrizedForSynsicrisItems(Context context, Item item) throws SQLException {
+        return securitySynsicrisService.isMemberOfRoleGroupOfProject(context, item, MEMBERS_ROLE);
     }
 
     private DSpaceObject getParentObject(Context context, DSpaceObject object) throws SQLException {

@@ -199,7 +199,9 @@
     <bean class="org.dspace.authorize.ValidatePasswordServiceImpl"/>
     <bean class="org.dspace.authorize.RegexPasswordValidator" />
 
+    <!-- Synsicris Services -->
     <bean class="org.dspace.submit.consumer.service.ProjectConsumerServiceImpl" />
+    <bean class="org.dspace.synsicris.security.SecuritySynsicrisServiceImpl" />
 
 </beans>
 

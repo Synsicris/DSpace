@@ -118,9 +118,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item fundingItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)
@@ -194,9 +194,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item projectItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)
@@ -244,9 +244,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item projectItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)

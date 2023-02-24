@@ -1379,10 +1379,10 @@
           <item>
               <metadata name="dc.title">interim_report</metadata>
               <metadata name="synsicris.struct-builder.identifier">int_001</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_1">step_type_1</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_1">step_type_1</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
           </item>
         </collection>
       </community>
@@ -1450,7 +1450,7 @@
 	      <item-reference>true</item-reference>
 	      <metadata name="dc.title">funding_item_name</metadata>
 	      <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
-	      <metadata name="synsicris.relation.interim_report" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
+	      <metadata name="synsicris.relation.interimreport" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
 	    </item>
 	  </collection>
 	</community>

@@ -1332,7 +1332,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>interim_report</dc-schema>
+          <dc-schema>interimreport</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
           <label>Relation task</label>
@@ -1344,7 +1344,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>interim_report</dc-schema>
+          <dc-schema>interimreport</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>step</dc-qualifier>
           <label>Relation step</label>
@@ -1936,7 +1936,7 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Acronym</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
+          <required />
           <style>col-md-6</style>
           <hint>Please enter the correct acronym.</hint>
         </field>

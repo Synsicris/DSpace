@@ -139,6 +139,60 @@
                         </bean>
                     </list>
                 </entry>
+                <entry key="interim_report">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="INTERIMREPORT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="interim_report-edit_form" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="INTERIMREPORT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="interim_report-edit_form" />
+                        </bean>
+                    </list>
+                </entry>
+                <entry key="interim_report_step">
+                    <list>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="INTERIMREPORT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    CUSTOM
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="interim_report-edit_form" />
+                            <property name="groups">
+                                <list>
+                                    <value>cris.policy.group</value>
+                                </list>
+                            </property>
+                        </bean>
+                        <bean class="org.dspace.content.edit.EditItemMode">
+                            <property name="name" value="INTERIMREPORT" />
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                    ADMIN
+                                </value>
+                            </property>
+                            <property name="submissionDefinition" value="interim_report-edit_form" />
+                        </bean>
+                    </list>
+                </entry>
                 <entry key="patent">
                     <list>
                        <bean class="org.dspace.content.edit.EditItemMode">

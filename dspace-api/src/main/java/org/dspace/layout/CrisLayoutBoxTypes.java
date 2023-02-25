@@ -18,5 +18,6 @@ public enum CrisLayoutBoxTypes {
     IMPACTPATHWAYS,
     WORKINGPLAN,
     COMMENT,
-    COMMENT_ALL
+    COMMENT_ALL,
+    INTERIMREPORT
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="TRANSFORM 2021-09-21">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="TRANS_1" label="Klimaschutz" selectable="true">
     <hasNote></hasNote>

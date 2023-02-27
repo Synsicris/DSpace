@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NUTS2 2021-05-31">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="WW" label="weltweit / kein regionaler Bezug" selectable="true">
     <hasNote></hasNote>

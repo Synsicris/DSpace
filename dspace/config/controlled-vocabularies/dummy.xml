@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="ID1" label="Cascade dropdown #1" selectable="true">
     <hasNote>This cascade dropdown is still under construction.</hasNote>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="REGISTER-COURT 2021-05-27">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="ID001" label="Aachen - Aurich" selectable="false">
     <hasNote></hasNote>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="NACE 2021-10-07">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="A" label="Land- und Forstwirtschaft, Fischerei" selectable="false">
     <hasNote></hasNote>

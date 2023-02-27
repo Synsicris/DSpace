@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="SDG 2021-10-21">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="SDG_1" label="1 KEINE ARMUT: Armut in allen ihren Formen und überall beenden" selectable="true">
     <hasNote></hasNote>

@@ -9,10 +9,10 @@ package org.dspace.app.rest.security;
 
 import static org.dspace.app.rest.model.ItemRest.NAME;
 import static org.dspace.app.rest.security.DSpaceRestPermission.DELETE;
-import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -23,7 +23,7 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
-import org.dspace.synsicris.security.SecuritySynsicrisService;
+import org.dspace.synsicris.security.SecuritySynsicrisDeleteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class DeleteItemSynsicrisPermissionEvalutatorPlugin extends RestObjectPer
     @Autowired
     private RequestService requestService;
     @Autowired
-    private SecuritySynsicrisService securitySynsicrisService;
+    private List<SecuritySynsicrisDeleteService> securitySynsicrisServices;
 
     @Override
     public boolean hasDSpacePermission(Authentication authentication, Serializable targetId, String targetType,
@@ -70,7 +70,10 @@ public class DeleteItemSynsicrisPermissionEvalutatorPlugin extends RestObjectPer
             if (Objects.isNull(item)) {
                 return true;
             }
-            return securitySynsicrisService.isMemberOfRoleGroupOfProject(context, item, MEMBERS_ROLE);
+            return securitySynsicrisServices.stream()
+                                            .filter(service -> service.canDelete(context, item))
+                                            .findFirst()
+                                            .isPresent();
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }

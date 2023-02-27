@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DCDate;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
@@ -70,20 +71,9 @@ public class VersioningServiceImpl implements VersioningService {
     @Override
     public Version createNewVersion(Context c, Item item, String summary) {
         try {
-            VersionHistory vh = versionHistoryService.findByItem(c, item);
-            if (vh == null) {
-                // first time: create 2 versions: old and new one
-                vh = versionHistoryService.create(c);
+            // load version history
+            VersionHistory vh = findCreateVersionHistoryFor(c, item);
 
-                // get dc:date.accessioned to be set as first version date...
-                List<MetadataValue> values = itemService.getMetadata(item, "dc", "date", "accessioned", Item.ANY);
-                Date versionDate = new Date();
-                if (values != null && values.size() > 0) {
-                    String date = values.get(0).getValue();
-                    versionDate = new DCDate(date).toDate();
-                }
-                createVersion(c, vh, item, "", versionDate);
-            }
             // Create new Item
             Item itemNew = provider.createNewItem(c, item);
 
@@ -94,6 +84,48 @@ public class VersioningServiceImpl implements VersioningService {
             provider.updateItemState(c, itemNew, item, version);
 
             return version;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+    }
+
+    private VersionHistory findCreateVersionHistoryFor(Context c, Item item) throws SQLException, AuthorizeException {
+        VersionHistory vh = versionHistoryService.findByItem(c, item);
+        if (vh == null) {
+            // first time: create 2 versions: old and new one
+            vh = versionHistoryService.create(c);
+
+            // get dc:date.accessioned to be set as first version date...
+            List<MetadataValue> values = itemService.getMetadata(item, "dc", "date", "accessioned", Item.ANY);
+            Date versionDate = new Date();
+            if (values != null && values.size() > 0) {
+                String date = values.get(0).getValue();
+                versionDate = new DCDate(date).toDate();
+            }
+            createVersion(c, vh, item, "", versionDate);
+        }
+        return vh;
+    }
+
+    @Override
+    public void createNestedVersion(Context c, Item item, Version actualVersion) {
+        try {
+
+            VersionHistory vh = this.findCreateVersionHistoryFor(c, item);
+
+            // Create new Item
+            Item itemNew = provider.createNewItem(c, item);
+
+            // create new nested version
+            Version version =
+                createNewVersion(
+                    c, vh, itemNew, actualVersion.getSummary(), actualVersion.getVersionDate(),
+                    actualVersion.getVersionNumber()
+                );
+
+            // Complete any update of the Item and new Identifier generation that needs to happen
+            provider.updateItemState(c, itemNew, item, version);
+
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }

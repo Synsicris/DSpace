@@ -6390,9 +6390,9 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                                   .withDspaceObjectOwner(owner.getFullName(), UUIDUtils.toString(owner.getID()))
                                   .withTitle("Doe, John").build();
 
-        Item publication1 = ItemBuilder.createItem(context, publications).withTitle("Publication 1")
+        Item publication1 = ItemBuilder.createItem(context, publications).withTitle("Hidden Publication")
                                        .withAuthor(author.getName(), author.getID().toString()).build();
-        Item publication2 = ItemBuilder.createItem(context, publications).withTitle("Publication 2")
+        Item publication2 = ItemBuilder.createItem(context, publications).withTitle("Public Publication")
                                        .withAuthor(author.getName(), author.getID().toString())
                                        .build();
 
@@ -6438,7 +6438,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.configuration", is("RELATION.Person.researchoutputs")))
                    .andExpect(jsonPath("$._embedded.searchResult._embedded.objects", Matchers.containsInAnyOrder(
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 2"))))
+                       SearchResultMatcher.matchOnItemName("item", "items", "Public Publication"))))
                    .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(1)));
 
 
@@ -6450,8 +6450,8 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.configuration", is("RELATION.Person.researchoutputs")))
                    .andExpect(jsonPath("$._embedded.searchResult._embedded.objects", Matchers.containsInAnyOrder(
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 2"),
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 1"))))
+                       SearchResultMatcher.matchOnItemName("item", "items", "Public Publication"),
+                       SearchResultMatcher.matchOnItemName("item", "items", "Hidden Publication"))))
                    .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(2)));
 
 
@@ -6465,9 +6465,9 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                                  jsonPath("$._embedded.searchResult._embedded.objects",
                                           Matchers.containsInAnyOrder(
                                               SearchResultMatcher
-                                                  .matchOnItemName("item", "items", "Publication 2"),
+                                                  .matchOnItemName("item", "items", "Public Publication"),
                                               SearchResultMatcher
-                                                  .matchOnItemName("item", "items", "Publication 1"))))
+                                                  .matchOnItemName("item", "items", "Hidden Publication"))))
                              .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(2)));
 
 

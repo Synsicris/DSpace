@@ -37,12 +37,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.apache.commons.lang3.StringUtils;
@@ -55,7 +58,6 @@ import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
-import org.dspace.builder.VersionBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
@@ -72,7 +74,11 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.versioning.ItemVersionProvider;
 import org.dspace.versioning.ProjectVersionProvider;
+import org.dspace.versioning.Version;
+import org.dspace.versioning.VersionHistory;
 import org.dspace.versioning.VersioningServiceImpl;
+import org.dspace.versioning.factory.VersionServiceFactory;
+import org.dspace.versioning.service.VersionHistoryService;
 import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matcher;
 import org.junit.After;
@@ -97,6 +103,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     private static VersioningService versionServiceBean;
 
     private static ItemVersionProvider itemVersionProviderBean;
+    private static VersionHistoryService versionHistoryService;
 
     private Community projectCommunity;
     private Community sharedCoummunity;
@@ -134,6 +141,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         ((VersioningServiceImpl) versionServiceBean).setProvider(
             beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
         );
+        versionHistoryService = VersionServiceFactory.getInstance().getVersionHistoryService();
 
     }
 
@@ -255,6 +263,128 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         this.configurationService.setProperty("project.parent-community-id", projectCommId);
     }
 
+    @Test
+    public void verifiesVersionedItemsChildOfProjectHasSameVersionNumber() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Item item2 = null;
+        Item item3 = null;
+        Item item =
+            ItemBuilder.createItem(context, projectCollection)
+            .withTitle("Project test item")
+            .withIssueDate("22022-10-20")
+            .withAuthor(admin.getName())
+            .withSubject("ExtraEntry")
+            .build();
+        Item item1 =
+            ItemBuilder.createItem(context, projectCollection)
+            .withTitle("Project test item 1")
+            .withIssueDate("2022-10-20")
+            .withAuthor(admin.getName())
+            .withSubject("ExtraEntry")
+            .build();
+
+        Collection programmeCollection =
+            CollectionBuilder.createCollection(context, projectCommunity)
+            .withName("project 2 collection")
+            .withEntityType(PROGRAMME)
+            .build();
+
+        context.commit();
+        context.restoreAuthSystemState();
+
+        AtomicReference<Integer> idRef = new AtomicReference<Integer>();
+        AtomicReference<Integer> projectVersionNumber = new AtomicReference<Integer>();
+        AtomicReference<String> itemUrl = new AtomicReference<String>();
+        AtomicReference<UUID> itemId = new AtomicReference<UUID>();
+
+        try {
+            String adminToken = getAuthToken(admin.getEmail(), password);
+
+            getClient(adminToken).perform(post("/api/versioning/versions")
+                .param("summary", "test summary!")
+                .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                .content("/api/core/items/" + item.getID()))
+            .andExpect(status().isCreated())
+            .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+
+            getClient(adminToken).perform(get("/api/versioning/versions/" + idRef))
+            .andExpect(status().isOk())
+            .andDo(result -> itemUrl.set(read(result.getResponse().getContentAsString(), "$._links.item.href")));
+
+            context.turnOffAuthorisationSystem();
+            programmeCollection = context.reloadEntity(programmeCollection);
+            item2 =
+                ItemBuilder.createItem(context, programmeCollection)
+                .withTitle("Programme 2 test item 1")
+                .withIssueDate("2022-08-20")
+                .withAuthor(admin.getName())
+                .withSubject("ExtraEntry")
+                .build();
+
+            item3 =
+                ItemBuilder.createItem(context, programmeCollection)
+                .withTitle("Programme 2 test item 2")
+                .withIssueDate("2022-08-20")
+                .withAuthor(admin.getName())
+                .withSubject("ExtraEntry")
+                .build();
+
+            context.commit();
+            context.restoreAuthSystemState();
+
+            getClient(adminToken).perform(post("/api/versioning/versions")
+                .param("summary", "test summary!")
+                .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                .content("/api/core/items/" + item.getID()))
+                .andExpect(status().isCreated())
+                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")))
+                .andDo(
+                    result ->
+                        projectVersionNumber.set(read(result.getResponse().getContentAsString(), "$.version"))
+                );
+
+            getClient(adminToken).perform(get("/api/versioning/versions/" + idRef))
+                .andExpect(status().isOk())
+                .andDo(result -> itemUrl.set(read(result.getResponse().getContentAsString(), "$._links.item.href")));
+
+
+            String[] split = itemUrl.get().split("/item");
+            split = split[0].split("/api/versioning/versions/");
+
+            String itemVersion = split[1];
+            getClient(adminToken).perform(get("/api/versioning/versions/" + itemVersion + "/item"))
+                .andExpect(status().isOk())
+                .andDo(result -> itemId.set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))));
+
+            item = this.itemService.find(context, itemId.get());
+            VersionHistory vh = versionHistoryService.findByItem(context, item);
+            assertThat(
+                projectVersionNumber.get(),
+                equalTo(versionHistoryService.getLatestVersion(context, vh).getVersionNumber())
+            );
+            vh = versionHistoryService.findByItem(context, item2);
+            assertThat(
+                projectVersionNumber.get(),
+                equalTo(versionHistoryService.getLatestVersion(context, vh).getVersionNumber())
+            );
+            vh = versionHistoryService.findByItem(context, item3);
+            assertThat(
+                projectVersionNumber.get(),
+                equalTo(versionHistoryService.getLatestVersion(context, vh).getVersionNumber())
+            );
+
+            context.commit();
+        } finally {
+            configurationService.setProperty(GroupConfiguration.SYSTEM_MEMBERS, null);
+            configurationService.setProperty(GroupConfiguration.ORGANISATIONAL_MANAGER, null);
+            // configurationService.setProperty("project.parent-community-id", null);
+            configurationService.setProperty("researcher-profile.collection.uuid", null);
+            context.turnOffAuthorisationSystem();
+            this.authorizeService.removeGroupPolicies(context, funderGroup);
+            deleteVersions(item, item1, item2, item3);
+            context.restoreAuthSystemState();
+        }
+    }
 
     @Test
     public void verifiesMetadasOnVersionedProjectWhenMadeVisible() throws Exception {
@@ -388,7 +518,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
-            VersionBuilder.delete(idRef.get());
+            deleteVersions(item, item1, item2, item3);
             context.restoreAuthSystemState();
         }
     }
@@ -534,7 +664,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
-            VersionBuilder.delete(idRef.get());
+            deleteVersions(item, item1, item2, item3);
             context.restoreAuthSystemState();
         }
     }
@@ -1008,12 +1138,43 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             configurationService.setProperty("researcher-profile.collection.uuid", null);
             context.turnOffAuthorisationSystem();
             this.authorizeService.removeGroupPolicies(context, funderGroup);
-            VersionBuilder.delete(idRef4.get());
-            VersionBuilder.delete(idRef3.get());
-            VersionBuilder.delete(idRef2.get());
-            VersionBuilder.delete(idRef.get());
+            deleteVersions(item, item1, item2, item3);
             context.restoreAuthSystemState();
         }
+    }
+
+    private void deleteVersions(Item ...items) throws SQLException {
+        Arrays.asList(items)
+            .stream()
+            .map(i -> {
+                VersionHistory vh = null;
+                try {
+                    vh = versionHistoryService.findByItem(context, i);
+                } catch (SQLException e2) {
+                    e2.printStackTrace();
+                } finally {
+                    return vh;
+                }
+            })
+            .filter(vh -> vh != null && vh.getID() != null)
+            .flatMap(vh -> {
+                Stream<Version> stream = null;
+                try {
+                    stream = versionServiceBean.getVersionsByHistory(context, vh).stream();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                } finally {
+                    return stream;
+                }
+            })
+            .filter(Objects::nonNull)
+            .forEach(t -> {
+                try {
+                    versionServiceBean.delete(context, t);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
     }
 
     public void checkVisibleItem(Item item) throws SQLException {

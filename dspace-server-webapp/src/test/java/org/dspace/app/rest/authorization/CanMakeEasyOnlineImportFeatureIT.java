@@ -120,7 +120,7 @@ public class CanMakeEasyOnlineImportFeatureIT extends AbstractControllerIntegrat
             Item projectItem =
                 ItemBuilder.createItem(context, fundings)
                     .withTitle("Funding Item Title")
-                    .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
+                    .withSynsicrisRelationProject(projectAItem.getName(), projectAItem.getID().toString())
                     .build();
 
             configurationService.setProperty("project.funding-community-name", Projects.getName());

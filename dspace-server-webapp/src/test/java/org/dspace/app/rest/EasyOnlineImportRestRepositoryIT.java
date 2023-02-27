@@ -118,9 +118,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item fundingItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)
@@ -194,9 +194,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item projectItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)
@@ -244,9 +244,9 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
                                             .build();
 
         Item projectItem = ItemBuilder.createItem(context, col1)
-                                  .withTitle("Test Title")
-                                  .withParentproject(parentProjectItem.getName(), parentProjectItem.getID().toString())
-                                  .build();
+                  .withTitle("Test Title")
+                  .withSynsicrisRelationProject(parentProjectItem.getName(), parentProjectItem.getID().toString())
+                  .build();
 
 
         ItemBuilder.createItem(context, col2)
@@ -347,7 +347,7 @@ public class EasyOnlineImportRestRepositoryIT extends AbstractControllerIntegrat
         Item fundingItem =
             ItemBuilder.createItem(context, Funding)
                 .withTitle("Funding Item Title")
-                .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
+                .withSynsicrisRelationProject(projectAItem.getName(), projectAItem.getID().toString())
                 .build();
 
         configurationService.setProperty("project.funding-community-name", fundingRootComm.getName());

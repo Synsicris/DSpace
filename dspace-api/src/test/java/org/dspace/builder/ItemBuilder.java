@@ -779,7 +779,7 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return this;
     }
 
-    public ItemBuilder withParentproject(String value, String authority_uuid) {
+    public ItemBuilder withSynsicrisRelationProject(String value, String authority_uuid) {
         return addMetadataValue(item, "synsicris", "relation", "project", null,
                                          value, authority_uuid, Choices.CF_ACCEPTED);
     }

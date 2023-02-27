@@ -182,7 +182,7 @@ public class IsFunderOfProjectFeatureIT extends AbstractControllerIntegrationTes
         Item publication =
             ItemBuilder.createItem(context, subPublications)
                 .withTitle("Publication")
-                .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
+                .withSynsicrisRelationProject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
                 .build();
 
         GroupBuilder.createGroup(context)

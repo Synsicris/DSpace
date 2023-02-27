@@ -17,6 +17,7 @@ import static org.dspace.builder.OrcidQueueBuilder.createOrcidQueue;
 import static org.dspace.core.Constants.WRITE;
 import static org.dspace.orcid.OrcidOperation.DELETE;
 import static org.dspace.profile.OrcidEntitySyncPreference.ALL;
+import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.emptyOrNullString;
@@ -95,6 +96,7 @@ import org.dspace.orcid.OrcidHistory;
 import org.dspace.orcid.OrcidQueue;
 import org.dspace.orcid.service.OrcidHistoryService;
 import org.dspace.orcid.service.OrcidQueueService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.service.VersioningService;
@@ -5209,6 +5211,119 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
         getClient().perform(get("/api/core/items/{uuid}/accessStatus", item.getID()))
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.status", notNullValue()));
+    }
+
+    @Test
+    public void deleteSynsicrisItemTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        EPerson userA = EPersonBuilder.createEPerson(context)
+                                      .withNameInMetadata("Roman", "Boychuk")
+                                      .withEmail("roman.boychuk@example.com")
+                                      .withPassword(password)
+                                      .build();
+
+        EPerson userB = EPersonBuilder.createEPerson(context)
+                                      .withNameInMetadata("Misha", "Boychuk")
+                                      .withEmail("misha.boychuk@example.com")
+                                      .withPassword(password)
+                                      .build();
+
+        // create projects community
+        Community parentCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Projects")
+                                                    .build();
+        // crate project community
+        Community projectACommunity = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                                      .withName("project A")
+                                                      .build();
+        // create project collection
+        Collection projectCollection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                                                        .build();
+        // create Publications collection
+        Collection collection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                 .withName("Publications")
+                                                 .withEntityType("Publication")
+                                                 .build();
+
+        var groupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE, projectACommunity.getID().toString());
+        Group memberGroup = GroupBuilder.createGroup(context)
+                                        .withName(groupName)
+                                        .addMember(userA)
+                                        .build();
+
+        Item project = ItemBuilder.createItem(context, projectCollection)
+                                  .withTitle("project A")
+                                  .build();
+
+        Item publicationA = ItemBuilder.createItem(context, collection)
+                                       .withTitle("New Publication A")
+                                       .withSynsicrisRelationProject(project.getName(), project.getID().toString())
+                                       .build();
+        context.restoreAuthSystemState();
+
+        String tokenUserA = getAuthToken(userA.getEmail(), password);
+        String tokenUserB = getAuthToken(userB.getEmail(), password);
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        // userB hasn't permession to delete item
+        getClient(tokenUserB).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isForbidden());
+        // userA can delete item as she is in the ProjectMemberGroup
+        getClient(tokenUserA).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isNoContent());
+        // check that the item was deleted
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void deleteSynsicrisItemAdminTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        // create projects community
+        Community parentCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Projects")
+                                                    .build();
+        // crate project community
+        Community projectACommunity = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                                      .withName("project A")
+                                                      .build();
+        // create project collection
+        Collection projectCollection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                                                        .build();
+        // create Publications collection
+        Collection collection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                 .withName("Publications")
+                                                 .withEntityType("Publication")
+                                                 .build();
+
+        Item project = ItemBuilder.createItem(context, projectCollection)
+                                  .withTitle("project A")
+                                  .build();
+
+        Item publicationA = ItemBuilder.createItem(context, collection)
+                                       .withTitle("New Publication A")
+                                       .withSynsicrisRelationProject(project.getName(), project.getID().toString())
+                                       .build();
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+        String tokenEPerson = getAuthToken(eperson.getEmail(), password);
+        // Anonymous hasn't permession to delete item
+        getClient().perform(delete("/api/core/items/" + publicationA.getID()))
+                   .andExpect(status().isUnauthorized());
+        // Commun user hasn't permession to delete item
+        getClient(tokenEPerson).perform(delete("/api/core/items/" + publicationA.getID()))
+                               .andExpect(status().isForbidden());
+        // Admin can delete item
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isNoContent());
+        // check that the item was deleted
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isNotFound());
     }
 
 }

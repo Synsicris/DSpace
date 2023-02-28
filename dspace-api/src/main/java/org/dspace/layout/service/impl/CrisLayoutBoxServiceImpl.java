@@ -164,6 +164,8 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasWorkingPlanBoxContent(box, values);
             case "EXPLOITATIONPLAN":
                 return hasExploitationPlanBoxContent(box, values);
+            case "INTERIMREPORT":
+                return hasInterimReportBoxContent(box, values);
             case "COMMENT":
             case "COMMENT_ALL":
                 return hasCommentBoxContent(box, values);
@@ -249,6 +251,11 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean hasExploitationPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The box has no associated content
+        return true;
+    }
+    
+    private boolean hasInterimReportBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
         // The box has no associated content
         return true;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COUNTRIES2 2021-10-07">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="Node1" label="Germany" selectable="false">
     <hasNote></hasNote>

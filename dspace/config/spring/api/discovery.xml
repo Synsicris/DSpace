@@ -198,10 +198,10 @@
                 <entry key="COMMENT.unexpected_result.unexpected_result_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.workpackage.workpackage_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.Funding.funding_comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT.exploitationplanstep.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT.interim_report_step.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT.impactpathwaystep.comment" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT.workingplan.comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.exploitationplanstep.exploitationplanstep_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.interim_report_step.interim_report_step_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.impactpathwaystep.impactpathwaystep_comment" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT.workingplan.workingplan_comment" value-ref="relationItemCommentsConfiguration"/>
 
                 <!-- Synsicris Project Impact pathway -->
                 <entry key="impactpathway_step_type_1_task_type" value-ref="impactpathwayStepType1TaskTypeConfiguration"/>
@@ -232,6 +232,12 @@
                 <entry key="exploitation_plan_step_type_2_task_type" value-ref="exploitationPlanStepType2TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_3_task_type" value-ref="exploitationPlanStepType3TaskTypeConfiguration"/>
                 <entry key="exploitation_plan_step_type_4_task_type" value-ref="exploitationPlanStepType4TaskTypeConfiguration"/>
+
+                <!-- Synsicris Project Interim Report -->
+                <entry key="interim_report_step_type_1_task_type" value-ref="interimReportStepType1TaskTypeConfiguration"/>
+                <entry key="interim_report_step_type_2_task_type" value-ref="interimReportStepType2TaskTypeConfiguration"/>
+                <entry key="interim_report_step_type_3_task_type" value-ref="interimReportStepType3TaskTypeConfiguration"/>
+                <entry key="interim_report_step_type_4_task_type" value-ref="interimReportStepType4TaskTypeConfiguration"/>
 
                 <!-- Edit Configurations -->
                 <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
@@ -4841,8 +4847,9 @@
     </bean>
 
     <!-- exploitationPlan StepType1 Task Type Configuration -->
-    <bean id="exploitationPlanStepType1TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
-        <property name="id" value="exploitation_plan_step_type_1_task_type"/>
+    
+    <bean id="questionBoardStepTaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+        <property name="id" value="question_board_step_task_type"/>
         <property name="indexAlways" value="true"/>
         <!-- Which sidebar facets are to be displayed -->
         <property name="sidebarFacets">
@@ -4870,6 +4877,15 @@
                 </property>
             </bean>
         </property>
+        <!-- Default result per page -->
+        <property name="defaultRpp" value="10"/>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+    
+    <!-- exploitationPlan StepType1 Task Type Configuration -->
+    <bean id="exploitationPlanStepType1TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="exploitation_plan_step_type_1_task_type"/>
         <!-- Any default filter queries, these filter queries will be used for all
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
@@ -4877,42 +4893,11 @@
                 <value>search.resourcetype:Item AND (entityType_keyword:Patent OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:spinoff) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
-        <!-- Default result per page -->
-        <property name="defaultRpp" value="10"/>
-        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
-        <property name="spellCheckEnabled" value="true"/>
     </bean>
-
-    <!-- exploitationPlan StepType2 Task Type Configuration -->
-    <bean id="exploitationPlanStepType2TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+   
+   <!-- exploitationPlan StepType2 Task Type Configuration -->
+    <bean id="exploitationPlanStepType2TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
         <property name="id" value="exploitation_plan_step_type_2_task_type"/>
-        <property name="indexAlways" value="true"/>
-        <!-- Which sidebar facets are to be displayed -->
-        <property name="sidebarFacets">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-            </list>
-        </property>
-        <!-- The search filters which can be used on the discovery search page -->
-        <property name="searchFilters">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-                <ref bean="searchFilterTitle"/>
-                <ref bean="searchFilterEntityGrants"/>
-                <ref bean="searchFilterEntityPolicyGroup"/>
-            </list>
-        </property>
-        <!-- The sort filters for the discovery search -->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortEntityType"/>
-                        <ref bean="sortTitleAsc"/>
-                    </list>
-                </property>
-            </bean>
-        </property>
         <!-- Any default filter queries, these filter queries will be used for all
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
@@ -4920,42 +4905,11 @@
                 <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
-        <!-- Default result per page -->
-        <property name="defaultRpp" value="10"/>
-        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
-        <property name="spellCheckEnabled" value="true"/>
-    </bean>
+    </bean> 
 
     <!-- exploitationPlan StepType3 Task Type Configuration -->
-    <bean id="exploitationPlanStepType3TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <bean id="exploitationPlanStepType3TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
         <property name="id" value="exploitation_plan_step_type_3_task_type"/>
-        <property name="indexAlways" value="true"/>
-        <!-- Which sidebar facets are to be displayed -->
-        <property name="sidebarFacets">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-            </list>
-        </property>
-        <!-- The search filters which can be used on the discovery search page -->
-        <property name="searchFilters">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-                <ref bean="searchFilterTitle"/>
-                <ref bean="searchFilterEntityGrants"/>
-                <ref bean="searchFilterEntityPolicyGroup"/>
-            </list>
-        </property>
-        <!-- The sort filters for the discovery search -->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortEntityType"/>
-                        <ref bean="sortTitleAsc"/>
-                    </list>
-                </property>
-            </bean>
-        </property>
         <!-- Any default filter queries, these filter queries will be used for all
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
@@ -4963,42 +4917,11 @@
                 <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
-        <!-- Default result per page -->
-        <property name="defaultRpp" value="10"/>
-        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
-        <property name="spellCheckEnabled" value="true"/>
-    </bean>
+    </bean> 
 
     <!-- exploitationPlan StepType4 Task Type Configuration -->
-    <bean id="exploitationPlanStepType4TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration">
+    <bean id="exploitationPlanStepType4TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
         <property name="id" value="exploitation_plan_step_type_4_task_type"/>
-        <property name="indexAlways" value="true"/>
-        <!-- Which sidebar facets are to be displayed -->
-        <property name="sidebarFacets">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-            </list>
-        </property>
-        <!-- The search filters which can be used on the discovery search page -->
-        <property name="searchFilters">
-            <list>
-                <ref bean="searchFilterTaskType"/>
-                <ref bean="searchFilterTitle"/>
-                <ref bean="searchFilterEntityGrants"/>
-                <ref bean="searchFilterEntityPolicyGroup"/>
-            </list>
-        </property>
-        <!-- The sort filters for the discovery search -->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortEntityType"/>
-                        <ref bean="sortTitleAsc"/>
-                    </list>
-                </property>
-            </bean>
-        </property>
         <!-- Any default filter queries, these filter queries will be used for all
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
@@ -5006,10 +4929,55 @@
                 <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:open_researchquestion) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
-        <!-- Default result per page -->
-        <property name="defaultRpp" value="10"/>
-        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
-        <property name="spellCheckEnabled" value="true"/>
+    </bean> 
+
+
+    <!-- interimReport StepType1 Task Type Configuration -->
+    <bean id="interimReportStepType1TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="interim_report_step_type_1_task_type"/>
+        <!-- Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND (entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:plan_publication OR entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:milestone OR entityType_keyword:award) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- interimReport StepType2 Task Type Configuration -->
+    <bean id="interimReportStepType2TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="interim_report_step_type_2_task_type"/>
+        <!-- Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND (entityType_keyword:unexpected_result OR entityType_keyword:Event OR entityType_keyword:process_event OR entityType_keyword:plan_publication OR entityType_keyword:workpackage OR entityType_keyword:task OR entityType_keyword:milestone) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- interimReport StepType3 Task Type Configuration -->
+    <bean id="interimReportStepType3TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="interim_report_step_type_3_task_type"/>
+        <!-- Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND (entityType_keyword:condition OR entityType_keyword:proj_objective OR entityType_keyword:ia_objective OR entityType_keyword:unexpected_result OR entityType_keyword:plan_publication OR entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:exp_societalimpact OR entityType_keyword:neg_sideeffect) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- interimReport StepType4 Task Type Configuration -->
+    <bean id="interimReportStepType4TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="interim_report_step_type_4_task_type"/>
+        <!-- Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND (entityType_keyword:condition OR entityType_keyword:stateofart OR entityType_keyword:unexpected_result) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+            </list>
+        </property>
     </bean>
 
     <!--TagCloud configuration bean for homepage discovery configuration-->

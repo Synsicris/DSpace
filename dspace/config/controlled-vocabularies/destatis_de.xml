@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DESTATIS 2021-06-10">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="01" label="Geisteswissenschaften" selectable="false">
     <hasNote></hasNote>

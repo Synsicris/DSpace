@@ -204,7 +204,7 @@
         </property>
     </bean>
 
-    <bean id="openaireLiveImportDataProvider" class="org.dspace.external.provider.impl.LiveImportDataProvider">
+<!--     <bean id="openaireLiveImportDataProvider" class="org.dspace.external.provider.impl.LiveImportDataProvider">
         <property name="metadataSource" ref="OpenAIREService"/>
         <property name="sourceIdentifier" value="openaireProject"/>
         <property name="recordIdMetadata" value="oairecerif.funding.identifier"/>
@@ -213,7 +213,7 @@
                 <value>Funding</value>
             </list>
         </property>
-    </bean>
+    </bean> -->
 
     <bean id="orcidPublicationDataProvider" class="org.dspace.external.provider.impl.OrcidPublicationDataProvider">
         <property name="sourceIdentifier" value="orcidWorks"/>

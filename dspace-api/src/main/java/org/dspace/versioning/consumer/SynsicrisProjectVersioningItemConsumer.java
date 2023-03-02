@@ -294,8 +294,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         return !isVersionVisible && isLastVisibleProjectVersion;
     }
 
-    private void consumeRelatedItems(
-        Context ctx, Boolean isVersionVisible, Community community,
+    private void consumeRelatedItems(Context ctx, Boolean isVersionVisible, Community community,
         Group fundersGroup, Group readersGroup, Group membersGroup,
         boolean isLastVisibleProjectVersion, Iterator<Item> projectItems,
         Item projectItem
@@ -313,10 +312,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     addLastVersionVisible(ctx, actual);
                 }
 
-                if (
-                        !this.projectConsumerService.isProjectItem(actual) &&
-                        !actual.getID().equals(projectItem.getID())
-                ) {
+                if (!this.projectConsumerService.isProjectItem(actual) && !actual.getID().equals(projectItem.getID())) {
                     addVersionVisible(ctx, actual);
                 }
 

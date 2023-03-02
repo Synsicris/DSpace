@@ -497,7 +497,7 @@
 
     <dc-type>
         <schema>synsicris</schema>
-        <element>versioning-funder-policy</element>
+        <element>versioning-reader-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>

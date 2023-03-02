@@ -168,6 +168,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         Group fundersGroup = getFundersGroup(ctx, community);
         Group readersGroup = getReadersGroup(ctx, community);
         Group membersGroup = getMembersGroup(ctx, community);
+        Group coordinatorsGroup = getCoordinatorsGroup(ctx, community);
         List<Version> versionsByHistory = getVersionsByHistory(ctx, projectItem);
         boolean isLastVisibleProjectVersion =
             isLastVisibleProjectVersion(projectItem, versionNumber, versionsByHistory);
@@ -181,7 +182,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         }
         consumeRelatedItems(
             ctx, isVersionVisible, community,
-            fundersGroup, readersGroup, membersGroup,
+            fundersGroup, readersGroup, membersGroup, coordinatorsGroup,
             isLastVisibleProjectVersion, projectItems,
             projectItem
         );
@@ -231,6 +232,15 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     "Cannot find the funders policy group for community: " + community.getID()
                 )
             );
+    }
+
+    private Group getCoordinatorsGroup(Context ctx, Community community) {
+        return Optional.ofNullable(this.getCoordinatorsPolicyGroup(ctx, community))
+            .orElseThrow(
+                () -> new RuntimeException(
+                    "Cannot find the coordinators policy group for community: " + community.getID()
+                    )
+                );
     }
 
     private Optional<Version> findPreviousVisibleVersion(int versionNumber, List<Version> versionsByHistory) {
@@ -295,7 +305,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     }
 
     private void consumeRelatedItems(Context ctx, Boolean isVersionVisible, Community community,
-        Group fundersGroup, Group readersGroup, Group membersGroup,
+        Group fundersGroup, Group readersGroup, Group membersGroup, Group coordinatorsGroup,
         boolean isLastVisibleProjectVersion, Iterator<Item> projectItems,
         Item projectItem
     ) throws SQLException, AuthorizeException {
@@ -316,10 +326,11 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     addVersionVisible(ctx, actual);
                 }
 
-                copyMetadataPolicyToVersionPolicy(ctx, actual);
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addVersionPolicyGroups(ctx, actual, fundersGroup, readersGroup, membersGroup);
+                copyMetadataPolicyToVersionPolicy(ctx, actual,
+                        fundersGroup, readersGroup, membersGroup, coordinatorsGroup);
             // hides versioned project and all its items to the funder role of the project-community
             } else {
                 if (!actual.getID().equals(projectItem.getID())) {
@@ -403,12 +414,16 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         List<MetadataValue> groupPolicy =
             this.itemService.getMetadata(actual, MD_VERSION_READ_POLICY_GROUP.toString(), group.getID().toString());
         if (groupPolicy.isEmpty()) {
-            this.itemService.addMetadata(
-                ctx, actual, MD_VERSION_READ_POLICY_GROUP.schema, MD_VERSION_READ_POLICY_GROUP.element,
-                MD_VERSION_READ_POLICY_GROUP.qualifier, null,
-                group.getName(), group.getID().toString(), Choices.CF_ACCEPTED
-            );
+            addGroupPolicyMetadata(ctx, actual, group, MD_VERSION_READ_POLICY_GROUP);
         }
+    }
+
+    private void addGroupPolicyMetadata(Context ctx, Item actual, Group group, MetadataFieldName mfn)
+            throws SQLException {
+        this.itemService.addMetadata(
+            ctx, actual, mfn.schema, mfn.element,mfn.qualifier, null,
+            group.getName(), group.getID().toString(), Choices.CF_ACCEPTED
+        );
     }
 
     private void addReadPolicy(Context ctx, Item actual, Group fundersGroup) throws SQLException, AuthorizeException {
@@ -452,36 +467,12 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         this.authorizeService.removeGroupPolicies(ctx, actual, fundersGroup, Constants.READ);
     }
 
-    private void copyMetadataPolicyToVersionPolicy(Context ctx, Item item) throws SQLException {
-        // copy 'synsicris.funder-policy.group' values into synsicris.versioning-funder-policy.group
-        List<MetadataValue> funderPolicies = getMetadataValue(item, MD_FUNDER_POLICY_GROUP);
-        addVersionPolicyMetadata(ctx, funderPolicies, item, MD_V_FUNDER_POLICY_GROUP);
-
-        // copy 'synsicris.reader-policy.group' values into synsicris.versioning-reader-policy.group
-        List<MetadataValue> readerPolicies = getMetadataValue(item, MD_READER_POLICY_GROUP);
-        addVersionPolicyMetadata(ctx, readerPolicies, item, MD_V_READER_POLICY_GROUP);
-
-        // copy 'synsicris.member-policy.group' values into synsicris.versioning-member-policy.group
-        List<MetadataValue> memberPolicies = getMetadataValue(item, MD_MEMBER_POLICY_GROUP);
-        addVersionPolicyMetadata(ctx, memberPolicies, item, MD_V_MEMBER_POLICY_GROUP);
-
-        // copy 'synsicris.coordinator-policy.group' values into synsicris.versioning-coordinator-policy.group
-        List<MetadataValue> coordinatorPolicies = getMetadataValue(item, MD_COORDINATOR_POLICY_GROUP);
-        addVersionPolicyMetadata(ctx, coordinatorPolicies, item, MD_V_COORDINATOR_POLICY_GROUP);
-    }
-
-    private List<MetadataValue> getMetadataValue(Item item, MetadataFieldName mfn) {
-        return this.itemService.getMetadata(item, mfn.schema, mfn.element, mfn.qualifier, Item.ANY);
-    }
-
-    private void addVersionPolicyMetadata(Context c, List<MetadataValue> policies, Item item, MetadataFieldName mfn)
-            throws SQLException {
-        if (CollectionUtils.isNotEmpty(policies)) {
-            for (MetadataValue mv : policies) {
-                this.itemService.addMetadata(c, item, mfn.schema, mfn.element, mfn.qualifier, null, mv.getValue(),
-                        mv.getAuthority(), CF_ACCEPTED);
-            }
-        }
+    private void copyMetadataPolicyToVersionPolicy(Context ctx, Item item, Group fundersGroup, Group readersGroup,
+                                                   Group membersGroup, Group coordinatorsGroup) throws SQLException {
+        addGroupPolicyMetadata(ctx, item, fundersGroup, MD_V_FUNDER_POLICY_GROUP);
+        addGroupPolicyMetadata(ctx, item, readersGroup, MD_V_READER_POLICY_GROUP);
+        addGroupPolicyMetadata(ctx, item, membersGroup, MD_V_MEMBER_POLICY_GROUP);
+        addGroupPolicyMetadata(ctx, item, coordinatorsGroup, MD_V_COORDINATOR_POLICY_GROUP);
     }
 
     private void clearMetadataPolicies(Context context, Item actual) throws SQLException {
@@ -539,6 +530,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     private Group getMembersPolicyGroup(Context ctx, Community projectCommunity) {
         return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, MEMBERS_ROLE);
+    }
+    
+    private Group getCoordinatorsPolicyGroup(Context ctx, Community projectCommunity) {
+        return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, COORDINATORS_ROLE);
     }
 
 }

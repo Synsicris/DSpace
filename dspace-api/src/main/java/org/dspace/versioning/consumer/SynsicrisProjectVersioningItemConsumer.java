@@ -7,12 +7,21 @@
  */
 package org.dspace.versioning.consumer;
 
+import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
 import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION_VISIBLE;
+import static org.dspace.project.util.ProjectConstants.MD_MEMBER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_READ_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
+import static org.dspace.project.util.ProjectConstants.MD_V_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_FUNDER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_MEMBER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
@@ -30,6 +39,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.dspace.authorize.AuthorizeException;
@@ -51,7 +61,6 @@ import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
-import org.dspace.project.util.ProjectConstants;
 import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
@@ -311,6 +320,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     addVersionVisible(ctx, actual);
                 }
 
+                copyMetadataPolicyToVersionPolicy(ctx, actual);
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addVersionPolicyGroups(ctx, actual, fundersGroup, readersGroup, membersGroup);
@@ -320,6 +330,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                     clearVersionVisible(ctx, actual);
                 }
                 addMetadataPolicies(ctx, community, actual);
+                clearMetadataVersionPolicies(ctx, actual);
                 removeReadPolicy(ctx, actual, fundersGroup);
                 removeVersionPolicyGroup(ctx, actual, fundersGroup, readersGroup, membersGroup);
             }
@@ -445,56 +456,81 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         this.authorizeService.removeGroupPolicies(ctx, actual, fundersGroup, Constants.READ);
     }
 
-    private void clearMetadataPolicies(Context ctx, Item actual) throws SQLException {
-        this.itemService.clearMetadata(
-            ctx, actual, ProjectConstants.MD_FUNDER_POLICY_GROUP.schema,
-            ProjectConstants.MD_FUNDER_POLICY_GROUP.element, ProjectConstants.MD_FUNDER_POLICY_GROUP.qualifier, null
-        );
-        this.itemService.clearMetadata(
-            ctx, actual, ProjectConstants.MD_READER_POLICY_GROUP.schema,
-            ProjectConstants.MD_READER_POLICY_GROUP.element, ProjectConstants.MD_READER_POLICY_GROUP.qualifier, null
-        );
-        this.itemService.clearMetadata(
-            ctx, actual, ProjectConstants.MD_MEMBER_POLICY_GROUP.schema,
-            ProjectConstants.MD_MEMBER_POLICY_GROUP.element, ProjectConstants.MD_MEMBER_POLICY_GROUP.qualifier, null
-        );
-        this.itemService.clearMetadata(
-            ctx, actual, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.schema,
-            ProjectConstants.MD_COORDINATOR_POLICY_GROUP.element,
-            ProjectConstants.MD_COORDINATOR_POLICY_GROUP.qualifier, null
-        );
+    private void copyMetadataPolicyToVersionPolicy(Context ctx, Item item) throws SQLException {
+        // copy 'synsicris.funder-policy.group' values into synsicris.versioning-funder-policy.group
+        List<MetadataValue> funderPolicies = getMetadataValue(item, MD_FUNDER_POLICY_GROUP);
+        addVersionPolicyMetadata(ctx, funderPolicies, item, MD_V_FUNDER_POLICY_GROUP);
+
+        // copy 'synsicris.reader-policy.group' values into synsicris.versioning-reader-policy.group
+        List<MetadataValue> readerPolicies = getMetadataValue(item, MD_READER_POLICY_GROUP);
+        addVersionPolicyMetadata(ctx, readerPolicies, item, MD_V_READER_POLICY_GROUP);
+
+        // copy 'synsicris.member-policy.group' values into synsicris.versioning-member-policy.group
+        List<MetadataValue> memberPolicies = getMetadataValue(item, MD_MEMBER_POLICY_GROUP);
+        addVersionPolicyMetadata(ctx, memberPolicies, item, MD_V_MEMBER_POLICY_GROUP);
+
+        // copy 'synsicris.coordinator-policy.group' values into synsicris.versioning-coordinator-policy.group
+        List<MetadataValue> coordinatorPolicies = getMetadataValue(item, MD_COORDINATOR_POLICY_GROUP);
+        addVersionPolicyMetadata(ctx, coordinatorPolicies, item, MD_V_COORDINATOR_POLICY_GROUP);
+    }
+
+    private List<MetadataValue> getMetadataValue(Item item, MetadataFieldName mfn) {
+        return this.itemService.getMetadata(item, mfn.schema, mfn.element, mfn.qualifier, Item.ANY);
+    }
+
+    private void addVersionPolicyMetadata(Context c, List<MetadataValue> policies, Item item, MetadataFieldName mfn)
+            throws SQLException {
+        if (CollectionUtils.isNotEmpty(policies)) {
+            for (MetadataValue mv : policies) {
+                this.itemService.addMetadata(c, item, mfn.schema, mfn.element, mfn.qualifier, null, mv.getValue(),
+                        mv.getAuthority(), CF_ACCEPTED);
+            }
+        }
+    }
+
+    private void clearMetadataPolicies(Context context, Item actual) throws SQLException {
+        clearMetadata(context, actual, MD_FUNDER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_READER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_MEMBER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_COORDINATOR_POLICY_GROUP);
+    }
+
+    private void clearMetadataVersionPolicies(Context context, Item actual) throws SQLException {
+        clearMetadata(context, actual, MD_V_FUNDER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_V_READER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_V_MEMBER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_V_COORDINATOR_POLICY_GROUP);
+    }
+
+    private void clearMetadata(Context ctx, Item item, MetadataFieldName mfn) throws SQLException {
+        this.itemService.clearMetadata(ctx, item, mfn.schema, mfn.element, mfn.qualifier, null);
     }
 
     private void addMetadataPolicies(Context ctx, Community community, Item actual) throws SQLException {
-        MetadataValueVO funders =
-            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, FUNDERS_ROLE);
-        this.itemService.addMetadata(
-            ctx, actual, ProjectConstants.MD_FUNDER_POLICY_GROUP.schema,
-            ProjectConstants.MD_FUNDER_POLICY_GROUP.element, ProjectConstants.MD_FUNDER_POLICY_GROUP.qualifier, null,
-            funders.getValue(), funders.getAuthority(), funders.getConfidence()
-        );
-        MetadataValueVO readers =
-            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, READERS_ROLE);
-        this.itemService.addMetadata(
-            ctx, actual, ProjectConstants.MD_READER_POLICY_GROUP.schema,
-            ProjectConstants.MD_READER_POLICY_GROUP.element, ProjectConstants.MD_READER_POLICY_GROUP.qualifier, null,
-            readers.getValue(), readers.getAuthority(), readers.getConfidence()
-        );
-        MetadataValueVO members =
-            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, MEMBERS_ROLE);
-        this.itemService.addMetadata(
-            ctx, actual, ProjectConstants.MD_MEMBER_POLICY_GROUP.schema,
-            ProjectConstants.MD_MEMBER_POLICY_GROUP.element, ProjectConstants.MD_MEMBER_POLICY_GROUP.qualifier, null,
-            members.getValue(), members.getAuthority(), members.getConfidence()
-        );
+        MetadataValueVO funders = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community,FUNDERS_ROLE);
+        this.itemService.addMetadata(ctx, actual, MD_FUNDER_POLICY_GROUP.schema,
+                                                  MD_FUNDER_POLICY_GROUP.element,
+                                                  MD_FUNDER_POLICY_GROUP.qualifier, null,
+                                                  funders.getValue(), funders.getAuthority(), funders.getConfidence());
+
+        MetadataValueVO readers = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community,READERS_ROLE);
+        this.itemService.addMetadata(ctx, actual, MD_READER_POLICY_GROUP.schema,
+                                                  MD_READER_POLICY_GROUP.element,
+                                                  MD_READER_POLICY_GROUP.qualifier, null,
+                                                  readers.getValue(), readers.getAuthority(), readers.getConfidence());
+
+        MetadataValueVO members = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community,MEMBERS_ROLE);
+        this.itemService.addMetadata(ctx, actual, MD_MEMBER_POLICY_GROUP.schema,
+                                                  MD_MEMBER_POLICY_GROUP.element,
+                                                  MD_MEMBER_POLICY_GROUP.qualifier, null,
+                                                  members.getValue(), members.getAuthority(), members.getConfidence());
+
         MetadataValueVO coordinators =
-            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, COORDINATORS_ROLE);
-        this.itemService.addMetadata(
-            ctx, actual, ProjectConstants.MD_COORDINATOR_POLICY_GROUP.schema,
-            ProjectConstants.MD_COORDINATOR_POLICY_GROUP.element,
-            ProjectConstants.MD_COORDINATOR_POLICY_GROUP.qualifier, null,
-            coordinators.getValue(), coordinators.getAuthority(), coordinators.getConfidence()
-        );
+                            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, COORDINATORS_ROLE);
+        this.itemService.addMetadata(ctx, actual, MD_COORDINATOR_POLICY_GROUP.schema,
+                                                  MD_COORDINATOR_POLICY_GROUP.element,
+                                                  MD_COORDINATOR_POLICY_GROUP.qualifier, null,
+                                    coordinators.getValue(), coordinators.getAuthority(), coordinators.getConfidence());
     }
 
     private Group getFunderPolicyGroup(Context ctx, Community projectCommunity) {

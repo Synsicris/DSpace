@@ -46,7 +46,7 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
         if (singleDirectionRelationship("left", relationship.getRelationshipType())) {
             Item leftItem = relationship.getLeftItem();
             final List<Relationship> relations = relationshipDAO.findByItem(context, leftItem,
-                                                                            -1, -1, false);
+                                                                            -1, -1, false, false);
 
             List<String> rightItemsIdsToAdd = new LinkedList<>();
 
@@ -75,7 +75,7 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
             // right item.
             Item rightItem = relationship.getRightItem();
             final List<Relationship> relations = relationshipDAO.findByItem(context, rightItem, -1, -1,
-                                                                            false);
+                                                                            false, false);
 
             List<String> leftItemsIdsToAdd = new LinkedList<>();
 
@@ -108,7 +108,7 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
                                          final Relationship relation) throws SQLException {
         final Item leftItem = relation.getLeftItem();
         final List<Relationship> leftItemRelationships = relationshipDAO.findByItem(context, leftItem,
-                                                                                    -1, -1, false);
+                                                                                    -1, -1, false, false);
         List<String> rightItemsToAdd = new LinkedList<>();
         SolrInputDocument solrDoc = null;
         for (final Relationship leftItemRelation : leftItemRelationships) {
@@ -133,7 +133,7 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
                                          final Relationship relation) throws SQLException {
         final Item rightItem = relation.getRightItem();
         final List<Relationship> leftItemRelationships = relationshipDAO.findByItem(context, rightItem,
-                                                                                    -1, -1, false);
+                                                                                    -1, -1, false, false);
         List<String> rightItemsToAdd = new LinkedList<>();
         SolrInputDocument solrDoc = null;
         for (final Relationship leftItemRelation : leftItemRelationships) {

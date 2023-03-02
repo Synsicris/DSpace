@@ -40,6 +40,8 @@ public class ProjectConstants {
 
     public static final String PROGRAMME = "programme";
 
+    public static final String COMMENT_ENTITY = "comment";
+
     public static final String PROGRAMME_MEMBERS_GROUP_TEMPLATE = "programme_%s_members_group";
 
     public static final String PROGRAMME_MANAGERS_GROUP_TEMPLATE = "programme_%s_managers_group";
@@ -72,6 +74,7 @@ public class ProjectConstants {
 
     public static final String SYSTEM_MEMBERS_GROUP = "system_members_group";
 
+    public static final String[] SYNSICRIS_GROUPS_PREFIXES = { "funder", "funding", "project", "programme", "system"};
 
     public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
 
@@ -133,6 +136,8 @@ public class ProjectConstants {
         new MetadataFieldName("synsicris", "coordinator-policy", "group");
     public static final MetadataFieldName MD_UNIQUE_ID =
         new MetadataFieldName("synsicris", "uniqueid");
+    public static final MetadataFieldName MD_RELATION_COMMENT_PROJECT =
+        new MetadataFieldName("synsicris", "relation", "commentProject");
 
     /**
      * Default constructor

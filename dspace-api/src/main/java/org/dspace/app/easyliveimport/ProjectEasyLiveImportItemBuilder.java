@@ -15,8 +15,10 @@ import org.dspace.content.Item;
 import org.dspace.content.authority.Choice;
 import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.authority.DCInputAuthority;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,15 +50,18 @@ public class ProjectEasyLiveImportItemBuilder implements EasyImportItemBuilder {
             if (StringUtils.isNotBlank(value)) {
                 String authorityValue = null;
                 MetadataFieldConfig metadataField = xPathManagerToMetadataField.get(xPathManager);
-                String authorityName = cas.getChoiceAuthorityName(metadataField.getSchema(), metadataField.getElement(),
-                                                           metadataField.getQualifier(), item.getOwningCollection());
+                String authorityName =
+                    cas.getChoiceAuthorityName(
+                        metadataField.getSchema(), metadataField.getElement(),
+                        metadataField.getQualifier(), Constants.ITEM, item.getOwningCollection()
+                    );
                 if (StringUtils.isNotBlank(authorityName)) {
                     ChoiceAuthority authority = cas.getChoiceAuthorityByAuthorityName(authorityName);
                     Choices choices = authority.getBestMatch(value, context.getCurrentLocale().toString());
                     if (choices.values.length > 0) {
                         Choice choice = choices.values[0];
                         value = choice.value;
-                        if (StringUtils.isNotBlank(choice.authority)) {
+                        if (StringUtils.isNotBlank(choice.authority) && !(authority instanceof DCInputAuthority)) {
                             authorityValue = authorityName + ":" + choice.authority;
                         }
                     }

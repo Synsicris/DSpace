@@ -10,7 +10,6 @@ package org.dspace.layout.service.impl;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -31,7 +30,6 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.core.exception.SQLRuntimeException;
-import org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService;
 import org.dspace.layout.CrisLayoutBox;
 import org.dspace.layout.CrisLayoutBoxConfiguration;
 import org.dspace.layout.CrisLayoutField;
@@ -57,9 +55,6 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
 
     @Autowired
     private CrisLayoutBoxAccessService crisLayoutBoxAccessService;
-
-    @Autowired
-    private DiscoveryConfigurationUtilsService searchConfigurationUtilsService;
 
     @Autowired
     private CrisItemMetricsService crisMetricService;
@@ -161,11 +156,6 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasRelationBoxContent(context, box, item);
             case "METRICS":
                 return hasMetricsBoxContent(context, box, item);
-            case "ORCID_SYNC_SETTINGS":
-            case "ORCID_SYNC_QUEUE":
-                return hasOrcidSyncBoxContent(context, box, values);
-            case "ORCID_AUTHORIZATIONS":
-                return hasOrcidAuthorizationsBoxContent(context, box, values);
             case "IIIFVIEWER":
                 return isIiifEnabled(item);
             case "IMPACTPATHWAYS":
@@ -174,6 +164,11 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
                 return hasWorkingPlanBoxContent(box, values);
             case "EXPLOITATIONPLAN":
                 return hasExploitationPlanBoxContent(box, values);
+            case "INTERIMREPORT":
+                return hasInterimReportBoxContent(box, values);
+            case "COMMENT":
+            case "COMMENT_ALL":
+                return hasCommentBoxContent(box, values);
             case "METADATA":
             default:
                 return hasMetadataBoxContent(box, item);
@@ -225,7 +220,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean isMetadataPresent(Bitstream bitstream, MetadataField metadataField, String value) {
-        return bitstream.getMetadata().stream()
+        return Objects.isNull(metadataField) && StringUtils.isBlank(value) || bitstream.getMetadata().stream()
             .filter(metadataValue -> Objects.equals(metadataField, metadataValue.getMetadataField()))
             .anyMatch(metadataValue -> Objects.equals(value, metadataValue.getValue()));
     }
@@ -256,6 +251,16 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
     }
 
     private boolean hasExploitationPlanBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The box has no associated content
+        return true;
+    }
+    
+    private boolean hasInterimReportBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
+        // The box has no associated content
+        return true;
+    }
+
+    private boolean hasCommentBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
         // The box has no associated content
         return true;
     }
@@ -323,6 +328,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
             .orElse(null);
     }
 
+    @Override
     public List<CrisLayoutBox> findByEntityAndType(Context context,String entity, String type) {
 
         try {

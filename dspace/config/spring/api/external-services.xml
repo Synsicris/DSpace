@@ -5,6 +5,8 @@
 
     <bean class="org.dspace.external.service.impl.ExternalDataServiceImpl"/>
 
+    <bean class="org.dspace.importer.external.liveimportclient.service.LiveImportClientImpl"/>
+
     <bean class="org.dspace.external.provider.impl.SHERPAv2JournalISSNDataProvider" init-method="init">
         <property name="sherpaService">
             <bean class="org.dspace.app.sherpa.SHERPAService">
@@ -35,7 +37,7 @@
             </list>
         </property>
     </bean>
-    <bean class="org.dspace.external.provider.impl.SHERPAv2PublisherDataProvider" init-method="init">
+<!--     <bean class="org.dspace.external.provider.impl.SHERPAv2PublisherDataProvider" init-method="init">
         <property name="sourceIdentifier" value="sherpaPublisher"/>
         <property name="sherpaService">
             <bean class="org.dspace.app.sherpa.SHERPAService">
@@ -49,7 +51,7 @@
                 <value>OrgUnit</value>
             </list>
         </property>
-    </bean>
+    </bean> -->
     <bean class="org.dspace.external.provider.impl.OrcidV3AuthorDataProvider" init-method="init">
         <property name="sourceIdentifier" value="orcid"/>
         <property name="orcidUrl" value="${orcid.domain-url}" />
@@ -202,7 +204,7 @@
         </property>
     </bean>
 
-    <bean id="openaireLiveImportDataProvider" class="org.dspace.external.provider.impl.LiveImportDataProvider">
+<!--     <bean id="openaireLiveImportDataProvider" class="org.dspace.external.provider.impl.LiveImportDataProvider">
         <property name="metadataSource" ref="OpenAIREService"/>
         <property name="sourceIdentifier" value="openaireProject"/>
         <property name="recordIdMetadata" value="oairecerif.funding.identifier"/>
@@ -211,7 +213,7 @@
                 <value>Funding</value>
             </list>
         </property>
-    </bean>
+    </bean> -->
 
     <bean id="orcidPublicationDataProvider" class="org.dspace.external.provider.impl.OrcidPublicationDataProvider">
         <property name="sourceIdentifier" value="orcidWorks"/>

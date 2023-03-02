@@ -1180,6 +1180,19 @@
         </field>
       </row>
     </form>
+    <form name="interim_report_step_type_5_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Description</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="interim_report_step_type_1_task_form">
       <row>
         <field>
@@ -1332,7 +1345,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>interim_report</dc-schema>
+          <dc-schema>interimreport</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
           <label>Relation task</label>
@@ -1344,7 +1357,7 @@
       </row>
       <row>
         <field>
-          <dc-schema>interim_report</dc-schema>
+          <dc-schema>interimreport</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>step</dc-qualifier>
           <label>Relation step</label>
@@ -1936,10 +1949,9 @@ it, please select a type and enter the actual number or code.</hint>
           <label>Acronym</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
-          <required>mandatory</required>
+          <required />
           <style>col-md-6</style>
-          <hint />
-          <type-bind>Please enter the correct acronym.</type-bind>
+          <hint>Please enter the correct acronym.</hint>
         </field>
       </row>
       <row>
@@ -1950,8 +1962,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>
@@ -2152,8 +2163,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required>mandatory</required>
-          <hint />
-          <type-bind>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</type-bind>
+          <hint>Please enter the correct title or at least a working title. If the project is funded, an update from profi will follow.</hint>
         </field>
       </row>
       <row>
@@ -7009,8 +7019,47 @@ it, please enter the types and the actual numbers or codes.</hint>
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>item</dc-qualifier>
+          <dc-qualifier>commentItem</dc-qualifier>
           <label>Related item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentItemVersion</dc-qualifier>
+          <label>Related Versioned item</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentProject</dc-qualifier>
+          <label>Related Project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentProjectVersion</dc-qualifier>
+          <label>Related Project</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />

@@ -21,14 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.login.PostLoggedInAction;
 import org.dspace.app.rest.utils.ContextUtil;
-import org.dspace.app.util.AuthorizeUtil;
 import org.dspace.authenticate.AuthenticationMethod;
 import org.dspace.authenticate.service.AuthenticationService;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Context;
 import org.dspace.core.LogHelper;
 import org.dspace.eperson.EPerson;
-import org.dspace.eperson.service.GroupService;
 import org.dspace.services.RequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,9 +59,6 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
     private AuthorizeService authorizeService;
 
     @Autowired
-    private GroupService groupService;
-
-    @Autowired
     private RequestService requestService;
 
     @Autowired
@@ -74,11 +69,9 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
 
     @PostConstruct
     public void postConstruct() {
-
         if (postLoggedInActions == null) {
             postLoggedInActions = Collections.emptyList();
         }
-
     }
 
     @Override
@@ -142,7 +135,11 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
                         output = createAuthentication(newContext);
 
                         for (PostLoggedInAction action : postLoggedInActions) {
-                            action.loggedIn(newContext);
+                            try {
+                                action.loggedIn(newContext);
+                            } catch (Exception ex) {
+                                log.error("An error occurs performing post logged in action", ex);
+                            }
                         }
 
                     } else {
@@ -199,28 +196,17 @@ public class EPersonRestAuthenticationProvider implements AuthenticationProvider
         EPerson eperson = context.getCurrentUser();
         if (eperson != null) {
             boolean isAdmin = false;
-            boolean isCommunityAdmin = false;
-            boolean isCollectionAdmin = false;
             try {
                 isAdmin = authorizeService.isAdmin(context, eperson);
-                isCommunityAdmin = authorizeService.isCommunityAdmin(context);
-                isCollectionAdmin = authorizeService.isCollectionAdmin(context);
             } catch (SQLException e) {
                 log.error("SQL error while checking for admin rights", e);
             }
 
             if (isAdmin) {
                 authorities.add(new SimpleGrantedAuthority(ADMIN_GRANT));
-            } else
-                try {
-                    if ((isCommunityAdmin && AuthorizeUtil.canCommunityAdminManageAccounts())
-                               || (isCollectionAdmin && AuthorizeUtil.canCollectionAdminManageAccounts())
-                               || groupService.isOrganisationalManager(context, eperson)) {
-                        authorities.add(new SimpleGrantedAuthority(MANAGE_ACCESS_GROUP));
-                    }
-                } catch (SQLException e) {
-                    authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
-                }
+            } else if (authorizeService.isAccountManager(context)) {
+                authorities.add(new SimpleGrantedAuthority(MANAGE_ACCESS_GROUP));
+            }
 
             authorities.add(new SimpleGrantedAuthority(AUTHENTICATED_GRANT));
         }

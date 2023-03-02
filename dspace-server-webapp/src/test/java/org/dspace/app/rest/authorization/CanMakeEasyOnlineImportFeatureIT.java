@@ -33,7 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * This test deals with testing the feature {@link CanMakeEasyOnlineImportFeature}
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class CanMakeEasyOnlineImportFeatureIT extends AbstractControllerIntegrationTest {
@@ -52,87 +52,120 @@ public class CanMakeEasyOnlineImportFeatureIT extends AbstractControllerIntegrat
     @Test
     @SuppressWarnings("unchecked")
     public void CanMakeEasyOnlineImportTest() throws Exception {
-        context.turnOffAuthorisationSystem();
 
-        EPerson userA = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Mykhaylo", "Boychuk")
-                                         .withEmail("mykhaylo.boychuk@email.com")
-                                         .withPassword(password).build();
+        String parentCommId = configurationService.getProperty("project.parent-community-id");
 
-        Community projectA = CommunityBuilder.createCommunity(context)
-                                             .withName("project A").build();
+        try {
 
+            context.turnOffAuthorisationSystem();
 
-        CollectionBuilder.createCollection(context, projectA)
-                         .withName("Project partners")
-                         .withEntityType("projectpartner")
-                         .withSubmitterGroup(userA)
-                         .build();
+            EPerson userA =
+                EPersonBuilder.createEPerson(context)
+                    .withNameInMetadata("Mykhaylo", "Boychuk")
+                    .withEmail("mykhaylo.boychuk@email.com")
+                    .withPassword(password)
+                    .build();
 
-        Collection joinProjects = CollectionBuilder.createCollection(context, projectA)
-                                           .withName("Parent Project Collection Title")
-                                           .build();
-
-        Item projectAItem = ItemBuilder.createItem(context, joinProjects)
-                                       .withTitle("project A")
-                                       .build();
-
-        Community Projects = CommunityBuilder.createSubCommunity(context, projectA)
-                                                         .withName("Projects").build();
-
-        Community subprojectA = CommunityBuilder.createSubCommunity(context, Projects)
-                                          .withName("subproject A - project A all grants").build();
-
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + subprojectA.getID().toString() + "_members_group")
-                       .addMember(userA).build();
-
-        Collection projects = CollectionBuilder.createCollection(context, subprojectA)
-                                               .withName("Projects")
-                                               .withSubmitterGroup(subprojectAGroup)
-                                               .withEntityType("Funding")
-                                               .build();
-
-        Item projectItem = ItemBuilder.createItem(context, projects)
-                .withTitle("Project Item Title")
-                .withParentproject(projectAItem.getName(), projectAItem.getID().toString())
+            Community projectsCommunity =
+                CommunityBuilder.createCommunity(context)
+                .withName("Projects Community")
                 .build();
 
-        configurationService.setProperty("project.funding-community-name", Projects.getName());
+            configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
 
-        canMakeEasyOnlineImportFeature = authorizationFeatureService.find(CanMakeEasyOnlineImportFeature.NAME);
+            Community projectA =
+                CommunityBuilder.createSubCommunity(context, projectsCommunity)
+                    .withName("Community Project A")
+                    .build();
 
-        context.restoreAuthSystemState();
+            CollectionBuilder.createCollection(context, projectA)
+                .withName("Project partners")
+                .withEntityType("projectpartner")
+                .withSubmitterGroup(userA)
+                .build();
 
-        ItemRest projectRestItem = itemConverter.convert(projectItem, DefaultProjection.DEFAULT);
+            Collection joinProjects =
+                CollectionBuilder.createCollection(context, projectA)
+                    .withName("Parent Project Collection Title")
+                    .build();
 
-        String tokenAdmin = getAuthToken(admin.getEmail(), password);
-        String tokenUserA = getAuthToken(userA.getEmail(), password);
-        String tokenEPerson = getAuthToken(eperson.getEmail(), password);
+            Item projectAItem =
+                ItemBuilder.createItem(context, joinProjects)
+                    .withTitle("project A")
+                    .build();
 
-        // define authorizations that we know must exists
-        Authorization admin2projectItem = new Authorization(admin, canMakeEasyOnlineImportFeature, projectRestItem);
-        Authorization userA2projectItem = new Authorization(userA, canMakeEasyOnlineImportFeature, projectRestItem);
+            Community Projects =
+                CommunityBuilder.createSubCommunity(context, projectA)
+                    .withName("Projects")
+                    .build();
 
-        // define authorization that we know not exists
-        Authorization eperson2projectItem = new Authorization(eperson, canMakeEasyOnlineImportFeature, projectRestItem);
-        Authorization anonymous2projectItem = new Authorization(null, canMakeEasyOnlineImportFeature, projectRestItem);
+            Community subprojectA =
+                CommunityBuilder.createSubCommunity(context, Projects)
+                    .withName("subproject A - project A all grants")
+                    .build();
 
-        getClient(tokenAdmin).perform(get("/api/authz/authorizations/" + admin2projectItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$", Matchers.is(
-                                                      AuthorizationMatcher.matchAuthorization(admin2projectItem))));
+            Group subprojectAGroup =
+                GroupBuilder.createGroup(context)
+                    .withName("funding_" + subprojectA.getID().toString() + "_members_group")
+                    .addMember(userA)
+                    .build();
 
-        getClient(tokenUserA).perform(get("/api/authz/authorizations/" + userA2projectItem.getID()))
-                             .andExpect(status().isOk())
-                             .andExpect(jsonPath("$", Matchers.is(
-                                                      AuthorizationMatcher.matchAuthorization(userA2projectItem))));
+            Collection fundings =
+                CollectionBuilder.createCollection(context, subprojectA)
+                    .withName("Fundings")
+                    .withSubmitterGroup(subprojectAGroup)
+                    .withEntityType("Funding")
+                    .build();
 
-        getClient(tokenEPerson).perform(get("/api/authz/authorizations/" + eperson2projectItem.getID()))
-                               .andExpect(status().isNotFound());
+            Item projectItem =
+                ItemBuilder.createItem(context, fundings)
+                    .withTitle("Funding Item Title")
+                    .withSynsicrisRelationProject(projectAItem.getName(), projectAItem.getID().toString())
+                    .build();
 
-        getClient().perform(get("/api/authz/authorizations/" + anonymous2projectItem.getID()))
-                   .andExpect(status().isNotFound());
+            configurationService.setProperty("project.funding-community-name", Projects.getName());
+
+            canMakeEasyOnlineImportFeature = authorizationFeatureService.find(CanMakeEasyOnlineImportFeature.NAME);
+
+            context.restoreAuthSystemState();
+
+            ItemRest projectRestItem = itemConverter.convert(projectItem, DefaultProjection.DEFAULT);
+
+            String tokenAdmin = getAuthToken(admin.getEmail(), password);
+            String tokenUserA = getAuthToken(userA.getEmail(), password);
+            String tokenEPerson = getAuthToken(eperson.getEmail(), password);
+
+            // define authorizations that we know must exists
+            Authorization admin2projectItem = new Authorization(admin, canMakeEasyOnlineImportFeature, projectRestItem);
+            Authorization userA2projectItem = new Authorization(userA, canMakeEasyOnlineImportFeature, projectRestItem);
+
+            // define authorization that we know not exists
+            Authorization eperson2projectItem =
+                new Authorization(eperson, canMakeEasyOnlineImportFeature, projectRestItem);
+            Authorization anonymous2projectItem =
+                new Authorization(null, canMakeEasyOnlineImportFeature, projectRestItem);
+
+            getClient(tokenAdmin).perform(get("/api/authz/authorizations/" + admin2projectItem.getID()))
+                                 .andExpect(status().isOk())
+                                 .andExpect(jsonPath("$", Matchers.is(
+                                                          AuthorizationMatcher.matchAuthorization(admin2projectItem))));
+
+            getClient(tokenUserA).perform(get("/api/authz/authorizations/" + userA2projectItem.getID()))
+                                 .andExpect(status().isOk())
+                                 .andExpect(jsonPath("$", Matchers.is(
+                                                          AuthorizationMatcher.matchAuthorization(userA2projectItem))));
+
+            getClient(tokenEPerson).perform(get("/api/authz/authorizations/" + eperson2projectItem.getID()))
+                                   .andExpect(status().isNotFound());
+
+            getClient().perform(get("/api/authz/authorizations/" + anonymous2projectItem.getID()))
+                       .andExpect(status().isNotFound());
+
+        } finally {
+            configurationService.setProperty("project.parent-community-id", parentCommId);
+        }
+
+
     }
 
 }

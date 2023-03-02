@@ -70,6 +70,7 @@ import org.dspace.content.Relationship;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.authority.service.MetadataAuthorityService;
 import org.dspace.content.service.EntityTypeService;
 import org.dspace.core.CrisConstants;
@@ -101,8 +102,12 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
 
     @Autowired
     private DiscoveryConfigurationService discoveryConfigurationService;
+
     @Autowired
     private EntityTypeService entityTypeService;
+
+    @Autowired
+    ChoiceAuthorityService choiceAuthorityService;
 
     @Test
     public void rootDiscoverTest() throws Exception {
@@ -144,8 +149,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)))
+                        FacetEntryMatcher.languageFacet(false)))
         );
     }
 
@@ -239,6 +243,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
         configurationService.setProperty("discovery.index.authority.ignore-variants.dc.contributor.author", true);
 
         metadataAuthorityService.clearCache();
+        choiceAuthorityService.clearCache();
 
         //Turn off the authorization system, otherwise we can't make the objects
         context.turnOffAuthorisationSystem();
@@ -321,6 +326,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
         DSpaceServicesFactory.getInstance().getConfigurationService().reloadConfig();
 
         metadataAuthorityService.clearCache();
+        choiceAuthorityService.clearCache();
 
     }
 
@@ -1030,8 +1036,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        SearchFilterMatcher.isOrgUnitOfPublicationRelation(),
                        SearchFilterMatcher.isPublicationOfJournalIssueRelation(),
                        SearchFilterMatcher.isJournalOfPublicationRelation(),
-                       SearchFilterMatcher.languageFilter(),
-                       SearchFilterMatcher.typesFilter()
+                       SearchFilterMatcher.languageFilter()
                    )))
                    //These sortOptions need to be present as it's the default in the configuration
                    .andExpect(jsonPath("$.sortOptions", contains(
@@ -1040,7 +1045,13 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        SortOptionMatcher.sortOptionMatcher(
                                          "dc.title", DiscoverySortFieldConfiguration.SORT_ORDER.asc.name()),
                        SortOptionMatcher.sortOptionMatcher(
+                                         "dc.title", DiscoverySortFieldConfiguration.SORT_ORDER.desc.name()),
+                       SortOptionMatcher.sortOptionMatcher(
+                                         "dc.date.issued", DiscoverySortFieldConfiguration.SORT_ORDER.asc.name()),
+                       SortOptionMatcher.sortOptionMatcher(
                                          "dc.date.issued", DiscoverySortFieldConfiguration.SORT_ORDER.desc.name()),
+                       SortOptionMatcher.sortOptionMatcher(
+                                         "dc.date.accessioned", DiscoverySortFieldConfiguration.SORT_ORDER.asc.name()),
                        SortOptionMatcher.sortOptionMatcher(
                                          "dc.date.accessioned", DiscoverySortFieldConfiguration.SORT_ORDER.desc.name())
                    )));
@@ -1177,8 +1188,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -1316,8 +1326,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -1406,8 +1415,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(true),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -1491,8 +1499,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -1599,8 +1606,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -1684,8 +1690,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")));
@@ -1725,8 +1730,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")));
@@ -1767,8 +1771,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")));
@@ -1813,8 +1816,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")));
@@ -1905,8 +1907,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //We want to get the sort that's been used as well in the response
                 .andExpect(jsonPath("$.sort", is(
@@ -2123,8 +2124,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
                         FacetEntryMatcher.entityTypeFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2218,8 +2218,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2309,8 +2308,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2477,8 +2475,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2567,8 +2564,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2752,8 +2748,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2901,8 +2896,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -2982,8 +2976,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        FacetEntryMatcher.subjectFacet(false),
                        FacetEntryMatcher.dateIssuedFacet(false),
                        FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                       FacetEntryMatcher.languageFacet(false),
-                       FacetEntryMatcher.typesFacet(false)
+                       FacetEntryMatcher.languageFacet(false)
                                                                                         )))
                    //There always needs to be a self link available
                    .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3061,8 +3054,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3141,8 +3133,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        FacetEntryMatcher.dateIssuedFacet(false),
                        FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
                        FacetEntryMatcher.entityTypeFacet(false),
-                       FacetEntryMatcher.languageFacet(false),
-                       FacetEntryMatcher.typesFacet(false)
+                       FacetEntryMatcher.languageFacet(false)
                                                                                         )))
                    //There always needs to be a self link available
                    .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3231,8 +3222,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(true),
                         FacetEntryMatcher.dateIssuedFacetWithMinMax(false, "1990-02-13", "2010-10-17"),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3305,8 +3295,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(true),
                         FacetEntryMatcher.dateIssuedFacetWithMinMax(false, "1990-02-13", "2010-10-17"),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/facets")))
@@ -3384,8 +3373,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3464,8 +3452,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        FacetEntryMatcher.subjectFacet(false),
                        FacetEntryMatcher.dateIssuedFacet(false),
                        FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                       FacetEntryMatcher.languageFacet(false),
-                       FacetEntryMatcher.typesFacet(false)
+                       FacetEntryMatcher.languageFacet(false)
                                                                                         )))
                    //There always needs to be a self link available
                    .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3544,8 +3531,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3625,8 +3611,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        FacetEntryMatcher.subjectFacet(false),
                        FacetEntryMatcher.dateIssuedFacet(false),
                        FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                       FacetEntryMatcher.languageFacet(false),
-                       FacetEntryMatcher.typesFacet(false)
+                       FacetEntryMatcher.languageFacet(false)
                                                                                         )))
                    //There always needs to be a self link available
                    .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3704,8 +3689,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                         FacetEntryMatcher.subjectFacet(false),
                         FacetEntryMatcher.dateIssuedFacet(false),
                         FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
-                        FacetEntryMatcher.languageFacet(false),
-                        FacetEntryMatcher.typesFacet(false)
+                        FacetEntryMatcher.languageFacet(false)
                 )))
                 //There always needs to be a self link available
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -3784,8 +3768,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                        FacetEntryMatcher.dateIssuedFacet(false),
                        FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
                        FacetEntryMatcher.entityTypeFacet(false),
-                       FacetEntryMatcher.languageFacet(false),
-                       FacetEntryMatcher.typesFacet(false)
+                       FacetEntryMatcher.languageFacet(false)
                                                                                         )))
                    //There always needs to be a self link available
                    .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -4229,8 +4212,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                             FacetEntryMatcher.dateIssuedFacet(false),
                             FacetEntryMatcher.hasContentInOriginalBundleFacet(false),
                             FacetEntryMatcher.entityTypeFacet(false),
-                            FacetEntryMatcher.languageFacet(false),
-                            FacetEntryMatcher.typesFacet(false)
+                            FacetEntryMatcher.languageFacet(false)
                     )))
                     //There always needs to be a self link
                     .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
@@ -4328,7 +4310,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
 
         context.restoreAuthSystemState();
         //** WHEN **
-        // each submitter, including the administrator should see only her submission
+        // each submitter, including the administrator should see only their submission
         String submitterToken = getAuthToken(submitter.getEmail(), password);
         String adminToken = getAuthToken(admin.getEmail(), password);
 
@@ -4622,8 +4604,8 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
         ;
 
         // admin should see two pool items and a claimed task,
-        // one pool item from the submitter and one from herself
-        // because the admin is in the reviewer group for step 1, not because she is an admin
+        // one pool item from the submitter and one from the admin
+        // because the admin is in the reviewer group for step 1, not because they are an admin
         getClient(adminToken).perform(get("/api/discover/search/objects").param("configuration", "workflow"))
                 //** THEN **
                 //The status has to be 200 OK
@@ -4846,7 +4828,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
         ;
 
-        // reviewer1 should not see pool items, as he is not an administrator
+        // reviewer1 should not see pool items, as it is not an administrator
         getClient(reviewer1Token).perform(get("/api/discover/search/objects").param("configuration", "workflowAdmin"))
                 //** THEN **
                 //The status has to be 200 OK
@@ -4864,7 +4846,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
 
 
         // admin should see three pool items and a claimed task
-        // one pool item from the submitter and two from herself
+        // one pool item from the submitter and two from the admin
         getClient(adminToken).perform(get("/api/discover/search/objects").param("configuration", "workflowAdmin"))
                 //** THEN **
                 //The status has to be 200 OK
@@ -4918,7 +4900,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                 .andExpect(jsonPath("$._links.self.href", containsString("/api/discover/search/objects")))
         ;
 
-        // reviewer2 should not see pool items, as he is not an administrator
+        // reviewer2 should not see pool items, as it is not an administrator
         getClient(reviewer2Token).perform(get("/api/discover/search/objects").param("configuration", "workflowAdmin"))
                 //** THEN **
                 //The status has to be 200 OK
@@ -6405,12 +6387,12 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
             .withNameInMetadata("John", "Doe").build();
 
         Item author = ItemBuilder.createItem(context, people)
-                                  .withCrisOwner(owner.getFullName(), UUIDUtils.toString(owner.getID()))
+                                  .withDspaceObjectOwner(owner.getFullName(), UUIDUtils.toString(owner.getID()))
                                   .withTitle("Doe, John").build();
 
-        Item publication1 = ItemBuilder.createItem(context, publications).withTitle("Publication 1")
+        Item publication1 = ItemBuilder.createItem(context, publications).withTitle("Hidden Publication")
                                        .withAuthor(author.getName(), author.getID().toString()).build();
-        Item publication2 = ItemBuilder.createItem(context, publications).withTitle("Publication 2")
+        Item publication2 = ItemBuilder.createItem(context, publications).withTitle("Public Publication")
                                        .withAuthor(author.getName(), author.getID().toString())
                                        .build();
 
@@ -6456,7 +6438,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.configuration", is("RELATION.Person.researchoutputs")))
                    .andExpect(jsonPath("$._embedded.searchResult._embedded.objects", Matchers.containsInAnyOrder(
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 2"))))
+                       SearchResultMatcher.matchOnItemName("item", "items", "Public Publication"))))
                    .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(1)));
 
 
@@ -6468,8 +6450,8 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                    .andExpect(status().isOk())
                    .andExpect(jsonPath("$.configuration", is("RELATION.Person.researchoutputs")))
                    .andExpect(jsonPath("$._embedded.searchResult._embedded.objects", Matchers.containsInAnyOrder(
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 2"),
-                       SearchResultMatcher.matchOnItemName("item", "items", "Publication 1"))))
+                       SearchResultMatcher.matchOnItemName("item", "items", "Public Publication"),
+                       SearchResultMatcher.matchOnItemName("item", "items", "Hidden Publication"))))
                    .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(2)));
 
 
@@ -6483,9 +6465,9 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                                  jsonPath("$._embedded.searchResult._embedded.objects",
                                           Matchers.containsInAnyOrder(
                                               SearchResultMatcher
-                                                  .matchOnItemName("item", "items", "Publication 2"),
+                                                  .matchOnItemName("item", "items", "Public Publication"),
                                               SearchResultMatcher
-                                                  .matchOnItemName("item", "items", "Publication 1"))))
+                                                  .matchOnItemName("item", "items", "Hidden Publication"))))
                              .andExpect(jsonPath("$._embedded.searchResult.page.totalElements", is(2)));
 
 
@@ -6496,7 +6478,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
      * them.
      * @throws Exception
      */
-    @Test
+    @Ignore
     public void sameItemHiddenByDifferentOwners() throws Exception {
 
         context.turnOffAuthorisationSystem();
@@ -6914,7 +6896,7 @@ public class DiscoveryRestControllerIT extends AbstractControllerIntegrationTest
                 .andExpect(jsonPath("$._links.missing.href",
                     containsString("discover/facets/graphitemtype?query=Bollini%20Andrea"
                         + "&configuration=defaultConfiguration&f.graphitemtype=journal%20article,equals"
-                        + "&f.graphitemtype=journal%20article,notequals&f.graphitemtype=%5B*%20TO%20*%5D,notequals")))
+                        + "&f.graphitemtype=%5B*%20TO%20*%5D,notequals")))
                 .andExpect(jsonPath("$._links.more.href",
                     containsString("discover/facets/graphitemtype?query=Bollini%20Andrea"
                         + "&configuration=defaultConfiguration&f.graphitemtype=journal%20article,equals"

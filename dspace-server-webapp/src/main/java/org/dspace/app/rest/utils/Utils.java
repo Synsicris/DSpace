@@ -23,10 +23,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -92,6 +94,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
@@ -141,6 +144,8 @@ public class Utils {
     @Autowired
     private BitstreamFormatService bitstreamFormatService;
 
+    // Must be loaded @Lazy, as ConverterService also autowires Utils
+    @Lazy
     @Autowired
     private ConverterService converter;
 
@@ -317,7 +322,7 @@ public class Utils {
         if (StringUtils.equals(modelPlural, "vocabularies")) {
             return VocabularyRest.NAME;
         }
-        if (StringUtils.equals(modelPlural, "orcidqueues")) {
+        if (StringUtils.equals(modelPlural, OrcidQueueRest.PLURAL_NAME)) {
             return OrcidQueueRest.NAME;
         }
         if (StringUtils.equals(modelPlural, "orcidhistories")) {
@@ -406,9 +411,10 @@ public class Utils {
             }
         }
         File file = File.createTempFile(prefixTempName + "-" + suffixTempName, ".temp", uploadDir);
-        InputStream io = new BufferedInputStream(multipartFile.getInputStream());
-        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-        org.dspace.core.Utils.bufferedCopy(io, out);
+        try (InputStream io = new BufferedInputStream(multipartFile.getInputStream());
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));) {
+            org.dspace.core.Utils.bufferedCopy(io, out);
+        }
         return file;
     }
 
@@ -516,7 +522,7 @@ public class Utils {
 
                 String line = scanner.nextLine();
                 if (org.springframework.util.StringUtils.hasText(line)) {
-                    list.add(line);
+                    list.add(decodeUrl(line));
                 }
             }
 
@@ -526,6 +532,14 @@ public class Utils {
         return list;
     }
 
+    private String decodeUrl(String url) {
+        try {
+            return URLDecoder.decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            log.warn("The following url could not be decoded: " + url);
+        }
+        return StringUtils.EMPTY;
+    }
 
     /**
      * This method will retrieve a list of DSpaceObjects from the Request by reading in the Request's InputStream

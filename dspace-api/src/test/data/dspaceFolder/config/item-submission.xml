@@ -25,6 +25,7 @@
         <name-map collection-handle="123456789/traditional-cris" submission-name="traditional-cris"/>
         <name-map collection-handle="123456789/extraction-test" submission-name="extractiontestprocess"/>
         <name-map collection-handle="123456789/qualdrop-test" submission-name="qualdroptest"/>
+        <name-map collection-handle="123456789/typebind-test" submission-name="typebindtest"/>
         <name-map collection-handle="123456789/accessCondition-not-discoverable" submission-name="accessConditionNotDiscoverable"/>
         <name-map collection-handle="entityType" submission-name="patent"/>
         <name-map collection-handle="entityType/projectpartner" submission-name="projectpartners"/>
@@ -113,6 +114,10 @@
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
             <type>submission-form</type>
         </step-definition>
+        <step-definition id="typebindtest">
+            <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+            <type>submission-form</type>
+        </step-definition>
 
         <step-definition id="defaultAC">
             <heading>submit.progressbar.accessCondition</heading>
@@ -121,6 +126,12 @@
         </step-definition>
 
         <step-definition id="notDiscoverable">
+            <heading>submit.progressbar.accessCondition</heading>
+            <processing-class>org.dspace.app.rest.submit.step.AccessConditionStep</processing-class>
+            <type>accessCondition</type>
+        </step-definition>
+
+        <step-definition id="itemAccessConditions">
             <heading>submit.progressbar.accessCondition</heading>
             <processing-class>org.dspace.app.rest.submit.step.AccessConditionStep</processing-class>
             <type>accessCondition</type>
@@ -213,6 +224,12 @@
             <type>submission-form</type>
         </step-definition>
 
+        <step-definition id="sherpaPolicies" mandatory="true">
+            <heading>submit.progressbar.sherpapolicy</heading>
+            <processing-class>org.dspace.app.rest.submit.step.SherpaPolicyStep</processing-class>
+            <type>sherpaPolicy</type>
+        </step-definition>
+
         <step-definition id="titleAndIssuedDate" mandatory="true">
             <heading>submit.progressbar.describe.stepone</heading>
             <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -229,6 +246,13 @@
             <processing-class>org.dspace.app.rest.submit.step.CustomUrlStep</processing-class>
             <type>custom-url</type>
         </step-definition>
+
+	    <step-definition id="correction" mandatory="true">
+			<heading>submit.progressbar.correction-step</heading>
+			<processing-class>org.dspace.app.rest.submit.step.CorrectionStep</processing-class>
+			<type>correction</type>
+			<scope visibilityOutside="hidden">workflow</scope>
+	    </step-definition>
 
         <step-definition id="projects_versioning" mandatory="true" opened="true">
             <heading>submit.progressbar.describe.projects_versioning</heading>
@@ -264,7 +288,7 @@
             <step id="extraction" />
 
             <!--Step will be to Describe the item. -->
-            <step id="traditionalpageone"/>"
+            <step id="traditionalpageone"/>
             <step id="traditionalpagetwo"/>
 
             <!--Step will be to Upload the item -->
@@ -273,6 +297,7 @@
             <step id="detect-duplicate"/>
             <!-- <step id="extractionstep"/> -->
             <step id="defaultAC"/>
+            <step id="sherpaPolicies"/>
 
             <!--Step will be to Sign off on the License -->
             <step id="license"/>
@@ -284,8 +309,16 @@
             <step id="extraction" />
             <step id="traditionalpageone"/>"
             <step id="traditionalpagetwo"/>
-            <step id="license"/>
             <step id="custom-url"/>
+        </submission-process>
+
+        <submission-process name="traditional-with-correction">
+            <step id="collection"/>
+            <step id="extraction" />
+            <step id="traditionalpageone"/>"
+            <step id="traditionalpagetwo"/>
+            <step id="correction"/>
+            <step id="license"/>
         </submission-process>
 
         <!--This "traditional" process defines the DEFAULT item submission process -->
@@ -305,6 +338,7 @@
 
             <!--Step will be to Upload the item -->
             <step id="upload"/>
+            <step id="defaultAC"/>
             <!-- <step id="upload-with-embargo"/> -->
             <step id="detect-duplicate"/>
 
@@ -367,6 +401,10 @@
 
         <submission-process name="qualdroptest">
             <step id="qualdroptest" />
+        </submission-process>
+
+        <submission-process name="typebindtest">
+            <step id="typebindtest" />
         </submission-process>
 
         <submission-process name="accessConditionNotDiscoverable">

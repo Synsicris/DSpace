@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="COMMENT 2022-05-06">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="COM11" label="checked" selectable="true">
     <hasNote></hasNote>

@@ -55,13 +55,13 @@
 	    <policy-group rpType="admin">Administrator</policy-group>
 	    <policy-group rpType="read">funder_project_managers_group</policy-group>
 	    <policy-group rpType="add">funder_project_managers_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
+	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_project_managers_group</policy-group>
 	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
 	    <item-template>
 	      <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
-	      <metadata name="synsicris.date.creation">###DATE###</metadata>
+	      <metadata name="synsicris.date.creation">###DATE.yyyy-MM-dd'T'HH:mm:ss'Z'###</metadata>
 	    </item-template>
 	  </collection>
 	  <collection>
@@ -185,6 +185,7 @@
 	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
 	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
 	      <item-template>
+	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
 	        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	        <metadata name="cris.project.shared">project</metadata>
 	      </item-template>
@@ -1331,6 +1332,8 @@
             <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
             <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
             <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+	        <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
           </item-template>
           <item>
               <metadata name="dc.title">step_type_1</metadata>
@@ -1347,6 +1350,10 @@
           <item>
               <metadata name="dc.title">step_type_4</metadata>
               <metadata name="synsicris.struct-builder.identifier">int_step_4</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_5</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_5</metadata>
           </item>
         </collection>
         <collection>
@@ -1376,10 +1383,11 @@
           <item>
               <metadata name="dc.title">interim_report</metadata>
               <metadata name="synsicris.struct-builder.identifier">int_001</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_1">step_type_1</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
-              <metadata name="interim_report.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_1">step_type_1</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_5">step_type_5</metadata>
           </item>
         </collection>
       </community>
@@ -1447,7 +1455,7 @@
 	      <item-reference>true</item-reference>
 	      <metadata name="dc.title">funding_item_name</metadata>
 	      <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
-	      <metadata name="synsicris.relation.interim_report" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
+	      <metadata name="synsicris.relation.interimreport" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
 	    </item>
 	  </collection>
 	</community>

@@ -45,14 +45,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Test suite to verify the related entities creation via {@link ProjectCreateGrantsConsumer}.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private ItemService itemService;
-    
+
     @Autowired
     private GroupService groupService;
 
@@ -61,35 +61,35 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
 
     @Autowired
     private CommunityService communityService;
-    
+
     private Collection publicationColl;
-    
+
     private Collection projectPartnerCollAll;
-    
+
     private Collection projectPartnerCollClosed;
-    
+
     private Community projectCommunity;
-    
+
     private Community projectFundingCommunity;
-    
+
     private Community fundingAllCommunity;
-    
+
     private Community fundingClosedCommunity;
-    
+
     private EPerson user1;
-    
+
     private EPerson user2;
-    
+
     private Group projectMemberGroup;
-    
+
     private Group fundingAllMemberGroup;
-    
+
     private Group fundingClosedMemberGroup;
-    
+
     private Item projectItem;
-    
+
     private Item fundingAllItem;
-    
+
     private Item fundingClosedItem;
 
     @Override
@@ -111,16 +111,16 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
 
         Community projectsCommunity = CommunityBuilder.createCommunity(context)
                                             .withName("Projects").build();
-        
+
         configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
-        
+
         projectCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
                                                       .withTitle("Project")
                                                       .build();
-        
+
         projectFundingCommunity = CommunityBuilder.createSubCommunity(context, projectCommunity)
                                                          .withName("Funding").build();
-        
+
         Collection projectColl = CollectionBuilder.createCollection(context, projectCommunity)
                                                   .withEntityType(ProjectConstants.PROJECT_ENTITY)
                                                   .withName("Project").build();
@@ -129,7 +129,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                  .withTitle("Project")
                                  .withSharedProject(ProjectConstants.PROJECT)
                                  .build();
-        
+
         communityService.addMetadata(context, projectCommunity, MD_RELATION_ITEM_ENTITY.schema,
             MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier,
             null, projectItem.getID().toString(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
@@ -147,7 +147,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                                   .withSubmitterGroup(projectMemberGroup)
                                                   .withTemplateItem()
                                                   .build();
-        
+
         Item templateItem = publicationColl.getTemplateItem();
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_GROUP.schema,
                 ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier, null,
@@ -155,14 +155,16 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
         itemService.addMetadata(context, templateItem, ProjectConstants.MD_POLICY_SHARED.schema,
                 ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, null,
                 ProjectConstants.PROJECT);
-        itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
-                ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
-                null, "###CURRENTPROJECT.project###");       
+        itemService.addMetadata(
+            context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+            ProjectConstants.MD_PROJECT_RELATION.element, ProjectConstants.MD_PROJECT_RELATION.qualifier,
+            null, "###CURRENTPROJECT.project###"
+        );
 
         context.restoreAuthSystemState();
 
     }
-    
+
     @After
     public void tearDown() {
         configurationService.setProperty("project.parent-community-id", "");
@@ -182,10 +184,12 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
                                                      .withName("Funding").build();
 
         Item templateItem = publicationColl.getTemplateItem();
-        itemService.addMetadata(context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
-                ProjectConstants.MD_PROJECT_RELATION.element,
-                ProjectConstants.MD_PROJECT_RELATION.qualifier, null,
-                "###CURRENTPROJECT.project###");  
+        itemService.addMetadata(
+            context, templateItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+            ProjectConstants.MD_PROJECT_RELATION.element,
+            ProjectConstants.MD_PROJECT_RELATION.qualifier, null,
+            "###CURRENTPROJECT.project###"
+        );
 
         Item fundingItem = ItemBuilder.createItem(context, fundingCollAll)
                                         .withTitle("Funding All Grants")
@@ -228,7 +232,7 @@ public class ProjectCreateGrantsConsumerIT extends AbstractControllerIntegration
 
         context.restoreAuthSystemState();
     }
-    
+
     @Test
     public void createProjectEntityTest() throws Exception {
 

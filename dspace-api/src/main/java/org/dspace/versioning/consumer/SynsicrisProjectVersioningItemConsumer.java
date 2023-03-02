@@ -56,6 +56,7 @@ import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
 import org.dspace.versioning.Version;
+import org.dspace.versioning.VersionHistory;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
 
@@ -172,7 +173,8 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         consumeRelatedItems(
             ctx, isVersionVisible, community,
             fundersGroup, readersGroup, membersGroup,
-            isLastVisibleProjectVersion, projectItems
+            isLastVisibleProjectVersion, projectItems,
+            projectItem
         );
         getProcessablePreviousVersion(
             ctx, versionNumber, versionsByHistory, isVersionVisible, isLastVisibleProjectVersion
@@ -181,9 +183,18 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     }
 
     private List<Version> getVersionsByHistory(Context ctx, Item projectItem) throws SQLException {
-        return this.versioningService.getVersionsByHistory(ctx,
-            this.versioningService.getVersion(ctx, projectItem).getVersionHistory()
-        );
+        return Optional.ofNullable(this.versioningService.getVersion(ctx, projectItem))
+            .map(Version::getVersionHistory)
+            .map(versionHistory -> getVersions(ctx, versionHistory))
+            .orElse(List.of());
+    }
+
+    private List<Version> getVersions(Context ctx, VersionHistory versionHistory) {
+        try {
+            return this.versioningService.getVersionsByHistory(ctx, versionHistory);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot find linked version for item", e);
+        }
     }
 
     private Group getMembersGroup(Context ctx, Community community) {
@@ -277,7 +288,8 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     private void consumeRelatedItems(
         Context ctx, Boolean isVersionVisible, Community community,
         Group fundersGroup, Group readersGroup, Group membersGroup,
-        boolean isLastVisibleProjectVersion, Iterator<Item> projectItems
+        boolean isLastVisibleProjectVersion, Iterator<Item> projectItems,
+        Item projectItem
     ) throws SQLException, AuthorizeException {
         Item actual;
         Set<UUID> processed = new HashSet<>();
@@ -291,16 +303,22 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                 if (isLastVisibleProjectVersion) {
                     addLastVersionVisible(ctx, actual);
                 }
-                
-                if (!this.projectConsumerService.isProjectItem(actual)) {
+
+                if (
+                        !this.projectConsumerService.isProjectItem(actual) &&
+                        !actual.getID().equals(projectItem.getID())
+                ) {
                     addVersionVisible(ctx, actual);
                 }
+
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addVersionPolicyGroups(ctx, actual, fundersGroup, readersGroup, membersGroup);
             // hides versioned project and all its items to the funder role of the project-community
             } else {
-                clearVersionVisible(ctx, actual);
+                if (!actual.getID().equals(projectItem.getID())) {
+                    clearVersionVisible(ctx, actual);
+                }
                 addMetadataPolicies(ctx, community, actual);
                 removeReadPolicy(ctx, actual, fundersGroup);
                 removeVersionPolicyGroup(ctx, actual, fundersGroup, readersGroup, membersGroup);
@@ -311,7 +329,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     }
 
     private void clearLastVersionVisible(Context ctx, Community community, String versionNumber)
-            throws SQLException, AuthorizeException {
+        throws SQLException, AuthorizeException {
         Iterator<Item> previousVisibleVersions =
             this.projectConsumerService.findPreviousVisibleVersionsInCommunity(ctx, community, versionNumber);
         Item actual = null;
@@ -334,7 +352,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void addVersionVisible(Context ctx, Item actual) {
         try {
             this.itemService.setMetadataSingleValue(
@@ -356,7 +374,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void clearVersionVisible(Context ctx, Item actual) {
         try {
             this.itemService.setMetadataSingleValue(

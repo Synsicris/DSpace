@@ -5,26 +5,26 @@
     </dspace-header>
 
     <dc-schema>
-        <name>interim_report</name>
-        <namespace>https://schema.org/interim_report</namespace>
+        <name>interimreport</name>
+        <namespace>https://schema.org/interimreport</namespace>
     </dc-schema>
 
     <dc-type>
-        <schema>interim_report</schema>
+        <schema>interimreport</schema>
         <element>relation</element>
         <qualifier>step</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
     <dc-type>
-        <schema>interim_report</schema>
+        <schema>interimreport</schema>
         <element>relation</element>
         <qualifier>task</qualifier>
         <scope_note></scope_note>
     </dc-type>
 
     <dc-type>
-        <schema>interim_report</schema>
+        <schema>interimreport</schema>
         <element>step</element>
         <qualifier>type</qualifier>
         <scope_note></scope_note>

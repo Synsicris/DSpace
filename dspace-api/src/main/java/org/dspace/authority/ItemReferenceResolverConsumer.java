@@ -27,7 +27,7 @@ public class ItemReferenceResolverConsumer implements Consumer {
 
     private ItemReferenceResolverService itemReferenceResolverService;
 
-    private Set<Item> itemsToProcess = new HashSet<Item>();
+    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
 
     @Override
     public void initialize() throws Exception {
@@ -37,17 +37,24 @@ public class ItemReferenceResolverConsumer implements Consumer {
     @Override
     public void consume(Context context, Event event) throws Exception {
         Item item = (Item) event.getSubject(context);
-        if (item == null || !item.isArchived() || itemsToProcess.contains(item)) {
+        if (item == null || !item.isArchived() || itemsAlreadyProcessed.contains(item)) {
             return;
         }
 
-        itemsToProcess.add(item);
+        itemsAlreadyProcessed.add(item);
+
+        context.turnOffAuthorisationSystem();
+        try {
+            itemReferenceResolverService.resolveReferences(context, item);
+        } finally {
+            context.restoreAuthSystemState();
+        }
     }
 
     @Override
-    public void end(Context context) throws Exception {
-        itemsToProcess.forEach(item -> itemReferenceResolverService.resolveReferences(context, item));
-        itemsToProcess.clear();
+    public void end(Context ctx) throws Exception {
+        itemsAlreadyProcessed.clear();
+        itemReferenceResolverService.clearResolversCache();
     }
 
     @Override

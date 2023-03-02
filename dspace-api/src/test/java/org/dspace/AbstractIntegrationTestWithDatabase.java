@@ -9,8 +9,11 @@ package org.dspace;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
@@ -31,13 +34,15 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.kernel.ServiceManager;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.statistics.MockSolrLoggerServiceImpl;
 import org.dspace.statistics.MockSolrStatisticsCore;
 import org.dspace.storage.rdbms.DatabaseUtils;
+import org.dspace.util.UUIDUtils;
 import org.dspace.validation.LogicalStatementValidator;
 import org.dspace.validation.MetadataValidator;
-import org.jdom.Document;
+import org.jdom2.Document;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -178,6 +183,7 @@ public class AbstractIntegrationTestWithDatabase extends AbstractDSpaceIntegrati
         // Cleanup our global context object
         try {
             AbstractBuilder.cleanupObjects();
+            cleanupCreatedGroups();
             parentCommunity = null;
             cleanupContext();
 
@@ -262,5 +268,44 @@ public class AbstractIntegrationTestWithDatabase extends AbstractDSpaceIntegrati
                 setUp();
             }
         }
+    }
+
+    private void cleanupCreatedGroups() throws SQLException {
+        GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
+        List<Group> foundGroups = List.of();
+        try {
+            foundGroups = groupService.findAll(context, List.of(), 0, 0);
+        } catch (Exception e) {
+            log.error("Error finding groups in destroy phase!", e);
+        }
+        foundGroups
+            .stream()
+            .filter(group ->
+                Optional.of(group.getName().split("_"))
+                    .filter(splitted -> splitted.length > 2)
+                    .map(splitted -> UUIDUtils.fromString(splitted[1]) != null)
+                    .orElse(false)
+            )
+            .forEach(g -> {
+                try {
+                    groupService.delete(context, g);
+                } catch (SQLException | AuthorizeException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+    }
+
+    private void cleanupSynsicrisGroups(GroupService groupService, List<Group> foundGroups) throws SQLException {
+        Set<String> groupSet = Set.of(ProjectConstants.SYNSICRIS_GROUPS_PREFIXES);
+        foundGroups
+            .stream()
+            .filter(group -> groupSet.contains(group.getName().split("_")[0]))
+            .forEach(g -> {
+                try {
+                    groupService.delete(context, g);
+                } catch (SQLException | AuthorizeException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
     }
 }

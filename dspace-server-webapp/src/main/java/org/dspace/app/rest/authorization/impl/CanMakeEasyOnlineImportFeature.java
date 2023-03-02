@@ -6,6 +6,8 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.authorization.impl;
+import static org.dspace.project.util.ProjectConstants.FUNDING_ENTITY;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +31,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * The MakeEasyOnlineImport feature. It can be used to verify if project item can be updated with EasyOnlineImpotr.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component
@@ -58,7 +60,7 @@ public class CanMakeEasyOnlineImportFeature implements AuthorizationFeature {
             Item item = itemService.find(context, UUID.fromString(((ItemRest) object).getUuid()));
 
             String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-            if (!entityType.equals(ProjectConstants.FUNDING_ENTITY)) {
+            if (!FUNDING_ENTITY.equals(entityType)) {
                 // import is available only for project entity
                 return false;
             }

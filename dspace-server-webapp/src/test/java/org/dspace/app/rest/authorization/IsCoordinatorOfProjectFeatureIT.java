@@ -29,6 +29,8 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
+import org.dspace.services.ConfigurationService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,14 +46,21 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
     @Autowired
     private AuthorizationFeatureService authorizationFeatureService;
 
+    @Autowired
+    private ConfigurationService configurationService;
+
     private AuthorizationFeature isCoordinatorOfProject;
 
     private Item parentProjectEntity;
 
     private Community testProject;
 
+    private String projectCommId;
+
     @Before
     public void setup() {
+
+        projectCommId = this.configurationService.getProperty("project.parent-community-id");
 
         context.turnOffAuthorisationSystem();
 
@@ -59,10 +68,12 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
 
         Community joinProjects = createCommunity("Joint projects");
 
+        this.configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
+
         testProject = createSubCommunity("Test Project", joinProjects);
 
         GroupBuilder.createGroup(context)
-            .withName("project_" + testProject.getID() + "_admin_group")
+            .withName("project_" + testProject.getID() + "_coordinators_group")
             .addMember(admin)
             .build();
 
@@ -70,14 +81,19 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
             .withName("project_" + testProject.getID() + "_members_group")
             .addMember(eperson)
             .build();
-        
-        Collection joinProject = createCollection("Joint projects", PROJECT_ENTITY, testProject);
-        parentProjectEntity = ItemBuilder.createItem(context, joinProject)
+
+        Collection parentProjects = createCollection("Parentprojects", PROJECT_ENTITY, testProject);
+        parentProjectEntity = ItemBuilder.createItem(context, parentProjects)
             .withTitle("Test project")
             .build();
 
         context.restoreAuthSystemState();
 
+    }
+
+    @After
+    public void tearDown() {
+        this.configurationService.setProperty("project.parent-community-id", projectCommId);
     }
 
     @Test
@@ -152,11 +168,11 @@ public class IsCoordinatorOfProjectFeatureIT extends AbstractControllerIntegrati
 
         Item publication = ItemBuilder.createItem(context, subPublications)
             .withTitle("Publication")
-            .withParentproject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
+            .withSynsicrisRelationProject(parentProjectEntity.getName(), parentProjectEntity.getID().toString())
             .build();
 
         GroupBuilder.createGroup(context)
-            .withName("funding_" + subProject.getID() + "_admin_group")
+            .withName("funding_" + subProject.getID() + "_coordinators_group")
             .addMember(user)
             .build();
 

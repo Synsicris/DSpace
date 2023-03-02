@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.IteratorUtils;
+import org.dspace.authority.service.ItemSearchService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.content.Community;
@@ -104,6 +105,9 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     @Autowired
     protected GroupService groupService;
 
+    @Autowired
+    protected ItemSearchService itemSearchService;
+
     @Override
     public Item createNewItem(Context context, Item item) {
         context.turnOffAuthorisationSystem();
@@ -178,7 +182,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
                 continue;
             }
 
-            versioningService.createNewVersion(context, item, version.getSummary());
+            versioningService.createNestedVersion(context, item, version);
 
         }
 
@@ -320,6 +324,8 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        String filterQueries = "-(synsicris.uniqueid:*)";
+        discoverQuery.addFilterQueries(filterQueries);
         discoverQuery.setMaxResults(10000);
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
@@ -415,12 +421,12 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
     private void replaceAuthoritiesWithWillBeReferenced(Context context, Item itemNew, Version version) {
         itemNew.getMetadata().stream()
             .filter(metadataValue -> isNotBlank(metadataValue.getAuthority()))
-            .filter(metadataValue -> isNotSharedReference(context, metadataValue.getAuthority()))
+            .filter(metadataValue -> isNotSharedReference(context, metadataValue.getAuthority(), itemNew))
             .forEach(metadataValue -> replaceAuthorityWithWillBeReferenced(metadataValue, version));
     }
 
-    private boolean isNotSharedReference(Context context, String authority) {
-        Item item = find(context, authority);
+    private boolean isNotSharedReference(Context context, String authority, Item itemNew) {
+        Item item = find(context, authority, itemNew);
         return item != null ? isNotSharedItem(context, item) : false;
     }
 
@@ -463,11 +469,11 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             .orElseThrow(() -> new IllegalArgumentException("Relationship type " + relationship + " does not exist"));
     }
 
-    private Item find(Context context, String id) {
+    private Item find(Context context, String id, Item source) {
         try {
-            return itemService.find(context, UUIDUtils.fromString(id));
-        } catch (SQLException e) {
-            throw new SQLRuntimeException(e);
+            return itemSearchService.search(context, id, source);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

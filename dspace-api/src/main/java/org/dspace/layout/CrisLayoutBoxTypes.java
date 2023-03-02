@@ -8,16 +8,16 @@
 package org.dspace.layout;
 
 public enum CrisLayoutBoxTypes {
-        IIIFVIEWER,
-        METADATA,
-        RELATION,
-        METRICS,
-        ORCID_SYNC_SETTINGS,
-        ORCID_AUTHORIZATIONS,
-        ORCID_SYNC_QUEUE,
-        HELP,
-        BROWSE,
-        EXPLOITATIONPLAN,
-        IMPACTPATHWAYS,
-        WORKINGPLAN;        
+    IIIFVIEWER,
+    METADATA,
+    RELATION,
+    METRICS,
+    HELP,
+    BROWSE,
+    EXPLOITATIONPLAN,
+    IMPACTPATHWAYS,
+    WORKINGPLAN,
+    COMMENT,
+    COMMENT_ALL,
+    INTERIMREPORT
 }

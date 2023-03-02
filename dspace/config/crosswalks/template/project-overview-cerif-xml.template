@@ -47,10 +47,10 @@
 				<!-- attributes from the reflection inline-group-->
 				<Reflection>
 					@group.dc-type.start@
-
+					<Index>
 						<AspectType>@dc.type@</AspectType>
 						<EthicDescription>@synsicris.description.aspect@</EthicDescription>
-
+					</Index>
 					@group.dc-type.end@
 				</Reflection>
 
@@ -132,7 +132,7 @@
 	</StateOfArt>
 
 	<!--########################################################################-->
-  <!-- attributes from the unexpectedresults entity (based on the discovery.xml) -->
+  <!-- attributes from the unexpected results entity (based on the discovery.xml) -->
 	<!--########################################################################-->
 
 	<UnexpectedResult>
@@ -157,27 +157,28 @@
 	</UnexpectedResult>
 
 	<!--########################################################################-->
-  <!-- attributes from the workpackages entity (based on the discovery.xml) -->
+  <!-- attributes from the work package entity (based on the discovery.xml) -->
 	<!--########################################################################-->
 
 	<WorkPackage>
-		@relation.workpackage.start@
-		
+    @relation.workpackage.start@
+
 		  <Index>
-			
-				<!-- direct attributes (basic accordion) -->
+	
+			  <!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
 				<Requirement>@synsicris.description.requirements@</Requirement>
-			
-				@relation.projectpartner.start@
-					Acronym>@oairecerif.acronym@</Acronym>
-				@relation.projectpartner.end@
-			
-			</Index>
+
+         <!-- associated attributes (via the step-id "working_plan_form") -->
+				<StartDate>@dc.date.start@</StartDate>
+				<EndDate>@dc.date.end@</EndDate>
+				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
+				<Status>@synsicris.type.status@</Status>	
+
+		  </Index>
 
 		@relation.workpackage.end@
-
 	</WorkPackage>
 
 	<!--########################################################################-->
@@ -759,7 +760,7 @@
 			   <!-- direct attributes (basic accordion) -->
 				<Acronym>@oairecerif.acronym@</Acronym>
 				<EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
-				<SectorType>@dc.type@</SectorType>
+				<FieldOfActivity>@dc.type@</FieldOfActivity>
 				<Destatis>@synsicris.subject.destatis@</Destatis>
 				<NACE>@synsicris.subject.nace@</NACE>
 				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
@@ -798,9 +799,9 @@
 
 			  <!-- direct attributes (basic accordion) -->
 				<CooperationType>@synsicris.type.cooperation@</CooperationType>
-				<Sector>@dc.type@</Sector>
+				<FieldOfActivity>@dc.type@</FieldOfActivity>
 				<NACE>@synsicris.subject.nace@</NACE>
-				<Discipline>@synsicris.subject.destatis@</Discipline>
+				<Destatis>@synsicris.subject.destatis@</Destatis>
 				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
 				<ProjectContribution>@synsicris.description.contribution@</ProjectContribution>
 
@@ -809,9 +810,9 @@
 					<OrganisationName>@dc.title@</OrganisationName>
 					<PostCode>@synsicris.address.addressPostCode@</PostCode>
 					<City>@synsicris.address.addressCity@</City>
-					<CountryFederal>@organization.address.addressCountry@</CountryFederal>
-					<Web>@oairecerif.identifier.url@</Web>
-					<FormOfOrganisation>@synsicris.type.orgform@</FormOfOrganisation>
+					<Country>@organization.address.addressCountry@</Country>
+					<WebAddress>@oairecerif.identifier.url@</WebAddress>
+					<OrganisationType>@synsicris.type.orgform@</OrganisationType>
 				</OrganisationUnit>
 
 		  </Index>
@@ -834,11 +835,11 @@
 
 				<!-- attributes from the classification accordion -->
 				<Classification>
-					<SocietalArea>@dc.type@</SocietalArea>
+					<FieldOfActivity>@dc.type@</FieldOfActivity>
 					<NACE>@synsicris.subject.nace@</NACE>
 					<BusinessSize>@synsicris.subject.enterprise@</BusinessSize>
 					<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
-					<ActorsAffiliation>@synsicris.subject.urbanrural@</ActorsAffiliation>
+					<LocationType>@synsicris.subject.urbanrural@</LocationType>
 				</Classification>
 
 		  </Index>
@@ -882,11 +883,11 @@
 				<!-- attributes from dc.type inline group -->
 				<Type>
 					@group.dc-type.start@
-
+					<Index>
 						<CoreElement>@dc.type@</CoreElement>
 						<Intensity>@synsicris.type.intensity@</Intensity>
 						<Description>@synsicris.description.neg@</Description>
-
+					</Index>
 					@group.dc-type.end@
 				</Type>
 
@@ -899,19 +900,19 @@
 	<!-- attributes from the Contribution Fundingprogramme entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-	<ContributingFundingProgramme>
+	<ContributionFundingProgramme>
 		@relation.contribution_fundingprogramme.start@
 
 		  <Index>
 
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
-				<Description>@dc.descrition@</Description>
+				<Description>@dc.description@</Description>
 
 			</Index>
 
-			@relation.contribution_fundingprogramme.end@
-	</ContributingFundingProgramme>
+		@relation.contribution_fundingprogramme.end@
+	</ContributionFundingProgramme>
 
 	<!--########################################################################-->
 	<!-- attributes from the expected societal impact entity (based on the discovery.xml) -->
@@ -931,11 +932,13 @@
 				<!-- attributes from dc.type inline group -->
 				<Type>
 					@group.dc-type.start@
+					<Index>
 
 						<CoreElement>@dc.type@</CoreElement>
 						<Intensity>@synsicris.type.intensity@</Intensity>
 						<Description>@synsicris.description.pos@</Description>
 
+					</Index>
 					@group.dc-type.end@
 				</Type>
 

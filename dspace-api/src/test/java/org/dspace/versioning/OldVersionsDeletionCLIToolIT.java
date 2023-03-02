@@ -1,3 +1,10 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * http://www.dspace.org/license/
+ */
 package org.dspace.versioning;
 
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
@@ -29,10 +36,24 @@ import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersionHistoryService;
 import org.dspace.versioning.service.VersioningService;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
+/**
+ *
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDatabase {
+
+    private static ConfigurableListableBeanFactory beanFactory;
+    private static VersioningService versionServiceBean;
+    private static ItemVersionProvider itemVersionProviderBean;
+
 
     private Community projectCommunity;
     private Community projectACommunity;
@@ -51,6 +72,27 @@ public class OldVersionsDeletionCLIToolIT extends AbstractIntegrationTestWithDat
     private ItemService itemService;
     private VersioningService versioningService;
     private VersionHistoryService versionHistoryService;
+
+    @BeforeClass
+    public static void configure() {
+        // WARN: This code sets the `projectItemVersionProvider` as main provider
+        // for the `versionServiceBean`.
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
+        );
+    }
+
+    @AfterClass
+    public static void reset() {
+        // WARN: This code resets the provider of the `versionServiceBean`
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
+    }
+
     @Before
     public void setup() throws Exception {
 

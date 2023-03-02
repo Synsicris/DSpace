@@ -21,6 +21,7 @@ import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.dao.VersionHistoryDAO;
+import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersionHistoryService;
 import org.dspace.versioning.service.VersioningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,27 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Autowired(required = true)
     protected VersionHistoryDAO versionHistoryDAO;
 
-    @Autowired(required = true)
-    private VersioningService versioningService;
-
     @Autowired
     private AuthorizeService authorizeService;
 
     @Autowired
     private ConfigurationService configurationService;
 
+    private VersioningService versioningService;
+
     protected VersionHistoryServiceImpl() {
 
+    }
+
+    public void init() {
+        this.versioningService = VersionServiceFactory.getInstance().getVersionService();
+    }
+
+    protected VersioningService getVersioningService() {
+        if (this.versioningService == null) {
+            this.versioningService = VersionServiceFactory.getInstance().getVersionService();
+        }
+        return versioningService;
     }
 
     @Override
@@ -81,7 +92,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Override
     public Version getPrevious(Context context, VersionHistory versionHistory, Version version)
         throws SQLException {
-        List<Version> versions = versioningService.getVersionsByHistory(context, versionHistory);
+        List<Version> versions = getVersioningService().getVersionsByHistory(context, versionHistory);
         int index = versions.indexOf(version);
         if (index + 1 < versions.size()) {
             return versions.get(index + 1);
@@ -94,7 +105,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Override
     public Version getNext(Context c, VersionHistory versionHistory, Version version)
         throws SQLException {
-        List<Version> versions = versioningService.getVersionsByHistory(c, versionHistory);
+        List<Version> versions = getVersioningService().getVersionsByHistory(c, versionHistory);
         int index = versions.indexOf(version);
 
         if (index - 1 >= 0) {
@@ -107,7 +118,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Override
     public Version getVersion(Context context, VersionHistory versionHistory, Item item)
         throws SQLException {
-        Version v = versioningService.getVersion(context, item);
+        Version v = getVersioningService().getVersion(context, item);
         if (v != null) {
             ;
         }
@@ -154,7 +165,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Override
     public Version getLatestVersion(Context context, VersionHistory versionHistory)
         throws SQLException {
-        List<Version> versions = versioningService.getVersionsByHistory(context, versionHistory);
+        List<Version> versions = getVersioningService().getVersionsByHistory(context, versionHistory);
         if (versions != null && !versions.isEmpty()) {
             return versions.get(0);
         }
@@ -164,7 +175,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
     @Override
     public Version getFirstVersion(Context context, VersionHistory versionHistory)
         throws SQLException {
-        List<Version> versions = versioningService.getVersionsByHistory(context, versionHistory);
+        List<Version> versions = getVersioningService().getVersionsByHistory(context, versionHistory);
 
         if (versions == null) {
             return null;
@@ -183,7 +194,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
         if (vh == null) {
             return true;
         }
-        Version version = versioningService.getVersion(context, item);
+        Version version = getVersioningService().getVersion(context, item);
         return isFirstVersion(context, vh, version);
     }
 
@@ -199,7 +210,7 @@ public class VersionHistoryServiceImpl implements VersionHistoryService {
         if (vh == null) {
             return true;
         }
-        Version version = versioningService.getVersion(context, item);
+        Version version = getVersioningService().getVersion(context, item);
         return isLastVersion(context, vh, version);
     }
 

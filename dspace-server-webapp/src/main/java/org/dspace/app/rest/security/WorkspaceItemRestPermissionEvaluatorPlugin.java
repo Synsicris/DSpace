@@ -9,7 +9,6 @@ package org.dspace.app.rest.security;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.model.WorkspaceItemRest;
@@ -19,8 +18,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.dspace.eperson.Group;
-import org.dspace.eperson.service.GroupService;
+import org.dspace.profile.service.ResearcherProfileService;
 import org.dspace.services.RequestService;
 import org.dspace.services.model.Request;
 import org.slf4j.Logger;
@@ -41,9 +39,9 @@ public class WorkspaceItemRestPermissionEvaluatorPlugin extends RestObjectPermis
 
     @Autowired
     private RequestService requestService;
-    
+
     @Autowired
-    private GroupService groupService;
+    private ResearcherProfileService researcherProfileService;
 
     @Autowired
     WorkspaceItemService wis;
@@ -72,7 +70,7 @@ public class WorkspaceItemRestPermissionEvaluatorPlugin extends RestObjectPermis
         WorkspaceItem witem = null;
         try {
             ePerson = context.getCurrentUser();
-            Integer dsoId = Integer.parseInt(targetId.toString());
+            int dsoId = Integer.parseInt(targetId.toString());
 
             // anonymous user
             if (ePerson == null) {
@@ -91,6 +89,10 @@ public class WorkspaceItemRestPermissionEvaluatorPlugin extends RestObjectPermis
                 if (witem.getSubmitter().getID().equals(ePerson.getID())) {
                     return true;
                 }
+            }
+
+            if (researcherProfileService.isAuthorOf(context, ePerson, witem.getItem())) {
+                return true;
             }
 
             if (authorizeService.authorizeActionBoolean(context, witem.getItem(),

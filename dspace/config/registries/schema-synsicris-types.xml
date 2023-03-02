@@ -303,7 +303,7 @@
     <dc-type>
 		<schema>synsicris</schema>
 		<element>relation</element>
-		<qualifier>interim_report</qualifier>
+		<qualifier>interimreport</qualifier>
 		<scope_note></scope_note>
     </dc-type>
 
@@ -452,5 +452,39 @@
         <element>version</element>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>title</element>
+        <qualifier>alternative</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>commentItem</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>commentItemVersion</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>commentProject</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>commentProjectVersion</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 </dspace-dc-types>

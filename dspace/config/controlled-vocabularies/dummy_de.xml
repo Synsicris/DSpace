@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node id="ResourceTypeGenres" label="DUMMY 2020-03-05">
+<node id="ResourceTypeGenres" label="">
   <isComposedBy>
     <node id="ID1" label="Kaskadiertes Dropdown #1" selectable="true">
     <hasNote>Dieses kaskadierte Dropdown-Menü befindet sich noch im Aufbau.</hasNote>

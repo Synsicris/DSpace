@@ -17,6 +17,7 @@ import static org.dspace.builder.OrcidQueueBuilder.createOrcidQueue;
 import static org.dspace.core.Constants.WRITE;
 import static org.dspace.orcid.OrcidOperation.DELETE;
 import static org.dspace.profile.OrcidEntitySyncPreference.ALL;
+import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
@@ -5323,6 +5324,146 @@ public class ItemRestRepositoryIT extends AbstractControllerIntegrationTest {
                              .andExpect(status().isNoContent());
         // check that the item was deleted
         getClient(tokenAdmin).perform(delete("/api/core/items/" + publicationA.getID()))
+                             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void deleteSynsicrisCommentItemTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+        EPerson userA = EPersonBuilder.createEPerson(context)
+                                      .withNameInMetadata("Roman", "Boychuk")
+                                      .withEmail("roman.boychuk@example.com")
+                                      .withPassword(password)
+                                      .build();
+
+        EPerson userB = EPersonBuilder.createEPerson(context)
+                                      .withNameInMetadata("Misha", "Boychuk")
+                                      .withEmail("misha.boychuk@example.com")
+                                      .withPassword(password)
+                                      .build();
+
+        // create projects community
+        Community projectsCommunity = CommunityBuilder.createCommunity(context)
+                                                      .withName("Projects")
+                                                      .build();
+        // create shared community
+        Community sharedCommunity = CommunityBuilder.createCommunity(context)
+                                                      .withName("Shared")
+                                                      .build();
+        // crate project community
+        Community projectACommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+                                                      .withName("project A")
+                                                      .build();
+        // create project collection
+        Collection projectCollection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                                                        .build();
+        // create Publications collection
+        Collection collection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                 .withName("Publications")
+                                                 .withEntityType("Publication")
+                                                 .build();
+
+        // create comment collection
+        Collection commentCollection = CollectionBuilder.createCollection(context, sharedCommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.COMMENT_ENTITY)
+                                                        .build();
+
+        var groupName = String.format(PROJECT_FUNDERS_GROUP_TEMPLATE, projectACommunity.getID().toString());
+        Group memberGroup = GroupBuilder.createGroup(context)
+                                        .withName(groupName)
+                                        .addMember(userA)
+                                        .build();
+
+        Item project = ItemBuilder.createItem(context, projectCollection)
+                                  .withTitle("project A")
+                                  .build();
+
+        Item comment = ItemBuilder.createItem(context, commentCollection)
+                                  .withTitle("Test comment")
+                                  .withRelationCommentProject(project.getName(), project.getID().toString())
+                                  .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenUserA = getAuthToken(userA.getEmail(), password);
+        String tokenUserB = getAuthToken(userB.getEmail(), password);
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        getClient().perform(delete("/api/core/items/" + comment.getID()))
+                   .andExpect(status().isUnauthorized());
+
+        // userB hasn't permession to delete item
+        getClient(tokenUserB).perform(delete("/api/core/items/" + comment.getID()))
+                             .andExpect(status().isForbidden());
+        // check that the item wasn't deleted
+        getClient(tokenAdmin).perform(get("/api/core/items/" + comment.getID()))
+                             .andExpect(status().isOk())
+                             .andExpect(jsonPath("$.uuid", Matchers.is(comment.getID().toString())))
+                             .andExpect(jsonPath("$.withdrawn", Matchers.is(false)))
+                             .andExpect(jsonPath("$.inArchive", Matchers.is(true)));
+
+        // userA can delete item as she is in the ProjectMemberGroup
+        getClient(tokenUserA).perform(delete("/api/core/items/" + comment.getID()))
+                             .andExpect(status().isNoContent());
+        // check that the item was deleted
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + comment.getID()))
+                             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void deleteSynsicrisCommentItemAdminTest() throws Exception {
+        context.turnOffAuthorisationSystem();
+
+        // create projects community
+        Community projectsCommunity = CommunityBuilder.createCommunity(context)
+                                                      .withName("Projects")
+                                                      .build();
+        // create shared community
+        Community sharedCommunity = CommunityBuilder.createCommunity(context)
+                                                    .withName("Shared")
+                                                    .build();
+        // crate project community
+        Community projectACommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+                                                      .withName("project A")
+                                                      .build();
+        // create project collection
+        Collection projectCollection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                                                        .build();
+        // create Publications collection
+        Collection collection = CollectionBuilder.createCollection(context, projectACommunity)
+                                                 .withName("Publications")
+                                                 .withEntityType("Publication")
+                                                 .build();
+
+        // create comment collection
+        Collection commentCollection = CollectionBuilder.createCollection(context, sharedCommunity)
+                                                        .withName("Consortia")
+                                                        .withEntityType(ProjectConstants.COMMENT_ENTITY)
+                                                        .build();
+
+        Item project = ItemBuilder.createItem(context, projectCollection)
+                                  .withTitle("project A")
+                                  .build();
+
+        Item comment = ItemBuilder.createItem(context, commentCollection)
+                                  .withTitle("Test comment")
+                                  .withRelationCommentProject(project.getName(), project.getID().toString())
+                                  .build();
+
+        context.restoreAuthSystemState();
+
+        String tokenAdmin = getAuthToken(admin.getEmail(), password);
+
+        // userA can delete item as she is in the ProjectMemberGroup
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + comment.getID()))
+                             .andExpect(status().isNoContent());
+        // check that the item was deleted
+        getClient(tokenAdmin).perform(delete("/api/core/items/" + comment.getID()))
                              .andExpect(status().isNotFound());
     }
 

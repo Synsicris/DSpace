@@ -7,9 +7,8 @@
  */
 package org.dspace.app.rest.authorization.impl;
 
-import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
-
 import java.sql.SQLException;
+import java.util.List;
 
 import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
@@ -32,7 +31,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
-import org.dspace.synsicris.security.SecuritySynsicrisService;
+import org.dspace.synsicris.security.SecuritySynsicrisDeleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -65,7 +64,7 @@ public class DeleteFeature implements AuthorizationFeature {
     @Autowired
     private ContentServiceFactory contentServiceFactory;
     @Autowired
-    private SecuritySynsicrisService securitySynsicrisService;
+    private List<SecuritySynsicrisDeleteService> securitySynsicrisServices;
 
     @Override
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
@@ -111,8 +110,11 @@ public class DeleteFeature implements AuthorizationFeature {
         return false;
     }
 
-    private boolean isAuthrizedForSynsicrisItems(Context context, Item item) throws SQLException {
-        return securitySynsicrisService.isMemberOfRoleGroupOfProject(context, item, MEMBERS_ROLE);
+    private boolean isAuthrizedForSynsicrisItems(Context context, Item item) {
+        return securitySynsicrisServices.stream()
+                                        .filter(service -> service.canDelete(context, item))
+                                        .findFirst()
+                                        .isPresent();
     }
 
     private DSpaceObject getParentObject(Context context, DSpaceObject object) throws SQLException {

@@ -258,7 +258,7 @@
 	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
 	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.comment.funders###</metadata>
+	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
 	      <metadata name="cris.project.shared">project</metadata>
 	    </item-template>
 	  </collection>
@@ -1351,6 +1351,10 @@
               <metadata name="dc.title">step_type_4</metadata>
               <metadata name="synsicris.struct-builder.identifier">int_step_4</metadata>
           </item>
+          <item>
+              <metadata name="dc.title">step_type_5</metadata>
+              <metadata name="synsicris.struct-builder.identifier">int_step_5</metadata>
+          </item>
         </collection>
         <collection>
           <name>Interim report</name>
@@ -1383,6 +1387,7 @@
               <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_2">step_type_2</metadata>
               <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_3">step_type_3</metadata>
               <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_4">step_type_4</metadata>
+              <metadata name="interimreport.relation.step" authority="will be referenced::SB-ID::int_step_5">step_type_5</metadata>
           </item>
         </collection>
       </community>

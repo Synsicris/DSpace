@@ -138,6 +138,14 @@ public class ProjectConstants {
         new MetadataFieldName("synsicris", "uniqueid");
     public static final MetadataFieldName MD_RELATION_COMMENT_PROJECT =
         new MetadataFieldName("synsicris", "relation", "commentProject");
+    public static final MetadataFieldName MD_V_FUNDER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-funder-policy", "group");
+    public static final MetadataFieldName MD_V_READER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-reader-policy", "group");
+    public static final MetadataFieldName MD_V_MEMBER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-member-policy", "group");
+    public static final MetadataFieldName MD_V_COORDINATOR_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-coordinator-policy", "group");
 
     /**
      * Default constructor

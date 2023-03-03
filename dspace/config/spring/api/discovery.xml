@@ -166,7 +166,7 @@
                 <!-- Synsicris Project comments configuration -->
                 <entry key="COMMENT_ALL.Person.comment_person_all" value-ref="relationPersonCommentsConfiguration"/>
                 <entry key="COMMENT_ALL.Funding.comment_funding_all" value-ref="relationItemCommentsConfiguration"/>
-                <entry key="COMMENT_ALL.Project.comment_project_all" value-ref="relationItemCommentsConfiguration"/>
+                <entry key="COMMENT_ALL.Project.comment_project_all" value-ref="allCommentsOfProjectConfiguration"/>
                 <entry key="COMMENT.Project.project_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.award.award_comment" value-ref="relationItemCommentsConfiguration"/>
                 <entry key="COMMENT.contribution_fundingprogramme.contribution_fundingprogramme_comment" value-ref="relationItemCommentsConfiguration"/>
@@ -3144,8 +3144,9 @@
             </list>
         </property>
     </bean>
-
-    <bean id="relationItemCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+    
+    <bean id="allCommentsOfProjectConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
         <!--The sort filters for the discovery search-->
         <property name="indexAlways" value="true"/>
         <property name="sidebarFacets">
@@ -3166,6 +3167,31 @@
                 <ref bean="searchRelationProject" />
             </list>
         </property>
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortLastCommentCreated" />
+                        <ref bean="sortTitleAsc" />
+                        <ref bean="sortLastModified" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all
+                queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
+                <value>synsicris.relation.commentProject_authority:{0} AND search.resourcetype:Item AND entityType_keyword:comment</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="relationItemCommentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
                 <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->

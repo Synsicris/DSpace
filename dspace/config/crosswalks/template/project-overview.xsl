@@ -50,7 +50,7 @@
 <!-- so far relative paths are not correctly handled, that is why absolute paths are given -->
 
 <!-- paths (NOTE: path needs to be given with single hyphens otherwise the path is interpreted as XPath element)-->	
-<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template'"/>
+<xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template/images/'"/>
 
 
 <!-- approach in the following: characteristic first, effected element last -->
@@ -835,17 +835,15 @@ s
 							padding-start="{$padding.start.border}"
 							padding-end="{$padding.end.border}">
 	
-			<fo:table table-layout="fixed">
+			<fo:table table-layout="fixed" vertical-align="middle">
 	
 				<!-- define the table columns -->
 				<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/>
-				<fo:table-column column-width="'13.85%'"/> 
+				<fo:table-column column-width="'19.4%'"/>
+				<fo:table-column column-width="'19.4%'"/>
+				<fo:table-column column-width="'19.4%'"/>
+				<fo:table-column column-width="'19.4%'"/>
+				<fo:table-column column-width="'19.4%'"/>
 				<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
 																																			  <!-- in addition the columns need to be numbered, omitting the first and last column --> 
 				<!-- table header -->
@@ -854,7 +852,7 @@ s
 												 border-width="${width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
-						<fo:block text-align="left" 
+						<fo:block text-align="center" 
 											font-size="{$font.size.key-value}"
 											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
@@ -863,8 +861,21 @@ s
 											padding-start="{$padding.start.border}"
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="count(cerif:Publication/cerif:Index)" />
+											margin-right="{$margin.right.border}">	
+
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'event.png')" />
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile" />
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							   <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:Event/cerif:Index)" />
+              </fo:inline>
+
 						</fo:block>
 					</fo:table-cell>
 
@@ -872,7 +883,7 @@ s
 												 border-width="${width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
-						<fo:block text-align="left" 
+						<fo:block text-align="center" 
 											font-size="{$font.size.key-value}"
 											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
@@ -881,26 +892,21 @@ s
 											padding-start="{$padding.start.border}"
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="count(cerif:Event/cerif:Index)" />
-						</fo:block>
-					</fo:table-cell>
+											margin-right="{$margin.right.border}">	
 
-					<fo:table-cell column-number="2" 
-												 border-width="${width.border}"
-												 border-color="{$colour.border}"
-												 border-style="{$style.border}">
-						<fo:block text-align="left" 
-											font-size="{$font.size.key-value}"
-											font-weight="{$font.weight.key-value}"
-											margin-top="{$margin.top.main}"
-											padding-before="{$padding.before.border}"
-											padding-after="{$padding.after.border}"
-											padding-start="{$padding.start.border}"
-											padding-end="{$padding.end.border}"
-											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'process.png')" />
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile" />
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							  <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:ProcessEvent/cerif:Index)" />
+              </fo:inline>
+
 						</fo:block>
 					</fo:table-cell>
 
@@ -908,7 +914,7 @@ s
 												 border-width="${width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
-						<fo:block text-align="left" 
+						<fo:block text-align="center" 
 											font-size="{$font.size.key-value}"
 											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
@@ -917,8 +923,21 @@ s
 											padding-start="{$padding.start.border}"
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
+											margin-right="{$margin.right.border}">	
+
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'publication.png')" />
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile" />
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							  <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:Publication/cerif:Index)" />
+              </fo:inline>
+
 						</fo:block>
 					</fo:table-cell>
 
@@ -926,7 +945,7 @@ s
 												 border-width="${width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
-						<fo:block text-align="left" 
+						<fo:block text-align="center" 
 											font-size="{$font.size.key-value}"
 											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
@@ -935,64 +954,23 @@ s
 											padding-start="{$padding.start.border}"
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
+											margin-right="{$margin.right.border}">	
+
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'object-material.png')" />
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile" />
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							  <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:Product/cerif:Index)" />
+              </fo:inline>
+
 						</fo:block>
 					</fo:table-cell>
-
-					<fo:table-cell column-number="6" 
-												 border-width="${width.border}"
-												 border-color="{$colour.border}"
-												 border-style="{$style.border}">
-						<fo:block text-align="left" 
-											font-size="{$font.size.key-value}"
-											font-weight="{$font.weight.key-value}"
-											margin-top="{$margin.top.main}"
-											padding-before="{$padding.before.border}"
-											padding-after="{$padding.after.border}"
-											padding-start="{$padding.start.border}"
-											padding-end="{$padding.end.border}"
-											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
-						</fo:block>
-					</fo:table-cell>
-
-					<fo:table-cell column-number="7" 
-												 border-width="${width.border}"
-												 border-color="{$colour.border}"
-												 border-style="{$style.border}">
-						<fo:block text-align="left" 
-											font-size="{$font.size.key-value}"
-											font-weight="{$font.weight.key-value}"
-											margin-top="{$margin.top.main}"
-											padding-before="{$padding.before.border}"
-											padding-after="{$padding.after.border}"
-											padding-start="{$padding.start.border}"
-											padding-end="{$padding.end.border}"
-											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
-						</fo:block>
-					</fo:table-cell>																				
-
-					<fo:table-cell column-number="8" 
-												 border-width="${width.border}"
-												 border-color="{$colour.border}"
-												 border-style="{$style.border}">
-						<fo:block text-align="left" 
-											font-size="{$font.size.key-value}"
-											font-weight="{$font.weight.key-value}"
-											margin-top="{$margin.top.main}"
-											padding-before="{$padding.before.border}"
-											padding-after="{$padding.after.border}"
-											padding-start="{$padding.start.border}"
-											padding-end="{$padding.end.border}"
-											margin-left="{$margin.left.border}"
-											margin-right="{$margin.right.border}">
-							<xsl:value-of select="cerif:Title" />
-						</fo:block>
-					</fo:table-cell>	
 
 				</fo:table-header>
 
@@ -1004,7 +982,7 @@ s
 														border-width="${width.border}"
 														border-color="{$colour.border}"
 														border-style="{$style.border}">
-								<fo:block text-align="left" 
+								<fo:block text-align="center" 
 													font-size="{$font.size.standard}"
 													font-weight="{$font.weight.value}"
 													margin-top="{$margin.top.main}"
@@ -1014,7 +992,61 @@ s
 													padding-end="{$padding.end.border}"
 													margin-left="{$margin.left.border}"
 													margin-right="{$margin.right.border}">
-									<xsl:value-of select="cerif:Title" />
+									<xsl:text>Events</xsl:text>
+								</fo:block>
+							</fo:table-cell>
+
+							<fo:table-cell column-number="3"
+														border-width="${width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}">
+								<fo:block text-align="center" 
+													font-size="{$font.size.standard}"
+													font-weight="{$font.weight.value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+									<xsl:text>Kooperations-prozesse</xsl:text>
+								</fo:block>
+							</fo:table-cell>
+
+							<fo:table-cell column-number="4"
+														border-width="${width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}">
+								<fo:block text-align="center" 
+													font-size="{$font.size.standard}"
+													font-weight="{$font.weight.value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+									<xsl:text>Veröffentlichungen</xsl:text>
+								</fo:block>
+							</fo:table-cell>
+
+							<fo:table-cell column-number="5"
+														border-width="${width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}">
+								<fo:block text-align="center" 
+													font-size="{$font.size.standard}"
+													font-weight="{$font.weight.value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+									<xsl:text>Objekte/Materialien</xsl:text>
 								</fo:block>
 							</fo:table-cell>
 

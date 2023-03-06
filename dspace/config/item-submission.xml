@@ -539,7 +539,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="patents-edit">
       <step id="patents" />
@@ -608,7 +607,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="spinoffs-edit">
       <step id="spinoffs" />
@@ -631,7 +629,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="publications-edit">
       <step id="extractionstep" />
@@ -651,7 +648,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="plan_publications-edit">
       <step id="plan_publications" />
@@ -664,7 +660,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="awards-edit">
       <step id="awards" />
@@ -677,7 +672,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="steps-edit">
       <step id="steps" />
@@ -690,7 +684,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="innovationideas-edit">
       <step id="innovationideas" />
@@ -704,7 +697,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="workpackages-edit">
       <step id="workpackages" />
@@ -718,7 +710,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="tasks-edit">
       <step id="tasks" />
@@ -752,7 +743,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="contribution_fundingprogramme-edit">
       <step id="contribution_fundingprogramme" />
@@ -765,7 +755,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="unexpected_results-edit">
       <step id="unexpected_results" />
@@ -781,7 +770,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="events-edit">
       <step id="events" />
@@ -800,7 +788,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="process_events-edit">
       <step id="process_events" />
@@ -818,7 +805,6 @@
       <step id="impact_pathway_task_form" />
       <step id="working_plan_step_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="physical_objects-edit">
       <step id="physical_objects" />
@@ -840,7 +826,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="exp_societalimpact-edit">
       <step id="exp_societalimpact" />
@@ -853,7 +838,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="neg_sideeffect-edit">
       <step id="neg_sideeffect" />
@@ -866,7 +850,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="conditions-edit">
       <step id="conditions" />
@@ -903,7 +886,6 @@
       <step id="ia_objectives" />
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="ia_objectives-edit">
       <step id="ia_objectives" />
@@ -913,7 +895,6 @@
       <step id="proj_objectives" />
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="proj_objectives-edit">
       <step id="proj_objectives" />
@@ -926,7 +907,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="products-edit">
       <step id="products" />
@@ -983,7 +963,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="research_results-edit">
       <step id="research_results" />
@@ -993,7 +972,6 @@
       <step id="open_researchquestions" />
       <step id="internalacc" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="open_researchquestions-edit">
       <step id="open_researchquestions" />
@@ -1008,7 +986,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="innovationpotentials-edit">
       <step id="innovationpotentials" />
@@ -1024,7 +1001,6 @@
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
-      <step id="interim_report_task_form" />
     </submission-process>
     <submission-process name="applications-edit">
       <step id="applications" />

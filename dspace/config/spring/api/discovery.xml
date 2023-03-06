@@ -243,6 +243,7 @@
                 <entry key="interim_report_step_type_2_task_type" value-ref="interimReportStepType2TaskTypeConfiguration"/>
                 <entry key="interim_report_step_type_3_task_type" value-ref="interimReportStepType3TaskTypeConfiguration"/>
                 <entry key="interim_report_step_type_4_task_type" value-ref="interimReportStepType4TaskTypeConfiguration"/>
+                <entry key="interim_report_step_type_5_task_type" value-ref="interimReportStepType5TaskTypeConfiguration"/>
 
                 <!-- Edit Configurations -->
                 <entry key="editCommunity" value-ref="editCommunityConfiguration"/>
@@ -5025,6 +5026,18 @@
                 <value>synsicris.relation.targetgroup_authority:{0}</value>
                 <value>search.resourcetype:Item</value>
                 <value>entityType_keyword:process_event</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- interimReport StepType5 Task Type Configuration -->
+    <bean id="interimReportStepType5TaskTypeConfiguration" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype" parent="questionBoardStepTaskTypeConfiguration">
+        <property name="id" value="interim_report_step_type_4_task_type"/>
+        <!-- Any default filter queries, these filter queries will be used for all
+            queries done by discovery for this configuration -->
+        <property name="defaultFilterQueries">
+            <list>
+                <value>search.resourcetype:Item AND (entityType_keyword:proj_objective OR entityType_keyword:ia_objective OR entityType_keyword:innovationpotential OR entityType_keyword:innovationidea OR entityType_keyword:Patent OR entityType_keyword:exp_societalimpact OR entityType_keyword:neg_sideeffect) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>

@@ -254,7 +254,7 @@ public class CrisLayoutBoxServiceImpl implements CrisLayoutBoxService {
         // The box has no associated content
         return true;
     }
-    
+
     private boolean hasInterimReportBoxContent(CrisLayoutBox box, List<MetadataValue> values) {
         // The box has no associated content
         return true;

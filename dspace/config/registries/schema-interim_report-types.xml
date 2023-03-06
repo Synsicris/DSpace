@@ -6,7 +6,7 @@
 
     <dc-schema>
         <name>interimreport</name>
-        <namespace>https://schema.org/interim_report</namespace>
+        <namespace>https://schema.org/interimreport</namespace>
     </dc-schema>
 
     <dc-type>

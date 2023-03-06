@@ -8,6 +8,7 @@
 package org.dspace.versioning.consumer;
 
 import static com.jayway.jsonpath.JsonPath.read;
+import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import static org.dspace.project.util.ProjectConstants.FUNDER_PROJECT_MANAGERS_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
@@ -16,6 +17,10 @@ import static org.dspace.project.util.ProjectConstants.MD_MEMBER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_READ_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
+import static org.dspace.project.util.ProjectConstants.MD_V_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_FUNDER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_MEMBER_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
@@ -113,6 +118,8 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     private Group membersGroup;
     private Group readersGroup;
 
+    private String projectCommId;
+
     @Autowired
     private ItemService itemService;
 
@@ -127,14 +134,13 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
     @Autowired
     private GroupService groupService;
-    private String projectCommId;
+
 
     @BeforeClass
     public static void initConfig() {
         // WARN: This code sets the `projectItemVersionProvider` as main provider
         // for the `versionServiceBean`.
-        beanFactory =
-            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+        beanFactory = DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
 
         versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
         itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
@@ -142,7 +148,6 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
         );
         versionHistoryService = VersionServiceFactory.getInstance().getVersionHistoryService();
-
     }
 
     @AfterClass
@@ -172,78 +177,54 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         );
 
         GroupBuilder.createGroup(context)
-            .withName(FUNDER_PROJECT_MANAGERS_GROUP)
-            .build();
+                    .withName(FUNDER_PROJECT_MANAGERS_GROUP)
+                    .build();
 
         GroupBuilder.createGroup(context)
-            .withName(SYSTEM_MEMBERS_GROUP)
-            .build();
+                    .withName(SYSTEM_MEMBERS_GROUP)
+                    .build();
 
-        sharedCoummunity =
-            CommunityBuilder.createCommunity(context)
-                .withName("Shared")
-                .build();
+        sharedCoummunity = CommunityBuilder.createCommunity(context)
+                                           .withName("Shared")
+                                           .build();
 
-        researchProfileCollection =
-            CollectionBuilder.createCollection(context, sharedCoummunity)
-                .withName("Persons")
-                .build();
+        researchProfileCollection = CollectionBuilder.createCollection(context, sharedCoummunity)
+                                                     .withName("Persons")
+                                                     .build();
 
-        parentCommunity =
-            CommunityBuilder.createCommunity(context)
-                .withName("community")
-                .build();
+        parentCommunity = CommunityBuilder.createCommunity(context)
+                                          .withName("community")
+                                          .build();
 
-        projectCommunity =
-            CommunityBuilder.createSubCommunity(context, parentCommunity)
-                .withName("project's community")
-                .build();
+        projectCommunity = CommunityBuilder.createSubCommunity(context, parentCommunity)
+                                           .withName("project's community")
+                                           .build();
 
-        projectCollection =
-            CollectionBuilder.createCollection(context, projectCommunity)
-                .withName("project collection")
-                .withEntityType(PROJECT_ENTITY)
-                .build();
+        projectCollection = CollectionBuilder.createCollection(context, projectCommunity)
+                                             .withName("project collection")
+                                             .withEntityType(PROJECT_ENTITY)
+                                             .build();
 
+        var coordinatorGroup = String.format(PROJECT_COORDINATORS_GROUP_TEMPLATE, projectCommunity.getID().toString());
         GroupBuilder.createGroup(context)
-            .withName(
-                String.format(
-                    PROJECT_COORDINATORS_GROUP_TEMPLATE,
-                    projectCommunity.getID().toString()
-                )
-            )
-            .addMember(admin)
-            .build();
+                    .withName(coordinatorGroup)
+                    .addMember(admin)
+                    .build();
 
-        funderGroup =
-            GroupBuilder.createGroup(context)
-                .withName(
-                    String.format(
-                        PROJECT_FUNDERS_GROUP_TEMPLATE,
-                        projectCommunity.getID().toString()
-                    )
-                )
-                .build();
+        var funderGroupName = String.format(PROJECT_FUNDERS_GROUP_TEMPLATE, projectCommunity.getID().toString());
+        funderGroup = GroupBuilder.createGroup(context)
+                                  .withName(funderGroupName)
+                                  .build();
 
-        membersGroup =
-            GroupBuilder.createGroup(context)
-                .withName(
-                    String.format(
-                        PROJECT_MEMBERS_GROUP_TEMPLATE,
-                        projectCommunity.getID().toString()
-                    )
-                )
-                .build();
+        var memberGroupName = String.format(PROJECT_MEMBERS_GROUP_TEMPLATE, projectCommunity.getID().toString());
+        membersGroup = GroupBuilder.createGroup(context)
+                                   .withName(memberGroupName)
+                                   .build();
 
-        readersGroup =
-            GroupBuilder.createGroup(context)
-                .withName(
-                    String.format(
-                        PROJECT_READERS_GROUP_TEMPLATE,
-                        projectCommunity.getID().toString()
-                    )
-                )
-                .build();
+        var readerGroupName = String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID().toString());
+        readersGroup = GroupBuilder.createGroup(context)
+                                   .withName(readerGroupName)
+                                   .build();
 
         Group g = collectionService.createAdministrators(context, researchProfileCollection);
         this.groupService.addMember(context, g, funderGroup);
@@ -390,42 +371,37 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     public void verifiesMetadasOnVersionedProjectWhenMadeVisible() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        Item item =
-            ItemBuilder.createItem(context, projectCollection)
-                .withTitle("Project test item")
-                .withIssueDate("22022-10-20")
-                .withAuthor(admin.getName())
-                .withSubject("ExtraEntry")
-                .build();
-        Item item1 =
-            ItemBuilder.createItem(context, projectCollection)
-                .withTitle("Project test item 1")
-                .withIssueDate("2022-10-20")
-                .withAuthor(admin.getName())
-                .withSubject("ExtraEntry")
-                .build();
+        Item item = ItemBuilder.createItem(context, projectCollection)
+                               .withTitle("Project test item")
+                               .withIssueDate("22022-10-20")
+                               .withAuthor(admin.getName())
+                               .withSubject("ExtraEntry")
+                               .build();
+        Item item1 = ItemBuilder.createItem(context, projectCollection)
+                                .withTitle("Project test item 1")
+                                .withIssueDate("2022-10-20")
+                                .withAuthor(admin.getName())
+                                .withSubject("ExtraEntry")
+                                .build();
 
-        Collection programmeCollection =
-            CollectionBuilder.createCollection(context, projectCommunity)
-                .withName("project 2 collection")
-                .withEntityType(PROGRAMME)
-                .build();
+        Collection programmeCollection = CollectionBuilder.createCollection(context, projectCommunity)
+                                                          .withName("project 2 collection")
+                                                          .withEntityType(PROGRAMME)
+                                                          .build();
 
-        Item item2 =
-            ItemBuilder.createItem(context, programmeCollection)
-                .withTitle("Programme 2 test item 1")
-                .withIssueDate("2022-08-20")
-                .withAuthor(admin.getName())
-                .withSubject("ExtraEntry")
-                .build();
+        Item item2 = ItemBuilder.createItem(context, programmeCollection)
+                                .withTitle("Programme 2 test item 1")
+                                .withIssueDate("2022-08-20")
+                                .withAuthor(admin.getName())
+                                .withSubject("ExtraEntry")
+                                .build();
 
-        Item item3 =
-            ItemBuilder.createItem(context, programmeCollection)
-                .withTitle("Programme 2 test item 2")
-                .withIssueDate("2022-08-20")
-                .withAuthor(admin.getName())
-                .withSubject("ExtraEntry")
-                .build();
+        Item item3 = ItemBuilder.createItem(context, programmeCollection)
+                                .withTitle("Programme 2 test item 2")
+                                .withIssueDate("2022-08-20")
+                                .withAuthor(admin.getName())
+                                .withSubject("ExtraEntry")
+                                .build();
 
         context.commit();
         context.restoreAuthSystemState();
@@ -460,17 +436,22 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             item = this.itemService.find(context, itemId.get());
 
             context.turnOffAuthorisationSystem();
-            this.itemService.addMetadata(
-                context, item, MD_VERSION_VISIBLE.schema, MD_VERSION_VISIBLE.element,
-                MD_VERSION_VISIBLE.qualifier, null, "true"
-            );
+            this.itemService.addMetadata(context, item, MD_VERSION_VISIBLE.schema,
+                                                        MD_VERSION_VISIBLE.element,
+                                                        MD_VERSION_VISIBLE.qualifier, null, "true");
+
+            this.itemService.addMetadata(context, item, MD_FUNDER_POLICY_GROUP.schema,
+                                                        MD_FUNDER_POLICY_GROUP.element,
+                                                        MD_FUNDER_POLICY_GROUP.qualifier, null,
+                                                   funderGroup.getName(), funderGroup.getID().toString(), CF_ACCEPTED);
             this.itemService.update(context, item);
             this.context.commit();
             context.restoreAuthSystemState();
 
             item = this.context.reloadEntity(item);
 
-            checkVisibleItem(item);
+            checkVisibleItem(item, 0, 0, 0, 0);
+            checkVersioningMetadataGroup(item, 1, 0, 0, 0);
 
             Community comm = item.getCollections()
                 .stream()
@@ -504,9 +485,9 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 .filter(i -> StringUtils.endsWith(itemService.getMetadata(i, "synsicris.uniqueid"), "_" + itemVersion))
                 .forEach(t -> {
                     try {
-                        checkVisibleItem(context.reloadEntity(t));
+                        checkVisibleItem(context.reloadEntity(t), 0, 0, 0, 0);
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException(e.getMessage(), e);
                     }
                 });
 
@@ -800,7 +781,6 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         configurationService
             .setProperty("researcher-profile.collection.uuid", researchProfileCollection.getID().toString());
 
-
         context.commit();
         context.restoreAuthSystemState();
 
@@ -860,8 +840,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
            // checkHidItem(secondVersionItem);
 
            // make a third version
-            getClient(adminToken).perform(
-                post("/api/versioning/versions")
+            getClient(adminToken).perform(post("/api/versioning/versions")
                     .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
                     .content("/api/core/items/" + item.getID())
                 )
@@ -931,7 +910,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
             firstVersionItem = this.context.reloadEntity(firstVersionItem);
 
-            checkVisibleItem(firstVersionItem);
+            checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
             checkLastVersionVisible(firstVersionItem);
 
             secondVersionItem = this.context.reloadEntity(secondVersionItem);
@@ -951,8 +930,8 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
            secondVersionItem = this.context.reloadEntity(secondVersionItem);
            thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
 
-           checkVisibleItem(firstVersionItem);
-           checkVisibleItem(secondVersionItem);
+           checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
+           checkVisibleItem(secondVersionItem, 0, 0, 0, 0);
            checkLastVersionNotVisible(firstVersionItem);
            checkLastVersionVisible(secondVersionItem);
 
@@ -968,7 +947,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             secondVersionItem = this.context.reloadEntity(secondVersionItem);
             thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
 
-            checkVisibleItem(firstVersionItem);
+            checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
             checkHidItem(secondVersionItem);
             checkLastVersionNotVisible(thirdVersionItem);
             checkLastVersionNotVisible(secondVersionItem);
@@ -993,9 +972,9 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             secondVersionItem = this.context.reloadEntity(secondVersionItem);
             thirdVersionItem = this.context.reloadEntity(thirdVersionItem);
 
-            checkVisibleItem(firstVersionItem);
+            checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
             checkHidItem(secondVersionItem);
-            checkVisibleItem(thirdVersionItem);
+            checkVisibleItem(thirdVersionItem, 0, 0, 0, 0);
             checkLastVersionNotVisible(secondVersionItem);
             checkLastVersionNotVisible(firstVersionItem);
             checkLastVersionVisible(thirdVersionItem);
@@ -1033,9 +1012,9 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 )
                 .forEach(t -> {
                     try {
-                        checkVisibleItem(context.reloadEntity(t));
+                        checkVisibleItem(context.reloadEntity(t), 0, 0, 0, 0);
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException(e.getMessage(), e);
                     }
                 });
             comm.getCollections()
@@ -1087,9 +1066,9 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                 )
                 .forEach(t -> {
                     try {
-                        checkVisibleItem(context.reloadEntity(t));
+                        checkVisibleItem(context.reloadEntity(t), 0, 0, 0, 0);
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException(e.getMessage(), e);
                     }
                 });
             context.commit();
@@ -1110,7 +1089,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
             assertNull(thirdVersionItem);
             checkHidItem(secondVersionItem);
-            checkVisibleItem(firstVersionItem);
+            checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
             checkLastVersionNotVisible(secondVersionItem);
             checkLastVersionVisible(firstVersionItem);
 
@@ -1126,7 +1105,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
 
             assertNull(thirdVersionItem);
             assertNull(secondVersionItem);
-            checkVisibleItem(firstVersionItem);
+            checkVisibleItem(firstVersionItem, 0, 0, 0, 0);
             checkLastVersionVisible(firstVersionItem);
 
         } catch (Exception e) {
@@ -1177,25 +1156,16 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             });
     }
 
-    public void checkVisibleItem(Item item) throws SQLException {
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()),
-            hasSize(0)
-        );
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()),
-            hasSize(0)
-        );
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()),
-            hasSize(0)
-        );
-        assertThat(
-            this.itemService
-                .getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()),
-            hasSize(0)
-        );
-
+    public void checkVisibleItem(Item item, int funderSize, int readerSize, int memberSize, int coordinatorSize)
+            throws SQLException {
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()),
+                   hasSize(funderSize));
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()),
+                   hasSize(readerSize));
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()),
+                   hasSize(memberSize));
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()),
+                   hasSize(coordinatorSize));
 
         List<MetadataValue> policyGroups =
             this.itemService.getMetadataByMetadataString(item, MD_VERSION_READ_POLICY_GROUP.toString());
@@ -1232,6 +1202,18 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         assertThat(policies, bitstreamReadPolicyMatcher);
     }
 
+    private void checkVersioningMetadataGroup(Item item,
+            int funderSize, int readerSize, int memberSize, int coordinatorSize) {
+        assertThat(itemService.getMetadataByMetadataString(item, MD_V_FUNDER_POLICY_GROUP.toString()),
+                   hasSize(funderSize));
+        assertThat(itemService.getMetadataByMetadataString(item, MD_V_READER_POLICY_GROUP.toString()),
+                   hasSize(readerSize));
+        assertThat(itemService.getMetadataByMetadataString(item, MD_V_MEMBER_POLICY_GROUP.toString()),
+                   hasSize(memberSize));
+        assertThat(itemService.getMetadataByMetadataString(item, MD_V_COORDINATOR_POLICY_GROUP.toString()),
+                   hasSize(coordinatorSize));
+    }
+
     public void checkLastVersionVisible(Item item) {
         assertThat(
             this.itemService.getMetadataByMetadataString(item, MD_LAST_VERSION_VISIBLE.toString()),
@@ -1257,22 +1239,10 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     }
 
     public void checkHidItem(Item item) throws SQLException {
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()),
-            hasSize(1)
-        );
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()),
-            hasSize(1)
-        );
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()),
-            hasSize(1)
-        );
-        assertThat(
-            this.itemService.getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()),
-            hasSize(1)
-        );
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_FUNDER_POLICY_GROUP.toString()), hasSize(1));
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_READER_POLICY_GROUP.toString()), hasSize(1));
+        assertThat(this.itemService.getMetadataByMetadataString(item, MD_MEMBER_POLICY_GROUP.toString()), hasSize(1));
+        assertThat(itemService.getMetadataByMetadataString(item, MD_COORDINATOR_POLICY_GROUP.toString()), hasSize(1));
 
         List<MetadataValue> policyGroups =
             this.itemService.getMetadataByMetadataString(item, MD_VERSION_READ_POLICY_GROUP.toString());
@@ -1297,9 +1267,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         assertThat(policies, not(bitstreamReadPolicyMatcher));
     }
 
-    public Matcher<Iterable<? super ResourcePolicy>> getGroupPolicyMatcher(
-        int action, Group group
-    ) {
+    public Matcher<Iterable<? super ResourcePolicy>> getGroupPolicyMatcher(int action, Group group) {
         return hasItem(
             allOf(
                 hasProperty("action", equalTo(action)),
@@ -1315,9 +1283,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     }
 
     public Matcher<Iterable<? super MetadataValue>> getGroupMatcher(Group group) {
-        return hasItem(
-            groupMatcher(group)
-        );
+        return hasItem(groupMatcher(group));
     }
 
     public Matcher<MetadataValue> groupMatcher(Group group) {

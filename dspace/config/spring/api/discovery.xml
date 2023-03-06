@@ -5951,7 +5951,7 @@
     </bean>
 
     <!-- Configurations for GraphDiscoverSearchFilterFacet -->
-    <bean id="graphPublicationByDate" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+    <bean id="graphPublicationByDate" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
     	<property name="facetLimit" value="10"/>
         <property name="sortOrderSidebar" value="VALUE"/>
         <property name="indexFieldName" value="graphpubldate" />

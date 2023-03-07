@@ -3150,7 +3150,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="allCommentsOfProjectConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <!--The sort filters for the discovery search-->
         <!--The sort filters for the discovery search-->
@@ -6041,8 +6041,8 @@
     </bean>
 
     <!-- Configurations for GraphDiscoverSearchFilterFacet -->
-    <bean id="graphPublicationByDate" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
-        <property name="facetLimit" value="10"/>
+    <bean id="graphPublicationByDate" class="org.dspace.discovery.configuration.GraphDiscoverSearchFilterFacet">
+    	<property name="facetLimit" value="10"/>
         <property name="sortOrderSidebar" value="VALUE"/>
         <property name="indexFieldName" value="graphpubldate" />
         <!-- isDate cannot be true if the splitter is set -->

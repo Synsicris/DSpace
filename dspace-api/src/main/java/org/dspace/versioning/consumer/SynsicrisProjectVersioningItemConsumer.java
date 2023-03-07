@@ -7,7 +7,6 @@
  */
 package org.dspace.versioning.consumer;
 
-import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
 import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
@@ -39,7 +38,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.dspace.authorize.AuthorizeException;
@@ -531,7 +529,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     private Group getMembersPolicyGroup(Context ctx, Community projectCommunity) {
         return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, MEMBERS_ROLE);
     }
-    
+
     private Group getCoordinatorsPolicyGroup(Context ctx, Community projectCommunity) {
         return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, COORDINATORS_ROLE);
     }

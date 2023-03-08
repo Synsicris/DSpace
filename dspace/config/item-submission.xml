@@ -486,6 +486,11 @@
       <processing-class>org.dspace.app.rest.submit.step.CCLicenseStep</processing-class>
       <type>cclicense</type>
     </step-definition>
+    <step-definition id="sherpaPolicies" mandatory="true">
+      <heading>submit.progressbar.sherpaPolicies</heading>
+      <processing-class>org.dspace.app.rest.submit.step.SherpaPolicyStep</processing-class>
+      <type>sherpaPolicy</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="edit_grants">
@@ -620,6 +625,7 @@
     <submission-process name="publications">
       <step id="extractionstep" />
       <step id="publications" />
+      <step id="sherpaPolicies" />
       <step id="publications_references" />
       <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />

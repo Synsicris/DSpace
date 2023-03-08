@@ -1180,6 +1180,19 @@
         </field>
       </row>
     </form>
+    <form name="interim_report_step_type_5_form">
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>description</dc-element>
+          <label>Beschreibung</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="interim_report_step_type_1_task_form">
       <row>
         <field>
@@ -1335,7 +1348,7 @@
           <dc-schema>interimreport</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>task</dc-qualifier>
-          <label>Relation exploitation plan</label>
+          <label>Relation Interim report</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -1516,7 +1529,7 @@
           <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Durch die Auswahl der Art des Identifiers (z.B. doi) und die Eingabe des Identifiers können Sie Daten importieren. Der Import startet, indem Sie mit Enter bestätigen oder mit dem Cursor in ein anderes Feld wechseln.</hint>
         </field>
       </row>
       <row>
@@ -2204,7 +2217,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>sdg</dc-qualifier>
-          <label>Zugehörige SDGs</label>
+          <label>Zugehörige Ziele für nachhaltige Entwicklung (SDGs)</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -2254,7 +2267,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>sdg</dc-qualifier>
-          <label>Zugehöriges SDG</label>
+          <label>Zugehöriges Ziel für nachhaltige Entwicklung (SDG)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2819,7 +2832,7 @@
         <field>
           <dc-schema>oairecerif</dc-schema>
           <dc-element>fundingParent</dc-element>
-          <label>Fördermaßnahme</label>
+          <label>Fördermaßnahme / Förderprogramm</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -2859,7 +2872,7 @@
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Förderbereich</label>
+          <label>Förderbereich / Bekanntmachung</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -5153,7 +5166,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -5163,7 +5176,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-4</style>
           <hint>Wenn durch das Vorhaben eine Steigerung einer bisher vorhandenen Entwicklung erzielt wurde, geben Sie nur die Steigerung an. Beispiel: Bevor das Vorhaben einen Einfluss hatte, nutzten 300 Betriebe eine bestimmte Form der Kompostierung. Nachdem das Vorhaben das Verfahren verbessert und darüber informiert hat, ist die Zahl im Jahr 2002 auf 800 Betriebe gestiegen. Entsprechend ist die einzutragende Steigerung 500 Betriebe.</hint>
         </field>
         <field>
@@ -6851,7 +6864,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>type</dc-element>
           <dc-qualifier>sdg</dc-qualifier>
-          <label>Zugehöriges SDG</label>
+          <label>Zugehöriges Ziel für nachhaltige Entwicklung (SDG)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -6864,11 +6877,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>call</dc-qualifier>
-          <label>Zugehöriger Call / Förderbereich</label>
+          <label>Zugehörige Bekanntmachung / Förderbereich / Call</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint />
+          <hint>Wenn es sich um ein Ziel des Programms / der Fördermaßnahme handelt, bitte nur das Programm zuordnen. Dieses Ziel wird dann in den Vorhaben aller Bekanntmachungen innerhalb dieses Programms angezeigt.</hint>
         </field>
       </row>
       <row>
@@ -6876,11 +6889,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>programme</dc-qualifier>
-          <label>Zugehöriges Programm / Fördermaßnahme</label>
+          <label>ODER Zugehörige Fördermaßnahme / Programm /</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
-          <hint />
+          <hint>Wenn es sich um ein Ziel des Programms / der Fördermaßnahme handelt, bitte nur das Programm zuordnen. Dieses Ziel wird dann in den Vorhaben aller Bekanntmachungen innerhalb dieses Programms angezeigt.</hint>
         </field>
       </row>
     </form>

@@ -8829,11 +8829,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>A: Editable by all members of consortium</displayed-value>
+        <displayed-value>A: Open access for all members of consortium</displayed-value>
         <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>B: Editable by only project  members</displayed-value>
+        <displayed-value>B: Access only for project  members</displayed-value>
         <stored-value>funding</stored-value>
       </pair>
     </value-pairs>

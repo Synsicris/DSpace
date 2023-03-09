@@ -5156,7 +5156,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type value-pairs-name="year">dropdown</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-4</style>
+          <style>col-md-2</style>
           <hint />
         </field>
         <field>
@@ -5166,7 +5166,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>number</input-type>
           <repeatable>false</repeatable>
           <required />
-          <style>col-md-2</style>
+          <style>col-md-4</style>
           <hint />
         </field>
         <field>
@@ -7575,7 +7575,7 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="process_event_type" dc-term="process_event_type">
       <pair>
-        <displayed-value>face-to-face working meeting</displayed-value>
+        <displayed-value>Face-to-face working meeting</displayed-value>
         <stored-value>Working meeting</stored-value>
       </pair>
       <pair>
@@ -8829,11 +8829,11 @@ it, please enter the types and the actual numbers or codes.</hint>
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>A: Editable by all members of consortium</displayed-value>
+        <displayed-value>A: Open access for all members of consortium</displayed-value>
         <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>B: Editable by only project  members</displayed-value>
+        <displayed-value>B: Access only for project  members</displayed-value>
         <stored-value>funding</stored-value>
       </pair>
     </value-pairs>

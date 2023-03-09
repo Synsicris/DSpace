@@ -26,19 +26,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class HasMetadataCondition extends ConditionEvaluator {
 
     @Autowired
-    private ItemService itemService;
+    protected ItemService itemService;
 
     @Override
     protected boolean doTest(Context context, Item item, String condition) {
+        return CollectionUtils.isNotEmpty(
+            getMetadataValues(item, extractMetadataField(condition))
+        );
+    }
+
+    protected List<MetadataValue> getMetadataValues(Item item, String metadataField) {
+        return itemService.getMetadataByMetadataString(item, metadataField);
+    }
+
+    protected String extractMetadataField(String condition) {
+        return extractConditionQualifier(condition).replaceAll("-", ".");
+    }
+
+    protected String extractConditionQualifier(String condition) {
         String[] conditionSections = condition.split("\\.");
         if (conditionSections.length != 2) {
             throw new IllegalArgumentException("Invalid has metadata condition: " + condition);
         }
-
-        String metadataField = conditionSections[1].replaceAll("-", ".");
-
-        List<MetadataValue> metadata = itemService.getMetadataByMetadataString(item, metadataField);
-        return CollectionUtils.isNotEmpty(metadata);
+        return conditionSections[1];
     }
 
 }

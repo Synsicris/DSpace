@@ -4935,7 +4935,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:award OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:condition OR entityType_keyword:application OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:award OR entityType_keyword:plan_publication OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:Publication OR entityType_keyword:physical_object OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>
@@ -4947,7 +4947,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:plan_publication OR entityType_keyword:Publication OR entityType_keyword:Product OR entityType_keyword:physical_object OR entityType_keyword:award OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:process_event OR entityType_keyword:Event OR entityType_keyword:innovationpotential OR entityType_keyword:step OR entityType_keyword:spinoff OR entityType_keyword:application OR entityType_keyword:condition OR entityType_keyword:neg_sideeffect OR entityType_keyword:exp_societalimpact OR entityType_keyword:workpackage OR entityType_keyword:task) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>
@@ -4959,7 +4959,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:contribution_fundingprogramme OR entityType_keyword:open_researchquestion) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>search.resourcetype:Item AND (entityType_keyword:innovationidea OR entityType_keyword:step OR entityType_keyword:research_result OR entityType_keyword:unexpected_result OR entityType_keyword:open_researchquestion) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>

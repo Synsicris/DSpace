@@ -8839,11 +8839,11 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
     </value-pairs>
     <value-pairs value-pairs-name="item_shared" dc-term="item_shared">
       <pair>
-        <displayed-value>A: Unbeschränkte Bearbeitungsrechte für alle Mitglieder des Verbundes</displayed-value>
+        <displayed-value>A: Offener Zugang für alle Mitglieder des Verbundes</displayed-value>
         <stored-value>project</stored-value>
       </pair>
       <pair>
-        <displayed-value>B: Bearbeitungsrechte beschränkt auf Mitglieder des Projektes</displayed-value>
+        <displayed-value>B: Zugang nur für Mitglieder des Projektes</displayed-value>
         <stored-value>funding</stored-value>
       </pair>
     </value-pairs>

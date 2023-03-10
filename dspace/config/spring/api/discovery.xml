@@ -1378,6 +1378,29 @@
 				<ref bean="graphSynsicrisLevelEnd" />
 				<ref bean="graphSynsicrisDateReferenceyear" />
 				<ref bean="graphSynsicrisCoverageRegional" />
+				<ref bean="graphSynsicrisTypeContribution" />
+				<ref bean="graphProcEventByPartner" />
+				<ref bean="graphSynsicrisParticipantnumber" />
+				<ref bean="graphOairecerifEventCountry" />
+				<ref bean="graphProcEventByPurpose" />
+				<ref bean="graphProcEventByType" />
+				<ref bean="graphSynsicrisRelationFundingobjective" />
+				<ref bean="graphSynsicrisTypeFunctions" />
+				<ref bean="graphPhyObjByTypeAccess" />
+				<ref bean="graphTargetGroupByEnterprise" />
+				<ref bean="graphTargetGroupByUrbanrural" />
+				<ref bean="graphExpSocImpByTransform" />
+				<ref bean="graphExpSocImpByIntensity" />
+				<ref bean="graphSynsicrisTypeResearchquestion" />
+				<ref bean="graphGenderByStateofart" />
+				<ref bean="graphGenderByProjectdesign" />
+				<ref bean="graphGenderByApplication" />
+				<ref bean="graphGenderByTypeProject" />
+				<ref bean="graphGenderByBalance" />
+				<ref bean="graphDcSubject" />
+				<ref bean="graphSynsicrisTypeSdg" />
+				<ref bean="graphSynsicrisRelationProgramme" />
+				<ref bean="graphSynsicrisTypeStatus" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTypes" />
@@ -1438,6 +1461,13 @@
                 <ref bean="searchFilterSynsicrisLevelEnd" />
                 <ref bean="searchFilterSynsicrisDateReferenceyear" />
                 <ref bean="searchFilterSynsicrisCoverageRegional" />
+                <ref bean="searchFilterSynsicrisType" />
+                <ref bean="searchFilterSynsicrisRelationFundingobjective" />
+                <ref bean="searchFilterSynsicrisTypeFunctions" />
+                <ref bean="searchFilterSynsicrisTypeAccess" />
+                <ref bean="searchFilterSynsicrisTypeEvidence" />
+                <ref bean="searchFilterSynsicrisTypeSdg" />
+                <ref bean="searchFilterSynsicrisTypeStatus" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
@@ -1489,6 +1519,29 @@
 				<ref bean="graphSynsicrisLevelEnd" />
 				<ref bean="graphSynsicrisDateReferenceyear" />
 				<ref bean="graphSynsicrisCoverageRegional" />
+				<ref bean="graphSynsicrisTypeContribution" />
+				<ref bean="graphProcEventByPartner" />
+				<ref bean="graphSynsicrisParticipantnumber" />
+				<ref bean="graphOairecerifEventCountry" />
+				<ref bean="graphProcEventByPurpose" />
+				<ref bean="graphProcEventByType" />
+				<ref bean="graphSynsicrisRelationFundingobjective" />
+				<ref bean="graphSynsicrisTypeFunctions" />
+				<ref bean="graphPhyObjByTypeAccess" />
+				<ref bean="graphTargetGroupByEnterprise" />
+				<ref bean="graphTargetGroupByUrbanrural" />
+				<ref bean="graphExpSocImpByTransform" />
+				<ref bean="graphExpSocImpByIntensity" />
+				<ref bean="graphSynsicrisTypeResearchquestion" />
+				<ref bean="graphGenderByStateofart" />
+				<ref bean="graphGenderByProjectdesign" />
+				<ref bean="graphGenderByApplication" />
+				<ref bean="graphGenderByTypeProject" />
+				<ref bean="graphGenderByBalance" />
+				<ref bean="graphDcSubject" />
+				<ref bean="graphSynsicrisTypeSdg" />
+				<ref bean="graphSynsicrisRelationProgramme" />
+				<ref bean="graphSynsicrisTypeStatus" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTitle" />
@@ -1551,6 +1604,13 @@
                 <ref bean="searchFilterSynsicrisLevelEnd" />
                 <ref bean="searchFilterSynsicrisDateReferenceyear" />
                 <ref bean="searchFilterSynsicrisCoverageRegional" />
+                <ref bean="searchFilterSynsicrisType" />
+                <ref bean="searchFilterSynsicrisRelationFundingobjective" />
+                <ref bean="searchFilterSynsicrisTypeFunctions" />
+                <ref bean="searchFilterSynsicrisTypeAccess" />
+                <ref bean="searchFilterSynsicrisTypeEvidence" />
+                <ref bean="searchFilterSynsicrisTypeSdg" />
+                <ref bean="searchFilterSynsicrisTypeStatus" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1693,6 +1753,7 @@
                 <ref bean="searchFilterSynsicrisTypeEasyimport" />
                 <ref bean="searchFilterSynsicrisInternalidPersonleader" />
                 <ref bean="searchFilterSynsicrisAddressAddresscountry" />
+                <ref bean="searchFilterSynsicrisDescriptionTargetgroup" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -6852,6 +6913,166 @@
         <property name="exposeTotalElements" value="true" />
     </bean>
 
+    <bean id="graphSynsicrisTypeContribution" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_type_contribution" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.contribution</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisParticipantnumber" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_participantnumber" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.participantnumber</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphOairecerifEventCountry" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-oairecerif_event_country" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>oairecerif.event.country</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisRelationFundingobjective" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_relation_fundingobjective" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.fundingobjective</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisTypeFunctions" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_type_functions" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.functions</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisTypeResearchquestion" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_type_researchquestion" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.researchquestion</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphDcSubject" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-dc_subject" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisTypeSdg" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_type_sdg" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.sdg</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisRelationProgramme" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_relation_programme" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.programme</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphSynsicrisTypeStatus" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-synsicris_type_status" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.status</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
     <bean id="graphGenderByType" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
         <property name="facetLimit" value="10"/>
         <property name="indexFieldName" value="graphgendertype" />
@@ -8286,6 +8507,78 @@
         <property name="metadataFields">
             <list>
                 <value>synsicris.coverage.regional</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisType" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisRelationFundingobjective" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisRelationFundingobjective" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.relation.fundingobjective</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisTypeFunctions" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeFunctions" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.functions</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisTypeAccess" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeAccess" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.access</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisDescriptionTargetgroup" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisDescriptionTargetgroup" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.description.targetgroup</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisTypeEvidence" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeEvidence" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.evidence</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisTypeSdg" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeSdg" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.sdg</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="searchFilterSynsicrisTypeStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="synsicrisTypeStatus" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.status</value>
             </list>
         </property>
     </bean>

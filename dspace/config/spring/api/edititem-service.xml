@@ -2352,20 +2352,6 @@
                             </property>
                             <property name="submissionDefinition" value="programmes-edit" />
                         </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="programmes-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>cris.policy.group</value>
-                                </list>
-                            </property>
-                        </bean>
                     </list>
                 </entry>
                 <entry key="product">
@@ -2469,20 +2455,6 @@
                                 </value>
                             </property>
                             <property name="submissionDefinition" value="calls-edit" />
-                        </bean>
-                        <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="CUSTOM" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    GROUP
-                                </value>
-                            </property>
-                            <property name="submissionDefinition" value="calls-edit" />
-                            <property name="groups">
-                                <list>
-                                    <value>${funder-organisational-managers.group}</value>
-                                </list>
-                            </property>
                         </bean>
                     </list>
                 </entry>

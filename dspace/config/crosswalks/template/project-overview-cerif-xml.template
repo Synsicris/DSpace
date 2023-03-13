@@ -590,8 +590,10 @@
 				<Date>@dc.date.issued@</Date>
 				<PrizeMoney>@oairecerif.amount@</PrizeMoney>
 				<Currency>@oairecerif.amount.currency@</Currency>
-				<Winner>@synsicris.relation.person@</Winner>
-				<Organisation>@synsicris.relation.partner@</Organisation>
+				<Index>
+					<Winner>@synsicris.relation.person@</Winner>
+					<Organisation>@synsicris.relation.partner@</Organisation>
+				</Index>
 				<Donor>@synsicris.contributor.donor@</Donor>
 				<TargetGroup>@dc.description.targetgroup@</TargetGroup>
 

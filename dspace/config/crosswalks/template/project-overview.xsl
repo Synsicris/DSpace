@@ -1442,19 +1442,89 @@ s
 					<xsl:with-param name="value" select="cerif:Currency"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-line-list" >
-					<xsl:with-param name = "key" select="'Ausgezeichnete Person(en)'"/>
-					<xsl:with-param name = "value" select="cerif:Winner"/>
-					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
-				<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-				</xsl:call-template>
+					<fo:table>
+							<fo:table-column column-number="1" column-width="9cm"/>
+							<fo:table-column column-number="2" column-width="9cm"/>
+														
+							<fo:table-header>
+								<fo:table-row>
+								<fo:table-cell border-width="${width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="'Ausgezeichnete Person(en)'"/>
+									</fo:block>
+								</fo:table-cell>
 
-				<xsl:call-template name="key-value-line-list" >
-					<xsl:with-param name = "key" select="'Ausgezeichnete Organisation(en)'"/>
-					<xsl:with-param name = "value" select="cerif:Organisation"/>
-					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
-				<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-				</xsl:call-template>
+								<fo:table-cell border-width="${width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="'Ausgezeichnete Organisation(en)'"/>
+									</fo:block>
+								</fo:table-cell>
+
+								</fo:table-row>
+							</fo:table-header>
+
+							<fo:table-body>
+								<xsl:for-each select="cerif:Index">
+								<fo:table-row>
+									<fo:table-cell border-width="${width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:Winner"/>
+										</fo:block>
+									</fo:table-cell>
+
+									<fo:table-cell border-width="${width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:Organisation"/>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								</xsl:for-each>
+							</fo:table-body>
+							</fo:table>
 
 				<xsl:call-template name="key-value-line-list" >
 					<xsl:with-param name = "key" select="'Initiator(en)'"/>

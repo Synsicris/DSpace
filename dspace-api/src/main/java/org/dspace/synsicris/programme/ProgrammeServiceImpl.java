@@ -9,6 +9,7 @@ package org.dspace.synsicris.programme;
 
 import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.MANAGERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_CALLTOPROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_PROJECT_FUNDERS_GROUP_TEMPLATE;
@@ -24,7 +25,6 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
-import org.dspace.project.util.ProjectConstants;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -67,9 +67,9 @@ public class ProgrammeServiceImpl implements ProgrammeService {
         List<MetadataValue> values =
             itemService.getMetadata(
                 relatedItem,
-                ProjectConstants.MD_RELATION_FUNDINGOBJTOPROGRAMME.schema,
-                ProjectConstants.MD_RELATION_FUNDINGOBJTOPROGRAMME.element,
-                ProjectConstants.MD_RELATION_FUNDINGOBJTOPROGRAMME.qualifier,
+                MD_RELATION_CALLTOPROGRAMME.schema,
+                MD_RELATION_CALLTOPROGRAMME.element,
+                MD_RELATION_CALLTOPROGRAMME.qualifier,
                 null
             );
         UUID programmeUUID = null;

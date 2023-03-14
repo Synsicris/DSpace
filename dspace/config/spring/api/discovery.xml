@@ -2213,6 +2213,11 @@
                 <ref bean="searchFilterSynsicrisRelationPartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchFilterOairecerifEventCountry" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -2231,6 +2236,11 @@
                 <ref bean="searchFilterSynsicrisRelationPartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchFilterOairecerifEventCountry" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <property name="searchSortConfiguration">
@@ -2639,6 +2649,11 @@
                 <ref bean="graphProcEventByTargetGroup" />
                 <ref bean="graphProcEventByPurpose" />
                 <ref bean="graphProcEventByType" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -2648,6 +2663,11 @@
                 <ref bean="graphProcEventByTargetGroup" />
                 <ref bean="graphProcEventByPurpose" />
                 <ref bean="graphProcEventByType" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -7763,6 +7783,16 @@
         <property name="metadataField" value="dc.date.end"/>
         <property name="type" value="date"/>
         <property name="defaultSortOrder" value="asc"/>
+    </bean>
+
+    <bean id="searchFilterTargetGroupsTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="targetGroupsTypes" />
+<!--        <property name="type" value="authority"/>-->
+        <property name="metadataFields">
+            <list>
+                <value>dc.type.targetgroup</value>
+            </list>
+        </property>
     </bean>
 
 

@@ -8746,17 +8746,19 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeRecipientStats" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeRecipientStats" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeRecipient-stats" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
-                <value>synsicris.type.recipient-stats</value>
+                <value>synsicris.type.recipient</value>
             </list>
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisCoverageRegionalsecondary" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisCoverageRegionalsecondary" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisCoverageRegionalsecondary" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.coverage.regionalsecondary</value>
@@ -8764,7 +8766,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeLevel" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeLevel" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeLevel" />
         <property name="metadataFields">
             <list>
@@ -8773,7 +8775,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisLevelEnd" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisLevelEnd" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisLevelEnd" />
         <property name="metadataFields">
             <list>
@@ -8791,8 +8793,9 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisCoverageRegional" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisCoverageRegional" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisCoverageRegional" />
+        <property name="type" value="authority"/>
         <property name="metadataFields">
             <list>
                 <value>synsicris.coverage.regional</value>
@@ -8800,7 +8803,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisType" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisType" />
         <property name="metadataFields">
             <list>
@@ -8818,7 +8821,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeFunctions" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeFunctions" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeFunctions" />
         <property name="metadataFields">
             <list>
@@ -8827,7 +8830,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeAccess" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeAccess" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeAccess" />
         <property name="metadataFields">
             <list>
@@ -8845,7 +8848,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeEvidence" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeEvidence" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeEvidence" />
         <property name="metadataFields">
             <list>
@@ -8854,7 +8857,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeSdg" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeSdg" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeSdg" />
         <property name="metadataFields">
             <list>
@@ -8863,7 +8866,7 @@
         </property>
     </bean>
 
-    <bean id="searchFilterSynsicrisTypeStatus" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <bean id="searchFilterSynsicrisTypeStatus" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="synsicrisTypeStatus" />
         <property name="metadataFields">
             <list>
@@ -8899,22 +8902,6 @@
         </property>
     </bean>
 
-    <!-- End synsicris filter configuration -->
-
-    <!--Sort properties-->
-    <bean id="sortScore" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
-        <property name="defaultSortOrder" value="desc"/>
-    </bean>
-
-    <bean id="sortTitleAsc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
-        <property name="metadataField" value="dc.title"/>
-        <property name="defaultSortOrder" value="asc"/>
-    </bean>
-
-    <bean id="sortTitleDesc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
-        <property name="metadataField" value="dc.title"/>
-        <property name="defaultSortOrder" value="desc"/>
-    </bean>
 
     <bean id="searchFilterPersonCommentDateReminder" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="dateReminder"/>
@@ -8974,6 +8961,24 @@
             </list>
         </property>
     </bean>
+
+    <!-- End synsicris filter configuration -->
+
+    <!--Sort properties-->
+    <bean id="sortScore" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="defaultSortOrder" value="desc"/>
+    </bean>
+
+    <bean id="sortTitleAsc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.title"/>
+        <property name="defaultSortOrder" value="asc"/>
+    </bean>
+
+    <bean id="sortTitleDesc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
+        <property name="metadataField" value="dc.title"/>
+        <property name="defaultSortOrder" value="desc"/>
+    </bean>
+
 
     <bean id="sortDateIssuedDesc" class="org.dspace.discovery.configuration.DiscoverySortFieldConfiguration">
         <property name="metadataField" value="dc.date.issued"/>

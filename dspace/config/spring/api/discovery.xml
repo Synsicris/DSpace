@@ -148,7 +148,6 @@
                 <entry key="RELATION.Project.unexpected_result" value-ref="relationParentProjectUnexpectedResultsConfiguration"/>
                 <entry key="RELATION.Project.workpackage" value-ref="relationParentProjectWorkpackagesConfiguration"/>
                 <entry key="RELATION.Project.impactpathway" value-ref="relationParentProjectImpactpathwaysConfiguration"/>
-                <entry key="RELATION.Project.fundingobjective" value-ref="relationParentProjectFundingobjectivesConfiguration"/>
 
                 <!-- Synsicris Funding Related items -->
                 <entry key="RELATION.Funding.exploitationplan" value-ref="relationFundingExploitationplansConfiguration"/>
@@ -2232,6 +2231,7 @@
     </bean>
 
     <bean id="relationParentProjectMultipleEntitiesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2256,6 +2256,7 @@
     </bean>
 
     <bean id="relationParentProjectApplicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
 		        <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2294,6 +2295,7 @@
     </bean>
 
     <bean id="relationParentProjectAwardsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2318,6 +2320,7 @@
     </bean>
 
     <bean id="relationParentProjectContributionsfundingprogrammeConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2342,6 +2345,7 @@
     </bean>
 
     <bean id="relationParentProjectCooperationpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2390,6 +2394,7 @@
     </bean>
 
     <bean id="relationParentProjectEthicsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2421,49 +2426,6 @@
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
                 <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:ethic</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="relationParentProjectFundingobjectivesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
-        <!--Which sidebar facets are to be displayed-->
-        <property name="sidebarFacets">
-            <list>
-               <ref bean="graphFundingobjectiveSynsicrisTypeSdg" />
-               <ref bean="graphFundingobjectiveSynsicrisRelationProgramme" />
-               <ref bean="graphFundingobjectiveSynsicrisRelationCall" />
-            </list>
-        </property>
-        <!--The search filters which can be used on the discovery search page-->
-        <property name="searchFilters">
-            <list>
-              <ref bean="graphFundingobjectiveSynsicrisTypeSdg" />
-              <ref bean="graphFundingobjectiveSynsicrisRelationProgramme" />
-              <ref bean="graphFundingobjectiveSynsicrisRelationCall" />
-              <ref bean="searchFilterSynsicrisTypeSdg" />
-              <ref bean="searchFilterSynsicrisRelationCall" />
-              <ref bean="searchFilterSynsicrisRelationProgramme" />
-            </list>
-        </property>
-        <!--The sort filters for the discovery search-->
-        <property name="searchSortConfiguration">
-            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
-                <!--<property name="defaultSort" ref="sortDateIssuedDesc"/>-->
-                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
-                <property name="sortFields">
-                    <list>
-                        <ref bean="sortTitleAsc" />
-                        <ref bean="sortLastModified" />
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <!--Any default filter queries, these filter queries will be used for all
-                queries done by discovery for this configuration -->
-        <property name="defaultFilterQueries">
-            <list>
-                <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND entityType_keyword:fundingobjective</value>
             </list>
         </property>
     </bean>
@@ -2532,6 +2494,7 @@
     </bean>
 
     <bean id="relationParentProjectNegativesideeffectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2556,6 +2519,7 @@
     </bean>
 
     <bean id="relationParentProjectExpsocietalimpactsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2601,6 +2565,7 @@
     </bean>
 
     <bean id="relationParentProjectConditionsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2638,6 +2603,7 @@
     </bean>
 
     <bean id="relationParentProjectFundingsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2680,6 +2646,7 @@
     </bean>
 
     <bean id="relationParentProjectGendersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2726,6 +2693,7 @@
     </bean>
 
     <bean id="relationParentProjectInnovationideasConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2763,6 +2731,7 @@
     </bean>
 
     <bean id="relationParentProjectMilestonesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2787,6 +2756,7 @@
     </bean>
 
     <bean id="relationParentProjectStepsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2824,6 +2794,7 @@
     </bean>
 
     <bean id="relationParentProjectPhysicalObjectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2862,6 +2833,7 @@
     </bean>
 
     <bean id="relationParentProjectOpenresearchquestionsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2886,6 +2858,7 @@
     </bean>
 
     <bean id="relationParentProjectPatentsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2910,6 +2883,7 @@
     </bean>
 
     <bean id="relationParentProjectPlanPublicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2934,6 +2908,7 @@
     </bean>
 
     <bean id="relationParentProjectProcessEventsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -2980,6 +2955,7 @@
     </bean>
 
     <bean id="relationParentProjectProjObjectivesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3004,6 +2980,7 @@
     </bean>
 
     <bean id="relationParentProjectIaObjectivesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3028,6 +3005,7 @@
     </bean>
 
     <bean id="relationParentProjectPublicationsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3074,6 +3052,7 @@
     </bean>
 
     <bean id="relationParentProjectProductsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3098,6 +3077,7 @@
     </bean>
 
     <bean id="relationParentProjectResearchResultsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3122,6 +3102,7 @@
     </bean>
 
     <bean id="relationParentProjectInnovationpotentialsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3164,6 +3145,7 @@
     </bean>
 
     <bean id="relationParentProjectSpinoffsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3205,6 +3187,7 @@
     </bean>
 
     <bean id="relationParentProjectStateofartsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3230,6 +3213,7 @@
 
     <!-- Projectpartners related to a project -->
     <bean id="relationFundingProjectpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3255,6 +3239,7 @@
     </bean>
 
     <bean id="relationParentProjectTargetgroupsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3299,6 +3284,7 @@
     </bean>
 
     <bean id="relationParentProjectTasksConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3323,6 +3309,7 @@
     </bean>
 
     <bean id="relationParentProjectUnexpectedResultsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3361,6 +3348,7 @@
     </bean>
 
     <bean id="relationParentProjectWorkpackagesConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3385,6 +3373,7 @@
     </bean>
 
     <bean id="relationParentProjectImpactpathwaysConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3409,6 +3398,7 @@
     </bean>
 
     <bean id="relationParentProjectProjectpartnersConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
@@ -3575,6 +3565,7 @@
     </bean>
 
     <bean id="relationPersonProgrammeConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3599,6 +3590,7 @@
     </bean>
 
     <bean id="relationPersonCallConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3623,6 +3615,29 @@
     </bean>
 
     <bean id="relationPersonFundingobjectiveConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+               <ref bean="graphFundingobjectiveSynsicrisTypeSdg" />
+               <ref bean="graphFundingobjectiveSynsicrisRelationProgramme" />
+               <ref bean="graphFundingobjectiveSynsicrisRelationCall" />
+               <ref bean="searchFilterSynsicrisTypeSdg" />
+               <ref bean="searchFilterSynsicrisRelationCall" />
+               <ref bean="searchFilterSynsicrisRelationProgramme" />
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+              <ref bean="graphFundingobjectiveSynsicrisTypeSdg" />
+              <ref bean="graphFundingobjectiveSynsicrisRelationProgramme" />
+              <ref bean="graphFundingobjectiveSynsicrisRelationCall" />
+              <ref bean="searchFilterSynsicrisTypeSdg" />
+              <ref bean="searchFilterSynsicrisRelationCall" />
+              <ref bean="searchFilterSynsicrisRelationProgramme" />
+            </list>
+        </property>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3647,6 +3662,7 @@
     </bean>
 
     <bean id="relationPersonOrgUnitConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -3671,6 +3687,7 @@
     </bean>
 
     <bean id="relationFundingExploitationplansConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
+        <property name="indexAlways" value="true"/>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">

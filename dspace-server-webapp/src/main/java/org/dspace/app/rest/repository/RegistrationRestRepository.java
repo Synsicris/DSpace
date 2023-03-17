@@ -7,6 +7,7 @@
  */
 package org.dspace.app.rest.repository;
 
+import static org.dspace.app.util.AuthorizeUtil.canManageMemberInSynsicris;
 import static org.dspace.eperson.service.CaptchaService.REGISTER_ACTION;
 
 import java.io.IOException;
@@ -183,7 +184,8 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
                 if (obj == null) {
                     obj = getParentObjectByGroupName(context, group);
                 }
-                if (!authorizeService.isAdmin(context, obj)) {
+                if (!authorizeService.isAdmin(context, obj) &&
+                    !canManageMemberInSynsicris(context, group)) {
                     return false;
                 }
             } else {
@@ -194,12 +196,12 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
     }
 
     private DSpaceObject getParentObjectByGroupName(Context context, Group group) {
-        Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_|programme_))(.*)(_.*)(_group)$");
         Matcher matcher = pattern.matcher(group.getName());
         if (matcher.matches()) {
             UUID uuid = UUIDUtils.fromString(matcher.group(2));
             try {
-                return communityService.find(context, uuid);
+                return dSpaceObjectUtils.findDSpaceObject(context, uuid);
             } catch (SQLException e) {
                 return null;
             }

@@ -487,6 +487,13 @@
         <qualifier>commentProjectVersion</qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>relation</element>
+        <qualifier>commentBoard</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
     <dc-type>
         <schema>synsicris</schema>

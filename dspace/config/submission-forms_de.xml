@@ -7077,6 +7077,19 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <visibility>hidden</visibility>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentBoard</dc-qualifier>
+          <label>Related Board (IPW, EXP, INTERIM or their steps)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
     </form>
     <form name="internalacc">
       <row>

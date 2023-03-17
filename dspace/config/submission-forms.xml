@@ -7067,6 +7067,19 @@ it, please enter the types and the actual numbers or codes.</hint>
           <visibility>hidden</visibility>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentBoard</dc-qualifier>
+          <label>Related Board (IPW, EXP, INTERIM or their steps)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
     </form>
     <form name="internalacc">
       <row>

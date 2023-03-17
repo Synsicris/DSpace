@@ -25,8 +25,6 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.util.AuthorizeUtil;
-import org.dspace.authorize.factory.AuthorizeServiceFactory;
-import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.content.factory.ContentServiceFactory;
@@ -50,14 +48,12 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
 
     private ItemService itemService;
     private GroupService groupService;
-    private AuthorizeService authorizeService;
     private Map<UUID, Set<Integer>> alreadyProcessed;
 
     @Override
     public void initialize() throws Exception {
         this.itemService = ContentServiceFactory.getInstance().getItemService();
         this.groupService = EPersonServiceFactory.getInstance().getGroupService();
-        this.authorizeService = AuthorizeServiceFactory.getInstance().getAuthorizeService();
     }
 
     @Override
@@ -144,9 +140,7 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         try {
             createProgrammeGroup(context, memberGroupName);
             createProgrammeGroup(context, projectFunderGroupName);
-            Group managerGroup = createProgrammeGroup(context, managerGroupName);
-            addPolicyGroupMetadata(context, dso, managerGroup);
-            authorizeService.addPolicy(context, dso, Constants.ADMIN, managerGroup);
+            addPolicyGroupMetadata(context, dso, createProgrammeGroup(context, managerGroupName));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -183,23 +183,23 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
                 if (obj == null) {
                     obj = getParentObjectByGroupName(context, group);
                 }
-                if (authorizeService.isAdmin(context, obj)) {
-                    return true;
+                if (!authorizeService.isAdmin(context, obj)) {
+                    return false;
                 }
             } else {
                 throw new UnprocessableEntityException("Group uuid " + groupUuid.toString() + " not valid!");
             }
         }
-        return false;
+        return true;
     }
 
     private DSpaceObject getParentObjectByGroupName(Context context, Group group) {
-        Pattern pattern = Pattern.compile("^((?:project_|funding_|programme_))(.*)(_.*)(_group)$");
+        Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)(_group)$");
         Matcher matcher = pattern.matcher(group.getName());
         if (matcher.matches()) {
             UUID uuid = UUIDUtils.fromString(matcher.group(2));
             try {
-                return dSpaceObjectUtils.findDSpaceObject(context, uuid);
+                return communityService.find(context, uuid);
             } catch (SQLException e) {
                 return null;
             }

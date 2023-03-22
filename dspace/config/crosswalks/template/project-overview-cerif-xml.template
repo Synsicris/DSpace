@@ -176,6 +176,18 @@
 				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
 				<Status>@synsicris.type.status@</Status>	
 
+        <!-- associated tasks -->
+				<Task>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.task.start@
+						<Index>
+							<Title>@dc.title@</Title>
+							<Description>@dc.description@</Description>
+						</Index>
+						@if.hasEntityType.task.end@
+					@relation.workingplan-relation-step.end@
+				</Task>
+
 		  </Index>
 
 		@relation.workpackage.end@
@@ -518,7 +530,7 @@
 	</Step>
 
 	<!--########################################################################-->
-  <!-- attributes from the steps entity (based on the discovery.xml) -->
+  <!-- attributes from the spinoff entity (based on the discovery.xml) -->
 	<!--########################################################################-->
 
 	<Spinoff>
@@ -549,24 +561,24 @@
 				<!-- attributes from the inline-group synsicris.date.funding -->
 				<Funding>
 					@group.synsicris-date-funding.start@
-
-						<Year>synsicris.date.funding</Year>
-						<Title>synsicris.title.funding</Title>
-						<Amount>synsicris.amount.funding</Amount>
-						<Currency>synsicris.amount.currencyfunding</Currency>
-						<Description>synsicris.description.nonfinancalsupport</Description>
-
+					<Index>
+						<Year>@synsicris.date.funding@</Year>
+						<Title>@synsicris.title.funding@</Title>
+						<Amount>@synsicris.amount.funding@</Amount>
+						<Currency>@synsicris.amount.currencyfunding@</Currency>
+						<Description>@synsicris.description.nonfinancalsupport@</Description>
+					</Index>
 					@group.synsicris-date-funding.end@
 				</Funding>	
 
 				<!-- attributes from the inline-group synsicris.date.performance -->
 				<Performance>
 					@group.synsicris-date-performance.start@
-
+					<Index>
 						<Year>@synsicris.date.performance@</Year>
 						<Amount>@synsicris.amount.performance@</Amount>
 						<Currency>@synsicris.amount.currencyperformance@</Currency>
-
+					</Index>
 					@group.synsicris-date-performance.end@
 				</Performance> 
 
@@ -590,10 +602,8 @@
 				<Date>@dc.date.issued@</Date>
 				<PrizeMoney>@oairecerif.amount@</PrizeMoney>
 				<Currency>@oairecerif.amount.currency@</Currency>
-				<Index>
-					<Winner>@synsicris.relation.person@</Winner>
-					<Organisation>@synsicris.relation.partner@</Organisation>
-				</Index>
+				<Winner>@synsicris.relation.person@</Winner>
+				<Organisation>@synsicris.relation.partner@</Organisation>
 				<Donor>@synsicris.contributor.donor@</Donor>
 				<TargetGroup>@dc.description.targetgroup@</TargetGroup>
 

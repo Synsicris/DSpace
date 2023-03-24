@@ -114,7 +114,7 @@
 
                 <!-- Synsicris Parent Project Related items -->
                 <entry key="RELATION.last_visible_version" value-ref="relationLastVisibleVersionConfiguration"/>
-                <entry key="RELATION.Project.multiple_entities" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
+                <entry key="RELATION.Project.multiple_involved" value-ref="relationParentProjectMultipleEntitiesConfiguration"/>
                 <entry key="RELATION.Project.application" value-ref="relationParentProjectApplicationsConfiguration"/>
                 <entry key="RELATION.Project.award" value-ref="relationParentProjectAwardsConfiguration"/>
                 <entry key="RELATION.Project.contribution_fundingprogramme" value-ref="relationParentProjectContributionsfundingprogrammeConfiguration"/>
@@ -1631,7 +1631,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>search.resourcetype:Item AND !entityType:call AND !entityType:comment AND !entityType:fundingobjective AND !entityType:OrgUnit AND !entityType:Person AND !entityType:programme AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->
@@ -1675,7 +1675,7 @@
             queries done by discovery for this configuration -->
         <property name="defaultFilterQueries">
             <list>
-                <value>search.resourcetype:Item AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
+                <value>search.resourcetype:Item AND !entityType:call AND !entityType:comment AND !entityType:fundingobjective AND !entityType:OrgUnit AND !entityType:Person AND !entityType:programme AND !entityType:Project AND !entityType:Funding AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>
@@ -1793,7 +1793,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>
@@ -1823,7 +1823,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
     </bean>
@@ -2250,7 +2250,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find related items. The placeholder {0} will be replaced with scope (UUID of item)-->
-                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:cooperationpartner)</value>
+                <value>synsicris.relation.project_authority:{0} AND search.resourcetype:Item AND (entityType_keyword:projectpartner OR entityType_keyword:cooperationpartner OR entityType_keyword:targetgroup)</value>
             </list>
         </property>
     </bean>
@@ -5718,7 +5718,6 @@
         <property name="sortOrderSidebar" value="COUNT"/>
         <property name="sortOrderFilterPage" value="COUNT"/>
         <property name="isOpenByDefault" value="true"/>
-
 
     </bean>
 

@@ -603,7 +603,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Verantwortliche Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -716,7 +716,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Verantwortliche Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -794,7 +794,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Verantwortliche Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -7082,7 +7082,7 @@ Z. B. wenn Frauen und Männer unterschiedlich von einem Problem betroffen sind o
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentBoard</dc-qualifier>
-          <label>Related Board (IPW, EXP, INTERIM or their steps)</label>
+          <label>Zugehöriger Eintrag</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />

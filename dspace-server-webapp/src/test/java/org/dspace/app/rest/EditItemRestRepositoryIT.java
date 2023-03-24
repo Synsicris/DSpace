@@ -1309,13 +1309,13 @@ public class EditItemRestRepositoryIT extends AbstractControllerIntegrationTest 
             operations.clear();
 
             operations.add(
-                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/0", abstract1)
+                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/0", abstract2)
             );
             operations.add(
-                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/1", abstract2)
+                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/1", abstract3)
             );
             operations.add(
-                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/2", abstract3)
+                new ReplaceOperation("/sections/titleAndIssuedDate/dc.description.abstract/2", abstract1)
             );
 
             patchBody = getPatchContent(operations);

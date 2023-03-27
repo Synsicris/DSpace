@@ -157,7 +157,7 @@
     <bean id="pubmedEULiveImportDataProvider" class="org.dspace.external.provider.impl.LiveImportDataProvider">
         <property name="metadataSource" ref="PubmedEuropeImportService"/>
         <property name="sourceIdentifier" value="pubmedeu"/>
-        <property name="recordIdMetadata" value="dc.identifier.other"/>
+        <property name="recordIdMetadata" value="dc.identifier.pmid"/>
         <property name="supportedEntityTypes">
             <list>
                 <value>Publication</value>

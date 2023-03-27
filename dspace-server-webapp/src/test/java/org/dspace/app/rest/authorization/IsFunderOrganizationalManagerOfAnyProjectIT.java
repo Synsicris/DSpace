@@ -10,7 +10,7 @@ package org.dspace.app.rest.authorization;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import org.dspace.app.rest.authorization.impl.IsFunderOrganizationalManager;
+import org.dspace.app.rest.authorization.impl.IsFunderOrganizationalManagerOfAnyProject;
 import org.dspace.app.rest.converter.EPersonConverter;
 import org.dspace.app.rest.model.EPersonRest;
 import org.dspace.app.rest.projection.Projection;
@@ -24,11 +24,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Test of {@link IsFunderOrganizationalManager} implementation.
+ * Test of {@link IsFunderOrganizationalManagerOfAnyProject} implementation.
  *
  * @author Mohamed Eskander (mohamed.eskander at 4science.it)
  */
-public class IsFunderOrganizationalManagerIT extends AbstractControllerIntegrationTest {
+public class IsFunderOrganizationalManagerOfAnyProjectIT extends AbstractControllerIntegrationTest {
 
     private AuthorizationFeature isFunderOrganizationalManager;
 
@@ -55,7 +55,8 @@ public class IsFunderOrganizationalManagerIT extends AbstractControllerIntegrati
 
         context.restoreAuthSystemState();
 
-        isFunderOrganizationalManager = authorizationFeatureService.find(IsFunderOrganizationalManager.NAME);
+        isFunderOrganizationalManager =
+            authorizationFeatureService.find(IsFunderOrganizationalManagerOfAnyProject.NAME);
 
     }
 

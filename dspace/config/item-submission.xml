@@ -491,6 +491,11 @@
       <processing-class>org.dspace.app.rest.submit.step.SherpaPolicyStep</processing-class>
       <type>sherpaPolicy</type>
     </step-definition>
+    <step-definition id="upload-int" mandatory="false" opened="false">
+      <heading>submit.progressbar.upload</heading>
+      <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
+      <type>upload</type>
+    </step-definition>
   </step-definitions>
   <submission-definitions>
     <submission-process name="edit_grants">
@@ -534,6 +539,7 @@
     </submission-process>
     <submission-process name="interim_report-edit_form">
       <step id="interim_report-edit_form" />
+      <step id="upload-int" />
     </submission-process>
     <submission-process name="patents">
       <step id="patents" />

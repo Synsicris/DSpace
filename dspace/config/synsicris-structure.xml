@@ -77,6 +77,7 @@
 	    <policy-group rpType="admin">Administrator</policy-group>
 	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="read">system_members_group</policy-group>
+	    <policy-group rpType="add">Administrator</policy-group>
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>
@@ -96,6 +97,7 @@
 	    <policy-group rpType="admin">Administrator</policy-group>
 	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="read">system_members_group</policy-group>
+	    <policy-group rpType="add">Administrator</policy-group>
 	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
 	    <policy-group rpType="item_read">system_members_group</policy-group>

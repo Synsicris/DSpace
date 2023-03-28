@@ -52,6 +52,8 @@ public class ProjectConstants {
 
     public static final String FUNDING_COORDINATORS_GROUP_TEMPLATE = "funding_%s_coordinators_group";
 
+    public static final String MANAGERS_ROLE = "managers";
+
     public static final String MEMBERS_ROLE = "members";
 
     public static final String PROJECT_MEMBERS_GROUP_TEMPLATE = "project_%s_members_group";

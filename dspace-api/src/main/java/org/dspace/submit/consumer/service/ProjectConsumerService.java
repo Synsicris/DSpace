@@ -92,4 +92,6 @@ public interface ProjectConsumerService {
 
     public Iterator<Item> findVersionedProjectItemsBy(Context context, UUID projectId);
 
+    Item getProjectItemByRelatedItem(Context context, Item relatedItem) throws SQLException;
+
 }

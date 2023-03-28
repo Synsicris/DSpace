@@ -495,19 +495,36 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
-                ProjectConstants.MD_PROJECT_RELATION.element,
-                ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
+        return Optional.ofNullable(
+            this.getProjectItemByRelatedItem(context, item)
+        )
+        .map(projectItem -> {
+            try {
+                return this.getProjectCommunity(context, projectItem);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        })
+        .orElse(null);
+    }
+
+    @Override
+    public Item getProjectItemByRelatedItem(Context context, Item relatedItem) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(relatedItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+            ProjectConstants.MD_PROJECT_RELATION.element,
+            ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
-        String uuid = values.get(0).getAuthority();
+        String uuid =
+            Optional.ofNullable(values.get(0))
+                .map(MetadataValue::getAuthority)
+                .orElse(null);
+        Item projectItem = null;
         if (StringUtils.isNotBlank(uuid)) {
-            // item that represent Project community
-            Item projectItem = itemService.find(context, UUID.fromString(uuid));
-            return getProjectCommunity(context, projectItem);
+            projectItem = itemService.find(context, UUID.fromString(uuid));
         }
-        return null;
+        return projectItem;
     }
 
     @Override

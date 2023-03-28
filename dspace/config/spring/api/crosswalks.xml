@@ -676,12 +676,16 @@
 			<map>
 				<entry key="authority" value-ref="authorityConditionEvaluator" />
 				<entry key="metadata" value-ref="metadataConditionEvaluator" />
+				<entry key="hasEntityType" value-ref="entityTypeValueEvaluator" />
 			</map>
 		</constructor-arg>
 	</bean>
 	
 	<bean class="org.dspace.content.integration.crosswalks.evaluators.AuthorityNotBlankCondition" id="authorityConditionEvaluator"/>
 	<bean class="org.dspace.content.integration.crosswalks.evaluators.HasMetadataCondition" id="metadataConditionEvaluator"/>
+	<bean class="org.dspace.content.integration.crosswalks.evaluators.HasMetadataValueCondition" id="entityTypeValueEvaluator">
+	   <property name="metadataField" value="dspace.entity.type"/>
+	</bean>
 
 	<!-- Item export format SERVICE -->
 	<bean class="org.dspace.content.integration.crosswalks.service.ItemExportFormatServiceImpl"/>

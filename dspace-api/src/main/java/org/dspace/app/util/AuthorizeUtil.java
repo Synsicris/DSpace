@@ -657,7 +657,7 @@ public class AuthorizeUtil {
      * @return
      * @throws SQLException
      */
-    private static boolean canManageMemberInSynsicris(Context context, Group group) throws SQLException {
+    public static boolean canManageMemberInSynsicris(Context context, Group group) throws SQLException {
         GroupService groupService = EPersonServiceFactory.getInstance().getGroupService();
         return groupService.isProjectManagersGroup(context, group.getID()) ||
             groupService.isOrganisationalManager(context, context.getCurrentUser());

@@ -33,11 +33,11 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-@AuthorizationFeatureDocumentation(name = IsFunderOrganizationalManager.NAME,
+@AuthorizationFeatureDocumentation(name = IsFunderOrganizationalManagerOfAnyProject.NAME,
     description = "Used to verify if the given user able to assign/revoke project manager role to system user")
-public class IsFunderOrganizationalManager implements AuthorizationFeature {
+public class IsFunderOrganizationalManagerOfAnyProject implements AuthorizationFeature {
 
-    public static final String NAME = "isFunderOrganizationalManager";
+    public static final String NAME = "IsFunderOrganizationalManagerOfAnyProject";
 
     @Autowired
     private GroupService groupService;

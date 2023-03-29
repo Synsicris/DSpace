@@ -282,7 +282,8 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
             throw new RuntimeException("Unable to find Community with id = " + id, e);
         }
         try {
-            communityService.delete(context, community);
+            communityService.deleteVersionedItems(context, community);
+            communityService.delete(context, context.reloadEntity(community));
         } catch (SQLException e) {
             throw new RuntimeException("Unable to delete Community with id = " + id, e);
         } catch (IOException e) {

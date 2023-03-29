@@ -60,6 +60,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private static final String SOLR_FILTER_VERSION = "synsicris.version:\"%s\"";
     private static final String SOLR_FILTER_PROJECT_UNIQUEID =
         "synsicris.uniqueid:%s AND dspace.entity.type:Project";
+    private static final String SOLR_FILTER_PROJECTS =
+        "synsicris.uniqueid:* AND dspace.entity.type:Project";
     private static final String SOLR_FILTER_VERSION_PROJECT =
         "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
@@ -621,6 +623,20 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public boolean isProjectItem(Item item) {
         return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
+    }
+
+    @Override
+    public Iterator<Item> findVersionedProjectsInCommunity(Context context, Community projectCommunity) {
+        return findVersionedProjectsByCommunity(context, projectCommunity);
+    }
+
+    private Iterator<Item> findVersionedProjectsByCommunity(Context context, Community projectCommunity) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(SOLR_FILTER_PROJECTS);
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 
 }

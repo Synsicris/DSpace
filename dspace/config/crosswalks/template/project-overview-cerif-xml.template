@@ -180,13 +180,103 @@
 				<Task>
 					@relation.workingplan-relation-step.start@
 						@if.hasEntityType.task.start@
-						<Index>
-							<Title>@dc.title@</Title>
-							<Description>@dc.description@</Description>
-						</Index>
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+							</Index>
 						@if.hasEntityType.task.end@
 					@relation.workingplan-relation-step.end@
 				</Task>
+
+        <!-- associated process events -->
+
+				<ProcessEvent>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.process.start@
+							<Index>
+
+								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+								<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+								<Title>@dc.title@</Title>
+								<Purpose>@synsicris.type.purpose@</Purpose>
+								<Description>@dc.description@</Description>
+
+								<!-- attributes from the frequency inline-group-->
+								<Frequency>
+									@group.dc-type.start@
+										<Type>@dc.type@</Type>
+										<Duration>@synsicris.duration@</Duration>
+										<Frequency>@synsicris.type.frequency@</Frequency>
+										<Period>@synsicris.type.period@</Period>
+									@group.dc-type.end@
+								</Frequency>
+
+								<!-- attributes from the date inline-group-->
+								<Date>
+									@group.synsicris-type.start@
+										<Title>@synsicris.title.event@</Title>
+										<StartDate>@oairecerif.event.startDate@</StartDate>
+										<EndDate>@oairecerif.event.endDate@</EndDate>
+										<Duration>@synsicris.duration@</Duration>
+										<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+										<Place>@oairecerif.event.place@</Place>
+										<Country>@oairecerif.event.country@</Country>
+									@group.synsicris-type.end@
+								</Date>
+
+							</Index>
+						@if.hasEntityType.process.end@
+					@relation.workingplan-relation-step.end@
+				</ProcessEvent>
+
+        <!-- associated physical objects -->
+				<PhysicalObject>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.physical_object.start@
+							<Index>
+
+								<!-- direct attributes (basic accordion) -->
+								<Title>@dc.title@</Title>
+								<Type>@dc.type@</Type>
+								<Description>@dc.description@</Description>
+
+								<!-- attributes from the results accordion-->
+								<Result>
+									<Function>@synsicris.type.functions@</Function>
+									<ContactInformation>@synsicris.description@</ContactInformation>
+									<Accessibility>@synsicris.type.access@</Accessibility>
+									<WebAddress>@oairecerif.identifier.url@</WebAddress>
+								</Result>
+
+							</Index>
+						@if.hasEntityType.physical_object.end@
+					@relation.workingplan-relation-step.end@
+				</PhysicalObject>
+
+        <!-- associated planned publications -->
+				<PlannedPublication>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.plan_publication.start@
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+								<TargetAudience>@dc.audience@</TargetAudience>
+							</Index>
+						@if.hasEntityType.plan_publication.end@
+					@relation.workingplan-relation-step.end@
+				</PlannedPublication>
+
+        <!-- associated milestones -->
+				<Milestone>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.milestone.start@
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+							</Index>
+						@if.hasEntityType.milestone.end@
+					@relation.workingplan-relation-step.end@
+				</Milestone>
 
 		  </Index>
 
@@ -793,6 +883,8 @@
 					<Name>@synsicris.personleader@</Name>
 					<Degree>@synsicris.personleader.degree@</Degree>
 					<Gender>@synsicris.personleader.gender@</Gender>
+					<Phone>@synsicris.personleader.phone@</Phone>
+					<EMail>@synsicris.personleader.email@</EMail>
 				</ImportLead>
 
       </Index>
@@ -853,6 +945,138 @@
 					<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
 					<LocationType>@synsicris.subject.urbanrural@</LocationType>
 				</Classification>
+
+				<!-- associated steps -->
+				<Step>
+					@relation.step.start@
+						<Index>
+
+							<!-- direct attributes (basic accordion) -->
+							<Partner>@synsicris.relation.partner@</Partner>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Title>@dc.title@</Title>
+							<Type>@dc.type@</Type>
+							<Date>@synsicris.date@</Date>
+							<Description>@dc.description@</Description>
+
+						</Index>
+					@relation.step.end@
+				</Step>
+
+				<!-- associated innovation potential -->
+				<InnovationPotential>
+					@relation.innovationpotential.start@
+
+						<Index>
+
+							<!-- direct attributes (basic accordion) -->
+							<Title>@dc.title@</Title>
+							<Type>@dc.type@</Type>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Description>@dc.description@</Description>
+
+							<!-- attributes from the Applicability accordion-->
+							<Applicability>
+								<Novelty>@synsicris.description.applicability1@</Novelty>
+								<Efficiency>@synsicris.description.applicability2@</Efficiency>
+								<Practicability>@synsicris.description.applicability3@</Practicability>
+								<Requirements>@synsicris.description.applicability4@</Requirements>
+								<Prospects>@synsicris.description.applicability5@</Prospects>
+							</Applicability>
+
+							<!-- attributes from the RegionalScope accordion-->
+							<RegionalScope>
+								<PrimaryField>@synsicris.coverage.regionalprimary@</PrimaryField>
+								<LaterDissimination>@synsicris.coverage.regionalsecondary@</LaterDissimination>
+								<Description>@synsicris.description.regional@</Description>
+							</RegionalScope>
+
+							<!-- attributes from the SRL/TRL accordion-->
+							<SRLTRL>
+								<DevelopmentProjectStart>@synsicris.description.start@</DevelopmentProjectStart>
+								<DevelopmentProjectEnd>@synsicris.description.end@</DevelopmentProjectEnd>
+								<Selection>@synsicris.type.level@</Selection>
+								<ReadinessProjectStart>@synsicris.level.start@</ReadinessProjectStart>
+								<ReadinessProjectEnd>@synsicris.level.end@</ReadinessProjectEnd>
+							</SRLTRL>
+
+						</Index>
+
+					@relation.innovationpotential.end@
+			  </InnovationPotential>
+
+				<!-- associated events -->
+				<Event>
+					@relation.Event.start@
+
+						<Index>
+
+							<!-- direct attributes (basic accordion) -->
+							<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
+							<Type>@dc.type@</Type>
+							<Title>@dc.title@</Title>
+							<Purpose>@synsicris.type.purpose@</Purpose>
+							<Description>@dc.description@</Description>
+							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+							<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+
+							<!-- attributes from the Result accordion-->
+							<Result>
+								<StartDate>@oairecerif.event.startDate@</StartDate>
+								<EndDate>@oairecerif.event.endDate</EndDate>
+								<Duration>@synsicris.duration@</Duration>
+								<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+								<City>@oairecerif.event.place@</City>
+								<Country>@oairecerif.event.country@</Country>
+							</Result>
+
+						</Index>
+
+					@relation.Event.end@
+				</Event>
+
+				<!-- associated process events -->
+				<ProcessEvent>
+					@relation.processevent.start@
+
+						<Index>
+							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Title>@dc.title@</Title>
+							<Purpose>@synsicris.type.purpose@</Purpose>
+							<Description>@dc.description@</Description>
+
+							<!-- attributes from the frequency inline-group-->
+							<Frequency>
+								@group.dc-type.start@
+
+									<Type>@dc.type@</Type>
+									<Duration>@synsicris.duration@</Duration>
+									<Frequency>@synsicris.type.frequency@</Frequency>
+									<Period>@synsicris.type.period@</Period>
+
+								@group.dc-type.end@
+							</Frequency>
+
+							<!-- attributes from the date inline-group-->
+							<Date>
+								@group.synsicris-type.start@
+
+									<Title>@synsicris.title.event@</Title>
+									<StartDate>@oairecerif.event.startDate@</StartDate>
+									<EndDate>@oairecerif.event.endDate@</EndDate>
+									<Duration>@synsicris.duration@</Duration>
+									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+									<Place>@oairecerif.event.place@</Place>
+									<Country>@oairecerif.event.country@</Country>
+
+								@group.synsicris-type.end@
+							</Date>
+							
+						</Index>
+
+					@relation.processevent.end@
+				</ProcessEvent>
 
 		  </Index>
 

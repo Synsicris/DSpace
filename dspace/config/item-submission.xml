@@ -105,6 +105,11 @@
       <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
       <type>upload</type>
     </step-definition>
+    <step-definition id="upload-int" mandatory="false" opened="false">
+      <heading>submit.progressbar.upload-int</heading>
+      <processing-class>org.dspace.app.rest.submit.step.UploadStep</processing-class>
+      <type>upload</type>
+    </step-definition>
     <step-definition id="patents" mandatory="true" opened="false">
       <heading>submit.progressbar.describe.patents</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -534,6 +539,7 @@
     </submission-process>
     <submission-process name="interim_report-edit_form">
       <step id="interim_report-edit_form" />
+      <step id="upload-int" />
     </submission-process>
     <submission-process name="patents">
       <step id="patents" />

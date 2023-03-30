@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -40,6 +41,7 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.MetadataFieldService;
 import org.dspace.content.service.MetadataSchemaService;
 import org.dspace.core.Context;
+import org.dspace.core.I18nUtil;
 import org.dspace.services.factory.DSpaceServicesFactory;
 
 /**
@@ -632,6 +634,47 @@ public class DSpaceCSV implements Serializable {
             stringBuilder.append(csvLine).append("\n");
         }
         return IOUtils.toInputStream(stringBuilder.toString(), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Creates and returns an InputStream from the CSV Lines in this DSpaceCSV
+     * and translates the headings metadata
+     *
+     * @return  The InputStream created from the CSVLines in this DSpaceCSV
+     * with translated headings metadata
+     */
+    public InputStream getInputStream(String prefix) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int index = 0;
+        for (String csvLine : getCSVLinesAsStringArray()) {
+            if (index++ == 0) {
+                csvLine = translateHeaderLine(csvLine, prefix);
+            }
+            stringBuilder.append(csvLine).append("\n");
+        }
+        return IOUtils.toInputStream(stringBuilder.toString(), StandardCharsets.UTF_8);
+    }
+
+    private String translateHeaderLine(String csvLine, String prefix) {
+        String[] headers =  csvLine.split(fieldSeparator);
+
+        for (int i = 2 ; i < headers.length; i++) {
+            headers[i] = getMessage(prefix, headers[i]);
+        }
+
+        return StringUtils.joinWith(fieldSeparator, headers);
+    }
+
+    private String getMessage(String prefix, String metadata) {
+        String message = I18nUtil.getMessage(prefix + metadata);
+
+        if (metadata.contains("[") && metadata.contains("]")) {
+            String lang = metadata.substring(metadata.indexOf("[") + 1, metadata.indexOf("]"));
+            String metadataWithoutLang = prefix + metadata.replace("[" + lang + "]", "");
+            message = I18nUtil.getMessage(metadataWithoutLang , new Locale(lang));
+        }
+
+        return message.replace(prefix, "");
     }
 
     /**

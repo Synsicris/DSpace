@@ -353,6 +353,7 @@ iiif.enabled = false
 system_members.group =
 funder-organisational-managers.group =
 funders-project-managers.group =
+funders-readers.group =
 project.template-id =
 funding.template-id =
 project.parent-community-id =

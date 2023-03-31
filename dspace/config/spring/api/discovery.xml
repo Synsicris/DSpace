@@ -226,9 +226,9 @@
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
                 <entry key="allProjectItemsForAdminAndFunders" value-ref="allProjectItemsForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForAdminAndFunders" value-ref="firstStepSearchProjectsForAdminAndFundersConfiguration" />
-                <entry key="firstStepSearchAllProjectForAdminAndFunders" value-ref="firstStepSearchAllProjectForAdminAndFundersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForAdminAndFunders" value-ref="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForMembers" value-ref="firstStepSearchProjectsForMembersConfiguration" />
-                <entry key="firstStepSearchAllProjectForMembers" value-ref="firstStepSearchAllProjectForMembersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForMembers" value-ref="firstStepSearchBrowseAllProjectForMembersConfiguration" />
                 <entry key="secondStepSearchProjectItems" value-ref="secondStepSearchProjectItemsConfiguration" />
                 <entry key="secondStepSearchProjectItemsForAdminAndFunders" value-ref="secondStepSearchProjectItemsForAdminAndFundersConfiguration" />
 
@@ -1798,7 +1798,7 @@
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForAdminAndFundersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForAdminAndFunders" />
@@ -1828,7 +1828,7 @@
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForMembersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForMembersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForMembers" />

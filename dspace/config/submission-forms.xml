@@ -603,7 +603,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Responsible Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -716,7 +716,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Responsible Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -794,7 +794,7 @@
         <field>
           <dc-schema>synsicris</dc-schema>
           <dc-element>relation</dc-element>
-          <dc-qualifier>partner-wp</dc-qualifier>
+          <dc-qualifier>partnerwp</dc-qualifier>
           <label>Responsible Organisation</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
@@ -5340,6 +5340,75 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <hint>Please select one or more stakeholder group(s).</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Societal area of the stakeholder group</label>
+          <input-type value-pairs-name="targetgroup_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The basic classification of the stakeholder group into a societal area determines further queries, e.g. on the economic sector, the policy-making level and civil society</hint>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Economic sector</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy</type-bind>
+          <visibility>hidden</visibility>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>enterprise</dc-qualifier>
+          <label>Size of business</label>
+          <input-type value-pairs-name="enterprise_size">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Select the addressed policy level (multiple selection possible)</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Policy makers, Public institutions</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>urbanrural</dc-qualifier>
+          <label>Locating the group of actors</label>
+          <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
     </form>
     <form name="events_result">
       <row>
@@ -5467,6 +5536,75 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <repeatable>false</repeatable>
           <required />
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Societal area of the stakeholder group</label>
+          <input-type value-pairs-name="targetgroup_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>The basic classification of the stakeholder group into a societal area determines further queries, e.g. on the economic sector, the policy-making level and civil society</hint>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Economic sector</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy</type-bind>
+          <visibility>hidden</visibility>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>enterprise</dc-qualifier>
+          <label>Size of business</label>
+          <input-type value-pairs-name="enterprise_size">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Select the addressed policy level (multiple selection possible)</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Policy makers, Public institutions</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>urbanrural</dc-qualifier>
+          <label>Locating the group of actors</label>
+          <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>
@@ -7060,6 +7198,19 @@ it, please enter the types and the actual numbers or codes.</hint>
           <dc-element>relation</dc-element>
           <dc-qualifier>commentProjectVersion</dc-qualifier>
           <label>Related Project</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>commentBoard</dc-qualifier>
+          <label>Related Board or steps (IPW, Exploitation Plan, Interim Report or children)</label>
           <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />

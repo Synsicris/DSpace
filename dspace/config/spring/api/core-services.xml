@@ -203,6 +203,7 @@
     <bean class="org.dspace.submit.consumer.service.ProjectConsumerServiceImpl" />
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisProjectEntityDeleteService" />
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisCommentDeleteService" />
+    <bean class="org.dspace.synsicris.programme.ProgrammeServiceImpl" />
 
 </beans>
 

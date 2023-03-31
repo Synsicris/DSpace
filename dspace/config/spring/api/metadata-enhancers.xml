@@ -172,4 +172,52 @@
         <property name="virtualQualifier" value="oairecerif.fundingParent" />
     </bean>
 
+    <bean class="org.dspace.content.enhancer.impl.MetadataCopiedEnhancer" >
+        <property name="sourceEntityType" value="Event" />
+        <property name="relatedEntityType" value="targetgroup" />
+        <property name="relationMetadataField" value="synsicris.relation.targetgroup" />
+        <property name="originalMetadataFields" ref="originalMetadataFields" />
+        <property name="copiedMetadataFields" ref="copiedMetadataFields" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.MetadataCopiedEnhancer" >
+        <property name="sourceEntityType" value="targetgroup" />
+        <property name="relatedEntityType" value="Event" />
+        <property name="relationMetadataField" value="synsicris.relation.targetgroup" />
+        <property name="originalMetadataFields" ref="originalMetadataFields" />
+        <property name="copiedMetadataFields" ref="copiedMetadataFields" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.MetadataCopiedEnhancer" >
+        <property name="sourceEntityType" value="process_event" />
+        <property name="relatedEntityType" value="targetgroup" />
+        <property name="relationMetadataField" value="synsicris.relation.targetgroup" />
+        <property name="originalMetadataFields" ref="originalMetadataFields" />
+        <property name="copiedMetadataFields" ref="copiedMetadataFields" />
+    </bean>
+
+    <bean class="org.dspace.content.enhancer.impl.MetadataCopiedEnhancer" >
+        <property name="sourceEntityType" value="targetgroup" />
+        <property name="relatedEntityType" value="process_event" />
+        <property name="relationMetadataField" value="synsicris.relation.targetgroup" />
+        <property name="originalMetadataFields" ref="originalMetadataFields" />
+        <property name="copiedMetadataFields" ref="copiedMetadataFields" />
+    </bean>
+
+    <util:list id="originalMetadataFields" value-type="java.lang.String">
+        <value>dc.type</value>
+        <value>synsicris.subject.nace</value>
+        <value>synsicris.subject.enterprise</value>
+        <value>synsicris.subject.political</value>
+        <value>synsicris.subject.urbanrural</value>
+    </util:list>
+
+    <util:list id="copiedMetadataFields" value-type="java.lang.String">
+        <value>dc.type.targetgroup</value>
+        <value>synsicris.subject.nace</value>
+        <value>synsicris.subject.enterprise</value>
+        <value>synsicris.subject.political</value>
+        <value>synsicris.subject.urbanrural</value>
+    </util:list>
+
 </beans>

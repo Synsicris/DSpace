@@ -55,6 +55,7 @@
         <property name="map">
             <map>
                 <entry key="upload" value-ref="uploadConfigurationDefault" />
+                <entry key="upload-int" value-ref="uploadConfigurationDefault" />
             </map>
         </property>
     </bean>

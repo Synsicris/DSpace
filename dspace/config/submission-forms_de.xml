@@ -5349,6 +5349,76 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
         </field>
       </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Tätigkeitsbereich der Akteursgruppe</label>
+          <input-type value-pairs-name="targetgroup_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen. 
+Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Vorhaben eingebracht wird, falls es mehrere gibt.</hint>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Wirtschaftszweig</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy</type-bind>
+          <visibility>hidden</visibility>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>enterprise</dc-qualifier>
+          <label>Unternehmensgröße</label>
+          <input-type value-pairs-name="enterprise_size">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Adressierte Politikebene(n)</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Policy makers, Public institutions</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>urbanrural</dc-qualifier>
+          <label>Verortung der Akteursgruppe</label>
+          <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
+        </field>
+      </row>
     </form>
     <form name="events_result">
       <row>
@@ -5476,6 +5546,76 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <repeatable>false</repeatable>
           <required />
           <hint />
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>dc</dc-schema>
+          <dc-element>type</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Tätigkeitsbereich der Akteursgruppe</label>
+          <input-type value-pairs-name="targetgroup_type">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen. 
+Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Vorhaben eingebracht wird, falls es mehrere gibt.</hint>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>nace</dc-qualifier>
+          <label>Wirtschaftszweig</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy</type-bind>
+          <visibility>hidden</visibility>
+          <vocabulary closed="true">nace</vocabulary>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>enterprise</dc-qualifier>
+          <label>Unternehmensgröße</label>
+          <input-type value-pairs-name="enterprise_size">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>political</dc-qualifier>
+          <label>Adressierte Politikebene(n)</label>
+          <input-type value-pairs-name="political_level">dropdown</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
+          <type-bind>Policy makers, Public institutions</type-bind>
+          <visibility>hidden</visibility>
+        </field>
+      </row>
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>subject</dc-element>
+          <dc-qualifier>urbanrural</dc-qualifier>
+          <label>Verortung der Akteursgruppe</label>
+          <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint />
+          <visibility>hidden</visibility>
         </field>
       </row>
     </form>

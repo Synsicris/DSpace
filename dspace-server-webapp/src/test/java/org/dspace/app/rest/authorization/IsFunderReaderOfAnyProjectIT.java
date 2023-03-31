@@ -10,7 +10,7 @@ package org.dspace.app.rest.authorization;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import org.dspace.app.rest.authorization.impl.IsFunderOrganizationalManager;
+import org.dspace.app.rest.authorization.impl.IsFunderReaderOfAnyProject;
 import org.dspace.app.rest.converter.EPersonConverter;
 import org.dspace.app.rest.model.EPersonRest;
 import org.dspace.app.rest.projection.Projection;
@@ -24,13 +24,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Test of {@link IsFunderOrganizationalManager} implementation.
+ * Test of {@link IsFunderReaderOfAnyProject} implementation.
  *
- * @author Mohamed Eskander (mohamed.eskander at 4science.it)
+ * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  */
-public class IsFunderOrganizationalManagerIT extends AbstractControllerIntegrationTest {
+public class IsFunderReaderOfAnyProjectIT extends AbstractControllerIntegrationTest {
 
-    private AuthorizationFeature isFunderOrganizationalManager;
+    private AuthorizationFeature isFunderReader;
 
     @Autowired
     private ConfigurationService configurationService;
@@ -55,115 +55,116 @@ public class IsFunderOrganizationalManagerIT extends AbstractControllerIntegrati
 
         context.restoreAuthSystemState();
 
-        isFunderOrganizationalManager = authorizationFeatureService.find(IsFunderOrganizationalManager.NAME);
+        isFunderReader =
+            authorizationFeatureService.find(IsFunderReaderOfAnyProject.NAME);
 
     }
 
     @Test
-    public void testIsFunderOrganizationalManagerWhenCurrentUserIsMemberOfManagersGroup() throws Exception {
+    public void testIsFunderReaderWhenCurrentUserIsMemberOfReadersGroup() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
 
         // create a manager Group and add eperson as member of group
-        Group managerGroup = GroupBuilder.createGroup(context)
-                                         .withName("funder-organisational-managers.group")
+        Group readersGroup = GroupBuilder.createGroup(context)
+                                         .withName("funders-readers.group")
                                          .addMember(eperson)
                                          .build();
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService.setProperty("funders-readers.group", String.valueOf(readersGroup.getID()));
 
-        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderReader.isAuthorized(context, null);
 
         assertThat(isAuthorized, is(true));
 
     }
 
     @Test
-    public void testIsFunderOrganizationalManagerWhenCurrentUserIsNotMemberOfManagersGroup() throws Exception {
+    public void testIsFunderReaderWhenCurrentUserIsNotMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
 
         // create a manager Group and add admin as member of group
-        Group managerGroup = GroupBuilder.createGroup(context)
-                                         .withName("funder-organisational-managers.group")
+        Group readersGroup = GroupBuilder.createGroup(context)
+                                         .withName("funders-readers.group")
                                          .addMember(admin)
                                          .build();
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService.setProperty("funders-readers.group", String.valueOf(readersGroup.getID()));
 
-        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderReader.isAuthorized(context, null);
 
         assertThat(isAuthorized, is(false));
 
     }
 
     @Test
-    public void testIsFunderOrganizationalManagerWhenManagersGroupPropertyIsNull() throws Exception {
+    public void testIsFunderReaderWhenManagersGroupPropertyIsNull() throws Exception {
 
         context.setCurrentUser(eperson);
         context.turnOffAuthorisationSystem();
 
         // create a manager Group and add eperson as member of group
-        Group managerGroup = GroupBuilder.createGroup(context)
-                                         .withName("funder-organisational-managers.group")
+        Group readersGroup = GroupBuilder.createGroup(context)
+                                         .withName("funders-readers.group")
                                          .addMember(eperson)
                                          .build();
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", null);
+        configurationService.setProperty("funders-readers.group", null);
 
-        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, null);
+        boolean isAuthorized = isFunderReader.isAuthorized(context, null);
 
         assertThat(isAuthorized, is(false));
 
     }
 
     @Test
-    public void testIsFunderOrganizationalManagerWhenSentUserIsMemberOfManagersGroup() throws Exception {
+    public void testIsFunderReaderWhenSentUserIsMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(admin);
         context.turnOffAuthorisationSystem();
 
         // create a manager Group and add eperson as member of group
-        Group managerGroup = GroupBuilder.createGroup(context)
-                                         .withName("funder-organisational-managers.group")
+        Group readersGroup = GroupBuilder.createGroup(context)
+                                         .withName("funders-readers.group")
                                          .addMember(eperson)
                                          .build();
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService.setProperty("funders-readers.group", String.valueOf(readersGroup.getID()));
         EPersonRest ePersonRest = ePersonConverter.convert(eperson, Projection.DEFAULT);
-        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, ePersonRest);
+        boolean isAuthorized = isFunderReader.isAuthorized(context, ePersonRest);
 
         assertThat(isAuthorized, is(true));
 
     }
 
     @Test
-    public void testIsFunderOrganizationalManagerWhenSentUserIsNotMemberOfManagersGroup() throws Exception {
+    public void testIsFunderReaderWhenSentUserIsNotMemberOfManagersGroup() throws Exception {
 
         context.setCurrentUser(admin);
         context.turnOffAuthorisationSystem();
 
         // create a manager Group and add admin as member of group
-        Group managerGroup = GroupBuilder.createGroup(context)
-                                         .withName("funder-organisational-managers.group")
+        Group readersGroup = GroupBuilder.createGroup(context)
+                                         .withName("funders-readers.group")
                                          .addMember(admin)
                                          .build();
 
         context.restoreAuthSystemState();
 
-        configurationService.setProperty("funder-organisational-managers.group", String.valueOf(managerGroup.getID()));
+        configurationService.setProperty("funders-readers.group", String.valueOf(readersGroup.getID()));
         EPersonRest ePersonRest = ePersonConverter.convert(eperson, Projection.DEFAULT);
-        boolean isAuthorized = isFunderOrganizationalManager.isAuthorized(context, ePersonRest);
+        boolean isAuthorized = isFunderReader.isAuthorized(context, ePersonRest);
 
         assertThat(isAuthorized, is(false));
 

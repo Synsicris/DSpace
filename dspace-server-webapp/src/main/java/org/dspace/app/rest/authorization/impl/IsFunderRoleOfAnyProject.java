@@ -13,7 +13,6 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.authorization.AuthorizationFeature;
-import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.EPersonRest;
 import org.dspace.app.rest.model.SiteRest;
@@ -24,29 +23,25 @@ import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Checks if the given user can assign/revoke project manager role to system user.
  *
- * @author Mohamed Eskander (mohamed.eskander at 4science.it)
+ * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
  */
-@Component
-@AuthorizationFeatureDocumentation(name = IsFunderOrganizationalManager.NAME,
-    description = "Used to verify if the given user able to assign/revoke project manager role to system user")
-public class IsFunderOrganizationalManager implements AuthorizationFeature {
-
-    public static final String NAME = "isFunderOrganizationalManager";
+public abstract class IsFunderRoleOfAnyProject implements AuthorizationFeature {
 
     @Autowired
-    private GroupService groupService;
+    protected GroupService groupService;
 
     @Autowired
-    private EPersonService ePersonService;
+    protected EPersonService ePersonService;
 
     @Autowired
-    private ConfigurationService configurationService;
+    protected ConfigurationService configurationService;
+
+    abstract public String getGroupID();
 
     @Override
     @SuppressWarnings("rawtypes")
@@ -60,7 +55,7 @@ public class IsFunderOrganizationalManager implements AuthorizationFeature {
     }
 
     private Group getGroup(Context context) throws SQLException {
-        String groupId = configurationService.getProperty("funder-organisational-managers.group");
+        String groupId = getGroupID();
         Group group = null;
         if (StringUtils.isNotEmpty(groupId)) {
             group = groupService.find(context, UUID.fromString(groupId));

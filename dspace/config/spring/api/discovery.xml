@@ -161,7 +161,7 @@
                 <entry key="RELATION.Person.call" value-ref="relationPersonCallConfiguration"/>
                 <entry key="RELATION.Person.fundingobjective" value-ref="relationPersonFundingobjectiveConfiguration"/>
                 <entry key="RELATION.Person.OrgUnit" value-ref="relationPersonOrgUnitConfiguration"/>
-                
+
                 <!-- Synsicris targetgroup Related items for templates -->
                 <entry key="RELATION.targetgroup.step" value-ref="relationTargetGroupStepConfiguration"/>
                 <entry key="RELATION.targetgroup.innovationpotential" value-ref="relationTargetGroupInnovationpotentialConfiguration"/>
@@ -226,9 +226,9 @@
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
                 <entry key="allProjectItemsForAdminAndFunders" value-ref="allProjectItemsForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForAdminAndFunders" value-ref="firstStepSearchProjectsForAdminAndFundersConfiguration" />
-                <entry key="firstStepSearchAllProjectForAdminAndFunders" value-ref="firstStepSearchAllProjectForAdminAndFundersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForAdminAndFunders" value-ref="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForMembers" value-ref="firstStepSearchProjectsForMembersConfiguration" />
-                <entry key="firstStepSearchAllProjectForMembers" value-ref="firstStepSearchAllProjectForMembersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForMembers" value-ref="firstStepSearchBrowseAllProjectForMembersConfiguration" />
                 <entry key="secondStepSearchProjectItems" value-ref="secondStepSearchProjectItemsConfiguration" />
                 <entry key="secondStepSearchProjectItemsForAdminAndFunders" value-ref="secondStepSearchProjectItemsForAdminAndFundersConfiguration" />
 
@@ -1448,14 +1448,14 @@
                 <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
                 <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeIntensity" />
-                <ref bean="searchFilterSynsicrisTypeInfluence" />                
+                <ref bean="searchFilterSynsicrisTypeInfluence" />
                 <ref bean="searchFilterSynsicrisAcronymFundingParent" />
                 <ref bean="searchFilterSynsicrisAcronymCall" />
                 <ref bean="searchFilterOairecerifFundingIdentifier" />
                 <ref bean="searchFilterSynsicrisAddressAddressPostcodePostbox" />
                 <ref bean="searchFilterSynsicrisIdentifierMunicipality" />
                 <ref bean="searchFilterSynsicrisTypeRecipientStats" />
-                <ref bean="searchFilterSynsicrisAddressAddresscountry" />                
+                <ref bean="searchFilterSynsicrisAddressAddresscountry" />
                 <ref bean="searchFilterSynsicrisCoverageRegionalsecondary" />
                 <ref bean="searchFilterSynsicrisTypeLevel" />
                 <ref bean="searchFilterSynsicrisLevelStart" />
@@ -1798,7 +1798,7 @@
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForAdminAndFundersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForAdminAndFunders" />
@@ -1823,12 +1823,12 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForMembersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForMembersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForMembers" />
@@ -1838,7 +1838,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>
@@ -2449,6 +2449,11 @@
                 <ref bean="searchFilterSynsicrisRelationPartner" />
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchFilterOairecerifEventCountry" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -2469,6 +2474,11 @@
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchFilterOairecerifEventCountry" />
                 <ref bean="searchFilterSynsicrisParticipantnumber" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <property name="searchSortConfiguration">
@@ -2916,6 +2926,11 @@
                 <ref bean="graphProcEventByTargetGroup" />
                 <ref bean="graphProcEventByPurpose" />
                 <ref bean="graphProcEventByType" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -2929,6 +2944,11 @@
                 <ref bean="searchsynsicrisrelationtargetgroup" />
                 <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchFilterSynsicrisType" />
+                <ref bean="searchFilterTargetGroupsTypes" />
+                <ref bean="searchFilterSynsicrisSubjectNace" />
+                <ref bean="searchFilterSynsicrisSubjectEnterprise" />
+                <ref bean="searchFilterSynsicrisSubjectPolitical" />
+                <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -5351,9 +5371,9 @@
             </list>
         </property>
     </bean>
-    
-    
-    
+
+
+
     <bean id="relationTargetGroupEventConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <property name="defaultFilterQueries">
             <list>
@@ -5386,7 +5406,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="relationTargetGroupProcessEventConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <property name="defaultFilterQueries">
             <list>
@@ -7045,7 +7065,7 @@
         <property name="exposeMore" value="true" />
         <property name="exposeTotalElements" value="true" />
     </bean>
-    
+
     <bean id="graphSynsicrisLevelEnd" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
         <property name="facetLimit" value="10"/>
         <property name="indexFieldName" value="graph-synsicris_level_end" />
@@ -8759,7 +8779,7 @@
             </list>
         </property>
     </bean>
-    
+
     <bean id="searchFilterSynsicrisIdentifierMunicipality" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
         <property name="indexFieldName" value="synsicrisIdentifierMunicipality" />
         <property name="metadataFields">
@@ -9336,6 +9356,16 @@
         <property name="metadataField" value="dc.date.end"/>
         <property name="type" value="date"/>
         <property name="defaultSortOrder" value="asc"/>
+    </bean>
+
+    <bean id="searchFilterTargetGroupsTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="targetGroupsTypes" />
+<!--        <property name="type" value="authority"/>-->
+        <property name="metadataFields">
+            <list>
+                <value>dc.type.targetgroup</value>
+            </list>
+        </property>
     </bean>
 
 

@@ -47,7 +47,7 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
     public static final String NAME = "isMemberOfProject";
 
     @Autowired
-    private ProjectConsumerService projectConsumerService;
+    protected ProjectConsumerService projectConsumerService;
 
     @Autowired
     private CommunityService communityService;
@@ -96,7 +96,7 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
             }
         }
 
-        return isMemberOfProjectGroup(context, item);
+        return isMemberOfGroup(context, item, getRoleName());
     }
 
     @Override
@@ -107,28 +107,38 @@ public class IsMemberOfProjectFeature implements AuthorizationFeature {
         };
     }
 
-    private boolean isMemberOfProjectGroup(Context context, Item item) throws SQLException {
-
-
-        Community community;
+    protected boolean isMemberOfGroup(Context context, Item item, String roleName) throws SQLException {
+        Group group;
         String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
         if (PROJECT_ENTITY.equals(entityType)) {
-            community = projectConsumerService.getProjectCommunity(context, item);
+            group = getGroupFromItem(context, item, roleName);
         } else {
-            community = projectConsumerService.getProjectCommunityByRelationProject(context, item);
+            group = getGroupFromRelatedItem(context, item, roleName);
         }
 
-        if (community == null) {
-            return false;
-        }
-
-        Group group = projectConsumerService.getProjectCommunityGroupByRole(context, community, getRoleName());
         return group != null && groupService.isMember(context, group);
 
+    }
+
+    protected Group getGroupFromRelatedItem(Context context, Item item, String roleName) throws SQLException {
+        return projectConsumerService.getProjectCommunityGroupByRole(
+            context,
+            projectConsumerService.getProjectCommunityByRelationProject(context, item),
+            roleName
+        );
+    }
+
+    protected Group getGroupFromItem(Context context, Item item, String roleName) throws SQLException {
+        return projectConsumerService.getProjectCommunityGroupByRole(
+            context,
+            projectConsumerService.getProjectCommunity(context, item),
+            roleName
+        );
     }
 
     protected String getRoleName() {
         return MEMBERS_ROLE;
     }
+
 
 }

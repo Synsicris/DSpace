@@ -140,7 +140,9 @@ public class ProgrammeCreateGroupConsumer implements Consumer {
         try {
             createProgrammeGroup(context, memberGroupName);
             createProgrammeGroup(context, projectFunderGroupName);
-            addPolicyGroupMetadata(context, dso, createProgrammeGroup(context, managerGroupName));
+            Group managerGroup = createProgrammeGroup(context, managerGroupName);
+            addPolicyGroupMetadata(context, dso, managerGroup);
+            AuthorizeUtil.authorizeAddMembers(context, managerGroup);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -13,6 +13,16 @@ import static junit.framework.TestCase.assertEquals;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadataNotEmpty;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadataStringEndsWith;
+import static org.dspace.project.util.ProjectConstants.DEFAULT_CURRENCY;
+import static org.dspace.project.util.ProjectConstants.DEFAULT_STATUS;
+import static org.dspace.project.util.ProjectConstants.MD_CURRENCY;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT;
+import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.TEMPLATE;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -55,24 +65,45 @@ import org.dspace.authorize.service.ResourcePolicyService;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
+import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
+import org.dspace.builder.ItemBuilder;
+import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.ResourcePolicyBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataSchemaEnum;
+import org.dspace.content.EntityType;
+import org.dspace.content.Item;
+import org.dspace.content.RelationshipType;
+import org.dspace.content.WorkspaceItem;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.versioning.ItemVersionProvider;
+import org.dspace.versioning.ProjectVersionProvider;
+import org.dspace.versioning.VersioningServiceImpl;
+import org.dspace.versioning.service.VersioningService;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.data.rest.webmvc.RestMediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -112,6 +143,47 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
     private EPerson subCommunityAAdmin;
     private EPerson collectionAdmin;
     private EPerson submitter;
+
+    private static ConfigurableListableBeanFactory beanFactory;
+    private static VersioningService versionServiceBean;
+    private static ItemVersionProvider itemVersionProviderBean;
+
+    private static final String project_template_coordinators_group =
+        String.format(
+            PROJECT_COORDINATORS_GROUP_TEMPLATE,
+            TEMPLATE
+        );
+
+    @Autowired
+    private WorkspaceItemService workspaceItemService;
+
+    @Autowired
+    private InstallItemService installItemService;
+
+    @BeforeClass
+    public static void init() {
+        beanFactory =
+            DSpaceServicesFactory.getInstance().getServiceManager().getApplicationContext().getBeanFactory();
+
+        versionServiceBean = (VersioningService) beanFactory.getBean(VersioningService.class.getCanonicalName());
+        itemVersionProviderBean = ((VersioningServiceImpl) versionServiceBean).getProvider();
+        ((VersioningServiceImpl) versionServiceBean).setProvider(
+            beanFactory.getBean("projectItemVersionProvider", ProjectVersionProvider.class)
+        );
+    }
+
+    @AfterClass
+    public static void end() {
+        ((VersioningServiceImpl) versionServiceBean).setProvider(itemVersionProviderBean);
+    }
+
+    @Before
+    public void setup() {
+        context.turnOffAuthorisationSystem();
+        createIsVersionRelationshipType(PROJECT_ENTITY);
+        createIsVersionRelationshipType("workingplan");
+        context.restoreAuthSystemState();
+    }
 
     @Test
     public void createTest() throws Exception {
@@ -2760,4 +2832,350 @@ public class CommunityRestRepositoryIT extends AbstractControllerIntegrationTest
                                            )))
                                .andExpect(jsonPath("$.page.totalElements", is(1)));
     }
+
+    @Test
+    public void deleteProjectCommunityWithoutVersionsTest() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Community projectsCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("Projects")
+                            .build();
+
+        configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
+
+        Community projectTemplateCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("project-template")
+                            .build();
+
+        Collection consortia =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Consortia")
+                             .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                             .withTemplateItem()
+                             .build();
+
+        Collection workingPlanColl =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Workingplan")
+                             .withEntityType("workingplan")
+                             .build();
+
+        Item workingPlanItem =
+            ItemBuilder.createItem(context, workingPlanColl)
+                       .withTitle("Workingplan")
+                       .build();
+
+        final Item colTemplateItem = consortia.getTemplateItem();
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null,
+                "###CURRENTPROJECTGROUP.project.members###");
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, ProjectConstants.MD_PROJECT_STATUS, null, DEFAULT_STATUS);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_POLICY_SHARED, null, PROJECT);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_CURRENCY, null, DEFAULT_CURRENCY);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, "dc", "title", null, null, "template_item");
+        this.itemService.update(context, colTemplateItem);
+
+        WorkspaceItem workspaceItem = workspaceItemService.create(context, consortia, true);
+        Item consortiaItem = installItemService.installItem(context, workspaceItem);
+
+        String consortiaItemName = "project_item_name";
+        this.itemService.setMetadataSingleValue(context, consortiaItem, "dc", "title", null, null, consortiaItemName);
+        this.itemService.addMetadata(
+            context, consortiaItem, "synsicris", "relation", "workingplan", null, "Workingplan",
+            workingPlanItem.getID().toString(), Choices.CF_ACCEPTED
+        );
+
+        communityService.addMetadata(context, projectTemplateCommunity, MD_RELATION_ITEM_ENTITY.schema,
+            MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier, null, consortiaItemName,
+            consortiaItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        this.communityService.update(context, projectTemplateCommunity);
+
+        context.restoreAuthSystemState();
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        // create new project community
+        getClient(adminToken).perform(
+                                 post("/api/core/communities")
+                                     .param("projection", "full")
+                                     .param("name", "My new Community")
+                                     .param("parent", projectsCommunity.getID().toString())
+                                     .contentType(MediaType.parseMediaType(TEXT_URI_LIST_VALUE))
+                                     .content("https://localhost:8080/server/api/core/communities/"
+                                         + projectTemplateCommunity.getID())
+                             )
+                             .andExpect(status().isCreated())
+                             .andDo(result -> idRef
+                                 .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))));
+
+        getClient(adminToken).perform(delete("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNoContent());
+
+        getClient(adminToken).perform(get("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void deleteProjectCommunityWithSingleVersionTest() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        EPerson coordinator =
+            EPersonBuilder.createEPerson(context)
+                          .withEmail("coordinator@mail.com")
+                          .withCanLogin(true)
+                          .withPassword(password)
+                          .build();
+
+        Group adminGroup =
+            GroupBuilder.createGroup(context)
+                        .withName(project_template_coordinators_group)
+                        .addMember(coordinator)
+                        .build();
+
+        Community projectsCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("Projects")
+                            .withAdminGroup(adminGroup)
+                            .build();
+
+        configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
+        configurationService.setProperty("versioning.enabled", true);
+
+        Community projectTemplateCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("project-template")
+                            .build();
+
+        Collection consortia =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Consortia")
+                             .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                             .withTemplateItem()
+                             .build();
+
+        Collection workingPlanColl =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Workingplan")
+                             .withEntityType("workingplan")
+                             .build();
+
+        Item workingPlanItem =
+            ItemBuilder.createItem(context, workingPlanColl)
+                       .withTitle("Workingplan")
+                       .build();
+
+        final Item colTemplateItem = consortia.getTemplateItem();
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null,
+                "###CURRENTPROJECTGROUP.project.members###");
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, ProjectConstants.MD_PROJECT_STATUS, null, DEFAULT_STATUS);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_POLICY_SHARED, null, PROJECT);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_CURRENCY, null, DEFAULT_CURRENCY);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, "dc", "title", null, null, "template_item");
+        this.itemService.update(context, colTemplateItem);
+
+        WorkspaceItem workspaceItem = workspaceItemService.create(context, consortia, true);
+        Item consortiaItem = installItemService.installItem(context, workspaceItem);
+
+        String consortiaItemName = "project_item_name";
+        this.itemService.setMetadataSingleValue(context, consortiaItem, "dc", "title", null, null, consortiaItemName);
+        this.itemService.addMetadata(
+            context, consortiaItem, "synsicris", "relation", "workingplan", null, "Workingplan",
+            workingPlanItem.getID().toString(), Choices.CF_ACCEPTED
+        );
+
+        communityService.addMetadata(context, projectTemplateCommunity, MD_RELATION_ITEM_ENTITY.schema,
+            MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier, null, consortiaItemName,
+            consortiaItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        this.communityService.update(context, projectTemplateCommunity);
+
+        context.restoreAuthSystemState();
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        String coordinatorToken = getAuthToken(coordinator.getEmail(), password);
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        // create new project community
+        getClient(adminToken).perform(
+                                 post("/api/core/communities")
+                                     .param("projection", "full")
+                                     .param("name", "My new Community")
+                                     .param("parent", projectsCommunity.getID().toString())
+                                     .contentType(MediaType.parseMediaType(TEXT_URI_LIST_VALUE))
+                                     .content("https://localhost:8080/server/api/core/communities/"
+                                         + projectTemplateCommunity.getID())
+                             )
+                             .andExpect(status().isCreated())
+                             .andDo(result -> idRef
+                                 .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))));
+
+        projectsCommunity = context.reloadEntity(projectsCommunity);
+        Community subCommunityOfProjectsCommunity = projectsCommunity.getSubcommunities().get(0);
+        Item createdProject =
+            itemService.findAllByCollection(context, subCommunityOfProjectsCommunity.getCollections().get(0)).next();
+
+        String admin_Group = project_template_coordinators_group.replaceAll("template", idRef.toString());
+        Group groupAdmin = groupService.findByName(context, admin_Group);
+        groupService.addMember(context, groupAdmin, coordinator);
+        groupService.update(context, groupAdmin);
+
+        // create a new version of createdProject
+        getClient(coordinatorToken).perform(post("/api/versioning/versions")
+                                       .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                                       .content("/api/core/items/" + createdProject.getID()))
+                                   .andExpect(status().isCreated());
+
+        getClient(adminToken).perform(delete("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNoContent());
+
+        getClient(adminToken).perform(get("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNotFound());
+
+    }
+
+    @Test
+    public void deleteProjectCommunityWithMultipleVersionsTest() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        EPerson coordinator =
+            EPersonBuilder.createEPerson(context)
+                          .withEmail("coordinator@mail.com")
+                          .withCanLogin(true)
+                          .withPassword(password).build();
+
+        Group adminGroup =
+            GroupBuilder.createGroup(context)
+                        .withName(project_template_coordinators_group)
+                        .addMember(coordinator)
+                        .build();
+
+        Community projectsCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("Projects")
+                            .withAdminGroup(adminGroup)
+                            .build();
+
+        configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
+        configurationService.setProperty("versioning.enabled", true);
+
+        Community projectTemplateCommunity =
+            CommunityBuilder.createCommunity(context)
+                            .withName("project-template")
+                            .build();
+
+        Collection consortia =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Consortia")
+                             .withEntityType(ProjectConstants.PROJECT_ENTITY)
+                             .withTemplateItem()
+                             .build();
+
+        Collection workingPlanColl =
+            CollectionBuilder.createCollection(context, projectTemplateCommunity)
+                             .withName("Workingplan")
+                             .withEntityType("workingplan")
+                             .build();
+
+        Item workingPlanItem =
+            ItemBuilder.createItem(context, workingPlanColl)
+                       .withTitle("Workingplan")
+                       .build();
+
+        final Item colTemplateItem = consortia.getTemplateItem();
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, MD_POLICY_GROUP, null,
+                "###CURRENTPROJECTGROUP.project.members###");
+        this.itemService
+            .setMetadataSingleValue(context, colTemplateItem, ProjectConstants.MD_PROJECT_STATUS, null, DEFAULT_STATUS);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_POLICY_SHARED, null, PROJECT);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, MD_CURRENCY, null, DEFAULT_CURRENCY);
+        this.itemService.setMetadataSingleValue(context, colTemplateItem, "dc", "title", null, null, "template_item");
+        this.itemService.update(context, colTemplateItem);
+
+        WorkspaceItem workspaceItem = workspaceItemService.create(context, consortia, true);
+        Item consortiaItem = installItemService.installItem(context, workspaceItem);
+
+        String consortiaItemName = "project_item_name";
+        this.itemService.setMetadataSingleValue(context, consortiaItem, "dc", "title", null, null, consortiaItemName);
+        this.itemService.addMetadata(
+            context, consortiaItem, "synsicris", "relation", "workingplan", null, "Workingplan",
+            workingPlanItem.getID().toString(), Choices.CF_ACCEPTED
+        );
+
+        communityService.addMetadata(context, projectTemplateCommunity, MD_RELATION_ITEM_ENTITY.schema,
+            MD_RELATION_ITEM_ENTITY.element, MD_RELATION_ITEM_ENTITY.qualifier, null, consortiaItemName,
+            consortiaItem.getID().toString(), Choices.CF_ACCEPTED);
+
+        this.communityService.update(context, projectTemplateCommunity);
+
+        context.restoreAuthSystemState();
+
+        String adminToken = getAuthToken(admin.getEmail(), password);
+        String coordinatorToken = getAuthToken(coordinator.getEmail(), password);
+        AtomicReference<UUID> idRef = new AtomicReference<>();
+
+        // create new project community
+        getClient(adminToken).perform(
+                                 post("/api/core/communities")
+                                     .param("projection", "full")
+                                     .param("name", "My new Community")
+                                     .param("parent", projectsCommunity.getID().toString())
+                                     .contentType(MediaType.parseMediaType(TEXT_URI_LIST_VALUE))
+                                     .content("https://localhost:8080/server/api/core/communities/"
+                                         + projectTemplateCommunity.getID())
+                             )
+                             .andExpect(status().isCreated())
+                             .andDo(result -> idRef
+                                 .set(UUID.fromString(read(result.getResponse().getContentAsString(), "$.id"))));
+
+        projectsCommunity = context.reloadEntity(projectsCommunity);
+        Community subCommunityOfProjectsCommunity = projectsCommunity.getSubcommunities().get(0);
+
+        Item createdProject =
+            itemService.findAllByCollection(context, subCommunityOfProjectsCommunity.getCollections().get(0)).next();
+
+        String admin_Group = project_template_coordinators_group.replaceAll("template", idRef.toString());
+        Group groupAdmin = groupService.findByName(context, admin_Group);
+        groupService.addMember(context, groupAdmin, coordinator);
+        groupService.update(context, groupAdmin);
+
+        // create a new version of createdProject
+        getClient(coordinatorToken).perform(post("/api/versioning/versions")
+                                       .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                                       .content("/api/core/items/" + createdProject.getID()))
+                                   .andExpect(status().isCreated());
+
+        // create another version of createdProject
+        getClient(coordinatorToken).perform(post("/api/versioning/versions")
+                                       .contentType(MediaType.parseMediaType(RestMediaTypes.TEXT_URI_LIST_VALUE))
+                                       .content("/api/core/items/" + createdProject.getID()))
+                                   .andExpect(status().isCreated());
+
+        getClient(adminToken).perform(delete("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNoContent());
+
+        getClient(adminToken).perform(get("/api/core/communities/" + idRef.get().toString()))
+                             .andExpect(status().isNotFound());
+
+    }
+
+    private RelationshipType createIsVersionRelationshipType(String entityType) {
+
+        EntityType type = EntityTypeBuilder.createEntityTypeBuilder(context, entityType).build();
+
+        return RelationshipTypeBuilder
+            .createRelationshipTypeBuilder(context, type, type, "isVersionOf", "hasVersion", 0, 1, 0, null)
+            .build();
+    }
+
 }

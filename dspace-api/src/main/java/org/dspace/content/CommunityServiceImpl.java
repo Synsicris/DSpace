@@ -581,7 +581,7 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     }
 
     @Override
-    public void deleteVersionedItems(Context context, Community community)
+    public void deleteRelatedVersionedProjects(Context context, Community community)
         throws SQLException, AuthorizeException, IOException {
         Iterator<Item> itemIterator =
             projectConsumerService.findVersionedProjectsInCommunity(context, community);

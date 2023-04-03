@@ -636,6 +636,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
         discoverQuery.setMaxResults(10000);
         discoverQuery.setQuery(SOLR_FILTER_PROJECTS);
+        discoverQuery.setSortField("bi_sort_3_sort", DiscoverQuery.SORT_ORDER.desc);
         return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 

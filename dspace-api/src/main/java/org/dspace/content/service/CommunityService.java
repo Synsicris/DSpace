@@ -310,7 +310,4 @@ public interface CommunityService extends DSpaceObjectService<Community>, DSpace
     public Community cloneCommunity(Context context, Community template, Community parent, String name, String grants)
         throws SQLException, AuthorizeException;
 
-    public void deleteRelatedVersionedProjects(Context context, Community community)
-        throws SQLException, AuthorizeException, IOException;
-
 }

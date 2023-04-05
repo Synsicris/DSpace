@@ -13,18 +13,18 @@ import org.springframework.stereotype.Component;
 /**
  * Checks if the given user can assign/revoke project manager role to system user.
  *
- * @author Mohamed Eskander (mohamed.eskander at 4science.it)
+ * @author Giuseppe Digilio (giuseppe.digilio at 4science.it)
  *
  */
 @Component
-@AuthorizationFeatureDocumentation(name = IsFunderOrganizationalManagerOfAnyProject.NAME,
-    description = "Used to verify if the given user is a funder organizational manager")
-public class IsFunderOrganizationalManagerOfAnyProject extends IsFunderRoleOfAnyProject {
+@AuthorizationFeatureDocumentation(name = IsFunderReaderOfAnyProject.NAME,
+    description = "Used to verify if the given user is a funder reader")
+public class IsFunderReaderOfAnyProject extends IsFunderRoleOfAnyProject {
 
-    public static final String NAME = "IsFunderOrganizationalManagerOfAnyProject";
-    
+    public static final String NAME = "isFunderReaderOfAnyProject";
+
     public String getGroupID() {
-        return configurationService.getProperty("funder-organisational-managers.group");
+        return super.configurationService.getProperty("funders-readers.group");
     }
 
 }

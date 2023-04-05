@@ -91,10 +91,10 @@
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="MODE-VOC" />
-                            <property name="securities">
-                              <list>
-                                <value>ADMIN</value>
-                              </list>
+                            <property name="security">
+                                <value type="org.dspace.content.security.CrisSecurity">
+                                  ADMIN
+                                </value>
                             </property>
                             <property name="items" ref="itemsMetadata" />
                             <property name="submissionDefinition" value="controlled-vocabulary-test" />

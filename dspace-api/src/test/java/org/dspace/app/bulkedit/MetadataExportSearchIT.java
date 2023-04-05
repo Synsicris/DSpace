@@ -19,6 +19,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.common.io.Files;
 import com.opencsv.CSVReader;
@@ -78,6 +79,7 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
             itemsSubject1[i] = ItemBuilder.createItem(context, collection)
                 .withTitle(String.format("%s item %d", subject1, i))
                 .withSubject(subject1)
+                .withSubjectForLanguage("german subject", "de")
                 .withIssueDate("2020-09-" + i)
                 .build();
         }
@@ -250,4 +252,82 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
         assertNotNull(exception);
         assertEquals("nonExisting is not a valid search filter", exception.getMessage());
     }
+
+    @Test
+    public void exportAllMetadataOrNotTest() throws Exception {
+
+        String[] originalExcludedMetadata =
+            configurationService.getArrayProperty("bulkedit.ignore-on-export");
+
+        try {
+
+            configurationService.setProperty(
+                "bulkedit.ignore-on-export",
+                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"}
+            );
+
+
+            // WHEN run script with -a to export all metadata
+            int result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename, "-a");
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            //THEN exported file with all metadata
+            checkHeaderPresentInFile(filename, "id,collection,dc.date.accessioned,dc.date.available," +
+                "dc.date.issued,dc.description.provenance[en],dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+
+            // WHEN run script without -a to export metadata without excluded ones
+            result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename);
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            //THEN exported file without excluded metadata
+            checkHeaderPresentInFile(filename,
+                "id,collection,dc.date.issued,dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+
+        } finally {
+            configurationService.setProperty("bulkedit.ignore-on-export", originalExcludedMetadata);
+        }
+    }
+
+    @Test
+    public void exportMetadataWithTranslatedHeaderTest() throws Exception {
+
+        String[] originalExcludedMetadata =
+            configurationService.getArrayProperty("bulkedit.ignore-on-export");
+
+        try {
+
+            configurationService.setProperty(
+                "bulkedit.ignore-on-export",
+                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"}
+            );
+
+            // WHEN run script with -l to translate metadata of header row
+            int result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename, "-l");
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            // THEN expected translated header
+            checkHeaderPresentInFile(filename, "id,collection,Issue Date,URI,Keywords,Schlagworte,Title");
+
+        } finally {
+            configurationService.setProperty("bulkedit.ignore-on-export", originalExcludedMetadata);
+        }
+    }
+
+    private void checkHeaderPresentInFile(String filename, String header) throws IOException, CsvException {
+        File file = new File(filename);
+        Reader reader = Files.newReader(file, Charset.defaultCharset());
+        CSVReader csvReader = new CSVReader(reader);
+        List<String[]> lines = csvReader.readAll();
+
+        // check values for header row
+        assertEquals(Arrays.stream(lines.get(0))
+                           .collect(Collectors.joining(",")), header);
+    }
+
 }

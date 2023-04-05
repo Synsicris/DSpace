@@ -612,6 +612,9 @@ public class DSpaceCSV implements Serializable {
         List<String> headingsCopy = new ArrayList<>(headings);
         Collections.sort(headingsCopy);
         for (String value : headingsCopy) {
+            if ("collection".equals(value)) {
+                continue;
+            }
             csvLines[0] = csvLines[0] + fieldSeparator + value;
         }
 
@@ -640,6 +643,8 @@ public class DSpaceCSV implements Serializable {
      * Creates and returns an InputStream from the CSV Lines in this DSpaceCSV
      * and translates the headings metadata
      *
+     * @param prefix the prefix of message key property from Messages.properties
+     * e.g. message key is metadata.dc.title so, prefix is \"metadata.\"
      * @return  The InputStream created from the CSVLines in this DSpaceCSV
      * with translated headings metadata
      */
@@ -647,10 +652,11 @@ public class DSpaceCSV implements Serializable {
         StringBuilder stringBuilder = new StringBuilder();
         int index = 0;
         for (String csvLine : getCSVLinesAsStringArray()) {
-            if (index++ == 0) {
+            if (index == 0) {
                 csvLine = translateHeaderLine(csvLine, prefix);
             }
             stringBuilder.append(csvLine).append("\n");
+            index++;
         }
         return IOUtils.toInputStream(stringBuilder.toString(), StandardCharsets.UTF_8);
     }

@@ -954,21 +954,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         return Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
     }
 
-    private UUID extractItemUuid(String value) {
-        UUID itemUuid = null;
-        if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)$");
-            Matcher matcher = pattern.matcher(value);
-            if (matcher.matches()) {
-                itemUuid = UUID.fromString(matcher.group(2));
-            } else {
-                throw new RuntimeException("Metadata value of synsicris.relation.entity_item : " + value
-                        + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
-            }
-        }
-        return itemUuid;
-    }
-
     private Community setCommunityName(Context context, Community community, String name)
         throws SQLException, AuthorizeException {
         List<MetadataValue> metadata = getMetadata(community, "dc", "title", null, Item.ANY);

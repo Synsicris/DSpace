@@ -385,9 +385,9 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         String grants = req.getParameter("grants");
 
         if (StringUtils.isNoneEmpty(grants) &&
-            (!StringUtils.equals(grants, ProjectConstants.PROJECT) &&
+            !StringUtils.equals(grants, ProjectConstants.PROJECT) &&
                     !StringUtils.equals(grants, ProjectConstants.FUNDING) &&
-                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT))) {
+                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT)) {
             throw new UnprocessableEntityException("");
         }
 

@@ -8,7 +8,6 @@
 package org.dspace.versioning.consumer;
 
 import static com.jayway.jsonpath.JsonPath.read;
-import static org.dspace.content.authority.Choices.CF_ACCEPTED;
 import static org.dspace.project.util.ProjectConstants.FUNDER_PROJECT_MANAGERS_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
@@ -402,7 +401,6 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                                 .withAuthor(admin.getName())
                                 .withSubject("ExtraEntry")
                                 .build();
-
         context.commit();
         context.restoreAuthSystemState();
 
@@ -436,22 +434,21 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             item = this.itemService.find(context, itemId.get());
 
             context.turnOffAuthorisationSystem();
-            this.itemService.addMetadata(context, item, MD_VERSION_VISIBLE.schema,
-                                                        MD_VERSION_VISIBLE.element,
-                                                        MD_VERSION_VISIBLE.qualifier, null, "true");
 
-            this.itemService.addMetadata(context, item, MD_FUNDER_POLICY_GROUP.schema,
-                                                        MD_FUNDER_POLICY_GROUP.element,
-                                                        MD_FUNDER_POLICY_GROUP.qualifier, null,
-                                                   funderGroup.getName(), funderGroup.getID().toString(), CF_ACCEPTED);
+            this.itemService.addMetadata(
+                context, item, MD_VERSION_VISIBLE.schema,
+                MD_VERSION_VISIBLE.element,
+                MD_VERSION_VISIBLE.qualifier, null, "true"
+            );
             this.itemService.update(context, item);
+
             this.context.commit();
             context.restoreAuthSystemState();
 
             item = this.context.reloadEntity(item);
 
             checkVisibleItem(item, 0, 0, 0, 0);
-            checkVersioningMetadataGroup(item, 1, 0, 0, 0);
+            checkVersioningMetadataGroup(item, 1, 1, 1, 1);
 
             Community comm = item.getCollections()
                 .stream()

@@ -22,7 +22,8 @@ import org.springframework.stereotype.Component;
 public class IsFunderOrganizationalManagerOfAnyProject extends IsFunderRoleOfAnyProject {
 
     public static final String NAME = "IsFunderOrganizationalManagerOfAnyProject";
-    
+
+    @Override
     public String getGroupID() {
         return configurationService.getProperty("funder-organisational-managers.group");
     }

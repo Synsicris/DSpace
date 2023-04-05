@@ -59,6 +59,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
  * @author Stuart Lewis
  */
 public class DSpaceCSV implements Serializable {
+
+    protected static final String COLLECTION = "collection";
+
     /**
      * The headings of the CSV file
      */
@@ -166,7 +169,7 @@ public class DSpaceCSV implements Serializable {
                 }
 
                 // Store the heading
-                if ("collection".equals(element)) {
+                if (COLLECTION.equals(element)) {
                     // Store the heading
                     headings.add(element);
                 }   else if ("rowName".equals(element)) {
@@ -347,7 +350,7 @@ public class DSpaceCSV implements Serializable {
         // Get the value separator
         valueSeparator = DSpaceServicesFactory.getInstance().getConfigurationService()
                                               .getProperty("bulkedit.valueseparator");
-        if ((valueSeparator != null) && !valueSeparator.trim().isEmpty()) {
+        if (valueSeparator != null && !valueSeparator.trim().isEmpty()) {
             valueSeparator = valueSeparator.trim();
         } else {
             valueSeparator = "||";
@@ -373,7 +376,7 @@ public class DSpaceCSV implements Serializable {
         // Get the value separator
         fieldSeparator = DSpaceServicesFactory.getInstance().getConfigurationService()
                                               .getProperty("bulkedit.fieldseparator");
-        if ((fieldSeparator != null) && !fieldSeparator.trim().isEmpty()) {
+        if (fieldSeparator != null && !fieldSeparator.trim().isEmpty()) {
             fieldSeparator = fieldSeparator.trim();
             if ("tab".equals(fieldSeparator)) {
                 fieldSeparator = "\t";
@@ -405,7 +408,7 @@ public class DSpaceCSV implements Serializable {
         // Get the value separator
         authoritySeparator = DSpaceServicesFactory.getInstance().getConfigurationService()
                                                   .getProperty("bulkedit.authorityseparator");
-        if ((authoritySeparator != null) && !authoritySeparator.trim().isEmpty()) {
+        if (authoritySeparator != null && !authoritySeparator.trim().isEmpty()) {
             authoritySeparator = authoritySeparator.trim();
         } else {
             authoritySeparator = "::";
@@ -435,14 +438,14 @@ public class DSpaceCSV implements Serializable {
 
         // Add in owning collection
         String owningCollectionHandle = i.getOwningCollection().getHandle();
-        line.add("collection", owningCollectionHandle);
+        line.add(COLLECTION, owningCollectionHandle);
 
         // Add in any mapped collections
         List<Collection> collections = i.getCollections();
         for (Collection c : collections) {
             // Only add if it is not the owning collection
             if (!c.getHandle().equals(owningCollectionHandle)) {
-                line.add("collection", c.getHandle());
+                line.add(COLLECTION, c.getHandle());
             }
         }
 
@@ -510,7 +513,7 @@ public class DSpaceCSV implements Serializable {
             int i = 0;
             for (String part : bits) {
                 int bitcounter = part.length() - part.replaceAll("\"", "").length();
-                if (part.startsWith("\"") && (!part.endsWith("\"") || ((bitcounter & 1) == 1))) {
+                if (part.startsWith("\"") && (!part.endsWith("\"") || (bitcounter & 1) == 1)) {
                     found = true;
                     String add = bits.get(i) + fieldSeparator + bits.get(i + 1);
                     bits.remove(i);
@@ -557,7 +560,7 @@ public class DSpaceCSV implements Serializable {
                 System.err.println("Invalid item identifier: " + id);
                 System.err.println("Please check your CSV file for information. " +
                                        "Item id must be numeric, or a '+' to add a new item");
-                throw (nfe);
+                throw nfe;
             }
         }
 
@@ -566,7 +569,7 @@ public class DSpaceCSV implements Serializable {
         for (String part : bits) {
             if (i > 0) {
                 // Is this a last empty item?
-                if (last && (i == headings.size())) {
+                if (last && i == headings.size()) {
                     part = "";
                 }
 
@@ -579,7 +582,7 @@ public class DSpaceCSV implements Serializable {
                 csvLine.add(headings.get(i - 1), null);
                 String[] elements = part.split(escapedValueSeparator);
                 for (String element : elements) {
-                    if ((element != null) && !element.isEmpty()) {
+                    if (element != null && !element.isEmpty()) {
                         csvLine.add(headings.get(i - 1), element);
                     }
                 }
@@ -608,11 +611,11 @@ public class DSpaceCSV implements Serializable {
     public final String[] getCSVLinesAsStringArray() {
         // Create the headings line
         String[] csvLines = new String[counter + 1];
-        csvLines[0] = "id" + fieldSeparator + "collection";
+        csvLines[0] = "id" + fieldSeparator + COLLECTION;
         List<String> headingsCopy = new ArrayList<>(headings);
         Collections.sort(headingsCopy);
         for (String value : headingsCopy) {
-            if ("collection".equals(value)) {
+            if (COLLECTION.equals(value)) {
                 continue;
             }
             csvLines[0] = csvLines[0] + fieldSeparator + value;
@@ -664,7 +667,7 @@ public class DSpaceCSV implements Serializable {
     private String translateHeaderLine(String csvLine, String prefix) {
         String[] headers =  csvLine.split(fieldSeparator);
 
-        for (int i = 2 ; i < headers.length; i++) {
+        for (int i = 0; i < headers.length; i++) {
             headers[i] = getMessage(prefix, headers[i]);
         }
 

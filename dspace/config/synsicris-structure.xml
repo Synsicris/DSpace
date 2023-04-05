@@ -3,6 +3,7 @@
   <groups>
     <group>funder_organisational_managers_group</group>
     <group>funder_project_managers_group</group>
+    <group>funder_readers_group</group>
     <group>system_members_group</group>
     <group>project_template_readers_group</group>
     <group>project_template_funders_group</group>

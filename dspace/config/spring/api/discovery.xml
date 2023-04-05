@@ -226,9 +226,9 @@
                 <entry key="allProjectItems" value-ref="allProjectItemsConfiguration" />
                 <entry key="allProjectItemsForAdminAndFunders" value-ref="allProjectItemsForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForAdminAndFunders" value-ref="firstStepSearchProjectsForAdminAndFundersConfiguration" />
-                <entry key="firstStepSearchAllProjectForAdminAndFunders" value-ref="firstStepSearchAllProjectForAdminAndFundersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForAdminAndFunders" value-ref="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration" />
                 <entry key="firstStepSearchProjectsForMembers" value-ref="firstStepSearchProjectsForMembersConfiguration" />
-                <entry key="firstStepSearchAllProjectForMembers" value-ref="firstStepSearchAllProjectForMembersConfiguration" />
+                <entry key="firstStepSearchBrowseAllProjectForMembers" value-ref="firstStepSearchBrowseAllProjectForMembersConfiguration" />
                 <entry key="secondStepSearchProjectItems" value-ref="secondStepSearchProjectItemsConfiguration" />
                 <entry key="secondStepSearchProjectItemsForAdminAndFunders" value-ref="secondStepSearchProjectItemsForAdminAndFundersConfiguration" />
 
@@ -1798,7 +1798,7 @@
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForAdminAndFundersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForAdminAndFundersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForAdminAndFunders" />
@@ -1823,12 +1823,12 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND (entityType:Publication OR entityType:Patent OR entityType:Project OR entityType:Funding OR entityType:projectpartner OR entityType:cooperationpartner OR entityType:spinoff OR entityType:innovationidea OR entityType:targetgroup OR entityType:exp_societalimpact OR entityType:condition) AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>
 
-    <bean id="firstStepSearchAllProjectForMembersConfiguration"
+    <bean id="firstStepSearchBrowseAllProjectForMembersConfiguration"
         class="org.dspace.discovery.configuration.DiscoveryConfiguration"
         scope="prototype" parent="firstStepSearchProjectsCommonConfiguration">
         <property name="id" value="firstStepSearchAllProjectForMembers" />
@@ -1838,7 +1838,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>location.comm:${project.parent-community-id} AND search.resourcetype:Item AND entityType:Project AND (relation.isVersionOf:* AND synsicris.isLastVersion.visible:true)</value>
             </list>
         </property>
     </bean>

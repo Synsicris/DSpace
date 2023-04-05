@@ -180,7 +180,7 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>partner-wp</qualifier>
+        <qualifier>partnerwp</qualifier>
         <scope_note></scope_note>
     </dc-type>
     

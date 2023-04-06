@@ -11,10 +11,14 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +146,67 @@ public class DSpaceCSVTest extends AbstractUnitTest {
             // Nullify resources so JUnit will clean them up
             dcsv = null;
             lines = null;
+        } catch (Exception ex) {
+            log.error("IO Error while creating test CSV file", ex);
+            fail("IO Error while creating test CSV file");
+        }
+    }
+
+    @Test
+    public void getDSpaceCSVInputStreamTest() {
+        try {
+
+            String[] csv = {
+                "id,collection,dc.title,dc.title[de],dc.contributor.author",
+                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,123,Easy line,german title,\"Lewis, Stuart\"",
+                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,1234,Two authors,german title,\"Lewis, Stuart||Bloggs, Joe\""
+            };
+
+            // Write the string to a file
+            String filename = "test.csv";
+            BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(
+                    new FileOutputStream(filename), "UTF-8"));
+            for (String csvLine : csv) {
+                out.write(csvLine + "\n");
+            }
+            out.flush();
+            out.close();
+
+            // Test the CSV parsing is OK
+            DSpaceCSV dCSV = new DSpaceCSV(FileUtils.openInputStream(new File(filename)), context);
+            String[] lines = dCSV.getCSVLinesAsStringArray();
+            assertThat("testDSpaceCSV Good CSV", lines.length, equalTo(3));
+
+            // WHEN getting InputStream without prefix param
+            InputStream inputStreamOne = dCSV.getInputStream();
+            String headerOne = new BufferedReader(new InputStreamReader(inputStreamOne, StandardCharsets.UTF_8))
+                .lines()
+                .findFirst()
+                .get();
+
+            // Then header row contains metadata without translation
+            assertThat(headerOne, equalTo("id,collection,dc.contributor.author,dc.title,dc.title[de]"));
+
+            // WHEN getting InputStream with prefix param
+            InputStream inputStreamTwo = dCSV.getInputStream("metadata.");
+            String headerTwo = new BufferedReader(new InputStreamReader(inputStreamTwo, StandardCharsets.UTF_8))
+                .lines()
+                .findFirst()
+                .get();
+
+            // Then header row contains translated metadata
+            assertThat(headerTwo, equalTo("id,collection,Author(s),Title,Bezeichnung"));
+
+            // Delete the test file
+            File toDelete = new File(filename);
+            toDelete.delete();
+            toDelete = null;
+
+            // Nullify resources so JUnit will clean them up
+            dCSV = null;
+            lines = null;
+
         } catch (Exception ex) {
             log.error("IO Error while creating test CSV file", ex);
             fail("IO Error while creating test CSV file");

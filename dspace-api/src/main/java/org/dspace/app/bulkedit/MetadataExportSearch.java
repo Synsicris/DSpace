@@ -8,6 +8,7 @@
 
 package org.dspace.app.bulkedit;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,6 +51,9 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
     private String[] filterQueryStrings;
     private boolean hasScope = false;
     private String query;
+    private boolean exportAll;
+    private boolean isLabeled;
+    private static final String MSG_METADATA = "metadata.";
 
     private SearchService searchService;
     private MetadataDSpaceCsvExportService metadataDSpaceCsvExportService;
@@ -78,6 +82,8 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
         communityService = ContentServiceFactory.getInstance().getCommunityService();
         collectionService = ContentServiceFactory.getInstance().getCollectionService();
         queryBuilder = SearchUtils.getQueryBuilder();
+        exportAll = commandLine.hasOption("a");
+        isLabeled = commandLine.hasOption("l");
 
         if (commandLine.hasOption('h')) {
             help = true;
@@ -143,9 +149,9 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
 
         Iterator<Item> itemIterator = searchService.iteratorSearch(context, dso, discoverQuery);
         handler.logDebug("creating dspacecsv");
-        DSpaceCSV dSpaceCSV = metadataDSpaceCsvExportService.export(context, itemIterator, true);
+        DSpaceCSV dSpaceCSV = metadataDSpaceCsvExportService.export(context, itemIterator, exportAll);
         handler.logDebug("writing to file " + getFileNameOrExportFile());
-        handler.writeFilestream(context, getFileNameOrExportFile(), dSpaceCSV.getInputStream(), EXPORT_CSV);
+        handler.writeFilestream(context, getFileNameOrExportFile(), getInputStream(dSpaceCSV), EXPORT_CSV);
         context.restoreAuthSystemState();
         context.complete();
 
@@ -167,4 +173,13 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
         }
         return scopeObj;
     }
+
+    private InputStream getInputStream(DSpaceCSV dSpaceCSV) {
+        if (isLabeled) {
+            return dSpaceCSV.getInputStream(MSG_METADATA);
+        } else {
+            return dSpaceCSV.getInputStream();
+        }
+    }
+
 }

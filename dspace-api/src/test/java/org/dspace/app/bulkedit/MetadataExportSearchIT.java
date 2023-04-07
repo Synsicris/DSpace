@@ -8,6 +8,8 @@
 
 package org.dspace.app.bulkedit;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -18,7 +20,12 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.google.common.io.Files;
 import com.opencsv.CSVReader;
@@ -33,6 +40,8 @@ import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.factory.ContentServiceFactory;
+import org.dspace.content.service.ItemService;
 import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.SearchService;
 import org.dspace.discovery.SearchUtils;
@@ -53,7 +62,9 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
     private Collection collection;
     private Logger logger = Logger.getLogger(MetadataExportSearchIT.class);
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
+    private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
     private SearchService searchService;
+    private Map<String, Item> itemsSubject1Map;
 
     @Override
     @Before
@@ -78,6 +89,7 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
             itemsSubject1[i] = ItemBuilder.createItem(context, collection)
                 .withTitle(String.format("%s item %d", subject1, i))
                 .withSubject(subject1)
+                .withSubjectForLanguage("german subject", "de")
                 .withIssueDate("2020-09-" + i)
                 .build();
         }
@@ -89,6 +101,11 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
                 .withIssueDate("2021-09-" + i)
                 .build();
         }
+
+        itemsSubject1Map =
+            Arrays.stream(itemsSubject1)
+                .collect(Collectors.toMap(item -> item.getID().toString(), item -> item));
+
         context.restoreAuthSystemState();
     }
 
@@ -250,4 +267,147 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
         assertNotNull(exception);
         assertEquals("nonExisting is not a valid search filter", exception.getMessage());
     }
+
+    @Test
+    public void exportAllMetadataOrNotTest() throws Exception {
+
+        String[] originalExcludedMetadata =
+            configurationService.getArrayProperty("bulkedit.ignore-on-export");
+
+        try {
+
+            configurationService.setProperty(
+                "bulkedit.ignore-on-export",
+                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"}
+            );
+            List<Function<Item, String>> rowMapper =
+                List.of(
+                        (item) -> item.getID().toString(),
+                        (item) -> item.getOwningCollection().getHandle(),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "accessioned", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "available", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "issued", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "description", "provenance", "en"),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
+                );
+
+
+            // WHEN run script with -a to export all metadata
+            int result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename, "-a");
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            //THEN exported file with all metadata
+            checkHeaderPresentInFile(filename, "id,collection,dc.date.accessioned,dc.date.available," +
+                "dc.date.issued,dc.description.provenance[en],dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+            checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
+
+            // mapper with excluded metadata
+            rowMapper =
+                List.of(
+                        (item) -> item.getID().toString(),
+                        (item) -> item.getOwningCollection().getHandle(),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "issued", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
+                );
+
+            // WHEN run script without -a to export metadata without excluded ones
+            result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename);
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            //THEN exported file without excluded metadata
+            checkHeaderPresentInFile(filename,
+                "id,collection,dc.date.issued,dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+            checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
+
+        } finally {
+            configurationService.setProperty("bulkedit.ignore-on-export", originalExcludedMetadata);
+        }
+    }
+
+    @Test
+    public void exportMetadataWithTranslatedHeaderTest() throws Exception {
+
+        String[] originalExcludedMetadata =
+            configurationService.getArrayProperty("bulkedit.ignore-on-export");
+
+        try {
+
+            String[] excludedMetadata =
+                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"};
+            List<Function<Item, String>> rowMapper =
+                List.of(
+                        //"id"
+                        (item) -> item.getID().toString(),
+                        //"collection"
+                        (item) -> item.getOwningCollection().getHandle(),
+                        //"Issue Date"
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "issued", Item.ANY),
+                        //"URI",
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
+                        //"Keywords",
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
+                        //"Schlagworte"
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
+                        //"Title"
+                        (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
+                );
+
+            configurationService.setProperty(
+                "bulkedit.ignore-on-export",
+                excludedMetadata
+            );
+
+            // WHEN run script with -l to translate metadata of header row
+            int result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename, "-l");
+
+            assertEquals(0, result);
+            checkItemsPresentInFile(filename, itemsSubject1);
+
+            // THEN expected translated header
+            checkHeaderPresentInFile(filename, "id,collection,Issue Date,URI,Keywords,Schlagworte,Title");
+            checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
+
+        } finally {
+            configurationService.setProperty("bulkedit.ignore-on-export", originalExcludedMetadata);
+        }
+    }
+
+    private void checkCSVFileValues(
+        String fn, Map<String, Item> items, List<Function<Item, String>> rowMapper
+    ) throws IOException, CsvException {
+        try (CSVReader csvReader = new CSVReader(Files.newReader(new File(fn), Charset.defaultCharset()))) {
+            Iterator<String[]> iterator = csvReader.iterator();
+            iterator.next();
+            while (iterator.hasNext()) {
+                String[] stringrow = iterator.next();
+                Item item = items.get(stringrow[0]);
+                IntStream.range(0, stringrow.length)
+                    .forEach(i ->
+                        assertThat(stringrow[i], equalTo(rowMapper.get(i).apply(item)))
+                    );
+            }
+        }
+    }
+
+    private void checkHeaderPresentInFile(String filename, String header) throws IOException, CsvException {
+        File file = new File(filename);
+        Reader reader = Files.newReader(file, Charset.defaultCharset());
+        CSVReader csvReader = new CSVReader(reader);
+        List<String[]> lines = csvReader.readAll();
+
+        // check values for header row
+        assertEquals(Arrays.stream(lines.get(0))
+                           .collect(Collectors.joining(",")), header);
+    }
+
 }

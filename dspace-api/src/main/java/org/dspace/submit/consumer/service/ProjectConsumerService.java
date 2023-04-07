@@ -94,4 +94,6 @@ public interface ProjectConsumerService {
 
     Item getProjectItemByRelatedItem(Context context, Item relatedItem) throws SQLException;
 
+    Iterator<Item> findVersionedProjectsInCommunity(Context context, Community projectCommunity);
+
 }

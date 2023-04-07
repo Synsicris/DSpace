@@ -6,13 +6,11 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.repository;
-import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.SortedMap;
 import java.util.UUID;
 import javax.servlet.ServletInputStream;
@@ -20,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.Parameter;
 import org.dspace.app.rest.SearchRestMethod;
@@ -39,8 +36,6 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Bitstream;
 import org.dspace.content.Community;
-import org.dspace.content.Item;
-import org.dspace.content.MetadataValue;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
@@ -54,7 +49,6 @@ import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.eperson.Group;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.project.util.ProjectConstants;
-import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -293,12 +287,7 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
             throw new RuntimeException("Unable to find Community with id = " + id, e);
         }
         try {
-            if (isCommunityRelatedToProject(context, community)) {
-                communityService.deleteRelatedVersionedProjects(context, community);
-                communityService.delete(context, context.reloadEntity(community));
-            } else {
-                communityService.delete(context, community);
-            }
+            communityService.delete(context, community);
         } catch (SQLException e) {
             throw new RuntimeException("Unable to delete Community with id = " + id, e);
         } catch (IOException e) {
@@ -396,9 +385,9 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         String grants = req.getParameter("grants");
 
         if (StringUtils.isNoneEmpty(grants) &&
-            (!StringUtils.equals(grants, ProjectConstants.PROJECT) &&
+            !StringUtils.equals(grants, ProjectConstants.PROJECT) &&
                     !StringUtils.equals(grants, ProjectConstants.FUNDING) &&
-                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT))) {
+                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT)) {
             throw new UnprocessableEntityException("");
         }
 
@@ -422,18 +411,5 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         Community clone = communityService.cloneCommunity(context, community, parent, name, grants);
         context.restoreAuthSystemState();
         return converter.toRest(clone, utils.obtainProjection());
-    }
-
-    private Boolean isCommunityRelatedToProject(Context context, Community community) throws SQLException {
-        List<MetadataValue> metadataValues =
-            communityService.getMetadataByMetadataString(community, "synsicris.relation.entity_item");
-
-        if (CollectionUtils.isNotEmpty(metadataValues) &&
-            StringUtils.isNotBlank(metadataValues.get(0).getAuthority())) {
-            Item item = itemService.find(context, UUIDUtils.fromString(metadataValues.get(0).getAuthority()));
-            return Objects.nonNull(item) ? itemService.getEntityType(item).equals(PROJECT_ENTITY) : false;
-        }
-
-        return false;
     }
 }

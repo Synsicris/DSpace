@@ -14,13 +14,15 @@ import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.apache.commons.collections4.IteratorUtils;
 import org.dspace.authority.service.ItemSearchService;
@@ -210,7 +212,7 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
             return;
         }
 
-        List<Item> itemsToDelete =
+        Stream<Item> itemsToDelete =
             findVersionedItems(c, projectItem, String.valueOf(versionToDelete.getVersionNumber()));
 
         deleteItems(c, itemsToDelete);
@@ -265,10 +267,10 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         }
     }
 
-    private void deleteItems(Context c, List<Item> items) {
+    private void deleteItems(Context c, Stream<Item> items) {
         items.forEach(item -> {
             try {
-                deleteItem(c, c.reloadEntity(item));
+                deleteItem(c, item);
             } catch (SQLException | AuthorizeException | IOException e) {
                 throw new RuntimeException(
                     "Error while deleting the versioned item with id: " + item.getID(),
@@ -278,13 +280,14 @@ public class ProjectVersionProvider extends AbstractVersionProvider implements I
         });
     }
 
-    private List<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
-        List<Item> versionedItems = new ArrayList<>();
+    private Stream<Item> findVersionedItems(Context c, Item projectItem, String versionNumber) throws SQLException {
         Community community = projectConsumerService.getProjectCommunity(c, projectItem);
-        projectConsumerService
-            .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber)
-            .forEachRemaining(versionedItems::add);
-        return versionedItems;
+        Iterator<Item> itemIterator =
+            projectConsumerService
+                .findVersionedItemsRelatedToProject(c, community, projectItem, versionNumber);
+        return StreamSupport.stream(
+            Spliterators.spliteratorUnknownSize(itemIterator, Spliterator.ORDERED), false
+        );
     }
 
     private void deleteItem(Context context, Item item) throws SQLException, AuthorizeException, IOException {

@@ -196,19 +196,11 @@
 				<fo:flow flow-name="xsl-region-body">
 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-					<!-- SECTION #-1 --> 
+					<!-- SECTION #-1 - TESTING ON THE FIRST PAGE --> 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-					<!-- sub sub section title - patents -->
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="$lang.title.section4.3.5"/>
-						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-					</xsl:call-template>
-
-          <xsl:call-template name="patent"/>
-
 					<!-- new page -->
-          <fo:block break-after='page'/>
+          <!-- <fo:block break-after='page'/> -->
 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 					<!-- SECTION #0 --> 

@@ -103,4 +103,14 @@
         <property name="description" value="Batch Export to Simple Archive Format (SAF)"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.itemexport.ItemExport"/>
     </bean>
+    
+    <bean id="version" class="org.dspace.app.versioning.ItemVersionScriptConfiguration">
+        <property name="description" value="Creates a new version of a target item"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.versioning.ItemVersionScript"/>
+    </bean>
+    
+    <bean id="capture-website" class="org.dspace.app.capture.CaptureWebsiteScriptConfiguration">
+        <property name="description" value="Creates a screenshot of a target dspace page"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.capture.CaptureWebsiteScript"/>
+    </bean>
 </beans>

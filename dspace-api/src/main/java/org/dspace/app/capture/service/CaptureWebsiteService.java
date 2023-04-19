@@ -8,6 +8,7 @@
 package org.dspace.app.capture.service;
 
 import java.io.InputStream;
+import java.util.Map;
 
 import org.dspace.app.capture.CapturableScreen;
 
@@ -30,5 +31,7 @@ public interface CaptureWebsiteService {
     void takeScreenshot(CapturableScreen capturableScreen) throws Exception;
 
     public InputStream getScreenshot(CapturableScreen capturableScreen) throws Exception;
+
+    public Map<String, String> getExtensionsToMimeType();
 
 }

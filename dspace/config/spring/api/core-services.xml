@@ -204,6 +204,17 @@
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisProjectEntityDeleteService" />
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisCommentDeleteService" />
     <bean class="org.dspace.synsicris.programme.ProgrammeServiceImpl" />
+    <bean class="org.dspace.app.capture.saveservice.CapturedStreamSaveServiceImpl" />
+
+    <bean class="org.dspace.app.capture.service.CaptureWebsiteServiceImpl">
+       <property name="extensionToMimeType" ref="extensionToMimeTypeBean"/>
+    </bean>
+
+    <util:map id="extensionToMimeTypeBean" map-class="java.util.HashMap"  key-type="java.lang.String" value-type="java.lang.String">
+    	<entry key="png" value="image/png" />
+    	<entry key="jpeg" value="image/jpeg" />
+    	<entry key="webp" value="image/webp" />
+    </util:map>
 
 </beans>
 

@@ -9,6 +9,7 @@ package org.dspace.app.capture.service;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -17,12 +18,14 @@ import org.apache.commons.lang.StringUtils;
 import org.dspace.app.capture.CapturableScreen;
 import org.dspace.app.capture.CapturableScreenConfiguration;
 import org.dspace.services.ConfigurationService;
-import org.dspace.services.factory.DSpaceServicesFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
 
-    protected ConfigurationService configurationService =
-        DSpaceServicesFactory.getInstance().getConfigurationService();
+    private Map<String, String> extensionToMimeType;
+
+    @Autowired
+    protected ConfigurationService configurationService;
 
     private boolean isWindows() {
         return System.getProperty("os.name")
@@ -160,6 +163,15 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
                 Optional.ofNullable(scale).
                     orElse(DEFAULT_SCALE_FACTOR + "")
             );
+    }
+
+    public void setExtensionToMimeType(Map<String, String> extensionToMimeType) {
+        this.extensionToMimeType = extensionToMimeType;
+    }
+
+    @Override
+    public Map<String, String> getExtensionsToMimeType() {
+        return this.extensionToMimeType;
     }
 
 }

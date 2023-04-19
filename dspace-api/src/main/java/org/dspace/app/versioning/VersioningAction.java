@@ -19,12 +19,16 @@ import org.dspace.core.Context;
  */
 public abstract class VersioningAction<T> {
 
-    T operation;
+    private T operation;
 
     public VersioningAction(T operation) {
         this.operation = operation;
     }
 
     public abstract void consume(Context c, T operation);
+
+    public T getOperation() {
+        return operation;
+    }
 
 }

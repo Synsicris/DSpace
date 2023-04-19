@@ -40,4 +40,12 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
         this.receiver.accept(context, item);
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public String getBundleName() {
+        return bundleName;
+    }
+
 }

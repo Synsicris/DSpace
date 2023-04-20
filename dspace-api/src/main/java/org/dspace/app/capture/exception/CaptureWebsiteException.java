@@ -5,7 +5,7 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.capture;
+package org.dspace.app.capture.exception;
 
 public class CaptureWebsiteException extends Exception {
     public static final int INVALID_URL = 0b1;

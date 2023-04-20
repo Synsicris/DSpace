@@ -7,16 +7,23 @@
  */
 package org.dspace.app.capture.service;
 
+import static org.dspace.app.capture.CaptureWebsiteProperties.CAPTURE_WEBSITE_NODE_PATH;
+import static org.dspace.app.capture.CaptureWebsiteProperties.CAPTURE_WEBSITE_PATH;
+
 import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
-import org.dspace.app.capture.CapturableScreen;
-import org.dspace.app.capture.CapturableScreenConfiguration;
+import org.dspace.app.capture.CaptureWebsiteProperties;
+import org.dspace.app.capture.mapper.CapturableScreenHeaderValueMapper;
+import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
+import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,9 +43,9 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
      * @see org.dspace.app.capture.service.CaptureWebsiteService#takeScreenshot(org.dspace.app.capture.CapturableScreen)
      */
     @Override
-    public void takeScreenshot(CapturableScreen capturableScreen) throws Exception {
+    public void takeScreenshot(Context c, CapturableScreen capturableScreen) throws Exception {
         ProcessBuilder procBuilder = new ProcessBuilder();
-        String command = buildCommand(capturableScreen);
+        String command = buildCommand(c, capturableScreen);
         boolean isWindows = this.isWindows();
         if (isWindows) {
             procBuilder.command("cmd.exe", "/c", command);
@@ -59,9 +66,9 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
      * @see org.dspace.app.capture.service.CaptureWebsiteService#takeScreenshot(org.dspace.app.capture.CapturableScreen)
      */
     @Override
-    public InputStream getScreenshot(CapturableScreen capturableScreen) throws Exception {
+    public InputStream getScreenshot(Context c, CapturableScreen capturableScreen) throws Exception {
         ProcessBuilder procBuilder = new ProcessBuilder();
-        String command = buildCommand(capturableScreen);
+        String command = buildCommand(c, capturableScreen);
         boolean isWindows = this.isWindows();
         if (isWindows) {
             procBuilder.command("cmd.exe", "/c", command);
@@ -72,14 +79,15 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         return procBuilder.start().getInputStream();
     }
 
-    private String buildCommand(CapturableScreen capturableScreen) {
+    private String buildCommand(Context c, CapturableScreen capturableScreen) {
         CapturableScreenConfiguration configuration = capturableScreen.getConfiguration();
-        // TODO: ADD configuration property
-        return new StringBuilder(configurationService.getProperty(NODE_PATH, NODE))
+        return new StringBuilder(
+                configurationService.getProperty(CAPTURE_WEBSITE_NODE_PATH, CaptureWebsiteProperties.NODE)
+            )
             .append(" ")
-            .append(configurationService.getProperty(CAPTURE_WEBSITE_PATH, CAPTURE_WEBSITE))
+            .append(configurationService.getProperty(CAPTURE_WEBSITE_PATH, CaptureWebsiteProperties.CAPTURE_WEBSITE))
             .append(getUrlResource(capturableScreen.getUrl()))
-            .append(getHeader(capturableScreen.getToken()))
+            .append(computeHeader(c, configuration))
             .append(getCookie(capturableScreen.getCookie()))
             .append(getRemoveElements(configuration.getRemoveElements()))
             .append(getElement(configuration.getElement()))
@@ -91,23 +99,59 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
 
     protected StringBuilder getUrlResource(String url) {
         StringBuilder urlResource = new StringBuilder(url);
-        if (!url.startsWith("/")) {
-            urlResource = new StringBuilder("/").append(urlResource);
+        String uiUrl = configurationService.getProperty("dspace.ui.url");
+        if (!url.startsWith(uiUrl)) {
+            urlResource = new StringBuilder(uiUrl);
+            if (!url.startsWith("/")) {
+                urlResource = urlResource.append("/").append(urlResource);
+            }
         }
-        return new StringBuilder(" ")
-            .append(configurationService.getProperty("dspace.ui.url"))
-            .append(urlResource);
+        return new StringBuilder(" ").append(urlResource);
     }
 
-    protected StringBuilder getHeader(String token) {
-        return new StringBuilder(" ")
-            .append("--header=")
+    @Override
+    public StringBuilder computeHeader(Context c, CapturableScreenConfiguration configuration) {
+        if (configuration == null || configuration.getHeadersConfiguration() == null) {
+            return new StringBuilder();
+        }
+        return computeHeaders(c, configuration.getHeadersConfiguration())
+                .entrySet()
+                .stream()
+                .map(header -> generateStringParameter("header", header.getKey(), header.getValue()))
+                .collect(
+                    Collectors.reducing(
+                        new StringBuilder(" "),
+                        (s1, s2) -> s1.append(" ").append(s2)
+                    )
+                );
+    }
+
+    public StringBuilder generateStringParameter(String parameterName, String headerName, String headerValue) {
+        return new StringBuilder("--").append(parameterName).append("=")
             .append("\"")
-            .append("Authorization: Bearer ").append(token)
+            .append(headerName).append(": ").append(headerValue)
             .append("\"");
     }
 
+    public Map<String, String> computeHeaders(Context c, Map<String, CapturableScreenHeaderValueMapper> headers) {
+        return headers
+            .entrySet()
+            .stream()
+            .collect(
+                Collectors.groupingBy(
+                    entry -> entry.getKey(),
+                    Collectors.mapping(
+                        entry -> entry.getValue().apply(c),
+                        Collectors.joining(",")
+                    )
+                )
+            );
+    }
+
     protected StringBuilder getCookie(String cookie) {
+        if (StringUtils.isBlank(cookie) || StringUtils.isEmpty(cookie)) {
+            return new StringBuilder();
+        }
         return new StringBuilder(" ")
                 .append("--cookie=")
                 .append("\"")
@@ -152,7 +196,7 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         return new StringBuilder(" ")
             .append("--type=")
             .append("\"")
-            .append(Optional.ofNullable(type).orElse(DEFAULT_TYPE))
+            .append(Optional.ofNullable(type).orElse(CaptureWebsiteProperties.DEFAULT_TYPE))
             .append("\"");
     }
 
@@ -160,8 +204,7 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         return new StringBuilder(" ")
             .append("--scale-factor=")
             .append(
-                Optional.ofNullable(scale).
-                    orElse(DEFAULT_SCALE_FACTOR + "")
+                Optional.ofNullable(scale).orElse(CaptureWebsiteProperties.DEFAULT_SCALE_FACTOR + "")
             );
     }
 

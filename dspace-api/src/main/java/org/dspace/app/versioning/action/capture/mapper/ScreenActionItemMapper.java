@@ -5,17 +5,16 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
-
-import java.util.List;
+package org.dspace.app.versioning.action.capture.mapper;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
-public abstract class VersioningActionConfiguration<C, V extends VersioningAction<?>> {
+@FunctionalInterface
+public abstract interface ScreenActionItemMapper {
 
-    protected C configuration;
-
-    public abstract List<V> createAction(Context c, Item i);
+    public abstract Item mapScreenActionItem(
+        Context context, Item item, Item providedItem
+    );
 
 }

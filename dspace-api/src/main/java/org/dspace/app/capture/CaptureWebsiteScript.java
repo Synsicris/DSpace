@@ -7,16 +7,24 @@
  */
 package org.dspace.app.capture;
 
-import static org.dspace.app.capture.CaptureWebsiteException.INVALID_COOKIE;
-import static org.dspace.app.capture.CaptureWebsiteException.INVALID_TOKEN;
-import static org.dspace.app.capture.CaptureWebsiteException.INVALID_URL;
-import static org.dspace.app.capture.service.CaptureWebsiteService.DEFAULT_SCALE_FACTOR;
-import static org.dspace.app.capture.service.CaptureWebsiteService.DEFAULT_TYPE;
+import static org.dspace.app.capture.CaptureWebsiteProperties.DEFAULT_SCALE_FACTOR;
+import static org.dspace.app.capture.CaptureWebsiteProperties.DEFAULT_TYPE;
+import static org.dspace.app.capture.exception.CaptureWebsiteException.INVALID_COOKIE;
+import static org.dspace.app.capture.exception.CaptureWebsiteException.INVALID_TOKEN;
+import static org.dspace.app.capture.exception.CaptureWebsiteException.INVALID_URL;
+import static org.dspace.app.capture.mapper.SimpleHeaderValueMappers.bearerToken;
+
+import java.util.Map;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang.StringUtils;
+import org.dspace.app.capture.exception.CaptureWebsiteException;
+import org.dspace.app.capture.mapper.CapturableScreenHeaderValueMapper;
+import org.dspace.app.capture.model.CapturableScreenBuilder;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.app.capture.service.CaptureWebsiteService;
 import org.dspace.app.capture.service.factory.CaptureWebsiteServiceFactory;
+import org.dspace.core.Context;
 import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
@@ -69,7 +77,22 @@ public class CaptureWebsiteScript extends DSpaceRunnable<CaptureWebsiteScriptCon
         }
 
         validate();
-        process();
+
+        Context context = new Context();
+        context.turnOffAuthorisationSystem();
+
+        try {
+            process(context);
+        } catch (Exception e) {
+            context.restoreAuthSystemState();
+            context.abort();
+            throw e;
+        } finally {
+            context.restoreAuthSystemState();
+            context.complete();
+        }
+
+        context.restoreAuthSystemState();
     }
 
     private void validate() throws CaptureWebsiteException {
@@ -102,15 +125,29 @@ public class CaptureWebsiteScript extends DSpaceRunnable<CaptureWebsiteScriptCon
         }
     }
 
-    private void process() throws Exception {
+    private void process(Context context) throws Exception {
         this.captureWebsiteService.takeScreenshot(
-            new CapturableScreen(
-                new CapturableScreenConfiguration(
-                    element, remove, style,
-                    DEFAULT_TYPE, DEFAULT_SCALE_FACTOR
-                ),
-                url, token, cookie
-            )
+            context,
+            CapturableScreenBuilder
+                .createCapturableScreen(
+                    context,
+                    new CapturableScreenConfiguration(
+                        element, remove, style,
+                        DEFAULT_TYPE, DEFAULT_SCALE_FACTOR,
+                        getDefaultHeaders(token)
+                    )
+                )
+                .withCookie(cookie)
+                .withUrl(url)
+                .computeHeaders()
+                .build()
+        );
+    }
+
+    public Map<String, CapturableScreenHeaderValueMapper> getDefaultHeaders(String token) {
+        return Map.of(
+            "Authorization",
+            bearerToken(token)
         );
     }
 

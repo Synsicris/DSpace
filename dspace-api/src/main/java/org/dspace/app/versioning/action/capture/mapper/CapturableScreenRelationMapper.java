@@ -5,14 +5,15 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
+package org.dspace.app.versioning.action.capture.mapper;
 
 import java.sql.SQLException;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import org.dspace.app.capture.CapturableScreen;
-import org.dspace.app.capture.CapturableScreenConfiguration;
+import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreenBuilder;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
@@ -28,12 +29,18 @@ public class CapturableScreenRelationMapper implements CapturableScreenMapper {
 
     @Override
     public Stream<CapturableScreen> mapToCapturableScreen(
-        Context c, CapturableScreenConfiguration conf, Item item, String token, String cookie
+        Context c, CapturableScreenConfiguration conf, Item item, String cookie
     ) {
         return this.itemService.getMetadataByMetadataString(item, relationMd)
             .stream()
             .map(relation -> mapRelatedItem(c, relation))
-            .map(url -> new CapturableScreen(conf, url, token, cookie));
+            .map(url ->
+                CapturableScreenBuilder.createCapturableScreen(c, conf)
+                    .withUrl(url)
+                    .withCookie(cookie)
+                    .computeHeaders()
+                    .build()
+            );
     }
 
     private String mapRelatedItem(Context c, MetadataValue relation) {

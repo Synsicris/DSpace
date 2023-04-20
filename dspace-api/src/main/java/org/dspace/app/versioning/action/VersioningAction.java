@@ -5,7 +5,7 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
+package org.dspace.app.versioning.action;
 
 import org.dspace.core.Context;
 
@@ -19,13 +19,13 @@ import org.dspace.core.Context;
  */
 public abstract class VersioningAction<T> {
 
-    private T operation;
+    protected T operation;
 
     public VersioningAction(T operation) {
         this.operation = operation;
     }
 
-    public abstract void consume(Context c, T operation);
+    public abstract void consume(Context c);
 
     public T getOperation() {
         return operation;

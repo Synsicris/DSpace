@@ -10,17 +10,11 @@ package org.dspace.app.capture.service;
 import java.io.InputStream;
 import java.util.Map;
 
-import org.dspace.app.capture.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
+import org.dspace.core.Context;
 
 public interface CaptureWebsiteService {
-
-    public static final String DEFAULT_TYPE = "jpeg";
-    public static final String DEFAULT_SCALE_FACTOR = "1";
-    public static final String NODE_PATH = "dspace.api.node.path";
-    public static final String NODE = "node";
-    public static final String CAPTURE_WEBSITE_PATH = "dspace.api.capture-website.path";
-    public static final String CAPTURE_WEBSITE = "capture-website";
-
 
     /**
      * Methods that takes the screenshot of a target {@link CapturableScreen}
@@ -28,9 +22,11 @@ public interface CaptureWebsiteService {
      * @param capturableScreen
      * @throws Exception
      */
-    void takeScreenshot(CapturableScreen capturableScreen) throws Exception;
+    void takeScreenshot(Context c, CapturableScreen capturableScreen) throws Exception;
 
-    public InputStream getScreenshot(CapturableScreen capturableScreen) throws Exception;
+    public InputStream getScreenshot(Context c, CapturableScreen capturableScreen) throws Exception;
+
+    public StringBuilder computeHeader(Context c, CapturableScreenConfiguration configuration);
 
     public Map<String, String> getExtensionsToMimeType();
 

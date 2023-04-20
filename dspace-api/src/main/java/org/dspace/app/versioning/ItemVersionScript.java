@@ -7,17 +7,16 @@
  */
 package org.dspace.app.versioning;
 
-import static org.dspace.app.versioning.ItemVersionScriptException.MISSING_ITEM_UUID;
-import static org.dspace.app.versioning.ItemVersionScriptException.WOFKFLOW_FOUND;
-import static org.dspace.app.versioning.ItemVersionScriptException.WORKSPACE_FOUND;
+import static org.dspace.app.versioning.exception.ItemVersionScriptException.MISSING_ITEM_UUID;
+import static org.dspace.app.versioning.exception.ItemVersionScriptException.WOFKFLOW_FOUND;
+import static org.dspace.app.versioning.exception.ItemVersionScriptException.WORKSPACE_FOUND;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang.StringUtils;
-import org.dspace.content.Bundle;
+import org.dspace.app.versioning.exception.ItemVersionScriptException;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
@@ -57,7 +56,7 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
     private boolean isHelp;
 
     @Override
-    public ItemVersionScriptConfiguration getScriptConfiguration() {
+    public ItemVersionScriptConfiguration<?> getScriptConfiguration() {
         return new DSpace().getServiceManager()
             .getServiceByName("version", ItemVersionScriptConfiguration.class);
     }
@@ -131,15 +130,16 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
             );
         }
 
+        getScriptConfiguration().getActions()
+            .stream()
+            .flatMap(conf ->
+                conf.createAction(context, item)
+            )
+            .forEach(action -> action.consume(context));
+
         Version version = StringUtils.isNotBlank(summary) ?
                           versioningService.createNewVersion(context, item, summary) :
                           versioningService.createNewVersion(context, item);
-
-        Item versionedItem = version.getItem();
-        List<Bundle> ipwBundles =
-            versionedItem.getBundles("IMPACTPATHWAY");
-        List<Bundle> wpBundles =
-            versionedItem.getBundles("WORKINGPLAN");
     }
 
     private void validate() throws ItemVersionScriptException {

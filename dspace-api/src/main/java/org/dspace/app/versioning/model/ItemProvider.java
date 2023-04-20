@@ -5,15 +5,19 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
+package org.dspace.app.versioning.model;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
-public interface ItemMapper {
+/**
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
+public interface ItemProvider {
 
-    public List<Item> map(Context c, Item i);
+    public Stream<Item> retrieve(Context c, Item i);
 
 }

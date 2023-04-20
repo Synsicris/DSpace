@@ -5,22 +5,29 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.capture;
+package org.dspace.app.capture.model;
 
 public class CapturableScreen {
 
     private String url;
-    private String token;
     private String cookie;
+    private String headers;
     private CapturableScreenConfiguration configuration;
 
-    public CapturableScreen(
-        CapturableScreenConfiguration configuration, String url, String token, String cookie
+    protected CapturableScreen(
+        CapturableScreenConfiguration configuration
     ) {
+        super();
         this.configuration = configuration;
+    }
+
+    public CapturableScreen(
+        CapturableScreenConfiguration configuration, String url, String cookie, String headers
+    ) {
+        this(configuration);
         this.url = url;
-        this.token = token;
         this.cookie = cookie;
+        this.headers = headers;
     }
 
     public CapturableScreenConfiguration getConfiguration() {
@@ -39,20 +46,20 @@ public class CapturableScreen {
         this.url = url;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String getCookie() {
         return cookie;
     }
 
     public void setCookie(String cookie) {
         this.cookie = cookie;
+    }
+
+    public String getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(String headers) {
+        this.headers = headers;
     }
 
 }

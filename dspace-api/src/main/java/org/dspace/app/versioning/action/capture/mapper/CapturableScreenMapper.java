@@ -5,19 +5,20 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
+package org.dspace.app.versioning.action.capture.mapper;
 
 import java.util.stream.Stream;
 
-import org.dspace.app.capture.CapturableScreen;
-import org.dspace.app.capture.CapturableScreenConfiguration;
+import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 public interface CapturableScreenMapper {
 
     public Stream<CapturableScreen> mapToCapturableScreen(
-        Context c, CapturableScreenConfiguration conf, Item item, String token, String cookie
+        Context c, CapturableScreenConfiguration conf,
+        Item item, String cookie
     );
 
 }

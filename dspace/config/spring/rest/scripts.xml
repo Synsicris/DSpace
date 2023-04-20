@@ -103,11 +103,110 @@
         <property name="description" value="Batch Export to Simple Archive Format (SAF)"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.itemexport.ItemExport"/>
     </bean>
+
+    <!-- VERSIONING ACTIONS CONFIGURATION -->
+    <bean id="capture-website-token" class="org.dspace.app.capture.mapper.PropertiesHeaderValueMapper">
+        <constructor-arg name="propertyName" value="capture-website.jwt.token"/>
+        <constructor-arg name="defaultValue"><null/></constructor-arg>
+        <constructor-arg name="prefix" value="Bearer"/>
+    </bean>
+    
+   <bean id="context-user-mapper" class="org.dspace.app.capture.mapper.ContextUserHeaderValueMapper"/>
+    
+    <bean id="capture-website-headers" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="Authorization"
+                    value-ref="capture-website-token"
+                />
+                <entry 
+                    key="X-On-Behalf-Of"
+                    value-ref="context-user-mapper"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="impactpathway-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element" value="#ipw"/>
+        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper"/>
+        <constructor-arg name="style" value="#ipw { width:100vw;height:100vw }"/>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="impactpathway-discovery" class="org.dspace.app.versioning.model.DiscoveryRelationItemProvider">
+        <!-- RELATION.Project.impactpathway -->
+        <constructor-arg name="relationName" value="impactpathway"/>
+    </bean>
+    
+    <bean id="impactpathway-url" class="org.dspace.app.versioning.action.capture.mapper.SimplePrintableViewItemUrlMapper">
+        <constructor-arg name="baseUrl" value="entities/impactpathway"/>
+    </bean>
+    
+    <bean id="IMPACTPATHWAY" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="impactpathway-capturable"/>
+        <constructor-arg name="bundleName" value="IMPACTPATHWAY"/>
+        <constructor-arg name="itemProvider" ref="impactpathway-discovery"/>
+        <constructor-arg name="itemUrlMapper" ref="impactpathway-url"/>
+    </bean>
+    
+   <bean id="workingplan-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element"><null/></constructor-arg>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
+        <constructor-arg name="style"><null/></constructor-arg>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="workingplan-authority" class="org.dspace.app.versioning.model.MetadataAuthorityItemProvider">
+        <constructor-arg name="metadataField" value="synsicris.relation.workingplan"/>
+    </bean>
+    
+    <bean id="workingplan-url" class="org.dspace.app.versioning.action.capture.mapper.AuthorityRelatedItemUrlMapper">
+        <constructor-arg name="baseUrl" value="entities/project"/>
+        <constructor-arg name="relationMetadata" value="synsicris.relation.project"/>
+        <constructor-arg name="suffix" value="workingplan"/>
+    </bean>
+    
+    <bean id="WORKINGPLAN" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="workingplan-capturable"/>
+        <constructor-arg name="bundleName" value="WORKINGPLAN"/>
+        <constructor-arg name="itemProvider" ref="workingplan-authority"/>
+        <constructor-arg name="itemUrlMapper" ref="workingplan-url"/>
+    </bean>
+    
+<!--     <bean id="EXPLOITATIONPLAN" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration"> -->
+<!--         <property name="bundleName" value="EXPLOITATIONPLAN"/> -->
+<!--         <property name="mapper" ref=""/> -->
+<!--         <property name="itemProvider" ref=""/> -->
+<!--     </bean> -->
+    
+<!--     <bean id="INTERIMREPORT" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration"> -->
+<!--         <property name="bundleName" value="INTERIMREPORT"/> -->
+<!--         <property name="mapper" ref=""/> -->
+<!--         <property name="itemProvider" ref=""/> -->
+<!--     </bean> -->
+        
+    <bean id="versioning-actions" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="IMPACTPATHWAY" />
+                <ref bean="WORKINGPLAN" />                
+            </list>
+        </constructor-arg>
+    </bean>
     
     <bean id="version" class="org.dspace.app.versioning.ItemVersionScriptConfiguration">
         <property name="description" value="Creates a new version of a target item"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.versioning.ItemVersionScript"/>
+        <property name="actions" ref="versioning-actions"/>
     </bean>
+    
+    <!-- VERSIONING ACTIONS CONFIGURATION -->
     
     <bean id="capture-website" class="org.dspace.app.capture.CaptureWebsiteScriptConfiguration">
         <property name="description" value="Creates a screenshot of a target dspace page"/>

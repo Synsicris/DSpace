@@ -5,11 +5,12 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.versioning;
+package org.dspace.app.versioning.action.capture;
 
-import java.util.function.BiConsumer;
-
-import org.dspace.app.capture.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.service.CaptureWebsiteService;
+import org.dspace.app.capture.service.factory.CaptureWebsiteServiceFactory;
+import org.dspace.app.versioning.action.VersioningAction;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
@@ -25,7 +26,8 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
     private Item item;
     private String bundleName;
     private boolean cleanBundleBeforeAddNewBistream;
-    private BiConsumer<Context, Item> receiver;
+    private CaptureWebsiteService captureWebsiteService =
+        CaptureWebsiteServiceFactory.getInstance().getCaptureWebsiteService();
 
     public CaptureScreenAction(T operation, Item item, String bundleName, boolean cleanBundle) {
         super(operation);
@@ -35,11 +37,16 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
     }
 
     @Override
-    public void consume(Context context, T t) {
+    public void consume(Context context) {
         // capture screen and stores it inside the item using
         // a target bundleName
         // capturableService.captureScreen(context, item, bundleName);
-        this.receiver.accept(context, item);
+        try {
+            this.captureWebsiteService.takeScreenshot(context, this.operation);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public Item getItem() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import org.dspace.app.versioning.action.VersioningActionConfiguration;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Context;
 import org.dspace.scripts.configuration.ScriptConfiguration;
@@ -29,7 +30,7 @@ public class ItemVersionScriptConfiguration<T extends ItemVersionScript> extends
     private Class<T> dspaceRunnableClass;
 
     // list of actions to accomplish
-    private List<VersioningActionConfiguration> actions;
+    private List<VersioningActionConfiguration<?,?>> actions;
 
     @Override
     public Class<T> getDspaceRunnableClass() {
@@ -74,6 +75,14 @@ public class ItemVersionScriptConfiguration<T extends ItemVersionScript> extends
                     .required(false)
                     .build()
             );
+    }
+
+    public List<VersioningActionConfiguration<?,?>> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<VersioningActionConfiguration<?, ?>> actions) {
+        this.actions = actions;
     }
 
 }

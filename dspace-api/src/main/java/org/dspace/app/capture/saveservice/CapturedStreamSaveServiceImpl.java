@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.capture.service.CaptureWebsiteService;
@@ -28,7 +29,6 @@ import org.dspace.content.Item;
 import org.dspace.content.service.BitstreamFormatService;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.BundleService;
-import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,8 +39,6 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
 
     private static final Logger log = LogManager.getLogger();
 
-    @Autowired
-    private ItemService itemService;
     @Autowired
     private BundleService bundelService;
     @Autowired
@@ -55,10 +53,10 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
             throws SQLException, AuthorizeException, IOException {
 
         for (Bundle bundle : targetItem.getBundles(bundleName)) {
-            bundelService.delete(context, bundle);
+            for (Bitstream bitstream : bundle.getBitstreams()) {
+                bitstreamService.delete(context, bitstream);
+            }
         }
-        Bundle newBundle = bundelService.create(context, targetItem, bundleName);
-        itemService.addBundle(context, targetItem, newBundle);
     }
 
     @Override
@@ -75,20 +73,15 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
     private Bundle getBundle(Context context, CaptureScreenAction<?> captureScreenAction)
              throws SQLException, AuthorizeException, IOException {
 
-        Bundle targetBundle = null;
         Item targetItem = captureScreenAction.getItem();
         String bundleName = captureScreenAction.getBundleName();
         List<Bundle> bundles = targetItem.getBundles(bundleName);
-        if (captureScreenAction.cleanBundleBeforeAddNewBistream()) {
-            for (Bundle bundle : bundles) {
-                bundelService.delete(context, bundle);
-            }
-            targetBundle = bundelService.create(context, targetItem, bundleName);
-            itemService.addBundle(context, targetItem, targetBundle);
-        } else {
-            targetBundle =  bundles.get(0);
+        if (captureScreenAction.cleanBundleBeforeAddNewBistream() && CollectionUtils.isNotEmpty(bundles)) {
+            deleteAllBitstreamFromTargetBundle(context, targetItem, bundleName);
+        } else if (CollectionUtils.isEmpty(bundles)) {
+            return bundelService.create(context, targetItem, bundleName);
         }
-        return targetBundle;
+        return bundles.get(0);
     }
 
     private BitstreamFormat getBitstreamFormat(Context context, CaptureScreenAction<?> captureScreenAction)

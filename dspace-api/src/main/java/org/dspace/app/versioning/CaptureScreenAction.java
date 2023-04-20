@@ -24,12 +24,14 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
 
     private Item item;
     private String bundleName;
+    private boolean cleanBundleBeforeAddNewBistream;
     private BiConsumer<Context, Item> receiver;
 
-    public CaptureScreenAction(T operation, Item item, String bundleName) {
+    public CaptureScreenAction(T operation, Item item, String bundleName, boolean cleanBundle) {
         super(operation);
         this.item = item;
         this.bundleName = bundleName;
+        this.cleanBundleBeforeAddNewBistream = cleanBundle;
     }
 
     @Override
@@ -46,6 +48,10 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
 
     public String getBundleName() {
         return bundleName;
+    }
+
+    public boolean cleanBundleBeforeAddNewBistream() {
+        return cleanBundleBeforeAddNewBistream;
     }
 
 }

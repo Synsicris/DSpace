@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.capture.service.CaptureWebsiteService;
@@ -52,29 +51,43 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
     private BitstreamFormatService bitstreamFormatService;
 
     @Override
+    public void deleteAllBitstreamFromTargetBundle(Context context, Item targetItem, String bundleName)
+            throws SQLException, AuthorizeException, IOException {
+
+        for (Bundle bundle : targetItem.getBundles(bundleName)) {
+            bundelService.delete(context, bundle);
+        }
+        Bundle newBundle = bundelService.create(context, targetItem, bundleName);
+        itemService.addBundle(context, targetItem, newBundle);
+    }
+
+    @Override
     public void saveScreenIntoItem(Context context, InputStream is, CaptureScreenAction<?> captureScreenAction)
             throws IOException, SQLException, AuthorizeException {
 
-        Bundle bundle = getEmptyBundle(context, captureScreenAction);
+        Bundle bundle = getBundle(context, captureScreenAction);
         Bitstream bitstream = bitstreamService.create(context, bundle, is);
         BitstreamFormat bitstreamFormat = getBitstreamFormat(context, captureScreenAction);
         bitstream.setFormat(context, bitstreamFormat);
         bitstreamService.update(context, bitstream);
     }
 
-    private Bundle getEmptyBundle(Context context, CaptureScreenAction<?> captureScreenAction)
+    private Bundle getBundle(Context context, CaptureScreenAction<?> captureScreenAction)
              throws SQLException, AuthorizeException, IOException {
 
+        Bundle targetBundle = null;
         Item targetItem = captureScreenAction.getItem();
         String bundleName = captureScreenAction.getBundleName();
         List<Bundle> bundles = targetItem.getBundles(bundleName);
-        if (CollectionUtils.isNotEmpty(bundles)) {
+        if (captureScreenAction.cleanBundleBeforeAddNewBistream()) {
             for (Bundle bundle : bundles) {
                 bundelService.delete(context, bundle);
             }
+            targetBundle = bundelService.create(context, targetItem, bundleName);
+            itemService.addBundle(context, targetItem, targetBundle);
+        } else {
+            targetBundle =  bundles.get(0);
         }
-        Bundle targetBundle = bundelService.create(context, targetItem, bundleName);
-        itemService.addBundle(context, targetItem, targetBundle);
         return targetBundle;
     }
 

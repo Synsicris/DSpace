@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 import org.dspace.app.versioning.CaptureScreenAction;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
@@ -24,7 +25,30 @@ import org.dspace.core.Context;
  */
 public interface CapturedStreamSaveService {
 
+    /**
+     * Save bitstream using configuration of CaptureScreenAction
+     * 
+     * @param context              DSpace context object
+     * @param is                   InputStream
+     * @param csa                  CaptureScreenAction object
+     * @throws IOException         If IO error
+     * @throws SQLException        If database error
+     * @throws AuthorizeException  If authorization error
+     */
     public void saveScreenIntoItem(Context context, InputStream is, CaptureScreenAction<?> csa)
             throws IOException, SQLException, AuthorizeException;
+
+    /**
+     * Delete all bitstreams of target item by provided bundle name
+     * 
+     * @param context              DSpace context object
+     * @param targetItem           Item whose bundles are to be deleted
+     * @param bundleName           Name of the bundle to be deleted
+     * @throws SQLException        If database error
+     * @throws AuthorizeException  If authorization error
+     * @throws IOException         If IO error
+     */
+    public void deleteAllBitstreamFromTargetBundle(Context context, Item targetItem, String bundleName)
+            throws SQLException, AuthorizeException, IOException;
 
 }

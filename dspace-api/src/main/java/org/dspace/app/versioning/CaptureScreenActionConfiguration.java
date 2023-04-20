@@ -55,7 +55,7 @@ public class CaptureScreenActionConfiguration
             .stream()
             .flatMap(item ->
                 this.mapper.mapToCapturableScreen(c, configuration, item, null, null)
-                    .map(screen -> new CaptureScreenAction<CapturableScreen>(screen, item, bundleName))
+                    .map(screen -> new CaptureScreenAction<CapturableScreen>(screen, item, bundleName, false))
             )
             .collect(Collectors.toList());
     }

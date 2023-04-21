@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
-import org.dspace.app.versioning.CaptureScreenAction;
+import org.dspace.app.versioning.action.capture.CaptureScreenAction;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
@@ -20,14 +20,14 @@ import org.dspace.core.Context;
  * Service interface class for the CapturedStream (screen shot) objects.
  * The implementation of this class is responsible for business logic
  * that allows managing the CapturedStream into a target item
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
 public interface CapturedStreamSaveService {
 
     /**
      * Save bitstream using configuration of CaptureScreenAction
-     * 
+     *
      * @param context              DSpace context object
      * @param is                   InputStream
      * @param csa                  CaptureScreenAction object
@@ -40,7 +40,7 @@ public interface CapturedStreamSaveService {
 
     /**
      * Delete all bitstreams of target item by provided bundle name
-     * 
+     *
      * @param context              DSpace context object
      * @param targetItem           Item whose bundles are to be deleted
      * @param bundleName           Name of the bundle to be deleted

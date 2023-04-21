@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dspaceRunnableThreadExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
@@ -128,6 +130,34 @@
         </constructor-arg>
     </bean>
     
+    <bean id="graph-itemType-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphitemtype"
+                />
+                <entry 
+                    key="configuration"
+                    value="defaultConfiguration"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="uuid-extractor" class="org.dspace.app.versioning.action.capture.mapper.ItemUuidExtractor"/>
+    
+    <bean id="graph-scope-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="scope"
+                    value-ref="uuid-extractor"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    
     <bean id="impactpathway-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
         <constructor-arg name="element" value="#ipw"/>
         <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper"/>
@@ -179,6 +209,38 @@
         <constructor-arg name="itemUrlMapper" ref="workingplan-url"/>
     </bean>
     
+    <bean id="graph-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element" value=".graph-container"/>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
+        <constructor-arg name="style"><null/></constructor-arg>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="graph-authority" class="org.dspace.app.versioning.model.MetadataAuthorityItemProvider">
+        <constructor-arg name="metadataField" value="synsicris.relation.workingplan"/>
+    </bean>
+    
+    <bean id="graph-page-url" class="org.dspace.app.versioning.action.capture.mapper.StaticItemUrlMapper">
+        <constructor-arg name="baseUrl" value="graph-page"/>
+    </bean>
+    
+    <bean id="simple-provider" class="org.dspace.app.versioning.model.SimpleItemProvider"/>
+    
+    <bean id="graph-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graph-itemType-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    
+    <bean id="GRAPH" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="simple-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-url"/>
+    </bean>
+    
 <!--     <bean id="EXPLOITATIONPLAN" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration"> -->
 <!--         <property name="bundleName" value="EXPLOITATIONPLAN"/> -->
 <!--         <property name="mapper" ref=""/> -->
@@ -196,6 +258,7 @@
             <list>
                 <ref bean="IMPACTPATHWAY" />
                 <ref bean="WORKINGPLAN" />                
+                <ref bean="GRAPH" />                
             </list>
         </constructor-arg>
     </bean>

@@ -7,15 +7,16 @@
  */
 package org.dspace.app.versioning.action.capture.mapper;
 
+import java.util.function.Function;
+
 import org.dspace.content.Item;
-import org.dspace.core.Context;
 
 /**
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
+ * @param <R>
  */
-public interface ItemUrlMapper {
-
-    String mapToUrl(Context context, Item item);
+@FunctionalInterface
+public interface ItemValueExtractor<R> extends Function<Item, R> {
 
 }

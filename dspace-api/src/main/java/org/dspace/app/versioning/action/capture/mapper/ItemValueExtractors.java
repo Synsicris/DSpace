@@ -7,15 +7,14 @@
  */
 package org.dspace.app.versioning.action.capture.mapper;
 
-import org.dspace.content.Item;
-import org.dspace.core.Context;
-
 /**
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */
-public interface ItemUrlMapper {
+public class ItemValueExtractors {
 
-    String mapToUrl(Context context, Item item);
+    public static final ItemValueExtractor<String> uuidExtractor = new ItemUuidExtractor();
+
+    private ItemValueExtractors() { }
 
 }

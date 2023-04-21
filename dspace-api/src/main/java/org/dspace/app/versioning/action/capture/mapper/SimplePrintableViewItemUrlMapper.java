@@ -9,6 +9,10 @@ package org.dspace.app.versioning.action.capture.mapper;
 
 import java.util.Map;
 
+/**
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class SimplePrintableViewItemUrlMapper extends SimpleParametersItemUrlMapper {
 
     public SimplePrintableViewItemUrlMapper(String baseUrl) {

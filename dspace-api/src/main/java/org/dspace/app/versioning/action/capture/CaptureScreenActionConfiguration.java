@@ -65,7 +65,8 @@ public class CaptureScreenActionConfiguration
         return new CaptureScreenAction<>(
             getCapturableScreen(c, providedItem),
             itemMapper.mapScreenActionItem(c, item, providedItem),
-            bundleName
+            bundleName,
+            false
         );
     }
 

@@ -7,15 +7,23 @@
  */
 package org.dspace.app.versioning.action.capture.mapper;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.dspace.content.Item;
-import org.dspace.core.Context;
 
 /**
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */
-public interface ItemUrlMapper {
+public class ItemUuidExtractor implements ItemValueExtractor<String> {
 
-    String mapToUrl(Context context, Item item);
+    @Override
+    public String apply(Item i) {
+        return Optional.ofNullable(i)
+                    .map(Item::getID)
+                    .map(UUID::toString)
+                    .orElse("");
+    }
 
 }

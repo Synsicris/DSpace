@@ -7,6 +7,9 @@
  */
 package org.dspace.app.versioning.action.capture.mapper;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
@@ -14,8 +17,19 @@ import org.dspace.core.Context;
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */
-public interface ItemUrlMapper {
+public class StaticItemUrlMapper extends AbstractItemUrlMapper {
 
-    String mapToUrl(Context context, Item item);
+    public StaticItemUrlMapper(String baseUrl) {
+        super(baseUrl);
+    }
+
+    @Override
+    public String mapToUrl(Context context, Item item) {
+        return Stream.of(
+            this.dspaceURL,
+            this.baseUrl
+        )
+        .collect(Collectors.joining("/"));
+    }
 
 }

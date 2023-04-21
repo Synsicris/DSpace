@@ -13,19 +13,15 @@ import java.util.stream.Stream;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
-import org.dspace.services.ConfigurationService;
-import org.dspace.services.factory.DSpaceServicesFactory;
 
-public class SimpleItemUrlMapper extends ItemUrlMapper {
-
-    private static final String DSPACE_UI_URL = "dspace.ui.url";
-    protected ConfigurationService configurationService =
-        DSpaceServicesFactory.getInstance().getConfigurationService();
-    protected final String dspaceURL;
+/**
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
+public class SimpleItemUrlMapper extends AbstractItemUrlMapper {
 
     public SimpleItemUrlMapper(String baseUrl) {
         super(baseUrl);
-        this.dspaceURL = this.configurationService.getProperty(DSPACE_UI_URL);
     }
 
     @Override

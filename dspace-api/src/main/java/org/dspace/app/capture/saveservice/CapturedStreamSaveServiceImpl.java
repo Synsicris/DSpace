@@ -7,7 +7,8 @@
  */
 package org.dspace.app.capture.saveservice;
 
-import static org.dspace.app.capture.service.CaptureWebsiteService.DEFAULT_TYPE;
+
+import static org.dspace.app.capture.CaptureWebsiteProperties.DEFAULT_TYPE;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.capture.service.CaptureWebsiteService;
-import org.dspace.app.versioning.CaptureScreenAction;
+import org.dspace.app.versioning.action.capture.CaptureScreenAction;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Bitstream;
 import org.dspace.content.BitstreamFormat;
@@ -76,7 +77,7 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
         Item targetItem = captureScreenAction.getItem();
         String bundleName = captureScreenAction.getBundleName();
         List<Bundle> bundles = targetItem.getBundles(bundleName);
-        if (captureScreenAction.cleanBundleBeforeAddNewBistream() && CollectionUtils.isNotEmpty(bundles)) {
+        if (captureScreenAction.isCleanBundle() && CollectionUtils.isNotEmpty(bundles)) {
             deleteAllBitstreamFromTargetBundle(context, targetItem, bundleName);
         } else if (CollectionUtils.isEmpty(bundles)) {
             return bundelService.create(context, targetItem, bundleName);

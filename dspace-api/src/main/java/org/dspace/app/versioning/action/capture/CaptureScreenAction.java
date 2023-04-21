@@ -25,7 +25,7 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
 
     private Item item;
     private String bundleName;
-    private boolean cleanBundleBeforeAddNewBistream;
+    private boolean cleanBundle;
     private CaptureWebsiteService captureWebsiteService =
         CaptureWebsiteServiceFactory.getInstance().getCaptureWebsiteService();
 
@@ -33,7 +33,7 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
         super(operation);
         this.item = item;
         this.bundleName = bundleName;
-        this.cleanBundleBeforeAddNewBistream = cleanBundle;
+        this.cleanBundle = cleanBundle;
     }
 
     @Override
@@ -57,8 +57,8 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
         return bundleName;
     }
 
-    public boolean cleanBundleBeforeAddNewBistream() {
-        return cleanBundleBeforeAddNewBistream;
+    public boolean isCleanBundle() {
+        return cleanBundle;
     }
 
 }

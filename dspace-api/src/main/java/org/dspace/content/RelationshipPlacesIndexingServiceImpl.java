@@ -100,7 +100,9 @@ public class RelationshipPlacesIndexingServiceImpl implements RelationshipPlaces
                     .ifPresent(relationDocuments::add);
             }
         }
-        this.indexingService.updateSolrDocuments(relationDocuments);
+        if (!relationDocuments.isEmpty()) {
+            this.indexingService.updateSolrDocuments(relationDocuments);
+        }
     }
 
 

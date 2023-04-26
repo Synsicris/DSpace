@@ -56,7 +56,9 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         Process process = procBuilder.start();
         StreamGobbler streamGobbler =
             new StreamGobbler(process.getInputStream(), System.out::println);
-        Future<?> future = Executors.newSingleThreadExecutor().submit(streamGobbler);
+        Future<?> future =
+            Executors.newSingleThreadExecutor()
+                .submit(streamGobbler);
         int exitCode = process.waitFor();
         assert exitCode == 0;
         future.get();
@@ -79,6 +81,20 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         return procBuilder.start().getInputStream();
     }
 
+    @Override
+    public Process getScreenshotProcess(Context c, CapturableScreen capturableScreen) throws Exception {
+        ProcessBuilder procBuilder = new ProcessBuilder();
+        String command = buildCommand(c, capturableScreen);
+        boolean isWindows = this.isWindows();
+        if (isWindows) {
+            procBuilder.command("cmd.exe", "/c", command);
+        } else {
+            procBuilder.command("/bin/bash", "-c", command);
+        }
+        procBuilder.directory(new File(System.getProperty("user.home")));
+        return procBuilder.start();
+    }
+
     private String buildCommand(Context c, CapturableScreen capturableScreen) {
         CapturableScreenConfiguration configuration = capturableScreen.getConfiguration();
         return new StringBuilder(
@@ -91,6 +107,9 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
             .append(getCookie(capturableScreen.getCookie()))
             .append(getRemoveElements(configuration.getRemoveElements()))
             .append(getElement(configuration.getElement()))
+            .append(getWaitElement(configuration.getWaitForElement()))
+            .append(getDelay(configuration.getDelay()))
+            .append(getTimeout(configuration.getTimeout()))
             .append(getStyle(configuration.getStyle()))
             .append(getType(configuration.getType()))
             .append(getScaleFactor(configuration.getScale()))
@@ -106,7 +125,10 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
                 urlResource = urlResource.append("/").append(urlResource);
             }
         }
-        return new StringBuilder(" ").append(urlResource);
+        return new StringBuilder(" ")
+            .append("\"")
+            .append(urlResource)
+            .append("\"");
     }
 
     @Override
@@ -179,6 +201,33 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
             .append("\"")
             .append(element)
             .append("\"");
+    }
+
+    protected StringBuilder getWaitElement(String waitElement) {
+        if (StringUtils.isBlank(waitElement) || StringUtils.isEmpty(waitElement)) {
+            return new StringBuilder();
+        }
+        return new StringBuilder(" ")
+            .append("--wait-for-element=")
+            .append("\"")
+            .append(waitElement)
+            .append("\"");
+    }
+
+    protected StringBuilder getDelay(String delay) {
+        if (StringUtils.isBlank(delay) || StringUtils.isEmpty(delay)) {
+            return new StringBuilder();
+        }
+        return new StringBuilder(" ")
+            .append("--delay=").append(delay);
+    }
+
+    protected StringBuilder getTimeout(String timeout) {
+        if (StringUtils.isBlank(timeout) || StringUtils.isEmpty(timeout)) {
+            return new StringBuilder();
+        }
+        return new StringBuilder(" ")
+            .append("--timeout=").append(timeout);
     }
 
     protected StringBuilder getStyle(String style) {

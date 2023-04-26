@@ -20,6 +20,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.AbstractUnitTest;
 import org.dspace.app.capture.model.CapturableScreen;
+import org.dspace.app.capture.model.CapturableScreenBuilder;
+import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.app.capture.saveservice.CapturedStreamSaveService;
 import org.dspace.app.versioning.action.capture.CaptureScreenAction;
 import org.dspace.authorize.AuthorizeException;
@@ -127,8 +129,15 @@ public class SaveScreenShotTest extends AbstractUnitTest {
         assertEquals(1, item.getBundles(bundleName).size());
         assertEquals(1, item.getBundles(bundleName).get(0).getBitstreams().size());
         context.turnOffAuthorisationSystem();
+        CapturableScreenConfiguration configuration =
+            new CapturableScreenConfiguration("test", null, null, "jpeg", "1", null);
         // here Operation implementation (T operation)
-        CaptureScreenAction<CapturableScreen> action = new CaptureScreenAction<>(null, item, bundleName, true);
+        CapturableScreen capturableScreen =
+            CapturableScreenBuilder
+                .createCapturableScreen(context, configuration)
+                .build();
+        CaptureScreenAction<CapturableScreen> action =
+            new CaptureScreenAction<>(capturableScreen, item, bundleName, true);
         try (InputStream is = IOUtils.toInputStream("NewBitstreamText", Charset.defaultCharset())) {
             bitstreamService.create(context, bundle, is);
         capturedStreamSaveService.saveScreenIntoItem(context, is, null);

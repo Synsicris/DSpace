@@ -30,4 +30,6 @@ public interface CaptureWebsiteService {
 
     public Map<String, String> getExtensionsToMimeType();
 
+    Process getScreenshotProcess(Context c, CapturableScreen capturableScreen) throws Exception;
+
 }

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="capture-website-token" class="org.dspace.app.capture.mapper.PropertiesHeaderValueMapper">
+        <constructor-arg name="propertyName" value="capture-website.jwt.token"/>
+        <constructor-arg name="defaultValue"><null/></constructor-arg>
+        <constructor-arg name="prefix" value="Bearer"/>
+    </bean>
+    
+   <bean id="context-user-mapper" class="org.dspace.app.capture.mapper.ContextUserHeaderValueMapper"/>
+    
+    <bean id="capture-website-headers" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="Authorization"
+                    value-ref="capture-website-token"
+                />
+                <!--<entry
+                    key="X-On-Behalf-Of"
+                    value-ref="context-user-mapper"
+                />-->
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="uuid-extractor" class="org.dspace.app.versioning.action.capture.mapper.ItemUuidExtractor"/>
+    
+    <bean id="simple-provider" class="org.dspace.app.versioning.model.SimpleItemProvider"/>
+
+    <bean id="graphtargetgroupnace-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.targetgroup"/>
+        <constructor-arg name="facetName" value="graphtargetgroupnace"/>
+    </bean>
+
+    <bean id="graphtargetgroupenterprise-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.targetgroup"/>
+        <constructor-arg name="facetName" value="graphtargetgroupenterprise"/>
+    </bean>
+
+    <bean id="graphtargetgrouppolitical-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.targetgroup"/>
+        <constructor-arg name="facetName" value="graphtargetgrouppolitical"/>
+    </bean>
+
+    <bean id="graphtargetgroupurbanrural-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.targetgroup"/>
+        <constructor-arg name="facetName" value="graphtargetgroupurbanrural"/>
+    </bean>
+
+    <bean id="graphcoopparttype-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.cooperationpartner"/>
+        <constructor-arg name="facetName" value="graphcoopparttype"/>
+    </bean>
+
+    <bean id="graphcooppartnace-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.cooperationpartner"/>
+        <constructor-arg name="facetName" value="graphcooppartnace"/>
+    </bean>
+
+    <bean id="graphcooppartdestatis-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.cooperationpartner"/>
+        <constructor-arg name="facetName" value="graphcooppartdestatis"/>
+    </bean>
+
+    <bean id="graphcooppartaddressCountry-provider" class="org.dspace.app.versioning.model.FacetDiscoveryConfigurationItemProvider">
+        <constructor-arg name="discoveryConfiguration" value="RELATION.Project.cooperationpartner"/>
+        <constructor-arg name="facetName" value="graphcooppartaddressCountry"/>
+    </bean>
+    
+    <!-- IMPACTPATHWAY ACTION CONFIGURATION -->
+    
+    <bean id="impactpathway-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element" value="#ipw"/>
+        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper"/>
+        <constructor-arg name="style" value="#ipw { width:100vw;height:100vw }"/>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="impactpathway-discovery" class="org.dspace.app.versioning.model.DiscoveryRelationItemProvider">
+        <!-- RELATION.Project.impactpathway -->
+        <constructor-arg name="relationName" value="impactpathway"/>
+    </bean>
+    
+    <bean id="impactpathway-url" class="org.dspace.app.versioning.action.capture.mapper.SimplePrintableViewItemUrlMapper">
+        <constructor-arg name="baseUrl" value="entities/impactpathway"/>
+    </bean>
+    
+    <bean id="IMPACTPATHWAY" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="impactpathway-capturable"/>
+        <constructor-arg name="bundleName" value="IMPACTPATHWAY"/>
+        <constructor-arg name="itemProvider" ref="impactpathway-discovery"/>
+        <constructor-arg name="itemUrlMapper" ref="impactpathway-url"/>
+    </bean>
+
+    <bean id="CLEAR-IMPACTPATHWAY" class="org.dspace.app.versioning.action.clear.bundle.ClearBundleActionConfiguration">
+        <constructor-arg name="configuration" value="IMPACTPATHWAY"/>
+    </bean>
+    
+    <bean id="IMPACTPATHWAY-CONFIGURATIONS" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="IMPACTPATHWAY" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="COMPOSITE-IMPACTPATHWAY" class="org.dspace.app.versioning.action.group.CompositeVersioningActionConfiguration">
+        <constructor-arg name="configuration" ref="CLEAR-IMPACTPATHWAY"/>
+        <constructor-arg name="configurations" ref="IMPACTPATHWAY-CONFIGURATIONS"/>
+    </bean>
+
+    <!-- IMPACTPATHWAY ACTION CONFIGURATION -->
+    
+    <!-- WORKINGPLAN ACTION CONFIGURATION -->
+    
+    <bean id="workingplan-authority" class="org.dspace.app.versioning.model.MetadataAuthorityItemProvider">
+        <constructor-arg name="metadataField" value="synsicris.relation.workingplan"/>
+    </bean>
+    
+    <bean id="workingplan-url" class="org.dspace.app.versioning.action.capture.mapper.AuthorityRelatedItemUrlMapper">
+        <constructor-arg name="baseUrl" value="entities/project"/>
+        <constructor-arg name="relationMetadata" value="synsicris.relation.project"/>
+        <constructor-arg name="suffix" value="workingplan"/>
+    </bean>
+    
+    <bean id="workingplan-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element"><null/></constructor-arg>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
+        <constructor-arg name="style"><null/></constructor-arg>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="WORKINGPLAN" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="workingplan-capturable"/>
+        <constructor-arg name="bundleName" value="WORKINGPLAN"/>
+        <constructor-arg name="itemProvider" ref="workingplan-authority"/>
+        <constructor-arg name="itemUrlMapper" ref="workingplan-url"/>
+    </bean>
+    
+    <bean id="CLEAR-WORKINGPLAN" class="org.dspace.app.versioning.action.clear.bundle.ClearBundleActionConfiguration">
+        <constructor-arg name="configuration" value="WORKINGPLAN"/>
+    </bean>
+    
+    <!-- WORKINGPLAN ACTION CONFIGURATION -->
+
+    <!-- GRAPH ACTION CONFIGURATION -->
+    
+    <bean id="graph-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
+        <constructor-arg name="element"><null/></constructor-arg>
+        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper,ds-themed-footer"/>
+        <constructor-arg name="style"><null/></constructor-arg>
+        <constructor-arg name="type" value="jpeg"/>
+        <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="waitForElement" value="ds-graph"/>
+        <constructor-arg name="delay" value="2"/>
+        <constructor-arg name="timeout" value="20"/>
+        <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
+    </bean>
+    
+    <bean id="graph-authority" class="org.dspace.app.versioning.model.MetadataAuthorityItemProvider">
+        <constructor-arg name="metadataField" value="synsicris.relation.workingplan"/>
+    </bean>
+    
+    <bean id="graph-itemType-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphitemtype"
+                />
+                <entry 
+                    key="configuration"
+                    value="defaultConfiguration"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="graph-page-url" class="org.dspace.app.versioning.action.capture.mapper.StaticItemUrlMapper">
+        <constructor-arg name="baseUrl" value="graph-page"/>
+    </bean>
+    
+    <bean id="graph-scope-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="scope"
+                    value-ref="uuid-extractor"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="graph-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graph-itemType-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+
+    <bean id="GRAPH" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="simple-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-url"/>
+    </bean>
+    
+    <bean id="CLEAR-GRAPH" class="org.dspace.app.versioning.action.clear.bundle.ClearBundleActionConfiguration">
+        <constructor-arg name="configuration" value="GRAPH"/>
+    </bean>
+    
+    <!-- graphcoopparttype CONFIGURATION -->
+    <bean id="graphcoopparttype-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphcoopparttype"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.cooperationpartner"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphcoopparttype-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphcoopparttype-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphcoopparttype" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphcoopparttype-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphcoopparttype-url"/>
+    </bean>
+    <!-- graphcoopparttype CONFIGURATION -->
+    
+    <!-- graphcooppartnace CONFIGURATION -->
+    <bean id="graphcooppartnace-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphcooppartnace"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.cooperationpartner"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphcooppartnace-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphcooppartnace-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphcooppartnace" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphcooppartnace-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphcooppartnace-url"/>
+    </bean>
+    <!-- graphcooppartnace CONFIGURATION -->
+    
+    <!-- graphcooppartdestatis CONFIGURATION -->
+    <bean id="graphcooppartdestatis-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphcooppartdestatis"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.cooperationpartner"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphcooppartdestatis-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphcooppartdestatis-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphcooppartdestatis" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphcooppartdestatis-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphcooppartdestatis-url"/>
+    </bean>
+    <!-- graphcooppartdestatis CONFIGURATION -->
+    
+    <!-- graphcooppartaddressCountry CONFIGURATION -->
+    <bean id="graphcooppartaddressCountry-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphcooppartaddressCountry"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.cooperationpartner"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphcooppartaddressCountry-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphcooppartaddressCountry-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphcooppartaddressCountry" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphcooppartaddressCountry-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphcooppartaddressCountry-url"/>
+    </bean>
+    <!-- graphcooppartaddressCountry CONFIGURATION -->
+    
+    <!-- graphtargetgroupnace CONFIGURATION -->
+    <bean id="graphtargetgroupnace-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphtargetgroupnace"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.targetgroup"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphtargetgroupnace-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphtargetgroupnace-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphtargetgroupnace" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphtargetgroupnace-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphtargetgroupnace-url"/>
+    </bean>
+    <!-- graphtargetgroupnace CONFIGURATION -->
+    
+    <!-- graphtargetgroupenterprise CONFIGURATION -->
+    <bean id="graphtargetgroupenterprise-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphtargetgroupenterprise"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.targetgroup"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphtargetgroupenterprise-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphtargetgroupenterprise-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphtargetgroupenterprise" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphtargetgroupenterprise-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphtargetgroupenterprise-url"/>
+    </bean>
+    <!-- graphtargetgroupenterprise CONFIGURATION -->
+    
+    <!-- graphtargetgrouppolitical CONFIGURATION -->
+    <bean id="graphtargetgrouppolitical-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphtargetgrouppolitical"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.targetgroup"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphtargetgrouppolitical-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphtargetgrouppolitical-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphtargetgrouppolitical" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphtargetgrouppolitical-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphtargetgrouppolitical-url"/>
+    </bean>
+    <!-- graphtargetgrouppolitical CONFIGURATION -->
+
+    <!-- graphtargetgroupurbanrural CONFIGURATION -->
+    <bean id="graphtargetgroupurbanrural-params" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry 
+                    key="filterName"
+                    value="graphtargetgroupurbanrural"
+                />
+                <entry 
+                    key="configuration"
+                    value="RELATION.Project.targetgroup"
+                />
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="graphtargetgroupurbanrural-url" class="org.dspace.app.versioning.action.capture.mapper.GraphRelatedItemUrlMapper">
+        <constructor-arg name="parameters" ref="graphtargetgroupurbanrural-params"/>
+        <constructor-arg name="itemUrlMapper" ref="graph-page-url"/>
+        <constructor-arg name="dynamicParameters" ref="graph-scope-params"/>
+    </bean>
+    <bean id="graphtargetgroupurbanrural" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration">
+        <constructor-arg name="configuration" ref="graph-capturable"/>
+        <constructor-arg name="bundleName" value="GRAPH"/>
+        <constructor-arg name="itemProvider" ref="graphtargetgroupurbanrural-provider"/>
+        <constructor-arg name="itemUrlMapper" ref="graphtargetgroupurbanrural-url"/>
+    </bean>
+    <!-- graphtargetgroupurbanrural CONFIGURATION -->
+    
+    <bean id="GRAPH-CONFIGURATIONS" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="graphcoopparttype" />
+                <ref bean="graphcooppartnace" />
+                <ref bean="graphcooppartdestatis" />
+                <ref bean="graphcooppartaddressCountry" />
+                <ref bean="graphtargetgroupnace" />
+                <ref bean="graphtargetgroupenterprise" />
+                <ref bean="graphtargetgrouppolitical" />
+                <ref bean="graphtargetgroupurbanrural" />
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="COMPOSITE-GRAPH" class="org.dspace.app.versioning.action.group.CompositeVersioningActionConfiguration">
+        <constructor-arg name="configuration" ref="CLEAR-GRAPH"/>
+        <constructor-arg name="configurations" ref="GRAPH-CONFIGURATIONS"/>
+    </bean>
+
+    <!-- GRAPH ACTION CONFIGURATION -->
+    
+
+<!--     <bean id="EXPLOITATIONPLAN" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration"> -->
+<!--         <property name="bundleName" value="EXPLOITATIONPLAN"/> -->
+<!--         <property name="mapper" ref=""/> -->
+<!--         <property name="itemProvider" ref=""/> -->
+<!--     </bean> -->
+    
+<!--     <bean id="INTERIMREPORT" class="org.dspace.app.versioning.action.capture.CaptureScreenActionConfiguration"> -->
+<!--         <property name="bundleName" value="INTERIMREPORT"/> -->
+<!--         <property name="mapper" ref=""/> -->
+<!--         <property name="itemProvider" ref=""/> -->
+<!--     </bean> -->
+
+    <bean id="versioning-actions" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="COMPOSITE-IMPACTPATHWAY" />           
+                <ref bean="COMPOSITE-GRAPH" />                
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

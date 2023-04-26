@@ -33,6 +33,7 @@ public class CaptureScreenActionConfiguration
     protected final ItemProvider itemProvider;
     protected final ScreenActionItemMapper itemMapper;
     protected final ItemUrlMapper itemUrlMapper;
+    protected final boolean cleanBundle;
 
     public CaptureScreenActionConfiguration(
         CapturableScreenConfiguration configuration, String bundleName,
@@ -46,11 +47,21 @@ public class CaptureScreenActionConfiguration
         String bundleName, ItemProvider itemProvider,
         ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper
     ) {
+        this(configuration, bundleName, itemProvider, itemUrlMapper, itemMapper, false);
+    }
+
+    public CaptureScreenActionConfiguration(
+        CapturableScreenConfiguration configuration,
+        String bundleName, ItemProvider itemProvider,
+        ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper,
+        boolean cleanBundle
+    ) {
         super(configuration);
         this.bundleName = bundleName;
         this.itemProvider = itemProvider;
         this.itemMapper = itemMapper;
         this.itemUrlMapper = itemUrlMapper;
+        this.cleanBundle = cleanBundle;
     }
 
     @Override
@@ -65,8 +76,7 @@ public class CaptureScreenActionConfiguration
         return new CaptureScreenAction<>(
             getCapturableScreen(c, providedItem),
             itemMapper.mapScreenActionItem(c, item, providedItem),
-            bundleName,
-            false
+            bundleName
         );
     }
 

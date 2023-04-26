@@ -7,6 +7,7 @@
  */
 package org.dspace.app.versioning.model;
 
+import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Stream;
@@ -37,11 +38,15 @@ public class DiscoveryRelationItemProvider implements ItemProvider {
     public Stream<Item> retrieve(Context c, Item i) {
         return StreamSupport.stream(
             Spliterators.spliteratorUnknownSize(
-                this.searchConfigurationUtilsService.findByRelation(c, i, relationName),
+                retrieveFromRelation(c, i),
                 Spliterator.ORDERED
             ),
             false
         );
+    }
+
+    protected Iterator<Item> retrieveFromRelation(Context c, Item i) {
+        return this.searchConfigurationUtilsService.findByRelation(c, i, relationName);
     }
 
 }

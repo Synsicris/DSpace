@@ -12,10 +12,17 @@ import static org.dspace.app.versioning.exception.ItemVersionScriptException.WOF
 import static org.dspace.app.versioning.exception.ItemVersionScriptException.WORKSPACE_FOUND;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang.StringUtils;
+import org.dspace.app.versioning.action.VersioningAction;
 import org.dspace.app.versioning.exception.ItemVersionScriptException;
 import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
@@ -38,14 +45,14 @@ import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowItemService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
 
-public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfiguration> {
+public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfiguration<?>> {
 
     private static final VersioningService versioningService = VersionServiceFactory.getInstance().getVersionService();
     private static final VersionHistoryService versionHistoryService =
         VersionServiceFactory.getInstance().getVersionHistoryService();
     private static final WorkspaceItemService workspaceItemService =
         ContentServiceFactory.getInstance().getWorkspaceItemService();
-    private static final WorkflowItemService workflowItemService =
+    private static final WorkflowItemService<?> workflowItemService =
         WorkflowServiceFactory.getInstance().getWorkflowItemService();
     private static final ItemService itemService = ContentServiceFactory.getInstance().getItemService();
     protected static final EPersonService epersonService = EPersonServiceFactory.getInstance().getEPersonService();
@@ -130,16 +137,35 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
             );
         }
 
-        getScriptConfiguration().getActions()
-            .stream()
-            .flatMap(conf ->
-                conf.createAction(context, item)
-            )
-            .forEach(action -> action.consume(context));
+        Executor executor =
+            Executors.newFixedThreadPool(getScriptConfiguration().getActions().size());
 
-        Version version = StringUtils.isNotBlank(summary) ?
-                          versioningService.createNewVersion(context, item, summary) :
-                          versioningService.createNewVersion(context, item);
+        List<CompletableFuture<VersioningAction<?>>> scheduledActions =
+            getScriptConfiguration()
+                .getActions()
+                .parallelStream()
+                .flatMap(conf ->
+                    conf.createAction(context, item)
+                )
+                .map(action ->
+                    (CompletableFuture<VersioningAction<?>>)
+                    CompletableFuture
+                        .runAsync(() -> action.consumeAsync(context), executor)
+                        .thenApply((v) -> action)
+                )
+                .collect(Collectors.toList());
+
+        scheduledActions
+            .stream()
+            .map(CompletableFuture::join)
+            .forEach(action -> action.store(context));
+
+        Optional.ofNullable(summary)
+            .filter(StringUtils::isNotBlank)
+            .ifPresentOrElse(
+                (summ) -> versioningService.createNewVersion(context, item, summ),
+                () -> versioningService.createNewVersion(context, item)
+            );
     }
 
     private void validate() throws ItemVersionScriptException {

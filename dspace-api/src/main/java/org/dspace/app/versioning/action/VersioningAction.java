@@ -17,7 +17,7 @@ import org.dspace.core.Context;
  *
  * @param <T>
  */
-public abstract class VersioningAction<T> {
+public abstract class VersioningAction<T> implements VersionigActionInterface<T> {
 
     protected T operation;
 
@@ -25,6 +25,13 @@ public abstract class VersioningAction<T> {
         this.operation = operation;
     }
 
+    @Override
+    public abstract void consumeAsync(Context c);
+
+    @Override
+    public abstract void store(Context c);
+
+    @Override
     public abstract void consume(Context c);
 
     public T getOperation() {

@@ -13,11 +13,14 @@ import static org.dspace.app.capture.CaptureWebsiteProperties.DEFAULT_TYPE;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.text.RandomStringGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.capture.service.CaptureWebsiteService;
@@ -38,7 +41,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CapturedStreamSaveServiceImpl.class);
+    private static final char[][] CHARS = new char[][] {{'a', 'z'},{'0','9'}};
+    private static final RandomStringGenerator GENERATOR =
+        new RandomStringGenerator.Builder().withinRange(CHARS).build();
 
     @Autowired
     private BundleService bundelService;
@@ -48,6 +54,7 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
     private CaptureWebsiteService captureWebsiteService;
     @Autowired
     private BitstreamFormatService bitstreamFormatService;
+
 
     @Override
     public void deleteAllBitstreamFromTargetBundle(Context context, Item targetItem, String bundleName)
@@ -68,7 +75,22 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
         Bitstream bitstream = bitstreamService.create(context, bundle, is);
         BitstreamFormat bitstreamFormat = getBitstreamFormat(context, captureScreenAction);
         bitstream.setFormat(context, bitstreamFormat);
+        bitstream.setName(context,computeBitstreamName(captureScreenAction));
         bitstreamService.update(context, bitstream);
+    }
+
+    public String computeBitstreamName(CaptureScreenAction<?> captureScreenAction) {
+        return new StringBuilder(
+            captureScreenAction.getOperation().getUrl()
+        )
+        .append("_")
+        .append(
+            LocalDate.now()
+                .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
+        )
+        .append("_")
+        .append(GENERATOR.generate(5))
+        .toString();
     }
 
     private Bundle getBundle(Context context, CaptureScreenAction<?> captureScreenAction)
@@ -93,10 +115,13 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
         if (extensionsToMimeType.containsKey(extension)) {
             bitstreamFormat = bitstreamFormatService.findByMIMEType(context, extensionsToMimeType.get(extension));
         }
-        if (Objects.isNull(bitstreamFormat)) {
-            log.warn("For the screenshots of project with uuid: " + captureScreenAction.getItem().getID() +
-                    ". The default format (" + DEFAULT_TYPE + ") was used because the configured format ("
-                    + extension + ") is not supported.");
+        if (bitstreamFormat == null) {
+            log.warn(
+                "Format" + extension + ") is not supported." +
+                "The screenshots of url " + captureScreenAction.getOperation().getUrl() +
+                " has been stored in: " + captureScreenAction.getBundleName() + " of item with uuid: " +
+                captureScreenAction.getItem().getID() + " with the default format (" + DEFAULT_TYPE + ")"
+            );
             bitstreamFormat = bitstreamFormatService.findByMIMEType(context, extensionsToMimeType.get(DEFAULT_TYPE));
         }
         return bitstreamFormat;

@@ -7,6 +7,7 @@
  */
 package org.dspace.app.capture.service.factory;
 
+import org.dspace.app.capture.saveservice.CapturedStreamSaveService;
 import org.dspace.app.capture.service.CaptureWebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,9 +20,17 @@ public class CaptureWebsiteServiceFactoryImpl extends CaptureWebsiteServiceFacto
     @Autowired(required = true)
     private CaptureWebsiteService captureWebsiteService;
 
+    @Autowired(required = true)
+    private CapturedStreamSaveService capturedStreamService;
+
     @Override
     public CaptureWebsiteService getCaptureWebsiteService() {
         return this.captureWebsiteService;
+    }
+
+    @Override
+    public CapturedStreamSaveService getCapturedStreamSaveService() {
+        return this.capturedStreamService;
     }
 
 }

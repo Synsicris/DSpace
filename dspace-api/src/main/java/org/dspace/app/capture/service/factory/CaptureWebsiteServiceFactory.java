@@ -7,6 +7,7 @@
  */
 package org.dspace.app.capture.service.factory;
 
+import org.dspace.app.capture.saveservice.CapturedStreamSaveService;
 import org.dspace.app.capture.service.CaptureWebsiteService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 
@@ -25,5 +26,7 @@ public abstract class CaptureWebsiteServiceFactory {
     }
 
     public abstract CaptureWebsiteService getCaptureWebsiteService();
+
+    public abstract CapturedStreamSaveService getCapturedStreamSaveService();
 
 }

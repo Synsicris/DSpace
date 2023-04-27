@@ -19,10 +19,10 @@
                     key="Authorization"
                     value-ref="capture-website-token"
                 />
-                <!--<entry
+                <entry
                     key="X-On-Behalf-Of"
                     value-ref="context-user-mapper"
-                />-->
+                />
             </map>
         </constructor-arg>
     </bean>

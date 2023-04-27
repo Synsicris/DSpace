@@ -71,9 +71,9 @@ public class SolrServiceHiddenRelationsRestrictionPlugin implements SolrServiceS
 
         if (StringUtils.isBlank(scope) || currentUserIsScopeOrAdmin(scope, context)
             || discoveryQuery.getDiscoveryConfigurationName() == null
-            || !discoveryQuery.getDiscoveryConfigurationName().startsWith("RELATION.")
-            || !discoveryQuery.getDiscoveryConfigurationName().startsWith("COMMENT.")
-            || !discoveryQuery.getDiscoveryConfigurationName().startsWith("COMMENT_ALL.")
+            || !(discoveryQuery.getDiscoveryConfigurationName().startsWith("RELATION.")
+                 || discoveryQuery.getDiscoveryConfigurationName().startsWith("COMMENT.")
+                 || discoveryQuery.getDiscoveryConfigurationName().startsWith("COMMENT_ALL."))
         ) {
             return;
         }

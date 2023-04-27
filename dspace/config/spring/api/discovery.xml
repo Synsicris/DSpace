@@ -1370,7 +1370,6 @@
 				<ref bean="graphSynsicrisPersonleaderGendery" />
 				<ref bean="graphSynsicrisPersonadminGender" />
 				<ref bean="graphOrganisationFoundingDate" />
-				<ref bean="graphGenderByType" />
 				<ref bean="graphProcEventByTargetGroup" />
 				<ref bean="graphSynsicrisCoverageRegionalprimary" />
 				<ref bean="graphSynsicrisCoverageRegionalsecondary" />
@@ -1511,7 +1510,6 @@
 				<ref bean="graphSynsicrisPersonleaderGendery" />
 				<ref bean="graphSynsicrisPersonadminGender" />
 				<ref bean="graphOrganisationFoundingDate" />
-				<ref bean="graphGenderByType" />
 				<ref bean="graphProcEventByTargetGroup" />
 				<ref bean="graphSynsicrisCoverageRegionalprimary" />
 				<ref bean="graphSynsicrisCoverageRegionalsecondary" />
@@ -2660,7 +2658,7 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-           <!-- <ref bean="graphGenderByType" />
+                <!-- 
                 <ref bean="graphGenderByStateofart" />
                 <ref bean="graphGenderByProjectdesign" />
                 <ref bean="graphGenderByApplication" />
@@ -2671,7 +2669,7 @@
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
-           <!-- <ref bean="graphGenderByType" />
+                <!-- 
                 <ref bean="graphGenderByStateofart" />
                 <ref bean="graphGenderByProjectdesign" />
                 <ref bean="graphGenderByApplication" />
@@ -7330,25 +7328,6 @@
         <property name="metadataFields">
             <list>
                 <value>synsicris.type.status</value>
-            </list>
-        </property>
-        <property name="graphType" value="pie" />
-        <property name="exposeMissing" value="true" />
-        <property name="exposeMore" value="true" />
-        <property name="exposeTotalElements" value="true" />
-    </bean>
-
-    <bean id="graphGenderByType" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
-        <property name="facetLimit" value="10"/>
-        <property name="indexFieldName" value="graphgendertype" />
-        <!-- the splitter needs to be a not empty string -->
-        <property name="splitter" value="::" />
-        <property name="onlyLastNodeRelevant" value="true" />
-        <!-- isDate cannot be true if the splitter is set -->
-        <property name="isDate" value="false" />
-        <property name="metadataFields">
-            <list>
-                <value>dc.type</value>
             </list>
         </property>
         <property name="graphType" value="pie" />

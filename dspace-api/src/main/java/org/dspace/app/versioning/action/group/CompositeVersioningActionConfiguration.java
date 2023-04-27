@@ -22,13 +22,23 @@ public class CompositeVersioningActionConfiguration<
     > extends VersioningActionConfiguration<C, CompositeVersioningAction<T>> {
 
     private final List<VersioningActionConfiguration<?, ?>> configurations;
+    private final boolean isParallel;
+
+    public CompositeVersioningActionConfiguration(
+        C configuration,
+        List<VersioningActionConfiguration<?, ?>> configurations,
+        boolean isParallel
+    ) {
+        super(configuration);
+        this.configurations = configurations;
+        this.isParallel = isParallel;
+    }
 
     public CompositeVersioningActionConfiguration(
         C configuration,
         List<VersioningActionConfiguration<?, ?>> configurations
     ) {
-        super(configuration);
-        this.configurations = configurations;
+        this(configuration, configurations, false);
     }
 
     @Override
@@ -39,7 +49,8 @@ public class CompositeVersioningActionConfiguration<
                 this.configurations
                     .stream()
                     .flatMap(conf -> conf.createAction(c, i))
-                    .collect(Collectors.toList())
+                    .collect(Collectors.toList()),
+                isParallel
             )
         );
     }

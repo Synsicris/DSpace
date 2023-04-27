@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
     description = "Used to verify if the given user is a funder organizational manager")
 public class IsFunderOrganizationalManagerOfAnyProject extends IsFunderRoleOfAnyProject {
 
-    public static final String NAME = "IsFunderOrganizationalManagerOfAnyProject";
+    public static final String NAME = "isFunderOrganizationalManagerOfAnyProject";
 
     @Override
     public String getGroupID() {

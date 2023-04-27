@@ -9,7 +9,10 @@ package org.dspace.content.integration.crosswalks;
 
 import static org.dspace.builder.CollectionBuilder.createCollection;
 import static org.dspace.builder.CommunityBuilder.createCommunity;
+import static org.dspace.builder.EntityTypeBuilder.createEntityTypeBuilder;
 import static org.dspace.builder.ItemBuilder.createItem;
+import static org.dspace.builder.RelationshipBuilder.createRelationshipBuilder;
+import static org.dspace.builder.RelationshipTypeBuilder.createRelationshipTypeBuilder;
 import static org.dspace.core.CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -43,7 +46,6 @@ import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.CrisLayoutBoxBuilder;
 import org.dspace.builder.CrisLayoutFieldBuilder;
 import org.dspace.builder.EPersonBuilder;
-import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Bitstream;
@@ -55,6 +57,7 @@ import org.dspace.content.Item;
 import org.dspace.content.ItemServiceImpl;
 import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataFieldServiceImpl;
+import org.dspace.content.RelationshipType;
 import org.dspace.content.crosswalk.StreamDisseminationCrosswalk;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualField;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapper;
@@ -2002,7 +2005,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)
@@ -2078,7 +2081,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)
@@ -2161,7 +2164,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)

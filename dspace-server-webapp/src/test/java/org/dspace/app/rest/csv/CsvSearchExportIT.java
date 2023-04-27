@@ -80,18 +80,23 @@ public class CsvSearchExportIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void exportSearchForbiddenTest() throws Exception {
+    public void exportSearchEPersonTest() throws Exception {
         List<DSpaceCommandLineParameter> parameterList = new ArrayList<>();
         parameterList.add(new DSpaceCommandLineParameter("-q", "subject:subject1"));
         List<ParameterValueRest> restparams = parameterList.stream()
             .map(dSpaceCommandLineParameter -> dSpaceRunnableParameterConverter.convert(dSpaceCommandLineParameter,
-                Projection.DEFAULT)).collect(
-                Collectors.toList());
+                Projection.DEFAULT)).collect(Collectors.toList());
 
+        AtomicReference<Integer> idRef = new AtomicReference<>();
         String token = getAuthToken(eperson.getEmail(), password);
-        getClient(token).perform(multipart("/api/system/scripts/metadata-export-search/processes")
-                .param("properties", new ObjectMapper().writeValueAsString(restparams)))
-            .andExpect(status().isForbidden());
+        try {
+            getClient(token).perform(multipart("/api/system/scripts/metadata-export-search/processes")
+                            .param("properties", new ObjectMapper().writeValueAsString(restparams)))
+                        .andExpect(status().isAccepted())
+                        .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.processId")));
+        } finally {
+            ProcessBuilder.deleteProcess(idRef.get());
+        }
     }
 
     @Test

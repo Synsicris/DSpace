@@ -146,9 +146,11 @@
 
 				<!-- attributes from the publication accordion -->
 				<Publication>
-					<StatusPublication>@dc.type@</StatusPublication>
-					<InformationPublication>@synsicris.description.relevance@</InformationPublication>
-					<LinkPublication>@synsicris.relation.publication@</LinkPublication>
+					<Index>
+						<StatusPublication>@dc.type@</StatusPublication>
+						<InformationPublication>@synsicris.description.relevance@</InformationPublication>
+						<LinkPublication>@synsicris.relation.publication@</LinkPublication>
+					</Index>
 				</Publication>
 
 			</Index>
@@ -583,12 +585,12 @@
 				<!-- attributes from the reference year inline-group-->
 				<SuccessQuantification>
 					@group.synsicris-date-referenceyear.start@
-
-						<ReferenceYear>@synsicris.date.referenceyear@</ReferenceYear>
-						<Quantity>@synsicris.quantity@</Quantity>
-						<RegionalOutreach>@synsicris.coverage.regional@</RegionalOutreach>
-						<SuccessDescription>@synsicris.description.description@</SuccessDescription>
-
+						<Index>
+							<ReferenceYear>@synsicris.date.referenceyear@</ReferenceYear>
+							<Quantity>@synsicris.quantity@</Quantity>
+							<RegionalOutreach>@synsicris.coverage.regional@</RegionalOutreach>
+							<SuccessDescription>@synsicris.description.description@</SuccessDescription>
+						</Index>
 					@group.synsicris-date-referenceyear.end@
 				</SuccessQuantification>
 

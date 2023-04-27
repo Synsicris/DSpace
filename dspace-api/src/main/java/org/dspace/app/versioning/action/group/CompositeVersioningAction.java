@@ -24,11 +24,17 @@ import org.dspace.core.Context;
 public class CompositeVersioningAction<T extends VersioningAction<?>>
     extends VersioningAction<T> {
 
-    List<VersioningAction<?>> actions;
+    protected List<VersioningAction<?>> actions;
+    protected boolean isParallel;
 
-    public CompositeVersioningAction(T operation, List<VersioningAction<?>> actions) {
+    public CompositeVersioningAction(T operation, List<VersioningAction<?>> actions, boolean isParallel) {
         super(operation);
         this.actions = actions;
+        this.isParallel = isParallel;
+    }
+
+    public CompositeVersioningAction(T operation, List<VersioningAction<?>> actions) {
+        this(operation, actions, false);
     }
 
     @Override
@@ -36,22 +42,28 @@ public class CompositeVersioningAction<T extends VersioningAction<?>>
         this.operation.consumeAsync(context);
 
         if (actions.size() > 0) {
-            Executor executor =
-                Executors.newFixedThreadPool(this.actions.size());
+            if (isParallel) {
+                int threadSize = actions.size();
+                Executor executor =
+                    Executors.newFixedThreadPool(threadSize);
 
-            List<CompletableFuture<?>> scheduledActions =
+                List<CompletableFuture<?>> scheduledActions =
+                    this.actions
+                        .stream()
+                        .map(a ->
+                            CompletableFuture
+                                .runAsync(() -> a.consumeAsync(context), executor)
+                        )
+                        .collect(Collectors.toList());
+
+                scheduledActions
+                    .stream()
+                    .forEach(CompletableFuture::join);
+            } else {
                 this.actions
                     .stream()
-                    .map(a ->
-                        CompletableFuture
-                            .runAsync(() -> a.consumeAsync(context), executor)
-                    )
-                    .collect(Collectors.toList());
-
-            scheduledActions
-                .stream()
-                .map(CompletableFuture::join)
-                .collect(Collectors.toList());
+                    .forEach(a -> a.consumeAsync(context));
+            }
         }
 
     }

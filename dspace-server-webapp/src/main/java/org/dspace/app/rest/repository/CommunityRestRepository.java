@@ -6,6 +6,7 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.repository;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -37,6 +38,7 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.Community;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.CommunityService;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.discovery.DiscoverQuery;
 import org.dspace.discovery.DiscoverResult;
@@ -83,6 +85,9 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
     private UriListHandlerService uriListHandlerService;
 
     private CommunityService communityService;
+
+    @Autowired
+    private ItemService itemService;
 
     public CommunityRestRepository(CommunityService dsoService) {
         super(dsoService);
@@ -380,9 +385,9 @@ public class CommunityRestRepository extends DSpaceObjectRestRepository<Communit
         String grants = req.getParameter("grants");
 
         if (StringUtils.isNoneEmpty(grants) &&
-            (!StringUtils.equals(grants, ProjectConstants.PROJECT) &&
+            !StringUtils.equals(grants, ProjectConstants.PROJECT) &&
                     !StringUtils.equals(grants, ProjectConstants.FUNDING) &&
-                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT))) {
+                    !StringUtils.equals(grants, ProjectConstants.OWNING_PROJECT)) {
             throw new UnprocessableEntityException("");
         }
 

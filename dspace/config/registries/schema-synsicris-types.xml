@@ -180,7 +180,7 @@
     <dc-type>
         <schema>synsicris</schema>
         <element>relation</element>
-        <qualifier>partner-wp</qualifier>
+        <qualifier>partnerwp</qualifier>
         <scope_note></scope_note>
     </dc-type>
     
@@ -520,6 +520,34 @@
         <schema>synsicris</schema>
         <element>versioning-member-policy</element>
         <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>nace</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>enterprise</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>political</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>urbanrural</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

@@ -298,7 +298,7 @@ public interface CommunityService extends DSpaceObjectService<Community>, DSpace
      * have all the sub communities and collections of the cloned community. A new
      * Institutional Scoped Role will be created related to the new community for
      * each Institutional Role.
-     * 
+     *
      * @param context  the DSpace context
      * @param template the community to clone
      * @param parent   the parent community of the new community, if provided
@@ -309,4 +309,5 @@ public interface CommunityService extends DSpaceObjectService<Community>, DSpace
      */
     public Community cloneCommunity(Context context, Community template, Community parent, String name, String grants)
         throws SQLException, AuthorizeException;
+
 }

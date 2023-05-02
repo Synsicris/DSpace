@@ -40,8 +40,9 @@ nb-configuration.xml
 /dspace/config/local.*.cfg
 !/dspace/config/local.cfg.EXAMPLE
 
-## macOS noise
+## OS related noise
 .DS_Store
+desktop.ini
 
 ##Ignore JRebel project configuration
 rebel.xml
@@ -57,4 +58,3 @@ rebel.xml
 *_backup
 *.TMP
 *.tmp
-

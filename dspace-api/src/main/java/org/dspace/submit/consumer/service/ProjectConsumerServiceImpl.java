@@ -60,6 +60,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     private static final String SOLR_FILTER_VERSION = "synsicris.version:\"%s\"";
     private static final String SOLR_FILTER_PROJECT_UNIQUEID =
         "synsicris.uniqueid:%s AND dspace.entity.type:Project";
+    private static final String SOLR_FILTER_PROJECTS =
+        "synsicris.uniqueid:* AND dspace.entity.type:Project";
     private static final String SOLR_FILTER_VERSION_PROJECT =
         "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
@@ -495,19 +497,36 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public Community getProjectCommunityByRelationProject(Context context, Item item) throws SQLException {
-        List<MetadataValue> values = itemService.getMetadata(item, ProjectConstants.MD_PROJECT_RELATION.schema,
-                ProjectConstants.MD_PROJECT_RELATION.element,
-                ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
+        return Optional.ofNullable(
+            this.getProjectItemByRelatedItem(context, item)
+        )
+        .map(projectItem -> {
+            try {
+                return this.getProjectCommunity(context, projectItem);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        })
+        .orElse(null);
+    }
+
+    @Override
+    public Item getProjectItemByRelatedItem(Context context, Item relatedItem) throws SQLException {
+        List<MetadataValue> values = itemService.getMetadata(relatedItem, ProjectConstants.MD_PROJECT_RELATION.schema,
+            ProjectConstants.MD_PROJECT_RELATION.element,
+            ProjectConstants.MD_PROJECT_RELATION.qualifier, null);
         if (values.isEmpty()) {
             return null;
         }
-        String uuid = values.get(0).getAuthority();
+        String uuid =
+            Optional.ofNullable(values.get(0))
+                .map(MetadataValue::getAuthority)
+                .orElse(null);
+        Item projectItem = null;
         if (StringUtils.isNotBlank(uuid)) {
-            // item that represent Project community
-            Item projectItem = itemService.find(context, UUID.fromString(uuid));
-            return getProjectCommunity(context, projectItem);
+            projectItem = itemService.find(context, UUID.fromString(uuid));
         }
-        return null;
+        return projectItem;
     }
 
     @Override
@@ -604,6 +623,21 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public boolean isProjectItem(Item item) {
         return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
+    }
+
+    @Override
+    public Iterator<Item> findVersionedProjectsInCommunity(Context context, Community projectCommunity) {
+        return findVersionedProjectsByCommunity(context, projectCommunity);
+    }
+
+    private Iterator<Item> findVersionedProjectsByCommunity(Context context, Community projectCommunity) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(projectCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(SOLR_FILTER_PROJECTS);
+        discoverQuery.setSortField("bi_sort_3_sort", DiscoverQuery.SORT_ORDER.desc);
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(projectCommunity), discoverQuery);
     }
 
 }

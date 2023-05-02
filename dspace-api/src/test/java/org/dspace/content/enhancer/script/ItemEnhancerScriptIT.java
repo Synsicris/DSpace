@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dspace.AbstractIntegrationTestWithDatabase;
 import org.dspace.app.launcher.ScriptLauncher;
 import org.dspace.app.scripts.handler.impl.TestDSpaceRunnableHandler;
@@ -1238,6 +1239,318 @@ public class ItemEnhancerScriptIT extends AbstractIntegrationTestWithDatabase {
 
         assertThat(getMetadataValues(project1, "oairecerif.project.status").get(0).getValue(), is("OPEN"));
         assertThat(getMetadataValues(project2, "oairecerif.project.status").get(0).getValue(), is("CLOSED"));
+
+    }
+
+    @Test
+    public void testMetadataCopiedEnhancer() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item targetGroupOne = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group one")
+                                         .withType("Education")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+        Item targetGroupTwo = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group two")
+                                         .withType("Economy")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+
+        Item eventOne = ItemBuilder.createItem(context, collection)
+                                   .withTitle("event one")
+                                   .withSynsicrisRelationTargetGroup(
+                                       targetGroupOne.getName(), targetGroupOne.getID().toString())
+                                   .withSynsicrisRelationTargetGroup(
+                                       targetGroupTwo.getName(), targetGroupTwo.getID().toString())
+                                   .withEntityType("Event")
+                                   .build();
+
+        Item eventTwo = ItemBuilder.createItem(context, collection)
+                                   .withTitle("event two")
+                                   .withSynsicrisRelationTargetGroup(
+                                       targetGroupOne.getName(), targetGroupOne.getID().toString())
+                                   .withEntityType("Event")
+                                   .build();
+
+        Item eventThree = ItemBuilder.createItem(context, collection)
+                                   .withTitle("event three")
+                                   .withSynsicrisRelationTargetGroup(
+                                       targetGroupTwo.getName(), targetGroupTwo.getID().toString())
+                                   .withEntityType("Event")
+                                   .build();
+
+        context.restoreAuthSystemState();
+
+        // add new metadata to targetGroupOne
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "nace",
+            null, "target group one nace value");
+
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "enterprise",
+            null, "target group one enterprise value");
+
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "urbanrural",
+            null, "target group one urbanrural value");
+
+        // add new metadata to targetGroupTwo
+        itemService.addMetadata(context, targetGroupTwo, "synsicris", "subject", "political",
+            null, "target group two political value");
+
+        itemService.addMetadata(context, targetGroupTwo, "synsicris", "subject", "urbanrural",
+            null, "target group two urbanrural value");
+
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        eventOne = context.reloadEntity(eventOne);
+        eventTwo = context.reloadEntity(eventTwo);
+        eventThree = context.reloadEntity(eventThree);
+
+        // THEN eventOne contains the copied metadata from targetGroupOne and targetGroupTwo
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("dc.type.targetgroup", "Education", 0)));
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("dc.type.targetgroup", "Economy", 1)));
+
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.nace", "target group one nace value", 0)));
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.nace", PLACEHOLDER_PARENT_METADATA_VALUE, 1)));
+
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.enterprise", "target group one enterprise value", 0)));
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.enterprise", PLACEHOLDER_PARENT_METADATA_VALUE, 1)));
+
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.political", "target group two political value", 1)));
+
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "target group one urbanrural value", 0)));
+        assertThat(eventOne.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "target group two urbanrural value", 1)));
+
+        // THEN eventTwo contains the copied metadata from targetGroupOne only
+        assertThat(eventTwo.getMetadata(), hasItem(with("dc.type.targetgroup", "Education", 0)));
+
+        assertThat(eventTwo.getMetadata(),
+            hasItem(with("synsicris.subject.nace", "target group one nace value", 0)));
+
+        assertThat(eventTwo.getMetadata(),
+            hasItem(with("synsicris.subject.enterprise", "target group one enterprise value", 0)));
+
+        assertThat(eventTwo.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+
+        assertThat(eventTwo.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "target group one urbanrural value", 0)));
+
+        // THEN eventThree contains the copied metadata from targetGroupTwo only
+        assertThat(eventThree.getMetadata(), hasItem(with("dc.type.targetgroup", "Economy", 0)));
+
+        assertThat(eventThree.getMetadata(),
+            hasItem(with("synsicris.subject.nace", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+
+        assertThat(eventThree.getMetadata(),
+            hasItem(with("synsicris.subject.enterprise", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+
+        assertThat(eventThree.getMetadata(),
+            hasItem(with("synsicris.subject.political", "target group two political value", 0)));
+
+        assertThat(eventThree.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "target group two urbanrural value", 0)));
+
+    }
+
+    @Test
+    public void testMetadataCopiedEnhancerUpdateMetadataAfterCopied() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item targetGroupOne = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group one")
+                                         .withType("Education")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+        Item targetGroupTwo = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group two")
+                                         .withType("Economy")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+        Item event = ItemBuilder.createItem(context, collection)
+                                .withTitle("event")
+                                .withSynsicrisRelationTargetGroup(
+                                    targetGroupOne.getName(), targetGroupOne.getID().toString())
+                                .withSynsicrisRelationTargetGroup(
+                                    targetGroupTwo.getName(), targetGroupTwo.getID().toString())
+                                .withEntityType("Event")
+                                .build();
+
+        context.restoreAuthSystemState();
+
+        // add metadata to targetGroupOne item
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "urbanrural",
+            null, "urbanrural value");
+
+        // add metadata to targetGroupTwo item
+        itemService.addMetadata(context, targetGroupTwo, "synsicris", "subject", "political",
+            null, "political value");
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        event = context.reloadEntity(event);
+
+        // THEN metadata will be added to event item
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Education", 0)));
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Economy", 1)));
+
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "urbanrural value", 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", PLACEHOLDER_PARENT_METADATA_VALUE, 1)));
+
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", "political value", 1)));
+
+        // update metadata of targetGroups items
+        context.turnOffAuthorisationSystem();
+        targetGroupOne = context.reloadEntity(targetGroupOne);
+        targetGroupTwo = context.reloadEntity(targetGroupTwo);
+
+        itemService.clearMetadata(context, targetGroupOne, "synsicris", "subject", "urbanrural", null);
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "urbanrural",
+            null, "updated urbanrural value");
+
+        itemService.clearMetadata(context, targetGroupTwo, "synsicris", "subject", "political", null);
+        itemService.addMetadata(context, targetGroupTwo, "synsicris", "subject", "political",
+            null, "updated political value");
+        context.restoreAuthSystemState();
+
+        runnableHandler = runScript(false);
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        // THEN metadata will be updated also for event item
+        event = context.reloadEntity(event);
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Education", 0)));
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Economy", 1)));
+
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", "updated urbanrural value", 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.urbanrural", PLACEHOLDER_PARENT_METADATA_VALUE, 1)));
+
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", "updated political value", 1)));
+
+    }
+
+    @Test
+    public void testMetadataCopiedEnhancerAfterRemoveOneOfRelatedTargetGroupsMetadata() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item targetGroupOne = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group one")
+                                         .withType("Education")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+        Item targetGroupTwo = ItemBuilder.createItem(context, collection)
+                                         .withTitle("target group two")
+                                         .withType("Economy")
+                                         .withEntityType("targetgroup")
+                                         .build();
+
+        Item targetGroupThree = ItemBuilder.createItem(context, collection)
+                                           .withTitle("target group three")
+                                           .withType("Public")
+                                           .withEntityType("targetgroup")
+                                           .build();
+
+        Item event = ItemBuilder.createItem(context, collection)
+                                .withTitle("event")
+                                .withSynsicrisRelationTargetGroup(
+                                    targetGroupOne.getName(), targetGroupOne.getID().toString())
+                                .withSynsicrisRelationTargetGroup(
+                                    targetGroupTwo.getName(), targetGroupTwo.getID().toString())
+                                .withSynsicrisRelationTargetGroup(
+                                    targetGroupThree.getName(), targetGroupThree.getID().toString())
+                                .withEntityType("Event")
+                                .build();
+
+        context.restoreAuthSystemState();
+
+        // add metadata to targetGroups items
+        itemService.addMetadata(context, targetGroupOne, "synsicris", "subject", "political",
+            null, "target group one political value");
+
+        itemService.addMetadata(context, targetGroupTwo, "synsicris", "subject", "political",
+            null, "target group two political value");
+
+        TestDSpaceRunnableHandler runnableHandler = runScript(false);
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        event = context.reloadEntity(event);
+
+        // THEN metadata will be added to event item
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Education", 0)));
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Economy", 1)));
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Public", 2)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", "target group one political value", 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", "target group two political value", 1)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 2)));
+
+        // remove the first metadata of related target groups of event item
+        context.turnOffAuthorisationSystem();
+        targetGroupOne = context.reloadEntity(targetGroupOne);
+        String targetGroupOneId = targetGroupOne.getID().toString();
+
+        MetadataValue metadataValue =
+            event.getMetadata()
+                 .stream()
+                 .filter(mv ->
+                     StringUtils.equals(mv.getAuthority(), targetGroupOneId))
+                 .findFirst()
+                 .get();
+
+        itemService.removeMetadataValues(context, event, List.of(metadataValue));
+        itemService.update(context, event);
+        context.restoreAuthSystemState();
+
+        runnableHandler = runScript(false);
+        assertThat(runnableHandler.getErrorMessages(), empty());
+        assertThat(runnableHandler.getInfoMessages(), contains("Enhancement completed with success"));
+
+        // THEN all metadata into event item related to targetGroupOne will be removed
+        event = context.reloadEntity(event);
+
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Economy", 0)));
+        assertThat(event.getMetadata(), hasItem(with("dc.type.targetgroup", "Public", 1)));
+
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", "target group two political value", 0)));
+        assertThat(event.getMetadata(),
+            hasItem(with("synsicris.subject.political", PLACEHOLDER_PARENT_METADATA_VALUE, 1)));
 
     }
 

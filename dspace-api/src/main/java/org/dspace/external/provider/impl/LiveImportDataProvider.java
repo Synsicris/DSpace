@@ -9,6 +9,7 @@ package org.dspace.external.provider.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,8 @@ public class LiveImportDataProvider extends AbstractExternalDataProvider {
 
     /**
      * This method set the MetadataSource for the ExternalDataProvider
-     * @param metadataSource {@link org.dspace.importer.external.service.components.MetadataSource} implementation used to process the input data
+     * @param querySource {@link org.dspace.importer.external.service.components.MetadataSource}
+     *                           implementation used to process the input data
      */
     public void setMetadataSource(QuerySource querySource) {
         this.querySource = querySource;
@@ -96,7 +98,9 @@ public class LiveImportDataProvider extends AbstractExternalDataProvider {
         Collection<ImportRecord> records;
         try {
             records = querySource.getRecords(query, start, limit);
-            return records.stream().map(r -> getExternalDataObject(r)).collect(Collectors.toList());
+            return records.stream().map(r -> getExternalDataObject(r))
+                                   .filter(record -> Objects.nonNull(record))
+                                   .collect(Collectors.toList());
         } catch (MetadataSourceException e) {
             throw new RuntimeException(
                     "The live import provider " + querySource.getImportSource() + " throws an exception", e);

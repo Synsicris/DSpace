@@ -304,12 +304,9 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
     @Test
     public void findAllScriptsWithNoAdminTest() throws Exception {
         String token = getAuthToken(eperson.getEmail(), password);
-
         getClient(token).perform(get("/api/system/scripts"))
                         .andExpect(status().isOk())
-                        .andExpect(jsonPath("$.page",
-                                            is(PageMatcher.pageEntryWithTotalPagesAndElements(0, 20, 1, 5))));
-
+                        .andExpect(jsonPath("$.page", is(PageMatcher.pageEntryWithTotalPagesAndElements(0, 20, 1, 6))));
     }
 
     @Test

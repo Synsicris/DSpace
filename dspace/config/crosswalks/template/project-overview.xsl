@@ -16,19 +16,39 @@
 <xsl:param name="lang.title.section1.3" select="'1.3 Arbeitsziele zur Interaktion'"/>
 <xsl:param name="lang.title.section1.4" select="'1.4 Bezug des Vorhabens zu den förderpolitischen Zielen'"/>
 
+
+<xsl:param name="lang.title.section4.3" select="'4.3 Anwendung(smöglichkeiten)'"/>
+<xsl:param name="lang.title.section4.3.1" select="'4.3.1 Lösung/Veränderung/Innovation'"/>
+<xsl:param name="lang.title.section4.3.2" select="'4.3.2 Ideen für eine Lösung/Veränderung/Innovation'"/>
+<xsl:param name="lang.title.section4.3.3" select="'4.3.3 Anwendung'"/>
+<xsl:param name="lang.title.section4.3.4" select="'4.3.4 Unerwartete Erkentnisse und Probleme'"/>
+<xsl:param name="lang.title.section4.3.5" select="'4.3.5 Patente'"/>
+<xsl:param name="lang.title.section4.3.6" select="'4.3.6 Ausgründungen'"/>
+<xsl:param name="lang.title.section4.3.7" select="'4.3.7 Arbeiten und Kooperationen nach Projektende'"/>
+<xsl:param name="lang.title.section4.3.8" select="'4.3.8 Auszeichnungen und Preise'"/>
+<xsl:param name="lang.title.section4.3.9" select="'4.3.9 Offene Forschungsfragen'"/>
+
 <!-- TODO: add all sections -->
 
-<!-- individual fields -->	
+<!-- individual fields -->
+<xsl:param name="lang.abstract" select="'Zusammenfassung'"/>
+<xsl:param name="lang.language" select="'Sprache'"/>
 <xsl:param name="lang.term" select="'Laufzeit'"/>
 <xsl:param name="lang.duration.month" select="'Dauer in Monaten'"/>
+<xsl:param name="lang.postcode-city-country" select="'PLZ / Stadt / Land'"/>
+<xsl:param name="lang.website" select="'Webadresse'"/>
+
+<xsl:param name="lang.organisation.form" select="'Organisationsform'"/>
+<xsl:param name="lang.cooperation.type" select="'Art der Kooperation'"/>
 
 <xsl:param name="lang.funding.call" select="'Förderbereich/Bekanntmachung'"/>
 <xsl:param name="lang.funding.programme" select="'Fördermaßnahme/Förderprogramm'"/>
 
-<xsl:param name="lang.postcode-city-country" select="'PLZ / Stadt / Land'"/>
-<xsl:param name="lang.website" select="'Webadresse'"/>
-<xsl:param name="lang.organisation.form" select="'Organisationsform'"/>
-<xsl:param name="lang.cooperation.type" select="'Art der Kooperation'"/>
+<xsl:param name="lang.projectpartner.easy-online" select="'Ausführende Stelle im easy-online-Antrag'"/>
+<xsl:param name="lang.projectpartner.field-of-activity" select="'Tätigkeitsbereich der Organisationseinheit'"/>
+<xsl:param name="lang.projectpartner.destatis" select="'Disziplin / Fachgebiet der Forschungseinrichtung'"/>
+<xsl:param name="lang.projectpartner.nace" select="'Wirtschaftszweig der Organisation'"/>
+<xsl:param name="lang.projectpartner.political-level" select="'Politikebene(n) der Organisationseinheit'"/>
 
 <xsl:param name="lang.organisation.field-of-activity" select="'Tätigkeitsbereich der Organisation'"/>
 <xsl:param name="lang.organisation.nace" select="'Wirtschaftszweig der Organisation'"/>
@@ -39,6 +59,58 @@
 <xsl:param name="lang.organisation.location-type" select="'Verortung der Akteursgruppe'"/>			
 
 <xsl:param name="lang.targetgroup.relevance" select="'Relevanz der Akteursgruppe für das Vorhaben'"/>			
+
+<xsl:param name="lang.innovationpotential.type" select="'Art'"/>
+<xsl:param name="lang.innovationpotential.targetgroup" select="'Nutzende Akteursgruppe(n)'"/>
+<xsl:param name="lang.innovationpotential.description" select="'Beschreibung (Nutzen, Auswirkung)'"/>
+<xsl:param name="lang.innovationpotential.applicability-novelty" select="'Innovationsgrad'"/>
+<xsl:param name="lang.innovationpotential.applicability-efficiency" select="'Effizienz'"/>
+<xsl:param name="lang.innovationpotential.applicability-practicability" select="'Praktikabilität und Anschlussfähigkeit'"/>
+<xsl:param name="lang.innovationpotential.applicability-requirements" select="'Vorraussetzungen'"/>
+<xsl:param name="lang.innovationpotential.applicability-prospects" select="'Aussichten für eine Etablierung / Verbreitung / Übertragung'"/>
+<xsl:param name="lang.innovationpotential.regionalscope-primaryfield" select="'Primärer Einsatzbereich'"/>
+<xsl:param name="lang.innovationpotential.regionalscope-laterdissimination" select="'spätere Verbreitung'"/>
+<xsl:param name="lang.innovationpotential.regionalscope-description" select="'Erläuterung'"/>
+<xsl:param name="lang.innovationpotential.srltrl-developmentprojectstart" select="'Entwicklungsstand bei Projektbeginn'"/>
+<xsl:param name="lang.innovationpotential.srltrl-developmentprojectend" select="'Entwicklungsstand bei Projektende'"/>
+<xsl:param name="lang.innovationpotential.srltrl-selection" select="'TRL/SRL?'"/>
+<xsl:param name="lang.innovationpotential.srltrl-readinessprojectstart" select="'Reifegrad bei Projektbeginn'"/>
+<xsl:param name="lang.innovationpotential.srltrl-readinessprojectend" select="'Reifegrad bei Projektende'"/>
+
+<xsl:param name="lang.innovationidea.type" select="'Art'"/>
+<xsl:param name="lang.innovationidea.description" select="'Bezeichnung'"/>
+
+<xsl:param name="lang.application.related-innovation" select="'Verlinkung zur dokumentierten Lösung / Veränderung / Innovation oder einem Patent'"/>
+<xsl:param name="lang.application.unit" select="'Einheit'"/>
+<xsl:param name="lang.application.free-unit" select="'Einheit (eigene Angabe)'"/>
+<xsl:param name="lang.application.reference-year" select="'Referenzjahr'"/>
+<xsl:param name="lang.application.quantity" select="'Menge / Anzahl (Steigerung)'"/>
+<xsl:param name="lang.application.regionaloutreach" select="'Region der Anwendung'"/>
+<xsl:param name="lang.application.success-description" select="'Anmerkungen / Weblink'"/>
+
+<xsl:param name="lang.unexpectedresult.resultdescription" select="'Berschreibung Ergebniss / Problem'"/>
+<xsl:param name="lang.unexpectedresult.statuspublication" select="'Veröffentlichung geplant / erfolgt'"/>
+<xsl:param name="lang.unexpectedresult.informationpublication" select="'Information zur Veröffentlichung'"/>
+<xsl:param name="lang.unexpectedresult.linkpublication" select="'Titel der Veröffentlichung'"/>
+
+<xsl:param name="lang.patent.type" select="'Art'"/>
+<xsl:param name="lang.patent.use" select="'Form der geplanten Nutzung'"/>	
+<xsl:param name="lang.patent.use-description" select="'Erläuterung zur Nutzung'"/>			
+<xsl:param name="lang.patent.registration-number" select="'Anmeldenummer'"/>
+<xsl:param name="lang.patent.registration-date" select="'Datum der Anmeldung'"/>
+<xsl:param name="lang.patent.holder" select="'Inhaber:in'"/>	
+<xsl:param name="lang.patent.patent-number" select="'Patentnummer'"/>
+<xsl:param name="lang.patent.approval-date" select="'Datum der Zulassung'"/>
+<xsl:param name="lang.patent.publication-date" select="'Datum der Veröffentlichung'"/>
+<xsl:param name="lang.patent.inventor" select="'Erfinder:in(nen)'"/>
+<xsl:param name="lang.patent.issuer" select="'Erteiler'"/>
+<xsl:param name="lang.patent.ipc-class" select="'IPC-Klasse(n)'"/>
+
+<xsl:param name="lang.step.partner" select="'Beteiligte Projektpartner/Unterauftragsnehmer/Kooperationspartner'"/>
+<xsl:param name="lang.step.targetgroup" select="'Beteiligte Akteursgruppen'"/>
+<xsl:param name="lang.step.type" select="'Art der Arbeit'"/>
+<xsl:param name="lang.step.date" select="'Zeithorizont für die Realisierung'"/>
+<xsl:param name="lang.step.description" select="'Beschreibung'"/>
 
 <!-- TODO: add all fields -->
 
@@ -52,7 +124,6 @@
 <!-- paths (NOTE: path needs to be given with single hyphens otherwise the path is interpreted as XPath element)-->	
 <xsl:param name="imageDirectory" select="'/opt/dspace/dspace-syn7/install/config/crosswalks/template/images/'"/>
 
-
 <!-- approach in the following: characteristic first, effected element last -->
 
 <!-- font sizes -->	
@@ -61,7 +132,7 @@
 <xsl:param name="font.size.sub-section-title" select="'12pt'"/>
 <xsl:param name="font.size.sub-sub-section-title" select="'11pt'"/>
 <xsl:param name="font.size.standard" select="'10pt'"/>
-<xsl:param name="font.size.key-value" select="'13pt'"/> 
+<xsl:param name="font.size.key-value" select="'11pt'"/> 
 
 <!-- font weigths -->
 <xsl:param name="font.weight.title" select="'bold'"/>
@@ -102,6 +173,9 @@
 
 <!-- styles -->
 <xsl:param name="style.border" select="'solid'"/>
+
+<!-- miscellaneous -->
+<xsl:param name="empty" select="' '"/>
 
 <!--########################################################################-->
 <!-- MAIN PAGE -->	
@@ -161,6 +235,13 @@
 				<fo:flow flow-name="xsl-region-body">
 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<!-- SECTION #-1 - TESTING ON THE FIRST PAGE --> 
+          <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+					<!-- new page -->
+          <!-- <fo:block break-after='page'/> -->
+
+          <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 					<!-- SECTION #0 --> 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -178,7 +259,7 @@
 
 					<!-- contents -->
 					<xsl:call-template name="project"/>
-					<xsl:call-template name="project-partner"/>
+					<xsl:call-template name="project-partner-part1"/>
 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 					<!-- SECTION #1 --> 
@@ -270,9 +351,9 @@
 						<xsl:with-param name="title" select="'3.1.1	Überblick Arbeitsplanung'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
-
-					<xsl:call-template name="working-plan-overview"/>
 					
+          <!-- INFO: here we don't a template after all, will be filled with the working plan screenshot -->
+
 				  <!-- sub sub section title - work packages and tasks -->					
 					<xsl:call-template name="title">
 						<xsl:with-param name="title" select="'3.1.2	Arbeitspakete und Arbeiten'"/>
@@ -287,25 +368,18 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
+          <!-- TODO: add template FIXME: unclear which entity to use-->
+					<!-- <xsl:call-template name="???"/> -->
+
 				  <!-- sub sub section title - interaction and transfer -->
 					<xsl:call-template name="title">
 						<xsl:with-param name="title" select="'3.1.4	Arbeiten zur Interaktion und Transfer'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-				  <!-- sub sub section title - cooperation partners and target groups that are addressed -->
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.5 Kooperationspartner und Akteursgruppen, die adressiert werden'"/>
-						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-					</xsl:call-template>
-
-				  <!-- sub sub section title - overview interaction and transfer -->
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.6 Arbeiten zur Interaktion und Transfer'"/>
-						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-					</xsl:call-template>
-
           <xsl:call-template name="interaction-transfer-overview"/>
+
+          <!-- TODO: here all entities belonging to transfer need to be added -->
 
 				  <!-- sub section title - milestone planning -->
 					<xsl:call-template name="title">
@@ -320,6 +394,8 @@
 						<xsl:with-param name="title" select="'3.3	Vertiefung Material und Methoden'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>
+
+					<!-- INFO: this section we don't need to fill -->
 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 					<!-- SECTION #4 --> 
@@ -340,60 +416,66 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>
 
+          <!-- TODO: add template -->
+
 				  <!-- sub section title - details of exploitation and impact of the project -->
 					<xsl:call-template name="title">
 						<xsl:with-param name="title" select="'4.2	Details zu Verwertung und Wirkung des Projektes'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>
 
+          <!-- TODO: add template -->
+
 				  <!-- sub section title - application possibilities -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3	Anwendung(smöglichkeiten)'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>
 
 				  <!-- sub sub section title - solutions/changes/innovations -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.1	Lösung/Veränderung/Innovation'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.1"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
+
+          <!-- TODO: add template - unclear which entity to consider-->
+					<xsl:call-template name="innovation-potential"/>
 
 					<!-- sub sub section title - ideas for solutions/changes/innovations -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.2	Ideen für eine Lösung/Veränderung/Innovation'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.2"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
+
+					<xsl:call-template name="innovation-idea"/>
 
 					<!-- sub sub section title - application -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.3	Anwendung'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.3"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- FIXME: using this template results in a faulty report, reducing the report size too -->
-					<!-- <xsl:call-template name="application"/> -->
+					<xsl:call-template name="application"/>
 
 					<!-- sub sub section title - unexpected results -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.4	Unerwartete Erkentnisse und Probleme'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.4"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- FIXME: using this template results in a faulty report, reducing the report size too -->
-          <!-- <xsl:call-template name="unexpected-result"/> -->
+          <xsl:call-template name="unexpected-result"/>
 
 					<!-- sub sub section title - patents -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.5 Patente'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.5"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- FIXME: using this template results in a faulty report, reducing the report size too -->
-          <!-- <xsl:call-template name="patent"/> -->
+          <xsl:call-template name="patent"/>
 
 					<!-- sub sub section title - spinoffs -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.6 Ausgründungen'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.6"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
@@ -402,13 +484,15 @@
 
 					<!-- sub sub section title - work and cooperation after the project -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.7 Arbeiten und Kooperationen nach Projektende'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.7"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-					</xsl:call-template>
+					</xsl:call-template>        
+	
+					<xsl:call-template name="furthersteps"/>
 
 					<!-- sub sub section title - awards -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.8 Auszeichnungen und Preise'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.8"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
@@ -417,7 +501,7 @@
 
 					<!-- sub sub section title - open research questions -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.3.9 Offene Forschungsfragen'"/>
+						<xsl:with-param name="title" select="$lang.title.section4.3.9"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
@@ -473,14 +557,6 @@
 
 		      <xsl:call-template name="gender"/>
 
-				  <!-- sub section title - exploitation plans of the individual project partners -->
-					<!-- NOTE: this section is currently not needed -->
-
-					<!-- <xsl:call-template name="title">
-						<xsl:with-param name="title" select="'4.5	Verwertungspläne der einzelnen Projektpartner'"/>
-						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
-					</xsl:call-template>					 -->
-
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 					<!-- SECTION #5 --> 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -499,6 +575,8 @@
 						<xsl:with-param name="title" select="'5.1	Projektpartner'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>		
+
+          <xsl:call-template name="project-partner-part2"/>
 
 				  <!-- sub section title - cooperation partners -->
 					<xsl:call-template name="title">
@@ -534,25 +612,21 @@
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 					<!-- new page -->
-
-<!--
-          <fo:block break-after='page'/>
-
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'Testbereich'"/>
-						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="cerif:Test"/>
+          <!-- <fo:block break-after='page'/> -->
+				  
+					<!-- <xsl:call-template name="title">
+						<xsl:with-param name="title" select="'Workpackage - Task Test'"/>
 						<xsl:with-param name="fontSize" select="$font.size.title"/>
-					</xsl:call-template>
+					</xsl:call-template> -->
 
-					<xsl:call-template name="key-value-line-list"> 
-						<xsl:with-param name="key" select="'Test'"/>
-						<xsl:with-param name="value" select="cerif:WorkPackage/cerif:Index/cerif:Task/cerif:Index/cerif:Title"/>
-				  </xsl:call-template>
--->	
+					<!-- <xsl:call-template name="work-package-task-test"/> -->
+
+					<!-- <xsl:call-template name="title">
+						<xsl:with-param name="title" select="'Target group - Event Test'"/>
+						<xsl:with-param name="fontSize" select="$font.size.title"/>
+					</xsl:call-template> -->
+
+					<!-- <xsl:call-template name="target-group-event-test"/> -->
 
 				</fo:flow>
 
@@ -601,7 +675,11 @@
 <!-- TEMPLATE FOR THE PROJECT PARTNER ENTITY -->	
 <!--########################################################################-->
 
-	<xsl:template name="project-partner">
+<!--==============================================================-->	
+<!-- part #1 for section 1 -->
+<!--==============================================================-->
+
+	<xsl:template name="project-partner-part1">
 
 		<xsl:if test="cerif:ProjectPartner">
 
@@ -632,72 +710,109 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>									
 
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Ausführende Stelle im easy-online-Antrag'"/>
-						<xsl:with-param name="value" select="cerif:EasyOnlineImport"/>
-				  </xsl:call-template>						
-
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Tätigkeitsbereich der Organisationseinheit'"/>
-						<xsl:with-param name="value" select="cerif:FieldOfActivity"/>
-				  </xsl:call-template>						
-
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Disziplin / Fachgebiet der Forschungseinrichtung'"/>
-						<xsl:with-param name="value" select="cerif:Destatis"/>
-				  </xsl:call-template>	
-					
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Wirtschaftszweig der Organisation'"/>
-						<xsl:with-param name="value" select="cerif:NACE"/>
-				  </xsl:call-template>	
-					
-					<xsl:call-template name="key-value-comma-list">
-						<xsl:with-param name="key" select="'Politikebene(n) der Organisationseinheit'"/>
-						<xsl:with-param name="value" select="cerif:PoliticalLevel"/>
-				  </xsl:call-template>						
-
-					<xsl:call-template name="vertical-gap">
-						<xsl:with-param name="margin" select="$margin.top.gap"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="key-value-single"> <!-- TODO: not shown -->
-						<xsl:with-param name="key" select="'Übergeordnete Organisation'"/>
+					<xsl:call-template name="value-single"> <!-- TODO: not shown -->
 						<xsl:with-param name="value" select="cerif:Import/cerif:ParentOrganisation"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
-						<xsl:with-param name="key" select="'Name der ausführenden Stelle / Organisationseinheit'"/>
+					<xsl:call-template name="value-single"> 
 						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationName"/>
 				  </xsl:call-template>					
 
-					<xsl:call-template name="key-postcode-city-country">
-						<xsl:with-param name="key" select="$lang.postcode-city-country"/>
+					<xsl:call-template name="value-postcode-city-country">
 						<xsl:with-param name="postcode" select="cerif:Import/cerif:PostCode"/>
 						<xsl:with-param name="city" select="cerif:Import/cerif:City"/>
 						<xsl:with-param name="country" select="cerif:Import/cerif:Country"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
-						<xsl:with-param name="key" select="'Webadresse'"/>
+					<xsl:call-template name="value-comma-list"> 
 						<xsl:with-param name="value" select="cerif:Import/cerif:WebAddress"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="'Organisationsform'"/>
-						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationType"/>
-				  </xsl:call-template>						
+	        <xsl:if test="cerif:ImportLead/cerif:Name">
+						<xsl:call-template name="vertical-gap">
+							<xsl:with-param name="margin" select="$margin.top.gap"/>
+						</xsl:call-template>
+					</xsl:if>
 
-					<xsl:call-template name="vertical-gap">
-						<xsl:with-param name="margin" select="$margin.top.gap"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="key-name-degree-gender">
-						<xsl:with-param name="key" select="'Projektleitung'"/>
+					<xsl:call-template name="value-name-degree-gender">
 						<xsl:with-param name="name" select="cerif:ImportLead/cerif:Name"/>
 						<xsl:with-param name="degree" select="cerif:ImportLead/cerif:Degree"/>
 						<xsl:with-param name="gender" select="cerif:ImportLead/cerif:Gender"/>
 				  </xsl:call-template>	
+
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:ImportLead/cerif:Phone"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:ImportLead/cerif:EMail"/>
+				  </xsl:call-template>	
+
+				</fo:block> 		
+
+			</xsl:for-each> 
+
+	  </xsl:if>
+
+	</xsl:template>
+
+<!--==============================================================-->	
+<!-- part #2 for section 5 -->
+<!--==============================================================-->
+
+	<xsl:template name="project-partner-part2">
+
+		<xsl:if test="cerif:ProjectPartner">
+
+			<xsl:for-each select="cerif:ProjectPartner/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Acronym"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
+
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationType"/>
+						<xsl:with-param name="fontSize" select="$font.size.standard"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.value"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.projectpartner.easy-online"/>
+						<xsl:with-param name="value" select="cerif:EasyOnlineImport"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.projectpartner.field-of-activity"/>
+						<xsl:with-param name="value" select="cerif:FieldOfActivity"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.projectpartner.destatis"/>
+						<xsl:with-param name="value" select="cerif:Destatis"/>
+				  </xsl:call-template>	
+					
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.projectpartner.nace"/>
+						<xsl:with-param name="value" select="cerif:NACE"/>
+				  </xsl:call-template>	
+					
+					<xsl:call-template name="key-value-comma-list">
+						<xsl:with-param name="key" select="$lang.projectpartner.political-level"/>
+						<xsl:with-param name="value" select="cerif:PoliticalLevel"/>
+				  </xsl:call-template>						
 
 				</fo:block> 		
 
@@ -718,7 +833,7 @@
 		  <xsl:for-each select="cerif:ImpactPathway/cerif:Index">
 
 			  <xsl:call-template name="title-section-counter"> 
-				<xsl:with-param name="section" select="'1.1.'"/>				
+					<xsl:with-param name="section" select="'1.1.'"/>				
 				  <xsl:with-param name="counter" select="position()"/>
 					<xsl:with-param name="title" select="' Beschreibung des Gesamtziels des Vorhabens über den Impact Pathway'"/>
 					<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
@@ -742,7 +857,7 @@
 
   <xsl:template name="project-objective">
 
-		<xsl:call-template name="table-title-description">
+		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ProjectObjective"/>
 			<xsl:with-param name="entityIndex" select="cerif:ProjectObjective/cerif:Index"/>
 		</xsl:call-template>	
@@ -755,7 +870,7 @@
 
   <xsl:template name="interaction-objective">
 
-		<xsl:call-template name="table-title-description">
+		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:InteractionObjective"/>
 			<xsl:with-param name="entityIndex" select="cerif:InteractionObjective/cerif:Index"/>
 		</xsl:call-template>	
@@ -768,7 +883,7 @@
 
   <xsl:template name="contribution-funding-programme">
 
-		<xsl:call-template name="table-title-description">
+		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ContributionFundingProgramme"/>
 			<xsl:with-param name="entityIndex" select="cerif:ContributionFundingProgramme/cerif:Index"/>
 		</xsl:call-template>	
@@ -781,6 +896,7 @@
 
   <xsl:template name="state-of-art">
 
+    <!-- TODO: check if it is better to test the index, not the entiry itself --> 
 		<xsl:if test="cerif:StateOfArt">
 
 			<xsl:for-each select="cerif:StateOfArt/cerif:Index">
@@ -831,14 +947,22 @@
 	
 				<!-- define the table columns -->
 				<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
-				<fo:table-column column-width="24.25%"/>
-				<fo:table-column column-width="24.25%"/>
-				<fo:table-column column-width="24.25%"/>
-				<fo:table-column column-width="24.25%"/>
+				<fo:table-column column-width="16.166%"/>
+				<fo:table-column column-width="16.166%"/>
+				<fo:table-column column-width="16.166%"/>
+				<fo:table-column column-width="16.166%"/>
+				<fo:table-column column-width="16.166%"/>
+				<fo:table-column column-width="16.166%"/>				
 				<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
 																																			  <!-- in addition the columns need to be numbered, omitting the first and last column --> 
 				<!-- table header -->
 				<fo:table-header>
+
+         <!-- FIXME: It would be very useful to call the header and body cells by a template --> 
+				 <!-- however I get the following error even when only the cell content is wrapped in a template with no parameters -->
+				 <!-- The element type "fo:table-header" must be terminated by the matching end-tag "</fo:table-header>" -->
+
+          <!-- events -->
 					<fo:table-cell column-number="2" 
 												 border-width="{$width.border}"
 												 border-color="{$colour.border}"
@@ -856,7 +980,7 @@
 
 							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'event.png')"/>
 
-							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+							<fo:external-graphic content-width="12mm">  
 								<xsl:attribute name="src">
 									<xsl:value-of select="$imageFile"/>
 								</xsl:attribute>
@@ -870,6 +994,7 @@
 						</fo:block>
 					</fo:table-cell>
 
+          <!-- process events -->
 					<fo:table-cell column-number="3" 
 												 border-width="{$width.border}"
 												 border-color="{$colour.border}"
@@ -901,7 +1026,72 @@
 						</fo:block>
 					</fo:table-cell>
 
+          <!-- physical objects -->
 					<fo:table-cell column-number="4" 
+												 border-width="{$width.border}"
+												 border-color="{$colour.border}"
+												 border-style="{$style.border}">
+						<fo:block text-align="center" 
+											font-size="{$font.size.key-value}"
+											font-weight="{$font.weight.key-value}"
+											margin-top="{$margin.top.main}"
+											padding-before="{$padding.before.border}"
+											padding-after="{$padding.after.border}"
+											padding-start="{$padding.start.border}"
+											padding-end="{$padding.end.border}"
+											margin-left="{$margin.left.border}"
+											margin-right="{$margin.right.border}">	
+
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'object-material.png')"/>
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile"/>
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							  <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:PhysicalObject/cerif:Index)"/>
+              </fo:inline>
+
+						</fo:block>
+					</fo:table-cell>
+
+          <!-- planned publications -->
+					<fo:table-cell column-number="5" 
+												 border-width="{$width.border}"
+												 border-color="{$colour.border}"
+												 border-style="{$style.border}">
+						<fo:block text-align="center" 
+											font-size="{$font.size.key-value}"
+											font-weight="{$font.weight.key-value}"
+											margin-top="{$margin.top.main}"
+											padding-before="{$padding.before.border}"
+											padding-after="{$padding.after.border}"
+											padding-start="{$padding.start.border}"
+											padding-end="{$padding.end.border}"
+											margin-left="{$margin.left.border}"
+											margin-right="{$margin.right.border}">	
+
+							<xsl:variable name="imageFile" select="concat('file:',$imageDirectory,'publication.png')"/>
+
+							<fo:external-graphic content-width="12mm">  <!-- content-height="scale-to-fit" scaling="non-uniform" -->
+								<xsl:attribute name="src">
+									<xsl:value-of select="$imageFile"/>
+								</xsl:attribute>
+							</fo:external-graphic>
+
+							<fo:inline vertical-align="top">
+							  <xsl:text>    </xsl:text> 
+							  <xsl:value-of select="count(cerif:PlannedPublication/cerif:Index)"/>
+              </fo:inline>
+
+						</fo:block>
+					</fo:table-cell>
+
+          <!-- publications -->
+					<fo:table-cell column-number="6" 
 												 border-width="{$width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
@@ -932,7 +1122,8 @@
 						</fo:block>
 					</fo:table-cell>
 
-					<fo:table-cell column-number="5" 
+          <!-- products -->
+					<fo:table-cell column-number="7" 
 												 border-width="{$width.border}"
 												 border-color="{$colour.border}"
 												 border-style="{$style.border}">
@@ -967,81 +1158,123 @@
 
 				<!-- table body -->
 				<fo:table-body>					
-						<fo:table-row>
+					<fo:table-row>
 
-							<fo:table-cell column-number="2"
-														border-width="{$width.border}"
-														border-color="{$colour.border}"
-														border-style="{$style.border}">
-								<fo:block text-align="center" 
-													font-size="{$font.size.standard}"
-													font-weight="{$font.weight.value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
-									<xsl:text>Events</xsl:text>
-								</fo:block>
-							</fo:table-cell>
+          	<!-- events -->
+						<fo:table-cell column-number="2"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Events</xsl:text>
+							</fo:block>
+						</fo:table-cell>
 
-							<fo:table-cell column-number="3"
-														border-width="{$width.border}"
-														border-color="{$colour.border}"
-														border-style="{$style.border}">
-								<fo:block text-align="center" 
-													font-size="{$font.size.standard}"
-													font-weight="{$font.weight.value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
-									<xsl:text>Kooperationsprozesse</xsl:text>
-								</fo:block>
-							</fo:table-cell>
+          	<!-- process events -->
+						<fo:table-cell column-number="3"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Kooperations-prozesse</xsl:text>
+							</fo:block>
+						</fo:table-cell>
 
-							<fo:table-cell column-number="4"
-														border-width="{$width.border}"
-														border-color="{$colour.border}"
-														border-style="{$style.border}">
-								<fo:block text-align="center" 
-													font-size="{$font.size.standard}"
-													font-weight="{$font.weight.value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
-									<xsl:text>Veröffentlichungen</xsl:text>
-								</fo:block>
-							</fo:table-cell>
+      			<!-- physcial objects -->
+						<fo:table-cell column-number="4"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Objekte/Materialien</xsl:text>
+							</fo:block>
+						</fo:table-cell>
 
-							<fo:table-cell column-number="5"
-														border-width="{$width.border}"
-														border-color="{$colour.border}"
-														border-style="{$style.border}">
-								<fo:block text-align="center" 
-													font-size="{$font.size.standard}"
-													font-weight="{$font.weight.value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
-									<xsl:text>Objekte/Materialien</xsl:text>
-								</fo:block>
-							</fo:table-cell>
+      			<!-- planned publications -->
+						<fo:table-cell column-number="5"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Geplante Veröffentlichungen</xsl:text>
+							</fo:block>
+						</fo:table-cell>
 
-						</fo:table-row>
+          	<!-- publications -->
+						<fo:table-cell column-number="6"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Veröffentlichungen</xsl:text>
+							</fo:block>
+						</fo:table-cell>
+
+          	<!-- products -->
+						<fo:table-cell column-number="7"
+													border-width="{$width.border}"
+													border-color="{$colour.border}"
+													border-style="{$style.border}">
+							<fo:block text-align="center" 
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+								<xsl:text>Forschungsdaten</xsl:text>
+							</fo:block>
+						</fo:table-cell>
+
+					</fo:table-row>
 				</fo:table-body>				
 
 			</fo:table>								
@@ -1082,6 +1315,12 @@
 						<xsl:with-param name="value" select="cerif:Description"/>
 					</xsl:call-template>
 
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="'Enddatum'"/>
+						<xsl:with-param name="value" select="cerif:EndDate"/>
+					</xsl:call-template>
+
+
 				</fo:block> 		
 
 			</xsl:for-each>
@@ -1089,74 +1328,6 @@
 		</xsl:if>
 
 	</xsl:template>
-
-<!--########################################################################-->
-<!-- TEMPLATE FOR THE WORKING PLAN OVERVIEW -->	
-<!--########################################################################-->
-
-  <xsl:template name="working-plan-overview">
-
-		<!-- work package -->
-		<xsl:if test="cerif:WorkPackage/cerif:Index">
-		
-			<xsl:call-template name="key-value-line-list-with-border">				
-				<xsl:with-param name="key" select="'Arbeitspakete'"/>
-				<xsl:with-param name="value" select="cerif:WorkPackage/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-		<!-- task -->
-		<xsl:if test="cerif:Task/cerif:Index">
-
-			<xsl:call-template name="key-value-line-list-with-border">
-				<xsl:with-param name="key" select="'Aufgaben'"/>
-				<xsl:with-param name="value" select="cerif:Task/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-		<!-- event -->
-		<xsl:if test="cerif:Event/cerif:Index">
-
-			<xsl:call-template name="key-value-line-list-with-border">
-				<xsl:with-param name="key" select="'Veranstaltungen'"/>
-				<xsl:with-param name="value" select="cerif:Event/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-		<!-- process event -->
-		<xsl:if test="cerif:ProcessEvent/cerif:Index">
-
-			<xsl:call-template name="key-value-line-list-with-border">
-				<xsl:with-param name="key" select="'Projekttreffen'"/>
-				<xsl:with-param name="value" select="cerif:ProcessEvent/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-		<!-- planned publications -->
-		<xsl:if test="cerif:PlannedPublication/cerif:Index">
-
-			<xsl:call-template name="key-value-line-list-with-border">
-				<xsl:with-param name="key" select="'Geplante Veröffentlichungen'"/>
-				<xsl:with-param name="value" select="cerif:PlannedPublication/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-		<!-- physical object -->
-		<xsl:if test="cerif:PhysicalObject/cerif:Index">
-
-			<xsl:call-template name="key-value-line-list-with-border">
-				<xsl:with-param name="key" select="'Gegenstände/Materialien'"/>
-				<xsl:with-param name="value" select="cerif:PhysicalObject/cerif:Index/cerif:Title"/>
-			</xsl:call-template>
-
-		</xsl:if>
-
-  </xsl:template>
 
 <!--########################################################################-->
 <!-- TEMPLATE FOR THE WORK PACKAGES -->	
@@ -1232,99 +1403,550 @@
 
   </xsl:template>
 
+
 <!--########################################################################-->
-<!-- TEMPLATE FOR THE WORK PACKAGE ENTITY  ALT -->	
+<!-- TEMPLATE FOR THE INNOVATION POTENTIAL -->	
 <!--########################################################################-->
 
-<xsl:template name="wp-alt">
+<xsl:template name="innovation-potential">
 
-<xsl:if test="cerif:WorkPackage">
+		<xsl:if test="cerif:InnovationPotential">
 
-	<xsl:for-each select="cerif:WorkPackage/cerif:Index">
+			<xsl:for-each select="cerif:InnovationPotential/cerif:Index">
 
-		<fo:block border-width="{$width.border}"
-							border-color="{$colour.border}"
-							border-style="{$style.border}"
-							margin-top="{$margin.top.main}"
-							margin-left="{$margin.left.border}"
-							margin-right="{$margin.right.border}"
-							padding-before="{$padding.before.border}"
-							padding-after="{$padding.after.border}"
-							padding-start="{$padding.start.border}"
-							padding-end="{$padding.end.border}">
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
 
-							<fo:table table-layout="fixed">
+					<xsl:call-template name="key-value-single">	
+						<xsl:with-param name="key" select="$lang.innovationpotential.type"/>
+						<xsl:with-param name="value" select="cerif:Type"/>
+				  </xsl:call-template>
 
-							<fo:table-column column-width="100%"/> <!-- define the columns -->				
+					<xsl:call-template name="key-value-line-list">	
+						<xsl:with-param name="key" select="$lang.innovationpotential.targetgroup"/>
+						<xsl:with-param name="value" select="cerif:TargetGroup"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.description"/>
+						<xsl:with-param name="value" select="cerif:Description"/>
+				  </xsl:call-template> 
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-novelty"/>
+						<xsl:with-param name="value" select="cerif:Applicability/cerif:Novelty"/>
+				  </xsl:call-template> 
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-efficiency"/>
+						<xsl:with-param name="value" select="cerif:Applicability/cerif:Efficiency"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-practicability"/>
+						<xsl:with-param name="value" select="cerif:Applicability/cerif:Practicability"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-requirements"/>
+						<xsl:with-param name="value" select="cerif:Applicability/cerif:Requirements"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-prospects"/>
+						<xsl:with-param name="value" select="cerif:Applicability/cerif:Prospects"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-primaryfield"/>
+						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:PrimaryField"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-laterdissimination"/>
+						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:LaterDissimination"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-description"/>
+						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:Description"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-developmentprojectstart"/>
+						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:DevelopmentProjectStart"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-developmentprojectend"/>
+						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:DevelopmentProjectEnd"/>
+				  </xsl:call-template>
+
+			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-selection"/>
+						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:Selection"/>
+				  </xsl:call-template>
+
+				  			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-readinessprojectstart"/>
+						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:ReadinessProjectStart"/>
+				  </xsl:call-template>
+
+				  			 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-readinessprojectend"/>
+						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:ReadinessProjectEnd"/>
+				  </xsl:call-template>
+
+				</fo:block> 		
+
+			</xsl:for-each> 
+
+		  </xsl:if>
+
+	</xsl:template>
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE INNOVATION IDEAS -->	
+<!--########################################################################-->
+
+	<xsl:template name="innovation-idea">
+
+		<xsl:if test="cerif:InnovationIdea">
+
+			<xsl:for-each select="cerif:InnovationIdea/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
+
+					<xsl:call-template name="key-value-line-list">	
+						<xsl:with-param name="key" select="$lang.innovationidea.type"/>
+						<xsl:with-param name="value" select="cerif:Type"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.innovationidea.description"/>
+						<xsl:with-param name="value" select="cerif:Description"/>
+				  </xsl:call-template> 
+
+				</fo:block> 		
+
+			</xsl:for-each> 
+
+		  </xsl:if>
+
+	</xsl:template>
+
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE APPLICATIONS -->	
+<!--########################################################################-->
+
+	<xsl:template name="application">
+
+		<xsl:if test="cerif:Application">
+
+			<xsl:for-each select="cerif:Application/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:ApplicationTitle"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
+
+					<xsl:call-template name="key-value-line-list">	
+						<xsl:with-param name="key" select="$lang.application.related-innovation"/>
+						<xsl:with-param name="value" select="cerif:RelatedInnovation"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.application.unit"/>
+						<xsl:with-param name="value" select="cerif:Unit"/>
+				  </xsl:call-template> 
+
+<!-- eingegebene eigene Einheiten werden im System nicht abgespeichert -->
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.application.free-unit"/>
+						<xsl:with-param name="value" select="cerif:FreeUnit"/>
+				  </xsl:call-template> 
+
+						<fo:table>
+									
+							<fo:table-column column-number="1" column-width="15%"/>	
+							<fo:table-column column-number="2" column-width="15%"/>	
+							<fo:table-column column-number="3" column-width="30%"/>	
+							<fo:table-column column-number="4" column-width="40%"/>	
 							
 							<fo:table-header>
-								<fo:table-cell column-number="1" border-width="thin"  border-style="solid">
-									<fo:block text-align="left" font-weight="bold">
-										<xsl:value-of select="cerif:Title"/>
+								<fo:table-row>
+								<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="$lang.application.reference-year"/>
 									</fo:block>
 								</fo:table-cell>
+
+								<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="$lang.application.quantity"/>
+									</fo:block>
+								</fo:table-cell>
+
+								<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="$lang.application.regionaloutreach"/>
+									</fo:block>
+								</fo:table-cell>
+
+									<fo:table-cell border-width="{$width.border}"
+													            border-color="{$colour.border}"
+																border-style="{$style.border}">
+									<fo:block text-align="left" 
+								          font-size="{$font.size.standard}"
+													font-weight="{$font.weight.key-value}"
+													margin-top="{$margin.top.main}"
+													padding-before="{$padding.before.border}"
+													padding-after="{$padding.after.border}"
+													padding-start="{$padding.start.border}"
+													padding-end="{$padding.end.border}"
+													margin-left="{$margin.left.border}"
+													margin-right="{$margin.right.border}">
+											<xsl:value-of select="$lang.application.success-description"/>
+									</fo:block>
+								</fo:table-cell>				
+
+								</fo:table-row>
 							</fo:table-header>
-							
-							<fo:table-body>					
-									
-									<fo:table-row>							
 
-										<fo:table-cell column-number="1" border-width="thin" border-style="solid">
-												<fo:block text-align="left">
-												<xsl:call-template name="title">
-													<xsl:with-param name="title" select="'Verantwortlicher Partner'"/>
-													<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-												</xsl:call-template>
-												<xsl:value-of select="cerif:Acronym"/>
-												</fo:block>
-
-										</fo:table-cell>
-													 
-									</fo:table-row>
-														
-									<fo:table-row>
-							
-										<fo:table-cell column-number="1" border-width="thin" border-style="solid">
-											<fo:block text-align="left">
-												<xsl:call-template name="title">
-													<xsl:with-param name="title" select="'Beschreibung des Arbeitspaketes'"/>
-													<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-												</xsl:call-template>
-												<xsl:value-of select="cerif:Description"/>
-											</fo:block>
-
-										</fo:table-cell>
-									 							
-									</fo:table-row>
-
-									<fo:table-row>
-
-									<fo:table-cell column-number="1" border-width="thin" border-style="solid">
-										<fo:block text-align="left">
-											<xsl:call-template name="title">
-												<xsl:with-param name="title" select="'Abhängigkeiten'"/>
-												<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
-											</xsl:call-template>
-											<xsl:value-of select="cerif:Requirement"/>
+							<fo:table-body>
+								<xsl:for-each select="cerif:SuccessQuantification/cerif:Index">
+								<fo:table-row>
+									<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:ReferenceYear"/>
 										</fo:block>
 									</fo:table-cell>
 
-									</fo:table-row>
+									<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:Quantity"/>
+										</fo:block>
+									</fo:table-cell>
 
-							</fo:table-body>				
-							
-							</fo:table>	
+									<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:RegionalOutreach"/>
+										</fo:block>
+									</fo:table-cell>
 
-	  </fo:block> 		
+									<fo:table-cell border-width="{$width.border}"
+																border-color="{$colour.border}"
+																border-style="{$style.border}">
+										<fo:block text-align="left" 
+															font-size="{$font.size.standard}"
+															font-weight="{$font.weight.value}"
+															margin-top="{$margin.top.main}"
+															padding-before="{$padding.before.border}"
+															padding-after="{$padding.after.border}"
+															padding-start="{$padding.start.border}"
+															padding-end="{$padding.end.border}"
+															margin-left="{$margin.left.border}"
+															margin-right="{$margin.right.border}">
+											<xsl:value-of select="cerif:SuccessDescription"/>
+										</fo:block>
+									</fo:table-cell>
 
-	</xsl:for-each>
+								</fo:table-row>
+								</xsl:for-each>
+							</fo:table-body>
+							</fo:table>
 
-</xsl:if>
+				</fo:block> 		
 
-</xsl:template>
+			</xsl:for-each> 
+
+		  </xsl:if>
+
+	</xsl:template>
+
+
 
 <!--########################################################################-->
-<!-- TEMPLATE FOR Spinoff -->	
+<!-- TEMPLATE FOR THE UNEXPECTED RESULTS -->	
+<!--########################################################################-->
+
+
+	<xsl:template name="unexpected-result">
+
+		<xsl:if test="cerif:UnexpectedResult">
+
+			<xsl:for-each select="cerif:UnexpectedResult/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.unexpectedresult.resultdescription"/>
+						<xsl:with-param name="value" select="cerif:ResultDescription"/>
+				  </xsl:call-template>
+
+				 	<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.unexpectedresult.statuspublication"/>
+						<xsl:with-param name="value" select="cerif:Publication/cerif:Index/cerif:StatusPublication"/>
+				  </xsl:call-template> 
+
+					<xsl:call-template name="key-value-line-list">				
+						<xsl:with-param name="key" select="$lang.unexpectedresult.linkpublication"/>
+						<xsl:with-param name="value" select="cerif:Publication/cerif:Index/cerif:LinkPublication"/>
+					</xsl:call-template>
+
+				</fo:block> 		
+
+			</xsl:for-each> 
+
+		  </xsl:if>
+
+	</xsl:template>
+
+
+
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE PATENT ENTITY -->	
+<!--########################################################################-->
+
+	<xsl:template name="patent">
+
+		<xsl:if test="cerif:Patent">
+
+			<xsl:for-each select="cerif:Patent/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>									
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.type"/>
+						<xsl:with-param name="value" select="cerif:Type"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.use"/>
+						<xsl:with-param name="value" select="cerif:Use"/>
+				  </xsl:call-template>						
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.use-description"/>
+						<xsl:with-param name="value" select="cerif:UseDescription"/>
+				  </xsl:call-template>	
+
+          <xsl:if test="cerif:Result/cerif:Holder">
+						<xsl:call-template name="vertical-gap">
+							<xsl:with-param name="margin" select="$margin.top.gap"/>
+						</xsl:call-template>
+          </xsl:if>
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.registration-number"/>
+						<xsl:with-param name="value" select="cerif:Result/cerif:RegistrationNumber"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.registration-date"/>
+						<xsl:with-param name="value" select="cerif:Result/cerif:RegistrationDate"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="$lang.patent.holder"/>
+						<xsl:with-param name="value" select="cerif:Result/cerif:Holder"/>
+				  </xsl:call-template>	
+
+          <xsl:if test="cerif:Contributor/cerif:Index">
+						<xsl:call-template name="vertical-gap">
+							<xsl:with-param name="margin" select="$margin.top.gap"/>
+						</xsl:call-template>
+          </xsl:if>
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.patent-number"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:PatentNumber"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.approval-date"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:ApprovalDate"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.patent.publication-date"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:PublicationDate"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-author-affilation-comma-list">
+						<xsl:with-param name="key" select="$lang.patent.inventor"/>
+						<xsl:with-param name="value" select="cerif:Contributor/cerif:Index"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="$lang.patent.issuer"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:Issuer"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-comma-list"> 
+						<xsl:with-param name="key" select="$lang.patent.ipc-class"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:IPCClass"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="concat($lang.language,' ',$lang.abstract)"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:Language"/>
+				  </xsl:call-template>	
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.abstract"/>
+						<xsl:with-param name="value" select="cerif:Import/cerif:Abstract"/>
+				  </xsl:call-template>	
+
+				</fo:block> 		
+
+			</xsl:for-each> 
+
+	  </xsl:if>
+
+	</xsl:template>
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE SPINOFF ENTITY -->	
 <!--########################################################################-->
 
 <xsl:template name="spinoff">
@@ -1422,12 +2044,22 @@
 
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="4cm"/>
+					
+										
+							<fo:table-column column-number="1" column-width="20%"/>	
+							<fo:table-column column-number="2" column-width="20%"/>	
+							<fo:table-column column-number="3" column-width="20%"/>	
+							<fo:table-column column-number="4" column-width="20%"/>	
+							<fo:table-column column-number="5" column-width="20%"/>	
+
+
+					<!--		<fo:table-column column-number="1" column-width="4cm"/>
 							<fo:table-column column-number="2" column-width="4cm"/>
 							<fo:table-column column-number="3" column-width="4cm"/>
 							<fo:table-column column-number="4" column-width="4cm"/>
-							<fo:table-column column-number="5" column-width="4cm"/>
+							<fo:table-column column-number="5" column-width="4cm"/> -->
 							
+
 							<fo:table-header>
 								<fo:table-row>
 								<fo:table-cell border-width="{$width.border}"
@@ -1617,9 +2249,9 @@
 
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="6cm"/>
-							<fo:table-column column-number="2" column-width="6cm"/>
-							<fo:table-column column-number="3" column-width="6cm"/>
+							<fo:table-column column-number="1" column-width="33,3%"/>
+							<fo:table-column column-number="2" column-width="33,3%"/>
+							<fo:table-column column-number="3" column-width="33,3%"/>
 
 							
 							<fo:table-header>
@@ -1735,8 +2367,66 @@
 							</fo:table-body>
 							</fo:table>
 
+			</fo:block> 		
+
+		</xsl:for-each>
+
+	</xsl:if>
+
+</xsl:template>
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE WORK AND COOPERATION AFTER PROJEKT END -->	
+<!--########################################################################-->
 
 
+	<xsl:template name="furthersteps">
+
+		<xsl:if test="cerif:Step">
+
+			<xsl:for-each select="cerif:Step/cerif:Index">
+
+				<fo:block border-width="{$width.border}"
+									border-color="{$colour.border}"
+									border-style="{$style.border}"
+									margin-top="{$margin.top.main}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}">
+									
+					<xsl:call-template name="value-single">
+						<xsl:with-param name="value" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+					</xsl:call-template>
+
+					<xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="key" select="$lang.step.partner"/>
+						<xsl:with-param name="value" select="cerif:Partner"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="key" select="$lang.step.targetgroup"/>
+						<xsl:with-param name="value" select="cerif:TargetGroup"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="key" select="$lang.step.type"/>
+						<xsl:with-param name="value" select="cerif:Type"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.step.date"/>
+						<xsl:with-param name="value" select="cerif:Date"/>
+				  </xsl:call-template>
+
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.step.description"/>
+						<xsl:with-param name="value" select="cerif:Description"/>
+				  </xsl:call-template>
 
 
 
@@ -1747,7 +2437,6 @@
 	</xsl:if>
 
 </xsl:template>
-
 
 <!--########################################################################-->
 <!-- TEMPLATE FOR THE AWARD ENTITY -->	
@@ -1797,8 +2486,8 @@
 				</xsl:call-template>
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="9cm"/>
-							<fo:table-column column-number="2" column-width="9cm"/>
+							<fo:table-column column-number="1" column-width="50%"/>
+							<fo:table-column column-number="2" column-width="50%"/>
 								<fo:table-body>
 								<fo:table-row>
 									<fo:table-cell border-width="{$width.border}"
@@ -2295,9 +2984,6 @@
 								</xsl:for-each>
 							</fo:table-body>
 							</fo:table>
-			
-
-
 
 	  </fo:block> 		
 
@@ -2678,6 +3364,70 @@
 	</xsl:template>
 
 <!--########################################################################-->
+<!-- TEMPLATE FOR THE WORK PACKAGES - TASK TEST -->	
+<!--########################################################################-->
+
+<!-- INFO: This was only used a proof of concept for the work package - task aggregation -->
+
+	<xsl:template name="work-package-task-test">
+				
+	  <xsl:if test="cerif:WorkPackage">
+
+		  <fo:block>
+
+			  <xsl:for-each select="cerif:WorkPackage/cerif:Index">	
+
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.title"/>
+					</xsl:call-template>
+
+				  <xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="key" select="'Items'"/>
+						<xsl:with-param name="value" select="cerif:Task/cerif:Index/cerif:Title"/>
+				  </xsl:call-template>	
+
+				</xsl:for-each>
+			
+			</fo:block>
+
+	  </xsl:if>
+
+  </xsl:template>
+
+<!--########################################################################-->
+<!-- TEMPLATE FOR THE TARGET GROUPS - EVENT TEST -->	
+<!--########################################################################-->
+
+<!-- INFO: This was only used a proof of concept for the target group - event aggregation -->
+
+	<xsl:template name="target-group-event-test">
+				
+	  <xsl:if test="cerif:TargetGroup">
+
+		  <fo:block>
+
+			  <xsl:for-each select="cerif:TargetGroup/cerif:Index">	
+
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="cerif:Title"/>
+						<xsl:with-param name="fontSize" select="$font.size.title"/>
+					</xsl:call-template>
+
+				  <xsl:call-template name="key-value-line-list">
+						<xsl:with-param name="key" select="'Items'"/>
+						<xsl:with-param name="value" select="cerif:Event/cerif:Index/cerif:Title"/>
+				  </xsl:call-template>	
+
+				</xsl:for-each>
+			
+			</fo:block>
+
+	  </xsl:if>
+
+  </xsl:template>
+
+<!--########################################################################-->
 <!-- GENERAL TEMPLATES -->	
 <!--########################################################################-->
 
@@ -2686,7 +3436,7 @@
 <!--==============================================================-->
 
 	<xsl:template name="vertical-gap">
-		<xsl:param name = "margin"/>
+		<xsl:param name="margin"/>
 
 		<fo:block margin-left="{$margin.left.text}"
 							margin-top="{$margin}">
@@ -2699,8 +3449,8 @@
 <!--==============================================================-->
 
 	<xsl:template name="title">
-		<xsl:param name = "title"/>
-		<xsl:param name = "fontSize"/>
+		<xsl:param name="title"/>
+		<xsl:param name="fontSize" select="$font.size.title"/>
 
 		<fo:block margin-left="{$margin.left.text}"
 							margin-top="{$margin.top.title}">
@@ -2718,11 +3468,10 @@
 <!--==============================================================-->
 
 	<xsl:template name="title-section-counter">
-		<xsl:param name = "section"/>
-		<xsl:param name = "counter"/>
-		<xsl:param name = "title"/>
-		<xsl:param name = "fontSize"/>
-		<xsl:param name = "length.ruler"/>
+		<xsl:param name="section"/>
+		<xsl:param name="counter"/>
+		<xsl:param name="title"/>
+		<xsl:param name="fontSize" select="$font.size.sub-sub-section-title"/>
 
 		<fo:block margin-left="{$margin.left.text}"
 							margin-top="{$margin.top.title}">
@@ -2749,48 +3498,142 @@
 				<xsl:value-of select="$title"/>
 			</fo:inline>
 
-			<xsl:if test="$length.ruler">   
-				<fo:block>
-					<fo:leader leader-pattern="rule" 
-										 leader-length="{$length.ruler}"
-										 rule-style="solid"/>         
-				</fo:block>
-      </xsl:if>
-
 		</fo:block>
 
 	</xsl:template>
 
 <!--==============================================================-->	
-<!--  single value -->
+<!-- single value -->
 <!--==============================================================-->
 
 	<xsl:template name="value-single">
 	  <xsl:param name="value"/>
-		<xsl:param name = "fontSize"/>
-		<xsl:param name = "fontWeight"/>
+		<xsl:param name="fontSize" select="$font.size.standard"/>
+		<xsl:param name="fontWeight" select="$font.weight.value"/>
 
+    <!-- content -->
 	  <xsl:if test="$value">
 		  <fo:block margin-left="{$margin.left.text}"
 								font-size="{$fontSize}" 
 			        	margin-top="{$margin.top.main}">
 
-				<xsl:choose> 
-					<xsl:when test="$fontWeight">								
-						<fo:inline font-weight="{$fontWeight}" 
-											 text-align="{$text.alignment.value}">
-							<xsl:value-of select="$value"/> 
-						</fo:inline>
-					</xsl:when>
-					<xsl:otherwise>
-						<fo:inline font-weight="{$font.weight.value}" 
-											 text-align="{$text.alignment.value}">
-							<xsl:value-of select="$value"/> 
-						</fo:inline>
-					</xsl:otherwise>
-			  </xsl:choose>
+				<fo:inline font-weight="{$fontWeight}" 
+										text-align="{$text.alignment.value}">
+					<xsl:value-of select="$value"/> 
+				</fo:inline>
 
 			</fo:block>
+	  </xsl:if>
+	</xsl:template>
+
+<!--==============================================================-->	
+<!-- value list separated by commas -->
+<!--==============================================================-->
+
+	<xsl:template name="value-comma-list">
+	  <xsl:param name="value"/>
+		<xsl:param name="fontSize" select="$font.size.standard"/>
+		<xsl:param name="fontWeight" select="$font.weight.value"/>
+
+    <!-- content -->
+	  <xsl:if test="$value">
+		  <fo:block margin-left="{$margin.left.text}"
+								font-size="{$fontSize}" 
+			        	margin-top="{$margin.top.main}">
+
+				<fo:inline font-weight="{$fontWeight}" 
+										text-align="{$text.alignment.value}">
+					<xsl:for-each select="$value">
+						<xsl:value-of select="current()"/>
+						<xsl:if test="position() != last()">, </xsl:if> <!-- do only this for the last item -->
+					</xsl:for-each>
+				</fo:inline>
+
+			</fo:block>
+	  </xsl:if>
+	</xsl:template>
+
+<!--==============================================================-->	
+<!-- value set with postcode, city and and country -->
+<!--==============================================================-->
+
+	<xsl:template name="value-postcode-city-country">
+	  <xsl:param name="postcode"/>
+	  <xsl:param name="city"/>
+		<xsl:param name="country"/>
+
+	  <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
+			<fo:block margin-left="{$margin.left.text}"
+								font-size="{$font.size.standard}" 
+								margin-top="{$margin.top.main}">
+
+				<xsl:if test="$postcode"> 
+					<xsl:text> </xsl:text>
+					<fo:inline font-weight="{$font.weight.value}" 
+											text-align="{$text.alignment.value}">
+						<xsl:value-of select="$postcode"/> 
+					</fo:inline>
+
+				  <xsl:text> </xsl:text>	
+			  </xsl:if>
+
+				<fo:inline font-weight="{$font.weight.value}" 
+										text-align="{$text.alignment.value}">
+					<xsl:value-of select="$city"/> 
+				</fo:inline>
+
+				<xsl:if test="$country">
+					<xsl:text> / </xsl:text>
+					<fo:inline font-weight="{$font.weight.value}" 
+											text-align="{$text.alignment.value}">
+						<xsl:value-of select="$country"/> 
+					</fo:inline>
+			  </xsl:if>
+
+			</fo:block>
+
+	  </xsl:if>
+	</xsl:template>
+
+<!--==============================================================-->	
+<!-- value set with name, degree and gender -->
+<!--==============================================================-->
+
+	<xsl:template name="value-name-degree-gender">
+	  <xsl:param name="name"/>
+	  <xsl:param name="degree"/>
+		<xsl:param name="gender"/>
+
+	  <xsl:if test="$name"> <!--  use only name for check which is the most important input -->
+			<fo:block margin-left="{$margin.left.text}"
+								font-size="{$font.size.standard}" 
+								margin-top="{$margin.top.main}">
+
+				<fo:inline font-weight="{$font.weight.value}" 
+										text-align="{$text.alignment.value}">
+					<xsl:value-of select="$name"/> 
+				</fo:inline>
+
+				<xsl:if test="$degree">
+				  <xsl:text>, </xsl:text>
+
+					<fo:inline font-weight="{$font.weight.value}" 
+											text-align="{$text.alignment.value}">
+						<xsl:value-of select="$degree"/> 
+					</fo:inline>
+			  </xsl:if>
+
+				<xsl:if test="$gender">
+					<xsl:text> (</xsl:text>
+					<fo:inline font-weight="{$font.weight.value}" 
+											text-align="{$text.alignment.value}">
+						<xsl:value-of select="$gender"/> 
+					</fo:inline>
+					<xsl:text>)</xsl:text>
+			  </xsl:if>
+
+			</fo:block>
+
 	  </xsl:if>
 	</xsl:template>
 
@@ -2852,8 +3695,8 @@
 
 	<xsl:template name="key-period">
 	  <xsl:param name="key"/>
-	  <xsl:param name = "startdate"/>
-		<xsl:param name = "enddate"/>
+	  <xsl:param name="startdate"/>
+		<xsl:param name="enddate"/>
 
 	  <xsl:if test="$startdate">
 			<xsl:if test="$enddate">
@@ -2891,9 +3734,9 @@
 
 	<xsl:template name="key-postcode-city-country">
 		<xsl:param name="key"/>
-	  <xsl:param name = "postcode"/>
-	  <xsl:param name = "city"/>
-		<xsl:param name = "country"/>
+	  <xsl:param name="postcode"/>
+	  <xsl:param name="city"/>
+		<xsl:param name="country"/>
 
 	  <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
 			<fo:block margin-left="{$margin.left.text}"
@@ -2905,7 +3748,7 @@
 					<xsl:value-of select="$key"/> 
 				</fo:inline>
 
-				<xsl:text>:</xsl:text>
+				<xsl:text>: </xsl:text>
 
 				<xsl:if test="$postcode"> 
 					<xsl:text> </xsl:text>
@@ -2913,9 +3756,9 @@
 											text-align="{$text.alignment.value}">
 						<xsl:value-of select="$postcode"/> 
 					</fo:inline>
-			  </xsl:if>
 
-				<xsl:text> </xsl:text>
+					<xsl:text> </xsl:text>
+			  </xsl:if>
 
 				<fo:inline font-weight="{$font.weight.value}" 
 										text-align="{$text.alignment.value}">
@@ -2941,9 +3784,9 @@
 
 	<xsl:template name="key-name-degree-gender">
 		<xsl:param name="key"/>
-	  <xsl:param name = "name"/>
-	  <xsl:param name = "degree"/>
-		<xsl:param name = "gender"/>
+	  <xsl:param name="name"/>
+	  <xsl:param name="degree"/>
+		<xsl:param name="gender"/>
 
 	  <xsl:if test="$name"> <!--  use only name for check which is the most important input -->
 			<fo:block margin-left="{$margin.left.text}"
@@ -2972,12 +3815,12 @@
 			  </xsl:if>
 
 				<xsl:if test="$gender">
-					<xsl:text> </xsl:text>
+					<xsl:text> (</xsl:text>
 					<fo:inline font-weight="{$font.weight.value}" 
 											text-align="{$text.alignment.value}">
 						<xsl:value-of select="$gender"/> 
 					</fo:inline>
-					<xsl:text></xsl:text>
+					<xsl:text>)</xsl:text>
 			  </xsl:if>
 
 			</fo:block>
@@ -2999,7 +3842,7 @@
 			          margin-top="{$margin.top.main}">
 
 				<fo:inline font-weight="{$font.weight.key}" 
-									 text-align="{$text.alignment.key}"  >
+									 text-align="{$text.alignment.key}">
 					<xsl:value-of select="$key"/> 
 				</fo:inline>
 
@@ -3062,7 +3905,7 @@
   </xsl:template>	
 
 <!--==============================================================-->	
-<!-- key: every value in a separated line -->
+<!-- key: every value in a separated line (with border) -->
 <!--==============================================================-->
 
 	<xsl:template name="key-value-line-list-with-border">
@@ -3090,62 +3933,91 @@
   </xsl:template>	
 
 <!--==============================================================-->
+<!-- key: author (affiliation) separated by commas -->
+<!--==============================================================-->
+
+	<xsl:template name="key-author-affilation-comma-list">
+		<xsl:param name="key"/>
+	  <xsl:param name="value"/>
+
+	  <xsl:if test="$value">
+		  <fo:block margin-left="{$margin.left.text}" 
+								font-size="{$font.size.standard}" 
+			          margin-top="{$margin.top.main}">
+
+
+				<fo:inline font-weight="{$font.weight.key}" 
+									 text-align="{$text.alignment.key}">
+					<xsl:value-of select="$key"/> 
+				</fo:inline>
+
+				<fo:inline font-weight="{$font.weight.value}" 
+									 text-align="{$text.alignment.value}">
+
+					<xsl:text>: </xsl:text>									 
+
+					<xsl:for-each select="$value">
+
+					  <xsl:value-of select="cerif:Author"/>
+
+					    <xsl:if test="cerif:Affiliation">
+						  <xsl:text> (</xsl:text>
+              <xsl:value-of select="cerif:Affiliation"/> 
+							<xsl:text>)</xsl:text>
+							</xsl:if>
+
+					  <xsl:if test="position() != last()">
+						  <xsl:text>, </xsl:text>
+						</xsl:if>
+
+					</xsl:for-each>
+
+				</fo:inline>
+
+			</fo:block>
+
+		</xsl:if>
+
+  </xsl:template>	
+
+<!--==============================================================-->
 <!-- table with title (first row) and description (second row) -->
 <!--==============================================================-->
 
-	<xsl:template name="table-title-description">
-		<xsl:param name = "entity"/>
-		<xsl:param name = "entityIndex"/>
+	<xsl:template name="title-description">
+		<xsl:param name="entity"/>
+		<xsl:param name="entityIndex"/>
 	
 		<xsl:if test="$entity">
 	
 			<xsl:for-each select="$entityIndex">
 	
-				<fo:block	margin-top="{$margin.top.main}"
-									padding-before="{$padding.before.border}"
-									padding-after="{$padding.after.border}"
-									padding-start="{$padding.start.border}"
-									padding-end="{$padding.end.border}">
-	
-					<fo:table table-layout="fixed">
+			  <xsl:choose>
+					<xsl:when test="cerif:Description">
+
+          <!-- when the description exists use the table approach -->
+						<fo:block	margin-top="{$margin.top.main}"
+											padding-before="{$padding.before.border}"
+											padding-after="{$padding.after.border}"
+											padding-start="{$padding.start.border}"
+											padding-end="{$padding.end.border}">
 			
-						<!-- define the table columns -->
-						<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
-						<fo:table-column column-width="{$width.table}"/> 
-						<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
-																																					<!-- in addition the columns need to be numbered, omitting the first and last column --> 
-						<!-- table header -->
-						<fo:table-header>
-							<fo:table-cell column-number="2" 
-														border-width="{$width.border}"
-														border-color="{$colour.border}"
-														border-style="{$style.border}">
-								<fo:block text-align="left" 
-								          font-size="{$font.size.key-value}"
-													font-weight="{$font.weight.key-value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
-									<xsl:value-of select="cerif:Title"/>
-								</fo:block>
-							</fo:table-cell>
-						</fo:table-header>
-	
-						<!-- table body -->
-						<fo:table-body>					
-								<fo:table-row>
-	
-									<fo:table-cell column-number="2"
+							<fo:table table-layout="fixed">
+					
+								<!-- define the table columns -->
+								<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way -->							
+								<fo:table-column column-width="{$width.table}"/> 
+								<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+																																							<!-- in addition the columns need to be numbered, omitting the first and last column --> 
+								<!-- table header -->
+								<fo:table-header>
+									<fo:table-cell column-number="2" 
 																border-width="{$width.border}"
 																border-color="{$colour.border}"
 																border-style="{$style.border}">
 										<fo:block text-align="left" 
-															font-size="{$font.size.standard}"
-															font-weight="{$font.weight.value}"
+															font-size="{$font.size.key-value}"
+															font-weight="{$font.weight.key-value}"
 															margin-top="{$margin.top.main}"
 															padding-before="{$padding.before.border}"
 															padding-after="{$padding.after.border}"
@@ -3153,18 +4025,72 @@
 															padding-end="{$padding.end.border}"
 															margin-left="{$margin.left.border}"
 															margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Description"/>
+											<xsl:value-of select="cerif:Title"/>
 										</fo:block>
 									</fo:table-cell>
-	
-								</fo:table-row>
-						</fo:table-body>				
-	
-					</fo:table>								
-	
-				</fo:block> 		
-	
-			</xsl:for-each> 
+								</fo:table-header>
+			
+								<!-- table body -->
+								<fo:table-body>					
+
+									<fo:table-row>
+
+										<fo:table-cell column-number="2"
+																	border-width="{$width.border}"
+																	border-color="{$colour.border}"
+																	border-style="{$style.border}">
+
+											<fo:block text-align="left" 
+																font-size="{$font.size.standard}"
+																font-weight="{$font.weight.value}"
+																margin-top="{$margin.top.main}"
+																padding-before="{$padding.before.border}"
+																padding-after="{$padding.after.border}"
+																padding-start="{$padding.start.border}"
+																padding-end="{$padding.end.border}"
+																margin-left="{$margin.left.border}"
+																margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Description"/>
+											</fo:block>
+										</fo:table-cell>
+
+									</fo:table-row>
+									
+								</fo:table-body>				
+
+							</fo:table>								
+			
+						</fo:block> 		
+		
+					</xsl:when>
+					<xsl:otherwise>
+
+          <!-- if the description does not exist use the box approach -->
+					<!-- table react sensitive to non existing data due to missing child elements-->
+
+						<fo:block border-width="{$width.border}"
+											border-color="{$colour.border}"
+											border-style="{$style.border}"
+											margin-top="{$margin.top.main}"
+											margin-left="{$margin.left.border}"
+											margin-right="{$margin.right.border}"
+											padding-before="{$padding.before.border}"
+											padding-after="{$padding.after.border}"
+											padding-start="{$padding.start.border}"
+											padding-end="{$padding.end.border}">
+											
+							<xsl:call-template name="value-single">
+								<xsl:with-param name="value" select="cerif:Title"/>
+								<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+								<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+							</xsl:call-template>		
+
+						</fo:block>								
+
+					</xsl:otherwise>
+				</xsl:choose>
+
+		  </xsl:for-each> 
 	
 		</xsl:if>
 	

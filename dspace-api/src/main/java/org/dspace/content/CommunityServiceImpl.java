@@ -62,7 +62,6 @@ import org.dspace.identifier.IdentifierException;
 import org.dspace.identifier.service.IdentifierService;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
-import org.dspace.submit.consumer.service.ProjectConsumerService;
 import org.dspace.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -119,9 +118,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
 
     @Autowired
     protected InstallItemService installItemService;
-
-    @Autowired
-    private ProjectConsumerService projectConsumerService;
 
     private String matadataToSkipIfAlreadyPresent[] = new String[] {
         "dc.date.accessioned", "dc.date.available", "dc.identifier.uri", "dspace.entity.type" };
@@ -581,17 +577,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
     }
 
     @Override
-    public void deleteRelatedVersionedProjects(Context context, Community community)
-        throws SQLException, AuthorizeException, IOException {
-        Iterator<Item> itemIterator =
-            projectConsumerService.findVersionedProjectsInCommunity(context, community);
-        while (itemIterator.hasNext()) {
-            itemService.delete(context, context.reloadEntity(itemIterator.next()));
-            context.commit();
-        }
-    }
-
-    @Override
     public int getSupportsTypeConstant() {
         return Constants.COMMUNITY;
     }
@@ -967,21 +952,6 @@ public class CommunityServiceImpl extends DSpaceObjectServiceImpl<Community> imp
         }
 
         return Arrays.stream(matadataToSkip).anyMatch(metadataName::equals);
-    }
-
-    private UUID extractItemUuid(String value) {
-        UUID itemUuid = null;
-        if (StringUtils.isNotBlank(value)) {
-            Pattern pattern = Pattern.compile("^((?:project_|funding_))(.*)(_.*)$");
-            Matcher matcher = pattern.matcher(value);
-            if (matcher.matches()) {
-                itemUuid = UUID.fromString(matcher.group(2));
-            } else {
-                throw new RuntimeException("Metadata value of synsicris.relation.entity_item : " + value
-                        + " is bad formed!  It should have the following format : project_<UUID>_<.*>");
-            }
-        }
-        return itemUuid;
     }
 
     private Community setCommunityName(Context context, Community community, String name)

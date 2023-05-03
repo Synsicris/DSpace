@@ -147,22 +147,20 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         //define first record
         List<MetadatumDTO> metadatums  = new ArrayList<MetadatumDTO>();
         MetadatumDTO identifierOther = createMetadatumDTO("dc", "identifier", "other", "epodoc:ES2902749T");
-        MetadatumDTO patentNo = createMetadatumDTO("dc", "identifier", "patentno", "ES2902749T");
-        MetadatumDTO identifier = createMetadatumDTO("synsicris", "identifier", "applicationnumber", "18705153");
-        MetadatumDTO date = createMetadatumDTO("dc", "date", "issued", "2022-01-29");
-        MetadatumDTO dateSubmitted = createMetadatumDTO("synsicris", "date", "filled", "2018-01-19");
+        MetadatumDTO patentno = createMetadatumDTO("dc", "identifier", "patentno", "ES2902749T");
+        MetadatumDTO identifier = createMetadatumDTO("dc", "identifier", "applicationnumber", "18705153");
+        MetadatumDTO date = createMetadatumDTO("dc", "date", "issued", "2022-03-29");
+        MetadatumDTO dateSubmitted = createMetadatumDTO("dcterms", "dateSubmitted", null, "2018-02-19");
         MetadatumDTO applicant = createMetadatumDTO("dc", "contributor", null, "PANKA BLOOD TEST GMBH");
         MetadatumDTO applicant2 = createMetadatumDTO("dc", "contributor", null, "Panka Blood Test GmbH");
-        MetadatumDTO author = createMetadatumDTO("dc", "contributor", "author", "PANTEL KLAUS");
-        MetadatumDTO author2 = createMetadatumDTO("dc", "contributor", "author", " BARTKOWIAK KAI");
-        MetadatumDTO author3 = createMetadatumDTO("dc", "contributor", "author", "PANTEL, Klaus, ");
-        MetadatumDTO author4 = createMetadatumDTO("dc", "contributor", "author", "BARTKOWIAK, Kai");
+        MetadatumDTO author = createMetadatumDTO("dc", "contributor", "author", "PANTEL, Klaus, ");
+        MetadatumDTO author2 = createMetadatumDTO("dc", "contributor", "author", "BARTKOWIAK, Kai");
         MetadatumDTO title = createMetadatumDTO("dc", "title", null, "Método para el diagnóstico del cáncer de mama");
-        MetadatumDTO subject = createMetadatumDTO("dc", "subject", null,
+        MetadatumDTO subject = createMetadatumDTO("synsicris", "subject", "ipc",
                                               "G01N  33/   574            A I                    ");
 
         metadatums.add(identifierOther);
-        metadatums.add(patentNo);
+        metadatums.add(patentno);
         metadatums.add(identifier);
         metadatums.add(date);
         metadatums.add(dateSubmitted);
@@ -170,8 +168,6 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         metadatums.add(applicant2);
         metadatums.add(author);
         metadatums.add(author2);
-        metadatums.add(author3);
-        metadatums.add(author4);
         metadatums.add(title);
         metadatums.add(subject);
 
@@ -180,30 +176,26 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         //define second record
         List<MetadatumDTO> metadatums2  = new ArrayList<MetadatumDTO>();
         MetadatumDTO identifierOther2 = createMetadatumDTO("dc", "identifier", "other", "epodoc:TW202202864");
-        MetadatumDTO identifier2 = createMetadatumDTO("dc", "identifier", "patentno", "TW202202864");
-        MetadatumDTO applicationNumber =
-            createMetadatumDTO("synsicris", "identifier", "applicationnumber", "109122801");
+        MetadatumDTO patentno2 = createMetadatumDTO("dc", "identifier", "patentno", "TW202202864");
+        MetadatumDTO identifier2 = createMetadatumDTO("dc", "identifier", "applicationnumber", "109122801");
         MetadatumDTO date2 = createMetadatumDTO("dc", "date", "issued", "2022-01-16");
-        MetadatumDTO dateSubmitted2 = createMetadatumDTO("synsicris", "date", "filled", "2020-01-06");
+        MetadatumDTO dateSubmitted2 = createMetadatumDTO("dcterms", "dateSubmitted", null, "2020-07-06");
         MetadatumDTO applicant3 = createMetadatumDTO("dc", "contributor", null, "ADVANTEST CORP [JP]");
         MetadatumDTO applicant4 = createMetadatumDTO("dc", "contributor", null, "ADVANTEST CORPORATION");
-        MetadatumDTO author5 = createMetadatumDTO("dc", "contributor", "author", "POEPPE OLAF [DE]");
-        MetadatumDTO author6 = createMetadatumDTO("dc", "contributor", "author", " HILLIGES KLAUS-DIETER [DE]");
-        MetadatumDTO author7 = createMetadatumDTO("dc", "contributor", "author", " KRECH ALAN [US]");
-        MetadatumDTO author8 = createMetadatumDTO("dc", "contributor", "author", "POEPPE, OLAF, ");
-        MetadatumDTO author9 = createMetadatumDTO("dc", "contributor", "author", "HILLIGES, KLAUS-DIETER, ");
-        MetadatumDTO author10 = createMetadatumDTO("dc", "contributor", "author", "KRECH, ALAN");
+        MetadatumDTO author5 = createMetadatumDTO("dc", "contributor", "author", "POEPPE, OLAF, ");
+        MetadatumDTO author6 = createMetadatumDTO("dc", "contributor", "author", "HILLIGES, KLAUS-DIETER, ");
+        MetadatumDTO author7 = createMetadatumDTO("dc", "contributor", "author", "KRECH, ALAN");
         MetadatumDTO title2 = createMetadatumDTO("dc", "title", null,
                 "Automated test equipment for testing one or more devices under test, method for automated"
               + " testing of one or more devices under test, and computer program using a buffer memory");
-        MetadatumDTO subject2 = createMetadatumDTO("dc", "subject", null,
+        MetadatumDTO subject2 = createMetadatumDTO("synsicris", "subject", "ipc",
                 "G01R  31/   319            A I                    ");
-        MetadatumDTO subject3 = createMetadatumDTO("dc", "subject", null,
+        MetadatumDTO subject3 = createMetadatumDTO("synsicris", "subject", "ipc",
                 "G01R  31/  3193            A I                    ");
 
         metadatums2.add(identifierOther2);
+        metadatums2.add(patentno2);
         metadatums2.add(identifier2);
-        metadatums2.add(applicationNumber);
         metadatums2.add(date2);
         metadatums2.add(dateSubmitted2);
         metadatums2.add(applicant3);
@@ -211,9 +203,6 @@ public class EpoImportMetadataSourceServiceIT extends AbstractLiveImportIntegrat
         metadatums2.add(author5);
         metadatums2.add(author6);
         metadatums2.add(author7);
-        metadatums2.add(author8);
-        metadatums2.add(author9);
-        metadatums2.add(author10);
         metadatums2.add(title2);
         metadatums2.add(subject2);
         metadatums2.add(subject3);

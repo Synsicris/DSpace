@@ -9,7 +9,7 @@ package org.dspace.app.versioning.action.group;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
@@ -44,21 +44,28 @@ public class CompositeVersioningAction<T extends VersioningAction<?>>
         if (actions.size() > 0) {
             if (isParallel) {
                 int threadSize = actions.size();
-                Executor executor =
+                ExecutorService executor =
                     Executors.newFixedThreadPool(threadSize);
 
-                List<CompletableFuture<?>> scheduledActions =
-                    this.actions
-                        .stream()
-                        .map(a ->
-                            CompletableFuture
+                try {
+                    List<CompletableFuture<?>> scheduledActions =
+                        this.actions
+                            .stream()
+                            .map(a ->
+                                CompletableFuture
                                 .runAsync(() -> a.consumeAsync(context), executor)
-                        )
-                        .collect(Collectors.toList());
+                            )
+                            .collect(Collectors.toList());
 
-                scheduledActions
-                    .stream()
-                    .forEach(CompletableFuture::join);
+                    scheduledActions
+                        .stream()
+                        .forEach(CompletableFuture::join);
+
+                } finally {
+                    if (!executor.isShutdown()) {
+                        executor.shutdown();
+                    }
+                }
             } else {
                 this.actions
                     .stream()

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
@@ -137,35 +137,45 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
             );
         }
 
-        Executor executor =
+        ExecutorService executorService =
             Executors.newFixedThreadPool(getScriptConfiguration().getActions().size());
+        try {
+            List<CompletableFuture<VersioningAction<?>>> scheduledActions =
+                getScriptConfiguration()
+                    .getActions()
+                    .parallelStream()
+                    .flatMap(conf ->
+                        conf.createAction(context, item)
+                    )
+                    .map(action -> asyncActionMapper(context, action, executorService))
+                    .collect(Collectors.toList());
 
-        List<CompletableFuture<VersioningAction<?>>> scheduledActions =
-            getScriptConfiguration()
-                .getActions()
-                .parallelStream()
-                .flatMap(conf ->
-                    conf.createAction(context, item)
-                )
-                .map(action ->
-                    (CompletableFuture<VersioningAction<?>>)
-                    CompletableFuture
-                        .runAsync(() -> action.consumeAsync(context), executor)
-                        .thenApply((v) -> action)
-                )
-                .collect(Collectors.toList());
+            scheduledActions
+                .stream()
+                .map(CompletableFuture::join)
+                .forEach(action -> action.store(context));
 
-        scheduledActions
-            .stream()
-            .map(CompletableFuture::join)
-            .forEach(action -> action.store(context));
+            Optional.ofNullable(summary)
+                .filter(StringUtils::isNotBlank)
+                .ifPresentOrElse(
+                    (summ) -> versioningService.createNewVersion(context, item, summ),
+                    () -> versioningService.createNewVersion(context, item)
+                );
+        } finally {
+            if (!executorService.isShutdown()) {
+                executorService.shutdown();
+            }
+        }
+    }
 
-        Optional.ofNullable(summary)
-            .filter(StringUtils::isNotBlank)
-            .ifPresentOrElse(
-                (summ) -> versioningService.createNewVersion(context, item, summ),
-                () -> versioningService.createNewVersion(context, item)
-            );
+    private CompletableFuture<VersioningAction<?>> asyncActionMapper(
+        Context context,
+        VersioningAction<?> action,
+        ExecutorService executorService
+    ) {
+        return CompletableFuture
+            .runAsync(() -> action.consumeAsync(context), executorService)
+            .thenApply((v) -> action);
     }
 
     private void validate() throws ItemVersionScriptException {

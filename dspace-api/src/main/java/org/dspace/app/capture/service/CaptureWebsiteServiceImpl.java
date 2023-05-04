@@ -25,9 +25,13 @@ import org.dspace.app.capture.model.CapturableScreen;
 import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CaptureWebsiteServiceImpl.class);
 
     private Map<String, String> extensionToMimeType;
 
@@ -91,6 +95,7 @@ public class CaptureWebsiteServiceImpl implements CaptureWebsiteService {
         } else {
             procBuilder.command("/bin/bash", "-c", command);
         }
+        logger.info("Executing command: " + command);
         procBuilder.directory(new File(System.getProperty("user.home")));
         return procBuilder.start();
     }

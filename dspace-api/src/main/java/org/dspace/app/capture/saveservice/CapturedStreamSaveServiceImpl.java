@@ -81,16 +81,16 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
 
     public String computeBitstreamName(CaptureScreenAction<?> captureScreenAction) {
         return new StringBuilder(
-            captureScreenAction.getOperation().getUrl()
-        )
-        .append("_")
-        .append(
-            LocalDate.now()
-                .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
-        )
-        .append("_")
-        .append(GENERATOR.generate(5))
-        .toString();
+                captureScreenAction.getOperation().getUrl()
+            )
+            .append("_")
+            .append(
+                LocalDate.now()
+                    .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
+            )
+            .append("_")
+            .append(GENERATOR.generate(5))
+            .toString();
     }
 
     private Bundle getBundle(Context context, CaptureScreenAction<?> captureScreenAction)

@@ -58,13 +58,35 @@ public class CapturedScreenConsumer implements Supplier<InputStream> {
                 return new DeleteOnCloseFileInputStream(tempFile);
             } else {
                 throw new RuntimeException(
-                    "Unable to take the screenshot! \n Exit Code: " + process.exitValue() +
-                    "\n Error message: " + result.toString(StandardCharsets.UTF_8.name())
+                    new StringBuilder("Unable to take the screenshot!")
+                        .append("\n")
+                        .append("Exit code: ").append(process.exitValue())
+                        .append("\n")
+                        .append("For command: ").append(process.info().command().orElse(""))
+                        .append("\n")
+                        .append("Error Message: ").append(result.toString(StandardCharsets.UTF_8.name()))
+                        .toString()
                 );
             }
         } catch (InterruptedException | IOException e) {
-            logger.error("Error while retrieving the screenshot.", e);
-            throw new RuntimeException("Error while retrieving the screenshot.", e);
+            logger.error(
+                new StringBuilder("Error while retrieving the screenshot.")
+                    .append("\n")
+                    .append("Exit code: ").append(process.exitValue())
+                    .append("\n")
+                    .append("For command: ").append(process.info().command().orElse(""))
+                    .toString(),
+                    e
+            );
+            throw new RuntimeException(
+                new StringBuilder("Error while retrieving the screenshot.")
+                    .append("\n")
+                    .append("Exit code: ").append(process.exitValue())
+                    .append("\n")
+                    .append("For command: ").append(process.info().command().orElse(""))
+                    .toString(),
+                    e
+                );
         }
     }
 

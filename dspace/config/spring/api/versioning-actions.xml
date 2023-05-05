@@ -257,6 +257,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphcoopparttype-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphcoopparttype-url"/>
+        <constructor-arg name="dcType" value="graphcoopparttype"/>
     </bean>
     <!-- graphcoopparttype CONFIGURATION -->
     
@@ -285,6 +286,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphcooppartnace-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphcooppartnace-url"/>
+        <constructor-arg name="dcType" value="graphcooppartnace"/>
     </bean>
     <!-- graphcooppartnace CONFIGURATION -->
     
@@ -313,6 +315,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphcooppartdestatis-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphcooppartdestatis-url"/>
+        <constructor-arg name="dcType" value="graphcooppartdestatis"/>
     </bean>
     <!-- graphcooppartdestatis CONFIGURATION -->
     
@@ -341,6 +344,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphcooppartaddressCountry-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphcooppartaddressCountry-url"/>
+        <constructor-arg name="dcType" value="graphcooppartdestatis"/>
     </bean>
     <!-- graphcooppartaddressCountry CONFIGURATION -->
     
@@ -369,6 +373,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphtargetgroupnace-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphtargetgroupnace-url"/>
+        <constructor-arg name="dcType" value="graphtargetgroupnace"/>
     </bean>
     <!-- graphtargetgroupnace CONFIGURATION -->
     
@@ -397,6 +402,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphtargetgroupenterprise-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphtargetgroupenterprise-url"/>
+        <constructor-arg name="dcType" value="graphtargetgroupenterprise"/>
     </bean>
     <!-- graphtargetgroupenterprise CONFIGURATION -->
     
@@ -425,6 +431,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphtargetgrouppolitical-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphtargetgrouppolitical-url"/>
+        <constructor-arg name="dcType" value="graphtargetgrouppolitical"/>
     </bean>
     <!-- graphtargetgrouppolitical CONFIGURATION -->
 
@@ -453,6 +460,7 @@
         <constructor-arg name="bundleName" value="GRAPH"/>
         <constructor-arg name="itemProvider" ref="graphtargetgroupurbanrural-provider"/>
         <constructor-arg name="itemUrlMapper" ref="graphtargetgroupurbanrural-url"/>
+        <constructor-arg name="dcType" value="graphtargetgroupurbanrural"/>
     </bean>
     <!-- graphtargetgroupurbanrural CONFIGURATION -->
     

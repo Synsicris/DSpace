@@ -8,6 +8,7 @@
 package org.dspace.app.versioning.action.capture;
 
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import org.dspace.app.capture.model.CapturableScreen;
@@ -15,6 +16,8 @@ import org.dspace.app.capture.model.CapturableScreenBuilder;
 import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.app.versioning.action.VersioningActionConfiguration;
 import org.dspace.app.versioning.action.capture.mapper.ItemUrlMapper;
+import org.dspace.app.versioning.action.capture.mapper.MetadataValueDTOSupplier;
+import org.dspace.app.versioning.action.capture.mapper.MetadataValueDTOSuppliers;
 import org.dspace.app.versioning.action.capture.mapper.ScreenActionItemMapper;
 import org.dspace.app.versioning.model.ItemProvider;
 import org.dspace.content.Item;
@@ -28,18 +31,29 @@ public class CaptureScreenActionConfiguration
     extends VersioningActionConfiguration<CapturableScreenConfiguration, CaptureScreenAction<?>> {
 
     private static final ScreenActionItemMapper ITEM_MAPPER = (c, item, providedItem) -> item;
+    private static final Function<String, MetadataValueDTOSupplier> dcTypeSupplier =
+        (dcType) -> MetadataValueDTOSuppliers.getDcTypeSupplier(dcType);
+    private static final MetadataValueDTOSupplier emptySupplier = (c, i) -> null;
 
     protected final String bundleName;
     protected final ItemProvider itemProvider;
     protected final ScreenActionItemMapper itemMapper;
     protected final ItemUrlMapper itemUrlMapper;
     protected final boolean cleanBundle;
+    protected final MetadataValueDTOSupplier metadataValueSupplier;
 
     public CaptureScreenActionConfiguration(
         CapturableScreenConfiguration configuration, String bundleName,
         ItemProvider itemProvider, ItemUrlMapper itemUrlMapper
     ) {
         this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER);
+    }
+
+    public CaptureScreenActionConfiguration(
+        CapturableScreenConfiguration configuration, String bundleName,
+        ItemProvider itemProvider, ItemUrlMapper itemUrlMapper, String dcType
+    ) {
+        this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER, false, dcType);
     }
 
     public CaptureScreenActionConfiguration(
@@ -56,12 +70,26 @@ public class CaptureScreenActionConfiguration
         ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper,
         boolean cleanBundle
     ) {
+        this(configuration, bundleName, itemProvider, itemUrlMapper, itemMapper, cleanBundle, null);
+    }
+
+    public CaptureScreenActionConfiguration(
+        CapturableScreenConfiguration configuration,
+        String bundleName, ItemProvider itemProvider,
+        ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper,
+        boolean cleanBundle, String dcType
+    ) {
         super(configuration);
         this.bundleName = bundleName;
         this.itemProvider = itemProvider;
         this.itemMapper = itemMapper;
         this.itemUrlMapper = itemUrlMapper;
         this.cleanBundle = cleanBundle;
+        if (dcType != null) {
+            this.metadataValueSupplier = dcTypeSupplier.apply(dcType);
+        } else {
+            this.metadataValueSupplier = emptySupplier;
+        }
     }
 
     @Override
@@ -76,7 +104,9 @@ public class CaptureScreenActionConfiguration
         return new CaptureScreenAction<>(
             getCapturableScreen(c, providedItem),
             itemMapper.mapScreenActionItem(c, item, providedItem),
-            bundleName
+            bundleName,
+            cleanBundle,
+            this.metadataValueSupplier.get(c, item)
         );
     }
 

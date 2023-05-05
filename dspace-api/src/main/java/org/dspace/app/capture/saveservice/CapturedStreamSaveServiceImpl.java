@@ -30,6 +30,7 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.BitstreamFormat;
 import org.dspace.content.Bundle;
 import org.dspace.content.Item;
+import org.dspace.content.dto.MetadataValueDTO;
 import org.dspace.content.service.BitstreamFormatService;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.BundleService;
@@ -70,12 +71,19 @@ public class CapturedStreamSaveServiceImpl implements CapturedStreamSaveService 
     @Override
     public void saveScreenIntoItem(Context context, InputStream is, CaptureScreenAction<?> captureScreenAction)
             throws IOException, SQLException, AuthorizeException {
-
         Bundle bundle = getBundle(context, captureScreenAction);
         Bitstream bitstream = bitstreamService.create(context, bundle, is);
         BitstreamFormat bitstreamFormat = getBitstreamFormat(context, captureScreenAction);
         bitstream.setFormat(context, bitstreamFormat);
         bitstream.setName(context,computeBitstreamName(captureScreenAction));
+        MetadataValueDTO metadataValue = captureScreenAction.getMetadataValue();
+        if (metadataValue != null) {
+            this.bitstreamService.addMetadata(
+                context, bitstream, metadataValue.getSchema(),
+                metadataValue.getElement(), metadataValue.getQualifier(), metadataValue.getLanguage(),
+                metadataValue.getValue(), metadataValue.getAuthority(), metadataValue.getConfidence()
+            );
+        }
         bitstreamService.update(context, bitstream);
     }
 

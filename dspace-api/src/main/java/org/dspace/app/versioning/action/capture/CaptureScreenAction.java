@@ -23,6 +23,7 @@ import org.dspace.app.versioning.action.VersioningAction;
 import org.dspace.app.versioning.action.clear.bundle.ClearBundleAction;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
+import org.dspace.content.dto.MetadataValueDTO;
 import org.dspace.core.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,13 +39,15 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
 
     private static final Logger logger = LoggerFactory.getLogger(CaptureScreenAction.class);
 
-    private final Item item;
-    private final String bundleName;
     private final CaptureWebsiteService captureWebsiteService =
         CaptureWebsiteServiceFactory.getInstance().getCaptureWebsiteService();
     private final CapturedStreamSaveService capturedStreamSaveService =
         CaptureWebsiteServiceFactory.getInstance().getCapturedStreamSaveService();
     private final Optional<ClearBundleAction> clearBundleAction;
+
+    private final Item item;
+    private final String bundleName;
+    private final MetadataValueDTO metadataValue;
     private InputStream capturedScreen;
 
     public CaptureScreenAction(T operation, Item item, String bundleName) {
@@ -52,6 +55,12 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
     }
 
     public CaptureScreenAction(T operation, Item item, String bundleName, boolean cleanBundle) {
+        this(operation, item, bundleName, cleanBundle, null);
+    }
+
+    public CaptureScreenAction(
+        T operation, Item item, String bundleName, boolean cleanBundle, MetadataValueDTO metadataValue
+    ) {
         super(operation);
         this.item = item;
         this.bundleName = bundleName;
@@ -62,6 +71,7 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
             this.clearBundleAction =
                 Optional.empty();
         }
+        this.metadataValue = metadataValue;
     }
 
     @Override
@@ -134,6 +144,10 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
 
     public boolean isCleanBundle() {
         return clearBundleAction.isPresent();
+    }
+
+    public MetadataValueDTO getMetadataValue() {
+        return metadataValue;
     }
 
 }

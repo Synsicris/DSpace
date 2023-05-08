@@ -50,14 +50,6 @@
         <property name="converter" ref="xmlValueConverter" />
     </bean>
 
-    <bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkPersonGroupPublicationsByType">
-        <property name="templateFileName" value="crosswalks/template/virtual-field-citations-group-by-type-template.xsl"/>
-        <property name="fileName" value="person.pdf"/>
-        <property name="mimeType" value="application/pdf"/>
-        <property name="entityType" value="Person"/>
-        <property name="referCrosswalk" ref="referCrosswalkGroupByTypeVirtualFieldCitations"/>
-    </bean>
-
     <bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectVirtualFieldBitstreams">
         <property name="templateFileName" value="crosswalks/template/virtual-field-bitstreams-project-xml.template"/>
         <property name="mimeType" value="application/xml; charset=UTF-8"/>

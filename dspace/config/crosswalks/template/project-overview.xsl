@@ -4573,11 +4573,10 @@
 	       <xsl:for-each select="cerif:Graphs/cerif:Graph">
                <xsl:variable name="graphPath" select="concat('file:',$imageDir,'/',current())" />
                <fo:block font-weight="bold" text-align="center" >
-	               <fo:external-graphic content-height="scale-to-fit" content-width="16cm" scaling="uniform">
-	                   <xsl:attribute name="src">
-	                       <xsl:value-of select="$graphPath" />
-	                   </xsl:attribute>
-	               </fo:external-graphic>
+	               <xsl:call-template name="image-print">
+                    <xsl:with-param name="imageDir" select="$imageDir"/>
+                    <xsl:with-param name="nodeValue" select="current()"/>
+                   </xsl:call-template>
                </fo:block>
 	       </xsl:for-each>
 	   </xsl:if>

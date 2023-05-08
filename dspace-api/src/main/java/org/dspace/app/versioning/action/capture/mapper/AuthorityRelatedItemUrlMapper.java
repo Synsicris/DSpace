@@ -19,6 +19,14 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 
+/**
+ *
+ * URL mapper that translates a related item expressed by a `relationMetadata` into
+ * a valid web-page of the DSPace ui.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class AuthorityRelatedItemUrlMapper extends SimpleItemUrlMapper {
 
     private final ItemService itemService =

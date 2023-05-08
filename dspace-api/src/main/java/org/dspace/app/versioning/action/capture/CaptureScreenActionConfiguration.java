@@ -24,6 +24,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Configuration of an action that takes a screenshot.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

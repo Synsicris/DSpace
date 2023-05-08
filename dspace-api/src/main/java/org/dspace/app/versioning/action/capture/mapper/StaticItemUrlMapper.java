@@ -14,6 +14,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Computes a static url using the `dspaceURL` and a given `baseURL`.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

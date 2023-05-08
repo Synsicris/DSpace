@@ -13,6 +13,8 @@ import java.util.UUID;
 import org.dspace.content.Item;
 
 /**
+ * Simple class that extracts the uuid of a target {@link Item}
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

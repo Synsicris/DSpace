@@ -7,7 +7,11 @@
  */
 package org.dspace.app.versioning.exception;
 
+import org.dspace.app.versioning.ItemVersionScript;
+
 /**
+ * Exception that could occur in the {@link ItemVersionScript} process.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

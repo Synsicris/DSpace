@@ -10,6 +10,9 @@ package org.dspace.app.versioning.action.capture.mapper;
 import java.util.Map;
 
 /**
+ * Simple URL mapper that adds the default `view=print` parameter
+ * to load the printable view in the dspace-ui.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

@@ -22,6 +22,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * This mapper generates a valid dspace-url that embeds a target graph
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

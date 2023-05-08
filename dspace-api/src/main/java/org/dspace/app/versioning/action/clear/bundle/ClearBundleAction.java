@@ -18,6 +18,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Action used to clear a target bundle configured with the `operation` field.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

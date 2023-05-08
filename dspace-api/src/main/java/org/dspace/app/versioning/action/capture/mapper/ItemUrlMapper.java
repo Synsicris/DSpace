@@ -11,6 +11,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Simple interface that can map an item into an URL.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

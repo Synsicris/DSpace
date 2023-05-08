@@ -17,6 +17,10 @@ import org.dspace.app.versioning.action.VersioningAction;
 import org.dspace.core.Context;
 
 /**
+ * Composite and hierarchical versioning actions.
+ * The `operation` field encapsulates the root mandatory action to execute, while the `actions` field
+ * are just its sub-actions children that will be executed after its completion.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  * @param <T>

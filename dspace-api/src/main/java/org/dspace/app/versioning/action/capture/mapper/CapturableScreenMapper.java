@@ -14,6 +14,12 @@ import org.dspace.app.capture.model.CapturableScreenConfiguration;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
+/**
+ * Interface used to map a single item into a {@link CapturableScreen} object
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public interface CapturableScreenMapper {
 
     public Stream<CapturableScreen> mapToCapturableScreen(

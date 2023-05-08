@@ -20,6 +20,13 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 
+/**
+ * Translates a relation metadata of a given {@link Item} into a {@link CapturableScreen},
+ * this can led to multiple mapped objects.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class CapturableScreenRelationMapper implements CapturableScreenMapper {
 
     protected ItemService itemService =

@@ -16,6 +16,14 @@ import org.dspace.app.versioning.action.VersioningActionConfiguration;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
+/**
+ * Configuration that generates {@link CompositeVersioningAction}
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ * @param <C>
+ * @param <T>
+ */
 public class CompositeVersioningActionConfiguration<
         C extends VersioningActionConfiguration<?, T>,
         T extends VersioningAction<?>

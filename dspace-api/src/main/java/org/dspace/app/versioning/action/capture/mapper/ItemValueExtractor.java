@@ -12,6 +12,8 @@ import java.util.function.Function;
 import org.dspace.content.Item;
 
 /**
+ * Functional interfaces that implements a generic {@link ItemValueExtractor}
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  * @param <R>

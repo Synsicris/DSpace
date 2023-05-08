@@ -9,6 +9,13 @@ package org.dspace.app.versioning.action;
 
 import org.dspace.core.Context;
 
+/**
+ * Base interface of an action that could be processed during the versioning process.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ * @param <T>
+ */
 public interface VersionigActionInterface<T> {
 
     public void consumeAsync(Context c);

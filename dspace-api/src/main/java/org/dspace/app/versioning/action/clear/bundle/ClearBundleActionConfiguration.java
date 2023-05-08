@@ -14,6 +14,8 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Configuration that generates {@link ClearBundleAction}
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

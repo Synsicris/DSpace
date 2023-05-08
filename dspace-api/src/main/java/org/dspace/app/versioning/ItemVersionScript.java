@@ -45,6 +45,14 @@ import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowItemService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
 
+/**
+ *
+ * This script creates a new version of a target item.
+ * It can be enhanced with some actions, configured using the {@link ItemVersionScriptConfiguration} class.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfiguration<?>> {
 
     private static final VersioningService versioningService = VersionServiceFactory.getInstance().getVersionService();

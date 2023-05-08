@@ -20,6 +20,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * This provider returns the linked items using a `metadataField` and its authority.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class MetadataAuthorityItemProvider implements ItemProvider {
 
     private static final Logger logger  = LoggerFactory.getLogger(MetadataAuthorityItemProvider.class);

@@ -8,6 +8,8 @@
 package org.dspace.app.versioning.action.capture.mapper;
 
 /**
+ * Collection of common {@link ItemValueExtractor}.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

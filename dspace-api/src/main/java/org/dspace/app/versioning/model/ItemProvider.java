@@ -13,6 +13,9 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 
 /**
+ * Provider interface that loads the item that we want to process
+ * starting from a base item itself, the starting item is a `Project` entity.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

@@ -27,6 +27,10 @@ import org.dspace.discovery.utils.DiscoverQueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * Provider that searches for facets configured using the `facetName` and `discoveryConfiguration`.
+ * This is used just to check if we can process a graph screenshot, in case some data exists
+ * the processing item wil be retrieved.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

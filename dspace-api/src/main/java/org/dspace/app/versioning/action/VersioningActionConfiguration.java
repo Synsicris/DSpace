@@ -12,6 +12,15 @@ import java.util.stream.Stream;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
+/**
+ * Configuration of an action that will be generated at runtime and can be
+ * used during the versioning process.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ * @param <C>
+ * @param <V>
+ */
 public abstract class VersioningActionConfiguration<C, V extends VersioningAction<?>> {
 
     protected final C configuration;

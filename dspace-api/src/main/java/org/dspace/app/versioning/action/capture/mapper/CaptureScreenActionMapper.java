@@ -11,6 +11,13 @@ import org.dspace.app.capture.model.CapturableScreen;
 import org.dspace.app.versioning.action.capture.CaptureScreenAction;
 import org.dspace.core.Context;
 
+/**
+ * Translates a {@link CapturableScreen} into {@link CaptureScreenAction} that will
+ * be taken during the versioning process.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public abstract class CaptureScreenActionMapper {
 
     public abstract CaptureScreenAction<?> map(

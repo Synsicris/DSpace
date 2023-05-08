@@ -12,6 +12,12 @@ import java.util.stream.Stream;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
+/**
+ * Simple provider that returns the processing item itself.
+ *
+ * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
+ *
+ */
 public class SimpleItemProvider implements ItemProvider {
 
     @Override

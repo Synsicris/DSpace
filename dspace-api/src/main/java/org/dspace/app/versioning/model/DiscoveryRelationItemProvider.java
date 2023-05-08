@@ -19,6 +19,10 @@ import org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * Provider that fetches items using a target `relationName`.
+ * The complete relation name will be computed at runtime, using the `RELATION` prefix and the `entityType`
+ * of the processing item.
+ *
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)
  *
  */

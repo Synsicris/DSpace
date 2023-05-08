@@ -2396,122 +2396,35 @@
 							select="$font.size.sub-sub-section-title" />
 					</xsl:call-template>
 
-
-					<fo:table>
-
-
-						<fo:table-column column-number="1"
-							column-width="20%" />
-						<fo:table-column column-number="2"
-							column-width="20%" />
-						<fo:table-column column-number="3"
-							column-width="20%" />
-						<fo:table-column column-number="4"
-							column-width="20%" />
-						<fo:table-column column-number="5"
-							column-width="20%" />
-
-
-						<!-- <fo:table-column column-number="1" column-width="4cm"/> <fo:table-column 
-							column-number="2" column-width="4cm"/> <fo:table-column column-number="3" 
-							column-width="4cm"/> <fo:table-column column-number="4" column-width="4cm"/> 
-							<fo:table-column column-number="5" column-width="4cm"/> -->
-
-
-						<fo:table-header>
-							<fo:table-row>
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Jahr'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Förderprogramm'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Fördersumme'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Währung'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of
-											select="'Nicht-finanzielle Unterstützung'" />
-									</fo:block>
-								</fo:table-cell>
-
-							</fo:table-row>
-						</fo:table-header>
-
-						<fo:table-body>
-							<xsl:for-each select="cerif:Funding/cerif:Index">
+                    <xsl:if test="count(cerif:Funding/cerif:Index) &gt; 0">
+						<fo:table>
+	
+	
+	<!-- 						<fo:table-column column-number="1" -->
+	<!-- 							column-width="20%" /> -->
+	<!-- 						<fo:table-column column-number="2" -->
+	<!-- 							column-width="20%" /> -->
+	<!-- 						<fo:table-column column-number="3" -->
+	<!-- 							column-width="20%" /> -->
+	<!-- 						<fo:table-column column-number="4" -->
+	<!-- 							column-width="20%" /> -->
+	<!-- 						<fo:table-column column-number="5" -->
+	<!-- 							column-width="20%" /> -->
+	
+	
+							<!-- <fo:table-column column-number="1" column-width="4cm"/> <fo:table-column 
+								column-number="2" column-width="4cm"/> <fo:table-column column-number="3" 
+								column-width="4cm"/> <fo:table-column column-number="4" column-width="4cm"/> 
+								<fo:table-column column-number="5" column-width="4cm"/> -->
+	
+	
+							<fo:table-header>
 								<fo:table-row>
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2519,15 +2432,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Year" />
+											<xsl:value-of select="'Jahr'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2535,15 +2448,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Title" />
+											<xsl:value-of select="'Förderprogramm'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2551,15 +2464,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Amount" />
+											<xsl:value-of select="'Fördersumme'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2567,15 +2480,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Currency" />
+											<xsl:value-of select="'Währung'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2583,13 +2496,101 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Description" />
+											<xsl:value-of
+												select="'Nicht-finanzielle Unterstützung'" />
 										</fo:block>
 									</fo:table-cell>
+	
 								</fo:table-row>
-							</xsl:for-each>
-						</fo:table-body>
-					</fo:table>
+							</fo:table-header>
+	
+							<fo:table-body>
+								<xsl:for-each select="cerif:Funding/cerif:Index">
+									<fo:table-row>
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Year" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Title" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Amount" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Currency" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Description" />
+											</fo:block>
+										</fo:table-cell>
+									</fo:table-row>
+								</xsl:for-each>
+							</fo:table-body>
+						</fo:table>
+					</xsl:if>
 
 					<xsl:call-template name="title">
 						<xsl:with-param name="title"
@@ -2598,76 +2599,23 @@
 							select="$font.size.sub-sub-section-title" />
 					</xsl:call-template>
 
-
-					<fo:table>
-						<fo:table-column column-number="1"
-							column-width="33,3%" />
-						<fo:table-column column-number="2"
-							column-width="33,3%" />
-						<fo:table-column column-number="3"
-							column-width="33,3%" />
-
-
-						<fo:table-header>
-							<fo:table-row>
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Jahr'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Jahresumsatz'" />
-									</fo:block>
-								</fo:table-cell>
-
-								<fo:table-cell border-width="{$width.border}"
-									border-color="{$colour.border}" border-style="{$style.border}">
-									<fo:block text-align="left"
-										font-size="{$font.size.standard}"
-										font-weight="{$font.weight.key-value}"
-										margin-top="{$margin.top.main}"
-										padding-before="{$padding.before.border}"
-										padding-after="{$padding.after.border}"
-										padding-start="{$padding.start.border}"
-										padding-end="{$padding.end.border}"
-										margin-left="{$margin.left.border}"
-										margin-right="{$margin.right.border}">
-										<xsl:value-of select="'Währung'" />
-									</fo:block>
-								</fo:table-cell>
-							</fo:table-row>
-						</fo:table-header>
-
-						<fo:table-body>
-							<xsl:for-each select="cerif:Performance/cerif:Index">
+                    <xsl:if test="count(cerif:Performance/cerif:Index) &gt; 0">
+						<fo:table>
+							<fo:table-column column-number="1"
+								column-width="33,3%" />
+							<fo:table-column column-number="2"
+								column-width="33,3%" />
+							<fo:table-column column-number="3"
+								column-width="33,3%" />
+	
+	
+							<fo:table-header>
 								<fo:table-row>
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2675,15 +2623,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Year" />
+											<xsl:value-of select="'Jahr'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2691,15 +2639,15 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Amount" />
+											<xsl:value-of select="'Jahresumsatz'" />
 										</fo:block>
 									</fo:table-cell>
-
+	
 									<fo:table-cell border-width="{$width.border}"
 										border-color="{$colour.border}" border-style="{$style.border}">
 										<fo:block text-align="left"
 											font-size="{$font.size.standard}"
-											font-weight="{$font.weight.value}"
+											font-weight="{$font.weight.key-value}"
 											margin-top="{$margin.top.main}"
 											padding-before="{$padding.before.border}"
 											padding-after="{$padding.after.border}"
@@ -2707,13 +2655,67 @@
 											padding-end="{$padding.end.border}"
 											margin-left="{$margin.left.border}"
 											margin-right="{$margin.right.border}">
-											<xsl:value-of select="cerif:Currency" />
+											<xsl:value-of select="'Währung'" />
 										</fo:block>
 									</fo:table-cell>
 								</fo:table-row>
-							</xsl:for-each>
-						</fo:table-body>
-					</fo:table>
+							</fo:table-header>
+	
+							<fo:table-body>
+								<xsl:for-each select="cerif:Performance/cerif:Index">
+									<fo:table-row>
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Year" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Amount" />
+											</fo:block>
+										</fo:table-cell>
+	
+										<fo:table-cell border-width="{$width.border}"
+											border-color="{$colour.border}" border-style="{$style.border}">
+											<fo:block text-align="left"
+												font-size="{$font.size.standard}"
+												font-weight="{$font.weight.value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
+												<xsl:value-of select="cerif:Currency" />
+											</fo:block>
+										</fo:table-cell>
+									</fo:table-row>
+								</xsl:for-each>
+							</fo:table-body>
+						</fo:table>
+					</xsl:if>
 
 				</fo:block>
 

@@ -27,7 +27,7 @@ public class MetadataValueDTOSuppliers {
     }
 
     public static MetadataValueDTOSupplier getSupplier(String metadata, String value) {
-        if (StringUtils.isEmpty(metadata) || StringUtils.isEmpty(metadata)) {
+        if (StringUtils.isBlank(metadata)) {
             return null;
         }
         return getSupplier(new MetadataFieldName(metadata), value);

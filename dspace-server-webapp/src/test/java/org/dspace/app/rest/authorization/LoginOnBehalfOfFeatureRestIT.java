@@ -216,6 +216,7 @@ public class LoginOnBehalfOfFeatureRestIT extends AbstractControllerIntegrationT
 
         configurationService.setProperty("org.dspace.app.rest.authorization.AlwaysThrowExceptionFeature.turnoff", true);
         configurationService.setProperty("webui.user.assumelogin", true);
+        configurationService.setProperty("webui.user.assumelogin.admin", null);
 
         String token = getAuthToken(admin.getEmail(), password);
         getClient(token).perform(get("/api/authz/authorizations/search/object")

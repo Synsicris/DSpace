@@ -62,10 +62,5 @@
         <property name="description" value="Batch Export to Simple Archive Format (SAF)"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.itemexport.ItemExport"/>
     </bean>
-    
-    <bean id="version" class="org.dspace.app.versioning.ItemVersionScriptConfiguration" primary="true">
-        <property name="description" value="Creates a new version of a target item"/>
-        <property name="dspaceRunnableClass" value="org.dspace.app.versioning.ItemVersionScript"/>
-    </bean>
 
 </beans>

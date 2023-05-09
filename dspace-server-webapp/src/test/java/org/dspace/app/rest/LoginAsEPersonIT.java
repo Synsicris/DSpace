@@ -52,6 +52,8 @@ import org.springframework.test.web.servlet.MvcResult;
 
 public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
 
+    private static final String LOGIN_ADMIN = "webui.user.assumelogin.admin";
+
     @Autowired
     private ConfigurationService configurationService;
 
@@ -145,21 +147,28 @@ public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
 
     @Test
     public void loggedInUserOtherAdminTest() throws Exception {
-        context.turnOffAuthorisationSystem();
+        String loginAdmin = this.configurationService.getProperty(LOGIN_ADMIN);
+        try {
+            this.configurationService.setProperty(LOGIN_ADMIN, "false");
 
-        EPerson testEperson = EPersonBuilder.createEPerson(context).withEmail("loginasuseradmin@test.com").build();
+            context.turnOffAuthorisationSystem();
+
+            EPerson testEperson = EPersonBuilder.createEPerson(context).withEmail("loginasuseradmin@test.com").build();
 
 
-        Group adminGroup = groupService.findByName(context, Group.ADMIN);
-        groupService.addMember(context, adminGroup, testEperson);
-        context.restoreAuthSystemState();
+            Group adminGroup = groupService.findByName(context, Group.ADMIN);
+            groupService.addMember(context, adminGroup, testEperson);
+            context.restoreAuthSystemState();
 
-        String token = getAuthToken(admin.getEmail(), password);
+            String token = getAuthToken(admin.getEmail(), password);
 
-        getClient(token).perform(get("/api/authn/status")
-                                     .header("X-On-Behalf-Of", testEperson.getID()))
-                        .andExpect(status().isBadRequest());
+            getClient(token).perform(get("/api/authn/status")
+                                         .header("X-On-Behalf-Of", testEperson.getID()))
+                            .andExpect(status().isBadRequest());
 
+        } finally {
+            this.configurationService.setProperty(LOGIN_ADMIN, loginAdmin);
+        }
     }
 
     @Test

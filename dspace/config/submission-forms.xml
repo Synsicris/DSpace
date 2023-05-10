@@ -657,7 +657,7 @@
           <dc-qualifier>step</dc-qualifier>
           <label>Relation step</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>workflow</visibility>
@@ -758,7 +758,7 @@
           <dc-qualifier>step</dc-qualifier>
           <label>Relation step</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>workflow</visibility>

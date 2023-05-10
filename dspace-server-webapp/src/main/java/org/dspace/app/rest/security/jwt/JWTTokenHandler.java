@@ -191,6 +191,46 @@ public abstract class JWTTokenHandler {
     }
 
     /**
+     * Generates the JWT token for the context user
+     *
+     * @param context
+     * @return
+     * @throws JOSEException
+     * @throws SQLException
+     */
+    public String generateTokenForContextUser(Context context) throws JOSEException, SQLException {
+        return this.generateTokenForEPerson(context, context.getCurrentUser());
+    }
+
+    /**
+     * Create a JWT with the EPerson details in it
+     *
+     * @return string version of signed JWT
+     * @throws JOSEException
+     */
+    public String generateTokenForEPerson(Context context, EPerson ePerson) throws JOSEException, SQLException {
+
+        if (ePerson == null || ePerson.getID() == null) {
+            throw new AccessDeniedException("Cannot create anonymous authentication tokens");
+        }
+
+        // Create a claims set based on currently logged in user
+        JWTClaimsSet claimsSet = buildJwtClaimsSet(context, null);
+
+        // Create a signed JWT from those two things
+        SignedJWT signedJWT = createSignedJWT(null, ePerson, claimsSet);
+
+        String token;
+        if (isEncryptionEnabled()) {
+            token = encryptJWT(signedJWT).serialize();
+        } else {
+            token = signedJWT.serialize();
+        }
+
+        return token;
+    }
+
+    /**
      * Invalidate the current Java Web Token (JWT) in the current request
      * @param token current token
      * @param request current request

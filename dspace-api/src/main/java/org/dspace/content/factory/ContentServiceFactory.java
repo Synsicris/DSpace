@@ -9,6 +9,7 @@ package org.dspace.content.factory;
 
 import java.util.List;
 
+import org.dspace.app.capture.saveservice.CapturedStreamSaveService;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.InProgressSubmission;
 import org.dspace.content.RelationshipMetadataService;
@@ -77,6 +78,8 @@ public abstract class ContentServiceFactory {
     public abstract SiteService getSiteService();
 
     public abstract SubscribeService getSubscribeService();
+
+    public abstract CapturedStreamSaveService getCapturedStreamSaveService();
 
     /**
      * Return the implementation of the RelationshipTypeService interface

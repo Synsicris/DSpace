@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dspaceRunnableThreadExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
@@ -102,5 +104,16 @@
     <bean id="export" class="org.dspace.app.itemexport.ItemExportScriptConfiguration" primary="true">
         <property name="description" value="Batch Export to Simple Archive Format (SAF)"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.itemexport.ItemExport"/>
+    </bean>
+
+    <bean id="version" class="org.dspace.app.versioning.ItemVersionScriptConfiguration">
+        <property name="description" value="Creates a new version of a target item"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.versioning.ItemVersionScript"/>
+        <property name="actions" ref="versioning-actions"/>
+    </bean>
+    
+    <bean id="capture-website" class="org.dspace.app.capture.CaptureWebsiteScriptConfiguration">
+        <property name="description" value="Creates a screenshot of a target dspace page"/>
+        <property name="dspaceRunnableClass" value="org.dspace.app.capture.CaptureWebsiteScript"/>
     </bean>
 </beans>

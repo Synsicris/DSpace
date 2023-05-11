@@ -1,0 +1,20 @@
+# 2023-05-10
+- general 
+  - integrate the screenshot templates from 4Science
+
+- section 1.1.1
+  - if one IPW exist: screenshot + description
+  - if multiple IPWs exist: title + screenshot + description
+
+- section 2.1
+  - uses now "title-description" template
+
+- section 3.1.2
+  - adapted template so that all keys are shown regardless if a value exists
+  - key is in grey colour and smaller font
+
+- section 3.2
+  - add end date for milestone
+  - there were a lot of errors creating milestones
+    - some were apparently not successful but showed up later in the report but not the working plan itself
+    - adding end dates was not successful

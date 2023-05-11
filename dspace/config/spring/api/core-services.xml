@@ -204,6 +204,7 @@
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisProjectEntityDeleteService" />
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisCommentDeleteService" />
     <bean class="org.dspace.synsicris.programme.ProgrammeServiceImpl" />
+    <bean class="org.dspace.scripts.patents.service.UpdatePatentServiceImpl" />
 
 </beans>
 

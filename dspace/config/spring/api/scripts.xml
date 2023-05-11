@@ -164,4 +164,9 @@
         <property name="dspaceRunnableClass" value="org.dspace.content.scripts.ProjectsMigrationScriptCli"/>
     </bean>
 
+    <bean id="update-patents" class="org.dspace.scripts.patents.UpdatePatentsWithExternalSourceCliScriptConfiguration">
+        <property name="description" value="Perform the Patents update"/>
+        <property name="dspaceRunnableClass" value="org.dspace.scripts.patents.UpdatePatentsWithExternalSourceCli"/>
+    </bean>
+
 </beans>

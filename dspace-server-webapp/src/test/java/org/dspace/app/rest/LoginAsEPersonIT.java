@@ -52,6 +52,8 @@ import org.springframework.test.web.servlet.MvcResult;
 
 public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
 
+    private static final String LOGIN_ADMIN = "webui.user.assumelogin.admin";
+
     @Autowired
     private ConfigurationService configurationService;
 
@@ -145,10 +147,66 @@ public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
 
     @Test
     public void loggedInUserOtherAdminTest() throws Exception {
+        String loginAdmin = this.configurationService.getProperty(LOGIN_ADMIN);
+        try {
+            this.configurationService.setProperty(LOGIN_ADMIN, "false");
+
+            context.turnOffAuthorisationSystem();
+
+            EPerson testEperson = EPersonBuilder.createEPerson(context).withEmail("loginasuseradmin@test.com").build();
+
+
+            Group adminGroup = groupService.findByName(context, Group.ADMIN);
+            groupService.addMember(context, adminGroup, testEperson);
+            context.restoreAuthSystemState();
+
+            String token = getAuthToken(admin.getEmail(), password);
+
+            getClient(token).perform(get("/api/authn/status")
+                                         .header("X-On-Behalf-Of", testEperson.getID()))
+                            .andExpect(status().isBadRequest());
+
+        } finally {
+            this.configurationService.setProperty(LOGIN_ADMIN, loginAdmin);
+        }
+    }
+
+    @Test
+    public void loggedInAdminImpersonateAnotherAdminTest() throws Exception {
+
+        configurationService.setProperty("webui.user.assumelogin.admin", true);
+
+        try {
+            context.turnOffAuthorisationSystem();
+
+            EPerson testEperson = EPersonBuilder.createEPerson(context)
+                                                .withEmail("loginasuseradmin@test.com")
+                                                .build();
+
+            Group adminGroup = groupService.findByName(context, Group.ADMIN);
+            groupService.addMember(context, adminGroup, testEperson);
+            context.restoreAuthSystemState();
+
+            String token = getAuthToken(admin.getEmail(), password);
+
+            getClient(token).perform(get("/api/authn/status")
+                                .header("X-On-Behalf-Of", testEperson.getID()))
+                            .andExpect(status().isOk());
+        } finally {
+            configurationService.setProperty("webui.user.assumelogin.admin", false);
+        }
+    }
+
+    @Test
+    public void loggedInAdminCanNotImpersonateAnotherAdminTest() throws Exception {
+
+        configurationService.setProperty("webui.user.assumelogin.admin", false);
+
         context.turnOffAuthorisationSystem();
 
-        EPerson testEperson = EPersonBuilder.createEPerson(context).withEmail("loginasuseradmin@test.com").build();
-
+        EPerson testEperson = EPersonBuilder.createEPerson(context)
+                                            .withEmail("loginasuseradmin@test.com")
+                                            .build();
 
         Group adminGroup = groupService.findByName(context, Group.ADMIN);
         groupService.addMember(context, adminGroup, testEperson);
@@ -159,7 +217,6 @@ public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
         getClient(token).perform(get("/api/authn/status")
                                      .header("X-On-Behalf-Of", testEperson.getID()))
                         .andExpect(status().isBadRequest());
-
     }
 
     /**

@@ -9,6 +9,7 @@ package org.dspace.content.factory;
 
 import java.util.List;
 
+import org.dspace.app.capture.saveservice.CapturedStreamSaveService;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.RelationshipMetadataService;
 import org.dspace.content.service.BitstreamFormatService;
@@ -84,6 +85,8 @@ public class ContentServiceFactoryImpl extends ContentServiceFactory {
     private EntityTypeService entityTypeService;
     @Autowired(required = true)
     private EntityService entityService;
+    @Autowired(required = true)
+    private CapturedStreamSaveService capturedStreamSaveService;
 
     @Override
     public List<DSpaceObjectService<? extends DSpaceObject>> getDSpaceObjectServices() {
@@ -186,5 +189,10 @@ public class ContentServiceFactoryImpl extends ContentServiceFactory {
     @Override
     public RelationshipMetadataService getRelationshipMetadataService() {
         return relationshipMetadataService;
+    }
+
+    @Override
+    public CapturedStreamSaveService getCapturedStreamSaveService() {
+        return capturedStreamSaveService;
     }
 }

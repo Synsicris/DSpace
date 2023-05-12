@@ -740,10 +740,13 @@
 				<Name>@dc.title@</Name>
 				<Description>@dc.description@</Description>
 				<Date>@dc.date.issued@</Date>
-				<PrizeMoney>@oairecerif.amount@</PrizeMoney>
+				<PriceMoney>@oairecerif.amount@</PriceMoney>
 				<Currency>@oairecerif.amount.currency@</Currency>
 				<Winner>@synsicris.relation.person@</Winner>
 				<Organisation>@synsicris.relation.partner@</Organisation>
+
+				<!-- items in the contributor donor inline group -->
+				<!-- however they are not tight together, so no @group construct -->
 				<Donor>@synsicris.contributor.donor@</Donor>
 				<TargetGroup>@dc.description.targetgroup@</TargetGroup>
 

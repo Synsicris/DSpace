@@ -1,3 +1,7 @@
+#---------------------------------------------------------#
+# comments from May 4th
+#---------------------------------------------------------#
+
 # 2023-05-10
 - general 
   - integrate the screenshot templates from 4Science
@@ -14,7 +18,22 @@
   - key is in grey colour and smaller font
 
 - section 3.2
-  - add end date for milestone
+  - added end date for milestone
   - there were a lot of errors creating milestones
     - some were apparently not successful but showed up later in the report but not the working plan itself
     - adding end dates was not successful
+
+# 2023-05-12
+section 4.3.8
+  - consider new inline group
+  - new template for amount currency (default Euro)
+  - awarded persons and organisations each in one comma separated line
+  - initiator and target groups each in one line 
+    - table does make a sense since target group a single value, not   
+      connected to donor
+
+section 4.3.9
+  - uses now "title-description" template        
+
+section 3.2
+  - has a table with the columns date, title and description

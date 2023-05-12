@@ -32,6 +32,8 @@ public class ItemVersionScriptConfiguration<T extends ItemVersionScript> extends
     // list of actions to accomplish
     private List<VersioningActionConfiguration<?,?>> actions;
 
+    private boolean isParallel = false;
+
     @Override
     public Class<T> getDspaceRunnableClass() {
         return this.dspaceRunnableClass;
@@ -83,6 +85,14 @@ public class ItemVersionScriptConfiguration<T extends ItemVersionScript> extends
 
     public void setActions(List<VersioningActionConfiguration<?, ?>> actions) {
         this.actions = actions;
+    }
+
+    public boolean isParallel() {
+        return isParallel;
+    }
+
+    public void setParallel(boolean isParallel) {
+        this.isParallel = isParallel;
     }
 
 }

@@ -93,6 +93,20 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
     }
 
     @Override
+    public void retryAsync(Context context) {
+        increaseRetry();
+        this.consumeAsync(context);
+    }
+
+    protected void increaseRetry() {
+        this.operation.getConfiguration().setTimeout(
+            Integer.toString(
+                Integer.valueOf(this.operation.getConfiguration().getTimeout()) * 2
+            )
+        );
+    }
+
+    @Override
     public void store(Context context) {
         this.clearBundleAction.ifPresent(action -> action.consume(context));
         try {
@@ -114,6 +128,12 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void retry(Context context) {
+        increaseRetry();
+        this.consume(context);
     }
 
     protected Supplier<CapturableScreen> capturableScreenProvider() {

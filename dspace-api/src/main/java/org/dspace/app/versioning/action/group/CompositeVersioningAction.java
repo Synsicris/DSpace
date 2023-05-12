@@ -80,6 +80,12 @@ public class CompositeVersioningAction<T extends VersioningAction<?>>
     }
 
     @Override
+    public void retryAsync(Context c) {
+        this.operation.retryAsync(c);
+        this.actions.forEach(a -> a.retryAsync(c));
+    }
+
+    @Override
     public void store(Context context) {
         this.operation.store(context);
         this.actions.forEach(action -> action.store(context));
@@ -89,6 +95,12 @@ public class CompositeVersioningAction<T extends VersioningAction<?>>
     public void consume(Context c) {
         this.consumeAsync(c);
         this.store(c);
+    }
+
+    @Override
+    public void retry(Context c) {
+        this.operation.retry(c);
+        this.actions.forEach(a -> a.retry(c));
     }
 
 }

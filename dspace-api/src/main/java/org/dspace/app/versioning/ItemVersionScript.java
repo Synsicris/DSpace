@@ -15,13 +15,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang.StringUtils;
+import org.dspace.app.actions.executor.model.ExecutableActions;
+import org.dspace.app.actions.executor.service.ActionsExecutorService;
+import org.dspace.app.actions.executor.service.factory.ActionsExecutorServiceFactory;
 import org.dspace.app.versioning.action.VersioningAction;
 import org.dspace.app.versioning.exception.ItemVersionScriptException;
 import org.dspace.content.Item;
@@ -64,6 +64,9 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
         WorkflowServiceFactory.getInstance().getWorkflowItemService();
     private static final ItemService itemService = ContentServiceFactory.getInstance().getItemService();
     protected static final EPersonService epersonService = EPersonServiceFactory.getInstance().getEPersonService();
+    protected static final ActionsExecutorService actionsExecutor =
+        ActionsExecutorServiceFactory.getInstance().getActionsExecutorService();
+
 
     protected String itemId;
     protected Item item;
@@ -110,11 +113,23 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
     }
 
     protected void process(Context context) throws SQLException, ItemVersionScriptException {
-
+        // set session user as person into context
         setEPerson(context);
+        // load item into this instance
+        loadItem(context);
+        // check if we can create a version
+        canVersionate(context);
+        // handle actions
+        handleVersioningActions(context);
+        // then create the new version
+        createVersion(context);
+    }
 
+    protected void loadItem(Context context) throws SQLException {
         item = itemService.find(context, UUIDUtils.fromString(itemId));
+    }
 
+    protected void canVersionate(Context context) throws SQLException, ItemVersionScriptException {
         WorkflowItem workflowItem = null;
         WorkspaceItem workspaceItem = null;
         VersionHistory versionHistory = versionHistoryService.findByItem(context, item);
@@ -144,46 +159,6 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
                 "It is not possible to create a new version if the latest one in submisssion!"
             );
         }
-
-        ExecutorService executorService =
-            Executors.newFixedThreadPool(getScriptConfiguration().getActions().size());
-        try {
-            List<CompletableFuture<VersioningAction<?>>> scheduledActions =
-                getScriptConfiguration()
-                    .getActions()
-                    .parallelStream()
-                    .flatMap(conf ->
-                        conf.createAction(context, item)
-                    )
-                    .map(action -> asyncActionMapper(context, action, executorService))
-                    .collect(Collectors.toList());
-
-            scheduledActions
-                .stream()
-                .map(CompletableFuture::join)
-                .forEach(action -> action.store(context));
-
-            Optional.ofNullable(summary)
-                .filter(StringUtils::isNotBlank)
-                .ifPresentOrElse(
-                    (summ) -> versioningService.createNewVersion(context, item, summ),
-                    () -> versioningService.createNewVersion(context, item)
-                );
-        } finally {
-            if (!executorService.isShutdown()) {
-                executorService.shutdown();
-            }
-        }
-    }
-
-    private CompletableFuture<VersioningAction<?>> asyncActionMapper(
-        Context context,
-        VersioningAction<?> action,
-        ExecutorService executorService
-    ) {
-        return CompletableFuture
-            .runAsync(() -> action.consumeAsync(context), executorService)
-            .thenApply((v) -> action);
     }
 
     private void validate() throws ItemVersionScriptException {
@@ -206,6 +181,33 @@ public class ItemVersionScript extends DSpaceRunnable<ItemVersionScriptConfigura
         }
 
         context.setCurrentUser(myEPerson);
+    }
+
+    protected void handleVersioningActions(Context context) {
+        actionsExecutor.execute(
+            context,
+            new ExecutableActions(
+                this.getConfiguredActions(context),
+                getScriptConfiguration().isParallel()
+            )
+        );
+    }
+
+    protected void createVersion(Context context) {
+        Optional.ofNullable(summary)
+            .filter(StringUtils::isNotBlank)
+            .ifPresentOrElse(
+                (summ) -> versioningService.createNewVersion(context, item, summ),
+                () -> versioningService.createNewVersion(context, item)
+            );
+    }
+
+    protected List<VersioningAction<?>> getConfiguredActions(Context context) {
+        return getScriptConfiguration()
+            .getActions()
+            .stream()
+            .flatMap(conf -> conf.createAction(context, item))
+            .collect(Collectors.toList());
     }
 
 }

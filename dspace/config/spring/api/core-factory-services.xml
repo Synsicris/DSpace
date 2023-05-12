@@ -64,4 +64,6 @@
     <bean id="crisMetricsServiceFactory" class="org.dspace.externalservices.scopus.factory.CrisMetricsServiceFactoryImpl"/>
 
     <bean id="captureWebsiteFactory" class="org.dspace.app.capture.service.factory.CaptureWebsiteServiceFactoryImpl"/>
+
+    <bean id="actionsExecutoFactory" class="org.dspace.app.actions.executor.service.factory.ActionsExecutorServiceFactoryImpl"/>
 </beans>

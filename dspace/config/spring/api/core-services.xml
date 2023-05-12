@@ -209,6 +209,7 @@
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisCommentDeleteService" />
     <bean class="org.dspace.synsicris.programme.ProgrammeServiceImpl" />
     <bean class="org.dspace.app.capture.saveservice.CapturedStreamSaveServiceImpl" />
+    <bean class="org.dspace.app.actions.executor.service.ActionsExecutorServiceImpl" />
 
     <bean class="org.dspace.app.capture.service.CaptureWebsiteServiceImpl">
        <property name="extensionToMimeType" ref="extensionToMimeTypeBean"/>

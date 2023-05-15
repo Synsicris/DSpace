@@ -67,9 +67,13 @@ public class ActionsExecutorServiceImpl implements ActionsExecutorService {
 
     protected void executeActions(Context context, ExecutableActions executable) {
         getActionStream(executable)
-            .forEach(action -> Optional.of(consumeActionWithRetry(context, action, action.getMaxRetries()))
-                .filter(Boolean::booleanValue)
-                .orElseThrow(() -> new RuntimeException("Cannot take the screenshot!"))
+            .forEach(action ->
+                Optional.of(consumeActionWithRetry(context, action, action.getMaxRetries()))
+                    .filter(Boolean::booleanValue)
+                    .ifPresentOrElse(
+                        (b) -> logger.debug("Executed correctly the action " + action.toString()),
+                        () -> new RuntimeException("Cannot take the screenshot!")
+                    )
             );
     }
 

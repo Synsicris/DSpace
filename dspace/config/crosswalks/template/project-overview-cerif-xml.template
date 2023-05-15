@@ -1,1204 +1,1241 @@
 <Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
 
-    <!--########################################################################-->
+	<!--########################################################################-->
+  <!-- for screenshot functionality -->
+	<!--########################################################################-->
+
+	<EmbeddedPdfs>
+		<EmbeddedPdf>@virtual.bitstream.original.*.pdf@</EmbeddedPdf>
+	</EmbeddedPdfs>
+
+	<Graphs>
+		<Graph>@virtual.bitstream.GRAPH@</Graph>
+	</Graphs>
+
+	<!--########################################################################-->
   <!-- attributes from the project entity (those come direct)-->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <EmbeddedPdfs>
-        <EmbeddedPdf>@virtual.bitstream.original.*.pdf@</EmbeddedPdf>
-    </EmbeddedPdfs>
+	<Acronym>@oairecerif.acronym@</Acronym>
+	<Title>@dc.title@</Title>
+	<FundingCall>@synsicris.relation.call@</FundingCall>
+	<Identifier type="http://namespace.openaire.eu/oaf">@crispj.openaireid@</Identifier>
+	<Identifier type="URL">@oairecerif.identifier.url@</Identifier>
+	<StartDate>@oairecerif.project.startDate@</StartDate>
+	<EndDate>@oairecerif.project.endDate@</EndDate>
+	<Duration>@synsicris.duration@</Duration>
+	<FundingProgramme>@oairecerif.fundingParent@</FundingProgramme>
 
-    <Graphs>
-       <Graph>@virtual.bitstream.GRAPH@</Graph>
-    </Graphs>
-
-    <Acronym>@oairecerif.acronym@</Acronym>
-    <Title>@dc.title@</Title>
-    <FundingCall>@synsicris.relation.call@</FundingCall>
-    <Identifier type="http://namespace.openaire.eu/oaf">@crispj.openaireid@</Identifier>
-    <Identifier type="URL">@oairecerif.identifier.url@</Identifier>
-    <StartDate>@oairecerif.project.startDate@</StartDate>
-    <EndDate>@oairecerif.project.endDate@</EndDate>
-    <Duration>@synsicris.duration@</Duration>
-    <FundingProgramme>@oairecerif.fundingParent@</FundingProgramme>
-
-    <!--########################################################################-->
-    <!-- attributes from the impact pathway entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the impact pathway entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <ImpactPathway>
-        @relation.impactpathway.start@
+	<ImpactPathway>
+		@relation.impactpathway.start@
 
-          <Index>
-          
-                <!-- direct attributes (basic accordion) -->
-              <Description>@dc.description@</Description>
+		  <Index>
+		  
+			 	<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+			  <Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.impactpathway.end@
-        <Screenshots>
-          <Screenshot>@virtual.bitstream.IMPACTPATHWAY@</Screenshot>
-        </Screenshots>
-    </ImpactPathway>
+		@relation.impactpathway.end@
 
-    <!--########################################################################-->
+		<!-- for screenshot functionality -->
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.IMPACTPATHWAY@</Screenshot>
+		</Screenshots>
+
+	</ImpactPathway>
+
+	<!--########################################################################-->
   <!-- attributes from the ethics entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Ethic>
-        @relation.ethic.start@
+	<Ethic>
+		@relation.ethic.start@
 
       <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <KeyMessage>@dc.title@</KeyMessage>
-                <FurtherDocuments>@synsicris.type.docs@</FurtherDocuments>
+				<!-- direct attributes (basic accordion) -->
+				<KeyMessage>@dc.title@</KeyMessage>
+				<FurtherDocuments>@synsicris.type.docs@</FurtherDocuments>
 
-                <!-- attributes from the reflection inline-group-->
-                <Reflection>
-                    @group.dc-type.start@
-                    <Index>
-                        <AspectType>@dc.type@</AspectType>
-                        <EthicDescription>@synsicris.description.aspect@</EthicDescription>
-                    </Index>
-                    @group.dc-type.end@
-                </Reflection>
+				<!-- attributes from the reflection inline-group-->
+				<Reflection>
+					@group.dc-type.start@
+					<Index>
+						<AspectType>@dc.type@</AspectType>
+						<EthicDescription>@synsicris.description.aspect@</EthicDescription>
+					</Index>
+					@group.dc-type.end@
+				</Reflection>
 
       </Index>
 
-        @relation.ethic.end@
-    </Ethic>
+		@relation.ethic.end@
+	</Ethic>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the conditions entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Condition>
-        @relation.condition.start@
+	<Condition>
+		@relation.condition.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <ConditionType>@dc.type@</ConditionType>
-                <Influence>@synsicris.type.influence@</Influence>
-                <StartFramework>@synsicris.date@</StartFramework>
-                <ConditionDescription>@dc.description@</ConditionDescription>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<ConditionType>@dc.type@</ConditionType>
+				<Influence>@synsicris.type.influence@</Influence>
+				<StartFramework>@synsicris.date@</StartFramework>
+				<ConditionDescription>@dc.description@</ConditionDescription>
 
-        </Index>
+		</Index>
 
-        @relation.condition.end@
-    </Condition>
+		@relation.condition.end@
+	</Condition>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the gender entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Gender>
-        @relation.gender.start@
+	<Gender>
+		@relation.gender.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <KeyMessage>@dc.title@</KeyMessage>
+				<!-- direct attributes (basic accordion) -->
+				<KeyMessage>@dc.title@</KeyMessage>
 
-                <!-- attributes from the reflection accordion -->
-                <Reflection>
-                    <Researchquestion>@synsicris.type.researchquestion@</Researchquestion>
-                    <DescriptionResearchquestion>@synsicris.description.researchquestion@</DescriptionResearchquestion>
-                    <StateOfResearch>@synsicris.type.stateofart@</StateOfResearch>
-                    <DescriptionStateOfResearch>@synsicris.description.stateofart@</DescriptionStateOfResearch>
-                    <Relevance>@synsicris.type.projectdesign@</Relevance>
-                    <DescriptionRelevance>@synsicris.description.projectdesign@</DescriptionRelevance>
-                    <Application>@synsicris.type.application@</Application>
-                    <DescriptionApplication>@synsicris.description.application@</DescriptionApplication>
-                    <Implementation>@synsicris.type.project@</Implementation>
-                    <DescriptionImplementaiton>@synsicris.description.project@</DescriptionImplementaiton>
-                    <GenderBalance>@synsicris.type.balance@</GenderBalance>
-                    <DescriptionGenderBalance>@synsicris.description.balance@</DescriptionGenderBalance>
-                </Reflection>
+				<!-- attributes from the reflection accordion -->
+				<Reflection>
+					<Researchquestion>@synsicris.type.researchquestion@</Researchquestion>
+					<DescriptionResearchquestion>@synsicris.description.researchquestion@</DescriptionResearchquestion>
+					<StateOfResearch>@synsicris.type.stateofart@</StateOfResearch>
+					<DescriptionStateOfResearch>@synsicris.description.stateofart@</DescriptionStateOfResearch>
+					<Relevance>@synsicris.type.projectdesign@</Relevance>
+					<DescriptionRelevance>@synsicris.description.projectdesign@</DescriptionRelevance>
+					<Application>@synsicris.type.application@</Application>
+					<DescriptionApplication>@synsicris.description.application@</DescriptionApplication>
+					<Implementation>@synsicris.type.project@</Implementation>
+					<DescriptionImplementaiton>@synsicris.description.project@</DescriptionImplementaiton>
+					<GenderBalance>@synsicris.type.balance@</GenderBalance>
+					<DescriptionGenderBalance>@synsicris.description.balance@</DescriptionGenderBalance>
+				</Reflection>
 
-            </Index>
+			</Index>
 
-        @relation.gender.end@
-    </Gender>
+		@relation.gender.end@
+	</Gender>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the state of art entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <StateOfArt>
-        @relation.stateofart.start@
+	<StateOfArt>
+		@relation.stateofart.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.stateofart.end@
-    </StateOfArt>
+		@relation.stateofart.end@
+	</StateOfArt>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the unexpected results entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <UnexpectedResult>
-        @relation.unexpected_result.start@
+	<UnexpectedResult>
+		@relation.unexpected_result.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <ResultDescription>@dc.description@</ResultDescription>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<ResultDescription>@dc.description@</ResultDescription>
 
-                <!-- attributes from the publication accordion -->
-                <Publication>
-                    <Index>
-                        <StatusPublication>@dc.type@</StatusPublication>
-                        <InformationPublication>@synsicris.description.relevance@</InformationPublication>
-                        <LinkPublication>@synsicris.relation.publication@</LinkPublication>
-                    </Index>
-                </Publication>
+				<!-- attributes from the publication accordion -->
+				<Publication>
+					<Index>
+						<StatusPublication>@dc.type@</StatusPublication>
+						<InformationPublication>@synsicris.description.relevance@</InformationPublication>
+						<LinkPublication>@synsicris.relation.publication@</LinkPublication>
+					</Index>
+				</Publication>
 
-            </Index>
+			</Index>
 
-        @relation.unexpected_result.end@
-    </UnexpectedResult>
+		@relation.unexpected_result.end@
+	</UnexpectedResult>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the work package entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <WorkPackage>
+	<WorkPackage>
     @relation.workpackage.start@
 
-          <Index>
-    
-              <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
-                <Requirement>@synsicris.description.requirements@</Requirement>
+		  <Index>
+	
+			  <!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
+				<Requirement>@synsicris.description.requirements@</Requirement>
 
          <!-- associated attributes (via the step-id "working_plan_form") -->
-                <StartDate>@dc.date.start@</StartDate>
-                <EndDate>@dc.date.end@</EndDate>
-                <ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-                <Status>@synsicris.type.status@</Status>    
+				<StartDate>@dc.date.start@</StartDate>
+				<EndDate>@dc.date.end@</EndDate>
+				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
+				<Status>@synsicris.type.status@</Status>	
 
         <!-- associated tasks -->
-                <Task>
-                    @relation.workingplan-relation-step.start@
-                        @if.hasEntityType.task.start@
-                            <Index>
-                                <Title>@dc.title@</Title>
-                                <Description>@dc.description@</Description>
-                            </Index>
-                        @if.hasEntityType.task.end@
-                    @relation.workingplan-relation-step.end@
-                </Task>
+				<Task>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.task.start@
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+							</Index>
+						@if.hasEntityType.task.end@
+					@relation.workingplan-relation-step.end@
+				</Task>
 
         <!-- associated process events -->
 
-                <ProcessEvent>
-                    @relation.workingplan-relation-step.start@
-                        @if.hasEntityType.process.start@
-                            <Index>
+				<ProcessEvent>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.process.start@
+							<Index>
 
-                                <InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-                                <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                                <Title>@dc.title@</Title>
-                                <Purpose>@synsicris.type.purpose@</Purpose>
-                                <Description>@dc.description@</Description>
+								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+								<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+								<Title>@dc.title@</Title>
+								<Purpose>@synsicris.type.purpose@</Purpose>
+								<Description>@dc.description@</Description>
 
-                                <!-- attributes from the frequency inline-group-->
-                                <Frequency>
-                                    @group.dc-type.start@
-                                        <Type>@dc.type@</Type>
-                                        <Duration>@synsicris.duration@</Duration>
-                                        <Frequency>@synsicris.type.frequency@</Frequency>
-                                        <Period>@synsicris.type.period@</Period>
-                                    @group.dc-type.end@
-                                </Frequency>
+								<!-- attributes from the frequency inline-group-->
+								<Frequency>
+									@group.dc-type.start@
+										<Type>@dc.type@</Type>
+										<Duration>@synsicris.duration@</Duration>
+										<Frequency>@synsicris.type.frequency@</Frequency>
+										<Period>@synsicris.type.period@</Period>
+									@group.dc-type.end@
+								</Frequency>
 
-                                <!-- attributes from the date inline-group-->
-                                <Date>
-                                    @group.synsicris-type.start@
-                                        <Title>@synsicris.title.event@</Title>
-                                        <StartDate>@oairecerif.event.startDate@</StartDate>
-                                        <EndDate>@oairecerif.event.endDate@</EndDate>
-                                        <Duration>@synsicris.duration@</Duration>
-                                        <ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-                                        <Place>@oairecerif.event.place@</Place>
-                                        <Country>@oairecerif.event.country@</Country>
-                                    @group.synsicris-type.end@
-                                </Date>
+								<!-- attributes from the date inline-group-->
+								<Date>
+									@group.synsicris-type.start@
+										<Title>@synsicris.title.event@</Title>
+										<StartDate>@oairecerif.event.startDate@</StartDate>
+										<EndDate>@oairecerif.event.endDate@</EndDate>
+										<Duration>@synsicris.duration@</Duration>
+										<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+										<Place>@oairecerif.event.place@</Place>
+										<Country>@oairecerif.event.country@</Country>
+									@group.synsicris-type.end@
+								</Date>
 
-                            </Index>
-                        @if.hasEntityType.process.end@
-                    @relation.workingplan-relation-step.end@
-                </ProcessEvent>
+							</Index>
+						@if.hasEntityType.process.end@
+					@relation.workingplan-relation-step.end@
+				</ProcessEvent>
 
         <!-- associated physical objects -->
-                <PhysicalObject>
-                    @relation.workingplan-relation-step.start@
-                        @if.hasEntityType.physical_object.start@
-                            <Index>
+				<PhysicalObject>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.physical_object.start@
+							<Index>
 
-                                <!-- direct attributes (basic accordion) -->
-                                <Title>@dc.title@</Title>
-                                <Type>@dc.type@</Type>
-                                <Description>@dc.description@</Description>
+								<!-- direct attributes (basic accordion) -->
+								<Title>@dc.title@</Title>
+								<Type>@dc.type@</Type>
+								<Description>@dc.description@</Description>
 
-                                <!-- attributes from the results accordion -->
-                                <Result>
-                                    <Function>@synsicris.type.functions@</Function>
-                                    <ContactInformation>@synsicris.description@</ContactInformation>
-                                    <Accessibility>@synsicris.type.access@</Accessibility>
-                                    <WebAddress>@oairecerif.identifier.url@</WebAddress>
-                                </Result>
+								<!-- attributes from the results accordion -->
+								<Result>
+									<Function>@synsicris.type.functions@</Function>
+									<ContactInformation>@synsicris.description@</ContactInformation>
+									<Accessibility>@synsicris.type.access@</Accessibility>
+									<WebAddress>@oairecerif.identifier.url@</WebAddress>
+								</Result>
 
-                            </Index>
-                        @if.hasEntityType.physical_object.end@
-                    @relation.workingplan-relation-step.end@
-                </PhysicalObject>
+							</Index>
+						@if.hasEntityType.physical_object.end@
+					@relation.workingplan-relation-step.end@
+				</PhysicalObject>
 
         <!-- associated planned publications -->
-                <PlannedPublication>
-                    @relation.workingplan-relation-step.start@
-                        @if.hasEntityType.plan_publication.start@
-                            <Index>
-                                <Title>@dc.title@</Title>
-                                <Description>@dc.description@</Description>
-                                <TargetAudience>@dc.audience@</TargetAudience>
-                            </Index>
-                        @if.hasEntityType.plan_publication.end@
-                    @relation.workingplan-relation-step.end@
-                </PlannedPublication>
+				<PlannedPublication>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.plan_publication.start@
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+								<TargetAudience>@dc.audience@</TargetAudience>
+							</Index>
+						@if.hasEntityType.plan_publication.end@
+					@relation.workingplan-relation-step.end@
+				</PlannedPublication>
 
         <!-- associated milestones -->
-                <Milestone>
-                    @relation.workingplan-relation-step.start@
-                        @if.hasEntityType.milestone.start@
-                            <Index>
-                                <Title>@dc.title@</Title>
-                                <Description>@dc.description@</Description>
-                            </Index>
-                        @if.hasEntityType.milestone.end@
-                    @relation.workingplan-relation-step.end@
-                </Milestone>
+				<Milestone>
+					@relation.workingplan-relation-step.start@
+						@if.hasEntityType.milestone.start@
+							<Index>
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+							</Index>
+						@if.hasEntityType.milestone.end@
+					@relation.workingplan-relation-step.end@
+				</Milestone>
 
-          </Index>
+		  </Index>
+		@relation.workpackage.end@
 
-        @relation.workpackage.end@
-        <Screenshots>
-            <Screenshot>@virtual.bitstream.WORKINGPLAN@</Screenshot>
-        </Screenshots>
-    </WorkPackage>
+	  <!-- for screenshot functionality -->	
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.WORKINGPLAN@</Screenshot>
+		</Screenshots>
 
-    <!--########################################################################-->
+	</WorkPackage>
+
+	<!--########################################################################-->
   <!-- attributes from the task entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Task>
-        @relation.task.start@
+	<Task>
+		@relation.task.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.task.end@
-    </Task>
+		@relation.task.end@
+	</Task>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the milestone entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Milestone>
-        @relation.milestone.start@
+	<Milestone>
+		@relation.milestone.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+        <!-- associated attributes (via the step-id "working_plan_form") -->
+				<EndDate>@dc.date.end@</EndDate>
 
-        @relation.milestone.end@
-    </Milestone>
+				<WorkPackage>
+					@relation.workpackage-relation-step.start@
+						@if.hasEntityType.workpackage.start@
+						 <Index>
+					
+							  <!-- direct attributes (basic accordion) -->
+								<Title>@dc.title@</Title>
+								<Description>@dc.description@</Description>
+								<Requirement>@synsicris.description.requirements@</Requirement>
+				
+						 <!-- associated attributes (via the step-id "working_plan_form") -->
+								<StartDate>@dc.date.start@</StartDate>
+								<EndDate>@dc.date.end@</EndDate>
+								<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
+								<Status>@synsicris.type.status@</Status>	
 
-        <!--########################################################################-->
+							</Index>
+							@if.hasEntityType.workpackage.end@
+						@relation.workpackage-relation-step.end@
+				</WorkPackage>
+
+			</Index>
+
+		@relation.milestone.end@
+	</Milestone>
+
+		<!--########################################################################-->
   <!-- attributes from the project objectives entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <ProjectObjective>
-        @relation.proj_objective.start@
+	<ProjectObjective>
+		@relation.proj_objective.start@
 
       <Index>
-         
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+		 
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.proj_objective.end@
-    </ProjectObjective>
+		@relation.proj_objective.end@
+	</ProjectObjective>
 
-        <!--########################################################################-->
+		<!--########################################################################-->
   <!-- attributes from the event entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Event>
-        @relation.Event.start@
+	<Event>
+		@relation.Event.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
-                <Type>@dc.type@</Type>
-                <Title>@dc.title@</Title>
-                <Purpose>@synsicris.type.purpose@</Purpose>
-                <Description>@dc.description@</Description>
-                <InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-                <StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+				<!-- direct attributes (basic accordion) -->
+				<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
+				<Type>@dc.type@</Type>
+				<Title>@dc.title@</Title>
+				<Purpose>@synsicris.type.purpose@</Purpose>
+				<Description>@dc.description@</Description>
+				<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+				<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
 
-                <!-- attributes from the result accordion -->
-                <Result>
-                    <StartDate>@oairecerif.event.startDate@</StartDate>
-                    <EndDate>@oairecerif.event.endDate</EndDate>
-                    <Duration>@synsicris.duration@</Duration>
-                    <ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-                    <City>@oairecerif.event.place@</City>
-                    <Country>@oairecerif.event.country@</Country>
-                </Result>
+				<!-- attributes from the result accordion -->
+				<Result>
+					<StartDate>@oairecerif.event.startDate@</StartDate>
+					<EndDate>@oairecerif.event.endDate</EndDate>
+					<Duration>@synsicris.duration@</Duration>
+					<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+					<City>@oairecerif.event.place@</City>
+					<Country>@oairecerif.event.country@</Country>
+				</Result>
 
-          </Index>
+		  </Index>
 
-        @relation.Event.end@
-    </Event>
+		@relation.Event.end@
+	</Event>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the products entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Product>
-        @relation.Product.start@
+	<Product>
+		@relation.Product.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Identifier>@dc.identifier@</Identifier>
-                <Type>@dc.type@</Type>
-                <Title>@dc.title@</Title>
-                <Author>@dc.contributor.author@</Author>
-                <PublicationDate>@dc.date.issued@</PublicationDate>
-                <Publisher>@dc.publisher@</Publisher>
-                <Abstract>@dc.description.abstract@</Abstract>
-                <Language>@dc.language.iso@</Language>
-                <Keyword>@dc.subject@</Keyword>
+				<!-- direct attributes (basic accordion) -->
+				<Identifier>@dc.identifier@</Identifier>
+				<Type>@dc.type@</Type>
+				<Title>@dc.title@</Title>
+				<Author>@dc.contributor.author@</Author>
+				<PublicationDate>@dc.date.issued@</PublicationDate>
+				<Publisher>@dc.publisher@</Publisher>
+				<Abstract>@dc.description.abstract@</Abstract>
+				<Language>@dc.language.iso@</Language>
+				<Keyword>@dc.subject@</Keyword>
 
-                <!-- attributes from the reference accordion -->
-                <Reference>
-                    <Reference>@dc.relation.publication@</Reference>
-                </Reference>
+				<!-- attributes from the reference accordion -->
+				<Reference>
+					<Reference>@dc.relation.publication@</Reference>
+				</Reference>
 
-                <!-- attributes from the dc-contributor-author accordion -->
-                <Contributor>
-                    <Author>@dc.contributor.author@</Author>
-                    <Affiliation>@oairecerif.author.affiliation@</Affiliation>
-                </Contributor>
+				<!-- attributes from the dc-contributor-author accordion -->
+				<Contributor>
+					<Author>@dc.contributor.author@</Author>
+					<Affiliation>@oairecerif.author.affiliation@</Affiliation>
+				</Contributor>
 
-          </Index>
+		  </Index>
 
-        @relation.Product.end@
-    </Product>
+		@relation.Product.end@
+	</Product>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the research results entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <ResearchResult>
-        @relation.research_result.start@
+	<ResearchResult>
+		@relation.research_result.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.research_result.end@
-    </ResearchResult>
+		@relation.research_result.end@
+	</ResearchResult>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the physical objects entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <PhysicalObject>
-        @relation.physical_object.start@
+	<PhysicalObject>
+		@relation.physical_object.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Type>@dc.type@</Type>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Type>@dc.type@</Type>
+				<Description>@dc.description@</Description>
 
-              <!-- attributes from the results accordion -->
-                <Result>
-                    <Function>@synsicris.type.functions@</Function>
-                    <ContactInformation>@synsicris.description@</ContactInformation>
-                    <Accessibility>@synsicris.type.access@</Accessibility>
-                    <WebAddress>@oairecerif.identifier.url@</WebAddress>
-                </Result>
+			  <!-- attributes from the results accordion -->
+				<Result>
+					<Function>@synsicris.type.functions@</Function>
+					<ContactInformation>@synsicris.description@</ContactInformation>
+					<Accessibility>@synsicris.type.access@</Accessibility>
+					<WebAddress>@oairecerif.identifier.url@</WebAddress>
+				</Result>
 
-          </Index>
+		  </Index>
 
-        @relation.physical_object.end@
-    </PhysicalObject>
+		@relation.physical_object.end@
+	</PhysicalObject>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the plan_publications entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <PlannedPublication>
-        @relation.plan_publication.start@
+	<PlannedPublication>
+		@relation.plan_publication.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
-                <TargetAudience>@dc.audience@</TargetAudience>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
+				<TargetAudience>@dc.audience@</TargetAudience>
 
-            </Index>
+			</Index>
 
-        @relation.plan_publication.end@
-    </PlannedPublication>
+		@relation.plan_publication.end@
+	</PlannedPublication>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the process events entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <ProcessEvent>
-        @relation.process_event.start@
+	<ProcessEvent>
+		@relation.process_event.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-                <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                <Title>@dc.title@</Title>
-                <Purpose>@synsicris.type.purpose@</Purpose>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+				<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+				<Title>@dc.title@</Title>
+				<Purpose>@synsicris.type.purpose@</Purpose>
+				<Description>@dc.description@</Description>
 
-                <!-- attributes from the frequency inline-group-->
-                <Frequency>
-                    @group.dc-type.start@
+				<!-- attributes from the frequency inline-group-->
+				<Frequency>
+					@group.dc-type.start@
 
-                        <Type>@dc.type@</Type>
-                        <Duration>@synsicris.duration@</Duration>
-                        <Frequency>@synsicris.type.frequency@</Frequency>
-                        <Period>@synsicris.type.period@</Period>
+						<Type>@dc.type@</Type>
+						<Duration>@synsicris.duration@</Duration>
+						<Frequency>@synsicris.type.frequency@</Frequency>
+						<Period>@synsicris.type.period@</Period>
 
-                    @group.dc-type.end@
-                </Frequency>
+					@group.dc-type.end@
+				</Frequency>
 
-                <!-- attributes from the date inline-group-->
-                <Date>
-                    @group.synsicris-type.start@
+				<!-- attributes from the date inline-group-->
+				<Date>
+					@group.synsicris-type.start@
 
-                        <Title>@synsicris.title.event@</Title> 
-                        <StartDate>@oairecerif.event.startDate@</StartDate>
-                        <EndDate>@oairecerif.event.endDate@</EndDate>
-                        <Duration>@synsicris.duration@</Duration>
-                        <ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-                        <Place>@oairecerif.event.place@</Place>
-                        <Country>@oairecerif.event.country@</Country>
+						<Title>@synsicris.title.event@</Title> 
+						<StartDate>@oairecerif.event.startDate@</StartDate>
+						<EndDate>@oairecerif.event.endDate@</EndDate>
+						<Duration>@synsicris.duration@</Duration>
+						<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+						<Place>@oairecerif.event.place@</Place>
+						<Country>@oairecerif.event.country@</Country>
 
-                    @group.synsicris-type.end@
-                </Date>
+					@group.synsicris-type.end@
+				</Date>
 
-          </Index>
+		  </Index>
 
-        @relation.process_event.end@
-    </ProcessEvent>
+		@relation.process_event.end@
+	</ProcessEvent>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the publications entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Publication>
-        @relation.Publication.start@
+	<Publication>
+		@relation.Publication.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Identifier>@dc.identifier@</Identifier>
-                <Type>@dc.type@</Type>
-                <Title>@dc.title@</Title>
-                <Author>@dc.contributor.author@</Author>
-                <Editor>@dc.contributor.editor@</Editor>
-                <Date>@dc.date.issued@</Date>
-                <Publisher>@dc.publisher@</Publisher>
-                <IsPartOf>@dc.relation.publications@</IsPartOf>
-                <Journal>@dc.relation.ispartof@</Journal>
-                <Volumne>@oaire.citation.volume@</Volumne>
-                <Issue>@oaire.citation.issue@</Issue>
-                <StartPage>@oaire.citation.startPage@</StartPage>
-                <EndPage>@oaire.citation.endPage@</EndPage>
-                <Language>@dc.language.iso@</Language>
-                <Keyword>@dc.subject@</Keyword>
-                <Abstract>@dc.description.abstract@</Abstract>
-                <Supervisor>@dc.contributor.supervisor@</Supervisor>
+				<!-- direct attributes (basic accordion) -->
+				<Identifier>@dc.identifier@</Identifier>
+				<Type>@dc.type@</Type>
+				<Title>@dc.title@</Title>
+				<Author>@dc.contributor.author@</Author>
+				<Editor>@dc.contributor.editor@</Editor>
+				<Date>@dc.date.issued@</Date>
+				<Publisher>@dc.publisher@</Publisher>
+				<IsPartOf>@dc.relation.publications@</IsPartOf>
+				<Journal>@dc.relation.ispartof@</Journal>
+				<Volumne>@oaire.citation.volume@</Volumne>
+				<Issue>@oaire.citation.issue@</Issue>
+				<StartPage>@oaire.citation.startPage@</StartPage>
+				<EndPage>@oaire.citation.endPage@</EndPage>
+				<Language>@dc.language.iso@</Language>
+				<Keyword>@dc.subject@</Keyword>
+				<Abstract>@dc.description.abstract@</Abstract>
+				<Supervisor>@dc.contributor.supervisor@</Supervisor>
 
-                <!-- attributes from the Reference accordion -->
-                <Reference>
-                    <TargetAudience>@dc.audience@</TargetAudience>
-                    <DataSetReference>@dc.relation.product@</DataSetReference>
-                </Reference>
+				<!-- attributes from the Reference accordion -->
+				<Reference>
+					<TargetAudience>@dc.audience@</TargetAudience>
+					<DataSetReference>@dc.relation.product@</DataSetReference>
+				</Reference>
 
-                <!-- attributes from the dc-contributor-author accordion -->
-                <Contributor>
-                    <ReferenceAuthor>@dc.contributor.author@</ReferenceAuthor>
-                    <AuthorAffiliation>@oairecerif.author.affiliation@</AuthorAffiliation>
-                    <ContributorEditor>@dc.contributor.editor@</ContributorEditor>
-                    <EditorAffiliation>@oairecerif.editor.affiliation@</EditorAffiliation>
-                </Contributor>
+				<!-- attributes from the dc-contributor-author accordion -->
+				<Contributor>
+					<ReferenceAuthor>@dc.contributor.author@</ReferenceAuthor>
+					<AuthorAffiliation>@oairecerif.author.affiliation@</AuthorAffiliation>
+					<ContributorEditor>@dc.contributor.editor@</ContributorEditor>
+					<EditorAffiliation>@oairecerif.editor.affiliation@</EditorAffiliation>
+				</Contributor>
 
-          </Index>
+		  </Index>
 
-        @relation.Publication.end@
-    </Publication>
+		@relation.Publication.end@
+	</Publication>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the applications entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Application>
-        @relation.application.start@
+	<Application>
+		@relation.application.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <ApplicationTitle>@dc.title@</ApplicationTitle>
-                <RelatedInnovation>@synsicris.relation.innovationpotential@</RelatedInnovation>
-                <Unit>@dc.type@</Unit>
-                <FreeUnit>@synsicris.type.quantifierown@</FreeUnit>
+				<!-- direct attributes (basic accordion) -->
+				<ApplicationTitle>@dc.title@</ApplicationTitle>
+				<RelatedInnovation>@synsicris.relation.innovationpotential@</RelatedInnovation>
+				<Unit>@dc.type@</Unit>
+				<FreeUnit>@synsicris.type.quantifierown@</FreeUnit>
 
-                <!-- attributes from the reference year inline-group-->
-                <SuccessQuantification>
-                    @group.synsicris-date-referenceyear.start@
-                        <Index>
-                            <ReferenceYear>@synsicris.date.referenceyear@</ReferenceYear>
-                            <Quantity>@synsicris.quantity@</Quantity>
-                            <RegionalOutreach>@synsicris.coverage.regional@</RegionalOutreach>
-                            <SuccessDescription>@synsicris.description.description@</SuccessDescription>
-                        </Index>
-                    @group.synsicris-date-referenceyear.end@
-                </SuccessQuantification>
+				<!-- attributes from the reference year inline-group-->
+				<SuccessQuantification>
+					@group.synsicris-date-referenceyear.start@
+						<Index>
+							<ReferenceYear>@synsicris.date.referenceyear@</ReferenceYear>
+							<Quantity>@synsicris.quantity@</Quantity>
+							<RegionalOutreach>@synsicris.coverage.regional@</RegionalOutreach>
+							<SuccessDescription>@synsicris.description.description@</SuccessDescription>
+						</Index>
+					@group.synsicris-date-referenceyear.end@
+				</SuccessQuantification>
 
-            </Index>
+			</Index>
 
-        @relation.application.end@
-    </Application>
+		@relation.application.end@
+	</Application>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the steps entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Step>
-        @relation.step.start@
+	<Step>
+		@relation.step.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Partner>@synsicris.relation.partner@</Partner>
-                <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                <Title>@dc.title@</Title>
-                <Type>@dc.type@</Type>
-                <Date>@synsicris.date@</Date>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Partner>@synsicris.relation.partner@</Partner>
+				<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+				<Title>@dc.title@</Title>
+				<Type>@dc.type@</Type>
+				<Date>@synsicris.date@</Date>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.step.end@
-    </Step>
+		@relation.step.end@
+	</Step>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the spinoffs entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Spinoff>
-        @relation.spinoff.start@
+	<Spinoff>
+		@relation.spinoff.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-                <!-- attributes from the result accordion -->
-                <Result>
-                    <RegisterCourt>@synsicris.orgunits.registercourt@</RegisterCourt>
-                    <RegisterType>@synsicris.orgunits.registertype@</RegisterType>
-                    <RegisterNumber>@synsicris.identifier.registernumber@</RegisterNumber>
-                    <FoundingDate>@organisation.foundingDate@</FoundingDate>
-                    <Type>@dc.type@</Type>
-                    <NACE>@synsicris.subject.nace@</NACE>
-                    <Street>@synsicris.address.addressStreetnamenumber@</Street>
-                    <PostCode>@synsicris.address.addressPostCode@</PostCode>
-                    <City>@synsicris.address.addressCity@</City>
-                    <Country>@synsicris.address.addressCountry@</Country>
-                    <WebAddress>@oairecerif.identifier.url@</WebAddress>
-                    <RelatedOrganisation>@synsicris.relation.partner@</RelatedOrganisation>
-                </Result>
+				<!-- attributes from the result accordion -->
+				<Result>
+					<RegisterCourt>@synsicris.orgunits.registercourt@</RegisterCourt>
+					<RegisterType>@synsicris.orgunits.registertype@</RegisterType>
+					<RegisterNumber>@synsicris.identifier.registernumber@</RegisterNumber>
+					<FoundingDate>@organisation.foundingDate@</FoundingDate>
+					<Type>@dc.type@</Type>
+					<NACE>@synsicris.subject.nace@</NACE>
+					<Street>@synsicris.address.addressStreetnamenumber@</Street>
+					<PostCode>@synsicris.address.addressPostCode@</PostCode>
+					<City>@synsicris.address.addressCity@</City>
+					<Country>@synsicris.address.addressCountry@</Country>
+					<WebAddress>@oairecerif.identifier.url@</WebAddress>
+					<RelatedOrganisation>@synsicris.relation.partner@</RelatedOrganisation>
+				</Result>
 
-                <!-- attributes from the inline-group synsicris.date.funding -->
-                <Funding>
-                    @group.synsicris-date-funding.start@
-                    <Index>
-                        <Year>@synsicris.date.funding@</Year>
-                        <Title>@synsicris.title.funding@</Title>
-                        <Amount>@synsicris.amount.funding@</Amount>
-                        <Currency>@synsicris.amount.currencyfunding@</Currency>
-                        <Description>@synsicris.description.nonfinancalsupport@</Description>
-                    </Index>
-                    @group.synsicris-date-funding.end@
-                </Funding>  
+				<!-- attributes from the inline-group synsicris.date.funding -->
+				<Funding>
+					@group.synsicris-date-funding.start@
+					<Index>
+						<Year>@synsicris.date.funding@</Year>
+						<Title>@synsicris.title.funding@</Title>
+						<Amount>@synsicris.amount.funding@</Amount>
+						<Currency>@synsicris.amount.currencyfunding@</Currency>
+						<Description>@synsicris.description.nonfinancalsupport@</Description>
+					</Index>
+					@group.synsicris-date-funding.end@
+				</Funding>	
 
-                <!-- attributes from the inline-group synsicris.date.performance -->
-                <Performance>
-                    @group.synsicris-date-performance.start@
-                    <Index>
-                        <Year>@synsicris.date.performance@</Year>
-                        <Amount>@synsicris.amount.performance@</Amount>
-                        <Currency>@synsicris.amount.currencyperformance@</Currency>
-                    </Index>
-                    @group.synsicris-date-performance.end@
-                </Performance> 
+				<!-- attributes from the inline-group synsicris.date.performance -->
+				<Performance>
+					@group.synsicris-date-performance.start@
+					<Index>
+						<Year>@synsicris.date.performance@</Year>
+						<Amount>@synsicris.amount.performance@</Amount>
+						<Currency>@synsicris.amount.currencyperformance@</Currency>
+					</Index>
+					@group.synsicris-date-performance.end@
+				</Performance> 
 
-            </Index>
+			</Index>
 
-        @relation.spinoff.end@
-    </Spinoff>
+		@relation.spinoff.end@
+	</Spinoff>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the awards entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Award>
-        @relation.award.start@
+	<Award>
+		@relation.award.start@
 
-            <Index>     
+			<Index>     
 
-                <!-- direct attributes (basic accordion) -->
-                <Name>@dc.title@</Name>
-                <Description>@dc.description@</Description>
-                <Date>@dc.date.issued@</Date>
-                <PrizeMoney>@oairecerif.amount@</PrizeMoney>
-                <Currency>@oairecerif.amount.currency@</Currency>
-                <Winner>@synsicris.relation.person@</Winner>
-                <Organisation>@synsicris.relation.partner@</Organisation>
-                <Donor>@synsicris.contributor.donor@</Donor>
-                <TargetGroup>@dc.description.targetgroup@</TargetGroup>
+				<!-- direct attributes (basic accordion) -->
+				<Name>@dc.title@</Name>
+				<Description>@dc.description@</Description>
+				<Date>@dc.date.issued@</Date>
+				<PriceMoney>@oairecerif.amount@</PriceMoney>
+				<Currency>@oairecerif.amount.currency@</Currency>
+				<Winner>@synsicris.relation.person@</Winner>
+				<Organisation>@synsicris.relation.partner@</Organisation>
 
-            </Index>
+				<!-- items in the contributor donor inline group -->
+				<!-- however they are not tight together, so no @group construct -->
+				<Donor>@synsicris.contributor.donor@</Donor>
+				<TargetGroup>@dc.description.targetgroup@</TargetGroup>
 
-        @relation.award.end@
+			</Index>
 
-    </Award>
+		@relation.award.end@
 
-    <!--########################################################################-->
+	</Award>
+
+	<!--########################################################################-->
   <!-- attributes from the innovation ideas entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <InnovationIdea>
-        @relation.innovationidea.start@
+	<InnovationIdea>
+		@relation.innovationidea.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Type>@dc.type@</Type>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Type>@dc.type@</Type>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.innovationidea.end@
-    </InnovationIdea>
+		@relation.innovationidea.end@
+	</InnovationIdea>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the innovation potentials entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <InnovationPotential>
-        @relation.innovationpotential.start@
+	<InnovationPotential>
+		@relation.innovationpotential.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Type>@dc.type@</Type>
-                <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Type>@dc.type@</Type>
+				<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+				<Description>@dc.description@</Description>
 
-                <!-- attributes from the applicability accordion -->
-                <Applicability>
-                    <Novelty>@synsicris.description.applicability1@</Novelty>
-                    <Efficiency>@synsicris.description.applicability2@</Efficiency>
-                    <Practicability>@synsicris.description.applicability3@</Practicability>
-                    <Requirements>@synsicris.description.applicability4@</Requirements>
-                    <Prospects>@synsicris.description.applicability5@</Prospects>
-                </Applicability>
+				<!-- attributes from the applicability accordion -->
+				<Applicability>
+					<Novelty>@synsicris.description.applicability1@</Novelty>
+					<Efficiency>@synsicris.description.applicability2@</Efficiency>
+					<Practicability>@synsicris.description.applicability3@</Practicability>
+					<Requirements>@synsicris.description.applicability4@</Requirements>
+					<Prospects>@synsicris.description.applicability5@</Prospects>
+				</Applicability>
 
-                <!-- attributes from the regional scope accordion -->
-                <RegionalScope>
-                    <PrimaryField>@synsicris.coverage.regionalprimary@</PrimaryField>
-                    <LaterDissimination>@synsicris.coverage.regionalsecondary@</LaterDissimination>
-                    <Description>@synsicris.description.regional@</Description>
-                </RegionalScope>
+				<!-- attributes from the regional scope accordion -->
+				<RegionalScope>
+					<PrimaryField>@synsicris.coverage.regionalprimary@</PrimaryField>
+					<LaterDissimination>@synsicris.coverage.regionalsecondary@</LaterDissimination>
+					<Description>@synsicris.description.regional@</Description>
+				</RegionalScope>
 
-                <!-- attributes from the SRL/TRL accordion -->
-                <SRLTRL>
-                    <DevelopmentProjectStart>@synsicris.description.start@</DevelopmentProjectStart>
-                    <DevelopmentProjectEnd>@synsicris.description.end@</DevelopmentProjectEnd>
-                    <Selection>@synsicris.type.level@</Selection>
-                    <ReadinessProjectStart>@synsicris.level.start@</ReadinessProjectStart>
-                    <ReadinessProjectEnd>@synsicris.level.end@</ReadinessProjectEnd>
-                </SRLTRL>
+				<!-- attributes from the SRL/TRL accordion -->
+				<SRLTRL>
+					<DevelopmentProjectStart>@synsicris.description.start@</DevelopmentProjectStart>
+					<DevelopmentProjectEnd>@synsicris.description.end@</DevelopmentProjectEnd>
+					<Selection>@synsicris.type.level@</Selection>
+					<ReadinessProjectStart>@synsicris.level.start@</ReadinessProjectStart>
+					<ReadinessProjectEnd>@synsicris.level.end@</ReadinessProjectEnd>
+				</SRLTRL>
 
-            </Index>
+			</Index>
 
-        @relation.innovationpotential.end@
-    </InnovationPotential>
+		@relation.innovationpotential.end@
+	</InnovationPotential>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the open reasearch questions entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <OpenResearchQuestion>
-        @relation.open_researchquestion.start@
+	<OpenResearchQuestion>
+		@relation.open_researchquestion.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.open_researchquestion.end@
-    </OpenResearchQuestion>
+		@relation.open_researchquestion.end@
+	</OpenResearchQuestion>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the patents entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
-    <Patent>
-        @relation.Patent.start@
+	<Patent>
+		@relation.Patent.start@
 
-            <Index>
+			<Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Type>@dc.type@</Type>
-                <Use>@synsicris.type.patentuse@</Use>
-                <UseDescription>@synsicris.description.patentuse@</UseDescription>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Type>@dc.type@</Type>
+				<Use>@synsicris.type.patentuse@</Use>
+				<UseDescription>@synsicris.description.patentuse@</UseDescription>
 
-                <!-- attributes from the result accordion -->
-                <Result>
-                    <RegistrationNumber>@dc.identifier.applicationnumber@</RegistrationNumber>
-                    <RegistrationDate>@dcterms.dateSubmitted@</RegistrationDate>
-                    <Holder>@dcterms.rightsHolder@</Holder>
+				<!-- attributes from the result accordion -->
+				<Result>
+					<RegistrationNumber>@dc.identifier.applicationnumber@</RegistrationNumber>
+					<RegistrationDate>@dcterms.dateSubmitted@</RegistrationDate>
+					<Holder>@dcterms.rightsHolder@</Holder>
         </Result>
 
-                <!-- attributes from the import accordion -->
-                <Import>
-                    <PatentNumber>@dc.identifier.patentno@</PatentNumber>
-                    <ApprovalDate>@dcterms.dateAccepted@</ApprovalDate>
-                    <PublicationDate>@dc.date.issued@</PublicationDate>
-                    <Inventor>@dc.contributor.author@</Inventor>
-                    <Issuer>@dc.publisher@</Issuer>
-                    <IPCClass>@synsicris.subject.ipc@</IPCClass>
-                    <Abstract>@dc.description.abstract@</Abstract>
-                    <Language>@dc.language.iso@</Language>
-                </Import>
+				<!-- attributes from the import accordion -->
+				<Import>
+					<PatentNumber>@dc.identifier.patentno@</PatentNumber>
+					<ApprovalDate>@dcterms.dateAccepted@</ApprovalDate>
+					<PublicationDate>@dc.date.issued@</PublicationDate>
+					<Inventor>@dc.contributor.author@</Inventor>
+					<Issuer>@dc.publisher@</Issuer>
+					<IPCClass>@synsicris.subject.ipc@</IPCClass>
+					<Abstract>@dc.description.abstract@</Abstract>
+					<Language>@dc.language.iso@</Language>
+				</Import>
 
-                <!-- attributes from the dc-contributor-author group -->
+				<!-- attributes from the dc-contributor-author group -->
 
-                <Contributor>
-                    @group.dc-contributor-author.start@
-                      <Index>
-                            <Author>@dc.contributor.author@</Author>
-                            <Affiliation>@oairecerif.author.affiliation@</Affiliation>
+				<Contributor>
+					@group.dc-contributor-author.start@
+					  <Index>
+							<Author>@dc.contributor.author@</Author>
+							<Affiliation>@oairecerif.author.affiliation@</Affiliation>
             </Index>
-                    @group.dc-contributor-author.end@
-                </Contributor>
+					@group.dc-contributor-author.end@
+				</Contributor>
 
-            </Index>
+			</Index>
 
-        @relation.Patent.end@
-    </Patent>
+		@relation.Patent.end@
+	</Patent>
 
-    <!--########################################################################-->
+	<!--########################################################################-->
   <!-- attributes from the fundings entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
 
   <Funding>
-      @relation.Funding.start@
+	  @relation.Funding.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Name>@dc.title@</Name>
+				<!-- direct attributes (basic accordion) -->
+				<Name>@dc.title@</Name>
 
-            </Index>            
+			</Index>			
 
-        @relation.Funding.end@
-    </Funding>
+		@relation.Funding.end@
+	</Funding>
 
-    <!--########################################################################-->
-    <!-- attributes from the project partners entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
+	<!-- attributes from the project partners entity (based on the discovery.xml) -->
+	<!--########################################################################-->
 
-    <ProjectPartner>
-        @relation.projectpartner.start@
+	<ProjectPartner>
+		@relation.projectpartner.start@
 
-          <Index>
+		  <Index>
 
-              <!-- direct attributes (basic accordion) -->
-                <Acronym>@oairecerif.acronym@</Acronym>
-                <EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
-                <FieldOfActivity>@dc.type@</FieldOfActivity>
-                <Destatis>@synsicris.subject.destatis@</Destatis>
-                <NACE>@synsicris.subject.nace@</NACE>
-                <PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+			  <!-- direct attributes (basic accordion) -->
+				<Acronym>@oairecerif.acronym@</Acronym>
+				<EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
+				<FieldOfActivity>@dc.type@</FieldOfActivity>
+				<Destatis>@synsicris.subject.destatis@</Destatis>
+				<NACE>@synsicris.subject.nace@</NACE>
+				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
 
-              <!-- attributes from the import accordion -->
-                <Import>
-                    <ParentOrganisation>@organization.parentOrganisation@</ParentOrganisation>
-                    <OrganisationName>@dc.title@</OrganisationName>
-                    <PostCode>@synsicris.address.addressPostcode@</PostCode>
-                    <City>@synsicris.address.addressCity@</City>
-                    <Country>@organization.address.addressCountry@</Country>
-                    <WebAddress>@oairecerif.identifier.url@</WebAddress>
-                    <OrganisationType>@synsicris.type.orgform@</OrganisationType>
-                </Import>
+			  <!-- attributes from the import accordion -->
+				<Import>
+					<ParentOrganisation>@organization.parentOrganisation@</ParentOrganisation>
+					<OrganisationName>@dc.title@</OrganisationName>
+					<PostCode>@synsicris.address.addressPostcode@</PostCode>
+					<City>@synsicris.address.addressCity@</City>
+					<Country>@organization.address.addressCountry@</Country>
+					<WebAddress>@oairecerif.identifier.url@</WebAddress>
+					<OrganisationType>@synsicris.type.orgform@</OrganisationType>
+				</Import>
 
-                <!-- attributes from the import lead accordion -->
-                <ImportLead>
-                    <Name>@synsicris.personleader@</Name>
-                    <Degree>@synsicris.personleader.degree@</Degree>
-                    <Gender>@synsicris.personleader.gender@</Gender>
-                    <Phone>@synsicris.personleader.phone@</Phone>
-                    <EMail>@synsicris.personleader.email@</EMail>
-                </ImportLead>
+				<!-- attributes from the import lead accordion -->
+				<ImportLead>
+					<Name>@synsicris.personleader@</Name>
+					<Degree>@synsicris.personleader.degree@</Degree>
+					<Gender>@synsicris.personleader.gender@</Gender>
+					<Phone>@synsicris.personleader.phone@</Phone>
+					<EMail>@synsicris.personleader.email@</EMail>
+				</ImportLead>
 
       </Index>
 
-      @relation.projectpartner.end@
-    </ProjectPartner>
+	  @relation.projectpartner.end@
+	</ProjectPartner>
 
-    <!--########################################################################-->
-    <!-- attributes from the cooperation partners entity (based on the discovery.xml) -->
-    <!--########################################################################-->
+	<!--########################################################################-->
+	<!-- attributes from the cooperation partners entity (based on the discovery.xml) -->
+	<!--########################################################################-->
 
-    <CooperationPartner>
-        @relation.cooperationpartner.start@
+	<CooperationPartner>
+		@relation.cooperationpartner.start@
 
-          <Index>
+		  <Index>
 
-              <!-- direct attributes (basic accordion) -->
-                <CooperationType>@synsicris.type.cooperation@</CooperationType>
-                <FieldOfActivity>@dc.type@</FieldOfActivity>
-                <NACE>@synsicris.subject.nace@</NACE>
-                <Destatis>@synsicris.subject.destatis@</Destatis>
-                <PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
-                <ProjectContribution>@synsicris.description.contribution@</ProjectContribution>
+			  <!-- direct attributes (basic accordion) -->
+				<CooperationType>@synsicris.type.cooperation@</CooperationType>
+				<FieldOfActivity>@dc.type@</FieldOfActivity>
+				<NACE>@synsicris.subject.nace@</NACE>
+				<Destatis>@synsicris.subject.destatis@</Destatis>
+				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+				<ProjectContribution>@synsicris.description.contribution@</ProjectContribution>
 
-              <!-- attributes from the organisation unit accordion -->
-                <OrganisationUnit>
-                    <OrganisationName>@dc.title@</OrganisationName>
-                    <PostCode>@synsicris.address.addressPostCode@</PostCode>
-                    <City>@synsicris.address.addressCity@</City>
-                    <Country>@organization.address.addressCountry@</Country>
-                    <WebAddress>@oairecerif.identifier.url@</WebAddress>
-                    <OrganisationType>@synsicris.type.orgform@</OrganisationType>
-                </OrganisationUnit>
+			  <!-- attributes from the organisation unit accordion -->
+				<OrganisationUnit>
+					<OrganisationName>@dc.title@</OrganisationName>
+					<PostCode>@synsicris.address.addressPostCode@</PostCode>
+					<City>@synsicris.address.addressCity@</City>
+					<Country>@organization.address.addressCountry@</Country>
+					<WebAddress>@oairecerif.identifier.url@</WebAddress>
+					<OrganisationType>@synsicris.type.orgform@</OrganisationType>
+				</OrganisationUnit>
 
-          </Index>
+		  </Index>
 
-        @relation.cooperationpartner.end@
-    </CooperationPartner>
+		@relation.cooperationpartner.end@
+	</CooperationPartner>
 
-    <!--########################################################################-->
-    <!-- attributes from the target groups entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the target groups entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <TargetGroup>
-        @relation.targetgroup.start@
+	<TargetGroup>
+		@relation.targetgroup.start@
 
       <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <ProjectRelevance>@synsicris.description.targetgroup@</ProjectRelevance>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<ProjectRelevance>@synsicris.description.targetgroup@</ProjectRelevance>
 
-                <!-- attributes from the classification accordion -->
-                <Classification>
-                    <FieldOfActivity>@dc.type@</FieldOfActivity>
-                    <NACE>@synsicris.subject.nace@</NACE>
-                    <BusinessSize>@synsicris.subject.enterprise@</BusinessSize>
-                    <PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
-                    <LocationType>@synsicris.subject.urbanrural@</LocationType>
-                </Classification>
+				<!-- attributes from the classification accordion -->
+				<Classification>
+					<FieldOfActivity>@dc.type@</FieldOfActivity>
+					<NACE>@synsicris.subject.nace@</NACE>
+					<BusinessSize>@synsicris.subject.enterprise@</BusinessSize>
+					<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+					<LocationType>@synsicris.subject.urbanrural@</LocationType>
+				</Classification>
 
-                <!-- associated steps -->
-                <Step>
-                    @relation.step.start@
-                        <Index>
+				<!-- associated steps -->
+				<Step>
+					@relation.step.start@
+						<Index>
 
-                            <!-- direct attributes (basic accordion) -->
-                            <Partner>@synsicris.relation.partner@</Partner>
-                            <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                            <Title>@dc.title@</Title>
-                            <Type>@dc.type@</Type>
-                            <Date>@synsicris.date@</Date>
-                            <Description>@dc.description@</Description>
+							<!-- direct attributes (basic accordion) -->
+							<Partner>@synsicris.relation.partner@</Partner>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Title>@dc.title@</Title>
+							<Type>@dc.type@</Type>
+							<Date>@synsicris.date@</Date>
+							<Description>@dc.description@</Description>
 
-                        </Index>
-                    @relation.step.end@
-                </Step>
+						</Index>
+					@relation.step.end@
+				</Step>
 
-                <!-- associated innovation potential -->
-                <InnovationPotential>
-                    @relation.innovationpotential.start@
+				<!-- associated innovation potential -->
+				<InnovationPotential>
+					@relation.innovationpotential.start@
 
-                        <Index>
+						<Index>
 
-                            <!-- direct attributes (basic accordion) -->
-                            <Title>@dc.title@</Title>
-                            <Type>@dc.type@</Type>
-                            <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                            <Description>@dc.description@</Description>
+							<!-- direct attributes (basic accordion) -->
+							<Title>@dc.title@</Title>
+							<Type>@dc.type@</Type>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Description>@dc.description@</Description>
 
-                            <!-- attributes from the Applicability accordion -->
-                            <Applicability>
-                                <Novelty>@synsicris.description.applicability1@</Novelty>
-                                <Efficiency>@synsicris.description.applicability2@</Efficiency>
-                                <Practicability>@synsicris.description.applicability3@</Practicability>
-                                <Requirements>@synsicris.description.applicability4@</Requirements>
-                                <Prospects>@synsicris.description.applicability5@</Prospects>
-                            </Applicability>
+							<!-- attributes from the Applicability accordion -->
+							<Applicability>
+								<Novelty>@synsicris.description.applicability1@</Novelty>
+								<Efficiency>@synsicris.description.applicability2@</Efficiency>
+								<Practicability>@synsicris.description.applicability3@</Practicability>
+								<Requirements>@synsicris.description.applicability4@</Requirements>
+								<Prospects>@synsicris.description.applicability5@</Prospects>
+							</Applicability>
 
-                            <!-- attributes from the RegionalScope accordion -->
-                            <RegionalScope>
-                                <PrimaryField>@synsicris.coverage.regionalprimary@</PrimaryField>
-                                <LaterDissimination>@synsicris.coverage.regionalsecondary@</LaterDissimination>
-                                <Description>@synsicris.description.regional@</Description>
-                            </RegionalScope>
+							<!-- attributes from the RegionalScope accordion -->
+							<RegionalScope>
+								<PrimaryField>@synsicris.coverage.regionalprimary@</PrimaryField>
+								<LaterDissimination>@synsicris.coverage.regionalsecondary@</LaterDissimination>
+								<Description>@synsicris.description.regional@</Description>
+							</RegionalScope>
 
-                            <!-- attributes from the SRL/TRL accordion -->
-                            <SRLTRL>
-                                <DevelopmentProjectStart>@synsicris.description.start@</DevelopmentProjectStart>
-                                <DevelopmentProjectEnd>@synsicris.description.end@</DevelopmentProjectEnd>
-                                <Selection>@synsicris.type.level@</Selection>
-                                <ReadinessProjectStart>@synsicris.level.start@</ReadinessProjectStart>
-                                <ReadinessProjectEnd>@synsicris.level.end@</ReadinessProjectEnd>
-                            </SRLTRL>
+							<!-- attributes from the SRL/TRL accordion -->
+							<SRLTRL>
+								<DevelopmentProjectStart>@synsicris.description.start@</DevelopmentProjectStart>
+								<DevelopmentProjectEnd>@synsicris.description.end@</DevelopmentProjectEnd>
+								<Selection>@synsicris.type.level@</Selection>
+								<ReadinessProjectStart>@synsicris.level.start@</ReadinessProjectStart>
+								<ReadinessProjectEnd>@synsicris.level.end@</ReadinessProjectEnd>
+							</SRLTRL>
 
-                        </Index>
+						</Index>
 
-                    @relation.innovationpotential.end@
-              </InnovationPotential>
+					@relation.innovationpotential.end@
+			  </InnovationPotential>
 
-                <!-- associated events -->
-                <Event>
-                    @relation.Event.start@
+				<!-- associated events -->
+				<Event>
+					@relation.Event.start@
 
-                        <Index>
+						<Index>
 
-                            <!-- direct attributes (basic accordion) -->
-                            <ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
-                            <Type>@dc.type@</Type>
-                            <Title>@dc.title@</Title>
-                            <Purpose>@synsicris.type.purpose@</Purpose>
-                            <Description>@dc.description@</Description>
-                            <InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-                            <StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+							<!-- direct attributes (basic accordion) -->
+							<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
+							<Type>@dc.type@</Type>
+							<Title>@dc.title@</Title>
+							<Purpose>@synsicris.type.purpose@</Purpose>
+							<Description>@dc.description@</Description>
+							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+							<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
 
-                            <!-- attributes from the Result accordion -->
-                            <Result>
-                                <StartDate>@oairecerif.event.startDate@</StartDate>
-                                <EndDate>@oairecerif.event.endDate</EndDate>
-                                <Duration>@synsicris.duration@</Duration>
-                                <ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-                                <City>@oairecerif.event.place@</City>
-                                <Country>@oairecerif.event.country@</Country>
-                            </Result>
+							<!-- attributes from the Result accordion -->
+							<Result>
+								<StartDate>@oairecerif.event.startDate@</StartDate>
+								<EndDate>@oairecerif.event.endDate</EndDate>
+								<Duration>@synsicris.duration@</Duration>
+								<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+								<City>@oairecerif.event.place@</City>
+								<Country>@oairecerif.event.country@</Country>
+							</Result>
 
-                        </Index>
+						</Index>
 
-                    @relation.Event.end@
-                </Event>
+					@relation.Event.end@
+				</Event>
 
-                <!-- associated process events -->
-                <ProcessEvent>
-                    @relation.processevent.start@
+				<!-- associated process events -->
+				<ProcessEvent>
+					@relation.processevent.start@
 
-                        <Index>
-                            <InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-                            <TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
-                            <Title>@dc.title@</Title>
-                            <Purpose>@synsicris.type.purpose@</Purpose>
-                            <Description>@dc.description@</Description>
+						<Index>
+							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
+							<Title>@dc.title@</Title>
+							<Purpose>@synsicris.type.purpose@</Purpose>
+							<Description>@dc.description@</Description>
 
-                            <!-- attributes from the frequency inline-group-->
-                            <Frequency>
-                                @group.dc-type.start@
+							<!-- attributes from the frequency inline-group-->
+							<Frequency>
+								@group.dc-type.start@
 
-                                    <Type>@dc.type@</Type>
-                                    <Duration>@synsicris.duration@</Duration>
-                                    <Frequency>@synsicris.type.frequency@</Frequency>
-                                    <Period>@synsicris.type.period@</Period>
+									<Type>@dc.type@</Type>
+									<Duration>@synsicris.duration@</Duration>
+									<Frequency>@synsicris.type.frequency@</Frequency>
+									<Period>@synsicris.type.period@</Period>
 
-                                @group.dc-type.end@
-                            </Frequency>
+								@group.dc-type.end@
+							</Frequency>
 
-                            <!-- attributes from the date inline-group-->
-                            <Date>
-                                @group.synsicris-type.start@
+							<!-- attributes from the date inline-group-->
+							<Date>
+								@group.synsicris-type.start@
 
-                                    <Title>@synsicris.title.event@</Title>
-                                    <StartDate>@oairecerif.event.startDate@</StartDate>
-                                    <EndDate>@oairecerif.event.endDate@</EndDate>
-                                    <Duration>@synsicris.duration@</Duration>
-                                    <ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-                                    <Place>@oairecerif.event.place@</Place>
-                                    <Country>@oairecerif.event.country@</Country>
+									<Title>@synsicris.title.event@</Title>
+									<StartDate>@oairecerif.event.startDate@</StartDate>
+									<EndDate>@oairecerif.event.endDate@</EndDate>
+									<Duration>@synsicris.duration@</Duration>
+									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+									<Place>@oairecerif.event.place@</Place>
+									<Country>@oairecerif.event.country@</Country>
 
-                                @group.synsicris-type.end@
-                            </Date>
-                            
-                        </Index>
+								@group.synsicris-type.end@
+							</Date>
+							
+						</Index>
 
-                    @relation.processevent.end@
-                </ProcessEvent>
+					@relation.processevent.end@
+				</ProcessEvent>
 
-          </Index>
+		  </Index>
 
-      @relation.targetgroup.end@
-    </TargetGroup>
+	  @relation.targetgroup.end@
+	</TargetGroup>
 
-    <!--########################################################################-->
-    <!-- attributes from the interaction objectives entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the interaction objectives entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <InteractionObjective>
-        @relation.ia_objective.start@
+	<InteractionObjective>
+		@relation.ia_objective.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
-            
-          </Index>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
+			
+		  </Index>
 
-      @relation.ia_objective.end@
-    </InteractionObjective>
+	  @relation.ia_objective.end@
+	</InteractionObjective>
 
-    <!--########################################################################-->
-    <!-- attributes from the negative side effects entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the negative side effects entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <NegativeSideEffect>
-        @relation.neg_sideeffect.start@
+	<NegativeSideEffect>
+		@relation.neg_sideeffect.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
-                <TransitionArea>@synsicris.type.transform@</TransitionArea>
-                <Evidence>@synsicris.type.evidence@</Evidence>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
+				<TransitionArea>@synsicris.type.transform@</TransitionArea>
+				<Evidence>@synsicris.type.evidence@</Evidence>
 
-                <!-- attributes from dc.type inline group -->
-                <Type>
-                    @group.dc-type.start@
-                    <Index>
-                        <CoreElement>@dc.type@</CoreElement>
-                        <Intensity>@synsicris.type.intensity@</Intensity>
-                        <Description>@synsicris.description.neg@</Description>
-                    </Index>
-                    @group.dc-type.end@
-                </Type>
+				<!-- attributes from dc.type inline group -->
+				<Type>
+					@group.dc-type.start@
+					<Index>
+						<CoreElement>@dc.type@</CoreElement>
+						<Intensity>@synsicris.type.intensity@</Intensity>
+						<Description>@synsicris.description.neg@</Description>
+					</Index>
+					@group.dc-type.end@
+				</Type>
 
-          </Index>
+		  </Index>
 
-      @relation.neg_sideeffect.end@
-    </NegativeSideEffect>
+	  @relation.neg_sideeffect.end@
+	</NegativeSideEffect>
 
-    <!--########################################################################-->
-    <!-- attributes from the contribution funding programmes entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the contribution funding programmes entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <ContributionFundingProgramme>
-        @relation.contribution_fundingprogramme.start@
+	<ContributionFundingProgramme>
+		@relation.contribution_fundingprogramme.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
 
-            </Index>
+			</Index>
 
-        @relation.contribution_fundingprogramme.end@
-    </ContributionFundingProgramme>
+		@relation.contribution_fundingprogramme.end@
+	</ContributionFundingProgramme>
 
-    <!--########################################################################-->
-    <!-- attributes from the expected societal impact entity (based on the discovery.xml) -->
+	<!--########################################################################-->
+	<!-- attributes from the expected societal impact entity (based on the discovery.xml) -->
   <!--########################################################################-->
 
-    <ExpectedSocietalImpact>
-        @relation.exp_societalimpact.start@
+	<ExpectedSocietalImpact>
+		@relation.exp_societalimpact.start@
 
-          <Index>
+		  <Index>
 
-                <!-- direct attributes (basic accordion) -->
-                <Title>@dc.title@</Title>
-                <Description>@dc.description@</Description>
-                <TransitionArea>@synsicris.type.transform@</TransitionArea>
-                <Evidence>@synsicris.type.evidence@</Evidence>
+				<!-- direct attributes (basic accordion) -->
+				<Title>@dc.title@</Title>
+				<Description>@dc.description@</Description>
+				<TransitionArea>@synsicris.type.transform@</TransitionArea>
+				<Evidence>@synsicris.type.evidence@</Evidence>
 
-                <!-- attributes from dc.type inline group -->
-                <Type>
-                    @group.dc-type.start@
-                    <Index>
+				<!-- attributes from dc.type inline group -->
+				<Type>
+					@group.dc-type.start@
+					<Index>
 
-                        <CoreElement>@dc.type@</CoreElement>
-                        <Intensity>@synsicris.type.intensity@</Intensity>
-                        <Description>@synsicris.description.pos@</Description>
+						<CoreElement>@dc.type@</CoreElement>
+						<Intensity>@synsicris.type.intensity@</Intensity>
+						<Description>@synsicris.description.pos@</Description>
 
-                    </Index>
-                    @group.dc-type.end@
-                </Type>
+					</Index>
+					@group.dc-type.end@
+				</Type>
 
-          </Index>
+		  </Index>
 
-        @relation.exp_societalimpact.end@
+		@relation.exp_societalimpact.end@
   </ExpectedSocietalImpact>
 
 </Project>

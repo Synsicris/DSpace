@@ -155,7 +155,7 @@
         <constructor-arg name="type" value="jpeg"/>
         <constructor-arg name="scale" value="1"/>
         <constructor-arg name="waitForElement"><null/></constructor-arg>
-        <constructor-arg name="delay" value="3"/>
+        <constructor-arg name="delay" value="5"/>
         <constructor-arg name="timeout" value="30"/>
         <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
     </bean>

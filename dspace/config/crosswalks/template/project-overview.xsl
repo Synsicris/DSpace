@@ -3,8 +3,6 @@
 								xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 								xmlns:fo="http://www.w3.org/1999/XSL/Format"
 								xmlns:cerif="https://www.openaire.eu/cerif-profile/1.1/"
-								xmlns:fox="http://xmlgraphics.apache.org/fop/extensions"
-              	xmlns:pdf="http://xmlgraphics.apache.org/fop/extensions/pdf"
 								exclude-result-prefixes="fo">
 	
 <!--########################################################################-->
@@ -341,12 +339,6 @@
 						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
 					</xsl:call-template>
 
-					<!-- graphs -->
-					<xsl:call-template name="graphs">
-						<xsl:with-param name="imageDir" select="$imageDir"/>					   
-					</xsl:call-template>
-
-
 					<!-- contents -->
 					<xsl:call-template name="project"/>
 					<xsl:call-template name="project-partner-part1"/>
@@ -447,10 +439,6 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 					
-          <xsl:call-template name="workingplan-screenshots">
-            <xsl:with-param name="imageDir" select="$imageDir"/>
-          </xsl:call-template>
-
 				  <!-- sub sub section title - work packages and tasks -->					
 					<xsl:call-template name="title">
 						<xsl:with-param name="title" select="'3.1.2	Arbeitspakete und Arbeiten'"/>
@@ -729,14 +717,6 @@
 
 			</fo:page-sequence>
 
-    <!--==========================================================--> 
-		<!-- PDF EMBEDDING-->
-    <!--==========================================================--> 
-
-			<xsl:call-template name="embedded-pdf">
-				<xsl:with-param name="imageDir" select="$imageDir"/>
-			</xsl:call-template>
-
 		</fo:root>
 	</xsl:template>
 
@@ -937,10 +917,6 @@
     <!-- handle case if just one impact pathway exists -->
 			<xsl:if test="count(cerif:ImpactPathway/cerif:Index) = 1">
 
-      <xsl:call-template name="impactpathway-screenshots">
-        <xsl:with-param name="imageDir" select="$imageDir"/>
-      </xsl:call-template>
-
 			<xsl:call-template name="key-value-single">
 				<xsl:with-param name="key" select="$lang.description"/>
 				<xsl:with-param name="value" select="cerif:ImpactPathway/cerif:Index/cerif:Description"/>
@@ -955,10 +931,6 @@
 					<xsl:call-template name="key-only">  
 						<xsl:with-param name="key" select="cerif:Title"/>
 					</xsl:call-template>	
-
-					<xsl:call-template name="impactpathway-screenshots">
-						<xsl:with-param name="imageDir" select="$imageDir"/>
-					</xsl:call-template>
 
 					<xsl:call-template name="key-value-single">
 						<xsl:with-param name="key" select="$lang.description"/>
@@ -4509,114 +4481,4 @@
 		</xsl:if>
 	
 	</xsl:template>
-
-<!--==============================================================-->
-<!-- embedded PDFs -->
-<!--==============================================================-->
-
-	<xsl:template name="embedded-pdf">
-		<xsl:param name="imageDir"/>
-
-		<xsl:if test="cerif:EmbeddedPdfs">
-			<xsl:for-each select="cerif:EmbeddedPdfs/cerif:EmbeddedPdf">
-				<xsl:variable name="pdfPath" select="concat('file:',$imageDir,'/',current())"/>
-				  <fox:external-document content-type="pdf"
-					                       content-width="scale-to-fit"
-																 width="24cm">
-
-					<xsl:attribute name="src">
-	          <xsl:value-of select="$pdfPath"/>
-	        </xsl:attribute>
-
-				</fox:external-document>
-			</xsl:for-each>
-		</xsl:if>
-
-	</xsl:template>
-	
-<!--==============================================================-->
-<!-- graphs -->
-<!--==============================================================-->
-
-	<xsl:template name="graphs">
-	  <xsl:param name="imageDir"/>
-
-	  <xsl:if test="cerif:Graphs">
-			<xsl:for-each select="cerif:Graphs/cerif:Graph">
-						<xsl:variable name="graphPath" select="concat('file:',$imageDir,'/',current())"/>
-						<fo:block font-weight="bold" text-align="center" >
-
-							<xsl:call-template name="image-print">
-								<xsl:with-param name="imageDir" select="$imageDir"/>
-								<xsl:with-param name="nodeValue" select="current()"/>
-							</xsl:call-template>
-
-						</fo:block>
-			</xsl:for-each>
-
-	  </xsl:if>
-	</xsl:template>
-
-<!--==============================================================-->
-<!-- screenshots of the impact pathway -->
-<!--==============================================================-->
-
-	<xsl:template name="impactpathway-screenshots">
-		<xsl:param name="imageDir"/>
-
-			<xsl:if test="cerif:ImpactPathway">
-				<xsl:for-each select="cerif:ImpactPathway/cerif:Screenshots/cerif:Screenshot">
-					<fo:block font-weight="bold" text-align="center" >
-
-						<xsl:call-template name="image-print">
-						<xsl:with-param name="imageDir" select="$imageDir"/>
-						<xsl:with-param name="nodeValue" select="current()"/>
-						</xsl:call-template>
-
-					</fo:block>
-				</xsl:for-each>
-				</xsl:if>
-
-		</xsl:template>
-
-<!--==============================================================-->
-<!-- screenshots of the working plan -->
-<!--==============================================================-->
-
-	<xsl:template name="workingplan-screenshots">
-		<xsl:param name="imageDir"/>
-
-		<xsl:if test="cerif:WorkPackage">
-			<xsl:for-each select="cerif:WorkPackage/cerif:Screenshots/cerif:Screenshot">
-				<fo:block font-weight="bold" text-align="center" >
-
-					<xsl:call-template name="image-print">
-					<xsl:with-param name="imageDir" select="$imageDir"/>
-					<xsl:with-param name="nodeValue" select="current()"/>
-					</xsl:call-template>
-
-				</fo:block>
-			</xsl:for-each>
-
-		</xsl:if>
-
-	</xsl:template>
-
-<!--==============================================================-->
-<!-- image print -->
-<!--==============================================================-->
-
-	<xsl:template name="image-print">
-		<xsl:param name="imageDir"/>
-		<xsl:param name="nodeValue"/>
-		<xsl:variable name="imagePath" select="concat('file:',$imageDir,'/',$nodeValue)"/>
-
-		<fo:external-graphic content-height="scale-to-fit" content-width="16cm" scaling="uniform">
-			<xsl:attribute name="src">
-				<xsl:value-of select="$imagePath"/>
-			</xsl:attribute>
-		</fo:external-graphic>
-
-	</xsl:template>
-
 </xsl:stylesheet>

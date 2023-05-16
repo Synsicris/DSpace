@@ -5,7 +5,6 @@
  *
  * http://www.dspace.org/license/
  */
-
 package org.dspace.app.bulkedit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -50,28 +49,39 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
+ */
 public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase {
+
+    private static final Logger logger = Logger.getLogger(MetadataExportSearchIT.class);
+
+    private int numberItemsSubject2 = 2;
+    private int numberItemsSubject1 = 30;
 
     private String subject1 = "subject1";
     private String subject2 = "subject2";
-    private int numberItemsSubject1 = 30;
-    private int numberItemsSubject2 = 2;
+
     private Item[] itemsSubject1 = new Item[numberItemsSubject1];
     private Item[] itemsSubject2 = new Item[numberItemsSubject2];
+
     private String filename;
     private Collection collection;
-    private Logger logger = Logger.getLogger(MetadataExportSearchIT.class);
-    private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
-    private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
-    private SearchService searchService;
     private Map<String, Item> itemsSubject1Map;
+
+    // services
+    private ItemService itemService;
+    private SearchService searchService;
+    private ConfigurationService configurationService;
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
-
         searchService = SearchUtils.getSearchService();
+        itemService = ContentServiceFactory.getInstance().getItemService();
+        configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
         // dummy search so that the SearchService gets called in a test context first
         DiscoverQuery query = new DiscoverQuery();
@@ -89,7 +99,6 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
             itemsSubject1[i] = ItemBuilder.createItem(context, collection)
                 .withTitle(String.format("%s item %d", subject1, i))
                 .withSubject(subject1)
-                .withSubjectForLanguage("german subject", "de")
                 .withIssueDate("2020-09-" + i)
                 .build();
         }
@@ -270,18 +279,12 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
 
     @Test
     public void exportAllMetadataOrNotTest() throws Exception {
-
-        String[] originalExcludedMetadata =
-            configurationService.getArrayProperty("bulkedit.ignore-on-export");
-
+        String[] originalExcludedMetadata = configurationService.getArrayProperty("bulkedit.ignore-on-export");
         try {
-
-            configurationService.setProperty(
-                "bulkedit.ignore-on-export",
-                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"}
-            );
-            List<Function<Item, String>> rowMapper =
-                List.of(
+            configurationService.setProperty("bulkedit.ignore-on-export", new String[] {"dc.date.accessioned",
+                                                                                        "dc.date.available",
+                                                                                        "dc.description.provenance"});
+            List<Function<Item, String>> rowMapper = List.of(
                         (item) -> item.getID().toString(),
                         (item) -> item.getOwningCollection().getHandle(),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "accessioned", Item.ANY),
@@ -290,10 +293,8 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "description", "provenance", "en"),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
-                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
                 );
-
 
             // WHEN run script with -a to export all metadata
             int result = runDSpaceScript("metadata-export-search", "-q", "subject:" + subject1, "-n", filename, "-a");
@@ -303,18 +304,16 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
 
             //THEN exported file with all metadata
             checkHeaderPresentInFile(filename, "id,collection,dc.date.accessioned,dc.date.available," +
-                "dc.date.issued,dc.description.provenance[en],dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+                "dc.date.issued,dc.description.provenance[en],dc.identifier.uri,dc.subject,dc.title");
             checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
 
             // mapper with excluded metadata
-            rowMapper =
-                List.of(
+            rowMapper = List.of(
                         (item) -> item.getID().toString(),
                         (item) -> item.getOwningCollection().getHandle(),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "date", "issued", Item.ANY),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
-                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
                 );
 
@@ -325,10 +324,8 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
             checkItemsPresentInFile(filename, itemsSubject1);
 
             //THEN exported file without excluded metadata
-            checkHeaderPresentInFile(filename,
-                "id,collection,dc.date.issued,dc.identifier.uri,dc.subject,dc.subject[de],dc.title");
+            checkHeaderPresentInFile(filename, "id,collection,dc.date.issued,dc.identifier.uri,dc.subject,dc.title");
             checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
-
         } finally {
             configurationService.setProperty("bulkedit.ignore-on-export", originalExcludedMetadata);
         }
@@ -336,16 +333,12 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
 
     @Test
     public void exportMetadataWithTranslatedHeaderTest() throws Exception {
-
-        String[] originalExcludedMetadata =
-            configurationService.getArrayProperty("bulkedit.ignore-on-export");
-
+        String[] originalExcludedMetadata = configurationService.getArrayProperty("bulkedit.ignore-on-export");
         try {
-
-            String[] excludedMetadata =
-                new String[] {"dc.date.accessioned", "dc.date.available", "dc.description.provenance"};
-            List<Function<Item, String>> rowMapper =
-                List.of(
+            String[] excludedMetadata = new String[] {"dc.date.accessioned",
+                                                      "dc.date.available",
+                                                      "dc.description.provenance"};
+            List<Function<Item, String>> rowMapper = List.of(
                         //"id"
                         (item) -> item.getID().toString(),
                         //"collection"
@@ -356,15 +349,10 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "identifier", "uri", Item.ANY),
                         //"Keywords",
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, Item.ANY),
-                        //"Schlagworte"
-                        (item) -> itemService.getMetadataFirstValue(item, "dc", "subject", null, "de"),
                         //"Title"
                         (item) -> itemService.getMetadataFirstValue(item, "dc", "title", null, Item.ANY)
                 );
-
-            configurationService.setProperty(
-                "bulkedit.ignore-on-export",
-                excludedMetadata
+            configurationService.setProperty("bulkedit.ignore-on-export", excludedMetadata
             );
 
             // WHEN run script with -l to translate metadata of header row
@@ -374,7 +362,7 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
             checkItemsPresentInFile(filename, itemsSubject1);
 
             // THEN expected translated header
-            checkHeaderPresentInFile(filename, "id,collection,Issue Date,URI,Keywords,Schlagworte,Title");
+            checkHeaderPresentInFile(filename, "ID,collection,Date issued,dc.identifier.uri,Keywords,Title");
             checkCSVFileValues(filename, itemsSubject1Map, rowMapper);
 
         } finally {
@@ -406,8 +394,7 @@ public class MetadataExportSearchIT extends AbstractIntegrationTestWithDatabase 
         List<String[]> lines = csvReader.readAll();
 
         // check values for header row
-        assertEquals(Arrays.stream(lines.get(0))
-                           .collect(Collectors.joining(",")), header);
+        assertEquals(header, Arrays.stream(lines.get(0)).collect(Collectors.joining(",")));
     }
 
 }

@@ -7,6 +7,7 @@
  */
 package org.dspace.submit.consumer.service;
 import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 
 import java.sql.SQLException;
@@ -125,7 +126,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Cannot change policy", e);
         }
     }
 
@@ -380,15 +381,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 isFunding ? FUNDING_MEMBERS_GROUP_TEMPLATE : PROJECT_MEMBERS_GROUP_TEMPLATE,
                 community.getID().toString()
             );
-        Group memberGrouoOfProjectCommunity = groupService.findByName(context, memberGroupName);
+        Group memberGroupOfProjectCommunity = groupService.findByName(context, memberGroupName);
         boolean isAdmin = authorizeService.isAdmin(context);
         boolean isCommunityAdmin = authorizeService.authorizeActionBoolean(context, community, Constants.ADMIN, false);
-        boolean isGroupMember = groupService.isMember(context, currentUser, memberGrouoOfProjectCommunity);
+        boolean isGroupMember = groupService.isMember(context, currentUser, memberGroupOfProjectCommunity);
 
         if (isAdmin || isGroupMember || isCommunityAdmin) {
             itemService.replaceMetadata(
                 context, item, "cris", "policy", "group", null, memberGroupName,
-                memberGrouoOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0
+                memberGroupOfProjectCommunity.getID().toString(), Choices.CF_ACCEPTED, 0
             );
             return true;
         }
@@ -432,8 +433,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             if (Objects.isNull(group)) {
                 return;
             }
-            itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_GROUP.schema,
-                    ProjectConstants.MD_POLICY_GROUP.element, ProjectConstants.MD_POLICY_GROUP.qualifier,
+            itemService.replaceMetadata(context, item, MD_POLICY_GROUP.schema,
+                    MD_POLICY_GROUP.element, MD_POLICY_GROUP.qualifier,
                     null, group.getName(), group.getID().toString(), Choices.CF_ACCEPTED, 0);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -6,10 +6,11 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.authorization.impl;
+
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.app.rest.authorization.AuthorizationFeature;
@@ -69,18 +70,13 @@ public class ItemGrantsFeature implements AuthorizationFeature {
             if (isSharedOrFunder(context, item) || isForbbidenEntityType(context, item)) {
                 return false;
             }
-            EPerson submitter = item.getSubmitter();
             Community project = item.getOwningCollection().getCommunities().get(0);
-            if (Objects.nonNull(submitter) && Objects.nonNull(project)) {
-                List<Community> fundings = projectConsumerService.getAllFundingsByUser(context,submitter,project);
-                // to allow edit grants submitter MUST be member of only one funding within a project
-                if (Objects.isNull(fundings) || fundings.size() != 1) {
-                    return false;
-                }
-                boolean isCoordinatorOfFunding = isCoordinatorMemberOfFunding(context, fundings.get(0), currentUser);
-                if (isCoordinatorOfFunding || submitter.getID().equals(currentUser.getID())) {
-                    return true;
-                }
+            if (Objects.nonNull(project)) {
+                return Optional.ofNullable(
+                        projectConsumerService.getFundingCommunityByUser(context, currentUser, project)
+                    )
+                    .map(funding -> isCoordinatorMemberOfFunding(context, funding, currentUser))
+                    .orElse(false);
             }
         }
         return false;
@@ -110,13 +106,15 @@ public class ItemGrantsFeature implements AuthorizationFeature {
                 Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
     }
 
-    private boolean isCoordinatorMemberOfFunding(Context context, Community community, EPerson submitter)
-            throws SQLException {
-
-        Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community,
+    private boolean isCoordinatorMemberOfFunding(Context context, Community community, EPerson submitter) {
+        try {
+            Group group = projectConsumerService.getFundingCommunityGroupByRole(context, community,
                 ProjectConstants.COORDINATORS_ROLE);
-        if (!Objects.isNull(group) && groupService.isMember(context, submitter, group)) {
-            return true;
+            if (!Objects.isNull(group) && groupService.isMember(context, submitter, group)) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot retrieve the related funding group", e);
         }
         return false;
     }

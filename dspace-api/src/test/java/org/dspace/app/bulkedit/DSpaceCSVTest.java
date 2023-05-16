@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
@@ -189,7 +190,7 @@ public class DSpaceCSVTest extends AbstractUnitTest {
             assertThat(headerOne, equalTo("id,collection,dc.contributor.author,dc.title,dc.title[de]"));
 
             // WHEN getting InputStream with prefix param
-            InputStream inputStreamTwo = dCSV.getInputStream("metadata.");
+            InputStream inputStreamTwo = dCSV.getInputStream("metadata.", new Locale("en"));
             String headerTwo = new BufferedReader(new InputStreamReader(inputStreamTwo, StandardCharsets.UTF_8))
                 .lines()
                 .findFirst()

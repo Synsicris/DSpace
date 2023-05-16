@@ -60,7 +60,10 @@ import org.dspace.services.factory.DSpaceServicesFactory;
  */
 public class DSpaceCSV implements Serializable {
 
+    private static final long serialVersionUID = -8275326043332718661L;
+
     protected static final String COLLECTION = "collection";
+    private static final String CSV_EXPORT_LABELS_FILE_NAME = "csv-export-labels";
 
     /**
      * The headings of the CSV file
@@ -651,12 +654,12 @@ public class DSpaceCSV implements Serializable {
      * @return  The InputStream created from the CSVLines in this DSpaceCSV
      * with translated headings metadata
      */
-    public InputStream getInputStream(String prefix) {
+    public InputStream getInputStream(String prefix, Locale locale) {
         StringBuilder stringBuilder = new StringBuilder();
         int index = 0;
         for (String csvLine : getCSVLinesAsStringArray()) {
             if (index == 0) {
-                csvLine = translateHeaderLine(csvLine, prefix);
+                csvLine = translateHeaderLine(csvLine, prefix, locale);
             }
             stringBuilder.append(csvLine).append("\n");
             index++;
@@ -664,26 +667,20 @@ public class DSpaceCSV implements Serializable {
         return IOUtils.toInputStream(stringBuilder.toString(), StandardCharsets.UTF_8);
     }
 
-    private String translateHeaderLine(String csvLine, String prefix) {
+    private String translateHeaderLine(String csvLine, String prefix, Locale locale) {
         String[] headers =  csvLine.split(fieldSeparator);
 
         for (int i = 0; i < headers.length; i++) {
-            headers[i] = getMessage(prefix, headers[i]);
+            headers[i] = getMessage(prefix, headers[i], locale);
         }
 
         return StringUtils.joinWith(fieldSeparator, headers);
     }
 
-    private String getMessage(String prefix, String metadata) {
-        String message = I18nUtil.getMessage(prefix + metadata);
-
-        if (metadata.contains("[") && metadata.contains("]")) {
-            String lang = metadata.substring(metadata.indexOf("[") + 1, metadata.indexOf("]"));
-            String metadataWithoutLang = prefix + metadata.replace("[" + lang + "]", "");
-            message = I18nUtil.getMessage(metadataWithoutLang , new Locale(lang));
-        }
-
-        return message.replace(prefix, "");
+    private String getMessage(String prefix, String metadata, Locale locale) {
+        String key = prefix + metadata;
+        String message = I18nUtil.getMessageByFileName(CSV_EXPORT_LABELS_FILE_NAME, key, locale);
+        return message.replace(prefix, StringUtils.EMPTY);
     }
 
     /**

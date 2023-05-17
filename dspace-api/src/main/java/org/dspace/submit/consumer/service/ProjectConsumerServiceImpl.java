@@ -6,18 +6,23 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
+import static org.dspace.project.util.ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections4.IteratorUtils;
@@ -204,7 +209,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 template = FUNDING_MEMBERS_GROUP_TEMPLATE;
                 break;
             default:
-                template = ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
+                template = FUNDING_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, fundingCommunity.getID().toString());
@@ -231,13 +236,13 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 template = PROJECT_MEMBERS_GROUP_TEMPLATE;
                 break;
             case ProjectConstants.FUNDERS_ROLE:
-                template = ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
+                template = PROJECT_FUNDERS_GROUP_TEMPLATE;
                 break;
             case ProjectConstants.READERS_ROLE:
-                template = ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
+                template = PROJECT_READERS_GROUP_TEMPLATE;
                 break;
             default:
-                template = ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+                template = PROJECT_COORDINATORS_GROUP_TEMPLATE;
                 break;
         }
         String groupName = String.format(template, projectCommunity.getID().toString());
@@ -362,16 +367,14 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     private Community getFundingCommunity(Community projectCommunity) {
-        String fundingName =  configurationService.getProperty("project.funding-community-name");
-        List<Community> subCommunities = new ArrayList<>();
-        subCommunities.addAll(projectCommunity.getSubcommunities());
-        subCommunities.addAll(projectCommunity.getParentCommunities());
-        for (Community community : subCommunities) {
-            if (StringUtils.equals(fundingName, community.getName())) {
-                return community;
-            }
-        }
-        return null;
+        String fundingName = configurationService.getProperty("project.funding-community-name");
+        return Stream.concat(
+                projectCommunity.getSubcommunities().stream(),
+                projectCommunity.getParentCommunities().stream()
+            )
+            .filter(community -> StringUtils.equals(fundingName, community.getName()))
+            .findFirst()
+            .orElse(null);
     }
 
     private boolean setPolicyGroup(Context context, Item item, EPerson currentUser, Community community,
@@ -462,38 +465,38 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public Community getFundingCommunityByUser(Context context, EPerson ePerson, Community projectCommunity)
             throws SQLException {
-
-        List<Community> fundings = getAllFundingsByUser(context, ePerson, projectCommunity);
-        // user MUST be member of at least one funding within a project
-        if (fundings.size() > 0) {
-            return fundings.get(0);
-        } else {
-            return null;
-        }
+        return getFundingsByUser(context, ePerson, projectCommunity).findFirst().orElse(null);
     }
 
     @Override
-    public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity)
-            throws SQLException {
-        Community fundingsParentCommunity = getFundingCommunity(projectCommunity);
-        List<Community> fundings = new ArrayList<Community>();
+    public List<Community> getAllFundingsByUser(Context context, EPerson ePerson, Community projectCommunity) {
+        return getFundingsByUser(context, ePerson, projectCommunity).collect(Collectors.toList());
+    }
 
-        if (Objects.isNull(fundingsParentCommunity)) {
-            return fundings;
-        }
+    private Stream<Community> getFundingsByUser(Context context, EPerson ePerson, Community projectCommunity) {
+        return Optional.ofNullable(getFundingCommunity(projectCommunity))
+            .map(fundingsParentCommunity ->
+                fundingsParentCommunity.getSubcommunities()
+                    .stream()
+                    .filter(community -> isMemberOfFundingMembersGroup(context, ePerson, community))
+            )
+            .orElse(Stream.of());
+    }
 
-        List<Community> subCommunities = fundingsParentCommunity.getSubcommunities();
-        for (Community community : subCommunities) {
-            StringBuilder memberGroupName = new StringBuilder("funding_")
-                                                      .append(community.getID().toString())
-                                                      .append("_members_group");
-            Group group = groupService.findByName(context, memberGroupName.toString());
-            boolean isGroupMember = groupService.isMember(context, ePerson, group);
-            if (isGroupMember) {
-                fundings.add(community);
-            }
+    protected boolean isMemberOfFundingMembersGroup(Context context, EPerson ePerson, Community community) {
+        String fundingMembersGroup =
+            String.format(
+                ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE,
+                community.getID().toString()
+            );
+        try {
+            return groupService.isMember(
+                context, ePerson,
+                groupService.findByName(context, fundingMembersGroup)
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot retrieve linked funding_members_group.", e);
         }
-        return fundings;
     }
 
     @Override

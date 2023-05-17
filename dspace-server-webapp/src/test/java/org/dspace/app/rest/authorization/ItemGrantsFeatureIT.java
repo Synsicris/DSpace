@@ -10,7 +10,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.dspace.app.rest.authorization.impl.AdministratorOfFeature;
 import org.dspace.app.rest.authorization.impl.ItemGrantsFeature;
 import org.dspace.app.rest.converter.ItemConverter;
 import org.dspace.app.rest.matcher.AuthorizationMatcher;
@@ -27,6 +26,7 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
+import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Test suite for the ItemGrants feature
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
@@ -58,8 +58,8 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
     private Collection publicationsCollection;
 
 
-    /** 
-     * this hold a reference to the test feature {@link AdministratorOfFeature}
+    /**
+     * this hold a reference to the test feature {@link ItemGrantsFeature}
      */
     private AuthorizationFeature itemGrantsFeature;
 
@@ -110,24 +110,54 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
         subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
 
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + subprojectAComm.getID().toString() + "_members_group")
-                       .addMember(ePerson1).build();
+        Group fundingMemberAGroup =
+            GroupBuilder.createGroup(context)
+               .withName(
+                   String.format(
+                       ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE,
+                       subprojectAComm.getID().toString()
+                   )
+               )
+               .addMember(ePerson1)
+               .build();
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
+        GroupBuilder.createGroup(context)
+            .withName(
+                String.format(
+                    ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE,
+                    subprojectAComm.getID().toString()
+                )
+            )
+            .addMember(ePerson1)
+            .build();
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity").build();
+        collectionSubProjectA =
+            CollectionBuilder.createCollection(context, subprojectAComm)
+                .withSubmitterGroup(fundingMemberAGroup)
+                .withName("Collection Sub Project A")
+                .build();
 
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + subprojectBComm.getID().toString() + "_members_group")
-                       .addMember(ePerson2).build();
+        subprojectBComm =
+            CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
+                .withName("Sub ProjectB of SubprojectsCommunity")
+                .build();
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectAComm)
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
+        Group subprojectBGroup =
+            GroupBuilder.createGroup(context)
+                .withName(
+                    String.format(
+                        ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE,
+                        subprojectBComm.getID().toString()
+                    )
+                )
+                .addMember(ePerson2)
+                .build();
+
+        collectionSubProjectB =
+            CollectionBuilder.createCollection(context, subprojectAComm)
+                .withSubmitterGroup(subprojectBGroup)
+                .withName("Collection Sub Project B")
+                .build();
 
         configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();

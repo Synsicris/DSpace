@@ -66,8 +66,9 @@
 				
 				<entry key="collection-xls" value-ref="xlsCrosswalkCollection"></entry>
 
-				<entry key="project-overview-pdf" value-ref="pdfCrosswalkProjectOverview"></entry>
-				<entry key="project-overview-screenshots-pdf" value-ref="pdfCrosswalkProjectScreenshotsOverview"></entry>
+        <entry key="1 - Project overview" value-ref="pdfCrosswalkProjectOverview"></entry>
+				<entry key="2 - Project overview (Screenshots)" value-ref="pdfCrosswalkProjectScreenshotsOverview"></entry>
+				
 				<!--<entry key="parentproject-pdf" value-ref="pdfCrosswalkProject"></entry> -->
 
 				<entry key="process_event-pdf" value-ref="pdfCrosswalkProcessEvent"></entry>

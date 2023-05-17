@@ -29,11 +29,25 @@ section 4.3.8
   - new template for amount currency (default Euro)
   - awarded persons and organisations each in one comma separated line
   - initiator and target groups each in one line 
-    - table does make a sense since target group a single value, not   
-      connected to donor
+    - table does make a sense since target group is a single value, 
+      not connected to donor
 
 section 4.3.9
   - uses now "title-description" template        
 
 section 3.2
   - has a table with the columns date, title and description
+
+# 2023-05-16
+general
+  - add landscape page master (preparation for impact pathway and working plan screenshots)
+  - make key colour configurable 
+  - test box approach with ruler as a replacement for table setups
+
+section 4.2
+  - removal of that subsection
+  - adaptation of the numbering of all following subsections
+
+section 4.1
+  - create overview following the example for the interaction transfer overview
+  - externalise text, also for the interaction transfer overview

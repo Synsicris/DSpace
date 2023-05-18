@@ -149,13 +149,13 @@
     </bean>
     
     <bean id="workingplan-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
-        <constructor-arg name="element" value="ds-working-plan-chart-container"/>
+        <constructor-arg name="element" value=".sidenav-container"/>
         <constructor-arg name="removeElements"><null/></constructor-arg>
         <constructor-arg name="style"><null/></constructor-arg>
         <constructor-arg name="type" value="jpeg"/>
         <constructor-arg name="scale" value="1"/>
         <constructor-arg name="waitForElement"><null/></constructor-arg>
-        <constructor-arg name="delay" value="5"/>
+        <constructor-arg name="delay" value="10"/>
         <constructor-arg name="timeout" value="30"/>
         <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
     </bean>

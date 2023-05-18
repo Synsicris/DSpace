@@ -1584,7 +1584,7 @@
 
     <xsl:template name="work-package">
 
-        <xsl:if test="cerif:WorkPackage">
+        <xsl:if test="count(cerif:WorkPackage/cerif:Index) &gt; 0">
 
             <fo:block>
 
@@ -1866,7 +1866,7 @@
 
     <xsl:template name="application">
 
-        <xsl:if test="cerif:Application">
+        <xsl:if test="count(cerif:Application/cerif:Index) &gt; 0">
 
             <xsl:for-each select="cerif:Application/cerif:Index">
 
@@ -1908,163 +1908,166 @@
                         <xsl:with-param name="value"
                             select="cerif:FreeUnit" />
                     </xsl:call-template>
+                    
+                    <xsl:if test="count(cerif:SuccessQuantification/cerif:Index) &gt; 0">
 
-                    <fo:table>
+	                    <fo:table>
+	
+	                        <fo:table-column column-number="1"
+	                            column-width="15%" />
+	                        <fo:table-column column-number="2"
+	                            column-width="15%" />
+	                        <fo:table-column column-number="3"
+	                            column-width="30%" />
+	                        <fo:table-column column-number="4"
+	                            column-width="40%" />
+	
+	                        <fo:table-header>
+	                            <fo:table-row>
+	                                <fo:table-cell border-width="{$width.border}"
+	                                    border-color="{$colour.border}" border-style="{$style.border}">
+	                                    <fo:block text-align="left"
+	                                        font-size="{$font.size.standard}"
+	                                        font-weight="{$font.weight.key-value}"
+	                                        margin-top="{$margin.top.main}"
+	                                        padding-before="{$padding.before.border}"
+	                                        padding-after="{$padding.after.border}"
+	                                        padding-start="{$padding.start.border}"
+	                                        padding-end="{$padding.end.border}"
+	                                        margin-left="{$margin.left.border}"
+	                                        margin-right="{$margin.right.border}">
+	                                        <xsl:value-of
+	                                            select="$lang.application.reference-year" />
+	                                    </fo:block>
+	                                </fo:table-cell>
+	
+	                                <fo:table-cell border-width="{$width.border}"
+	                                    border-color="{$colour.border}" border-style="{$style.border}">
+	                                    <fo:block text-align="left"
+	                                        font-size="{$font.size.standard}"
+	                                        font-weight="{$font.weight.key-value}"
+	                                        margin-top="{$margin.top.main}"
+	                                        padding-before="{$padding.before.border}"
+	                                        padding-after="{$padding.after.border}"
+	                                        padding-start="{$padding.start.border}"
+	                                        padding-end="{$padding.end.border}"
+	                                        margin-left="{$margin.left.border}"
+	                                        margin-right="{$margin.right.border}">
+	                                        <xsl:value-of select="$lang.application.quantity" />
+	                                    </fo:block>
+	                                </fo:table-cell>
+	
+	                                <fo:table-cell border-width="{$width.border}"
+	                                    border-color="{$colour.border}" border-style="{$style.border}">
+	                                    <fo:block text-align="left"
+	                                        font-size="{$font.size.standard}"
+	                                        font-weight="{$font.weight.key-value}"
+	                                        margin-top="{$margin.top.main}"
+	                                        padding-before="{$padding.before.border}"
+	                                        padding-after="{$padding.after.border}"
+	                                        padding-start="{$padding.start.border}"
+	                                        padding-end="{$padding.end.border}"
+	                                        margin-left="{$margin.left.border}"
+	                                        margin-right="{$margin.right.border}">
+	                                        <xsl:value-of
+	                                            select="$lang.application.regionaloutreach" />
+	                                    </fo:block>
+	                                </fo:table-cell>
+	
+	                                <fo:table-cell border-width="{$width.border}"
+	                                    border-color="{$colour.border}" border-style="{$style.border}">
+	                                    <fo:block text-align="left"
+	                                        font-size="{$font.size.standard}"
+	                                        font-weight="{$font.weight.key-value}"
+	                                        margin-top="{$margin.top.main}"
+	                                        padding-before="{$padding.before.border}"
+	                                        padding-after="{$padding.after.border}"
+	                                        padding-start="{$padding.start.border}"
+	                                        padding-end="{$padding.end.border}"
+	                                        margin-left="{$margin.left.border}"
+	                                        margin-right="{$margin.right.border}">
+	                                        <xsl:value-of
+	                                            select="$lang.application.success-description" />
+	                                    </fo:block>
+	                                </fo:table-cell>
+	
+	                            </fo:table-row>
+	                        </fo:table-header>
+	
+	                        <fo:table-body>
+	                            <xsl:for-each
+	                                select="cerif:SuccessQuantification/cerif:Index">
+	                                <fo:table-row>
+	                                    <fo:table-cell border-width="{$width.border}"
+	                                        border-color="{$colour.border}" border-style="{$style.border}">
+	                                        <fo:block text-align="left"
+	                                            font-size="{$font.size.standard}"
+	                                            font-weight="{$font.weight.value}"
+	                                            margin-top="{$margin.top.main}"
+	                                            padding-before="{$padding.before.border}"
+	                                            padding-after="{$padding.after.border}"
+	                                            padding-start="{$padding.start.border}"
+	                                            padding-end="{$padding.end.border}"
+	                                            margin-left="{$margin.left.border}"
+	                                            margin-right="{$margin.right.border}">
+	                                            <xsl:value-of select="cerif:ReferenceYear" />
+	                                        </fo:block>
+	                                    </fo:table-cell>
+	
+	                                    <fo:table-cell border-width="{$width.border}"
+	                                        border-color="{$colour.border}" border-style="{$style.border}">
+	                                        <fo:block text-align="left"
+	                                            font-size="{$font.size.standard}"
+	                                            font-weight="{$font.weight.value}"
+	                                            margin-top="{$margin.top.main}"
+	                                            padding-before="{$padding.before.border}"
+	                                            padding-after="{$padding.after.border}"
+	                                            padding-start="{$padding.start.border}"
+	                                            padding-end="{$padding.end.border}"
+	                                            margin-left="{$margin.left.border}"
+	                                            margin-right="{$margin.right.border}">
+	                                            <xsl:value-of select="cerif:Quantity" />
+	                                        </fo:block>
+	                                    </fo:table-cell>
+	
+	                                    <fo:table-cell border-width="{$width.border}"
+	                                        border-color="{$colour.border}" border-style="{$style.border}">
+	                                        <fo:block text-align="left"
+	                                            font-size="{$font.size.standard}"
+	                                            font-weight="{$font.weight.value}"
+	                                            margin-top="{$margin.top.main}"
+	                                            padding-before="{$padding.before.border}"
+	                                            padding-after="{$padding.after.border}"
+	                                            padding-start="{$padding.start.border}"
+	                                            padding-end="{$padding.end.border}"
+	                                            margin-left="{$margin.left.border}"
+	                                            margin-right="{$margin.right.border}">
+	                                            <xsl:value-of select="cerif:RegionalOutreach" />
+	                                        </fo:block>
+	                                    </fo:table-cell>
+	
+	                                    <fo:table-cell border-width="{$width.border}"
+	                                        border-color="{$colour.border}" border-style="{$style.border}">
+	                                        <fo:block text-align="left"
+	                                            font-size="{$font.size.standard}"
+	                                            font-weight="{$font.weight.value}"
+	                                            margin-top="{$margin.top.main}"
+	                                            padding-before="{$padding.before.border}"
+	                                            padding-after="{$padding.after.border}"
+	                                            padding-start="{$padding.start.border}"
+	                                            padding-end="{$padding.end.border}"
+	                                            margin-left="{$margin.left.border}"
+	                                            margin-right="{$margin.right.border}">
+	                                            <xsl:value-of select="cerif:SuccessDescription" />
+	                                        </fo:block>
+	                                    </fo:table-cell>
+	
+	                                </fo:table-row>
+	                            </xsl:for-each>
+	                        </fo:table-body>
+	                    </fo:table>
 
-                        <fo:table-column column-number="1"
-                            column-width="15%" />
-                        <fo:table-column column-number="2"
-                            column-width="15%" />
-                        <fo:table-column column-number="3"
-                            column-width="30%" />
-                        <fo:table-column column-number="4"
-                            column-width="40%" />
-
-                        <fo:table-header>
-                            <fo:table-row>
-                                <fo:table-cell border-width="{$width.border}"
-                                    border-color="{$colour.border}" border-style="{$style.border}">
-                                    <fo:block text-align="left"
-                                        font-size="{$font.size.standard}"
-                                        font-weight="{$font.weight.key-value}"
-                                        margin-top="{$margin.top.main}"
-                                        padding-before="{$padding.before.border}"
-                                        padding-after="{$padding.after.border}"
-                                        padding-start="{$padding.start.border}"
-                                        padding-end="{$padding.end.border}"
-                                        margin-left="{$margin.left.border}"
-                                        margin-right="{$margin.right.border}">
-                                        <xsl:value-of
-                                            select="$lang.application.reference-year" />
-                                    </fo:block>
-                                </fo:table-cell>
-
-                                <fo:table-cell border-width="{$width.border}"
-                                    border-color="{$colour.border}" border-style="{$style.border}">
-                                    <fo:block text-align="left"
-                                        font-size="{$font.size.standard}"
-                                        font-weight="{$font.weight.key-value}"
-                                        margin-top="{$margin.top.main}"
-                                        padding-before="{$padding.before.border}"
-                                        padding-after="{$padding.after.border}"
-                                        padding-start="{$padding.start.border}"
-                                        padding-end="{$padding.end.border}"
-                                        margin-left="{$margin.left.border}"
-                                        margin-right="{$margin.right.border}">
-                                        <xsl:value-of select="$lang.application.quantity" />
-                                    </fo:block>
-                                </fo:table-cell>
-
-                                <fo:table-cell border-width="{$width.border}"
-                                    border-color="{$colour.border}" border-style="{$style.border}">
-                                    <fo:block text-align="left"
-                                        font-size="{$font.size.standard}"
-                                        font-weight="{$font.weight.key-value}"
-                                        margin-top="{$margin.top.main}"
-                                        padding-before="{$padding.before.border}"
-                                        padding-after="{$padding.after.border}"
-                                        padding-start="{$padding.start.border}"
-                                        padding-end="{$padding.end.border}"
-                                        margin-left="{$margin.left.border}"
-                                        margin-right="{$margin.right.border}">
-                                        <xsl:value-of
-                                            select="$lang.application.regionaloutreach" />
-                                    </fo:block>
-                                </fo:table-cell>
-
-                                <fo:table-cell border-width="{$width.border}"
-                                    border-color="{$colour.border}" border-style="{$style.border}">
-                                    <fo:block text-align="left"
-                                        font-size="{$font.size.standard}"
-                                        font-weight="{$font.weight.key-value}"
-                                        margin-top="{$margin.top.main}"
-                                        padding-before="{$padding.before.border}"
-                                        padding-after="{$padding.after.border}"
-                                        padding-start="{$padding.start.border}"
-                                        padding-end="{$padding.end.border}"
-                                        margin-left="{$margin.left.border}"
-                                        margin-right="{$margin.right.border}">
-                                        <xsl:value-of
-                                            select="$lang.application.success-description" />
-                                    </fo:block>
-                                </fo:table-cell>
-
-                            </fo:table-row>
-                        </fo:table-header>
-
-                        <fo:table-body>
-                            <xsl:for-each
-                                select="cerif:SuccessQuantification/cerif:Index">
-                                <fo:table-row>
-                                    <fo:table-cell border-width="{$width.border}"
-                                        border-color="{$colour.border}" border-style="{$style.border}">
-                                        <fo:block text-align="left"
-                                            font-size="{$font.size.standard}"
-                                            font-weight="{$font.weight.value}"
-                                            margin-top="{$margin.top.main}"
-                                            padding-before="{$padding.before.border}"
-                                            padding-after="{$padding.after.border}"
-                                            padding-start="{$padding.start.border}"
-                                            padding-end="{$padding.end.border}"
-                                            margin-left="{$margin.left.border}"
-                                            margin-right="{$margin.right.border}">
-                                            <xsl:value-of select="cerif:ReferenceYear" />
-                                        </fo:block>
-                                    </fo:table-cell>
-
-                                    <fo:table-cell border-width="{$width.border}"
-                                        border-color="{$colour.border}" border-style="{$style.border}">
-                                        <fo:block text-align="left"
-                                            font-size="{$font.size.standard}"
-                                            font-weight="{$font.weight.value}"
-                                            margin-top="{$margin.top.main}"
-                                            padding-before="{$padding.before.border}"
-                                            padding-after="{$padding.after.border}"
-                                            padding-start="{$padding.start.border}"
-                                            padding-end="{$padding.end.border}"
-                                            margin-left="{$margin.left.border}"
-                                            margin-right="{$margin.right.border}">
-                                            <xsl:value-of select="cerif:Quantity" />
-                                        </fo:block>
-                                    </fo:table-cell>
-
-                                    <fo:table-cell border-width="{$width.border}"
-                                        border-color="{$colour.border}" border-style="{$style.border}">
-                                        <fo:block text-align="left"
-                                            font-size="{$font.size.standard}"
-                                            font-weight="{$font.weight.value}"
-                                            margin-top="{$margin.top.main}"
-                                            padding-before="{$padding.before.border}"
-                                            padding-after="{$padding.after.border}"
-                                            padding-start="{$padding.start.border}"
-                                            padding-end="{$padding.end.border}"
-                                            margin-left="{$margin.left.border}"
-                                            margin-right="{$margin.right.border}">
-                                            <xsl:value-of select="cerif:RegionalOutreach" />
-                                        </fo:block>
-                                    </fo:table-cell>
-
-                                    <fo:table-cell border-width="{$width.border}"
-                                        border-color="{$colour.border}" border-style="{$style.border}">
-                                        <fo:block text-align="left"
-                                            font-size="{$font.size.standard}"
-                                            font-weight="{$font.weight.value}"
-                                            margin-top="{$margin.top.main}"
-                                            padding-before="{$padding.before.border}"
-                                            padding-after="{$padding.after.border}"
-                                            padding-start="{$padding.start.border}"
-                                            padding-end="{$padding.end.border}"
-                                            margin-left="{$margin.left.border}"
-                                            margin-right="{$margin.right.border}">
-                                            <xsl:value-of select="cerif:SuccessDescription" />
-                                        </fo:block>
-                                    </fo:table-cell>
-
-                                </fo:table-row>
-                            </xsl:for-each>
-                        </fo:table-body>
-                    </fo:table>
-
+                    </xsl:if>
                 </fo:block>
 
             </xsl:for-each>

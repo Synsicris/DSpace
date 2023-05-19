@@ -585,7 +585,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: add template - unclear which entity to consider -->
-                    <xsl:call-template name="innovation-potential" />
+                    <!--xsl:call-template name="innovation-potential" /-->
 
                     <!-- sub sub section title - ideas for solutions/changes/innovations -->
                     <xsl:call-template name="title">
@@ -636,7 +636,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="spinoff" />
+                    <!--xsl:call-template name="spinoff" /-->
 
                     <!-- sub sub section title - work and cooperation after the project -->
                     <xsl:call-template name="title">
@@ -657,7 +657,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="award" />
+                    <!--xsl:call-template name="award" /-->
 
                     <!-- sub sub section title - open research questions -->
                     <xsl:call-template name="title">
@@ -668,7 +668,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="open-research-question" />
+                    <!--xsl:call-template name="open-research-question" /-->
 
                     <!-- sub section title - social impact and reflections of the project -->
                     <xsl:call-template name="title">
@@ -778,7 +778,7 @@
                             select="$font.size.sub-section-title" />
                     </xsl:call-template>
 
-                    <xsl:call-template name="target-group" />
+                    <!--xsl:call-template name="target-group" /-->
 
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- SECTION #6 -->
@@ -822,9 +822,9 @@
 		    <!-- PDF EMBEDDING-->
 		    <!--==========================================================--> 
             
-            <xsl:call-template name="embedded-pdf">
+            <!--xsl:call-template name="embedded-pdf">
                 <xsl:with-param name="imageDir" select="$imageDir" />
-            </xsl:call-template>
+            </xsl:call-template-->
         </fo:root>
     </xsl:template>
 
@@ -1866,7 +1866,7 @@
 
     <xsl:template name="application">
 
-        <xsl:if test="cerif:Application">
+        <xsl:if test="count(cerif:Application/cerif:Index) &gt; 0">
 
             <xsl:for-each select="cerif:Application/cerif:Index">
 
@@ -1908,6 +1908,7 @@
                         <xsl:with-param name="value"
                             select="cerif:FreeUnit" />
                     </xsl:call-template>
+                    <xsl:if test="count(cerif:SuccessQuantification/cerif:Index) &gt; 0">
 
                     <fo:table>
 
@@ -2064,6 +2065,7 @@
                             </xsl:for-each>
                         </fo:table-body>
                     </fo:table>
+                    </xsl:if>
 
                 </fo:block>
 

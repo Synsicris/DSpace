@@ -2414,6 +2414,43 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         assertThat(resultLines[54].trim(), equalTo("</project>"));
     }
 
+    @Test
+    public void testProjectVirtualFieldValuePairList() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+        String vocabularyName = "publication-coar-types";
+        Collection publicationCollection =
+            createCollection(context, community)
+                .withEntityType("Publication")
+                .withSubmissionDefinition("publication")
+                .withAdminGroup(eperson)
+                .build();
+
+        Item publicationItem = createItem(context, publicationCollection)
+            .withEntityType("Publication")
+            .withTitle("Publication title")
+            .withType("not translated", vocabularyName + ":c_7bab")
+            .withLanguage("en_US")
+            .build();
+
+        context.restoreAuthSystemState();
+
+        ReferCrosswalk referCrosswalk =
+            new DSpace().getServiceManager()
+            .getServiceByName("referCrosswalkPublicationVirtualFieldValuePair", ReferCrosswalk.class);
+        assertThat(referCrosswalk, notNullValue());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        referCrosswalk.disseminate(context, publicationItem, out);
+
+        String[] resultLines = out.toString().split("\n");
+        assertThat(resultLines.length, is(7));
+        assertThat(resultLines[0].trim(), equalTo("<publication>"));
+        assertThat(resultLines[4].trim(), equalTo("<VocabularyType>software paper</VocabularyType>"));
+        assertThat(resultLines[5].trim(), equalTo("<ValuePairLanguage>English (United States)</ValuePairLanguage>"));
+        assertThat(resultLines[6].trim(), equalTo("</publication>"));
+    }
+
 
     private void createSelectedRelationship(Item author, Item publication, RelationshipType selectedRelationshipType) {
         createRelationshipBuilder(context, publication, author, selectedRelationshipType, -1, -1).build();

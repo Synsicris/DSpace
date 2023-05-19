@@ -7,85 +7,121 @@
  */
 package org.dspace.content.integration.crosswalks.virtualfields;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
-import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dspace.app.util.DCInputsReader;
-import org.dspace.app.util.DCInputsReaderException;
 import org.dspace.content.Item;
+import org.dspace.content.MetadataValue;
+import org.dspace.content.authority.DCInputAuthority;
+import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.core.I18nUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Implementation of {@link VirtualField} that elaborate a value-pairs list
- * originated metadata to take the label related to the stored-value.
- * (Example: @virtual.value_pair.metadataField.ValuePairListName@)
- * 
+ * Implementation of {@link VirtualField} that translates {@code value-pair}
+ * and {@code vocabulary-fields} into displayable labels.
+ * Internally uses the {@link ChoiceAuthorityService} to translate them.
+ * <br/>
+ * <br/>
+ * (Example: {@code @virtual.value_pair.metadataField@})
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
 public class VirtualFieldValuePairsList implements VirtualField {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(VirtualFieldValuePairsList.class);
 
+    @Autowired
     private ItemService itemService;
-
-    public VirtualFieldValuePairsList(ItemService itemService) {
-        this.itemService = itemService;
-    }
+    @Autowired
+    private ChoiceAuthorityService choiceAuthorityService;
 
     @Override
     public String[] getMetadata(Context context, Item item, String fieldName) {
-        String[] virtualFieldName = fieldName.split("\\.", 4);
+        String[] virtualFieldName = fieldName.split("\\.", 3);
 
-        if (virtualFieldName.length != 4) {
+        if (virtualFieldName.length != 3) {
             LOGGER.warn("Invalid value-pairs virtual field: " + fieldName);
             return new String[] {};
         }
 
         String metadataField = virtualFieldName[2].replaceAll("-", ".");
-        String nameOfValuePairsList = virtualFieldName[3];
+        Locale locale =
+            Optional.ofNullable(context.getCurrentLocale())
+                .orElse(I18nUtil.getDefaultLocale());
 
-        return itemService.getMetadataByMetadataString(item, metadataField).stream()
-                          .filter(metadataValue -> metadataValue.getValue() != null)
-                          .flatMap(metadataValue ->
-                                   getLabelValue(context, metadataValue.getValue(), nameOfValuePairsList).stream())
-                          .toArray(String[]::new);
+        return itemService.getMetadataByMetadataString(item, metadataField)
+            .stream()
+            .map(metadataValue -> getDisplayableLabel(item, metadataValue, locale.getLanguage()))
+            .toArray(String[]::new);
     }
 
-    private Optional<String> getLabelValue(Context context, String value, String nameOfValuePairsList) {
-        String label = EMPTY;
+    protected String getDisplayableLabel(Item item, MetadataValue metadataValue, String language) {
+        return getLabelForVocabulary(item, metadataValue, language)
+            .or(() -> getLabelForValuePair(item, metadataValue, language))
+            .orElse(metadataValue.getValue());
+    }
+
+    private Optional<String> getLabelForVocabulary(Item item, MetadataValue metadataValue, String language) {
+        return getValidLabel(
+            Optional.ofNullable(metadataValue)
+            .filter(mv -> StringUtils.isNotBlank(mv.getAuthority()))
+            .map(mv -> getVocabulary(item, mv, language))
+        );
+    }
+
+    private Optional<String> getLabelForValuePair(Item item, MetadataValue metadataValue, String language) {
+        return getValidLabel(
+            Optional.ofNullable(metadataValue)
+                .filter(mv -> StringUtils.isNotBlank(mv.getValue()))
+                .map(mv -> getValuePair(item, mv, language))
+        );
+    }
+
+    private String getVocabulary(Item item, MetadataValue metadataValue, String language) {
         try {
-            DCInputsReader reader = getDCInputReaderByLocale(context);
-            // Holds display/storage pairs
-            List<String> valuePairsList = reader.getPairs(nameOfValuePairsList);
-            label = getLabel(value, valuePairsList);
-        } catch (DCInputsReaderException e) {
-            LOGGER.error(e.getMessage(), e);
+            return this.choiceAuthorityService
+                .getLabel(
+                    metadataValue, item.getType(),
+                    item.getOwningCollection(), language
+                );
+        } catch (Exception e) {
+            LOGGER.warn("Error while retrieving the vocabulary for: " +
+                metadataValue.getMetadataField().toString(), e
+            );
         }
-        return StringUtils.isNotBlank(label) ? Optional.of(label) : Optional.empty();
+        return null;
     }
 
-    private DCInputsReader getDCInputReaderByLocale(Context context) throws DCInputsReaderException {
-        Locale currentLocale = context.getCurrentLocale();
-        Locale defaultLocale = I18nUtil.getDefaultLocale();
-        return currentLocale.equals(defaultLocale) ? new DCInputsReader()
-                                                   : new DCInputsReader(I18nUtil.getInputFormsFileName(currentLocale));
+
+    private String getValuePair(Item item, MetadataValue metadataValue, String language) {
+        try {
+            return this.choiceAuthorityService
+                .getLabel(
+                    metadataValue.getMetadataField().toString(), item.getType(),
+                    item.getOwningCollection(), metadataValue.getValue(), language
+                );
+        } catch (Exception e) {
+            LOGGER.warn(
+                "Error while retrievingthe value-pair for: " +
+                    metadataValue.getMetadataField().toString(),
+                e
+            );
+        }
+        return null;
     }
 
-    private String getLabel(String value, List<String> valuePairsList) {
-        for (int i = 0 ; i < valuePairsList.size(); i++) {
-            if (StringUtils.equals(value, valuePairsList.get(i))) {
-                return valuePairsList.get(i - 1);
-            }
-        }
-        return EMPTY;
+    private Optional<String> getValidLabel(Optional<String> label) {
+        return label.filter(this::isValidLabel);
+    }
+
+    private boolean isValidLabel(String s) {
+        return s != null && !s.contains(DCInputAuthority.UNKNOWN_KEY);
     }
 
 }

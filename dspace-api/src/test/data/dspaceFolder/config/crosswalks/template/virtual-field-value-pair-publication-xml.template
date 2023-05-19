@@ -1,0 +1,6 @@
+<publication>
+    <Type>@dspace.entity.type@</Type>
+    <Title>@dc.title@</Title>
+    <VocabularyType>@virtual.value_pair.dc-type@</VocabularyType>
+    <ValuePairLanguage>@virtual.value_pair.dc-language-iso@</ValuePairLanguage>
+</publication>

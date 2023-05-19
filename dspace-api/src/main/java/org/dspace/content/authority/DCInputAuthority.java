@@ -48,6 +48,8 @@ import org.dspace.core.SelfNamedPlugin;
  * fields.
  */
 public class DCInputAuthority extends SelfNamedPlugin implements ChoiceAuthority {
+    public static final String UNKNOWN_KEY = "UNKNOWN KEY ";
+
     private static Logger log = org.apache.logging.log4j.LogManager.getLogger(DCInputAuthority.class);
 
     /**
@@ -215,7 +217,7 @@ public class DCInputAuthority extends SelfNamedPlugin implements ChoiceAuthority
             // return the label in the same position where we found the value
             return labelsLocale[pos];
         } else {
-            return "UNKNOWN KEY " + key;
+            return UNKNOWN_KEY + key;
         }
     }
 

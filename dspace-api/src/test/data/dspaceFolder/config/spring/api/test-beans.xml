@@ -76,7 +76,7 @@
         <property name="referCrosswalk" ref="referCrosswalkGroupByTypeVirtualFieldCitations"/>
     </bean>
     
-        <bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkPublicationVirtualFieldValuePair">
+    <bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkPublicationVirtualFieldValuePair">
         <property name="templateFileName" value="crosswalks/template/virtual-field-value-pair-publication-xml.template"/>
         <property name="mimeType" value="application/xml; charset=UTF-8"/>
         <property name="fileName" value="publication.xml"/>

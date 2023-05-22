@@ -62,9 +62,19 @@ public class VirtualFieldValuePairsList implements VirtualField {
     }
 
     protected String getDisplayableLabel(Item item, MetadataValue metadataValue, String language) {
-        return getLabelForVocabulary(item, metadataValue, language)
-            .or(() -> getLabelForValuePair(item, metadataValue, language))
+        return getLabelForCurrentLanguage(item, metadataValue, language)
+            .or(() -> getLabelForDefaultLanguage(item, metadataValue))
             .orElse(metadataValue.getValue());
+    }
+
+    protected Optional<String> getLabelForDefaultLanguage(Item item, MetadataValue metadataValue) {
+        return getLabelForVocabulary(item, metadataValue, I18nUtil.getDefaultLocale().getLanguage())
+            .or(() -> getLabelForValuePair(item, metadataValue, I18nUtil.getDefaultLocale().getLanguage()));
+    }
+
+    protected Optional<String> getLabelForCurrentLanguage(Item item, MetadataValue metadataValue, String language) {
+        return getLabelForVocabulary(item, metadataValue, language)
+            .or(() -> getLabelForValuePair(item, metadataValue, language));
     }
 
     private Optional<String> getLabelForVocabulary(Item item, MetadataValue metadataValue, String language) {

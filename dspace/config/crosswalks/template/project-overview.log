@@ -51,3 +51,31 @@ section 4.2
 section 4.1
   - create overview following the example for the interaction transfer overview
   - externalise text, also for the interaction transfer overview
+
+# 2023-05-22
+general
+  - adapt title-description template to the new box/ruler-approach
+  - add ruler option (default = true) to the following templates
+    - "key-value-single"
+    - "key-value-single-below"
+    - "key-period"
+    - "key-postcode-city-country"
+    - "key-amount-currency"
+    - "key-name-degree-gender"
+    - "key-value-comma-list"
+    - "key-value-line-list"    
+    - "key-author-affilation-comma-list"
+    - "value-single"
+  - remove unused template "key-value-line-list-with-border"
+
+project description & partner
+  - adapt template usage so that there are no rulers
+
+section 3.1.2
+  - combination of description, requirement and projectpartner in the first row of the old table
+  - row for requiremetn and project partner were deleted
+section 3.1.3
+  - adapt table (1 header /1 row)
+  - definition it title and tast description
+  - Inner index for task (xls: for each) not working so far... 
+

@@ -84,5 +84,14 @@
         <property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
         <property name="converter" ref="xmlValueConverter" />
     </bean>
+    
+    <bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkPublicationWithVocabularyVirtualFieldValuePair">
+        <property name="templateFileName" value="crosswalks/template/virtual-field-value-pair-publication-with-vocabulary-xml.template"/>
+        <property name="mimeType" value="application/xml; charset=UTF-8"/>
+        <property name="fileName" value="publication.xml"/>
+        <property name="entityType" value="Publication"/>
+        <property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
+        <property name="converter" ref="xmlValueConverter" />
+    </bean>
 
 </beans>

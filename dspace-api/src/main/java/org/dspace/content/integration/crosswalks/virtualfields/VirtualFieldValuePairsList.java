@@ -8,16 +8,20 @@
 package org.dspace.content.integration.crosswalks.virtualfields;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
+import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.DCInputAuthority;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.core.I18nUtil;
+import org.dspace.core.factory.CoreServiceFactory;
+import org.dspace.core.service.PluginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,24 +45,64 @@ public class VirtualFieldValuePairsList implements VirtualField {
     @Autowired
     private ChoiceAuthorityService choiceAuthorityService;
 
+    private PluginService pluginService = CoreServiceFactory.getInstance().getPluginService();
+
     @Override
     public String[] getMetadata(Context context, Item item, String fieldName) {
-        String[] virtualFieldName = fieldName.split("\\.", 3);
+        String[] virtualFieldName = fieldName.split("\\.", 4);
 
-        if (virtualFieldName.length != 3) {
+        if (virtualFieldName.length < 3 || virtualFieldName.length > 4) {
             LOGGER.warn("Invalid value-pairs virtual field: " + fieldName);
             return new String[] {};
         }
-
+        String vocabularyName = getVocabularyName(virtualFieldName);
         String metadataField = virtualFieldName[2].replaceAll("-", ".");
-        Locale locale =
-            Optional.ofNullable(context.getCurrentLocale())
-                .orElse(I18nUtil.getDefaultLocale());
+        Locale locale = getLocale(context);
 
         return itemService.getMetadataByMetadataString(item, metadataField)
             .stream()
-            .map(metadataValue -> getDisplayableLabel(item, metadataValue, locale.getLanguage()))
+            .map(metadataValue ->
+                getLabelForVocabulary(vocabularyName, metadataValue, locale)
+                    .orElse(getDisplayableLabel(item, metadataValue, locale.getLanguage()))
+            )
             .toArray(String[]::new);
+    }
+
+    protected Optional<String> getLabelForVocabulary(
+        String vocabularyName, MetadataValue metadataValue, Locale locale
+    ) {
+        return Optional.ofNullable(vocabularyName)
+            .map(vocabulary -> (ChoiceAuthority) pluginService.getNamedPlugin(ChoiceAuthority.class, vocabulary))
+            .filter(Objects::nonNull)
+            .flatMap(choiceAuthority ->
+                Optional.ofNullable(metadataValue.getAuthority())
+                    .map(authority ->
+                        getLabelWithFallback(choiceAuthority, authority, locale, I18nUtil.getDefaultLocale())
+                    )
+                    .or(() ->
+                        Optional.of(
+                            getLabelWithFallback(
+                                choiceAuthority, metadataValue.getValue(),
+                                locale, I18nUtil.getDefaultLocale()
+                            )
+                        )
+                    )
+            );
+    }
+
+    private String getLabelWithFallback(
+        ChoiceAuthority choiceAuthority, String authKey, Locale locale, Locale fallbackLocale
+    ) {
+        return Optional.ofNullable(choiceAuthority.getLabel(authKey, locale.getLanguage()))
+            .or(() ->
+                Optional.of(
+                        choiceAuthority.getLabel(
+                        authKey,
+                        fallbackLocale.getLanguage()
+                    )
+                )
+            )
+            .get();
     }
 
     protected String getDisplayableLabel(Item item, MetadataValue metadataValue, String language) {
@@ -126,12 +170,24 @@ public class VirtualFieldValuePairsList implements VirtualField {
         return null;
     }
 
+    private String getVocabularyName(String[] virtualFieldName) {
+        return Optional.of(virtualFieldName.length)
+            .filter(l -> l == 4)
+            .map(l -> virtualFieldName[l - 1])
+            .orElse(null);
+    }
+
     private Optional<String> getValidLabel(Optional<String> label) {
         return label.filter(this::isValidLabel);
     }
 
     private boolean isValidLabel(String s) {
         return s != null && !s.contains(DCInputAuthority.UNKNOWN_KEY);
+    }
+
+    private Locale getLocale(Context context) {
+        return Optional.ofNullable(context.getCurrentLocale())
+            .orElse(I18nUtil.getDefaultLocale());
     }
 
 }

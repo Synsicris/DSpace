@@ -32,13 +32,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Internally uses the {@link ChoiceAuthorityService} to translate them.
  * <br/>
  * <br/>
- * (Example: {@code @virtual.value_pair.metadataField@})
+ * (Example: {@code @virtual.vocabulary_18n.metadataField@})
  *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
-public class VirtualFieldValuePairsList implements VirtualField {
+public class VirtualFieldVocabularyI18nValuePair implements VirtualField {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(VirtualFieldValuePairsList.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(VirtualFieldVocabularyI18nValuePair.class);
 
     @Autowired
     private ItemService itemService;
@@ -74,35 +74,35 @@ public class VirtualFieldValuePairsList implements VirtualField {
         return Optional.ofNullable(vocabularyName)
             .map(vocabulary -> (ChoiceAuthority) pluginService.getNamedPlugin(ChoiceAuthority.class, vocabulary))
             .filter(Objects::nonNull)
-            .flatMap(choiceAuthority ->
-                Optional.ofNullable(metadataValue.getAuthority())
-                    .map(authority ->
-                        getLabelWithFallback(choiceAuthority, authority, locale, I18nUtil.getDefaultLocale())
+            .flatMap(choiceAuthority -> Optional.ofNullable(metadataValue.getAuthority())
+                .flatMap(
+                    authority -> getLabelWithFallback(choiceAuthority, authority, locale, I18nUtil.getDefaultLocale())
+                )
+                .or(
+                    () -> getLabelWithFallback(
+                        choiceAuthority, metadataValue.getValue(),
+                        locale, I18nUtil.getDefaultLocale()
                     )
-                    .or(() ->
-                        Optional.of(
-                            getLabelWithFallback(
-                                choiceAuthority, metadataValue.getValue(),
-                                locale, I18nUtil.getDefaultLocale()
-                            )
-                        )
-                    )
+                )
             );
     }
 
-    private String getLabelWithFallback(
+    private Optional<String> getLabelWithFallback(
         ChoiceAuthority choiceAuthority, String authKey, Locale locale, Locale fallbackLocale
     ) {
-        return Optional.ofNullable(choiceAuthority.getLabel(authKey, locale.getLanguage()))
-            .or(() ->
-                Optional.of(
+        return getValidLabel(
+            Optional.ofNullable(choiceAuthority.getLabel(authKey, locale.getLanguage()))
+        )
+            .or(
+                () -> getValidLabel(
+                    Optional.ofNullable(
                         choiceAuthority.getLabel(
-                        authKey,
-                        fallbackLocale.getLanguage()
+                            authKey,
+                            fallbackLocale.getLanguage()
+                        )
                     )
                 )
-            )
-            .get();
+            );
     }
 
     protected String getDisplayableLabel(Item item, MetadataValue metadataValue, String language) {

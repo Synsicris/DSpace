@@ -58,6 +58,7 @@ import org.dspace.content.ItemServiceImpl;
 import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataFieldServiceImpl;
 import org.dspace.content.RelationshipType;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.authority.DCInputAuthority;
 import org.dspace.content.authority.factory.ContentAuthorityServiceFactory;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
@@ -2474,7 +2475,9 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
 
             ReferCrosswalk referCrosswalk =
                 new DSpace().getServiceManager()
-                .getServiceByName("referCrosswalkPublicationWithVocabularyVirtualFieldValuePair", ReferCrosswalk.class);
+                    .getServiceByName(
+                        "referCrosswalkPublicationVirtualVocabularyI18nFieldWithVocabulary", ReferCrosswalk.class
+                    );
             assertThat(referCrosswalk, notNullValue());
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -2527,7 +2530,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
 
         ReferCrosswalk referCrosswalk =
             new DSpace().getServiceManager()
-            .getServiceByName("referCrosswalkPublicationVirtualFieldValuePair", ReferCrosswalk.class);
+            .getServiceByName("referCrosswalkPublicationVirtualVocabularyI18nField", ReferCrosswalk.class);
         assertThat(referCrosswalk, notNullValue());
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -2578,22 +2581,31 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
                 .withLanguage("en_US")
                 .build();
 
+            this.itemService.addMetadata(
+                context, publicationItem,
+                "organization", "address", "addressCountry",
+                Item.ANY, "IT", null, Choices.CF_UNSET, 0
+            );
+
             context.restoreAuthSystemState();
 
             ReferCrosswalk referCrosswalk =
                 new DSpace().getServiceManager()
-                .getServiceByName("referCrosswalkPublicationVirtualFieldValuePair", ReferCrosswalk.class);
+                    .getServiceByName(
+                        "referCrosswalkPublicationVirtualVocabularyI18nFieldWithVocabulary", ReferCrosswalk.class
+                    );
             assertThat(referCrosswalk, notNullValue());
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             referCrosswalk.disseminate(context, publicationItem, out);
 
             String[] resultLines = out.toString().split("\n");
-            assertThat(resultLines.length, is(6));
+            assertThat(resultLines.length, is(7));
             assertThat(resultLines[0].trim(), equalTo("<publication>"));
             assertThat(resultLines[3].trim(), equalTo("<VocabularyType>TECNOLOGIA</VocabularyType>"));
             assertThat(resultLines[4].trim(), equalTo("<ValuePairLanguage>Inglese (USA)</ValuePairLanguage>"));
-            assertThat(resultLines[5].trim(), equalTo("</publication>"));
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
 
             context.turnOffAuthorisationSystem();
             // set uk locale
@@ -2604,11 +2616,13 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             referCrosswalk.disseminate(context, publicationItem, out);
 
             resultLines = out.toString().split("\n");
-            assertThat(resultLines.length, is(6));
+            assertThat(resultLines.length, is(7));
             assertThat(resultLines[0].trim(), equalTo("<publication>"));
             assertThat(resultLines[3].trim(), equalTo("<VocabularyType>ТЕХНОЛОГІЯ</VocabularyType>"));
             assertThat(resultLines[4].trim(), equalTo("<ValuePairLanguage>Американська (USA)</ValuePairLanguage>"));
-            assertThat(resultLines[5].trim(), equalTo("</publication>"));
+            // take value from submission_forms (_uk doesn't have the value-pair)
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
 
             context.turnOffAuthorisationSystem();
             // set uknown locale
@@ -2620,13 +2634,16 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
 
             // it uses the default locale (en)
             resultLines = out.toString().split("\n");
-            assertThat(resultLines.length, is(6));
+            assertThat(resultLines.length, is(7));
+            // takes the value from default (_ru doesn't exist)
             assertThat(resultLines[0].trim(), equalTo("<publication>"));
             assertThat(resultLines[3].trim(), equalTo("<VocabularyType>TECHNOLOGY</VocabularyType>"));
             assertThat(
                 resultLines[4].trim(), equalTo("<ValuePairLanguage>English (United States)</ValuePairLanguage>")
             );
-            assertThat(resultLines[5].trim(), equalTo("</publication>"));
+            // takes the value from submission_forms (_ru doesn't exist)
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
 
         } finally {
             context.setCurrentLocale(defaultLocale);

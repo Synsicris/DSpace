@@ -178,7 +178,7 @@
 				<StartDate>@dc.date.start@</StartDate>
 				<EndDate>@dc.date.end@</EndDate>
 				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-                <Status>@virtual.value_pair.synsicris-type-status@</Status>
+                <Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
 
         <!-- associated tasks -->
 				<Task>
@@ -320,7 +320,7 @@
 
         <!-- associated attributes (via the step-id "working_plan_form") -->
 				<EndDate>@dc.date.end@</EndDate>
-				<Status>@virtual.value_pair.synsicris-type-status@</Status>
+				<Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
 
 				<WorkPackage>
 					@relation.workpackage-relation-step.start@
@@ -336,7 +336,7 @@
 								<StartDate>@dc.date.start@</StartDate>
 								<EndDate>@dc.date.end@</EndDate>
 								<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-								<Status>@virtual.value_pair.synsicris-type-status@</Status>	
+								<Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>	
 
 							</Index>
 							@if.hasEntityType.workpackage.end@
@@ -898,7 +898,7 @@
 				<EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
 				<FieldOfActivity>@dc.type@</FieldOfActivity>
 				<Destatis>@synsicris.subject.destatis@</Destatis>
-				<NACE>@virtual.value_pair.synsicris-subject-nace@</NACE>
+				<NACE>@virtual.vocabulary_i18n.synsicris-subject-nace@</NACE>
 				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
 
 			  <!-- attributes from the import accordion -->

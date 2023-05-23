@@ -94,7 +94,7 @@ public class DCInputAuthority extends SelfNamedPlugin implements ChoiceAuthority
             initPluginNames();
         }
 
-        return (String[]) ArrayUtils.clone(pluginNames);
+        return ArrayUtils.clone(pluginNames);
     }
 
     private static synchronized void initPluginNames() {
@@ -207,13 +207,13 @@ public class DCInputAuthority extends SelfNamedPlugin implements ChoiceAuthority
         String[] labelsLocale = labels.get(locale);
         int pos = -1;
         // search in the values to return the label
-        for (int i = 0; i < valuesLocale.length; i++) {
+        for (int i = 0; valuesLocale != null && i < valuesLocale.length; i++) {
             if (valuesLocale[i].equals(key)) {
                 pos = i;
                 break;
             }
         }
-        if (pos != -1) {
+        if (pos != -1 && labelsLocale != null) {
             // return the label in the same position where we found the value
             return labelsLocale[pos];
         } else {

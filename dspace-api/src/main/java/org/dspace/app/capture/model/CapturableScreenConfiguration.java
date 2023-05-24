@@ -97,6 +97,10 @@ public class CapturableScreenConfiguration {
         return timeout;
     }
 
+    public void setTimeout(String timeout) {
+        this.timeout = timeout;
+    }
+
     public Map<String, CapturableScreenHeaderValueMapper> getHeadersConfiguration() {
         return headersConfiguration;
     }

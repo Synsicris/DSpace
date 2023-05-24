@@ -75,10 +75,13 @@
     
     <bean id="impactpathway-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
         <constructor-arg name="element" value="#ipw"/>
-        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper"/>
-        <constructor-arg name="style" value="#ipw { width:100vw;height:100vw }"/>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
+        <constructor-arg name="style"><null/></constructor-arg>
         <constructor-arg name="type" value="jpeg"/>
         <constructor-arg name="scale" value="1"/>
+        <constructor-arg name="waitForElement"><null/></constructor-arg>
+        <constructor-arg name="delay" value="3"/>
+        <constructor-arg name="timeout" value="30"/>
         <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
     </bean>
     
@@ -123,21 +126,37 @@
         <constructor-arg name="metadataField" value="synsicris.relation.workingplan"/>
     </bean>
     
-    <bean id="workingplan-url" class="org.dspace.app.versioning.action.capture.mapper.AuthorityRelatedItemUrlMapper">
+    <bean id="workingplan-base-url" class="org.dspace.app.versioning.action.capture.mapper.AuthorityRelatedItemUrlMapper">
         <constructor-arg name="baseUrl" value="entities/project"/>
         <constructor-arg name="relationMetadata" value="synsicris.relation.project"/>
         <constructor-arg name="suffix" value="workingplan"/>
     </bean>
+
+    <bean id="workingplan-url" class="org.dspace.app.versioning.action.capture.mapper.SimpleParametersItemUrlMapper">
+        <constructor-arg name="itemUrlMapper" ref="workingplan-base-url"/>
+        <constructor-arg name="parameters">
+            <bean id="print-view-params" class="java.util.HashMap">
+		        <constructor-arg>
+		            <map>
+		                <entry 
+		                    key="view"
+		                    value="print"
+		                />
+		            </map>
+		        </constructor-arg>
+		    </bean>
+        </constructor-arg>
+    </bean>
     
     <bean id="workingplan-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
-        <constructor-arg name="element"><null/></constructor-arg>
-        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper,ds-themed-footer"/>
+        <constructor-arg name="element" value="ds-working-plan-chart-container"/>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
         <constructor-arg name="style"><null/></constructor-arg>
         <constructor-arg name="type" value="jpeg"/>
         <constructor-arg name="scale" value="1"/>
-        <constructor-arg name="waitForElement" value="ds-working-plan-chart-container"/>
-        <constructor-arg name="delay" value="2"/>
-        <constructor-arg name="timeout" value="20"/>
+        <constructor-arg name="waitForElement"><null/></constructor-arg>
+        <constructor-arg name="delay" value="5"/>
+        <constructor-arg name="timeout" value="30"/>
         <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
     </bean>
     
@@ -171,13 +190,13 @@
     
     <bean id="graph-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
         <constructor-arg name="element"><null/></constructor-arg>
-        <constructor-arg name="removeElements" value="ds-admin-sidebar,ds-themed-header-navbar-wrapper,ds-themed-footer"/>
+        <constructor-arg name="removeElements"><null/></constructor-arg>
         <constructor-arg name="style"><null/></constructor-arg>
         <constructor-arg name="type" value="jpeg"/>
         <constructor-arg name="scale" value="1"/>
         <constructor-arg name="waitForElement" value="ds-graph"/>
-        <constructor-arg name="delay" value="2"/>
-        <constructor-arg name="timeout" value="20"/>
+        <constructor-arg name="delay" value="3"/>
+        <constructor-arg name="timeout" value="30"/>
         <constructor-arg name="headersConfiguration" ref="capture-website-headers"/>
     </bean>
     

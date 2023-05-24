@@ -62,4 +62,14 @@ public class CapturableScreen {
         this.headers = headers;
     }
 
+    @Override
+    public String toString() {
+        return new StringBuilder("CapturableScreen [url=").append(url)
+                .append(", cookie=").append(cookie)
+                .append(", headers=").append(headers)
+                .append(", configuration=").append(configuration)
+                .append("]")
+                .toString();
+    }
+
 }

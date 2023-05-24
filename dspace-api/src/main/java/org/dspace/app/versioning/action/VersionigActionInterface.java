@@ -18,10 +18,24 @@ import org.dspace.core.Context;
  */
 public interface VersionigActionInterface<T> {
 
+    public static final int MAX_RETRIES = 3;
+
     public void consumeAsync(Context c);
+
+    default void retryAsync(Context c) {
+        consumeAsync(c);
+    }
 
     public void store(Context c);
 
     public void consume(Context c);
+
+    default void retry(Context c) {
+        consume(c);
+    }
+
+    default int getMaxRetries() {
+        return MAX_RETRIES;
+    }
 
 }

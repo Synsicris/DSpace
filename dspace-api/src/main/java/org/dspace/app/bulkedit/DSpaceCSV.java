@@ -44,6 +44,7 @@ import org.dspace.core.Context;
 import org.dspace.core.I18nUtil;
 import org.dspace.services.factory.DSpaceServicesFactory;
 
+
 /**
  * Utility class to read and write CSV files
  *
@@ -678,9 +679,20 @@ public class DSpaceCSV implements Serializable {
     }
 
     private String getMessage(String prefix, String metadata, Locale locale) {
-        String key = prefix + metadata;
+        String metadataKey = metadata;
+        String language = StringUtils.EMPTY;
+        if (containsLanguage(metadata)) {
+            int startLang = metadata.lastIndexOf("[");
+            metadataKey = metadata.substring(0, startLang);
+            language = metadata.substring(startLang);
+        }
+        String key = prefix + metadataKey;
         String message = I18nUtil.getMessageByFileName(CSV_EXPORT_LABELS_FILE_NAME, key, locale);
-        return message.replace(prefix, StringUtils.EMPTY);
+        return message.replace(prefix, StringUtils.EMPTY) + language;
+    }
+
+    protected boolean containsLanguage(String metadata) {
+        return metadata.contains("[") && metadata.contains("]");
     }
 
     /**

@@ -7,11 +7,14 @@
  */
 package org.dspace.core;
 
+import static java.util.ResourceBundle.Control.FORMAT_DEFAULT;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
@@ -23,7 +26,6 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.utils.DSpace;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
-
 
 /**
  * I18nUtil.java
@@ -262,17 +264,36 @@ public class I18nUtil {
         if (locale == null) {
             locale = getDefaultLocale();
         }
-        ResourceBundle.Control control =
-            ResourceBundle.Control.getNoFallbackControl(
-                ResourceBundle.Control.FORMAT_DEFAULT);
-
+        ResourceBundle.Control control = ResourceBundle.Control.getNoFallbackControl(FORMAT_DEFAULT);
         ResourceBundle messages = ResourceBundle.getBundle("Messages", locale, control);
         try {
             String message = messages.getString(key.trim());
             return message;
         } catch (MissingResourceException e) {
-            log.error("'" + key + "' translation undefined in locale '"
-                          + locale.toString() + "'");
+            log.error("'" + key + "' translation undefined in locale '" + locale.toString() + "'");
+            return key;
+        }
+    }
+
+    /**
+     * Get the i18n message string for a given key, locale and fileName
+     * 
+     * @param fileName    main file name (e.g "message", without extension "_locale")
+     * @param key         Name of the key to get the message for
+     * @param locale      Locale, to get the message for
+     * @return            message
+     */
+    public static String getMessageByFileName(String fileName, String key, Locale locale) {
+        if (Objects.isNull(locale)) {
+            locale = getDefaultLocale();
+        }
+        ResourceBundle.Control control = ResourceBundle.Control.getNoFallbackControl(FORMAT_DEFAULT);
+        ResourceBundle messages = ResourceBundle.getBundle(fileName, locale, control);
+        try {
+            String message = messages.getString(key.trim());
+            return message;
+        } catch (MissingResourceException e) {
+            log.error("'" + key + "' translation undefined in locale '" + locale.toString() + "'");
             return key;
         }
     }

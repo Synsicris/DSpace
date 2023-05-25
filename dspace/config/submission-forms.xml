@@ -79,6 +79,54 @@
         </field>
       </row>
     </form>
+    <form name="patents_result_import-crispatent-document-kind">
+      <row>
+        <field>
+          <dc-schema>crispatent</dc-schema>
+          <dc-element>document</dc-element>
+          <dc-qualifier>kind</dc-qualifier>
+          <label>Kind Code</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the kind code.</required>
+          <style>col-xs-12 col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>crispatent</dc-schema>
+          <dc-element>document</dc-element>
+          <dc-qualifier>issueDate</dc-qualifier>
+          <label>Publication Date</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required>You must enter the publication date.</required>
+          <style>col-xs-12 col-md-6</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>crispatent</dc-schema>
+          <dc-element>document</dc-element>
+          <dc-qualifier>title</dc-qualifier>
+          <label>Title</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-12</style>
+          <hint />
+        </field>
+        <field>
+          <dc-schema>crispatent</dc-schema>
+          <dc-element>document</dc-element>
+          <dc-qualifier>description</dc-qualifier>
+          <label>Abstract</label>
+          <input-type>textarea</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-12</style>
+          <hint />
+        </field>
+      </row>
+    </form>
     <form name="impact_pathway_step_form">
       <row>
         <field>
@@ -1860,15 +1908,15 @@ it, please select a type and enter the actual number or code.</hint>
       </row>
       <row>
         <field>
-          <dc-schema>dcterms</dc-schema>
-          <dc-element>dateAccepted</dc-element>
-          <label>Approval Date</label>
-          <input-type>date</input-type>
+          <dc-schema>crispatent</dc-schema>
+          <dc-element>kind</dc-element>
+          <label>Kind Code</label>
+          <input-type>onebox</input-type>
           <repeatable>false</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>Date on which the application has been granted by the Patent Office.</hint>
-        </field>
+          <hint>The kind code</hint>
+        </field>        
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>date</dc-element>
@@ -1879,6 +1927,15 @@ it, please select a type and enter the actual number or code.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
+        </field>
+        <field>
+          <dc-schema>dcterms</dc-schema>
+          <dc-element>dateAccepted</dc-element>
+          <label>Approval Date</label>
+          <input-type>date</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <hint>Date on which the application has been granted by the Patent Office.</hint>
         </field>
       </row>
       <row>
@@ -1940,6 +1997,18 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
+      <row>
+         <field>
+           <dc-schema>crispatent</dc-schema>
+           <dc-element>document</dc-element>
+           <dc-qualifier>kind</dc-qualifier>
+           <label>Patent History</label>
+           <input-type>inline-group</input-type>
+           <repeatable>true</repeatable>
+           <required />
+           <hint />
+         </field>
+       </row>
     </form>
     <form name="projects">
       <row>

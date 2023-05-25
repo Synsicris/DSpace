@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -75,6 +77,8 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     private MetadataFieldConfig dateFilled;
     private MetadataFieldConfig applicationNumber;
+
+    private List<MetadataFieldConfig> metadataFieldList = new ArrayList<MetadataFieldConfig>();
 
     public static final String APP_NO_DATE_SEPARATOR = "$$$";
     private static final String APP_NO_DATE_SEPARATOR_REGEX = "\\$\\$\\$";
@@ -133,6 +137,18 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     public MetadataFieldConfig getApplicationNumber() {
         return applicationNumber;
+    }
+
+    @Resource(name = "epoMetadataFieldMap")
+    public void setMetadataFieldMap(Map<MetadataFieldConfig, ?> metadataFieldMap) {
+        for (Entry<MetadataFieldConfig, ?> entry : metadataFieldMap.entrySet()) {
+            this.metadataFieldList.add(entry.getKey());
+        }
+    }
+
+    @Override
+    public List<MetadataFieldConfig> getSupportedMetadataFields() {
+        return this.metadataFieldList;
     }
 
     /***

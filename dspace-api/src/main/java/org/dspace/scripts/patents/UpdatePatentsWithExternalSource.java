@@ -30,15 +30,18 @@ import org.dspace.scripts.patents.service.UpdatePatentServiceImpl;
 import org.dspace.utils.DSpace;
 
 /**
+ * Implementation of {@link DSpaceRunnable} to update Patents with external service as European Patent Office (EPO)
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
 public class UpdatePatentsWithExternalSource
         extends DSpaceRunnable<UpdatePatentsWithExternalSourceScriptConfiguration<UpdatePatentsWithExternalSource>> {
 
-    private static final Logger log = LogManager.getLogger(UpdatePatentsWithExternalSource.class);
+    private final static Logger log = LogManager.getLogger();
 
     private Context context;
 
+    // services
     private UpdatePatentService updatePatentService;
     private LiveImportDataProvider liveImportDataProvider;
 
@@ -46,7 +49,7 @@ public class UpdatePatentsWithExternalSource
     public void setup() throws ParseException {
         ServiceManager serviceManager = new DSpace().getServiceManager();
         liveImportDataProvider = serviceManager.getServiceByName("epoLiveImportDataProvider",
-                LiveImportDataProvider.class);
+                                                                 LiveImportDataProvider.class);
         updatePatentService = serviceManager.getServiceByName(UpdatePatentServiceImpl.class.getName(),
                                                               UpdatePatentServiceImpl.class);
     }
@@ -65,9 +68,16 @@ public class UpdatePatentsWithExternalSource
 
             while (itemIterator.hasNext()) {
                 Item item = itemIterator.next();
-                countFoundItems++;
                 count ++;
-                updatePatentService.updatePatent(context, item, liveImportDataProvider);
+                countFoundItems++;
+                boolean isUpdated = updatePatentService.updatePatent(context, item, liveImportDataProvider);
+                if (isUpdated) {
+                    countUpdatedItems++;
+                }
+                if (count == 20) {
+                    context.commit();
+                    count = 0;
+                }
             }
             context.complete();
 

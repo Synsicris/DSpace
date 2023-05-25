@@ -135,9 +135,12 @@
         <constructor-arg value="dc.contributor.author"/>
     </bean>
 
-    <bean id="epoApplicantContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumContributor">
+    <bean id="epoApplicantContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumAndAttributeAndSubNodeContributor">
         <property name="field" ref="epo.dc.contributor"/>
-        <property name="query" value=".//ns:applicant-name/ns:name"/>
+        <property name="query" value="(//ns:applicants)[last()]"/>
+        <property name="queryToSubNode" value=".//ns:applicant-name/ns:name"/>
+        <property name="attribute" value="data-format"/>
+        <property name="attributeValue" value="original"/>
         <property name="prefixToNamespaceMapping" ref="nsEpoPrefixToNamespaceMapping"/>
     </bean>
     <bean id="epo.dc.contributor" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
@@ -154,18 +157,6 @@
     </bean>
         <bean id="epo.dc.identifier.patentno" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="dc.identifier.patentno"/>
-    </bean>
-
-    <bean id="epoApplicantContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumAndAttributeAndSubNodeContributor">
-        <property name="field" ref="epo.dc.contributor"/>
-        <property name="query" value="(//ns:applicants)[last()]"/>
-        <property name="queryToSubNode" value=".//ns:applicant-name/ns:name"/>
-        <property name="attribute" value="data-format"/>
-        <property name="attributeValue" value="original"/>
-        <property name="prefixToNamespaceMapping" ref="nsEpoPrefixToNamespaceMapping"/>
-    </bean>
-    <bean id="epo.dc.contributor" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
-        <constructor-arg value="dc.contributor"/>
     </bean>
 
     <bean id="epoApplicationNumberContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumContributor">

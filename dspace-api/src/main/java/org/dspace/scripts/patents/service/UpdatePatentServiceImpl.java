@@ -12,23 +12,27 @@ import static org.dspace.content.Item.ANY;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Item;
 import org.dspace.content.dto.MetadataValueDTO;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
 import org.dspace.external.model.ExternalDataObject;
 import org.dspace.external.provider.impl.LiveImportDataProvider;
+import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
 public class UpdatePatentServiceImpl implements UpdatePatentService {
+
+    private final static Logger log = LogManager.getLogger();
 
     @Autowired
     private ItemService itemService;
@@ -40,53 +44,60 @@ public class UpdatePatentServiceImpl implements UpdatePatentService {
         if (StringUtils.isBlank(patentNo)) {
             return false;
         }
-        List<ExternalDataObject> patents = liveImportDataProvider.searchExternalDataObjects(patentNo, 0, -1);
-        if (CollectionUtils.isEmpty(patents)) {
+        Optional<ExternalDataObject> externalPatent = liveImportDataProvider.getExternalDataObject(patentNo);
+        if (externalPatent.isEmpty()) {
             //TODO: manage case is the Patent was deleted!
             return false;
         }
-        ExternalDataObject newPatent = getPatentMoreUpToDateThanCurrentPatent(context, item, patents);
-        if (Objects.isNull(newPatent)) {
+
+        List<MetadataFieldConfig> supportedMetadataFields = liveImportDataProvider.getQuerySource()
+                                                                                 .getSupportedMetadataFields();
+        return isMoreUpToDateThanCurrentPatent(context, item, externalPatent.get()) ?
+                 updateCurrentPatentWithNewOne(context, item, supportedMetadataFields, externalPatent.get()) : false;
+    }
+
+    private boolean isMoreUpToDateThanCurrentPatent(Context context, Item currentPatent,
+            ExternalDataObject externalPatent) {
+        var publishedDateOfCurrentPatent = itemService.getMetadataFirstValue(currentPatent, "dc", "date", "issued",ANY);
+        LocalDate publicationDateOfLocalPatent = LocalDate.parse(publishedDateOfCurrentPatent);
+        LocalDate publicationDateOfExternalPatent = getPublicationDateOfExternalPatent(externalPatent);
+        return publicationDateOfExternalPatent.isAfter(publicationDateOfLocalPatent);
+    }
+
+    private LocalDate getPublicationDateOfExternalPatent(ExternalDataObject externalPatent) {
+        Optional<MetadataValueDTO> publicationDateOfExternalPatent = externalPatent.getMetadata()
+                                                 .stream()
+                                                 .filter(mv -> StringUtils.equals(mv.getSchema(), "dc") &&
+                                                               StringUtils.equals(mv.getElement(), "date") &&
+                                                               StringUtils.equals(mv.getQualifier(), "issued"))
+                                                 .findFirst();
+        return publicationDateOfExternalPatent.isPresent() ?
+               LocalDate.parse(publicationDateOfExternalPatent.get().getValue()) : LocalDate.MIN;
+    }
+
+    private boolean updateCurrentPatentWithNewOne(Context context, Item localPatent,
+            List<MetadataFieldConfig> supportedMetadataFields, ExternalDataObject externalPatent) {
+        try {
+            localPatent = clearMetadataOfLocalPatent(context, localPatent, supportedMetadataFields);
+            for (MetadataValueDTO mv : externalPatent.getMetadata()) {
+                itemService.addMetadata(context, localPatent, mv.getSchema(), mv.getElement(), mv.getQualifier(), null,
+                                        mv.getValue());
+            }
+        } catch (SQLException | AuthorizeException e) {
+            log.error("The Patent with uuid " + localPatent.getID() + " was not updated by the fallowing cause:"
+                                              + e.getCause(), e.getMessage());
             return false;
         }
-        return updateCurrentPatentWithNewOne(context, item, newPatent);
-    }
-
-    private ExternalDataObject getPatentMoreUpToDateThanCurrentPatent(Context context, Item currentPatent,
-            List<ExternalDataObject> patents) {
-        var publishedDateOfCurrentPatent = itemService.getMetadataFirstValue(currentPatent, "dc", "date", "issued",ANY);
-        LocalDate currentD = LocalDate.parse(publishedDateOfCurrentPatent);
-        for (ExternalDataObject externalPatent : patents) {
-            Optional<MetadataValueDTO> publishedDateOfexternalPatent = getPublishedDateOfexternalPatent(externalPatent);
-            if (!publishedDateOfexternalPatent.isPresent()) {
-                continue;
-            }
-            String date = publishedDateOfexternalPatent.get().getValue();
-            LocalDate dateFromString = LocalDate.parse(date);
-            if (dateFromString.isAfter(currentD)) {
-                return externalPatent;
-            }
-        }
-        return null;
-    }
-
-    private Optional<MetadataValueDTO> getPublishedDateOfexternalPatent(ExternalDataObject externalPatent) {
-        return externalPatent.getMetadata()
-                             .stream()
-                             .filter(mv -> StringUtils.equals(mv.getSchema(), "dc") &&
-                                           StringUtils.equals(mv.getElement(), "date") &&
-                                           StringUtils.equals(mv.getQualifier(), "issued"))
-                             .findFirst();
-    }
-
-    private boolean updateCurrentPatentWithNewOne(Context context, Item currentPatent, ExternalDataObject newPatent)
-            throws SQLException {
-        for (MetadataValueDTO mv : newPatent.getMetadata()) {
-            itemService.clearMetadata(context, currentPatent, mv.getSchema(), mv.getElement(), mv.getQualifier(), null);
-            itemService.addMetadata(context, currentPatent, mv.getSchema(), mv.getElement(), mv.getQualifier(), ANY,
-                                    mv.getValue());
-        }
         return true;
+    }
+
+    private Item clearMetadataOfLocalPatent(Context context, Item localPatent,
+            List<MetadataFieldConfig> supportedMetadataFields) throws SQLException, AuthorizeException {
+        for (MetadataFieldConfig mfc : supportedMetadataFields) {
+            itemService.clearMetadata(context, localPatent, mfc.getSchema(), mfc.getElement(), mfc.getQualifier(),null);
+        }
+        itemService.update(context, localPatent);
+        return context.reloadEntity(localPatent);
     }
 
 }

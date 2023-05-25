@@ -17,6 +17,18 @@
 <xsl:param name="lang.title.section1.3" select="'1.3 Arbeitsziele zur Interaktion'"/>
 <xsl:param name="lang.title.section1.4" select="'1.4 Bezug des Vorhabens zu den förderpolitischen Zielen'"/>
 
+
+<xsl:param name="lang.title.section3" select="'3 Ausführliche Beschreibung des Arbeitsplans'"/>
+<xsl:param name="lang.title.section3.1" select="'3.1 Vorhabenbezogene Ressourcenplanung'"/>
+<xsl:param name="lang.title.section3.1.1" select="'3.1.1 Überblick Arbeitsplanung'"/>
+<xsl:param name="lang.title.section3.1.2" select="'3.1.2 Arbeitspakete und Arbeiten'"/>
+<xsl:param name="lang.title.section3.1.3" select="'3.1.3 Forschungsarbeiten'"/>
+<xsl:param name="lang.title.section3.1.4" select="'3.1.4 Veröffentlichungen'"/>
+<xsl:param name="lang.title.section3.1.5" select="'3.1.5 Forschungdaten'"/>
+<xsl:param name="lang.title.section3.1.6" select="'3.1.6 Arbeiten zur Interaktion und Transfer'"/>
+
+<!-- TODO: section 3.2 is missing -->
+
 <xsl:param name="lang.title.section4" select="'4 Verwertung und Wirkung'"/>
 <xsl:param name="lang.title.section4.1" select="'4.1 Überblick'"/>
 <xsl:param name="lang.title.section4.2" select="'4.2 Anwendung(smöglichkeiten)'"/>
@@ -37,7 +49,7 @@
 <xsl:param name="lang.title.section4.3.4" select="'4.3.4 Ethische Aspekte'"/>
 <xsl:param name="lang.title.section4.3.5" select="'4.3.5 Gender'"/>
 
-<!-- TODO: add all sections -->
+<!-- TODO: section 5 is missing -->
 
 <!-- individual fields -->
 <xsl:param name="lang.title" select="'Titel'"/>
@@ -105,8 +117,8 @@
 <xsl:param name="lang.application.regionaloutreach" select="'Region der Anwendung'"/>
 <xsl:param name="lang.application.success-description" select="'Anmerkungen / Weblink'"/>
 
-<xsl:param name="lang.unexpectedresult.resultdescription" select="'Berschreibung Ergebniss / Problem'"/>
-<xsl:param name="lang.unexpectedresult.statuspublication" select="'Veröffentlichung geplant / erfolgt'"/>
+<xsl:param name="lang.unexpectedresult.resultdescription" select="'Beschreibung Ergebniss / Problem'"/>
+<xsl:param name="lang.unexpectedresult.statuspublication" select="'Veröffentlichung vorgesehen'"/>
 <xsl:param name="lang.unexpectedresult.informationpublication" select="'Information zur Veröffentlichung'"/>
 <xsl:param name="lang.unexpectedresult.linkpublication" select="'Titel der Veröffentlichung'"/>
 
@@ -236,7 +248,7 @@
 <xsl:param name="font.size.sub-sub-section-title" select="'11pt'"/>
 <xsl:param name="font.size.standard" select="'10pt'"/>
 <xsl:param name="font.size.key" select="'11pt'"/>
-<xsl:param name="font.size.key.alternative" select="'8pt'"/> 
+<xsl:param name="font.size.key.alternative" select="'10pt'"/> 
 
 <!-- font weigths -->
 <xsl:param name="font.weight.title" select="'bold'"/>
@@ -255,15 +267,15 @@
 <xsl:param name="margin.top.main" select="'2mm'"/>
 <xsl:param name="margin.top.section" select="'10mm'"/>
 <xsl:param name="margin.bottom.section" select="'-3mm'"/>
-<xsl:param name="margin.left.border" select="'3mm'"/>
-<xsl:param name="margin.right.border" select="'3mm'"/>
+<xsl:param name="margin.left.border" select="'2mm'"/>
+<xsl:param name="margin.right.border" select="'2mm'"/>
 <xsl:param name="margin.top.gap" select="'5mm'"/>
 
 <!-- paddings -->	
-<xsl:param name="padding.before.border" select="'1.5mm'"/>
-<xsl:param name="padding.after.border" select="'4mm'"/>
-<xsl:param name="padding.start.border" select="'3mm'"/>
-<xsl:param name="padding.end.border" select="'3mm'"/>
+<xsl:param name="padding.before.border" select="'1mm'"/>
+<xsl:param name="padding.after.border" select="'2mm'"/>
+<xsl:param name="padding.start.border" select="'2mm'"/>
+<xsl:param name="padding.end.border" select="'2mm'"/>
 
 <!-- lengths -->
 <xsl:param name="length.ruler" select="'100%'"/>
@@ -475,25 +487,25 @@
 
           <!-- section title - working plan -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3	Ausführliche Beschreibung des Arbeitsplans'"/>
+						<xsl:with-param name="title" select="$lang.title.section3"/>
 						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
 					</xsl:call-template>
 
 				  <!-- sub section title - resource planning of the project -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1	Vorhabenbezogene Ressourcenplanung'"/>
+						<xsl:with-param name="title" select="$lang.title.section3.1"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-section-title"/>
 					</xsl:call-template>
 
 				  <!-- sub sub section title - overview working plan -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.1	Überblick Arbeitsplanung'"/>
+						<xsl:with-param name="title" select="$lang.title.section3.1.1"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 					
 				  <!-- sub sub section title - work packages and tasks -->					
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.2	Arbeitspakete und Arbeiten'"/>
+						<xsl:with-param name="title" select="$lang.title.section3.1.2"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
@@ -501,22 +513,46 @@
 
 				  <!-- sub sub section title - research work -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.3	Forschungsarbeiten'"/>
+						<xsl:with-param name="title" select="$lang.title.section3.1.3"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- TODO: add template FIXME: unclear which entity to use-->
+          <!-- TODO: revise template -->
+          <!-- approach: one box per workpackage -->
+					<!-- approach: two column table -->
+					<!-- approach: left: title -->
+					<!-- approach: right: all metadata -->
+					<!-- entities to consider: TASK, EVENT, PROCESSEVENT, PLANNEDPUBLICATION, OBJECT/MATERIALS -->
+
 					<xsl:call-template name="research-work"/>
+
+				  <!-- sub sub section title - publications -->
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="$lang.title.section3.1.4"/>
+						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
+					</xsl:call-template>
+
+          <!--TODO: create template -->
+          <!-- <xsl:call-template name="publication"/> -->
+
+				  <!-- sub sub section title - publications -->
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="$lang.title.section3.1.5"/>
+						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
+					</xsl:call-template>
+
+          <!--TODO: create template -->
+          <!-- <xsl:call-template name="product"/> -->
 
 				  <!-- sub sub section title - interaction and transfer -->
 					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="'3.1.4	Arbeiten zur Interaktion und Transfer'"/>
+						<xsl:with-param name="title" select="'3.1.6	Arbeiten zur Interaktion und Transfer'"/>
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
           <xsl:call-template name="interaction-transfer-overview"/>
 
-          <!-- TODO: here all entities belonging to transfer need to be added -->
+
 
 				  <!-- sub section title - milestone planning -->
 					<xsl:call-template name="title">
@@ -700,6 +736,9 @@
 						<xsl:with-param name="title" select="'5	Arbeitsteilung/Zusammenarbeit mit Dritten'"/>
 						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
 					</xsl:call-template>
+
+           <!-- TODO: join 4 attibutes of 5.1 to 5.3 in one table -->
+					 <!-- TODO: all other attributes remain -->
 
 				  <!-- sub section title - project partners (additional informations) -->
 					<xsl:call-template name="title">
@@ -891,6 +930,12 @@
 						<xsl:with-param name="addRuler" select="'false'"/>						
 				  </xsl:call-template>	
 
+					<xsl:call-template name="key-value-single">
+						<xsl:with-param name="key" select="$lang.projectpartner.easy-online"/>
+						<xsl:with-param name="value" select="cerif:EasyOnlineImport"/>
+						<xsl:with-param name="addRuler" select="'false'"/>
+				  </xsl:call-template>						
+
 				</fo:block> 		
 
 			</xsl:for-each> 
@@ -926,32 +971,27 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>									
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.organisation.form"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationType"/>
 				  </xsl:call-template>						
 
-					<xsl:call-template name="key-value-single">
-						<xsl:with-param name="key" select="$lang.projectpartner.easy-online"/>
-						<xsl:with-param name="value" select="cerif:EasyOnlineImport"/>
-				  </xsl:call-template>						
-
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.projectpartner.field-of-activity"/>
 						<xsl:with-param name="value" select="cerif:FieldOfActivity"/>
 				  </xsl:call-template>						
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.projectpartner.destatis"/>
 						<xsl:with-param name="value" select="cerif:Destatis"/>
 				  </xsl:call-template>	
 					
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.projectpartner.nace"/>
 						<xsl:with-param name="value" select="cerif:NACE"/>
 				  </xsl:call-template>	
 					
-					<xsl:call-template name="key-value-comma-list">
+					<xsl:call-template name="key-value-comma-list-below">
 						<xsl:with-param name="key" select="$lang.projectpartner.political-level"/>
 						<xsl:with-param name="value" select="cerif:PoliticalLevel"/>
 				  </xsl:call-template>						
@@ -1715,8 +1755,6 @@
 						<!-- table body -->
 						<fo:table-body>	
 
-							<xsl:if test="cerif:Task">
-
 								<xsl:for-each select="cerif:Task">
 
 							<!-- description -->
@@ -1744,7 +1782,7 @@
 															<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 														</xsl:call-template>
 
-														<xsl:call-template name="key-value-single">
+														<xsl:call-template name="key-value-single-below">
 															<xsl:with-param name="key" select="$lang.innovationidea.description"/>
 															<xsl:with-param name="value" select="cerif:Index/cerif:Description"/>
 														</xsl:call-template> 
@@ -1756,8 +1794,6 @@
 									</fo:table-row>
 
 								</xsl:for-each> 
-
-							</xsl:if>
 
 						</fo:table-body>				
 
@@ -2303,7 +2339,7 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>									
 
-					<xsl:call-template name="key-value-single">	
+					<xsl:call-template name="key-value-single-below">	
 						<xsl:with-param name="key" select="$lang.innovationpotential.type"/>
 						<xsl:with-param name="value" select="cerif:Type"/>
 				  </xsl:call-template>
@@ -2313,72 +2349,72 @@
 						<xsl:with-param name="value" select="cerif:TargetGroup"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.description"/>
 						<xsl:with-param name="value" select="cerif:Description"/>
 				  </xsl:call-template> 
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-novelty"/>
 						<xsl:with-param name="value" select="cerif:Applicability/cerif:Novelty"/>
 				  </xsl:call-template> 
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-efficiency"/>
 						<xsl:with-param name="value" select="cerif:Applicability/cerif:Efficiency"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-practicability"/>
 						<xsl:with-param name="value" select="cerif:Applicability/cerif:Practicability"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-requirements"/>
 						<xsl:with-param name="value" select="cerif:Applicability/cerif:Requirements"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.applicability-prospects"/>
 						<xsl:with-param name="value" select="cerif:Applicability/cerif:Prospects"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-primaryfield"/>
 						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:PrimaryField"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-laterdissimination"/>
 						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:LaterDissimination"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.regionalscope-description"/>
 						<xsl:with-param name="value" select="cerif:RegionalScope/cerif:Description"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-developmentprojectstart"/>
 						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:DevelopmentProjectStart"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-developmentprojectend"/>
 						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:DevelopmentProjectEnd"/>
 				  </xsl:call-template>
 
-			 	<xsl:call-template name="key-value-single">
+			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-selection"/>
 						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:Selection"/>
 				  </xsl:call-template>
 
-				  			 	<xsl:call-template name="key-value-single">
+				  			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-readinessprojectstart"/>
 						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:ReadinessProjectStart"/>
 				  </xsl:call-template>
 
-				  			 	<xsl:call-template name="key-value-single">
+				  			 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationpotential.srltrl-readinessprojectend"/>
 						<xsl:with-param name="value" select="cerif:SRLTRL/cerif:ReadinessProjectEnd"/>
 				  </xsl:call-template>
@@ -2423,7 +2459,7 @@
 						<xsl:with-param name="value" select="cerif:Type"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.innovationidea.description"/>
 						<xsl:with-param name="value" select="cerif:Description"/>
 				  </xsl:call-template> 
@@ -2468,39 +2504,39 @@
 						<xsl:with-param name="value" select="cerif:RelatedInnovation"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.application.unit"/>
 						<xsl:with-param name="value" select="cerif:Unit"/>
 				  </xsl:call-template> 
 
 <!-- eingegebene eigene Einheiten werden im System nicht abgespeichert -->
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.application.free-unit"/>
 						<xsl:with-param name="value" select="cerif:FreeUnit"/>
 				  </xsl:call-template> 
 
 						<fo:table>
 									
-							<fo:table-column column-number="1" column-width="15%"/>	
-							<fo:table-column column-number="2" column-width="15%"/>	
+							<fo:table-column column-number="1" column-width="20%"/>	
+							<fo:table-column column-number="2" column-width="20%"/>	
 							<fo:table-column column-number="3" column-width="30%"/>	
-							<fo:table-column column-number="4" column-width="40%"/>	
+							<fo:table-column column-number="4" column-width="30%"/>	
 							
 							<fo:table-header>
 								<fo:table-row>
 								<fo:table-cell border-width="{$width.border}"
 																border-color="{$colour.border}"
 																border-style="{$style.border}">
-									<fo:block text-align="left" 
-								          font-size="{$font.size.standard}"
-													font-weight="{$font.weight.key-value}"
-													margin-top="{$margin.top.main}"
-													padding-before="{$padding.before.border}"
-													padding-after="{$padding.after.border}"
-													padding-start="{$padding.start.border}"
-													padding-end="{$padding.end.border}"
-													margin-left="{$margin.left.border}"
-													margin-right="{$margin.right.border}">
+									<fo:block 	text-align="centre" 
+								         		font-size="{$font.size.standard}"
+												font-weight="{$font.weight.key-value}"
+												margin-top="{$margin.top.main}"
+												padding-before="{$padding.before.border}"
+												padding-after="{$padding.after.border}"
+												padding-start="{$padding.start.border}"
+												padding-end="{$padding.end.border}"
+												margin-left="{$margin.left.border}"
+												margin-right="{$margin.right.border}">
 											<xsl:value-of select="$lang.application.reference-year"/>
 									</fo:block>
 								</fo:table-cell>
@@ -2508,8 +2544,8 @@
 								<fo:table-cell border-width="{$width.border}"
 																border-color="{$colour.border}"
 																border-style="{$style.border}">
-									<fo:block text-align="left" 
-								          font-size="{$font.size.standard}"
+									<fo:block 		text-align="centre" 
+								       			    font-size="{$font.size.standard}"
 													font-weight="{$font.weight.key-value}"
 													margin-top="{$margin.top.main}"
 													padding-before="{$padding.before.border}"
@@ -2525,8 +2561,8 @@
 								<fo:table-cell border-width="{$width.border}"
 																border-color="{$colour.border}"
 																border-style="{$style.border}">
-									<fo:block text-align="left" 
-								          font-size="{$font.size.standard}"
+									<fo:block 		text-align="centre" 
+								         		    font-size="{$font.size.standard}"
 													font-weight="{$font.weight.key-value}"
 													margin-top="{$margin.top.main}"
 													padding-before="{$padding.before.border}"
@@ -2542,8 +2578,8 @@
 									<fo:table-cell border-width="{$width.border}"
 													            border-color="{$colour.border}"
 																border-style="{$style.border}">
-									<fo:block text-align="left" 
-								          font-size="{$font.size.standard}"
+									<fo:block 		text-align="centre" 
+								          			font-size="{$font.size.standard}"
 													font-weight="{$font.weight.key-value}"
 													margin-top="{$margin.top.main}"
 													padding-before="{$padding.before.border}"
@@ -2670,12 +2706,12 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>									
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.unexpectedresult.resultdescription"/>
 						<xsl:with-param name="value" select="cerif:ResultDescription"/>
 				  </xsl:call-template>
 
-				 	<xsl:call-template name="key-value-single">
+				 	<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.unexpectedresult.statuspublication"/>
 						<xsl:with-param name="value" select="cerif:Publication/cerif:Index/cerif:StatusPublication"/>
 				  </xsl:call-template> 
@@ -2723,17 +2759,17 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>									
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.type"/>
 						<xsl:with-param name="value" select="cerif:Type"/>
 				  </xsl:call-template>						
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.use"/>
 						<xsl:with-param name="value" select="cerif:Use"/>
 				  </xsl:call-template>						
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.use-description"/>
 						<xsl:with-param name="value" select="cerif:UseDescription"/>
 				  </xsl:call-template>	
@@ -2744,17 +2780,17 @@
 						</xsl:call-template>
           </xsl:if>
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.registration-number"/>
 						<xsl:with-param name="value" select="cerif:Result/cerif:RegistrationNumber"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.registration-date"/>
 						<xsl:with-param name="value" select="cerif:Result/cerif:RegistrationDate"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.patent.holder"/>
 						<xsl:with-param name="value" select="cerif:Result/cerif:Holder"/>
 				  </xsl:call-template>	
@@ -2765,42 +2801,42 @@
 						</xsl:call-template>
           </xsl:if>
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.patent-number"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:PatentNumber"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.approval-date"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:ApprovalDate"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.patent.publication-date"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:PublicationDate"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-author-affilation-comma-list">
+					<xsl:call-template name="key-author-affilation-comma-list-below">
 						<xsl:with-param name="key" select="$lang.patent.inventor"/>
 						<xsl:with-param name="value" select="cerif:Contributor/cerif:Index"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.patent.issuer"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:Issuer"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.patent.ipc-class"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:IPCClass"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="concat($lang.language,' ',$lang.abstract)"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:Language"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.abstract"/>
 						<xsl:with-param name="value" select="cerif:Import/cerif:Abstract"/>
 				  </xsl:call-template>	
@@ -2840,62 +2876,62 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.description"/>
 					<xsl:with-param name="value" select="cerif:Description"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-registercourt"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:RegisterCourt"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-registertype"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:RegisterType"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-registernumber"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:RegisterNumber"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-foundingdate"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:FoundingDate"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-type"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:Type"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-nace"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:NACE"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-street"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:Street"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-postcode"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:PostCode"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-city"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:City"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-country"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:Country"/>
 				</xsl:call-template>
 
-								<xsl:call-template name="key-value-single">
+								<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.spinoff.result-webaddress"/>
 					<xsl:with-param name="value" select="cerif:Result/cerif:WebAddress"/>
 				</xsl:call-template>
@@ -2914,27 +2950,20 @@
 					<fo:table>
 					
 										
-							<fo:table-column column-number="1" column-width="20%"/>	
-							<fo:table-column column-number="2" column-width="20%"/>	
-							<fo:table-column column-number="3" column-width="20%"/>	
-							<fo:table-column column-number="4" column-width="20%"/>	
-							<fo:table-column column-number="5" column-width="20%"/>	
-
-
-					<!--		<fo:table-column column-number="1" column-width="4cm"/>
-							<fo:table-column column-number="2" column-width="4cm"/>
-							<fo:table-column column-number="3" column-width="4cm"/>
-							<fo:table-column column-number="4" column-width="4cm"/>
-							<fo:table-column column-number="5" column-width="4cm"/> -->
-							
+							<fo:table-column column-number="1" column-width="10%"/>	
+							<fo:table-column column-number="2" column-width="30%"/>	
+							<fo:table-column column-number="3" column-width="15%"/>	
+							<fo:table-column column-number="4" column-width="15%"/>	
+							<fo:table-column column-number="5" column-width="30%"/>						
 
 							<fo:table-header>
 								<fo:table-row>
-								<fo:table-cell border-width="{$width.border}"
-																border-color="{$colour.border}"
-																border-style="{$style.border}">
-									<fo:block text-align="left" 
-								          font-size="{$font.size.standard}"
+								<fo:table-cell 	border-width="{$width.border}"
+												border-color="{$colour.border}"
+												border-style="{$style.border}">
+
+									<fo:block		text-align="centre" 
+								          			font-size="{$font.size.standard}"
 													font-weight="{$font.weight.key-value}"
 													margin-top="{$margin.top.main}"
 													padding-before="{$padding.before.border}"
@@ -3285,12 +3314,12 @@
 						<xsl:with-param name="value" select="cerif:Type"/>
 				  </xsl:call-template>
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.step.date"/>
 						<xsl:with-param name="value" select="cerif:Date"/>
 				  </xsl:call-template>
 
-					<xsl:call-template name="key-value-single">
+					<xsl:call-template name="key-value-single-below">
 						<xsl:with-param name="key" select="$lang.step.description"/>
 						<xsl:with-param name="value" select="cerif:Description"/>
 				  </xsl:call-template>
@@ -3330,12 +3359,12 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.award.description"/>
 					<xsl:with-param name="value" select="cerif:Description"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.award.date"/>
 					<xsl:with-param name="value" select="cerif:Date"/>
 				</xsl:call-template>
@@ -3346,27 +3375,27 @@
 					<xsl:with-param name="currency" select="cerif:Currency"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.currency"/>
 					<xsl:with-param name="value" select="cerif:Currency"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-comma-list">
+				<xsl:call-template name="key-value-comma-list-below">
 					<xsl:with-param name="key" select="$lang.award.winner"/>
 					<xsl:with-param name="value" select="cerif:Winner"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-comma-list">
+				<xsl:call-template name="key-value-comma-list-below">
 					<xsl:with-param name="key" select="$lang.award.organisation"/>
 					<xsl:with-param name="value" select="cerif:Organisation"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-comma-list">
+				<xsl:call-template name="key-value-comma-list-below">
 					<xsl:with-param name="key" select="$lang.award.donor"/>
 					<xsl:with-param name="value" select="cerif:Donor"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.award.targetgroup"/>
 					<xsl:with-param name="value" select="cerif:TargetGroup"/>
 				</xsl:call-template>
@@ -3419,22 +3448,22 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.condition.conditiontype"/>
 					<xsl:with-param name="value" select="cerif:ConditionType"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.condition.influence"/>
 					<xsl:with-param name="value" select="cerif:Influence"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.condition.startframework"/>
 					<xsl:with-param name="value" select="cerif:StartFramework"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.condition.conditiondescription"/>
 					<xsl:with-param name="value" select="cerif:ConditionDescription"/>
 				</xsl:call-template>
@@ -3474,17 +3503,17 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-							<xsl:call-template name="key-value-single">
+							<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.expectedsocietalimpact.description"/>
 				<xsl:with-param name="value" select="cerif:Description"/>
 			</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.expectedsocietalimpact.transitionarea"/>
 				<xsl:with-param name="value" select="cerif:TransitionArea"/>
 			</xsl:call-template>
 
-			<xsl:call-template name="key-value-single">
+			<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.expectedsocietalimpact.evidence"/>
 				<xsl:with-param name="value" select="cerif:Evidence"/>
 			</xsl:call-template>
@@ -3495,9 +3524,9 @@
 			</xsl:call-template>
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="6cm"/>
-							<fo:table-column column-number="2" column-width="6cm"/>
-							<fo:table-column column-number="3" column-width="8cm"/>
+							<fo:table-column column-number="1" column-width="30%"/>
+							<fo:table-column column-number="2" column-width="20%"/>
+							<fo:table-column column-number="3" column-width="50%"/>
 							
 							<fo:table-header>
 								<fo:table-row>
@@ -3647,17 +3676,17 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.negativesideeffect.description"/>
 				<xsl:with-param name="value" select="cerif:Description"/>
 			</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.negativesideeffect.transitionArea"/>
 				<xsl:with-param name="value" select="cerif:TransitionArea"/>
 			</xsl:call-template>
 
-			<xsl:call-template name="key-value-single">
+			<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.negativesideeffect.evidence"/>
 				<xsl:with-param name="value" select="cerif:Evidence"/>
 			</xsl:call-template>
@@ -3668,9 +3697,9 @@
 			</xsl:call-template>
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="30%"/>
+							<fo:table-column column-number="1" column-width="40%"/>
 							<fo:table-column column-number="2" column-width="20%"/>
-							<fo:table-column column-number="3" column-width="50%"/>
+							<fo:table-column column-number="3" column-width="40%"/>
 							
 							<fo:table-header>
 								<fo:table-row>
@@ -3826,8 +3855,8 @@
 			</xsl:call-template>
 
 					<fo:table>
-							<fo:table-column column-number="1" column-width="8cm"/>
-							<fo:table-column column-number="2" column-width="12cm"/>
+							<fo:table-column column-number="1" column-width="40%"/>
+							<fo:table-column column-number="2" column-width="60%"/>
 													
 							<fo:table-header>
 								<fo:table-row>
@@ -3908,7 +3937,7 @@
 							</fo:table-body>
 							</fo:table>		
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 				<xsl:with-param name="key" select="$lang.ethic.furtherdocuments"/>
 				<xsl:with-param name="value" select="cerif:FurtherDocuments"/>
 			</xsl:call-template>
@@ -3948,62 +3977,62 @@
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 				</xsl:call-template>	
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-researchquestion"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:Researchquestion"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptionresearchquestion"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionResearchquestion"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-stateofresearch"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:StateOfResearch"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptionstateofresearch"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionStateOfResearch"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-relevance"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:Relevance"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptionrelevance"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionRelevance"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-application"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:Application"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptionapplication"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionApplication"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-implementation"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:Implementation"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptionimplementaiton"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionImplementaiton"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-genderbalance"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:GenderBalance"/>
 				</xsl:call-template>
 
-				<xsl:call-template name="key-value-single">
+				<xsl:call-template name="key-value-single-below">
 					<xsl:with-param name="key" select="$lang.gender.reflection-descriptiongenderbalance"/>
 					<xsl:with-param name="value" select="cerif:Reflection/cerif:DescriptionGenderBalance"/>
 				</xsl:call-template>
@@ -4043,37 +4072,37 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.form"/>
 						<xsl:with-param name="value" select="cerif:OrganisationUnit/cerif:OrganisationType"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.cooperation.type"/>
 						<xsl:with-param name="value" select="cerif:CooperationType"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.field-of-activity"/>
 						<xsl:with-param name="value" select="cerif:FieldOfActivity"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.nace"/>
 						<xsl:with-param name="value" select="cerif:NACE"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.destatis"/>
 						<xsl:with-param name="value" select="cerif:Destatis"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.political-level"/>
 						<xsl:with-param name="value" select="cerif:PoliticalLevel"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.project-contribution"/>
 						<xsl:with-param name="value" select="cerif:ProjectContribution"/>
 				  </xsl:call-template>	
@@ -4085,7 +4114,7 @@
 						<xsl:with-param name="country" select="cerif:OrganisationUnit/cerif:Country"/>
 				  </xsl:call-template>
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.website"/>
 						<xsl:with-param name="value" select="cerif:OrganisationUnit/cerif:WebAddress"/>
 				  </xsl:call-template>					
@@ -4125,32 +4154,32 @@
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 					</xsl:call-template>
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.targetgroup.relevance"/>
 						<xsl:with-param name="value" select="cerif:ProjectRelevance"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.field-of-activity"/>
 						<xsl:with-param name="value" select="cerif:Classification/cerif:FieldOfActivity"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.nace"/>
 						<xsl:with-param name="value" select="cerif:Classification/cerif:NACE"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-comma-list"> 
+					<xsl:call-template name="key-value-comma-list-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.political-level"/>
 						<xsl:with-param name="value" select="cerif:Classification/cerif:PoliticalLevel"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.size"/>
 						<xsl:with-param name="value" select="cerif:Classification/cerif:BusinessSize"/>
 				  </xsl:call-template>	
 
-					<xsl:call-template name="key-value-single"> 
+					<xsl:call-template name="key-value-single-below"> 
 						<xsl:with-param name="key" select="$lang.organisation.location-type"/>
 						<xsl:with-param name="value" select="cerif:Classification/cerif:LocationType"/>
 				  </xsl:call-template>	
@@ -4482,21 +4511,21 @@
     <!-- print only anything when a value is given -->
 	    <xsl:if test="$value">
 
-				<fo:block margin-left="{$margin.left.text}"
-									font-size="{$font.size.key.alternative}" 
-									margin-top="{$margin.top.main}">
+				<fo:block 	margin-left="{$margin.left.text}"
+							font-size="{$font.size.key.alternative}" 
+							margin-top="{$margin.top.main}">
 
-					<fo:inline font-weight="{$font.weight.key}" 
-										 text-align="{$text.alignment.key}"
-										 color="{$colour.key}">
-						<xsl:value-of select="$key"/>
+					<fo:inline 	font-weight="{$font.weight.key}" 
+								text-align="{$text.alignment.key}"
+								color="{$colour.key}">
+							<xsl:value-of select="$key"/>
 					</fo:inline>
 
 				</fo:block>
 
-				<fo:block margin-left="{$margin.left.text}"
-									font-size="{$font.size.standard}" 
-									margin-top="{$margin.top.main}">
+				<fo:block 	margin-left="{$margin.left.text}"
+							font-size="{$font.size.standard}" 
+							margin-top="{$margin.top.main}">
 
 					<fo:inline font-weight="{$font.weight.value}" 
 										text-align="{$text.alignment.value}">
@@ -4547,6 +4576,8 @@
 <!--==============================================================-->	
 <!-- key: period -->
 <!--==============================================================-->
+
+<!-- TODO: integrate period itself -->
 
 	<xsl:template name="key-period">
 	  <xsl:param name="key"/>
@@ -4601,9 +4632,9 @@
 		<xsl:param name="addRuler" select="'true'"/>
 
 	  <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
-			<fo:block margin-left="{$margin.left.text}"
-								font-size="{$font.size.standard}" 
-								margin-top="{$margin.top.main}">
+			<fo:block 	margin-left="{$margin.left.text}"
+						font-size="{$font.size.standard}" 
+						margin-top="{$margin.top.main}">
 
 				<fo:inline font-weight="{$font.weight.key}" 
 					  				 text-align="{$text.alignment.key}"
@@ -4615,23 +4646,29 @@
 
 				<xsl:if test="$postcode"> 
 					<xsl:text> </xsl:text>
-					<fo:inline font-weight="{$font.weight.value}" 
-										 text-align="{$text.alignment.value}">
+					<fo:inline	 font-weight="{$font.weight.value}" 
+								 text-align="{$text.alignment.value}">
 						<xsl:value-of select="$postcode"/> 
 					</fo:inline>
 
 					<xsl:text> </xsl:text>
 			  </xsl:if>
 
-				  <fo:inline font-weight="{$font.weight.value}" 
-									   text-align="{$text.alignment.value}">
+			</fo:block>
+
+			<fo:block 	margin-left="{$margin.left.text}"
+						font-size="{$font.size.standard}" 
+						margin-top="{$margin.top.main}">
+
+				  <fo:inline 	font-weight="{$font.weight.value}" 
+								text-align="{$text.alignment.value}">
 					<xsl:value-of select="$city"/> 
 				</fo:inline>
 
 				<xsl:if test="$country">
 					<xsl:text> / </xsl:text>
 					  <fo:inline font-weight="{$font.weight.value}" 
-										   text-align="{$text.alignment.value}">
+								 text-align="{$text.alignment.value}">
 						<xsl:value-of select="$country"/> 
 					</fo:inline>
 			  </xsl:if>
@@ -4656,31 +4693,37 @@
 		<xsl:param name="addRuler" select="'true'"/>
 
 	  <xsl:if test="$amount"> <!--  use only amount for check, this seems the most probable input -->
-			<fo:block margin-left="{$margin.left.text}"
-								font-size="{$font.size.standard}" 
-								margin-top="{$margin.top.main}">
+			
+			<fo:block	margin-left="{$margin.left.text}"
+						font-size="{$font.size.standard}" 
+						margin-top="{$margin.top.main}">
 
 				<fo:inline font-weight="{$font.weight.key}" 
 					  				 text-align="{$text.alignment.key}"
 										 color="{$colour.key}">
 					<xsl:value-of select="$key"/> 
 
-					<xsl:text>: </xsl:text>
-				</fo:inline>
-
-				<fo:inline font-weight="{$font.weight.value}" 
-										text-align="{$text.alignment.value}">
-					<xsl:value-of select="$amount"/> 
-				</fo:inline>
-
-				<xsl:text> </xsl:text>
-
-				<fo:inline font-weight="{$font.weight.value}" 
-										text-align="{$text.alignment.value}">
-					<xsl:value-of select="$currency"/> 
 				</fo:inline>
 
 			</fo:block>
+
+				<fo:block	margin-left="{$margin.left.text}"
+						font-size="{$font.size.standard}" 
+						margin-top="{$margin.top.main}">
+
+						<fo:inline font-weight="{$font.weight.value}" 
+												text-align="{$text.alignment.value}">
+							<xsl:value-of select="$amount"/> 
+						</fo:inline>
+
+				<xsl:text> </xsl:text>
+
+						<fo:inline font-weight="{$font.weight.value}" 
+												text-align="{$text.alignment.value}">
+							<xsl:value-of select="$currency"/> 
+						</fo:inline>
+
+				</fo:block>
 
 			<xsl:if test="$addRuler = 'true'">
 				<xsl:call-template name="ruler"/>
@@ -4786,6 +4829,54 @@
 	</xsl:template>	
 
 <!--==============================================================-->	
+<!-- key: value list separated by commas alternative with text in new line  -->
+<!--==============================================================-->
+
+	<xsl:template name="key-value-comma-list-below">
+		<xsl:param name="key"/>
+	  <xsl:param name="value"/>
+		<xsl:param name="addRuler" select="'true'"/>
+
+	  <xsl:if test="$value">
+
+		  <fo:block margin-left="{$margin.left.text}" 
+					font-size="{$font.size.standard}" 
+			        margin-top="{$margin.top.main}">
+
+				<fo:inline  font-weight="{$font.weight.key}" 
+							text-align="{$text.alignment.key}"
+							color="{$colour.key}">
+					<xsl:value-of select="$key"/> 
+
+			
+				</fo:inline>
+
+		</fo:block>
+
+		  <fo:block margin-left="{$margin.left.text}" 
+					font-size="{$font.size.standard}" 
+			        margin-top="{$margin.top.main}">
+
+				<fo:inline font-weight="{$font.weight.value}" 
+									 text-align="{$text.alignment.value}">
+					<xsl:for-each select="$value">
+					  <xsl:value-of select="current()"/>
+					  <xsl:if test="position() != last()">, </xsl:if> <!-- do only this for the last item -->
+					</xsl:for-each>
+				</fo:inline>
+
+			</fo:block>
+
+			<xsl:if test="$addRuler = 'true'">
+				<xsl:call-template name="ruler"/>
+			</xsl:if>
+
+		</xsl:if>
+	</xsl:template>	
+
+
+
+<!--==============================================================-->	
 <!-- key: every value in a separated line -->
 <!--==============================================================-->
 
@@ -4806,7 +4897,7 @@
 					<xsl:value-of select="$key"/> 
 				</fo:inline>
 
-				<xsl:text>: </xsl:text>
+				<xsl:text> </xsl:text>
 			</fo:block>
 
 			<fo:list-block margin-left="{$margin.left.text}"
@@ -4889,6 +4980,53 @@
 		</xsl:if>
 
   </xsl:template>	
+
+<!--==============================================================-->
+<!-- key: author (affiliation) separated by commas, text under description -->
+<!--==============================================================-->
+
+	<xsl:template name="key-author-affilation-comma-list-below">
+		  <xsl:param name="key"/>
+		<xsl:param name="value"/>
+		<xsl:param name="addRuler" select="'true'"/>
+
+			<xsl:if test="$value">
+					<fo:block 	margin-left="{$margin.left.text}" 
+								font-size="{$font.size.standard}" 
+								margin-top="{$margin.top.main}">
+
+								<fo:inline 		font-weight="{$font.weight.key}" 
+												text-align="{$text.alignment.key}"
+												color="{$colour.key}">
+									<xsl:value-of select="$key"/>
+								 
+								</fo:inline>
+					</fo:block>
+
+					<fo:block 	margin-left="{$margin.left.text}"
+								font-size="{$font.size.standard}" 
+								margin-top="{$margin.top.main}">
+								<xsl:for-each select="$value">
+										<xsl:value-of select="cerif:Author"/>
+											<xsl:if test="cerif:Affiliation">
+												<xsl:text> (</xsl:text>
+												<xsl:value-of select="cerif:Affiliation"/> 
+												<xsl:text>)</xsl:text>
+											</xsl:if>
+										<xsl:if test="position() != last()">
+											<xsl:text>, </xsl:text>
+										</xsl:if>
+								</xsl:for-each>
+					</fo:block>
+				<xsl:if test="$addRuler = 'true'">
+			<xsl:call-template name="ruler"/>
+		</xsl:if>
+	</xsl:if>
+</xsl:template>
+
+
+
+
 
 <!--==============================================================-->
 <!-- block with title (first row) and description (second row) -->

@@ -5,7 +5,6 @@
  *
  * http://www.dspace.org/license/
  */
-
 package org.dspace.app.bulkedit;
 
 import java.io.InputStream;
@@ -13,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.apache.commons.cli.ParseException;
@@ -33,8 +34,10 @@ import org.dspace.discovery.indexobject.IndexableCollection;
 import org.dspace.discovery.indexobject.IndexableCommunity;
 import org.dspace.discovery.utils.DiscoverQueryBuilder;
 import org.dspace.discovery.utils.parameter.QueryBuilderSearchFilter;
+import org.dspace.eperson.EPerson;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
+import org.dspace.kernel.ServiceManager;
 import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.sort.SortOption;
 import org.dspace.utils.DSpace;
@@ -42,19 +45,27 @@ import org.dspace.utils.DSpace;
 /**
  * Metadata exporter to allow the batch export of metadata from a discovery search into a file
  *
+ * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  */
+@SuppressWarnings("rawtypes")
 public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScriptConfiguration> {
+
     private static final String EXPORT_CSV = "exportCSV";
-    private boolean help = false;
+    private static final String MSG_METADATA = "metadata.";
+
+    private boolean help;
+    private boolean hasScope;
+    private boolean exportAll;
+    private boolean isLabeled;
+
+    private String query;
     private String identifier;
     private String discoveryConfigName;
     private String[] filterQueryStrings;
-    private boolean hasScope = false;
-    private String query;
-    private boolean exportAll;
-    private boolean isLabeled;
-    private static final String MSG_METADATA = "metadata.";
 
+    private Context context;
+
+    // services
     private SearchService searchService;
     private MetadataDSpaceCsvExportService metadataDSpaceCsvExportService;
     private EPersonService ePersonService;
@@ -64,23 +75,17 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
     private DiscoverQueryBuilder queryBuilder;
 
     @Override
-    public MetadataExportSearchScriptConfiguration getScriptConfiguration() {
-        return new DSpace().getServiceManager()
-            .getServiceByName("metadata-export-search", MetadataExportSearchScriptConfiguration.class);
-    }
-
-    @Override
     public void setup() throws ParseException {
         searchService = SearchUtils.getSearchService();
-        metadataDSpaceCsvExportService = new DSpace().getServiceManager()
-                                                     .getServiceByName(
-                                                         MetadataDSpaceCsvExportServiceImpl.class.getCanonicalName(),
-                                                         MetadataDSpaceCsvExportService.class
-                                                     );
         ePersonService = EPersonServiceFactory.getInstance().getEPersonService();
         discoveryConfigurationService = SearchUtils.getConfigurationService();
         communityService = ContentServiceFactory.getInstance().getCommunityService();
         collectionService = ContentServiceFactory.getInstance().getCollectionService();
+        ServiceManager serviceManager = new DSpace().getServiceManager();
+        metadataDSpaceCsvExportService = serviceManager.getServiceByName(
+                               MetadataDSpaceCsvExportServiceImpl.class.getCanonicalName(),
+                               MetadataDSpaceCsvExportService.class);
+
         queryBuilder = SearchUtils.getQueryBuilder();
         exportAll = commandLine.hasOption("a");
         isLabeled = commandLine.hasOption("l");
@@ -117,20 +122,18 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
         }
         handler.logDebug("starting search export");
 
-        IndexableObject dso = null;
-        Context context = new Context();
-        context.setCurrentUser(ePersonService.find(context, this.getEpersonIdentifier()));
+        this.context = new Context();
+        assignCurrentUserInContext();
+        assignHandlerLocaleInContext();
 
-        if (hasScope) {
-            dso = resolveScope(context, identifier);
-        }
-
+        IndexableObject dso = hasScope ? resolveScope(context, identifier) : null;
         DiscoveryConfiguration discoveryConfiguration =
             discoveryConfigurationService.getDiscoveryConfigurationByNameOrDefault(discoveryConfigName);
 
         List<QueryBuilderSearchFilter> queryBuilderSearchFilters = new ArrayList<>();
 
         handler.logDebug("processing filter queries");
+
         if (filterQueryStrings != null) {
             for (String filterQueryString: filterQueryStrings) {
                 String field = filterQueryString.split(",", 2)[0];
@@ -141,20 +144,20 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
                 queryBuilderSearchFilters.add(queryBuilderSearchFilter);
             }
         }
+
         handler.logDebug("building query");
+
         DiscoverQuery discoverQuery =
             queryBuilder.buildQuery(context, dso, discoveryConfiguration, query, queryBuilderSearchFilters,
             "Item", 10, Long.getLong("0"), null, SortOption.DESCENDING);
-        handler.logDebug("creating iterator");
-
         Iterator<Item> itemIterator = searchService.iteratorSearch(context, dso, discoverQuery);
         handler.logDebug("creating dspacecsv");
         DSpaceCSV dSpaceCSV = metadataDSpaceCsvExportService.export(context, itemIterator, exportAll);
         handler.logDebug("writing to file " + getFileNameOrExportFile());
-        handler.writeFilestream(context, getFileNameOrExportFile(), getInputStream(dSpaceCSV), EXPORT_CSV);
+        handler.writeFilestream(context, getFileNameOrExportFile(),
+                                         getInputStream(dSpaceCSV, context.getCurrentLocale()), EXPORT_CSV);
         context.restoreAuthSystemState();
         context.complete();
-
     }
 
     protected void loghelpinfo() {
@@ -174,12 +177,32 @@ public class MetadataExportSearch extends DSpaceRunnable<MetadataExportSearchScr
         return scopeObj;
     }
 
-    private InputStream getInputStream(DSpaceCSV dSpaceCSV) {
-        if (isLabeled) {
-            return dSpaceCSV.getInputStream(MSG_METADATA);
-        } else {
-            return dSpaceCSV.getInputStream();
+    private InputStream getInputStream(DSpaceCSV dSpaceCSV, Locale locale) {
+        return isLabeled ? dSpaceCSV.getInputStream(MSG_METADATA, locale) : dSpaceCSV.getInputStream();
+    }
+
+    private void assignCurrentUserInContext() throws SQLException {
+        UUID CurrentUserUuid = getEpersonIdentifier();
+        if (Objects.nonNull(CurrentUserUuid)) {
+            EPerson ePerson = ePersonService.find(context, CurrentUserUuid);
+            this.context.setCurrentUser(ePerson);
         }
+    }
+
+    private void assignHandlerLocaleInContext() {
+        if (Objects.nonNull(this.handler) &&
+            Objects.nonNull(this.context) &&
+            Objects.nonNull(this.handler.getLocale()) &&
+            !this.handler.getLocale().equals(this.context.getCurrentLocale())
+        ) {
+            this.context.setCurrentLocale(this.handler.getLocale());
+        }
+    }
+
+    @Override
+    public MetadataExportSearchScriptConfiguration getScriptConfiguration() {
+        ServiceManager serviceManager = new DSpace().getServiceManager();
+        return serviceManager.getServiceByName("metadata-export-search", MetadataExportSearchScriptConfiguration.class);
     }
 
 }

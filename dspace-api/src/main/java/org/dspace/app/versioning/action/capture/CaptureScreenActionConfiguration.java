@@ -7,6 +7,8 @@
  */
 package org.dspace.app.versioning.action.capture;
 
+import static org.dspace.app.versioning.action.VersionigActionInterface.MAX_RETRIES;
+
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -43,19 +45,27 @@ public class CaptureScreenActionConfiguration
     protected final ItemUrlMapper itemUrlMapper;
     protected final boolean cleanBundle;
     protected final MetadataValueDTOSupplier metadataValueSupplier;
+    protected final int maxRetries;
 
     public CaptureScreenActionConfiguration(
         CapturableScreenConfiguration configuration, String bundleName,
         ItemProvider itemProvider, ItemUrlMapper itemUrlMapper
     ) {
-        this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER);
+        this(configuration, bundleName, itemProvider, itemUrlMapper, MAX_RETRIES);
+    }
+
+    public CaptureScreenActionConfiguration(
+        CapturableScreenConfiguration configuration, String bundleName,
+        ItemProvider itemProvider, ItemUrlMapper itemUrlMapper, int maxRetries
+    ) {
+        this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER, false, null, maxRetries);
     }
 
     public CaptureScreenActionConfiguration(
         CapturableScreenConfiguration configuration, String bundleName,
         ItemProvider itemProvider, ItemUrlMapper itemUrlMapper, String dcType
     ) {
-        this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER, false, dcType);
+        this(configuration, bundleName, itemProvider, itemUrlMapper, ITEM_MAPPER, false, dcType, MAX_RETRIES);
     }
 
     public CaptureScreenActionConfiguration(
@@ -72,14 +82,14 @@ public class CaptureScreenActionConfiguration
         ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper,
         boolean cleanBundle
     ) {
-        this(configuration, bundleName, itemProvider, itemUrlMapper, itemMapper, cleanBundle, null);
+        this(configuration, bundleName, itemProvider, itemUrlMapper, itemMapper, cleanBundle, null, MAX_RETRIES);
     }
 
     public CaptureScreenActionConfiguration(
         CapturableScreenConfiguration configuration,
         String bundleName, ItemProvider itemProvider,
         ItemUrlMapper itemUrlMapper, ScreenActionItemMapper itemMapper,
-        boolean cleanBundle, String dcType
+        boolean cleanBundle, String dcType, int maxRetries
     ) {
         super(configuration);
         this.bundleName = bundleName;
@@ -87,6 +97,7 @@ public class CaptureScreenActionConfiguration
         this.itemMapper = itemMapper;
         this.itemUrlMapper = itemUrlMapper;
         this.cleanBundle = cleanBundle;
+        this.maxRetries = maxRetries;
         if (dcType != null) {
             this.metadataValueSupplier = dcTypeSupplier.apply(dcType);
         } else {
@@ -108,7 +119,8 @@ public class CaptureScreenActionConfiguration
             itemMapper.mapScreenActionItem(c, item, providedItem),
             bundleName,
             cleanBundle,
-            this.metadataValueSupplier.get(c, item)
+            this.metadataValueSupplier.get(c, item),
+            this.maxRetries
         );
     }
 

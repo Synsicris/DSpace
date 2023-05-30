@@ -61,7 +61,13 @@ public class CaptureScreenAction<T extends CapturableScreen> extends VersioningA
     public CaptureScreenAction(
         T operation, Item item, String bundleName, boolean cleanBundle, MetadataValueDTO metadataValue
     ) {
-        super(operation);
+        this(operation, item, bundleName, cleanBundle, metadataValue, MAX_RETRIES);
+    }
+
+    public CaptureScreenAction(
+        T operation, Item item, String bundleName, boolean cleanBundle, MetadataValueDTO metadataValue, int maxRetries
+    ) {
+        super(operation, maxRetries);
         this.item = item;
         this.bundleName = bundleName;
         if (cleanBundle) {

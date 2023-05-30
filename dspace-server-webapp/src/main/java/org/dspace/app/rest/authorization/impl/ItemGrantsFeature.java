@@ -8,7 +8,6 @@
 package org.dspace.app.rest.authorization.impl;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,6 +17,7 @@ import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.ItemRest;
 import org.dspace.app.rest.utils.Utils;
+import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
@@ -43,7 +43,10 @@ import org.springframework.stereotype.Component;
     "It can be used for verify that an user has access to modify the grants of a specific item")
 public class ItemGrantsFeature implements AuthorizationFeature {
 
-    public static final String NAME = "canEditedGrants";
+    public static final String NAME = "canEditGrants";
+
+    @Autowired
+    AuthorizeService authService;
 
     @Autowired
     private ProjectConsumerService projectConsumerService;
@@ -65,19 +68,21 @@ public class ItemGrantsFeature implements AuthorizationFeature {
             return false;
         }
 
+        if (authService.isAdmin(context)) {
+            return true;
+        }
+
         if (StringUtils.equals(object.getType(), ItemRest.NAME)) {
             Item item = getItem(context, object);
-            if (isSharedOrFunder(context, item) || isForbbidenEntityType(context, item)) {
+            if (isForbbidenEntityType(context, item)) {
                 return false;
             }
-            Community project = item.getOwningCollection().getCommunities().get(0);
-            if (Objects.nonNull(project)) {
-                return Optional.ofNullable(
-                        projectConsumerService.getFundingCommunityByUser(context, currentUser, project)
-                    )
-                    .map(funding -> isCoordinatorMemberOfFunding(context, funding, currentUser))
-                    .orElse(false);
-            }
+            Community c = projectConsumerService.getFirstOwningCommunity(context, item);
+            return Optional.ofNullable(
+                    projectConsumerService.getFirstOwningCommunity(context, item)
+                )
+                .map(funding -> isCoordinatorMemberOfFunding(context, funding, currentUser))
+                .orElse(false);
         }
         return false;
     }
@@ -91,19 +96,10 @@ public class ItemGrantsFeature implements AuthorizationFeature {
         return null;
     }
 
-    private boolean isSharedOrFunder(Context context, Item item) {
-        String value = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
-        return StringUtils.isNotBlank(value) &&
-             (StringUtils.equals(value, ProjectConstants.SHARED) ||
-              StringUtils.equals(value, ProjectConstants.FUNDER) ||
-              StringUtils.equals(value, ProjectConstants.FUNDER_PROGRAMME));
-    }
-
     private boolean isForbbidenEntityType(Context context, Item item) {
         String entiyType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
 
-        return StringUtils.isNotBlank(entiyType) &&
-                Arrays.stream(ProjectConstants.notAllowedEditGrants).anyMatch(entiyType::equals);
+        return StringUtils.isBlank(entiyType) || !entiyType.equals(ProjectConstants.FUNDING_ENTITY);
     }
 
     private boolean isCoordinatorMemberOfFunding(Context context, Community community, EPerson submitter) {

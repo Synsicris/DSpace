@@ -52,10 +52,18 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
     @SuppressWarnings("unused")
     private Collection collectionSubProjectB;
     private Community projectsCommunity;
+    private Community projectCommunity;
     private Community subprojectsCommunity;
     private Community subprojectAComm;
     private Community subprojectBComm;
     private Collection publicationsCollection;
+    private EPerson fundingACoord;
+    private EPerson fundingAUser;
+    private EPerson fundingBCoord;
+    private EPerson fundingBUser;
+    private Item publication;
+    private Item fundingA;
+    private Item fundingB;
 
 
     /**
@@ -68,44 +76,59 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
     public void setUp() throws Exception {
         super.setUp();
         itemGrantsFeature = authorizationFeatureService.find(ItemGrantsFeature.NAME);
-    }
 
-    @Test
-    public void itemGrantsFeatureTest() throws Exception {
         context.turnOffAuthorisationSystem();
 
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
+        fundingACoord = EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("FundingA", "Coord")
+                .withEmail("fundingacord@email.com")
                 .withPassword(password).build();
 
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Viktor", "Beketov")
-                .withEmail("example2@email.com")
+        fundingAUser = EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("FundingA", "User")
+                .withEmail("fundingauser@email.com")
+                .withPassword(password).build();
+
+        fundingBCoord = EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("FundingB", "Coord")
+                .withEmail("fundingbcord@email.com")
+                .withPassword(password).build();
+
+        fundingBUser = EPersonBuilder.createEPerson(context)
+                .withNameInMetadata("FundingB", "User")
+                .withEmail("fundingbuser@email.com")
                 .withPassword(password).build();
 
         projectsCommunity = CommunityBuilder.createCommunity(context)
                                             .withName("Projects Community").build();
 
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .addMember(ePerson2).build();
+        projectCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+                                           .withName("Project test").build();
 
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
+        Group projectCommunityGroup = GroupBuilder.createGroup(context)
+                     .withName(String.format(
+                             ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE,
+                             projectCommunity.getID().toString()
+                         ))
+                     .addMember(fundingACoord)
+                     .addMember(fundingAUser)
+                     .addMember(fundingBCoord)
+                     .addMember(fundingBUser).build();
+
+        publicationsCollection = CollectionBuilder.createCollection(context, projectCommunity)
                                                   .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
+                                                  .withSubmitterGroup(projectCommunityGroup)
                                                   .withTemplateItem().build();
 
-        context.setCurrentUser(ePerson1);
-        Item item = ItemBuilder.createItem(context, publicationsCollection)
+        context.setCurrentUser(fundingBCoord);
+        publication = ItemBuilder.createItem(context, publicationsCollection)
                                .withTitle("Test Title")
                                .withPolicyGroup("GROUP_POLICY_PLACEHOLDER")
                                .withSharedProject("project")
                                .build();
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
+        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectCommunity)
+                                               .withName("Fundings").build();
 
         subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
                                           .withName("Sub ProjectA of SubprojectsCommunity").build();
@@ -118,7 +141,7 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                        subprojectAComm.getID().toString()
                    )
                )
-               .addMember(ePerson1)
+               .addMember(fundingAUser)
                .build();
 
         GroupBuilder.createGroup(context)
@@ -128,13 +151,20 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                     subprojectAComm.getID().toString()
                 )
             )
-            .addMember(ePerson1)
+            .addMember(fundingACoord)
             .build();
 
         collectionSubProjectA =
             CollectionBuilder.createCollection(context, subprojectAComm)
                 .withSubmitterGroup(fundingMemberAGroup)
                 .withName("Collection Sub Project A")
+                .withEntityType(ProjectConstants.FUNDING_ENTITY)
+                .build();
+
+        fundingA = ItemBuilder.createItem(context, collectionSubProjectA)
+                .withTitle("Sub ProjectA")
+                .withCrisPolicyGroup(projectCommunityGroup.getName(), projectCommunityGroup.getID().toString())
+                .withSharedProject("project")
                 .build();
 
         subprojectBComm =
@@ -150,23 +180,46 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
                         subprojectBComm.getID().toString()
                     )
                 )
-                .addMember(ePerson2)
+                .addMember(fundingBUser)
                 .build();
+
+        GroupBuilder.createGroup(context)
+            .withName(
+                String.format(
+                    ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE,
+                    subprojectBComm.getID().toString()
+                )
+            )
+            .addMember(fundingBCoord)
+            .build();
 
         collectionSubProjectB =
             CollectionBuilder.createCollection(context, subprojectAComm)
                 .withSubmitterGroup(subprojectBGroup)
                 .withName("Collection Sub Project B")
+                .withEntityType(ProjectConstants.FUNDING_ENTITY)
                 .build();
 
+        fundingB = ItemBuilder.createItem(context, collectionSubProjectA)
+                .withTitle("Sub ProjectA")
+                .withCrisPolicyGroup(subprojectBGroup.getName(), subprojectBGroup.getID().toString())
+                .withSharedProject("funding")
+                .build();
+
+        configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
         configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
         context.restoreAuthSystemState();
 
-        ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);
+    }
 
-        String tokenEPerson1 = getAuthToken(ePerson1.getEmail(), password);
+    @Test
+    public void shouldAuthorizeForCoordinator() throws Exception {
 
-        Authorization authGrantsItem = new Authorization(ePerson1, itemGrantsFeature, itemRestA);
+        ItemRest itemRestA = itemConverter.convert(fundingA, DefaultProjection.DEFAULT);
+
+        String tokenEPerson1 = getAuthToken(fundingACoord.getEmail(), password);
+
+        Authorization authGrantsItem = new Authorization(fundingACoord, itemGrantsFeature, itemRestA);
 
         getClient(tokenEPerson1).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
                                 .andExpect(status().isOk())
@@ -175,74 +228,57 @@ public class ItemGrantsFeatureIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
-    public void itemGrantsFeatureNotFoundTest() throws Exception {
-        context.turnOffAuthorisationSystem();
+    public void shouldAuthorizeForAdministrator() throws Exception {
 
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
-                .withPassword(password).build();
+        ItemRest itemRestA = itemConverter.convert(fundingA, DefaultProjection.DEFAULT);
 
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Viktor", "Beketov")
-                .withEmail("example2@email.com")
-                .withPassword(password).build();
+        String tokenEPerson1 = getAuthToken(admin.getEmail(), password);
 
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
+        Authorization authGrantsItem = new Authorization(admin, itemGrantsFeature, itemRestA);
 
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .addMember(ePerson2).build();
+        getClient(tokenEPerson1).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$", Matchers.is(
+                                           AuthorizationMatcher.matchAuthorization(authGrantsItem))));
+    }
 
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
+    @Test
+    public void shouldNotAuthorizeForWrongCoordinator() throws Exception {
 
-        Item item = ItemBuilder.createItem(context, publicationsCollection)
-                               .withTitle("Test Title")
-                               .withPolicyGroup("GROUP_POLICY_PLACEHOLDER")
-                               .withSharedProject("project")
-                               .build();
+        ItemRest itemRestA = itemConverter.convert(fundingA, DefaultProjection.DEFAULT);
 
-        subprojectsCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
+        String tokenEPerson1 = getAuthToken(fundingBCoord.getEmail(), password);
 
-        subprojectAComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
-                                          .withName("Sub ProjectA of SubprojectsCommunity").build();
+        Authorization authGrantsItem = new Authorization(fundingBCoord, itemGrantsFeature, itemRestA);
 
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectAComm.getID().toString() + "_members_group")
-                       .addMember(ePerson1).build();
+        getClient(tokenEPerson1).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
+                                .andExpect(status().isNotFound());
+    }
 
-        collectionSubProjectA = CollectionBuilder.createCollection(context, subprojectAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
+    @Test
+    public void shouldNotAuthorizeForMember() throws Exception {
 
-        subprojectBComm = CommunityBuilder.createSubCommunity(context, subprojectsCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity").build();
+        ItemRest itemRestA = itemConverter.convert(fundingA, DefaultProjection.DEFAULT);
 
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("project_" + subprojectBComm.getID().toString() + "_members_group")
-                       .addMember(ePerson2).build();
+        String tokenEPerson1 = getAuthToken(fundingAUser.getEmail(), password);
 
-        collectionSubProjectB = CollectionBuilder.createCollection(context, subprojectAComm)
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
+        Authorization authGrantsItem = new Authorization(fundingAUser, itemGrantsFeature, itemRestA);
 
-        configurationService.setProperty("project.funding-community-name", subprojectsCommunity.getName());
-        context.restoreAuthSystemState();
+        getClient(tokenEPerson1).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
+                                .andExpect(status().isNotFound());
+    }
 
-        ItemRest itemRestA = itemConverter.convert(item, DefaultProjection.DEFAULT);
+    @Test
+    public void shouldNotAuthorizeForNotFundingEntity() throws Exception {
 
-        String tokenEperson = getAuthToken(ePerson1.getEmail(), password);
+        ItemRest itemRestA = itemConverter.convert(publication, DefaultProjection.DEFAULT);
 
-        Authorization authGrantsItem = new Authorization(ePerson1, itemGrantsFeature, itemRestA);
+        String tokenEPerson1 = getAuthToken(fundingBCoord.getEmail(), password);
 
-        getClient(tokenEperson).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
-                               .andExpect(status().isNotFound());
+        Authorization authGrantsItem = new Authorization(fundingBCoord, itemGrantsFeature, itemRestA);
+
+        getClient(tokenEPerson1).perform(get("/api/authz/authorizations/" + authGrantsItem.getID()))
+                                .andExpect(status().isNotFound());
     }
 
 }

@@ -1,6 +1,18 @@
 <Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
 
 	<!--########################################################################-->
+  <!-- for the screenshot functionality -->
+	<!--########################################################################-->
+
+	<EmbeddedPdfs>
+		<EmbeddedPdf>@virtual.bitstream.original.*.pdf@</EmbeddedPdf>
+	</EmbeddedPdfs>
+
+	<Graphs>
+		<Graph>@virtual.bitstream.GRAPH@</Graph>
+	</Graphs>
+
+	<!--########################################################################-->
   <!-- attributes from the project entity (those come direct)-->
 	<!--########################################################################-->
 
@@ -30,6 +42,11 @@
 			</Index>
 
 		@relation.impactpathway.end@
+
+		<!-- for the screenshot functionality -->
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.IMPACTPATHWAY@</Screenshot>
+		</Screenshots>
 
 	</ImpactPathway>
 
@@ -178,7 +195,7 @@
 				<StartDate>@dc.date.start@</StartDate>
 				<EndDate>@dc.date.end@</EndDate>
 				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-				<Status>@synsicris.type.status@</Status>	
+                <Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
 
         <!-- associated tasks -->
 				<Task>
@@ -285,6 +302,12 @@
 		  </Index>
 		@relation.workpackage.end@
 
+	  <!-- for the screenshot functionality -->	
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.WORKINGPLAN@</Screenshot>
+		</Screenshots>
+
+
 	</WorkPackage>
 
 	<!--########################################################################-->
@@ -320,6 +343,7 @@
 
         <!-- associated attributes (via the step-id "working_plan_form") -->
 				<EndDate>@dc.date.end@</EndDate>
+				<Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
 
 				<WorkPackage>
 					@relation.workpackage-relation-step.start@
@@ -335,7 +359,7 @@
 								<StartDate>@dc.date.start@</StartDate>
 								<EndDate>@dc.date.end@</EndDate>
 								<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-								<Status>@synsicris.type.status@</Status>	
+								<Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>	
 
 							</Index>
 							@if.hasEntityType.workpackage.end@
@@ -897,7 +921,7 @@
 				<EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
 				<FieldOfActivity>@dc.type@</FieldOfActivity>
 				<Destatis>@synsicris.subject.destatis@</Destatis>
-				<NACE>@synsicris.subject.nace@</NACE>
+				<NACE>@virtual.vocabulary_i18n.synsicris-subject-nace@</NACE>
 				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
 
 			  <!-- attributes from the import accordion -->

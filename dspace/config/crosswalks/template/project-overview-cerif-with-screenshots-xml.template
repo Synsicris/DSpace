@@ -1,7 +1,7 @@
 <Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
 
 	<!--########################################################################-->
-  <!-- for screenshot functionality -->
+  <!-- for the screenshot functionality -->
 	<!--########################################################################-->
 
 	<EmbeddedPdfs>
@@ -43,7 +43,7 @@
 
 		@relation.impactpathway.end@
 
-		<!-- for screenshot functionality -->
+		<!-- for the screenshot functionality -->
 		<Screenshots>
 			<Screenshot>@virtual.bitstream.IMPACTPATHWAY@</Screenshot>
 		</Screenshots>
@@ -302,7 +302,7 @@
 		  </Index>
 		@relation.workpackage.end@
 
-	  <!-- for screenshot functionality -->	
+	  <!-- for the screenshot functionality -->	
 		<Screenshots>
 			<Screenshot>@virtual.bitstream.WORKINGPLAN@</Screenshot>
 		</Screenshots>

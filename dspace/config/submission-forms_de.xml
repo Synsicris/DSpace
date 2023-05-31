@@ -32,7 +32,7 @@
         <field>
           <dc-schema>dc</dc-schema>
           <dc-element>description</dc-element>
-          <label>Beschreibung des Wirkungspfades / Gesamtziele des Projekes</label>
+          <label>Beschreibung der Gesamtziele des Vorhabens</label>
           <input-type>textarea</input-type>
           <repeatable>false</repeatable>
           <required />
@@ -1835,7 +1835,7 @@
         <field>
           <dc-schema>dcterms</dc-schema>
           <dc-element>rightsHolder</dc-element>
-          <label>Inhaber:in</label>
+          <label>Anmelder</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
@@ -4312,30 +4312,6 @@
 eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt haben.</hint>
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>scopus-author-id</dc-qualifier>
-          <label>Scopus Author ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>rid</dc-qualifier>
-          <label>Researcher ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
     </form>
     <form name="spinoffs_result_performance-synsicris-date-performance">
       <row>
@@ -5356,7 +5332,7 @@ eine Verknüpfung mit Ihrem ORCID-Profil, wenn Sie dieses öffentlich gestellt h
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Tätigkeitsbereich der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_type">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen. 
 Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Vorhaben eingebracht wird, falls es mehrere gibt.</hint>
@@ -5370,7 +5346,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>nace</dc-qualifier>
           <label>Wirtschaftszweig</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy</type-bind>
@@ -5385,7 +5361,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>enterprise</dc-qualifier>
           <label>Unternehmensgröße</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
@@ -5399,7 +5375,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>political</dc-qualifier>
           <label>Adressierte Politikebene(n)</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
           <type-bind>Policy makers, Public institutions</type-bind>
@@ -5413,7 +5389,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>urbanrural</dc-qualifier>
           <label>Verortung der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>hidden</visibility>
@@ -5555,7 +5531,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Tätigkeitsbereich der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_type">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Die Auswahl hat Einfluss auf die nachfolgenden Abfragen. 
 Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für die Entwicklung von Lösungen, Veränderungen und Innovationen wichtig sind. Wählen Sie den Tätigkeitsbereich, der am meisten in das Vorhaben eingebracht wird, falls es mehrere gibt.</hint>
@@ -5569,7 +5545,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>nace</dc-qualifier>
           <label>Wirtschaftszweig</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy</type-bind>
@@ -5584,7 +5560,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>enterprise</dc-qualifier>
           <label>Unternehmensgröße</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
@@ -5598,7 +5574,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>political</dc-qualifier>
           <label>Adressierte Politikebene(n)</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>Für eine Mehrfachangabe legen Sie mit der Schaltfläche [+] weitere Felder an.</hint>
           <type-bind>Policy makers, Public institutions</type-bind>
@@ -5612,7 +5588,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-qualifier>urbanrural</dc-qualifier>
           <label>Verortung der Akteursgruppe</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>hidden</visibility>
@@ -5818,6 +5794,32 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
         </field>
       </row>
     </form>
+    <form name="awards-synsicris-contributor-donor">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>donor</dc-qualifier>
+          <label>Stifter</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Preisverleihende Organisation oder Person</hint>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Akteursgruppe des Stifters</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Ordnen Sie der preisverleihenden Organisation oder Person eine Akteursgruppe zu, um zu verdeutlichen, welche Gruppe die Leistungen würdigt.</hint>
+        </field>
+      </row>
+    </form>
     <form name="awards">
       <row>
         <field>
@@ -5904,23 +5906,11 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-schema>synsicris</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
-          <label>Initiator(en)</label>
-          <input-type>onebox</input-type>
+          <label>Preisverleihende Organisation(en) oder Person(en) und zugehörige Akteursgruppe</label>
+          <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-6</style>
           <hint />
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Akteursgruppe des Initiators</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Ordnen Sie den Initiator in eine Akteursgruppe ein, um zu verdeutlichen, welche Gruppe die Leistungen würdigt.</hint>
         </field>
       </row>
     </form>

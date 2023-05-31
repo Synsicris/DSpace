@@ -65,14 +65,14 @@ public class ActionsExecutorServiceImpl implements ActionsExecutorService {
             .forEach(action -> action.store(context));
     }
 
+    @SuppressWarnings("CheckReturnValue")
     protected void executeActions(Context context, ExecutableActions executable) {
         getActionStream(executable)
             .forEach(action ->
                 Optional.of(consumeActionWithRetry(context, action, action.getMaxRetries()))
                     .filter(Boolean::booleanValue)
-                    .ifPresentOrElse(
-                        (b) -> logger.debug("Executed correctly the action " + action.toString()),
-                        () -> new RuntimeException("Cannot take the screenshot!")
+                    .orElseThrow(
+                        () -> new RuntimeException("Cannot take the screenshot of the action: " + action)
                     )
             );
     }

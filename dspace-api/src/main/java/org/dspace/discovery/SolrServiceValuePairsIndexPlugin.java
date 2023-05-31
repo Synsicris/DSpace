@@ -28,6 +28,7 @@ import org.dspace.content.authority.service.ChoiceAuthorityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.core.CrisConstants;
 import org.dspace.core.I18nUtil;
 import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.discovery.configuration.DiscoveryConfiguration;
@@ -120,6 +121,11 @@ public class SolrServiceValuePairsIndexPlugin implements SolrServiceIndexPlugin 
 
     private void addDiscoveryFieldFields(String language, SolrInputDocument document, String value, String authority,
         DiscoverySearchFilter searchFilter) {
+
+        if (CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE.equals(value)) {
+            return;
+        }
+
         String separator = configurationService.getProperty("discovery.solr.facets.split.char", FILTER_SEPARATOR);
         String fieldNameWithLanguage = language + "_" + searchFilter.getIndexFieldName();
         String valueLowerCase = value.toLowerCase();

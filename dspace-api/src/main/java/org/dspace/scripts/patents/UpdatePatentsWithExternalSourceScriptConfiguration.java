@@ -8,6 +8,7 @@
 package org.dspace.scripts.patents;
 
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.cli.Options;
@@ -29,6 +30,13 @@ public class UpdatePatentsWithExternalSourceScriptConfiguration<T extends Update
     private static final Logger log = LoggerFactory.getLogger(UpdatePatentsWithExternalSourceScriptConfiguration.class);
 
     private Class<T> dspaceRunnableClass;
+
+    /**
+     * this map is used to manage the non-repeatable fields of the submission-form
+     * for the patent entity, but which may receive multiple values from the external provider
+     * during the update procedure. with this map, we only save the first value (e.g. title or description).
+     */
+    private Map<String, Boolean> nonRepeatableMetadata;
 
     @Autowired
     private AuthorizeService authorizeService;
@@ -60,6 +68,14 @@ public class UpdatePatentsWithExternalSourceScriptConfiguration<T extends Update
     @Override
     public void setDspaceRunnableClass(Class<T> dspaceRunnableClass) {
         this.dspaceRunnableClass = dspaceRunnableClass;
+    }
+
+    public Map<String, Boolean> getNonRepeatableMetadata() {
+        return nonRepeatableMetadata;
+    }
+
+    public void setNonRepeatableMetadata(Map<String, Boolean> nonRepeatableMetadata) {
+        this.nonRepeatableMetadata = nonRepeatableMetadata;
     }
 
 }

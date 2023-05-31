@@ -114,17 +114,6 @@
           <style>col-12</style>
           <hint />
         </field>
-        <field>
-          <dc-schema>crispatent</dc-schema>
-          <dc-element>document</dc-element>
-          <dc-qualifier>description</dc-qualifier>
-          <label>Abstract</label>
-          <input-type>textarea</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-12</style>
-          <hint />
-        </field>
       </row>
     </form>
     <form name="impact_pathway_step_form">

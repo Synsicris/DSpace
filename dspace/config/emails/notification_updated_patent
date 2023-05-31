@@ -1,0 +1,12 @@
+## Email sent to DSpace users when they successfully export an item or collection.
+##
+## Parameters: {0} the patent title
+##             {1} the patent uuid
+##
+##
+## See org.dspace.core.Email for information on the format of this file.
+##
+#set($subject = 'DSpace - The item export you requested was not completed.')
+The Patent with the title: ${params[0]} and UUID:${params[1]} was has been updated!
+
+The DSpace Team

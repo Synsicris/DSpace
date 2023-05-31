@@ -5906,7 +5906,7 @@ Die Liste umfasst eine grobe Strukturierung von Tätigkeitsbereichen, die für d
           <dc-schema>synsicris</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
-          <label />
+          <label>Preisverleihende Organisation(en) oder Person(en) und zugehörige Akteursgruppe</label>
           <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />

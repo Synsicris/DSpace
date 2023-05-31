@@ -70,6 +70,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         "synsicris.uniqueid:* AND dspace.entity.type:Project";
     private static final String SOLR_FILTER_VERSION_PROJECT =
         "synsicris.version:\"%s\" AND -(dspace.entity.type:Project OR search.resourceid:%s)";
+    private static final String SOLR_FILTER_FUNDING_RELATION =
+        "synsicris.relation.funding_authority:\"%s\" AND " +
+        "!entityType:comment AND " +
+        "-(relation.isVersionOf:* OR synsicris.uniqueid:*)";
     private static final Logger log = LogManager.getLogger(ProjectConsumerServiceImpl.class);
 
     @Autowired
@@ -89,49 +93,87 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
 
     @Override
     public void processItem(Context context, EPerson currentUser, Item item) {
-        try {
-            if (StringUtils.isNotBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
-                String shared = itemService.getMetadataFirstValue(item, "cris", "project", "shared", Item.ANY);
-                String entityType = itemService.getMetadataFirstValue(item, "dspace", "entity", "type", Item.ANY);
-                Community projectCommunity;
-                if (entityType != null && entityType.equals(ProjectConstants.PROJECT_ENTITY)) {
-                    projectCommunity = getProjectCommunity(context, item);
-                } else {
-                    projectCommunity = getProjectCommunityByRelationProject(context, item);
-                }
+        if (StringUtils.isBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
+            return;
+        }
+        this.setPolicy(context, currentUser, item, getSharedPolicyValue(item));
+    }
 
-                if (Objects.isNull(projectCommunity) || StringUtils.isBlank(shared)) {
+    @Override
+    public String getSharedPolicyValue(Item item) {
+        return itemService.getMetadataFirstValue(
+            item,
+            ProjectConstants.MD_POLICY_SHARED.schema,
+            ProjectConstants.MD_POLICY_SHARED.element,
+            ProjectConstants.MD_POLICY_SHARED.qualifier,
+            Item.ANY
+        );
+    }
+
+    @Override
+    public void setPolicy(Context context, EPerson currentUser, Item item, String policy) {
+        try {
+            if (StringUtils.isBlank(itemService.getMetadataFirstValue(item, "cris", "policy", "group", Item.ANY))) {
+                return;
+            }
+            Community projectCommunity;
+            if (isProjectItem(item)) {
+                projectCommunity = getProjectCommunity(context, item);
+            } else {
+                projectCommunity = getProjectCommunityByRelationProject(context, item);
+            }
+
+            if (Objects.isNull(projectCommunity) || StringUtils.isBlank(policy)) {
+                return;
+            }
+            switch (policy) {
+                case ProjectConstants.PROJECT :
+                case ProjectConstants.OWNING_PROJECT :
+                    setPolicyRestrictionToProject(context, currentUser, item, projectCommunity);
+                    break;
+                case ProjectConstants.FUNDING:
+                    setPolicyRestrictionToFunding(context, currentUser, item, projectCommunity);
+                    break;
+                case ProjectConstants.FUNDER:
+                    setPolicyRestrictionToFunder(context, item);
+                    break;
+                default:
                     return;
-                }
-                switch (shared) {
-                    case ProjectConstants.PROJECT :
-                    case ProjectConstants.OWNING_PROJECT :
-                        if (!setPolicyGroup(context, item, currentUser, projectCommunity, false)) {
-                            log.error("something went wrong, the item:" + item.getID().toString()
-                                    + " could not register the policy 'cris.policy.group'.");
-                        }
-                        break;
-                    case ProjectConstants.FUNDING:
-                        Community project = getFundingCommunity(projectCommunity);
-                        if (Objects.isNull(project)) {
-                            throw new RuntimeException("It was not possible to find the funding Community");
-                        }
-                        List<Community> subCommunities = project.getSubcommunities();
-                        for (Community community : subCommunities) {
-                            if (setPolicyGroup(context, item, currentUser, community, true)) {
-                                return;
-                            }
-                        }
-                        break;
-                    case ProjectConstants.FUNDER:
-                        setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
-                        break;
-                    default:
-                        return;
-                }
             }
         } catch (SQLException e) {
             throw new RuntimeException("Cannot change policy", e);
+        }
+    }
+
+    protected void setPolicyRestrictionToFunder(Context context, Item item) throws SQLException {
+        setPolicyGroup(context, item, configurationService.getProperty("project.funder.group"));
+    }
+
+    protected void setPolicyRestrictionToFunding(
+        Context context, EPerson currentUser, Item item, Community projectCommunity
+    )
+        throws SQLException {
+        Community project = getFundingCommunity(projectCommunity);
+        if (Objects.isNull(project)) {
+            throw new RuntimeException("It was not possible to find the funding Community");
+        }
+        List<Community> subCommunities = project.getSubcommunities();
+        for (Community community : subCommunities) {
+            if (setPolicyGroup(context, item, currentUser, community, true)) {
+                return;
+            }
+        }
+    }
+
+    protected void setPolicyRestrictionToProject(
+        Context context, EPerson currentUser, Item item, Community projectCommunity
+    )
+        throws SQLException {
+        if (!setPolicyGroup(context, item, currentUser, projectCommunity, false)) {
+            log.error(
+                "something went wrong, the item:" + item.getID().toString()
+                    + " could not register the policy 'cris.policy.group'."
+            );
         }
     }
 
@@ -250,6 +292,13 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     }
 
     @Override
+    public Iterator<Item> findRelatedFundingItems(
+        Context context, Community fundingCommunity, Item funding
+    ) {
+        return findRelatedItemsByFunding(context, fundingCommunity, funding);
+    }
+
+    @Override
     public Iterator<Item> findPreviousVisibleVersionsInCommunity(
         Context context, Community projectCommunity, String versionNumber
     ) {
@@ -306,6 +355,17 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         } catch (SQLException e) {
             throw new SQLRuntimeException(e);
         }
+    }
+
+    private Iterator<Item> findRelatedItemsByFunding(
+        Context context, Community fundingCommunity, Item funding
+    ) {
+        DiscoverQuery discoverQuery = new DiscoverQuery();
+        discoverQuery.addDSpaceObjectFilter(IndexableItem.TYPE);
+        discoverQuery.setScopeObject(new IndexableCommunity(fundingCommunity));
+        discoverQuery.setMaxResults(10000);
+        discoverQuery.setQuery(String.format(SOLR_FILTER_FUNDING_RELATION, funding.getID().toString()));
+        return new DiscoverResultItemIterator(context, new IndexableCommunity(fundingCommunity), discoverQuery);
     }
 
     private Iterator<Item> findPreviousVisibleVersionsByCommunity(
@@ -627,6 +687,11 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     @Override
     public boolean isProjectItem(Item item) {
         return ProjectConstants.PROJECT_ENTITY.equals(itemService.getEntityType(item));
+    }
+
+    @Override
+    public boolean isFundingItem(Item item) {
+        return ProjectConstants.FUNDING_ENTITY.equals(itemService.getEntityType(item));
     }
 
     @Override

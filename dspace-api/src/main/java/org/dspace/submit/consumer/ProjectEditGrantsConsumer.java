@@ -6,12 +6,20 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer;
+import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
+import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.factory.ContentServiceFactory;
+import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
+import org.dspace.core.exception.SQLRuntimeException;
 import org.dspace.eperson.EPerson;
 import org.dspace.event.Consumer;
 import org.dspace.event.Event;
@@ -28,14 +36,16 @@ import org.dspace.utils.DSpace;
 public class ProjectEditGrantsConsumer implements Consumer {
 
     private ProjectConsumerService projectConsumerService;
+    private ItemService itemService;
 
-    private Set<Item> itemsAlreadyProcessed = new HashSet<Item>();
+    private Set<UUID> itemsAlreadyProcessed = new HashSet<UUID>();
 
     @Override
     public void initialize() throws Exception {
         projectConsumerService = new DSpace().getServiceManager().getServiceByName(
                                      ProjectConsumerServiceImpl.class.getName(),
                                      ProjectConsumerServiceImpl.class);
+        itemService = ContentServiceFactory.getInstance().getItemService();
     }
 
     @Override
@@ -52,15 +62,48 @@ public class ProjectEditGrantsConsumer implements Consumer {
             Object dso = event.getSubject(context);
             if (dso instanceof Item) {
                 Item item = (Item) dso;
+                if (itemsAlreadyProcessed.contains(item)) {
+                    return;
+                }
                 EPerson submitter = item.getSubmitter();
                 if (Objects.isNull(submitter)) {
                     return;
                 }
-                if (itemsAlreadyProcessed.contains(item)) {
-                    return;
-                }
                 this.projectConsumerService.processItem(context, submitter, item);
-                itemsAlreadyProcessed.add(item);
+                itemsAlreadyProcessed.add(item.getID());
+                processRelatedEntities(context, submitter, item);
+            }
+        }
+    }
+
+    protected void processRelatedEntities(Context context, EPerson submitter, Item item) {
+        if (!this.projectConsumerService.isFundingItem(item)) {
+            return;
+        }
+        String fundingPolicy = this.projectConsumerService.getSharedPolicyValue(item);
+        Community fundingCommunity;
+        try {
+            fundingCommunity = this.projectConsumerService.getFirstOwningCommunity(context, item);
+        } catch (SQLException e) {
+            throw new SQLRuntimeException(
+                "Cannot find the funding community of funding: " + item.getID(),
+                e
+            );
+        }
+        Iterator<Item> relatedItems =
+            this.projectConsumerService.findRelatedFundingItems(context, fundingCommunity, item);
+        Item toProcess = null;
+        while (
+                relatedItems.hasNext() &&
+                (toProcess = relatedItems.next()) != null &&
+                !itemsAlreadyProcessed.contains(toProcess.getID())
+        ) {
+            try {
+                this.projectConsumerService.setPolicy(context, submitter, toProcess, fundingPolicy);
+                this.itemService.update(context, toProcess);
+                itemsAlreadyProcessed.add(toProcess.getID());
+            } catch (SQLException | AuthorizeException e) {
+                throw new RuntimeException(e);
             }
         }
     }

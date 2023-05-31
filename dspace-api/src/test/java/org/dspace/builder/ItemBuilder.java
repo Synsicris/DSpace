@@ -162,6 +162,10 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
         return addMetadataValue(item, MetadataSchemaEnum.DC.getName(), "subject", null, subject);
     }
 
+    public ItemBuilder withSynsicrisSubject(final String subject) {
+        return addMetadataValue(item, "synsicris", "subject", "ipc", subject);
+    }
+
     public ItemBuilder withSubjectForLanguage(final String subject, final String language) {
         return addMetadataValue(item, MetadataSchemaEnum.DC.getName(), "subject", null, language, subject);
     }
@@ -872,6 +876,33 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
 
     public ItemBuilder withOtherIdentifier(String identifier) {
         return addMetadataValue(item, "dc", "identifier", "other", identifier);
+    }
+
+    public ItemBuilder withKind(String kind) {
+        return addMetadataValue(item, "crispatent", "kind", null, kind);
+    }
+
+    public ItemBuilder withPatentKindCode(String kind) {
+        // used into inline-group
+        return addMetadataValue(item, "crispatent", "document", "kind", kind);
+    }
+
+    public ItemBuilder withPatentPublicationDate(String date) {
+        // used into inline-group
+        return addMetadataValue(item, "crispatent", "document", "issueDate", date);
+    }
+
+    public ItemBuilder withPatentHistoryTitle(String title) {
+        // used into inline-group
+        return addMetadataValue(item, "crispatent", "document", "title", title);
+    }
+
+    public ItemBuilder withApplicationNumber(String applicationnumber) {
+        return addMetadataValue(item, "dc", "identifier", "applicationnumber", applicationnumber);
+    }
+
+    public ItemBuilder withPatentRegistrationDate(String registrationDate) {
+        return addMetadataValue(item, "dcterms", "dateSubmitted", null, registrationDate);
     }
 
     /**

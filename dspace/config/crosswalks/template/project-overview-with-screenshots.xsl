@@ -585,7 +585,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: add template - unclear which entity to consider -->
-                    <xsl:call-template name="innovation-potential" />
+                    <!--xsl:call-template name="innovation-potential" /-->
 
                     <!-- sub sub section title - ideas for solutions/changes/innovations -->
                     <xsl:call-template name="title">
@@ -636,7 +636,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="spinoff" />
+                    <!--xsl:call-template name="spinoff" /-->
 
                     <!-- sub sub section title - work and cooperation after the project -->
                     <xsl:call-template name="title">
@@ -657,7 +657,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="award" />
+                    <!--xsl:call-template name="award" /-->
 
                     <!-- sub sub section title - open research questions -->
                     <xsl:call-template name="title">
@@ -668,7 +668,7 @@
                     </xsl:call-template>
 
                     <!-- TODO: check if this template causes problems too -->
-                    <xsl:call-template name="open-research-question" />
+                    <!--xsl:call-template name="open-research-question" /-->
 
                     <!-- sub section title - social impact and reflections of the project -->
                     <xsl:call-template name="title">
@@ -778,7 +778,7 @@
                             select="$font.size.sub-section-title" />
                     </xsl:call-template>
 
-                    <xsl:call-template name="target-group" />
+                    <!--xsl:call-template name="target-group" /-->
 
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
                     <!-- SECTION #6 -->
@@ -822,9 +822,9 @@
 		    <!-- PDF EMBEDDING-->
 		    <!--==========================================================--> 
             
-            <xsl:call-template name="embedded-pdf">
+            <!--xsl:call-template name="embedded-pdf">
                 <xsl:with-param name="imageDir" select="$imageDir" />
-            </xsl:call-template>
+            </xsl:call-template-->
         </fo:root>
     </xsl:template>
 
@@ -1908,11 +1908,11 @@
                         <xsl:with-param name="value"
                             select="cerif:FreeUnit" />
                     </xsl:call-template>
-                    
+
                     <xsl:if test="count(cerif:SuccessQuantification/cerif:Index) &gt; 0">
 
 	                    <fo:table>
-	
+
 	                        <fo:table-column column-number="1"
 	                            column-width="15%" />
 	                        <fo:table-column column-number="2"
@@ -1921,7 +1921,7 @@
 	                            column-width="30%" />
 	                        <fo:table-column column-number="4"
 	                            column-width="40%" />
-	
+
 	                        <fo:table-header>
 	                            <fo:table-row>
 	                                <fo:table-cell border-width="{$width.border}"
@@ -1940,7 +1940,7 @@
 	                                            select="$lang.application.reference-year" />
 	                                    </fo:block>
 	                                </fo:table-cell>
-	
+
 	                                <fo:table-cell border-width="{$width.border}"
 	                                    border-color="{$colour.border}" border-style="{$style.border}">
 	                                    <fo:block text-align="left"
@@ -1956,7 +1956,7 @@
 	                                        <xsl:value-of select="$lang.application.quantity" />
 	                                    </fo:block>
 	                                </fo:table-cell>
-	
+
 	                                <fo:table-cell border-width="{$width.border}"
 	                                    border-color="{$colour.border}" border-style="{$style.border}">
 	                                    <fo:block text-align="left"
@@ -1973,7 +1973,7 @@
 	                                            select="$lang.application.regionaloutreach" />
 	                                    </fo:block>
 	                                </fo:table-cell>
-	
+
 	                                <fo:table-cell border-width="{$width.border}"
 	                                    border-color="{$colour.border}" border-style="{$style.border}">
 	                                    <fo:block text-align="left"
@@ -1990,10 +1990,10 @@
 	                                            select="$lang.application.success-description" />
 	                                    </fo:block>
 	                                </fo:table-cell>
-	
+
 	                            </fo:table-row>
 	                        </fo:table-header>
-	
+
 	                        <fo:table-body>
 	                            <xsl:for-each
 	                                select="cerif:SuccessQuantification/cerif:Index">
@@ -2013,7 +2013,7 @@
 	                                            <xsl:value-of select="cerif:ReferenceYear" />
 	                                        </fo:block>
 	                                    </fo:table-cell>
-	
+
 	                                    <fo:table-cell border-width="{$width.border}"
 	                                        border-color="{$colour.border}" border-style="{$style.border}">
 	                                        <fo:block text-align="left"
@@ -2029,7 +2029,7 @@
 	                                            <xsl:value-of select="cerif:Quantity" />
 	                                        </fo:block>
 	                                    </fo:table-cell>
-	
+
 	                                    <fo:table-cell border-width="{$width.border}"
 	                                        border-color="{$colour.border}" border-style="{$style.border}">
 	                                        <fo:block text-align="left"
@@ -2045,7 +2045,7 @@
 	                                            <xsl:value-of select="cerif:RegionalOutreach" />
 	                                        </fo:block>
 	                                    </fo:table-cell>
-	
+
 	                                    <fo:table-cell border-width="{$width.border}"
 	                                        border-color="{$colour.border}" border-style="{$style.border}">
 	                                        <fo:block text-align="left"
@@ -2061,7 +2061,7 @@
 	                                            <xsl:value-of select="cerif:SuccessDescription" />
 	                                        </fo:block>
 	                                    </fo:table-cell>
-	
+
 	                                </fo:table-row>
 	                            </xsl:for-each>
 	                        </fo:table-body>

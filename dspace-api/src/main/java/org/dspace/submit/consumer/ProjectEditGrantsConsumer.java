@@ -62,7 +62,7 @@ public class ProjectEditGrantsConsumer implements Consumer {
             Object dso = event.getSubject(context);
             if (dso instanceof Item) {
                 Item item = (Item) dso;
-                if (itemsAlreadyProcessed.contains(item)) {
+                if (itemsAlreadyProcessed.contains(item.getID())) {
                     return;
                 }
                 EPerson submitter = item.getSubmitter();

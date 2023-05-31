@@ -649,8 +649,8 @@
       <step id="extractionstep" />
       <step id="publications" />
       <step id="publications_references" />
-      <step id="detect-duplicate" />
       <step id="agrovoc_keywords_others" />
+      <step id="sherpaPolicies" />
       <step id="upload" />
       <step id="cclicense" />
       <step id="license" />

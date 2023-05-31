@@ -1836,12 +1836,12 @@ it, please select a type and enter the actual number or code.</hint>
         <field>
           <dc-schema>dcterms</dc-schema>
           <dc-element>rightsHolder</dc-element>
-          <label>Holder(s)</label>
+          <label>Applicant(s)</label>
           <input-type>onebox</input-type>
           <repeatable>true</repeatable>
           <required />
           <style>col-md-6</style>
-          <hint>The holders of this patent</hint>
+          <hint />
         </field>
       </row>
     </form>
@@ -1890,7 +1890,7 @@ it, please select a type and enter the actual number or code.</hint>
           <input-type>group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <hint>The inventor: The actual devisor of an invention that is the subject of a patent.(INID code 72 for this item, if published)</hint>
+          <hint />
         </field>
       </row>
       <row>
@@ -4315,30 +4315,6 @@ it, please select a type and enter the actual number or code.</hint>
           <hint />
         </field>
       </row>
-      <row>
-        <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>scopus-author-id</dc-qualifier>
-          <label>Scopus Author ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
-      <row>
-        <field>
-          <dc-schema>person</dc-schema>
-          <dc-element>identifier</dc-element>
-          <dc-qualifier>rid</dc-qualifier>
-          <label>Researcher ID</label>
-          <input-type>onebox</input-type>
-          <repeatable>true</repeatable>
-          <required />
-          <hint />
-        </field>
-      </row>
     </form>
     <form name="spinoffs_result_performance-synsicris-date-performance">
       <row>
@@ -5347,7 +5323,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Societal area of the stakeholder group</label>
           <input-type value-pairs-name="targetgroup_type">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>The basic classification of the stakeholder group into a societal area determines further queries, e.g. on the economic sector, the policy-making level and civil society</hint>
           <visibility>hidden</visibility>
@@ -5360,7 +5336,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>nace</dc-qualifier>
           <label>Economic sector</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy</type-bind>
@@ -5375,7 +5351,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>enterprise</dc-qualifier>
           <label>Size of business</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
@@ -5389,7 +5365,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>political</dc-qualifier>
           <label>Select the addressed policy level (multiple selection possible)</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Policy makers, Public institutions</type-bind>
@@ -5403,7 +5379,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>urbanrural</dc-qualifier>
           <label>Locating the group of actors</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>hidden</visibility>
@@ -5545,7 +5521,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>targetgroup</dc-qualifier>
           <label>Societal area of the stakeholder group</label>
           <input-type value-pairs-name="targetgroup_type">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint>The basic classification of the stakeholder group into a societal area determines further queries, e.g. on the economic sector, the policy-making level and civil society</hint>
           <visibility>hidden</visibility>
@@ -5558,7 +5534,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>nace</dc-qualifier>
           <label>Economic sector</label>
           <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy</type-bind>
@@ -5573,7 +5549,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>enterprise</dc-qualifier>
           <label>Size of business</label>
           <input-type value-pairs-name="enterprise_size">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Economy, Advisory service / Consulting, Education, Media</type-bind>
@@ -5587,7 +5563,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>political</dc-qualifier>
           <label>Select the addressed policy level (multiple selection possible)</label>
           <input-type value-pairs-name="political_level">dropdown</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <type-bind>Policy makers, Public institutions</type-bind>
@@ -5601,7 +5577,7 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-qualifier>urbanrural</dc-qualifier>
           <label>Locating the group of actors</label>
           <input-type value-pairs-name="targetgroup_urban_rural">list</input-type>
-          <repeatable>false</repeatable>
+          <repeatable>true</repeatable>
           <required />
           <hint />
           <visibility>hidden</visibility>
@@ -5807,6 +5783,32 @@ For example topics, specific methods, procedures, peculiarities of the participa
         </field>
       </row>
     </form>
+    <form name="awards-synsicris-contributor-donor">
+      <row>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>contributor</dc-element>
+          <dc-qualifier>donor</dc-qualifier>
+          <label>Donor(s)</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Enter the orgaisation that awarded the prize.</hint>
+        </field>
+        <field>
+          <dc-schema>synsicris</dc-schema>
+          <dc-element>relation</dc-element>
+          <dc-qualifier>targetgroup</dc-qualifier>
+          <label>Stakeholder group of the donor</label>
+          <input-type>onebox</input-type>
+          <repeatable>false</repeatable>
+          <required />
+          <style>col-md-6</style>
+          <hint>Assign the donor to an stakeholder group to clarify who is recognising the achievement.</hint>
+        </field>
+      </row>
+    </form>
     <form name="awards">
       <row>
         <field>
@@ -5893,23 +5895,11 @@ For example topics, specific methods, procedures, peculiarities of the participa
           <dc-schema>synsicris</dc-schema>
           <dc-element>contributor</dc-element>
           <dc-qualifier>donor</dc-qualifier>
-          <label>Donor(s)</label>
-          <input-type>onebox</input-type>
+          <label>Preisverleihende Organisation(en) oder Person(en) und zugehörige Akteursgruppe</label>
+          <input-type>inline-group</input-type>
           <repeatable>true</repeatable>
           <required />
-          <style>col-md-6</style>
-          <hint>Enter the orgaisation that awarded the prize.</hint>
-        </field>
-        <field>
-          <dc-schema>dc</dc-schema>
-          <dc-element>description</dc-element>
-          <dc-qualifier>targetgroup</dc-qualifier>
-          <label>Stakeholder group of the donor</label>
-          <input-type>onebox</input-type>
-          <repeatable>false</repeatable>
-          <required />
-          <style>col-md-6</style>
-          <hint>Assign the donor to an stakeholder group to clarify who is recognising the achievement.</hint>
+          <hint />
         </field>
       </row>
     </form>

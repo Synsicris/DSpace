@@ -107,11 +107,13 @@ public class UpdatePatentsWithExternalSource
                 if (count == 20) {
                     context.commit();
                     sendEmail(updatedPatentsToSendEmail);
-                    updatedPatentsToSendEmail.clear();
                     count = 0;
                 }
             }
             context.complete();
+            if (count > 0) {
+                sendEmail(updatedPatentsToSendEmail);
+            }
 
             handler.logInfo("Found " + countFoundItems + " items");
             handler.logInfo("Updated " + countUpdatedItems + " Patents");
@@ -132,6 +134,7 @@ public class UpdatePatentsWithExternalSource
                 sendEmailToCoordinator(coordinatorGroup.getMembers(), patent);
             }
         }
+        updatedPatentsToSendEmail.clear();
     }
 
     private void sendEmailToCoordinator(List<EPerson> coordinators, Item patent) {
@@ -165,7 +168,7 @@ public class UpdatePatentsWithExternalSource
             log.error("il patent con uuid: " + patent.getID() + " per qualche motivo non appartiene a nessun progetto");
             return false;
         }
-        List<MetadataValue> projectStatusValue = itemService.getMetadata(patent, "synsicris", "relation","project",ANY);
+        List<MetadataValue> projectStatusValue = itemService.getMetadata(project, "oairecerif", "project","status",ANY);
         return projectStatusValue.stream()
                                  .filter(mv -> mv.getValue().equals(PROJECT_IS_RUNNING))
                                  .findFirst()

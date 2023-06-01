@@ -6,21 +6,34 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest;
+
 import static com.jayway.jsonpath.JsonPath.read;
-import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
+import static java.lang.String.join;
 import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadata;
-import static org.dspace.app.rest.matcher.MetadataMatcher.matchMetadataDoesNotExist;
+import static org.dspace.project.util.ProjectConstants.FUNDER;
+import static org.dspace.project.util.ProjectConstants.GROUP_POLICY_PLACEHOLDER;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
+import static org.dspace.project.util.ProjectConstants.MD_PROJECT_RELATION;
+import static org.dspace.project.util.ProjectConstants.MD_RELATION_ITEM_ENTITY;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import javax.ws.rs.core.MediaType;
 
-import org.dspace.app.rest.matcher.WorkspaceItemMatcher;
+import org.dspace.app.rest.model.patch.Operation;
+import org.dspace.app.rest.model.patch.ReplaceOperation;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
+import org.dspace.authorize.AuthorizeException;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
@@ -31,13 +44,17 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.authority.Choices;
+import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
-import org.dspace.project.util.ProjectConstants;
+import org.dspace.event.factory.EventServiceFactory;
 import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.dspace.submit.consumer.ProjectEditGrantsConsumer;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,8 +63,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
-@Ignore
 public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTest {
+
+    private static String[] consumers;
 
     @Autowired
     private ItemService itemService;
@@ -55,607 +73,401 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
     @Autowired
     private ConfigurationService configurationService;
 
+    @Autowired
+    private CommunityService communityService;
+
     private Community projectsCommunity;
     private Community fundingRootCommunity;
     private Community fundingAComm;
-    private Community fundingBComm;
+    private Community projectCommunity;
     private Collection projectCollection;
     private Collection publicationsCollection;
+    private Collection fundingProjectsCollection;
+    private Collection projectPartnerCollection;
+    private Item fundingItem;
+    private Item projectPartner;
     private Item projectItem;
-    @SuppressWarnings("unused")
-    private Collection collectionSubProjectA;
-    @SuppressWarnings("unused")
-    private Collection collectionSubProjectB;
+
+    private EPerson ePersonFunding;
+    private EPerson ePersonProject;
+    private Group funderGroup;
+    private Group projectsCommunityGroup;
+    private Group fundingCommunityGroup;
+
+    private String projectPartnerProp;
+    private String funderGroupProperty;
+    private String projectFundingCommunityProp;
+
+    @BeforeClass
+    public static void setupConfiguration() {
+        ConfigurationService configurationService =
+            DSpaceServicesFactory.getInstance().getConfigurationService();
+        consumers = configurationService.getArrayProperty("event.dispatcher.default.consumers");
+        String newConsumers = consumers.length > 0 ? join(",", consumers) + "," + "projectedit" : "projectedit";
+        configurationService.setProperty("event.dispatcher.default.consumers", newConsumers);
+        EventServiceFactory.getInstance().getEventService().reloadConfiguration();
+    }
+
+    @AfterClass
+    public static void restoreConfiguration() {
+        ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        configurationService
+            .setProperty(
+                "event.dispatcher.default.consumers",
+                join(",", consumers)
+            );
+        EventServiceFactory.getInstance().getEventService().reloadConfiguration();
+    }
 
     @Test
-    public void createWorkspaceItemWithSubmitterUsing_parentprojectTest() throws Exception {
-        context.turnOffAuthorisationSystem();
+    public void patchSharedProjectMetadataOfFundingReflectsPolicyOnRelatedEntities() throws Exception {
+        loadProperties();
 
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
-                .withPassword(password).build();
-
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Viktor", "Beketov")
-                .withEmail("example2@email.com")
-                .withPassword(password).build();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .addMember(ePerson2).build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
-                .withEntityType("Project")
-                .withSubmitterGroup(projectsCommunityGroup)
-                .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                     .withTitle("Prjoect Item")
-                     .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.PROJECT);
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
-
-        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectA of SubprojectsCommunity").build();
-
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
-                       .addMember(ePerson1).build();
-
-        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
-
-        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity").build();
-
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
-                       .addMember(ePerson2).build();
-
-        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef1 = new AtomicReference<>();
         try {
 
-        String authToken = getAuthToken(ePerson1.getEmail(), password);
+            createEnvironment();
 
-        // create a workspaceitem explicitly in the publicationsCollection
-        getClient(authToken).perform(post("/api/submission/workspaceitems")
+            AtomicReference<Integer> idRef = new AtomicReference<>();
+            try {
+                String authToken = getAuthToken(ePersonProject.getEmail(), password);
+
+                getClient(authToken)
+                    .perform(
+                        post("/api/submission/workspaceitems")
                             .param("owningCollection", publicationsCollection.getID().toString())
-                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                            .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$._embedded.collection.id",
-                                             is(publicationsCollection.getID().toString())))
-                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
+                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+                    )
+                    .andExpect(status().isCreated())
+                    .andExpect(
+                        jsonPath(
+                            "$._embedded.collection.id",
+                            is(publicationsCollection.getID().toString())
+                        )
+                    )
+                    .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
 
-         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
-                  .andExpect(status().isOk())
-                  .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.PROJECT,
-                                      projectsCommunityGroup)
-                                       )));
+                authToken = getAuthToken(admin.getEmail(), password);
+
+                List<Operation> ops = new ArrayList<Operation>();
+                ReplaceOperation replaceOperation = new ReplaceOperation("/metadata/cris.project.shared", "project");
+                ops.add(replaceOperation);
+                String patchBody = getPatchContent(ops);
+
+                getClient(authToken)
+                    .perform(
+                        patch("/api/core/items/" + fundingItem.getID())
+                            .content(patchBody)
+                            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON)
+                    )
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.uuid", Matchers.is(fundingItem.getID().toString())))
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata("cris.project.shared", "project", 0),
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    projectsCommunityGroup.getName(),
+                                    projectsCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+                getClient(authToken)
+                    .perform(
+                        get("/api/core/items/" + projectPartner.getID().toString())
+                            .contentType(MediaType.APPLICATION_JSON)
+                    )
+                    .andExpect(status().isOk())
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    projectsCommunityGroup.getName(),
+                                    projectsCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+                getClient(authToken)
+                    .perform(
+                        get("/api/core/items/" + projectItem.getID().toString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+                    .andExpect(status().isOk())
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata("cris.project.shared", "project", 0),
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    projectsCommunityGroup.getName(),
+                                    projectsCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+                ops = new ArrayList<Operation>();
+                replaceOperation = new ReplaceOperation("/metadata/cris.project.shared", "funding");
+                ops.add(replaceOperation);
+                patchBody = getPatchContent(ops);
+
+                getClient(authToken)
+                    .perform(
+                        patch("/api/core/items/" + fundingItem.getID())
+                            .content(patchBody)
+                            .contentType(MediaType.APPLICATION_JSON_PATCH_JSON)
+                    )
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.uuid", Matchers.is(fundingItem.getID().toString())))
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata("cris.project.shared", "funding", 0),
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    fundingCommunityGroup.getName(),
+                                    fundingCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+                getClient(authToken)
+                    .perform(
+                        get("/api/core/items/" + projectPartner.getID().toString())
+                            .contentType(MediaType.APPLICATION_JSON)
+                    )
+                    .andExpect(status().isOk())
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    fundingCommunityGroup.getName(),
+                                    fundingCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+                getClient(authToken)
+                    .perform(
+                        get("/api/core/items/" + projectItem.getID().toString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        )
+                    .andExpect(status().isOk())
+                    .andExpect(
+                        jsonPath(
+                            "$.metadata",
+                            allOf(
+                                matchMetadata("cris.project.shared", "project", 0),
+                                matchMetadata(
+                                    "cris.policy.group",
+                                    projectsCommunityGroup.getName(),
+                                    projectsCommunityGroup.getID().toString(),
+                                    0
+                                )
+                            )
+                        )
+                    );
+
+            } finally {
+                WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
+            }
         } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
-        }
-    }
-
-    @Test
-    public void createWorkspaceItemWithSubmitterUsing_fundingTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
-                .withPassword(password).build();
-
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Viktor", "Beketov")
-                .withEmail("example2@email.com")
-                .withPassword(password).build();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .addMember(ePerson2).build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
-                .withEntityType("Project")
-                .withSubmitterGroup(projectsCommunityGroup)
-                .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                     .withTitle("Prjoect Item")
-                     .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.FUNDING);
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
-
-        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectA of SubprojectsCommunity").build();
-
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
-                       .addMember(ePerson1).build();
-
-        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
-
-        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity").build();
-
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
-                       .addMember(ePerson2).build();
-
-        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
-
-        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef1 = new AtomicReference<>();
-        try {
-
-        String authToken = getAuthToken(ePerson2.getEmail(), password);
-
-        // create a workspaceitem explicitly in the publicationsCollection
-        getClient(authToken).perform(post("/api/submission/workspaceitems")
-                            .param("owningCollection", publicationsCollection.getID().toString())
-                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                            .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$._embedded.collection.id",
-                                             is(publicationsCollection.getID().toString())))
-                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
-                  .andExpect(status().isOk())
-                  .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.FUNDING,
-                                      subprojectBGroup)
-                                       )));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
-        }
-    }
-
-
-    @Test
-    public void createWorkspaceItemWithAdminUsing_projectTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
-                .withEntityType("Project")
-                .withSubmitterGroup(projectsCommunityGroup)
-                .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                             .withTitle("Prjoect Item")
-                             .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
-
-        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectA of SubprojectsCommunity").build();
-
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
-                       .addMember(admin)
-                       .build();
-
-        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
-
-        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity").build();
-
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
-                       .build();
-
-        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingBComm)
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
-
-        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
-
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef1 = new AtomicReference<>();
-        try {
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-
-        // create a workspaceitem explicitly in the publicationsCollection
-        getClient(authToken).perform(post("/api/submission/workspaceitems")
-                            .param("owningCollection", publicationsCollection.getID().toString())
-                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                            .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$._embedded.collection.id",
-                                             is(publicationsCollection.getID().toString())))
-                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
-                  .andExpect(status().isOk())
-                  .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.FUNDING,
-                                      subprojectAGroup)
-                                       )));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
+            restoreProperties();
         }
 
     }
 
-    @Test
-    public void createWorkspaceItemWithAdminOfCommunityUsing_fundingTest() throws Exception {
+    protected void createEnvironment() throws SQLException, AuthorizeException {
         context.turnOffAuthorisationSystem();
-
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
-                .withPassword(password).build();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community")
-                                            .withAdminGroup(ePerson1)
-                                            .build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(eperson).build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                            .withName("Project Collection")
-                            .withEntityType("Project")
-                            .withSubmitterGroup(projectsCommunityGroup)
-                            .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                                 .withTitle("Prjoect Item")
-                                 .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withEntityType("Publication")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null, ProjectConstants.FUNDING);
-
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-
-        fundingRootCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
-                                               .withName("Sub Projects Community").build();
-
-        fundingAComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectA of SubprojectsCommunity")
-                                          .build();
-
-        Group subprojectAGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
-                       .build();
-
-        collectionSubProjectA = CollectionBuilder.createCollection(context, fundingAComm)
-                                                 .withSubmitterGroup(subprojectAGroup)
-                                                 .withName("Collection Sub Project A").build();
-
-        fundingBComm = CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
-                                          .withName("Sub ProjectB of SubprojectsCommunity")
-                                          .withAdminGroup(ePerson1).build();
-
-        Group subprojectBGroup = GroupBuilder.createGroup(context)
-                       .withName("funding_" + fundingBComm.getID().toString() + "_members_group")
-                       .addMember(ePerson1)
-                       .build();
-
-        collectionSubProjectB = CollectionBuilder.createCollection(context, fundingBComm)
-                                                 .withEntityType("Funding")
-                                                 .withSubmitterGroup(subprojectBGroup)
-                                                 .withName("Collection Sub Project B").build();
-
-        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
-
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef1 = new AtomicReference<>();
-        try {
-
-        String authToken = getAuthToken(ePerson1.getEmail(), password);
-
-        // create a workspaceitem explicitly in the publicationsCollection
-        getClient(authToken).perform(post("/api/submission/workspaceitems")
-                            .param("owningCollection", publicationsCollection.getID().toString())
-                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                            .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$._embedded.collection.id",
-                                             is(publicationsCollection.getID().toString())))
-                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
-                  .andExpect(status().isOk())
-                  .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher.matchPolicyGroupAndSharedMetadata(
-                                      ProjectConstants.FUNDING,
-                                      subprojectBGroup)
-                                       )));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
-        }
-
-    }
-
-    @Test
-    public void createWorkspaceItemWithGroupPolicyAndWithoutSharedMetadataTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                .withNameInMetadata("Mykhaylo", "Boychuk")
-                .withEmail("mykhaylo.boychuk@email.com")
-                .withPassword(password).build();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1).build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
-                .withEntityType("Project")
-                .withSubmitterGroup(projectsCommunityGroup)
-                .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                     .withTitle("Prjoect Item")
-                     .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef1 = new AtomicReference<>();
-        try {
-
-        String authToken = getAuthToken(ePerson1.getEmail(), password);
-
-        getClient(authToken).perform(post("/api/submission/workspaceitems")
-                            .param("owningCollection", publicationsCollection.getID().toString())
-                            .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                            .andExpect(status().isCreated())
-                            .andExpect(jsonPath("$._embedded.collection.id",
-                                             is(publicationsCollection.getID().toString())))
-                            .andDo(result -> idRef1.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-         getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef1.get()))
-                  .andExpect(status().isOk())
-                  .andExpect(jsonPath("$", allOf(hasJsonPath("$._embedded.item.metadata", allOf(
-                                   matchMetadataDoesNotExist("cris.project.shared"),
-                                               matchMetadata("cris.policy.group", "GROUP_POLICY_PLACEHOLDER")
-                                               )))));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef1.get());
-        }
-    }
-
-    @Test
-    public void createWorkspaceItemWithSubmitterUsing_sharedValueTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        Group sharedGroup = GroupBuilder.createGroup(context)
-                                        .withName("Test Shared Group")
-                                        .build();
-
-        configurationService.setProperty("project.creation.group", sharedGroup.getID());
-
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Mykhaylo", "Boychuk")
-                                         .withEmail("mykhaylo.boychuk@email.com")
-                                         .withPassword(password).build();
-
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
-
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .build();
-
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
-                .withEntityType("Project")
-                .withSubmitterGroup(projectsCommunityGroup)
-                .build();
-
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                     .withTitle("Prjoect Item")
-                     .build();
-
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
-
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.SHARED);
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
-
-        context.restoreAuthSystemState();
-
-        AtomicReference<Integer> idRef = new AtomicReference<>();
-        try {
-            String authToken = getAuthToken(ePerson1.getEmail(), password);
-
-            getClient(authToken).perform(post("/api/submission/workspaceitems")
-                                .param("owningCollection", publicationsCollection.getID().toString())
-                                .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                                .andExpect(status().isCreated())
-                                .andExpect(jsonPath("$._embedded.collection.id",
-                                                 is(publicationsCollection.getID().toString())))
-                                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
-
-            getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef.get()))
-                                .andExpect(status().isOk())
-                                .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
-                                          .matchPolicyGroupAndSharedMetadata(
-                                                ProjectConstants.SHARED, sharedGroup)
-                                          )));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
-        }
-    }
-
-    @Test
-    public void createWorkspaceItemWithSubmitterUsing_funderValueTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        Group funderGroup = GroupBuilder.createGroup(context)
-                                        .withName("Test Funder Group")
-                                        .build();
+        funderGroup = GroupBuilder.createGroup(context)
+            .withName("Test Funder Group")
+            .build();
 
         configurationService.setProperty("project.funder.group", funderGroup.getID());
 
-        EPerson ePerson1 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Mykhaylo", "Boychuk")
-                                         .withEmail("mykhaylo.boychuk@email.com")
-                                         .withPassword(password).build();
+        ePersonFunding = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Vins", "Funder")
+            .withEmail("vins@funder.synsicris")
+            .withPassword(password)
+            .build();
 
-        projectsCommunity = CommunityBuilder.createCommunity(context)
-                                            .withName("Projects Community").build();
+        ePersonProject = EPersonBuilder.createEPerson(context)
+            .withNameInMetadata("Vins", "Project")
+            .withEmail("vins@project.synsicris")
+            .withPassword(password)
+            .build();
 
-        Group projectsCommunityGroup = GroupBuilder.createGroup(context)
-                     .withName("project_" + projectsCommunity.getID().toString() + "_members_group")
-                     .addMember(ePerson1)
-                     .build();
+        projectsCommunity =
+            CommunityBuilder.createCommunity(context)
+                .withName("Projects Community").build();
 
-        projectCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                .withName("Project Collection")
+
+        configurationService.setProperty("project.parent-community-id", projectsCommunity.getID().toString());
+
+        projectCommunity = CommunityBuilder.createSubCommunity(context, projectsCommunity)
+            .withName("Project Name")
+            .build();
+
+        projectsCommunityGroup = GroupBuilder.createGroup(context)
+            .withName("project_" + projectCommunity.getID().toString() + "_members_group")
+            .addMember(ePersonProject)
+            .build();
+
+        fundingRootCommunity =
+            CommunityBuilder.createSubCommunity(context, projectCommunity)
+            .withName("Funding")
+            .build();
+
+        communityService.addMetadata(
+            context, fundingRootCommunity,
+            "synsicris", "funding", "community",
+            Item.ANY, "true"
+        );
+
+        configurationService.setProperty("project.funding-community-name", fundingRootCommunity.getName());
+
+        projectCollection =
+            CollectionBuilder.createCollection(context, projectCommunity)
+                .withName("Consortia")
                 .withEntityType("Project")
                 .withSubmitterGroup(projectsCommunityGroup)
                 .build();
 
-        projectItem = ItemBuilder.createItem(context, projectCollection)
-                     .withTitle("Prjoect Item")
-                     .build();
+        projectItem =
+            ItemBuilder.createItem(context, projectCollection)
+                .withTitle("Cool Project")
+                .withPolicyGroup(GROUP_POLICY_PLACEHOLDER)
+                .withSharedProject("project")
+                .build();
 
-        publicationsCollection = CollectionBuilder.createCollection(context, projectsCommunity)
-                                                  .withName("Publication Collection")
-                                                  .withSubmitterGroup(projectsCommunityGroup)
-                                                  .withTemplateItem().build();
+        communityService
+            .addMetadata(
+                context, projectCommunity,
+                MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element,
+                MD_RELATION_ITEM_ENTITY.qualifier,
+                null, projectItem.getName(),
+                projectItem.getID().toString(),
+                Choices.CF_ACCEPTED
+            );
 
-        Item templateItem = publicationsCollection.getTemplateItem();
-        itemService.addMetadata(context, templateItem, "cris", "policy", "group", null,
-                                "GROUP_POLICY_PLACEHOLDER");
-        itemService.addMetadata(context, templateItem, "cris", "project", "shared", null,
-                                ProjectConstants.FUNDER);
-        itemService.addMetadata(context, templateItem, "synsicris", "relation", "project", null,
-                projectItem.getName(), projectItem.getID().toString(), Choices.CF_ACCEPTED);
+        fundingAComm =
+            CommunityBuilder.createSubCommunity(context, fundingRootCommunity)
+                .withName("Funding name")
+                .build();
 
+        fundingCommunityGroup = GroupBuilder.createGroup(context)
+            .withName("funding_" + fundingAComm.getID().toString() + "_members_group")
+            .addMember(ePersonFunding)
+            .build();
+
+        fundingProjectsCollection = CollectionBuilder.createCollection(context, fundingAComm)
+            .withName("Projects")
+            .withEntityType("Funding")
+            .build();
+
+        fundingItem = ItemBuilder.createItem(context, fundingProjectsCollection)
+            .withTitle("Cool Funding Project")
+            .withSynsicrisRelationProject(projectItem.getName(), projectItem.getID().toString())
+            .withPolicyGroup(GROUP_POLICY_PLACEHOLDER)
+            .withSharedProject(FUNDER)
+            .build();
+
+        communityService
+            .addMetadata(
+                context, fundingRootCommunity,
+                MD_RELATION_ITEM_ENTITY.schema,
+                MD_RELATION_ITEM_ENTITY.element,
+                MD_RELATION_ITEM_ENTITY.qualifier,
+                null, fundingItem.getName(),
+                fundingItem.getID().toString(),
+                Choices.CF_ACCEPTED
+            );
+
+        projectPartnerCollection = CollectionBuilder.createCollection(context, fundingAComm)
+            .withName("Project Partners")
+            .withEntityType("projectpartner")
+            .build();
+
+        projectPartner = ItemBuilder.createItem(context, projectPartnerCollection)
+            .withSynsicrisRelationFunding(fundingItem.getName(), fundingItem.getID().toString())
+            .withSynsicrisRelationProject(projectItem.getName(), projectItem.getID().toString())
+            .withPolicyGroup(GROUP_POLICY_PLACEHOLDER)
+            .withSharedProject(FUNDER)
+            .build();
+
+        publicationsCollection =
+            CollectionBuilder.createCollection(context, projectsCommunity)
+                .withName("Publication Collection")
+                .withSubmitterGroup(projectsCommunityGroup)
+                .withTemplateItem()
+                .build();
+
+        configureProjectRelatedTemplateItem(publicationsCollection);
         context.restoreAuthSystemState();
+    }
 
-        AtomicReference<Integer> idRef = new AtomicReference<>();
-        try {
-            String authToken = getAuthToken(ePerson1.getEmail(), password);
+    protected void restoreProperties() {
+        configurationService.setProperty("project.parent-community-id", projectPartnerProp);
+        configurationService.setProperty("project.funder.group", funderGroupProperty);
+        configurationService.setProperty("project.funding-community-name", projectFundingCommunityProp);
+    }
 
-            getClient(authToken).perform(post("/api/submission/workspaceitems")
-                                .param("owningCollection", publicationsCollection.getID().toString())
-                                .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
-                                .andExpect(status().isCreated())
-                                .andExpect(jsonPath("$._embedded.collection.id",
-                                                 is(publicationsCollection.getID().toString())))
-                                .andDo(result -> idRef.set(read(result.getResponse().getContentAsString(), "$.id")));
+    protected void loadProperties() {
+        projectPartnerProp = configurationService.getProperty("project.parent-community-id");
+        funderGroupProperty = configurationService.getProperty("project.funder.group");
+        projectFundingCommunityProp = configurationService.getProperty("project.funding-community-name");
+    }
 
-            getClient(authToken).perform(get("/api/submission/workspaceitems/" + idRef.get()))
-                                .andExpect(status().isOk())
-                                .andExpect(jsonPath("$", Matchers.is(WorkspaceItemMatcher
-                                          .matchPolicyGroupAndSharedMetadata(
-                                                ProjectConstants.FUNDER, funderGroup)
-                                          )));
-        } finally {
-            WorkspaceItemBuilder.deleteWorkspaceItem(idRef.get());
-        }
+    protected void configureProjectRelatedTemplateItem(Collection publicationsCollection) throws SQLException {
+        Item templateItem = publicationsCollection.getTemplateItem();
+        itemService.addMetadata(
+            context,
+            templateItem,
+            MD_POLICY_GROUP.schema,
+            MD_POLICY_GROUP.element,
+            MD_POLICY_GROUP.qualifier,
+            null,
+            GROUP_POLICY_PLACEHOLDER
+        );
+        itemService.addMetadata(
+            context,
+            templateItem,
+            MD_POLICY_SHARED.schema,
+            MD_POLICY_SHARED.element,
+            MD_POLICY_SHARED.qualifier,
+            null,
+            FUNDER
+        );
+        itemService.addMetadata(
+            context,
+            templateItem,
+            MD_PROJECT_RELATION.schema,
+            MD_PROJECT_RELATION.element,
+            MD_PROJECT_RELATION.qualifier,
+            null,
+            projectItem.getName(),
+            projectItem.getID().toString(),
+            Choices.CF_ACCEPTED
+        );
     }
 
 }

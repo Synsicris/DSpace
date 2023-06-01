@@ -784,6 +784,11 @@ public class ItemBuilder extends AbstractDSpaceObjectBuilder<Item> {
                                          value, authority_uuid, Choices.CF_ACCEPTED);
     }
 
+    public ItemBuilder withSynsicrisRelationFunding(String value, String authority_uuid) {
+        return addMetadataValue(item, "synsicris", "relation", "funding", null,
+            value, authority_uuid, Choices.CF_ACCEPTED);
+    }
+
     public ItemBuilder withSynsicrisRelationTargetGroup(String value, String authority_uuid) {
         return addMetadataValue(item, "synsicris", "relation", "targetgroup", null,
                                          value, authority_uuid, Choices.CF_ACCEPTED);

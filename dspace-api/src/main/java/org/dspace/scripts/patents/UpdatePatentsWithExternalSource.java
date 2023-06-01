@@ -110,11 +110,12 @@ public class UpdatePatentsWithExternalSource
                     count = 0;
                 }
             }
-            context.complete();
+
             if (count > 0) {
                 sendEmail(updatedPatentsToSendEmail);
             }
 
+            context.complete();
             handler.logInfo("Found " + countFoundItems + " items");
             handler.logInfo("Updated " + countUpdatedItems + " Patents");
             handler.logInfo("Update end");
@@ -129,10 +130,8 @@ public class UpdatePatentsWithExternalSource
 
     private void sendEmail(Set<Item> updatedPatentsToSendEmail) throws SQLException {
         for (Item patent : updatedPatentsToSendEmail) {
-            if (isTheProjectRunning(patent)) {
-                Group coordinatorGroup = getCoordinatorGroup(patent);
-                sendEmailToCoordinator(coordinatorGroup.getMembers(), patent);
-            }
+            Group coordinatorGroup = getCoordinatorGroup(patent);
+            sendEmailToCoordinator(coordinatorGroup.getMembers(), patent);
         }
         updatedPatentsToSendEmail.clear();
     }

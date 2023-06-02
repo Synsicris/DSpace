@@ -194,8 +194,8 @@
          <!-- associated attributes (via the step-id "working_plan_form") -->
 				<StartDate>@dc.date.start@</StartDate>
 				<EndDate>@dc.date.end@</EndDate>
-				<ResponsibleOrganisation>@synsicris.relation.partner-wp@</ResponsibleOrganisation>
-                <Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
+				<ResponsibleOrganisation>@synsicris.relation.partnerwp@</ResponsibleOrganisation>
+        <Status>@virtual.vocabulary_i18n.synsicris-type-status@</Status>
 
         <!-- associated tasks -->
 				<Task>

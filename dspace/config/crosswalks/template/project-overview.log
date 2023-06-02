@@ -1,4 +1,4 @@
-#---------------------------------------------------------#
+ #---------------------------------------------------------#
 # comments from May 4th
 #---------------------------------------------------------#
 
@@ -83,7 +83,7 @@ section 3.1.3
 general: 
   - adapt font size for key.alternative to 10p -> same size as standard now
   - remove ":" from key-value-line-list
-  - new template: template name="key-author-affilation-comma-list-below" -> puts Text in the next line
+  - new template: template name="key-author-affilation-comma-list-below" -> puts text in the next line
 section 4.2.1
 - change key-value-single to key-value-single-below
 section 4.2.2
@@ -112,7 +112,7 @@ section 4.3.4
 section 4.3.5
 - change key-value-single to key-value-single-below
 
-2023-05-24
+2023-05-25
 general:
   - addapt "key-author-affilation-comma-list-below" shows now correct distances and line changes, ":" was removed
   - definition of new template "key-value-comma-list-below" with text in new line; ":" was removed
@@ -124,3 +124,18 @@ section 4.2.8
   section 5.2 + 5.3
   - change key-value-comma-list- to key-value-comma-list-below
   - change key-value-single to key-value-single-below
+preparations for new section 3.1.4 and 3.1.5  
+
+2023-06-22
+general:
+  - add all screenshot templates from the Italian colleages and test them -> for not they are commented out
+  - revise ruler option in numerous templates (see 2023-05-22) -> ruler is put first instead of last
+  - add duration to period template
+  - add ruler below project partner to have a consistent approach
+  - consistently rename "key" to "label" to avoid confusion with "key-value"
+section 4.3.2
+  - change label "Art der Rahmenbedingung" to "Transformationsbereich" and
+  "Hauptelement" to "Kernelement" based on Birge's mail from May 22nd
+section 3.1.2
+  - remove table in favour of the block approach
+  - correct CERIF template for responsible organisation

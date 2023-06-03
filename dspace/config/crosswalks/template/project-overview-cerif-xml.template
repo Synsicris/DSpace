@@ -581,7 +581,7 @@
 
 				<!-- direct attributes (basic accordion) -->
 				<Identifier>@dc.identifier@</Identifier>
-				<Type>@dc.type@</Type>
+				<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 				<Title>@dc.title@</Title>
 				<Author>@dc.contributor.author@</Author>
 				<Editor>@dc.contributor.editor@</Editor>
@@ -600,7 +600,7 @@
 
 				<!-- attributes from the Reference accordion -->
 				<Reference>
-					<TargetAudience>@dc.audience@</TargetAudience>
+					<TargetAudience>@virtual.vocabulary_i18n.dc-audience@</TargetAudience>
 					<DataSetReference>@dc.relation.product@</DataSetReference>
 				</Reference>
 
@@ -919,10 +919,10 @@
 			  <!-- direct attributes (basic accordion) -->
 				<Acronym>@oairecerif.acronym@</Acronym>
 				<EasyOnlineImport>@synsicris.type.easyimport@</EasyOnlineImport>
-				<FieldOfActivity>@dc.type@</FieldOfActivity>
+				<FieldOfActivity>@virtual.vocabulary_i18n.dc-type@</FieldOfActivity>
 				<Destatis>@synsicris.subject.destatis@</Destatis>
 				<NACE>@virtual.vocabulary_i18n.synsicris-subject-nace@</NACE>
-				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+				<PoliticalLevel>@virtual.vocabulary_i18n.synsicris-subject-political@</PoliticalLevel>
 
 			  <!-- attributes from the import accordion -->
 				<Import>
@@ -959,11 +959,11 @@
 		  <Index>
 
 			  <!-- direct attributes (basic accordion) -->
-				<CooperationType>@synsicris.type.cooperation@</CooperationType>
-				<FieldOfActivity>@dc.type@</FieldOfActivity>
+				<CooperationType>@virtual.vocabulary_i18n.synsicris-type-cooperation@</CooperationType>
+				<FieldOfActivity>@virtual.vocabulary_i18n.dc-type@</FieldOfActivity>
 				<NACE>@synsicris.subject.nace@</NACE>
 				<Destatis>@synsicris.subject.destatis@</Destatis>
-				<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
+				<PoliticalLevel>@virtual.vocabulary_i18n.synsicris-subject-political@</PoliticalLevel>
 				<ProjectContribution>@synsicris.description.contribution@</ProjectContribution>
 
 			  <!-- attributes from the organisation unit accordion -->
@@ -973,7 +973,7 @@
 					<City>@synsicris.address.addressCity@</City>
 					<Country>@organization.address.addressCountry@</Country>
 					<WebAddress>@oairecerif.identifier.url@</WebAddress>
-					<OrganisationType>@synsicris.type.orgform@</OrganisationType>
+					<OrganisationType>@virtual.vocabulary_i18n.synsicris-type-orgform@</OrganisationType>
 				</OrganisationUnit>
 
 		  </Index>
@@ -996,11 +996,11 @@
 
 				<!-- attributes from the classification accordion -->
 				<Classification>
-					<FieldOfActivity>@dc.type@</FieldOfActivity>
+					<FieldOfActivity>@virtual.vocabulary_i18n.dc-type@</FieldOfActivity>
 					<NACE>@synsicris.subject.nace@</NACE>
-					<BusinessSize>@synsicris.subject.enterprise@</BusinessSize>
-					<PoliticalLevel>@synsicris.subject.political@</PoliticalLevel>
-					<LocationType>@synsicris.subject.urbanrural@</LocationType>
+					<BusinessSize>@virtual.vocabulary_i18n.synsicris-subject-enterprise@</BusinessSize>
+					<PoliticalLevel>@virtual.vocabulary_i18n.synsicris-subject-political@</PoliticalLevel>
+					<LocationType>@virtual.vocabulary_i18n.synsicris-subject-urbanrural@</LocationType>
 				</Classification>
 
 				<!-- associated steps -->

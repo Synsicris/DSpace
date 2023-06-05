@@ -209,11 +209,42 @@
 					@relation.workingplan-relation-step.end@
 				</Task>
 
-        <!-- associated process events -->
+        <!-- associated events -->
+				<Event>
+					@relation.workingplan-relation-step.start@
+					  @if.hasEntityType.Event.start@
 
+							<Index>
+
+								<!-- direct attributes (basic accordion) -->
+								<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
+								<Type>@dc.type@</Type>
+								<Title>@dc.title@</Title>
+								<Purpose>@synsicris.type.purpose@</Purpose>
+								<Description>@dc.description@</Description>
+								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
+								<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+
+								<!-- attributes from the result accordion -->
+								<Result>
+									<StartDate>@oairecerif.event.startDate@</StartDate>
+									<EndDate>@oairecerif.event.endDate</EndDate>
+									<Duration>@synsicris.duration@</Duration>
+									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+									<City>@oairecerif.event.place@</City>
+									<Country>@oairecerif.event.country@</Country>
+								</Result>
+
+							</Index>
+
+						@if.hasEntityType.Event.end@
+					@relation.workingplan-relation-step.end@
+        </Event>
+
+        <!-- associated process events -->
 				<ProcessEvent>
 					@relation.workingplan-relation-step.start@
-						@if.hasEntityType.process.start@
+						@if.hasEntityType.process_event.start@
 							<Index>
 
 								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
@@ -246,7 +277,7 @@
 								</Date>
 
 							</Index>
-						@if.hasEntityType.process.end@
+						@if.hasEntityType.process_event.end@
 					@relation.workingplan-relation-step.end@
 				</ProcessEvent>
 
@@ -431,26 +462,24 @@
 
 		  <Index>
 
-				<!-- direct attributes (basic accordion) -->
 				<Identifier>@dc.identifier@</Identifier>
 				<Type>@dc.type@</Type>
 				<Title>@dc.title@</Title>
-				<Author>@dc.contributor.author@</Author>
 				<PublicationDate>@dc.date.issued@</PublicationDate>
 				<Publisher>@dc.publisher@</Publisher>
 				<Abstract>@dc.description.abstract@</Abstract>
 				<Language>@dc.language.iso@</Language>
 				<Keyword>@dc.subject@</Keyword>
-
-				<!-- attributes from the reference accordion -->
-				<Reference>
-					<Reference>@dc.relation.publication@</Reference>
-				</Reference>
+				<Reference>@dc.relation.publication@</Reference>
 
 				<!-- attributes from the dc-contributor-author accordion -->
 				<Contributor>
-					<Author>@dc.contributor.author@</Author>
-					<Affiliation>@oairecerif.author.affiliation@</Affiliation>
+				  @group.dc-contributor-author.start@
+						<Index> 
+							<Author>@dc.contributor.author@</Author>
+							<Affiliation>@oairecerif.author.affiliation@</Affiliation>
+						</Index>
+					@group.dc-contributor-author.end@
 				</Contributor>
 
 		  </Index>
@@ -589,7 +618,7 @@
 				<Publisher>@dc.publisher@</Publisher>
 				<IsPartOf>@dc.relation.publications@</IsPartOf>
 				<Journal>@dc.relation.ispartof@</Journal>
-				<Volumne>@oaire.citation.volume@</Volumne>
+				<Volume>@oaire.citation.volume@</Volume>
 				<Issue>@oaire.citation.issue@</Issue>
 				<StartPage>@oaire.citation.startPage@</StartPage>
 				<EndPage>@oaire.citation.endPage@</EndPage>
@@ -1094,7 +1123,7 @@
 
 				<!-- associated process events -->
 				<ProcessEvent>
-					@relation.processevent.start@
+					@relation.process_event.start@
 
 						<Index>
 							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
@@ -1132,7 +1161,7 @@
 							
 						</Index>
 
-					@relation.processevent.end@
+					@relation.process_event.end@
 				</ProcessEvent>
 
 		  </Index>

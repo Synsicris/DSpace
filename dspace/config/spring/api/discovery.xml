@@ -875,7 +875,7 @@
         <property name="defaultFilterQueries">
             <list>
                 <!--Only find items, workspace and accepted for workflow -->
-                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !entityType:Funding AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
+                <value>(search.resourcetype:Item OR search.resourcetype:WorkspaceItem OR search.resourcetype:XmlWorkflowItem) AND !archived:true AND !entityType:Funding AND !entityType:Project AND !entityType:impactpathway AND !entityType:impactpathwaystep AND !entityType:exploitationplan AND !entityType:exploitationplanstep AND !entityType:interim_report AND !entityType:interim_report_step AND !entityType:workingplan AND -(relation.isVersionOf:* OR synsicris.uniqueid:*)</value>
             </list>
         </property>
         <!--Default result per page  -->

@@ -29,11 +29,98 @@ section 4.3.8
   - new template for amount currency (default Euro)
   - awarded persons and organisations each in one comma separated line
   - initiator and target groups each in one line 
-    - table does make a sense since target group a single value, not   
-      connected to donor
+    - table does make a sense since target group is a single value, 
+      not connected to donor
 
 section 4.3.9
   - uses now "title-description" template        
 
 section 3.2
   - has a table with the columns date, title and description
+
+# 2023-05-16
+general
+  - add landscape page master (preparation for impact pathway and working plan screenshots)
+  - make key colour configurable 
+  - test box approach with ruler as a replacement for table setups
+
+section 4.2
+  - removal of that subsection
+  - adaptation of the numbering of all following subsections
+
+section 4.1
+  - create overview following the example for the interaction transfer overview
+  - externalise text, also for the interaction transfer overview
+
+# 2023-05-22
+general
+  - adapt title-description template to the new box/ruler-approach
+  - add ruler option (default = true) to the following templates
+    - "key-value-single"
+    - "key-value-single-below"
+    - "key-period"
+    - "key-postcode-city-country"
+    - "key-amount-currency"
+    - "key-name-degree-gender"
+    - "key-value-comma-list"
+    - "key-value-line-list"    
+    - "key-author-affilation-comma-list"
+    - "value-single"
+  - remove unused template "key-value-line-list-with-border"
+
+project description & partner
+  - adapt template usage so that there are no rulers
+
+section 3.1.2
+  - combination of description, requirement and projectpartner in the first row of the old table
+  - row for requiremetn and project partner were deleted
+section 3.1.3
+  - adapt table (1 header /1 row)
+  - definition it title and tast description
+  - Inner index for task (xls: for each) not working so far... 
+
+# 2023-05-24
+general: 
+  - adapt font size for key.alternative to 10p -> same size as standard now
+  - remove ":" from key-value-line-list
+  - new template: template name="key-author-affilation-comma-list-below" -> puts Text in the next line
+section 4.2.1
+- change key-value-single to key-value-single-below
+section 4.2.2
+  - change key-value-single to key-value-single-below
+section 4.2.3
+- change key-value-single to key-value-single-below
+- adaption table title allign: left -> centre
+section 4.2.4
+- change key-value-single to key-value-single-below
+section 4.2.5
+- change key-value-single to key-value-single-below
+section 4.2.6
+- change key-value-single to key-value-single-below
+section 4.2.7
+- change key-value-single to key-value-single-below
+section 4.2.8
+- change key-value-single to key-value-single-below
+section 4.3.1
+- change key-value-single to key-value-single-below
+section 4.3.2
+- change key-value-single to key-value-single-below
+section 4.3.3
+- change key-value-single to key-value-single-below
+section 4.3.4
+- change key-value-single to key-value-single-below
+section 4.3.5
+- change key-value-single to key-value-single-below
+
+2023-05-24
+general:
+  - addapt "key-author-affilation-comma-list-below" shows now correct distances and line changes, ":" was removed
+  - definition of new template "key-value-comma-list-below" with text in new line; ":" was removed
+  - adapt template "key-amount-currency" now text in new line; ":" was removed
+section 4.2.5
+  - change key-value-comma-list- to key-value-comma-list-below
+section 4.2.8
+  - change key-value-comma-list- to key-value-comma-list-below
+  section 5.2 + 5.3
+  - change key-value-comma-list- to key-value-comma-list-below
+  - change key-value-single to key-value-single-below

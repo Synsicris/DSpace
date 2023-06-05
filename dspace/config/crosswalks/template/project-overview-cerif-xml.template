@@ -1,6 +1,18 @@
 <Project xmlns="https://www.openaire.eu/cerif-profile/1.1/" id="@virtual.id@">
 
 	<!--########################################################################-->
+  <!-- for the screenshot functionality -->
+	<!--########################################################################-->
+
+	<EmbeddedPdfs>
+		<EmbeddedPdf>@virtual.bitstream.original.*.pdf@</EmbeddedPdf>
+	</EmbeddedPdfs>
+
+	<Graphs>
+		<Graph>@virtual.bitstream.GRAPH@</Graph>
+	</Graphs>
+
+	<!--########################################################################-->
   <!-- attributes from the project entity (those come direct)-->
 	<!--########################################################################-->
 
@@ -30,6 +42,11 @@
 			</Index>
 
 		@relation.impactpathway.end@
+
+		<!-- for the screenshot functionality -->
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.IMPACTPATHWAY@</Screenshot>
+		</Screenshots>
 
 	</ImpactPathway>
 
@@ -284,6 +301,12 @@
 
 		  </Index>
 		@relation.workpackage.end@
+
+	  <!-- for the screenshot functionality -->	
+		<Screenshots>
+			<Screenshot>@virtual.bitstream.WORKINGPLAN@</Screenshot>
+		</Screenshots>
+
 
 	</WorkPackage>
 

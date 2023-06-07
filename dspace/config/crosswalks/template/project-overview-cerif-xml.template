@@ -217,18 +217,18 @@
 							<Index>
 
 								<!-- direct attributes (basic accordion) -->
-								<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
-								<Type>@dc.type@</Type>
+								<ProjectContribution>@virtual.vocabulary_i18n.synsicris-type-contribution@</ProjectContribution>
+								<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 								<Title>@dc.title@</Title>
-								<Purpose>@synsicris.type.purpose@</Purpose>
+								<Purpose>@virtual.vocabulary_i18n.synsicris-type-purpose@</Purpose>
 								<Description>@dc.description@</Description>
 								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-								<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+								<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
 
 								<!-- attributes from the result accordion -->
 								<Result>
 									<StartDate>@oairecerif.event.startDate@</StartDate>
-									<EndDate>@oairecerif.event.endDate</EndDate>
+									<EndDate>@oairecerif.event.endDate@</EndDate>
 									<Duration>@synsicris.duration@</Duration>
 									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
 									<City>@oairecerif.event.place@</City>
@@ -250,13 +250,13 @@
 								<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
 								<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
 								<Title>@dc.title@</Title>
-								<Purpose>@synsicris.type.purpose@</Purpose>
+								<Purpose>@virtual.vocabulary_i18n.synsicris-type-purpose@</Purpose>
 								<Description>@dc.description@</Description>
 
 								<!-- attributes from the frequency inline-group-->
 								<Frequency>
 									@group.dc-type.start@
-										<Type>@dc.type@</Type>
+										<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 										<Duration>@synsicris.duration@</Duration>
 										<Frequency>@synsicris.type.frequency@</Frequency>
 										<Period>@synsicris.type.period@</Period>
@@ -271,7 +271,7 @@
 										<EndDate>@oairecerif.event.endDate@</EndDate>
 										<Duration>@synsicris.duration@</Duration>
 										<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-										<Place>@oairecerif.event.place@</Place>
+										<City>@oairecerif.event.place@</City>
 										<Country>@oairecerif.event.country@</Country>
 									@group.synsicris-type.end@
 								</Date>
@@ -289,14 +289,14 @@
 
 								<!-- direct attributes (basic accordion) -->
 								<Title>@dc.title@</Title>
-								<Type>@dc.type@</Type>
+								<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 								<Description>@dc.description@</Description>
 
 								<!-- attributes from the results accordion -->
 								<Result>
-									<Function>@synsicris.type.functions@</Function>
+									<Function>@virtual.vocabulary_i18n.synsicris-type-functions@</Function>
 									<ContactInformation>@synsicris.description@</ContactInformation>
-									<Accessibility>@synsicris.type.access@</Accessibility>
+									<Accessibility>@virtual.vocabulary_i18n.synsicris-type-access@</Accessibility>
 									<WebAddress>@oairecerif.identifier.url@</WebAddress>
 								</Result>
 
@@ -312,7 +312,7 @@
 							<Index>
 								<Title>@dc.title@</Title>
 								<Description>@dc.description@</Description>
-								<TargetAudience>@dc.audience@</TargetAudience>
+								<TargetAudience>@virtual.vocabulary_i18n.dc-audience@</TargetAudience>
 							</Index>
 						@if.hasEntityType.plan_publication.end@
 					@relation.workingplan-relation-step.end@
@@ -430,13 +430,13 @@
 		  <Index>
 
 				<!-- direct attributes (basic accordion) -->
-				<ProjectContribution>@synsicris.type.contribution@</ProjectContribution>
-				<Type>@dc.type@</Type>
+				<ProjectContribution>@virtual.vocabulary_i18n.synsicris-type-contribution@</ProjectContribution>
+				<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 				<Title>@dc.title@</Title>
-				<Purpose>@synsicris.type.purpose@</Purpose>
+				<Purpose>@virtual.vocabulary_i18n.synsicris-type-purpose@</Purpose>
 				<Description>@dc.description@</Description>
 				<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-				<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+				<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
 
 				<!-- attributes from the result accordion -->
 				<Result>
@@ -516,14 +516,14 @@
 
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
-				<Type>@dc.type@</Type>
+				<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 				<Description>@dc.description@</Description>
 
 			  <!-- attributes from the results accordion -->
 				<Result>
-					<Function>@synsicris.type.functions@</Function>
+					<Function>@virtual.vocabulary_i18n.synsicris-type-functions@</Function>
 					<ContactInformation>@synsicris.description@</ContactInformation>
-					<Accessibility>@synsicris.type.access@</Accessibility>
+					<Accessibility>@virtual.vocabulary_i18n.synsicris-type-access@</Accessibility>
 					<WebAddress>@oairecerif.identifier.url@</WebAddress>
 				</Result>
 
@@ -544,7 +544,7 @@
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
-				<TargetAudience>@dc.audience@</TargetAudience>
+				<TargetAudience>@virtual.vocabulary_i18n.dc-audience@</TargetAudience>
 
 			</Index>
 
@@ -571,7 +571,7 @@
 				<Frequency>
 					@group.dc-type.start@
 
-						<Type>@dc.type@</Type>
+						<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 						<Duration>@synsicris.duration@</Duration>
 						<Frequency>@synsicris.type.frequency@</Frequency>
 						<Period>@synsicris.type.period@</Period>
@@ -588,7 +588,7 @@
 						<EndDate>@oairecerif.event.endDate@</EndDate>
 						<Duration>@synsicris.duration@</Duration>
 						<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-						<Place>@oairecerif.event.place@</Place>
+						<City>@oairecerif.event.place@</City>
 						<Country>@oairecerif.event.country@</Country>
 
 					@group.synsicris-type.end@
@@ -1104,7 +1104,7 @@
 							<Purpose>@synsicris.type.purpose@</Purpose>
 							<Description>@dc.description@</Description>
 							<InvolvedOrganisation>@synsicris.relation.partner@</InvolvedOrganisation>
-							<StakeholderGroup>@synsicris.relation.targetgroup@</StakeholderGroup>
+							<TargetGroup>@synsicris.relation.targetgroup@</TargetGroup>
 
 							<!-- attributes from the Result accordion -->
 							<Result>
@@ -1136,7 +1136,7 @@
 							<Frequency>
 								@group.dc-type.start@
 
-									<Type>@dc.type@</Type>
+									<Type>@virtual.vocabulary_i18n.dc-type@</Type>
 									<Duration>@synsicris.duration@</Duration>
 									<Frequency>@synsicris.type.frequency@</Frequency>
 									<Period>@synsicris.type.period@</Period>
@@ -1153,7 +1153,7 @@
 									<EndDate>@oairecerif.event.endDate@</EndDate>
 									<Duration>@synsicris.duration@</Duration>
 									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-									<Place>@oairecerif.event.place@</Place>
+									<City>@oairecerif.event.place@</City>
 									<Country>@oairecerif.event.country@</Country>
 
 								@group.synsicris-type.end@

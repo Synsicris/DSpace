@@ -1404,6 +1404,8 @@
 				<ref bean="graphSynsicrisTypeStatus" />
 				<ref bean="graphSynsicrisAddressAddressCountry" />
 				<ref bean="graphEventByTypeTargetGroup" />
+				<ref bean="graphNegSideEffectByTransform" />
+                <ref bean="graphNegSideEffectByIntensity" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTypes" />
@@ -1548,6 +1550,8 @@
 				<ref bean="graphSynsicrisTypeStatus" />
 				<ref bean="graphSynsicrisAddressAddressCountry" />
 				<ref bean="graphEventByTypeTargetGroup" />
+				<ref bean="graphNegSideEffectByTransform" />
+                <ref bean="graphNegSideEffectByIntensity" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTitle" />
@@ -2535,6 +2539,24 @@
 
     <bean id="relationParentProjectNegativesideeffectsConfiguration" class="org.dspace.discovery.configuration.DiscoveryRelatedItemConfiguration">
         <property name="indexAlways" value="true"/>
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+                <ref bean="graphNegSideEffectByTransform" />
+                <ref bean="graphNegSideEffectByIntensity" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeTransform" />
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+                <ref bean="graphNegSideEffectByTransform" />
+                <ref bean="graphNegSideEffectByIntensity" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeTransform" />
+            </list>
+        </property>
         <!--The sort filters for the discovery search-->
         <property name="searchSortConfiguration">
             <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
@@ -2567,6 +2589,8 @@
                 <ref bean="graphExpSocImpByTransform" />
                 <ref bean="graphExpSocImpByIntensity" />
                 <ref bean="graphExpSocImpByEvidence" />
+                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -7588,9 +7612,47 @@
         <property name="exposeTotalElements" value="true" />
     </bean>
 
+    <bean id="graphNegSideEffectByTransform" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-neg-side-effect-synsicris_type_transform" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.transform</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
     <bean id="graphExpSocImpByIntensity" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
         <property name="facetLimit" value="10"/>
         <property name="indexFieldName" value="graphexpsocimpintensity" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.type.intensity</value>
+            </list>
+        </property>
+        <property name="graphType" value="bar" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphNegSideEffectByIntensity" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graph-neg-side-effect-synsicris_type_intensity" />
         <!-- the splitter needs to be a not empty string -->
         <property name="splitter" value="::" />
         <property name="onlyLastNodeRelevant" value="true" />

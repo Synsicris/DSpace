@@ -2842,6 +2842,9 @@
             <list>
                 <ref bean="graphPhyObjByType" />
                 <ref bean="graphPhyObjByTypeAccess" />
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterSynsicrisTypeAccess" />
+                <ref bean="searchFilterSynsicrisTypeFunctions" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -2849,6 +2852,9 @@
             <list>
                 <ref bean="graphPhyObjByType" />
                 <ref bean="graphPhyObjByTypeAccess" />
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterSynsicrisTypeAccess" />
+                <ref bean="searchFilterSynsicrisTypeFunctions" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->

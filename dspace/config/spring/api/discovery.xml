@@ -1230,7 +1230,7 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeContribution" />
                 <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -1246,7 +1246,7 @@
         <property name="searchFilters">
             <list>
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeContribution" />
                 <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -1408,7 +1408,7 @@
                 <ref bean="graphNegSideEffectByIntensity" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeContribution" />
                 <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -1555,7 +1555,7 @@
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTitle" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeContribution" />
                 <ref bean="searchFilterSynsicrisTypePurpose" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -1701,7 +1701,7 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterOairecerifFundingparent" />
                 <ref bean="searchFilterSynsicrisRelationCall" />
                 <ref bean="searchFilterProjectStartDate" />
@@ -1736,7 +1736,7 @@
             <list>
             <ref bean="searchFilterSynsicrisTypePatentuse" />
                 <ref bean="searchFilterEntityType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterOairecerifFundingparent" />
                 <ref bean="searchFilterSynsicrisRelationCall" />
                 <ref bean="searchFilterProjectStartDate" />
@@ -2289,7 +2289,7 @@
         <property name="searchFilters">
             <list>
                 <ref bean="graphApplicationSynsicrisCoverageRegional" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisDateReferenceyear" />
                 <ref bean="searchFilterSynsicrisCoverageRegionalsecondary" />
             </list>
@@ -2381,7 +2381,7 @@
                 <ref bean="graphCoopPartByPolitical" />
                 <!-- filters -->
                 <ref bean="searchFilterOrganizationAddressAddresscountry" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisSubjectNace" />
                 <ref bean="searchFilterSynsicrisSubjectDestatis" />
                 <ref bean="searchFilterSynsicrisSubjectPolitical" />
@@ -2544,7 +2544,7 @@
             <list>
                 <ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
@@ -2553,7 +2553,7 @@
             <list>
                 <ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
@@ -2589,7 +2589,7 @@
                 <ref bean="graphExpSocImpByTransform" />
                 <ref bean="graphExpSocImpByIntensity" />
                 <ref bean="graphExpSocImpByEvidence" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
@@ -2600,7 +2600,7 @@
                 <ref bean="graphExpSocImpByTransform" />
                 <ref bean="graphExpSocImpByIntensity" />
                 <ref bean="graphExpSocImpByEvidence" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeEvidence" />
             </list>
@@ -2640,7 +2640,7 @@
         <property name="searchFilters">
             <list>
                 <ref bean="graphCondByType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2762,14 +2762,14 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="graphInnIdeaByType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
                 <ref bean="graphInnIdeaByType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2826,14 +2826,14 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="graphStepByType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
                 <ref bean="graphStepByType" />
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -5966,10 +5966,8 @@
         </property>
     </bean>
 
-    <bean id="searchFilterType" class="org.dspace.discovery.configuration.HierarchicalSidebarFacetConfiguration">
+    <bean id="searchFilterType" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="itemtype" />
-        <property name="splitter" value="::" />
-        <property name="onlyLastNodeRelevant" value="true" />
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
@@ -5983,16 +5981,6 @@
             <list>
                 <value>dc.language.iso</value>
                 <value>person.knowsLanguage</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="searchFilterTypes" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
-        <property name="indexFieldName" value="types" />
-        <property name="type" value="authority"/>
-        <property name="metadataFields">
-            <list>
-                <value>dc.type</value>
             </list>
         </property>
     </bean>
@@ -9496,7 +9484,7 @@
     <bean id="multilanguage-types" class="org.dspace.discovery.configuration.DiscoveryConfiguration" parent="commonConfiguration">
         <property name="sidebarFacets">
             <list>
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
                 <ref bean="searchFilterAuthor" />
@@ -9510,7 +9498,7 @@
         <!--The search filters which can be used on the discovery search page (same as defaultConfiguration above)-->
         <property name="searchFilters">
             <list>
-                <ref bean="searchFilterTypes" />
+                <ref bean="searchFilterType" />
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
                 <ref bean="searchFilterTitle" />

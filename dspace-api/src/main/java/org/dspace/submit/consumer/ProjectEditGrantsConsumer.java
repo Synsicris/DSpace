@@ -6,6 +6,8 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
+
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,6 +18,7 @@ import java.util.UUID;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.content.authority.Choices;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
@@ -93,19 +96,36 @@ public class ProjectEditGrantsConsumer implements Consumer {
         Iterator<Item> relatedItems =
             this.projectConsumerService.findRelatedFundingItems(context, fundingCommunity, item);
         Item toProcess = null;
+        String policyValue =
+            this.projectConsumerService.getSharedPolicyValue(item);
         while (
                 relatedItems.hasNext() &&
                 (toProcess = relatedItems.next()) != null &&
                 !itemsAlreadyProcessed.contains(toProcess.getID())
         ) {
             try {
-                this.projectConsumerService.setPolicy(context, submitter, toProcess, fundingPolicy);
-                this.itemService.update(context, toProcess);
-                itemsAlreadyProcessed.add(toProcess.getID());
+                processRelatedItem(context, submitter, toProcess, fundingPolicy, policyValue);
             } catch (SQLException | AuthorizeException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    protected void processRelatedItem(
+        Context context, EPerson submitter, Item relatedItem, String fundingPolicy, String policyValue
+    ) throws SQLException, AuthorizeException {
+        this.projectConsumerService.setPolicy(context, submitter, relatedItem, fundingPolicy);
+        itemService.replaceMetadata(
+            context, relatedItem,
+            MD_POLICY_SHARED.schema,
+            MD_POLICY_SHARED.element,
+            MD_POLICY_SHARED.qualifier,
+            null, policyValue, null,
+            Choices.CF_UNSET,
+            0
+        );
+        this.itemService.update(context, relatedItem);
+        itemsAlreadyProcessed.add(relatedItem.getID());
     }
 
     @Override

@@ -186,6 +186,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                         jsonPath(
                             "$.metadata",
                             allOf(
+                                matchMetadata("cris.project.shared", "project", 0),
                                 matchMetadata(
                                     "cris.policy.group",
                                     projectsCommunityGroup.getName(),
@@ -255,6 +256,7 @@ public class ProjectEditGrantsConsumerIT extends AbstractControllerIntegrationTe
                         jsonPath(
                             "$.metadata",
                             allOf(
+                                matchMetadata("cris.project.shared", "funding", 0),
                                 matchMetadata(
                                     "cris.policy.group",
                                     fundingCommunityGroup.getName(),

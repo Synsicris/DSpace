@@ -9,6 +9,7 @@ package org.dspace.submit.consumer.service;
 import static org.dspace.project.util.ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
@@ -103,9 +104,9 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
     public String getSharedPolicyValue(Item item) {
         return itemService.getMetadataFirstValue(
             item,
-            ProjectConstants.MD_POLICY_SHARED.schema,
-            ProjectConstants.MD_POLICY_SHARED.element,
-            ProjectConstants.MD_POLICY_SHARED.qualifier,
+            MD_POLICY_SHARED.schema,
+            MD_POLICY_SHARED.element,
+            MD_POLICY_SHARED.qualifier,
             Item.ANY
         );
     }
@@ -477,9 +478,15 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
                 return;
             }
 
-            itemService.replaceMetadata(context, item, ProjectConstants.MD_POLICY_SHARED.schema,
-                    ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier,
-                    null, policyValue, null, Choices.CF_UNSET, 0);
+            itemService.replaceMetadata(
+                context, item,
+                MD_POLICY_SHARED.schema,
+                MD_POLICY_SHARED.element,
+                MD_POLICY_SHARED.qualifier,
+                null, policyValue, null,
+                Choices.CF_UNSET,
+                0
+            );
 
             Group group;
             switch (policyValue) {
@@ -510,8 +517,8 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         if (Objects.isNull(projectItem)) {
             return null;
         }
-        return itemService.getMetadataFirstValue(projectItem, ProjectConstants.MD_POLICY_SHARED.schema,
-                ProjectConstants.MD_POLICY_SHARED.element, ProjectConstants.MD_POLICY_SHARED.qualifier, Item.ANY);
+        return itemService.getMetadataFirstValue(projectItem, MD_POLICY_SHARED.schema,
+                MD_POLICY_SHARED.element, MD_POLICY_SHARED.qualifier, Item.ANY);
     }
 
     @Override

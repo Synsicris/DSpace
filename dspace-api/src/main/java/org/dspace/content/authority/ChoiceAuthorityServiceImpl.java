@@ -316,6 +316,8 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
             for (SubmissionConfig subCfg : submissionConfigs) {
                 String submissionName = subCfg.getSubmissionName();
                 List<DCInputSet> inputsBySubmissionName = dcInputsReader.getInputsBySubmissionName(submissionName);
+                List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
+                inputsBySubmissionName.addAll(inputsByGroup);
                 autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName,
                         inputsBySubmissionName);
             }

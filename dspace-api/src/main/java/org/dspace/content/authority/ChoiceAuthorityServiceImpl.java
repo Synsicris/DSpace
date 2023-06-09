@@ -7,6 +7,8 @@
  */
 package org.dspace.content.authority;
 
+import static java.lang.Integer.MAX_VALUE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.util.DCInput;
 import org.dspace.app.util.DCInputSet;
@@ -60,7 +63,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @see ChoiceAuthority
  */
 public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService {
-    private Logger log = org.apache.logging.log4j.LogManager.getLogger(ChoiceAuthorityServiceImpl.class);
+
+    private Logger log = LogManager.getLogger(ChoiceAuthorityServiceImpl.class);
 
     // map of field key to authority plugin
     protected Map<String, ChoiceAuthority> controller = new HashMap<String, ChoiceAuthority>();
@@ -308,8 +312,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
      */
     private void autoRegisterChoiceAuthorityFromInputReader() {
         try {
-            List<SubmissionConfig> submissionConfigs = itemSubmissionConfigReader
-                    .getAllSubmissionConfigs(Integer.MAX_VALUE, 0);
+            List<SubmissionConfig> submissionConfigs = itemSubmissionConfigReader.getAllSubmissionConfigs(MAX_VALUE, 0);
             DCInputsReader dcInputsReader = new DCInputsReader();
 
             // loop over all the defined item submission configuration
@@ -318,20 +321,17 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
                 List<DCInputSet> inputsBySubmissionName = dcInputsReader.getInputsBySubmissionName(submissionName);
                 List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
                 inputsBySubmissionName.addAll(inputsByGroup);
-                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName,
-                        inputsBySubmissionName);
+                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName, inputsBySubmissionName);
             }
             // loop over all the defined bitstream metadata submission configuration
             for (UploadConfiguration uploadCfg : uploadConfigurationService.getMap().values()) {
                 String formName = uploadCfg.getMetadata();
                 DCInputSet inputByFormName = dcInputsReader.getInputsByFormName(formName);
-                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.BITSTREAM, formName,
-                        List.of(inputByFormName));
+                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.BITSTREAM, formName, List.of(inputByFormName));
             }
         } catch (DCInputsReaderException e) {
             // the system is in an illegal state as the submission definition is not valid
-            throw new IllegalStateException("Error reading the item submission configuration: " + e.getMessage(),
-                    e);
+            throw new IllegalStateException("Error reading the item submission configuration: " + e.getMessage(), e);
         }
     }
 

@@ -319,8 +319,12 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
             for (SubmissionConfig subCfg : submissionConfigs) {
                 String submissionName = subCfg.getSubmissionName();
                 List<DCInputSet> inputsBySubmissionName = dcInputsReader.getInputsBySubmissionName(submissionName);
-                List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
-                inputsBySubmissionName.addAll(inputsByGroup);
+                try {
+                    List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
+                    inputsBySubmissionName.addAll(inputsByGroup);
+                } catch (DCInputsReaderException e) {
+                    log.warn("Cannot load the groups of the submission: " + submissionName, e);
+                }
                 autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName, inputsBySubmissionName);
             }
             // loop over all the defined bitstream metadata submission configuration
@@ -406,7 +410,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
     /**
      * Add the authority plugin to the cache map keeping track of which authority is
      * used by a specific form/field
-     * 
+     *
      * @param dsoType        the DSpace Object Type
      * @param submissionName the submission definition name
      * @param fieldKey       the field key that require the authority
@@ -568,6 +572,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
         return null;
     }
 
+    @Override
     public Choice getParentChoice(String authorityName, String vocabularyId, String locale) {
         HierarchicalAuthority ma = (HierarchicalAuthority) getChoiceAuthorityByAuthorityName(authorityName);
         return ma.getParentChoice(authorityName, vocabularyId, locale);

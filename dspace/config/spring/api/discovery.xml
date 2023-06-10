@@ -1407,7 +1407,6 @@
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="graphProcEventByDcTypeTargetgroup" />
                 <ref bean="graphExpSocImpByType" />
-                <ref bean="graphEthicsByType" />
                 <ref bean="graphProjectByDcSubject" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
@@ -1557,7 +1556,6 @@
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="graphProcEventByDcTypeTargetgroup" />
                 <ref bean="graphExpSocImpByType" />
-                <ref bean="graphEthicsByType" />
                 <ref bean="graphProjectByDcSubject" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
@@ -2439,13 +2437,11 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-               <ref bean="graphEthicsByType" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
-              <ref bean="graphEthicsByType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -7473,25 +7469,6 @@
         <property name="metadataFields">
             <list>
                 <value>synsicris.address.addressCountry</value>
-            </list>
-        </property>
-        <property name="graphType" value="pie" />
-        <property name="exposeMissing" value="true" />
-        <property name="exposeMore" value="true" />
-        <property name="exposeTotalElements" value="true" />
-    </bean>
-
-    <bean id="graphEthicsByType" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
-        <property name="facetLimit" value="10"/>
-        <property name="indexFieldName" value="graphethicstype" />
-        <!-- the splitter needs to be a not empty string -->
-        <property name="splitter" value="::" />
-        <property name="onlyLastNodeRelevant" value="true" />
-        <!-- isDate cannot be true if the splitter is set -->
-        <property name="isDate" value="false" />
-        <property name="metadataFields">
-            <list>
-                <value>dc.type</value>
             </list>
         </property>
         <property name="graphType" value="pie" />

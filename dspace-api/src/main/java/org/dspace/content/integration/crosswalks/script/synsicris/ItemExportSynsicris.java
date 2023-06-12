@@ -5,7 +5,7 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.itemexport.synsicris;
+package org.dspace.content.integration.crosswalks.script.synsicris;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,8 +14,9 @@ import org.apache.commons.cli.ParseException;
 import org.dspace.app.actions.executor.model.ExecutableActions;
 import org.dspace.app.actions.executor.service.ActionsExecutorService;
 import org.dspace.app.actions.executor.service.factory.ActionsExecutorServiceFactory;
-import org.dspace.app.itemexport.ItemExport;
 import org.dspace.app.versioning.action.VersioningAction;
+import org.dspace.app.versioning.action.VersioningActionConfiguration;
+import org.dspace.content.integration.crosswalks.script.ItemExport;
 import org.dspace.core.Context;
 import org.dspace.utils.DSpace;
 
@@ -30,7 +31,7 @@ public class ItemExportSynsicris extends ItemExport {
     @Override
     public ItemExportSynsicrisScriptConfiguration getScriptConfiguration() {
         return new DSpace().getServiceManager()
-                .getServiceByName("export-synsicris", ItemExportSynsicrisScriptConfiguration.class);
+                .getServiceByName("item-export-synsicris", ItemExportSynsicrisScriptConfiguration.class);
     }
 
     @Override
@@ -46,16 +47,16 @@ public class ItemExportSynsicris extends ItemExport {
     }
 
     @Override
-    public void internalRun() throws Exception {
+    protected void run(Context context) throws Exception {
 
         if (this.takeScreenshot) {
-
+            this.runActions(context);
         }
 
-        super.internalRun();
+        super.run(context);
     }
 
-    protected void handleVersioningActions(Context context) {
+    protected void runActions(Context context) {
         actionsExecutor.execute(
             context,
             new ExecutableActions(
@@ -66,9 +67,8 @@ public class ItemExportSynsicris extends ItemExport {
     }
 
     protected List<VersioningAction<?>> getConfiguredActions(Context context) {
-        return getScriptConfiguration()
-            .getActions()
-            .stream()
+        List<VersioningActionConfiguration<?,?>> actions = getScriptConfiguration().getActions();
+        return actions.stream()
             .flatMap(conf -> conf.createAction(context, item))
             .collect(Collectors.toList());
     }

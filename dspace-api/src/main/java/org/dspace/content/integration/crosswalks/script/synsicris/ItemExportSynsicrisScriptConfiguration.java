@@ -5,14 +5,14 @@
  *
  * http://www.dspace.org/license/
  */
-package org.dspace.app.itemexport.synsicris;
+package org.dspace.content.integration.crosswalks.script.synsicris;
 
 import java.util.List;
 
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
-import org.dspace.app.itemexport.ItemExportScriptConfiguration;
 import org.dspace.app.versioning.action.VersioningActionConfiguration;
+import org.dspace.content.integration.crosswalks.script.ItemExportScriptConfiguration;
 
 public class ItemExportSynsicrisScriptConfiguration<T extends ItemExportSynsicris>
     extends ItemExportScriptConfiguration<T> {
@@ -25,9 +25,14 @@ public class ItemExportSynsicrisScriptConfiguration<T extends ItemExportSynsicri
     public Options getOptions() {
         Options options = super.getOptions();
 
-        options.addOption(Option.builder("s").longOpt("screenshot")
-                .desc("take the screenshot of configured entities")
-                .hasArg().build());
+        options.addOption(
+            Option.builder("s").longOpt("screenshot")
+                .desc("export with updated screenshots of configured entities")
+                .hasArg()
+                .build()
+        );
+
+        super.options = options;
 
         return options;
     }

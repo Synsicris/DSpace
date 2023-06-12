@@ -41,7 +41,7 @@ public class MachineClaimProvider implements JWTClaimProvider {
     }
 
     public boolean isMachineTokenRequest(HttpServletRequest request) {
-        return request.getAttribute(MACHINE_TOKEN) != null;
+        return request != null && request.getAttribute(MACHINE_TOKEN) != null;
     }
 
 }

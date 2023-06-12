@@ -42,10 +42,12 @@ public class SpecialGroupClaimProvider implements JWTClaimProvider {
     @Autowired
     private AuthenticationService authenticationService;
 
+    @Override
     public String getKey() {
         return SPECIAL_GROUPS;
     }
 
+    @Override
     public Object getValue(Context context, HttpServletRequest request) {
 
         List<String> specialGroups = getSpecialGroupsFromContext(context);
@@ -53,17 +55,22 @@ public class SpecialGroupClaimProvider implements JWTClaimProvider {
             return specialGroups;
         }
 
-        List<Group> groups = new ArrayList<>();
-        try {
-            groups = authenticationService.getSpecialGroups(context, request);
-        } catch (SQLException e) {
-            log.error("SQLException while retrieving special groups", e);
-            return null;
+        if (request != null) {
+            List<Group> groups = new ArrayList<>();
+            try {
+                groups = authenticationService.getSpecialGroups(context, request);
+            } catch (SQLException e) {
+                log.error("SQLException while retrieving special groups", e);
+                return null;
+            }
+
+            return getGroupsIds(groups);
         }
 
-        return getGroupsIds(groups);
+        return null;
     }
 
+    @Override
     public void parseClaim(Context context, HttpServletRequest request, JWTClaimsSet jwtClaimsSet) {
         try {
             List<String> groupIds = jwtClaimsSet.getStringListClaim(SPECIAL_GROUPS);

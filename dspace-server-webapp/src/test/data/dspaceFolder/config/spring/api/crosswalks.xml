@@ -557,6 +557,7 @@
 				<entry key="personName" value-ref="virtualFieldPersonName" />
 				<entry key="date" value-ref="virtualFieldDateFormatter" />
 				<entry key="vocabulary" value-ref="virtualFieldVocabulary" />
+                <entry key="vocabulary_i18n" value-ref="virtualFieldVocabularyI18n" />
                 <entry key="metric" value-ref="virtualFieldMetric" />
                 <entry key="citations" value-ref="virtualFieldCitations" />
 			</map>
@@ -569,13 +570,35 @@
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldAuthors" id="virtualFieldAuthors"/>
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldPageNumber" id="virtualFieldPageNumber"/>	
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldPersonName" id="virtualFieldPersonName"/>
-	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldBitstream" id="virtualFieldBitstream">
-		<constructor-arg name="bitstreamTypeMap">
-			<map>
-				<entry key="picture" value="personal picture" />
-			</map>
-		</constructor-arg>
-	</bean>
+	   <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldBitstream" id="virtualFieldBitstream">
+        <constructor-arg name="bitstreamTypeMap">
+            <map>
+                <entry key="picture" value="personal picture" />
+            </map>
+        </constructor-arg>
+        <constructor-arg name="bitstreamMIMETypeMap">
+            <map>
+                <entry key="image">
+                    <set>
+                        <value>image/jpeg</value>
+                        <value>image/png</value>
+                        <value>image/gif</value>
+                    </set>
+                </entry>
+                <entry key="pdf">
+                    <set>
+                        <value>application/pdf</value>
+                        <value>application/x-pdf</value>
+                    </set>
+                </entry>
+                <entry key="txt">
+                    <set>
+                        <value>text/plain</value>
+                    </set>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapConverter" id="virtualFieldMapConverter">
 		<constructor-arg name="itemService" ref="org.dspace.content.ItemServiceImpl"/>
 		<constructor-arg name="mapConverters" ref="org.dspace.util.MapConverters"/>
@@ -584,6 +607,7 @@
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabulary" id="virtualFieldVocabulary"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMetric" id="virtualFieldMetric"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldCitations" id="virtualFieldCitations"/>
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabularyI18nValuePair" id="virtualFieldVocabularyI18n"/>
 	
 	<!-- MapConverter configuration -->
 

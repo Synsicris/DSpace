@@ -32,17 +32,23 @@ public class AuthenticationMethodClaimProvider implements JWTClaimProvider {
     @Autowired
     private AuthenticationService authenticationService;
 
+    @Override
     public String getKey() {
         return AUTHENTICATION_METHOD;
     }
 
+    @Override
     public Object getValue(final Context context, final HttpServletRequest request) {
         if (context.getAuthenticationMethod() != null) {
             return context.getAuthenticationMethod();
         }
-        return authenticationService.getAuthenticationMethod(context, request);
+        if (request != null) {
+            return authenticationService.getAuthenticationMethod(context, request);
+        }
+        return null;
     }
 
+    @Override
     public void parseClaim(final Context context, final HttpServletRequest request, final JWTClaimsSet jwtClaimsSet)
             throws SQLException {
         try {

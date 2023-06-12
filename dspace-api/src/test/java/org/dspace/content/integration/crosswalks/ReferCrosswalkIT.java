@@ -9,7 +9,9 @@ package org.dspace.content.integration.crosswalks;
 
 import static org.dspace.builder.CollectionBuilder.createCollection;
 import static org.dspace.builder.CommunityBuilder.createCommunity;
+import static org.dspace.builder.EntityTypeBuilder.createEntityTypeBuilder;
 import static org.dspace.builder.ItemBuilder.createItem;
+import static org.dspace.builder.RelationshipBuilder.createRelationshipBuilder;
 import static org.dspace.core.CrisConstants.PLACEHOLDER_PARENT_METADATA_VALUE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -25,11 +27,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,7 +46,6 @@ import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.CrisLayoutBoxBuilder;
 import org.dspace.builder.CrisLayoutFieldBuilder;
 import org.dspace.builder.EPersonBuilder;
-import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Bitstream;
@@ -54,6 +57,12 @@ import org.dspace.content.Item;
 import org.dspace.content.ItemServiceImpl;
 import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataFieldServiceImpl;
+import org.dspace.content.RelationshipType;
+import org.dspace.content.authority.Choices;
+import org.dspace.content.authority.DCInputAuthority;
+import org.dspace.content.authority.factory.ContentAuthorityServiceFactory;
+import org.dspace.content.authority.service.ChoiceAuthorityService;
+import org.dspace.content.authority.service.MetadataAuthorityService;
 import org.dspace.content.crosswalk.StreamDisseminationCrosswalk;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualField;
 import org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapper;
@@ -64,6 +73,8 @@ import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.eperson.EPerson;
 import org.dspace.layout.CrisLayoutBox;
 import org.dspace.layout.LayoutSecurity;
+import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.utils.DSpace;
 import org.json.JSONObject;
 import org.junit.After;
@@ -94,6 +105,12 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
 
     private VirtualField virtualFieldId;
 
+    private ConfigurationService configurationService;
+
+    private MetadataAuthorityService metadataAuthorityService;
+
+    private ChoiceAuthorityService choiceAuthorityService;
+
     @Before
     public void setup() throws SQLException, AuthorizeException {
 
@@ -105,6 +122,10 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
 
         this.itemService = new DSpace().getSingletonService(ItemServiceImpl.class);
         this.mfss = new DSpace().getSingletonService(MetadataFieldServiceImpl.class);
+
+        this.configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        this.metadataAuthorityService = ContentAuthorityServiceFactory.getInstance().getMetadataAuthorityService();
+        this.choiceAuthorityService = ContentAuthorityServiceFactory.getInstance().getChoiceAuthorityService();
 
         this.virtualFieldId = this.virtualFieldMapper.getVirtualField("id");
 
@@ -368,6 +389,48 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         streamCrosswalk.disseminate(context, item, out);
 
         assertThat(out.toString(), containsString("<personal-picture>" + bitstream.getID() + "</personal-picture>"));
+    }
+
+    @Test
+    public void testPersonXmlDisseminateWithMultiplePersonalPictures() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item item = createItem(context, collection)
+            .withEntityType("Person")
+            .withTitle("John Smith")
+            .build();
+
+        Bundle bundle = BundleBuilder.createBundle(context, item)
+            .withName("ORIGINAL")
+            .build();
+
+        Bitstream bitstreamOne = BitstreamBuilder.createBitstream(context, bundle, getFileInputStream("picture.jpg"))
+            .withType("personal picture")
+            .build();
+
+        Bitstream bitstreamTwo = BitstreamBuilder.createBitstream(context, bundle, getFileInputStream("picture.png"))
+            .withType("personal picture")
+            .build();
+
+        Bitstream bitstreamThree = BitstreamBuilder.createBitstream(context, bundle, getFileInputStream("picture.jpg"))
+            .withType("personal picture")
+            .build();
+
+        context.restoreAuthSystemState();
+
+        StreamDisseminationCrosswalk streamCrosswalk = (StreamDisseminationCrosswalk) CoreServiceFactory
+            .getInstance().getPluginService().getNamedPlugin(StreamDisseminationCrosswalk.class, "person-xml");
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        streamCrosswalk.disseminate(context, item, out);
+
+        assertThat(out.toString(),
+            containsString("<personal-picture>" + bitstreamOne.getID() + "</personal-picture>"));
+        assertThat(out.toString(),
+            containsString("<personal-picture>" + bitstreamTwo.getID() + "</personal-picture>"));
+        assertThat(out.toString(),
+            containsString("<personal-picture>" + bitstreamThree.getID() + "</personal-picture>"));
     }
 
     @Test
@@ -1959,7 +2022,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)
@@ -2035,7 +2098,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)
@@ -2118,7 +2181,7 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
         MetadataField title = mfss.findByElement(context, "dc", "title", null);
         MetadataField contributor = mfss.findByElement(context, "dc", "contributor", "author");
 
-        EntityType eType = EntityTypeBuilder.createEntityTypeBuilder(context, "Publication").build();
+        EntityType eType = createEntityTypeBuilder(context, "Publication").build();
         CrisLayoutBox box1 = CrisLayoutBoxBuilder.createBuilder(context, eType, true, true)
                                                  .withShortname("box-shortname-one")
                                                  .withSecurity(LayoutSecurity.PUBLIC)
@@ -2251,6 +2314,348 @@ public class ReferCrosswalkIT extends AbstractIntegrationTestWithDatabase {
             + "Publication. Test publisher. Retrieved from http://localhost:4000/handle/123456789/111111</citation>"));
         assertThat(resultLines[2].trim(), is("</publication>"));
 
+    }
+
+    @Test
+    public void testVirtualBitstreamFieldWithProject() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+
+        Item projectItem = createItem(context, collection)
+            .withEntityType("Project")
+            .withTitle("project title")
+            .build();
+
+
+        Bundle bundle =
+            BundleBuilder.createBundle(context, projectItem)
+                         .withName("ORIGINAL")
+                         .build();
+
+        Bitstream jpegBitstream =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("image/jpeg")
+                            .withType("project picture")
+                            .build();
+
+        Bitstream pngBitstream =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("image/png")
+                            .build();
+
+        Bitstream txtBitstream =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("text/plain")
+                            .build();
+
+        Bitstream pdfBitstreamOne =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("application/pdf")
+                            .build();
+
+        Bitstream pdfBitstreamTwo =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("application/pdf")
+                            .build();
+
+        Bitstream pdfBitstreamThree =
+            BitstreamBuilder.createBitstream(context, bundle, InputStream.nullInputStream())
+                            .withMimeType("application/pdf")
+                            .build();
+
+        context.restoreAuthSystemState();
+
+        ReferCrosswalk referCrosswalk =
+            new DSpace().getServiceManager()
+                        .getServiceByName("referCrosswalkProjectVirtualFieldBitstreams", ReferCrosswalk.class);
+        assertThat(referCrosswalk, notNullValue());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        referCrosswalk.disseminate(context, projectItem, out);
+
+        String[] resultLines = out.toString().split("\n");
+        assertThat(resultLines.length, is(55));
+        assertThat(resultLines[0].trim(), equalTo("<project>"));
+
+        assertThat(resultLines[2].trim(), equalTo("<all-bitstreams>"));
+        assertThat(resultLines[3].trim(), equalTo("<bitstream>" + jpegBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[4].trim(), equalTo("<bitstream>" + pngBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[5].trim(), equalTo("<bitstream>" + txtBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[6].trim(), equalTo("<bitstream>" + pdfBitstreamOne.getID() + "</bitstream>"));
+        assertThat(resultLines[7].trim(), equalTo("<bitstream>" + pdfBitstreamTwo.getID() + "</bitstream>"));
+        assertThat(resultLines[8].trim(), equalTo("<bitstream>" + pdfBitstreamThree.getID() + "</bitstream>"));
+        assertThat(resultLines[9].trim(), equalTo("</all-bitstreams>"));
+
+        assertThat(resultLines[11].trim(), equalTo("<project-picture>"));
+        assertThat(resultLines[12].trim(), equalTo("<bitstream>" + jpegBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[13].trim(), equalTo("</project-picture>"));
+
+        assertThat(resultLines[15].trim(), equalTo("<image-bitstreams>"));
+        assertThat(resultLines[16].trim(), equalTo("<bitstream>" + jpegBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[17].trim(), equalTo("<bitstream>" + pngBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[18].trim(), equalTo("</image-bitstreams>"));
+
+        assertThat(resultLines[20].trim(), equalTo("<first-image-bitstreams>"));
+        assertThat(resultLines[21].trim(), equalTo("<bitstream>" + jpegBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[22].trim(), equalTo("</first-image-bitstreams>"));
+
+        assertThat(resultLines[24].trim(), equalTo("<pdf-bitstreams>"));
+        assertThat(resultLines[25].trim(), equalTo("<bitstream>" + pdfBitstreamOne.getID() + "</bitstream>"));
+        assertThat(resultLines[26].trim(), equalTo("<bitstream>" + pdfBitstreamTwo.getID() + "</bitstream>"));
+        assertThat(resultLines[27].trim(), equalTo("<bitstream>" + pdfBitstreamThree.getID() + "</bitstream>"));
+        assertThat(resultLines[28].trim(), equalTo("</pdf-bitstreams>"));
+
+        assertThat(resultLines[30].trim(), equalTo("<first-two-pdf-bitstreams>"));
+        assertThat(resultLines[31].trim(), equalTo("<bitstream>" + pdfBitstreamOne.getID() + "</bitstream>"));
+        assertThat(resultLines[32].trim(), equalTo("<bitstream>" + pdfBitstreamTwo.getID() + "</bitstream>"));
+        assertThat(resultLines[33].trim(), equalTo("</first-two-pdf-bitstreams>"));
+
+        assertThat(resultLines[35].trim(), equalTo("<txt-bitstreams>"));
+        assertThat(resultLines[36].trim(), equalTo("<bitstream>" + txtBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[37].trim(), equalTo("</txt-bitstreams>"));
+
+        assertThat(resultLines[39].trim(), equalTo("<first-three-bitstreams>"));
+        assertThat(resultLines[40].trim(), equalTo("<bitstream>" + jpegBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[41].trim(), equalTo("<bitstream>" + pngBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[42].trim(), equalTo("<bitstream>" + txtBitstream.getID() + "</bitstream>"));
+        assertThat(resultLines[43].trim(), equalTo("</first-three-bitstreams>"));
+
+        assertThat(resultLines[45].trim(), equalTo("<wrong-bundle-bitstreams>"));
+        assertThat(resultLines[46].trim(), equalTo("</wrong-bundle-bitstreams>"));
+
+        assertThat(resultLines[48].trim(), equalTo("<wrong-type-bitstreams>"));
+        assertThat(resultLines[49].trim(), equalTo("</wrong-type-bitstreams>"));
+
+        assertThat(resultLines[51].trim(), equalTo("<wrong-mimeType-bitstreams>"));
+        assertThat(resultLines[52].trim(), equalTo("</wrong-mimeType-bitstreams>"));
+
+        assertThat(resultLines[54].trim(), equalTo("</project>"));
+    }
+
+    @Test
+    public void testPublicationVirtualFieldWithVocabularyValuePairList() throws Exception {
+
+        Locale defaultLocale = context.getCurrentLocale();
+        String[] defaultLocales = this.configurationService.getArrayProperty("webui.supported.locales");
+
+        try {
+
+            Locale ukranian = new Locale("uk");
+
+            context.turnOffAuthorisationSystem();
+            // reset supported locales
+            this.configurationService.setProperty(
+                "webui.supported.locales",
+                new String[] {Locale.ENGLISH.getLanguage(), Locale.ITALIAN.getLanguage(), ukranian.getLanguage()}
+            );
+            this.metadataAuthorityService.clearCache();
+            this.choiceAuthorityService.clearCache();
+            // reload plugin
+            DCInputAuthority.reset();
+            DCInputAuthority.getPluginNames();
+            // set italian locale
+            context.setCurrentLocale(Locale.ITALIAN);
+
+            String vocabularyName = "publication-coar-types";
+            Collection publicationCollection =
+                createCollection(context, community)
+                .withEntityType("Publication")
+                .withSubmissionDefinition("publication")
+                .withAdminGroup(eperson)
+                .build();
+
+            Item publicationItem = createItem(context, publicationCollection)
+                .withEntityType("Publication")
+                .withTitle("Publication title")
+                .withType("not translated", vocabularyName + ":c_7bab")
+                .withLanguage("en_US")
+                .build();
+
+            context.restoreAuthSystemState();
+
+            ReferCrosswalk referCrosswalk =
+                new DSpace().getServiceManager()
+                    .getServiceByName(
+                        "referCrosswalkPublicationVirtualVocabularyI18nFieldWithVocabulary", ReferCrosswalk.class
+                    );
+            assertThat(referCrosswalk, notNullValue());
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            referCrosswalk.disseminate(context, publicationItem, out);
+
+            String[] resultLines = out.toString().split("\n");
+            assertThat(resultLines.length, is(7));
+            assertThat(resultLines[0].trim(), equalTo("<publication>"));
+            assertThat(resultLines[4].trim(), equalTo("<VocabularyType>software paper</VocabularyType>"));
+            assertThat(resultLines[5].trim(), equalTo("<ValuePairLanguage>Inglese (USA)</ValuePairLanguage>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
+
+            context.setCurrentLocale(ukranian);
+            out = new ByteArrayOutputStream();
+            referCrosswalk.disseminate(context, publicationItem, out);
+
+            resultLines = out.toString().split("\n");
+            assertThat(resultLines.length, is(7));
+            assertThat(resultLines[0].trim(), equalTo("<publication>"));
+            assertThat(resultLines[4].trim(), equalTo("<VocabularyType>software paper</VocabularyType>"));
+            assertThat(resultLines[5].trim(), equalTo("<ValuePairLanguage>Американська (USA)</ValuePairLanguage>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
+
+        } finally {
+            context.setCurrentLocale(defaultLocale);
+            this.configurationService.setProperty("webui.supported.locales",defaultLocales);
+        }
+    }
+
+    @Test
+    public void testPublicationVirtualFieldValuePairList() throws Exception {
+
+        context.turnOffAuthorisationSystem();
+        String vocabularyName = "publication-coar-types";
+        Collection publicationCollection =
+            createCollection(context, community)
+                .withEntityType("Publication")
+                .withSubmissionDefinition("publication")
+                .withAdminGroup(eperson)
+                .build();
+
+        Item publicationItem = createItem(context, publicationCollection)
+            .withEntityType("Publication")
+            .withTitle("Publication title")
+            .withType("not translated", vocabularyName + ":c_7bab")
+            .withLanguage("en_US")
+            .build();
+
+        context.restoreAuthSystemState();
+
+        ReferCrosswalk referCrosswalk =
+            new DSpace().getServiceManager()
+            .getServiceByName("referCrosswalkPublicationVirtualVocabularyI18nField", ReferCrosswalk.class);
+        assertThat(referCrosswalk, notNullValue());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        referCrosswalk.disseminate(context, publicationItem, out);
+
+        String[] resultLines = out.toString().split("\n");
+        assertThat(resultLines.length, is(7));
+        assertThat(resultLines[0].trim(), equalTo("<publication>"));
+        assertThat(resultLines[4].trim(), equalTo("<VocabularyType>software paper</VocabularyType>"));
+        assertThat(resultLines[5].trim(), equalTo("<ValuePairLanguage>English (United States)</ValuePairLanguage>"));
+        assertThat(resultLines[6].trim(), equalTo("</publication>"));
+    }
+
+    @Test
+    public void testPublicationMultilanguageVirtualFieldValuePairList() throws Exception {
+
+        Locale defaultLocale = context.getCurrentLocale();
+        String[] defaultLocales = this.configurationService.getArrayProperty("webui.supported.locales");
+        try {
+
+            Locale ukranian = new Locale("uk");
+
+            context.turnOffAuthorisationSystem();
+            // reset supported locales
+            this.configurationService.setProperty(
+                "webui.supported.locales",
+                new String[] {Locale.ENGLISH.getLanguage(), Locale.ITALIAN.getLanguage(), ukranian.getLanguage()}
+            );
+            this.metadataAuthorityService.clearCache();
+            this.choiceAuthorityService.clearCache();
+            // reload plugin
+            DCInputAuthority.reset();
+            DCInputAuthority.getPluginNames();
+            // set italian locale
+            context.setCurrentLocale(Locale.ITALIAN);
+
+            String subjectVocabularyName = "srsc";
+            Collection publicationCollection =
+                createCollection(context, community)
+                .withEntityType("Publication")
+                .withSubmissionDefinition("languagetestprocess")
+                .withAdminGroup(eperson)
+                .build();
+
+            Item publicationItem = createItem(context, publicationCollection)
+                .withTitle("Publication title")
+                .withType("not translated", subjectVocabularyName + ":SCB16")
+                .withLanguage("en_US")
+                .build();
+
+            this.itemService.addMetadata(
+                context, publicationItem,
+                "organization", "address", "addressCountry",
+                Item.ANY, "IT", null, Choices.CF_UNSET, 0
+            );
+
+            context.restoreAuthSystemState();
+
+            ReferCrosswalk referCrosswalk =
+                new DSpace().getServiceManager()
+                    .getServiceByName(
+                        "referCrosswalkPublicationVirtualVocabularyI18nFieldWithVocabulary", ReferCrosswalk.class
+                    );
+            assertThat(referCrosswalk, notNullValue());
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            referCrosswalk.disseminate(context, publicationItem, out);
+
+            String[] resultLines = out.toString().split("\n");
+            assertThat(resultLines.length, is(7));
+            assertThat(resultLines[0].trim(), equalTo("<publication>"));
+            assertThat(resultLines[3].trim(), equalTo("<VocabularyType>TECNOLOGIA</VocabularyType>"));
+            assertThat(resultLines[4].trim(), equalTo("<ValuePairLanguage>Inglese (USA)</ValuePairLanguage>"));
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
+
+            context.turnOffAuthorisationSystem();
+            // set uk locale
+            context.setCurrentLocale(ukranian);
+            context.restoreAuthSystemState();
+
+            out = new ByteArrayOutputStream();
+            referCrosswalk.disseminate(context, publicationItem, out);
+
+            resultLines = out.toString().split("\n");
+            assertThat(resultLines.length, is(7));
+            assertThat(resultLines[0].trim(), equalTo("<publication>"));
+            assertThat(resultLines[3].trim(), equalTo("<VocabularyType>ТЕХНОЛОГІЯ</VocabularyType>"));
+            assertThat(resultLines[4].trim(), equalTo("<ValuePairLanguage>Американська (USA)</ValuePairLanguage>"));
+            // take value from submission_forms (_uk doesn't have the value-pair)
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
+
+            context.turnOffAuthorisationSystem();
+            // set uknown locale
+            context.setCurrentLocale(new Locale("ru"));
+            context.restoreAuthSystemState();
+
+            out = new ByteArrayOutputStream();
+            referCrosswalk.disseminate(context, publicationItem, out);
+
+            // it uses the default locale (en)
+            resultLines = out.toString().split("\n");
+            assertThat(resultLines.length, is(7));
+            // takes the value from default (_ru doesn't exist)
+            assertThat(resultLines[0].trim(), equalTo("<publication>"));
+            assertThat(resultLines[3].trim(), equalTo("<VocabularyType>TECHNOLOGY</VocabularyType>"));
+            assertThat(
+                resultLines[4].trim(), equalTo("<ValuePairLanguage>English (United States)</ValuePairLanguage>")
+            );
+            // takes the value from submission_forms (_ru doesn't exist)
+            assertThat(resultLines[5].trim(), equalTo("<Country>Italia</Country>"));
+            assertThat(resultLines[6].trim(), equalTo("</publication>"));
+
+        } finally {
+            context.setCurrentLocale(defaultLocale);
+            configurationService.setProperty("webui.supported.locales", defaultLocales);
+            DCInputAuthority.reset();
+            DCInputAuthority.getPluginNames();
+        }
+    }
+
+
+    private void createSelectedRelationship(Item author, Item publication, RelationshipType selectedRelationshipType) {
+        createRelationshipBuilder(context, publication, author, selectedRelationshipType, -1, -1).build();
     }
 
     private void compareEachLine(String result, String expectedResult) {

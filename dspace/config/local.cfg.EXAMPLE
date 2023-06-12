@@ -358,3 +358,13 @@ project.template-id =
 funding.template-id =
 project.parent-community-id =
 researcher-profile.collection.uuid =
+
+##### Screen capture configuration (capture-website tool) #####
+# bot userid
+capture-website.jwt.user =
+# bot generated machine-token
+capture-website.jwt.token =
+# capture-website node path
+dspace.api.capture-website.node.path =
+# capture-website path
+dspace.api.capture-website.path =

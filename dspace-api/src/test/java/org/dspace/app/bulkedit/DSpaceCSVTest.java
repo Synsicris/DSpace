@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
@@ -157,16 +158,14 @@ public class DSpaceCSVTest extends AbstractUnitTest {
         try {
 
             String[] csv = {
-                "id,collection,dc.title,dc.title[de],dc.contributor.author",
-                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,123,Easy line,german title,\"Lewis, Stuart\"",
-                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,1234,Two authors,german title,\"Lewis, Stuart||Bloggs, Joe\""
-            };
+                "id,collection,dc.title,dc.contributor.author",
+                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,123,Easy line,\"Lewis, Stuart\"",
+                "56599ad5-c7d2-4ac3-8354-a1f277d5a31f,1234,Two authors,\"Lewis, Stuart||Bloggs, Joe\""
+                };
 
             // Write the string to a file
             String filename = "test.csv";
-            BufferedWriter out = new BufferedWriter(
-                new OutputStreamWriter(
-                    new FileOutputStream(filename), "UTF-8"));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "UTF-8"));
             for (String csvLine : csv) {
                 out.write(csvLine + "\n");
             }
@@ -186,17 +185,17 @@ public class DSpaceCSVTest extends AbstractUnitTest {
                 .get();
 
             // Then header row contains metadata without translation
-            assertThat(headerOne, equalTo("id,collection,dc.contributor.author,dc.title,dc.title[de]"));
+            assertThat(headerOne, equalTo("id,collection,dc.contributor.author,dc.title"));
 
             // WHEN getting InputStream with prefix param
-            InputStream inputStreamTwo = dCSV.getInputStream("metadata.");
+            InputStream inputStreamTwo = dCSV.getInputStream("metadata.", new Locale("de"));
             String headerTwo = new BufferedReader(new InputStreamReader(inputStreamTwo, StandardCharsets.UTF_8))
                 .lines()
                 .findFirst()
                 .get();
 
             // Then header row contains translated metadata
-            assertThat(headerTwo, equalTo("id,collection,Author(s),Title,Bezeichnung"));
+            assertThat(headerTwo, equalTo("ID,collection,Autor:in(nen),Bezeichnung"));
 
             // Delete the test file
             File toDelete = new File(filename);

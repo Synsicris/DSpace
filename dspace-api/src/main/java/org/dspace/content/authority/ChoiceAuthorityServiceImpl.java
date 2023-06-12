@@ -319,12 +319,18 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
             for (SubmissionConfig subCfg : submissionConfigs) {
                 String submissionName = subCfg.getSubmissionName();
                 List<DCInputSet> inputsBySubmissionName = dcInputsReader.getInputsBySubmissionName(submissionName);
+                List<DCInputSet> inputsByGroupOfAllSteps = new ArrayList<DCInputSet>();
                 try {
                     List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
-                    inputsBySubmissionName.addAll(inputsByGroup);
+                    inputsByGroupOfAllSteps.addAll(inputsByGroup);
+                    for (DCInputSet step : inputsBySubmissionName) {
+                        List<DCInputSet> inputsByGroupOfStep = dcInputsReader.getInputsByGroup(step.getFormName());
+                        inputsByGroupOfAllSteps.addAll(inputsByGroupOfStep);
+                    }
                 } catch (DCInputsReaderException e) {
                     log.warn("Cannot load the groups of the submission: " + submissionName, e);
                 }
+                inputsBySubmissionName.addAll(inputsByGroupOfAllSteps);
                 autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName, inputsBySubmissionName);
             }
             // loop over all the defined bitstream metadata submission configuration

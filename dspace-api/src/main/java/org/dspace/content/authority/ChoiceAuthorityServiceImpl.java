@@ -7,6 +7,8 @@
  */
 package org.dspace.content.authority;
 
+import static java.lang.Integer.MAX_VALUE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.app.util.DCInput;
 import org.dspace.app.util.DCInputSet;
@@ -60,7 +63,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @see ChoiceAuthority
  */
 public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService {
-    private Logger log = org.apache.logging.log4j.LogManager.getLogger(ChoiceAuthorityServiceImpl.class);
+
+    private Logger log = LogManager.getLogger(ChoiceAuthorityServiceImpl.class);
 
     // map of field key to authority plugin
     protected Map<String, ChoiceAuthority> controller = new HashMap<String, ChoiceAuthority>();
@@ -308,28 +312,36 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
      */
     private void autoRegisterChoiceAuthorityFromInputReader() {
         try {
-            List<SubmissionConfig> submissionConfigs = itemSubmissionConfigReader
-                    .getAllSubmissionConfigs(Integer.MAX_VALUE, 0);
+            List<SubmissionConfig> submissionConfigs = itemSubmissionConfigReader.getAllSubmissionConfigs(MAX_VALUE, 0);
             DCInputsReader dcInputsReader = new DCInputsReader();
 
             // loop over all the defined item submission configuration
             for (SubmissionConfig subCfg : submissionConfigs) {
                 String submissionName = subCfg.getSubmissionName();
                 List<DCInputSet> inputsBySubmissionName = dcInputsReader.getInputsBySubmissionName(submissionName);
-                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName,
-                        inputsBySubmissionName);
+                List<DCInputSet> inputsByGroupOfAllSteps = new ArrayList<DCInputSet>();
+                try {
+                    List<DCInputSet> inputsByGroup = dcInputsReader.getInputsByGroup(submissionName);
+                    inputsByGroupOfAllSteps.addAll(inputsByGroup);
+                    for (DCInputSet step : inputsBySubmissionName) {
+                        List<DCInputSet> inputsByGroupOfStep = dcInputsReader.getInputsByGroup(step.getFormName());
+                        inputsByGroupOfAllSteps.addAll(inputsByGroupOfStep);
+                    }
+                } catch (DCInputsReaderException e) {
+                    log.warn("Cannot load the groups of the submission: " + submissionName, e);
+                }
+                inputsBySubmissionName.addAll(inputsByGroupOfAllSteps);
+                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.ITEM, submissionName, inputsBySubmissionName);
             }
             // loop over all the defined bitstream metadata submission configuration
             for (UploadConfiguration uploadCfg : uploadConfigurationService.getMap().values()) {
                 String formName = uploadCfg.getMetadata();
                 DCInputSet inputByFormName = dcInputsReader.getInputsByFormName(formName);
-                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.BITSTREAM, formName,
-                        List.of(inputByFormName));
+                autoRegisterChoiceAuthorityFromSubmissionForms(Constants.BITSTREAM, formName, List.of(inputByFormName));
             }
         } catch (DCInputsReaderException e) {
             // the system is in an illegal state as the submission definition is not valid
-            throw new IllegalStateException("Error reading the item submission configuration: " + e.getMessage(),
-                    e);
+            throw new IllegalStateException("Error reading the item submission configuration: " + e.getMessage(), e);
         }
     }
 
@@ -404,7 +416,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
     /**
      * Add the authority plugin to the cache map keeping track of which authority is
      * used by a specific form/field
-     * 
+     *
      * @param dsoType        the DSpace Object Type
      * @param submissionName the submission definition name
      * @param fieldKey       the field key that require the authority
@@ -566,6 +578,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
         return null;
     }
 
+    @Override
     public Choice getParentChoice(String authorityName, String vocabularyId, String locale) {
         HierarchicalAuthority ma = (HierarchicalAuthority) getChoiceAuthorityByAuthorityName(authorityName);
         return ma.getParentChoice(authorityName, vocabularyId, locale);

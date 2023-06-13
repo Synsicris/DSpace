@@ -8,6 +8,12 @@
 package org.dspace.scripts.patents;
 
 import static org.dspace.content.Item.ANY;
+import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
+import static org.dspace.project.util.ProjectConstants.DEFAULT_STATUS;
+import static org.dspace.project.util.ProjectConstants.MD_PATENTNO;
+import static org.dspace.project.util.ProjectConstants.MD_PROJECT_RELATION;
+import static org.dspace.project.util.ProjectConstants.MD_PROJECT_STATUS;
+import static org.dspace.project.util.ProjectConstants.RUNNING_STATUS;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -26,6 +32,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.ItemServiceImpl;
 import org.dspace.content.MetadataValue;
@@ -39,14 +46,14 @@ import org.dspace.discovery.DiscoverResultIterator;
 import org.dspace.discovery.indexobject.IndexableItem;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
-import org.dspace.eperson.GroupServiceImpl;
 import org.dspace.eperson.factory.EPersonServiceFactory;
-import org.dspace.eperson.service.GroupService;
 import org.dspace.external.model.ExternalDataObject;
 import org.dspace.external.provider.impl.LiveImportDataProvider;
 import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.scripts.DSpaceRunnable;
+import org.dspace.submit.consumer.service.ProjectConsumerService;
+import org.dspace.submit.consumer.service.ProjectConsumerServiceImpl;
 import org.dspace.utils.DSpace;
 
 /**
@@ -59,12 +66,10 @@ public class UpdatePatentsWithExternalSource
 
     private final static Logger log = LogManager.getLogger();
 
-    public static final String PROJECT_IS_RUNNING = "In implementation";
-
     private Context context;
     // services
     private ItemService itemService;
-    private GroupService groupService;
+    private ProjectConsumerService projectService;
     private LiveImportDataProvider liveImportDataProvider;
 
     @Override
@@ -74,8 +79,8 @@ public class UpdatePatentsWithExternalSource
                                                                  LiveImportDataProvider.class);
         itemService = serviceManager.getServiceByName(ItemServiceImpl.class.getName(),
                                                       ItemServiceImpl.class);
-        groupService = serviceManager.getServiceByName(GroupServiceImpl.class.getName(),
-                                                       GroupServiceImpl.class);
+        projectService = serviceManager.getServiceByName(ProjectConsumerServiceImpl.class.getName(),
+                                                         ProjectConsumerServiceImpl.class);
     }
 
     @Override
@@ -152,30 +157,29 @@ public class UpdatePatentsWithExternalSource
     }
 
     private Group getCoordinatorGroup(Item patent) throws SQLException {
-        List<MetadataValue> coordinatorGroupUUID =
-                        itemService.getMetadata(patent, "synsicris", "coordinator-policy", "group", ANY);
-        if (coordinatorGroupUUID.isEmpty()) {
-            return null;
-        }
-        UUID groupUUID = UUID.fromString(coordinatorGroupUUID.get(0).getAuthority());
-        return groupService.find(this.context, groupUUID);
+        Community projectCommunity = projectService.getProjectCommunityByRelationProject(context, patent);
+        return projectService.getProjectCommunityGroupByRole(context, projectCommunity, COORDINATORS_ROLE);
     }
 
     private boolean isTheProjectRunning(Item patent) throws SQLException {
         Item project = getProjet(patent);
         if (Objects.isNull(project)) {
-            log.error("il patent con uuid: " + patent.getID() + " per qualche motivo non appartiene a nessun progetto");
+            log.error("Patent with uuid: " + patent.getID() + " does not belong to any project");
             return false;
         }
-        List<MetadataValue> projectStatusValue = itemService.getMetadata(project, "oairecerif", "project","status",ANY);
+        List<MetadataValue> projectStatusValue = itemService.getMetadata(project, MD_PROJECT_STATUS.schema,
+                                                                                  MD_PROJECT_STATUS.element,
+                                                                                  MD_PROJECT_STATUS.qualifier, ANY);
         return projectStatusValue.stream()
-                                 .filter(mv -> mv.getValue().equals(PROJECT_IS_RUNNING))
+                                 .filter(mv -> StringUtils.equalsAny(mv.getValue(), DEFAULT_STATUS, RUNNING_STATUS))
                                  .findFirst()
                                  .isPresent();
     }
 
     private Item getProjet(Item patent) throws SQLException {
-        List<MetadataValue> metadataValues = itemService.getMetadata(patent, "synsicris", "relation", "project", ANY);
+        List<MetadataValue> metadataValues = itemService.getMetadata(patent, MD_PROJECT_RELATION.schema,
+                                                                             MD_PROJECT_RELATION.element,
+                                                                             MD_PROJECT_RELATION.qualifier, ANY);
         if (metadataValues.isEmpty()) {
             return null;
         }
@@ -185,7 +189,9 @@ public class UpdatePatentsWithExternalSource
 
     public boolean updatePatent(Context context, Item item, LiveImportDataProvider liveImportDataProvider)
             throws SQLException {
-        String patentNo = itemService.getMetadataFirstValue(item, "dc", "identifier", "patentno", ANY);
+        String patentNo = itemService.getMetadataFirstValue(item, MD_PATENTNO.schema,
+                                                                  MD_PATENTNO.element,
+                                                                  MD_PATENTNO.qualifier, ANY);
         if (StringUtils.isBlank(patentNo)) {
             return false;
         }

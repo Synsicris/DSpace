@@ -78,7 +78,7 @@ public class ProjectConstants {
 
     public static final String[] SYNSICRIS_GROUPS_PREFIXES = { "funder", "funding", "project", "programme", "system"};
 
-    public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
+    public static final String[] notAllowedEditGrants = { "Project", "subcontractor" };
 
     public static final MetadataFieldName MD_RELATION_ITEM_ENTITY =
         new MetadataFieldName("synsicris", "relation", "entity_item");

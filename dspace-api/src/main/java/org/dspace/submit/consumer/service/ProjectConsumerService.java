@@ -25,6 +25,10 @@ public interface ProjectConsumerService {
 
     public void processItem(Context context, EPerson currentUser, Item item);
 
+    public String getSharedPolicyValue(Item item);
+
+    void setPolicy(Context context, EPerson currentUser, Item item, String policy);
+
     public void setGrantsByFundingPolicy(Context context, Item item);
 
     public boolean isMemberOfFunding(Context context, EPerson ePerson, Community projectCommunity)
@@ -65,11 +69,17 @@ public interface ProjectConsumerService {
 
     public boolean isProjectItem(Item item);
 
+    public boolean isFundingItem(Item item);
+
     public Group getProjectCommunityGroupByRole(Context context, Community projectCommunity, String role)
             throws SQLException;
 
     public Group getFundingCommunityGroupByRole(Context context, Community fundingCommunity, String role)
             throws SQLException;
+
+    public Iterator<Item> findRelatedFundingItems(
+        Context context, Community fundingCommunity, Item funding
+    );
 
     public Iterator<Item> findVersionedItemsOfProject(
         Context context, Community projectCommunity, Item projectItem, String version
@@ -95,5 +105,6 @@ public interface ProjectConsumerService {
     Item getProjectItemByRelatedItem(Context context, Item relatedItem) throws SQLException;
 
     Iterator<Item> findVersionedProjectsInCommunity(Context context, Community projectCommunity);
+
 
 }

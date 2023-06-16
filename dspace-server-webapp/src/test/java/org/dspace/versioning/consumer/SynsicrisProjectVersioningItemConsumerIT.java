@@ -17,9 +17,9 @@ import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_READ_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.MD_V_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_EXTERNAL_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_V_FUNDER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_V_MEMBER_POLICY_GROUP;
-import static org.dspace.project.util.ProjectConstants.MD_V_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
@@ -1203,7 +1203,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
             int funderSize, int readerSize, int memberSize, int coordinatorSize) {
         assertThat(itemService.getMetadataByMetadataString(item, MD_V_FUNDER_POLICY_GROUP.toString()),
                    hasSize(funderSize));
-        assertThat(itemService.getMetadataByMetadataString(item, MD_V_READER_POLICY_GROUP.toString()),
+        assertThat(itemService.getMetadataByMetadataString(item, MD_V_EXTERNAL_READER_POLICY_GROUP.toString()),
                    hasSize(readerSize));
         assertThat(itemService.getMetadataByMetadataString(item, MD_V_MEMBER_POLICY_GROUP.toString()),
                    hasSize(memberSize));

@@ -154,4 +154,9 @@ public class MetadataValueDTO {
     public void setSecurityLevel(int securityLevel) {
         this.securityLevel = securityLevel;
     }
+
+    public String getMetadataFiled() {
+        return schema + "." + element + (qualifier == null ? "" : ("." + qualifier));
+    }
+
 }

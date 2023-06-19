@@ -189,5 +189,13 @@ section 3.1.3
     - NOTE: While working on these new templates it became apparent that when no label-value pair is availabe there is trouble. The initial approach was to catch this with an if clause for the value in "label-value-single-below-table". However an error '"fo:table-cell" is missing child elements. Required content model: marker* (%block;)' appeared. Using a choose construct in "label-value-single-below-table" with an empty ruler in case when there was no label-value pair worked fine, but had the disadvantage of an empty line each time this situation occurred. Accordingly, a global test is made outside these new templates, using the general template "empty-table-cell-catcher".
   - add all parts except the two inline groups for process events
   
-   
+  2023-06-15
+  section 4
+  - addapt ruler for headlines of all sectuions -> add "rule = false" to all value-single templates refering to a title
+  - check .lang Expressions in complete chapter 4.
+  - Update shape Table 4.2.3 without outer boarders - add spaccing bevore table
+  - Update shape tables 4.2.6 without outer boarders - add spaccing bevore table
+  - Update shape table 4.3.2 without outer boarders - add spaccing bevore table
+  - Update shape table 4.3.3 without outer boarders - add spaccing bevore table
+
  

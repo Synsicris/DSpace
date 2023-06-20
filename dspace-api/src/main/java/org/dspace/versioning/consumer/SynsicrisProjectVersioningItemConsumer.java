@@ -231,7 +231,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         return Optional.ofNullable(this.getExternalReaderPolicyGroup(ctx, community))
             .orElseThrow(
                 () -> new RuntimeException(
-                    "Cannot find the readers policy group for community: " + community.getID()
+                    "Cannot find the externalreaders policy group for community: " + community.getID()
                 )
             );
     }
@@ -437,7 +437,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     private void addGroupPolicyMetadata(Context ctx, Item actual, Group group, MetadataFieldName mfn)
             throws SQLException {
         this.itemService.addMetadata(
-            ctx, actual, mfn.schema, mfn.element,mfn.qualifier, null,
+            ctx, actual, mfn.schema, mfn.element, mfn.qualifier, null,
             group.getName(), group.getID().toString(), Choices.CF_ACCEPTED
         );
     }

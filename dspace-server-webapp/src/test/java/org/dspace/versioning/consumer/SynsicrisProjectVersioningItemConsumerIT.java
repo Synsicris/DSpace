@@ -23,6 +23,7 @@ import static org.dspace.project.util.ProjectConstants.MD_V_MEMBER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_EXTERNALREADERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
@@ -116,6 +117,7 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
     private Group funderGroup;
     private Group membersGroup;
     private Group readersGroup;
+    private Group externalreadersGroup;
 
     private String projectCommId;
 
@@ -224,6 +226,12 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
         readersGroup = GroupBuilder.createGroup(context)
                                    .withName(readerGroupName)
                                    .build();
+
+        String externalReaderGroupName =
+            String.format(PROJECT_EXTERNALREADERS_GROUP_TEMPLATE, projectCommunity.getID().toString());
+        externalreadersGroup = GroupBuilder.createGroup(context)
+            .withName(externalReaderGroupName)
+            .build();
 
         Group g = collectionService.createAdministrators(context, researchProfileCollection);
         this.groupService.addMember(context, g, funderGroup);
@@ -767,6 +775,16 @@ public class SynsicrisProjectVersioningItemConsumerIT extends AbstractController
                     )
                 )
                 .build();
+
+        externalreadersGroup =
+            GroupBuilder.createGroup(context)
+            .withName(
+                String.format(
+                    ProjectConstants.PROJECT_EXTERNALREADERS_GROUP_TEMPLATE,
+                    project1Community.getID().toString()
+                )
+            )
+            .build();
 
         Group g = collectionService.createAdministrators(context, researchProfileCollection);
         this.groupService.addMember(context, g, funderGroup);

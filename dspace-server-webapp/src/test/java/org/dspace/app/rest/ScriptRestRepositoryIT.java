@@ -343,11 +343,11 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                             Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
                                 Matchers.containsString("/api/system/scripts?"),
-                                Matchers.containsString("page=30"), Matchers.containsString("size=1"))))
+                                Matchers.containsString("page=31"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$.page.size", is(1)))
                         .andExpect(jsonPath("$.page.number", is(0)))
-                        .andExpect(jsonPath("$.page.totalPages", is(31)))
-                        .andExpect(jsonPath("$.page.totalElements", is(31)));
+                        .andExpect(jsonPath("$.page.totalPages", is(32)))
+                        .andExpect(jsonPath("$.page.totalElements", is(32)));
 
 
         getClient(token).perform(get("/api/system/scripts").param("size", "1").param("page", "1"))
@@ -374,11 +374,11 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                             Matchers.containsString("page=2"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
                                 Matchers.containsString("/api/system/scripts?"),
-                                Matchers.containsString("page=30"), Matchers.containsString("size=1"))))
+                                Matchers.containsString("page=31"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$.page.size", is(1)))
                         .andExpect(jsonPath("$.page.number", is(1)))
-                        .andExpect(jsonPath("$.page.totalPages", is(31)))
-                        .andExpect(jsonPath("$.page.totalElements", is(31)));
+                        .andExpect(jsonPath("$.page.totalPages", is(32)))
+                        .andExpect(jsonPath("$.page.totalElements", is(32)));
     }
 
     @Test

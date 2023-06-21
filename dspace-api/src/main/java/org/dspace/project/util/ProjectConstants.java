@@ -102,6 +102,8 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
 
+    public static final MetadataFieldName MD_PATENTNO = new MetadataFieldName("dc", "identifier", "patentno");
+
     public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME =
         new MetadataFieldName(
             "synsicris",
@@ -121,6 +123,7 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_PROJECT_STATUS = new MetadataFieldName("oairecerif", "project", "status");
     public static final String DEFAULT_STATUS = "In preparation";
+    public static final String RUNNING_STATUS = "In implementation";
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
     public static final MetadataFieldName MD_VERSION = new MetadataFieldName("synsicris", "version");

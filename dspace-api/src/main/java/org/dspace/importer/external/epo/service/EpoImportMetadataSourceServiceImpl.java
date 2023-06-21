@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -59,6 +61,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Implements a data source for querying EPO
  *
  * @author Pasquale Cavallo (pasquale.cavallo at 4Science dot it)
+ * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4Science.com)
  */
 public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSourceService<Element>
         implements QuerySource {
@@ -74,6 +77,8 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     private MetadataFieldConfig dateFilled;
     private MetadataFieldConfig applicationNumber;
+
+    private List<MetadataFieldConfig> metadataFieldList = new ArrayList<MetadataFieldConfig>();
 
     public static final String APP_NO_DATE_SEPARATOR = "$$$";
     private static final String APP_NO_DATE_SEPARATOR_REGEX = "\\$\\$\\$";
@@ -132,6 +137,18 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     public MetadataFieldConfig getApplicationNumber() {
         return applicationNumber;
+    }
+
+    @Resource(name = "epoMetadataFieldMap")
+    public void setMetadataFieldMap(Map<MetadataFieldConfig, ?> metadataFieldMap) {
+        for (Entry<MetadataFieldConfig, ?> entry : metadataFieldMap.entrySet()) {
+            this.metadataFieldList.add(entry.getKey());
+        }
+    }
+
+    @Override
+    public List<MetadataFieldConfig> getSupportedMetadataFields() {
+        return this.metadataFieldList;
     }
 
     /***
@@ -303,7 +320,13 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
         @Override
         public List<ImportRecord> call() throws Exception {
-            if (id.contains(APP_NO_DATE_SEPARATOR)) {
+            int positionToSplit = id.indexOf(":");
+            String docType = EpoDocumentId.EPODOC;
+            String idS = id;
+            if (positionToSplit != -1) {
+                docType = id.substring(0, positionToSplit);
+                idS = id.substring(positionToSplit + 1, id.length());
+            } else if (id.contains(APP_NO_DATE_SEPARATOR)) {
                 // special case the id is the combination of the applicationnumber and date filed
                 String query = "applicationnumber=" + id.split(APP_NO_DATE_SEPARATOR_REGEX)[0];
                 SearchByQueryCallable search = new SearchByQueryCallable(query, bearer, 0, 10);
@@ -316,12 +339,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
                 return records;
             }
             // search by Patent Number
-            String[] identifier = id.split(":");
-            String patentIdentifier = identifier.length == 2 ? identifier[1] : id;
-            List<ImportRecord> records = retry(new SearchByQueryCallable(patentIdentifier, bearer, null, null));
-            if (records.size() > 1) {
-                log.warn("More record are returned with Patent Number: " + id);
-            }
+            List<ImportRecord> records = searchDocument(bearer, idS, docType);
             return records;
         }
     }
@@ -481,7 +499,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             Document document = saxBuilder.build(new StringReader(recordsSrc));
             Element root = document.getRootElement();
             List<Namespace> namespaces = Arrays.asList(Namespace.getNamespace("ns", "http://www.epo.org/exchange"));
-            XPathExpression<Element> xpath = XPathFactory.instance().compile("//ns:exchange-document",
+            XPathExpression<Element> xpath = XPathFactory.instance().compile("//ns:exchange-documents",
                     Filters.element(), null, namespaces);
 
             List<Element> recordsList = xpath.evaluate(root);

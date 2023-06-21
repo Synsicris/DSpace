@@ -8,12 +8,15 @@
 
 package org.dspace.importer.external.service.components;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.dspace.content.Item;
 import org.dspace.importer.external.datamodel.ImportRecord;
 import org.dspace.importer.external.datamodel.Query;
 import org.dspace.importer.external.exception.MetadataSourceException;
+import org.dspace.importer.external.metadatamapping.MetadataFieldConfig;
 
 
 /**
@@ -102,5 +105,9 @@ public interface QuerySource extends MetadataSource {
      * @throws MetadataSourceException if the underlying methods throw any exception.
      */
     public Collection<ImportRecord> findMatchingRecords(Item item) throws MetadataSourceException;
+
+    default List<MetadataFieldConfig> getSupportedMetadataFields() {
+        return new ArrayList<MetadataFieldConfig>();
+    }
 
 }

@@ -558,4 +558,11 @@
         <scope_note></scope_note>
     </dc-type>
 
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>ipc</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
 </dspace-dc-types>

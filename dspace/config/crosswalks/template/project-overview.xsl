@@ -128,10 +128,6 @@
 <xsl:param name="lang.process-event.involved-organisation" select="'Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner'"/>
 <xsl:param name="lang.process-event.target-group" select="'Beteiligte Akteursgruppe(n)'"/>
 
-
-
-
-
 <xsl:param name="lang.physical-object.function" select="'Verwendungsmöglichkeiten'"/>
 <xsl:param name="lang.physical-object.accessibility" select="'Öffentliche Zugänglichkeit'"/>
 <xsl:param name="lang.physical-object.contact-information" select="'Kontaktinformationen für Anfragen'"/>
@@ -271,8 +267,6 @@
 <xsl:param name="lang.cooperation.sector" select="'Sektor'"/>
 <xsl:param name="lang.cooperation.nace-destatis" select="'Wirtschaftszweig / Disziplin'"/>
 <xsl:param name="lang.cooperation.political-level" select="'Politische Ebene'"/>
-
-<!-- TODO: add all fields -->
 
 <!--########################################################################-->
 <!-- VARIABLES -->	
@@ -432,6 +426,10 @@
 					<!-- SECTION #-1 - TESTING ON THE FIRST PAGE --> 
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
+					<!-- <xsl:call-template name="workingplan-screenshots">
+						<xsl:with-param name="imageDir" select="$imageDir"/>
+					</xsl:call-template> -->
+
 					<xsl:call-template name="research-work"/>
 
           <!-- INFO: there is so far no application for the graphs, tests are successful --> 
@@ -574,13 +572,6 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- TODO: revise template -->
-          <!-- approach: one box per workpackage -->
-					<!-- approach: two column table -->
-					<!-- approach: left: title -->
-					<!-- approach: right: all metadata -->
-					<!-- entities to consider: TASK, EVENT, PROCESSEVENT, PLANNEDPUBLICATION, OBJECT/MATERIALS -->
-
 					<xsl:call-template name="research-work"/>
 
 				  <!-- sub sub section title - publications -->
@@ -656,7 +647,6 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
-          <!-- TODO: add template - unclear which entity to consider-->
 					<xsl:call-template name="innovation-potential"/>
 
 					<!-- sub sub section title - ideas for solutions/changes/innovations -->
@@ -840,9 +830,6 @@
 <!--########################################################################-->
 <!-- TEMPLATE FOR THE PROJECT ENTITY -->	
 <!--########################################################################-->
-
- <!-- TODO: adjust indentation of all code -->
-<!-- TODO: bring the templates in the order as they occur, only exception should be the parts for project-partner -->
 
 	<xsl:template name="project">
 
@@ -1549,67 +1536,24 @@
     <!-- entity name -->
 		<xsl:call-template name="value-single">
 			<xsl:with-param name="value" select="$lang.research-work.task"/>
-			<xsl:with-param name="fontSize" select="$font.size.standard"/>
+			<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 			<xsl:with-param name="addRuler" select="'false'"/>
 		</xsl:call-template>
 
-		<!-- table-->
-		<fo:table table-layout="fixed" 
-							vertical-align="middle"
-							border-before-style="hidden" 
-							border-after-style="hidden"
-							border-start-style="hidden"
-							border-end-style="hidden">
+		<!-- loop -->
+		<xsl:for-each select="$entity">	
 
-			<!-- define the table columns -->
-			<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
-			<fo:table-column column-width="40.0%"/>
-			<fo:table-column column-width="60.0%"/>
-			<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Title"/>
+			</xsl:call-template>	
 
-			<!-- table body (table header is omitted here) -->
- 		  <fo:table-body>	
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Description"/>
+				<xsl:with-param name="addRuler" select="'false'"/>
+			</xsl:call-template>	
 
-				<xsl:for-each select="$entity">	
-
-					<fo:table-row>
-
-						<!-- left column -->
-						<fo:table-cell column-number="2"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-start-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
-
-							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Title"/>
-							</xsl:call-template>	
-
-						</fo:table-cell>
-
-						<!-- right column -->
-						<fo:table-cell column-number="3"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-end-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
-
-							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Description"/>
-							</xsl:call-template>	
-
-						</fo:table-cell>
-
-					</fo:table-row>
-
-				</xsl:for-each> 
-
-			</fo:table-body>
-
-		</fo:table>
+		</xsl:for-each> 
 
   </xsl:template>
 
@@ -1623,7 +1567,7 @@
     <!-- entity name -->
 		<xsl:call-template name="value-single">
 			<xsl:with-param name="value" select="$lang.research-work.event"/>
-			<xsl:with-param name="fontSize" select="$font.size.standard"/>
+			<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
 			<xsl:with-param name="addRuler" select="'false'"/>
 		</xsl:call-template>
@@ -2172,7 +2116,7 @@
 											<xsl:with-param name="value" select="cerif:Type"/>
 										</xsl:call-template>	
 
-										<xsl:call-template name="value-single-table"> 
+										<xsl:call-template name="value-comma-list-table"> 
 											<xsl:with-param name="value" select="cerif:Reference/cerif:TargetAudience"/>
 										</xsl:call-template>	
 
@@ -2267,8 +2211,6 @@
 						<xsl:with-param name="label" select="$lang.product.reference"/>
 						<xsl:with-param name="value" select="cerif:Reference"/>
 					</xsl:call-template>
-
-<!--TODO: references-->
 
         </fo:block>
 
@@ -5034,7 +4976,7 @@
 				<xsl:if test="$author">
 					<xsl:for-each select="$author">
 						<xsl:value-of select="current()"/>
-						<xsl:if test="position() != last()">, </xsl:if> 
+						<xsl:if test="position() != last()">; </xsl:if> 
 					</xsl:for-each>
     		</xsl:if>
 
@@ -5113,9 +5055,10 @@
 					</xsl:otherwise>
 				</xsl:choose>
 
-				<xsl:if test="$identifier">
-				  <xsl:value-of select="$identifier"/>
-    		</xsl:if>
+				<xsl:for-each select="$identifier">
+					<xsl:value-of select="current()"/>
+					<xsl:if test="position() != last()">; </xsl:if> 
+				</xsl:for-each>
 
 			</fo:block>
 

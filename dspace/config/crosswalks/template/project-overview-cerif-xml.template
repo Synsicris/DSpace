@@ -614,7 +614,7 @@
 				<Title>@dc.title@</Title>
 				<Author>@dc.contributor.author@</Author>
 				<Editor>@dc.contributor.editor@</Editor>
-				<Date>@dc.date.issued@</Date>
+				<Date>@virtual.vocabulary_i18n.dc-date-issued@</Date>
 				<Publisher>@dc.publisher@</Publisher>
 				<IsPartOf>@dc.relation.publications@</IsPartOf>
 				<Journal>@dc.relation.ispartof@</Journal>

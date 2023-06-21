@@ -838,6 +838,7 @@
 		<xsl:call-template name="label-value-single">
 			<xsl:with-param name="label" select="'Akronym'"/>
 			<xsl:with-param name="value" select="cerif:Acronym"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="label-period">

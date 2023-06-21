@@ -11,6 +11,7 @@ import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
+import static org.dspace.project.util.ProjectConstants.PROJECT_EXTERNALREADERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.not;
@@ -234,7 +235,7 @@ public class LinkProgrammeGroupWithProjectConsumerIT extends AbstractControllerI
             context.turnOffAuthorisationSystem();
             Group projectCommunityGroup =
                 GroupBuilder.createGroup(context)
-                    .withName(String.format(PROJECT_READERS_GROUP_TEMPLATE, projectCommunity.getID()))
+                    .withName(String.format(PROJECT_EXTERNALREADERS_GROUP_TEMPLATE, projectCommunity.getID()))
                     .build();
 
             Group sub1 =

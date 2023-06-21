@@ -32,7 +32,7 @@ import org.dspace.core.Context;
  *
  */
 public class CaptureScreenActionConfiguration
-    extends VersioningActionConfiguration<CapturableScreenConfiguration, CaptureScreenAction<?>> {
+    extends VersioningActionConfiguration<CapturableScreenConfiguration, CaptureScreenAction<CapturableScreen>> {
 
     private static final ScreenActionItemMapper ITEM_MAPPER = (c, item, providedItem) -> item;
     private static final Function<String, MetadataValueDTOSupplier> dcTypeSupplier =
@@ -106,16 +106,21 @@ public class CaptureScreenActionConfiguration
     }
 
     @Override
-    public Stream<CaptureScreenAction<?>> createAction(Context c, Item item) {
+    public Stream<CaptureScreenAction<CapturableScreen>> createAction(Context c, Item item) {
         // provide items (somehow related to the item)
         return this.itemProvider.retrieve(c, item)
             .filter(Objects::nonNull)
-            .map(providedItem -> mapAction(c, item, providedItem));
+            .map(providedItem -> mapAction(c, item, providedItem))
+            .filter(Objects::nonNull);
     }
 
     public CaptureScreenAction<CapturableScreen> mapAction(Context c, Item item, Item providedItem) {
+        CapturableScreen capturableScreen = getCapturableScreen(c, providedItem);
+        if (capturableScreen == null) {
+            return null;
+        }
         return new CaptureScreenAction<>(
-            getCapturableScreen(c, providedItem),
+            capturableScreen,
             itemMapper.mapScreenActionItem(c, item, providedItem),
             bundleName,
             cleanBundle,
@@ -125,8 +130,12 @@ public class CaptureScreenActionConfiguration
     }
 
     public CapturableScreen getCapturableScreen(Context c, Item providedItem) {
+        String url = this.itemUrlMapper.mapToUrl(c, providedItem);
+        if (url == null) {
+            return null;
+        }
         return CapturableScreenBuilder.createCapturableScreen(c, configuration)
-                .withUrl(this.itemUrlMapper.mapToUrl(c, providedItem))
+                .withUrl(url)
                 .computeHeaders()
                 .build();
     }

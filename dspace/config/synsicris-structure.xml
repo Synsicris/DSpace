@@ -5,6 +5,7 @@
     <group>funder_project_managers_group</group>
     <group>funder_readers_group</group>
     <group>system_members_group</group>
+    <group>project_template_externalreaders_group</group>
     <group>project_template_readers_group</group>
     <group>project_template_funders_group</group>
     <group>project_template_coordinators_group</group>
@@ -14,1289 +15,1402 @@
   </groups>
   <communities>
     <community>
-	  <name>Shared</name>
-	  <description />
-	  <intro />
-	  <copyright />
-	  <sidebar />
-	  <policy-group rpType="admin">Administrator</policy-group>
-	  <policy-group rpType="remove">funder_organisational_managers_group</policy-group>
-	  <policy-group rpType="delete">funder_organisational_managers_group</policy-group>
-	  <policy-group rpType="read">funder_organisational_managers_group</policy-group>
-	  <policy-group rpType="read">system_members_group</policy-group>
-	  <collection>
-	    <name language="en">Calls</name>
-	    <name language="de">Bekanntmachungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>call</entity-type>
-	    <submission-type>calls</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">Administrator</policy-group>
-	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	  </collection>
-	  <collection>
-	    <name language="en">Comments</name>
-	    <name language="de">Comments</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>comment</entity-type>
-	    <submission-type>comments</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">funder_project_managers_group</policy-group>
-	    <policy-group rpType="add">funder_project_managers_group</policy-group>
-	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">funder_project_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
-	      <metadata name="synsicris.date.creation">###DATE.yyyy-MM-dd'T'HH:mm:ss'Z'###</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Funding objectives</name>
-	    <name language="de">Förderziele</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>fundingobjective</entity-type>
-	    <submission-type>fundingobjectives</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">Administrator</policy-group>
-	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	  </collection>
-	  <collection>
-	    <name language="en">Organisation units</name>
-	    <name language="de">Organisationen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>OrgUnit</entity-type>
-	    <submission-type>orgunits</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">Administrator</policy-group>
-	    <policy-group rpType="add">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	  </collection>
-	  <collection>
-	    <name language="en">Persons</name>
-	    <name language="de">Personen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Person</entity-type>
-	    <submission-type>persons</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">system_members_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	  </collection>
-	  <collection>
-	    <name language="en">Progammes</name>
-	    <name language="de">Förderprogramme</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>programme</entity-type>
-	    <submission-type>programmes</submission-type>
-	    <policy-group rpType="admin">Administrator</policy-group>
-	    <policy-group rpType="read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="read">system_members_group</policy-group>
-	    <policy-group rpType="add">Administrator</policy-group>
-	    <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="item_read">system_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
-	    <policy-group rpType="bitstream_read">system_members_group</policy-group>
-	  </collection>
-	</community>    
-	<community>
-	  <name>project-template</name>
-	  <description />
-	  <intro />
-	  <copyright />
-	  <sidebar />
-	  <policy-group rpType="admin">project_template_funders_group</policy-group>
-	  <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="remove">project_template_funders_group</policy-group>
-	  <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="delete">project_template_funders_group</policy-group>
-	  <policy-group rpType="delete">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="read">project_template_readers_group</policy-group>
-	  <has-item-reference>true</has-item-reference>
-	  <community>
-	    <name>Impactpathway objects</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="remove">project_template_funders_group</policy-group>
-	    <policy-group rpType="delete">project_template_funders_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="read">project_template_readers_group</policy-group>
-	    <collection>
-	      <name>Impactpathway steps</name>
-	      <description />
-	      <intro />
-	      <copyright />
-	      <sidebar />
-	      <license />
-	      <entity-type>impactpathwaystep</entity-type>
-	      <submission-type>impact_pathway_step</submission-type>
-	      <policy-group rpType="admin">project_template_funders_group</policy-group>
-	      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	      <policy-group rpType="read">project_template_members_group</policy-group>
-	      <policy-group rpType="add">project_template_members_group</policy-group>
-	      <policy-group rpType="remove">project_template_funders_group</policy-group>
-	      <policy-group rpType="delete">project_template_funders_group</policy-group>
-	      <policy-group rpType="item_read">project_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	      <item-template>
-	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	        <metadata name="cris.project.shared">project</metadata>
-	      </item-template>
-	    </collection>
-	    <collection>
-	      <name>Impactpathways</name>
-	      <description />
-	      <intro />
-	      <copyright />
-	      <sidebar />
-	      <license />
-	      <entity-type>impactpathway</entity-type>
-	      <submission-type>impact_pathway</submission-type>
-	      <policy-group rpType="admin">project_template_funders_group</policy-group>
-	      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	      <policy-group rpType="read">project_template_members_group</policy-group>
-	      <policy-group rpType="add">project_template_members_group</policy-group>
-	      <policy-group rpType="remove">project_template_funders_group</policy-group>
-	      <policy-group rpType="delete">project_template_funders_group</policy-group>
-	      <policy-group rpType="item_read">project_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	      <item-template>
-	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-			<metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-			<metadata name="cris.project.shared">project</metadata>
-	      </item-template>
-	    </collection>
-	  </community>
-	  <community>
-	    <name language="en">Funding</name>
-	    <name language="de">Fördermittel</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <funding-comm>true</funding-comm>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="remove">project_template_funders_group</policy-group>
-	    <policy-group rpType="delete">project_template_funders_group</policy-group>
-	    <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="delete">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_funders_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="read">project_template_readers_group</policy-group>
-	  </community>
-	  <collection>
-	    <name language="en">Applications of a solution / change / innovation</name>
-	    <name language="de">Anwendungen einer Lösung / Veränderung / Innovation</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>application</entity-type>
-	    <submission-type>applications</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Awards</name>
-	    <name language="de">Auszeichnungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>award</entity-type>
-	    <submission-type>awards</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Contributions to funding programme objectives</name>
-	    <name language="de">Beiträge zu förderpolitischen Zielen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>contribution_fundingprogramme</entity-type>
-	    <submission-type>contribution_fundingprogramme</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Cooperation partners</name>
-	    <name language="de">Kooperationspartner</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>cooperationpartner</entity-type>
-	    <submission-type>cooperationpartners</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Ethical reflections</name>
-	    <name language="de">Ethische Reflexionen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>ethic</entity-type>
-	    <submission-type>ethics</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	   	  <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	   	  <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Events</name>
-	    <name language="de">Veranstaltungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Event</entity-type>
-	    <submission-type>events</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Expected societal impacts</name>
-	    <name language="de">Erwartete gesellschaftliche Wirkungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>exp_societalimpact</entity-type>
-	    <submission-type>exp_societalimpact</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">External conditions</name>
-	    <name language="de">Rahmenbedingungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>condition</entity-type>
-	    <submission-type>conditions</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Gender reflections</name>
-	    <name language="de">Reflexionen zu Geschlechteraspekten</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>gender</entity-type>
-	    <submission-type>gender</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Target for interaction and transfer</name>
-	    <name language="de">Ziel für Interaktion und Transfer</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>ia_objective</entity-type>
-	    <submission-type>ia_objectives</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Ideas for the use of project results</name>
-	    <name language="de">Ideen für eine Nutzung von Projektergebnissen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>innovationidea</entity-type>
-	    <submission-type>innovationideas</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Milestones</name>
-	    <name language="de">Meilensteine</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>milestone</entity-type>
-	    <submission-type>milestones</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	      <metadata name="workingplan.link.status">linked</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Possible negative side effects</name>
-	    <name language="de">Mögliche negative Nebenwirkungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>neg_sideeffect</entity-type>
-	    <submission-type>neg_sideeffect</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Work and cooperations after project end</name>
-	    <name language="de">Arbeiten und Kooperationen nach Projektende</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>step</entity-type>
-	    <submission-type>steps</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Objects / materials</name>
-	    <name language="de">Gegenstände / Materialien</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>physical_object</entity-type>
-	    <submission-type>physical_objects</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Patents and utility patents</name>
-	    <name language="de">Patente und Gebrauchsmuster</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Patent</entity-type>
-	    <submission-type>patents</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-		  <metadata name="synsicris.type.status">planned</metadata>
-		  <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-		  <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Planned Publications</name>
-	    <name language="de">Geplante Veröffentlichungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>plan_publication</entity-type>
-	    <submission-type>plan_publications</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Cooperations / Participation / Exchange processes</name>
-	    <name language="de">Kooperationen / Partizipation / Austauschprozesse</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>process_event</entity-type>
-	    <submission-type>process_events</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Project objective for research and development</name>
-	    <name language="de">Wissenschaftlich-technisches Arbeitsziel</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>proj_objective</entity-type>
-	    <submission-type>proj_objectives</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Consortia</name>
-	    <name language="de">Verbünde</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Project</entity-type>
-	    <submission-type>projects</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="read">project_template_readers_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_funders_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.versioning-edit-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.versioning-edit-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>    
-	      <metadata name="oairecerif.amount.currency">Euro</metadata>
-	      <metadata name="oairecerif.project.status">In preparation</metadata>
-	    </item-template>
-	    <item>
-	      <item-reference>true</item-reference>
-	      <metadata name="dc.title">project_item_name</metadata>
-	      <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::wp_001">Workingplan</metadata>
-	    </item>
-	  </collection>
-	  <collection>
-	    <name language="en">Publications</name>
-	    <name language="de">Veröffentlichungen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Publication</entity-type>
-	    <submission-type>publications</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.subject.agrovoc">###AGROVOCKEYWORDS.project###</metadata>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Research data</name>
-	    <name language="de">Forschungsdaten</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Product</entity-type>
-	    <submission-type>products</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Research results</name>
-	    <name language="de">Forschungsergebnisse</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>research_result</entity-type>
-	    <submission-type>research_results</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Possible solutions / changes / innovations</name>
-	    <name language="de">Mögliche Lösungen / Veränderungen /Innovationen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>innovationpotential</entity-type>
-	    <submission-type>innovationpotentials</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Open research questions</name>
-	    <name language="de">Offene Forschungsfragen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>open_researchquestion</entity-type>
-	    <submission-type>open_researchquestions</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>    
-	  <collection>
-	    <name language="en">Spin-offs (incl. associations)</name>
-	    <name language="de">Ausgründungen (inkl. Vereine)</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>spinoff</entity-type>
-	    <submission-type>spinoffs</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">State of knowledge</name>
-	    <name language="de">Stand des Wissens / Problemstellung</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>stateofart</entity-type>
-	    <submission-type>stateofart</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Stakeholder groups</name>
-	    <name language="de">Akteursgruppen</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>targetgroup</entity-type>
-	    <submission-type>targetgroups</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Tasks</name>
-	    <name language="de">Aufgaben</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>task</entity-type>
-	    <submission-type>tasks</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">(Intermediate) results / problems that causes change</name>
-	    <name language="de">(Zwischen-) Ergebnisse / Probleme, die Veränderungen bewirken</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>unexpected_result</entity-type>
-	    <submission-type>unexpected_results</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Work packages</name>
-	    <name language="de">Arbeitspakete</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>workpackage</entity-type>
-	    <submission-type>workpackages</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_members_group</policy-group>
-	    <policy-group rpType="add">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.type.status">planned</metadata>
-	      <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="cris.project.shared">project</metadata>
-	      <metadata name="workingplan.link.status">linked</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	      <name>Workingplan</name>
-	      <description />
-	      <intro />
-	      <copyright />
-	      <sidebar />
-	      <license />
-	      <entity-type>workingplan</entity-type>
-	      <submission-type>working_plan_form</submission-type>
-	      <policy-group rpType="admin">project_template_funders_group</policy-group>
-	      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
-	      <policy-group rpType="read">project_template_members_group</policy-group>
-	      <policy-group rpType="add">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	      <item-template>
-	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	        <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	        <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	        <metadata name="cris.project.shared">project</metadata>
-	      </item-template>
-	      <item>
-	          <metadata name="dc.title">Workingplan</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">wp_001</metadata>
-	      </item>
-	    </collection>
-	</community>
-	<community>
-	  <name language="en">Projects</name>
-	  <name language="de">Projekte</name>
-	  <description />
-	  <intro />
-	  <copyright />
-	  <sidebar />
-	  <policy-group rpType="add">funder_project_managers_group</policy-group>
-	  <policy-group rpType="remove">funder_project_managers_group</policy-group>
-	  <policy-group rpType="read">Anonymous</policy-group>
-	</community>
-	<community>
-	  <name>funding-template</name>
-	  <description />
-	  <intro />
-	  <copyright />
-	  <sidebar />
-	  <policy-group rpType="admin">project_template_funders_group</policy-group>
-	  <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
-	  <policy-group rpType="remove">project_template_funders_group</policy-group>
-	  <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
-	  <policy-group rpType="delete">project_template_funders_group</policy-group>
-	  <policy-group rpType="delete">project_template_coordinators_group</policy-group>
-	  <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
-	  <policy-group rpType="read">funding_template_members_group</policy-group>
-	  <policy-group rpType="read">project_template_members_group</policy-group>
-	  <policy-group rpType="read">project_template_readers_group</policy-group>
-	  <has-item-reference>true</has-item-reference>
-	  <community>
-	    <name>Exploitation plan objects</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
-	    <policy-group rpType="remove">project_template_funders_group</policy-group>
-	    <policy-group rpType="remove">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
-	    <policy-group rpType="delete">project_template_funders_group</policy-group>
-	    <policy-group rpType="delete">project_template_coordinators_group</policy-group>
-	    <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">project_template_readers_group</policy-group>
-	    <policy-group rpType="read">funding_template_members_group</policy-group>
-	    <collection>
-	      <name>Exploitation plan steps</name>
-	      <description />
-	      <intro />
-	      <copyright />
-	      <sidebar />
-	      <license />
-	      <entity-type>exploitationplanstep</entity-type>
-	      <submission-type>exploitation_plan_step_form</submission-type>
-	      <policy-group rpType="admin">project_template_funders_group</policy-group>
-	      <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
-	      <policy-group rpType="read">funding_template_members_group</policy-group>
-	      <policy-group rpType="add">funding_template_members_group</policy-group>
-	      <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	      <item-template>
-	        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	        <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	        <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	        <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	        <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
-	      </item-template>
-	      <item>
-	          <metadata name="dc.title">step_type_1</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">exp_step_1</metadata>
-	      </item>
-	      <item>
-	          <metadata name="dc.title">step_type_2</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">exp_step_2</metadata>
-	      </item>
-	      <item>
-	          <metadata name="dc.title">step_type_3</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">exp_step_3</metadata>
-	      </item>
-	      <item>
-	          <metadata name="dc.title">step_type_4</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">exp_step_4</metadata>
-	      </item>
-	    </collection>
-	    <collection>
-	      <name>Exploitation plan</name>
-	      <description />
-	      <intro />
-	      <copyright />
-	      <sidebar />
-	      <license />
-	      <entity-type>exploitationplan</entity-type>
-	      <submission-type>exploitation_plan_form</submission-type>
-	      <policy-group rpType="admin">project_template_funders_group</policy-group>
-	      <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
-	      <policy-group rpType="read">funding_template_members_group</policy-group>
-	      <policy-group rpType="add">funding_template_members_group</policy-group>
-	      <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_members_group</policy-group>
-	      <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	      <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-	      <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
-	      <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	      <item-template>
-	        <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	        <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	        <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	        <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	        <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
-	      </item-template>
-	      <item>
-	          <metadata name="dc.title">exploitation_plan</metadata>
-	          <metadata name="synsicris.struct-builder.identifier">exp_001</metadata>
-	          <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_1">step_type_1</metadata>
-	          <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_2">step_type_2</metadata>
-	          <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_3">step_type_3</metadata>
-	          <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_4">step_type_4</metadata>
-	      </item>
-	    </collection>
-	  </community>
-	  <community>
+      <name>Shared</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <policy-group rpType="admin">Administrator</policy-group>
+      <policy-group rpType="remove">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="delete">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+      <policy-group rpType="read">system_members_group</policy-group>
+      <collection>
+        <name language="en">Calls</name>
+        <name language="de">Bekanntmachungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>call</entity-type>
+        <submission-type>calls</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="read">system_members_group</policy-group>
+        <policy-group rpType="add">Administrator</policy-group>
+        <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">system_members_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">system_members_group</policy-group>
+      </collection>
+      <collection>
+        <name language="en">Comments</name>
+        <name language="de">Comments</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>comment</entity-type>
+        <submission-type>comments</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">funder_project_managers_group</policy-group>
+        <policy-group rpType="add">funder_project_managers_group</policy-group>
+        <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">funder_project_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_project_managers_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.creator">###CURRENTRESEARCHERPROFILE###</metadata>
+          <metadata name="synsicris.date.creation">###DATE.yyyy-MM-dd'T'HH:mm:ss'Z'###</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Funding objectives</name>
+        <name language="de">Förderziele</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>fundingobjective</entity-type>
+        <submission-type>fundingobjectives</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="read">system_members_group</policy-group>
+        <policy-group rpType="add">Administrator</policy-group>
+        <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">system_members_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">system_members_group</policy-group>
+      </collection>
+      <collection>
+        <name language="en">Organisation units</name>
+        <name language="de">Organisationen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>OrgUnit</entity-type>
+        <submission-type>orgunits</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="read">system_members_group</policy-group>
+        <policy-group rpType="add">Administrator</policy-group>
+        <policy-group rpType="add">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">system_members_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">system_members_group</policy-group>
+      </collection>
+      <collection>
+        <name language="en">Persons</name>
+        <name language="de">Personen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Person</entity-type>
+        <submission-type>persons</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">system_members_group</policy-group>
+        <policy-group rpType="add">system_members_group</policy-group>
+        <policy-group rpType="item_read">system_members_group</policy-group>
+        <policy-group rpType="bitstream_read">system_members_group</policy-group>
+      </collection>
+      <collection>
+        <name language="en">Progammes</name>
+        <name language="de">Förderprogramme</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>programme</entity-type>
+        <submission-type>programmes</submission-type>
+        <policy-group rpType="admin">Administrator</policy-group>
+        <policy-group rpType="read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="read">system_members_group</policy-group>
+        <policy-group rpType="add">Administrator</policy-group>
+        <policy-group rpType="item_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="item_read">system_members_group</policy-group>
+        <policy-group rpType="bitstream_read">funder_organisational_managers_group</policy-group>
+        <policy-group rpType="bitstream_read">system_members_group</policy-group>
+      </collection>
+    </community>    
+    <community>
+      <name>project-template</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
+      <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
+      <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+      <policy-group rpType="delete">project_template_funders_group</policy-group>
+      <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="read">project_template_readers_group</policy-group>
+      <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+      <has-item-reference>true</has-item-reference>
+      <community>
+        <name>Impactpathway objects</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">project_template_funders_group</policy-group>
+        <policy-group rpType="delete">project_template_funders_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+        <collection>
+          <name>Impactpathway steps</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>impactpathwaystep</entity-type>
+          <submission-type>impact_pathway_step</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+          <policy-group rpType="read">project_template_members_group</policy-group>
+          <policy-group rpType="add">project_template_members_group</policy-group>
+          <policy-group rpType="remove">project_template_funders_group</policy-group>
+          <policy-group rpType="delete">project_template_funders_group</policy-group>
+          <policy-group rpType="item_read">project_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+          <item-template>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="cris.project.shared">project</metadata>
+          </item-template>
+        </collection>
+        <collection>
+          <name>Impactpathways</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>impactpathway</entity-type>
+          <submission-type>impact_pathway</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+          <policy-group rpType="read">project_template_members_group</policy-group>
+          <policy-group rpType="add">project_template_members_group</policy-group>
+          <policy-group rpType="remove">project_template_funders_group</policy-group>
+          <policy-group rpType="delete">project_template_funders_group</policy-group>
+          <policy-group rpType="item_read">project_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+          <item-template>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="cris.project.shared">project</metadata>
+          </item-template>
+        </collection>
+      </community>
+      <community>
+        <name language="en">Funding</name>
+        <name language="de">Fördermittel</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <funding-comm>true</funding-comm>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">project_template_funders_group</policy-group>
+        <policy-group rpType="delete">project_template_funders_group</policy-group>
+        <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+        <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_funders_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+      </community>
+      <collection>
+        <name language="en">Applications of a solution / change / innovation</name>
+        <name language="de">Anwendungen einer Lösung / Veränderung / Innovation</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>application</entity-type>
+        <submission-type>applications</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Awards</name>
+        <name language="de">Auszeichnungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>award</entity-type>
+        <submission-type>awards</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Contributions to funding programme objectives</name>
+        <name language="de">Beiträge zu förderpolitischen Zielen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>contribution_fundingprogramme</entity-type>
+        <submission-type>contribution_fundingprogramme</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Cooperation partners</name>
+        <name language="de">Kooperationspartner</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>cooperationpartner</entity-type>
+        <submission-type>cooperationpartners</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Ethical reflections</name>
+        <name language="de">Ethische Reflexionen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>ethic</entity-type>
+        <submission-type>ethics</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Events</name>
+        <name language="de">Veranstaltungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Event</entity-type>
+        <submission-type>events</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Expected societal impacts</name>
+        <name language="de">Erwartete gesellschaftliche Wirkungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>exp_societalimpact</entity-type>
+        <submission-type>exp_societalimpact</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">External conditions</name>
+        <name language="de">Rahmenbedingungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>condition</entity-type>
+        <submission-type>conditions</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Gender reflections</name>
+        <name language="de">Reflexionen zu Geschlechteraspekten</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>gender</entity-type>
+        <submission-type>gender</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Target for interaction and transfer</name>
+        <name language="de">Ziel für Interaktion und Transfer</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>ia_objective</entity-type>
+        <submission-type>ia_objectives</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Ideas for the use of project results</name>
+        <name language="de">Ideen für eine Nutzung von Projektergebnissen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>innovationidea</entity-type>
+        <submission-type>innovationideas</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Milestones</name>
+        <name language="de">Meilensteine</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>milestone</entity-type>
+        <submission-type>milestones</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+          <metadata name="workingplan.link.status">linked</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Possible negative side effects</name>
+        <name language="de">Mögliche negative Nebenwirkungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>neg_sideeffect</entity-type>
+        <submission-type>neg_sideeffect</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Work and cooperations after project end</name>
+        <name language="de">Arbeiten und Kooperationen nach Projektende</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>step</entity-type>
+        <submission-type>steps</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Objects / materials</name>
+        <name language="de">Gegenstände / Materialien</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>physical_object</entity-type>
+        <submission-type>physical_objects</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Patents and utility patents</name>
+        <name language="de">Patente und Gebrauchsmuster</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Patent</entity-type>
+        <submission-type>patents</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Planned Publications</name>
+        <name language="de">Geplante Veröffentlichungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>plan_publication</entity-type>
+        <submission-type>plan_publications</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Cooperations / Participation / Exchange processes</name>
+        <name language="de">Kooperationen / Partizipation / Austauschprozesse</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>process_event</entity-type>
+        <submission-type>process_events</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Project objective for research and development</name>
+        <name language="de">Wissenschaftlich-technisches Arbeitsziel</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>proj_objective</entity-type>
+        <submission-type>proj_objectives</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Consortia</name>
+        <name language="de">Verbünde</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Project</entity-type>
+        <submission-type>projects</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_funders_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_funders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.versioning-edit-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.versioning-edit-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>    
+          <metadata name="oairecerif.amount.currency">Euro</metadata>
+          <metadata name="oairecerif.project.status">In preparation</metadata>
+        </item-template>
+        <item>
+          <item-reference>true</item-reference>
+          <metadata name="dc.title">project_item_name</metadata>
+          <metadata name="synsicris.relation.workingplan" authority="will be referenced::SB-ID::wp_001">Workingplan</metadata>
+        </item>
+      </collection>
+      <collection>
+        <name language="en">Publications</name>
+        <name language="de">Veröffentlichungen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Publication</entity-type>
+        <submission-type>publications</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.subject.agrovoc">###AGROVOCKEYWORDS.project###</metadata>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Research data</name>
+        <name language="de">Forschungsdaten</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Product</entity-type>
+        <submission-type>products</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Research results</name>
+        <name language="de">Forschungsergebnisse</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>research_result</entity-type>
+        <submission-type>research_results</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Possible solutions / changes / innovations</name>
+        <name language="de">Mögliche Lösungen / Veränderungen /Innovationen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>innovationpotential</entity-type>
+        <submission-type>innovationpotentials</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Open research questions</name>
+        <name language="de">Offene Forschungsfragen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>open_researchquestion</entity-type>
+        <submission-type>open_researchquestions</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>    
+      <collection>
+        <name language="en">Spin-offs (incl. associations)</name>
+        <name language="de">Ausgründungen (inkl. Vereine)</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>spinoff</entity-type>
+        <submission-type>spinoffs</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">State of knowledge</name>
+        <name language="de">Stand des Wissens / Problemstellung</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>stateofart</entity-type>
+        <submission-type>stateofart</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Stakeholder groups</name>
+        <name language="de">Akteursgruppen</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>targetgroup</entity-type>
+        <submission-type>targetgroups</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Tasks</name>
+        <name language="de">Aufgaben</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>task</entity-type>
+        <submission-type>tasks</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">(Intermediate) results / problems that causes change</name>
+        <name language="de">(Zwischen-) Ergebnisse / Probleme, die Veränderungen bewirken</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>unexpected_result</entity-type>
+        <submission-type>unexpected_results</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Work packages</name>
+        <name language="de">Arbeitspakete</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>workpackage</entity-type>
+        <submission-type>workpackages</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_members_group</policy-group>
+        <policy-group rpType="add">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.type.status">planned</metadata>
+          <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="cris.project.shared">project</metadata>
+          <metadata name="workingplan.link.status">linked</metadata>
+        </item-template>
+      </collection>
+      <collection>
+          <name>Workingplan</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>workingplan</entity-type>
+          <submission-type>working_plan_form</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">project_template_coordinators_group</policy-group>
+          <policy-group rpType="read">project_template_members_group</policy-group>
+          <policy-group rpType="add">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+          <item-template>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+            <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+            <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+            <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+            <metadata name="cris.policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="cris.project.shared">project</metadata>
+          </item-template>
+          <item>
+              <metadata name="dc.title">Workingplan</metadata>
+              <metadata name="synsicris.struct-builder.identifier">wp_001</metadata>
+          </item>
+        </collection>
+    </community>
+    <community>
+      <name language="en">Projects</name>
+      <name language="de">Projekte</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <policy-group rpType="add">funder_project_managers_group</policy-group>
+      <policy-group rpType="remove">funder_project_managers_group</policy-group>
+      <policy-group rpType="read">Anonymous</policy-group>
+    </community>
+    <community>
+      <name>funding-template</name>
+      <description />
+      <intro />
+      <copyright />
+      <sidebar />
+      <policy-group rpType="admin">project_template_funders_group</policy-group>
+      <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">project_template_funders_group</policy-group>
+      <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+      <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
+      <policy-group rpType="delete">project_template_funders_group</policy-group>
+      <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+      <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
+      <policy-group rpType="read">funding_template_members_group</policy-group>
+      <policy-group rpType="read">project_template_members_group</policy-group>
+      <policy-group rpType="read">project_template_readers_group</policy-group>
+      <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+      <has-item-reference>true</has-item-reference>
+      <community>
+        <name>Exploitation plan objects</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">project_template_funders_group</policy-group>
+        <policy-group rpType="remove">project_template_coordinators_group</policy-group>
+        <policy-group rpType="remove">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="delete">project_template_funders_group</policy-group>
+        <policy-group rpType="delete">project_template_coordinators_group</policy-group>
+        <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="read">funding_template_members_group</policy-group>
+        <collection>
+          <name>Exploitation plan steps</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>exploitationplanstep</entity-type>
+          <submission-type>exploitation_plan_step_form</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+          <policy-group rpType="read">funding_template_members_group</policy-group>
+          <policy-group rpType="add">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_members_group</policy-group>   
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+          <item-template>
+            <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+            <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+            <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+            <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+            <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
+          </item-template>
+          <item>
+              <metadata name="dc.title">step_type_1</metadata>
+              <metadata name="synsicris.struct-builder.identifier">exp_step_1</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_2</metadata>
+              <metadata name="synsicris.struct-builder.identifier">exp_step_2</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_3</metadata>
+              <metadata name="synsicris.struct-builder.identifier">exp_step_3</metadata>
+          </item>
+          <item>
+              <metadata name="dc.title">step_type_4</metadata>
+              <metadata name="synsicris.struct-builder.identifier">exp_step_4</metadata>
+          </item>
+        </collection>
+        <collection>
+          <name>Exploitation plan</name>
+          <description />
+          <intro />
+          <copyright />
+          <sidebar />
+          <license />
+          <entity-type>exploitationplan</entity-type>
+          <submission-type>exploitation_plan_form</submission-type>
+          <policy-group rpType="admin">project_template_funders_group</policy-group>
+          <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+          <policy-group rpType="read">funding_template_members_group</policy-group>
+          <policy-group rpType="add">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">funding_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_members_group</policy-group>
+          <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+          <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_members_group</policy-group>   
+          <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+          <item-template>
+            <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+            <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+            <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+            <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+            <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
+          </item-template>
+          <item>
+              <metadata name="dc.title">exploitation_plan</metadata>
+              <metadata name="synsicris.struct-builder.identifier">exp_001</metadata>
+              <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_1">step_type_1</metadata>
+              <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_2">step_type_2</metadata>
+              <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_3">step_type_3</metadata>
+              <metadata name="exploitationplan.relation.step" authority="will be referenced::SB-ID::exp_step_4">step_type_4</metadata>
+          </item>
+        </collection>
+      </community>
+      <community>
         <name>Interim report objects</name>
         <description />
         <intro />
@@ -1311,6 +1425,7 @@
         <policy-group rpType="delete">project_template_coordinators_group</policy-group>
         <policy-group rpType="delete">funding_template_coordinators_group</policy-group>
         <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
         <policy-group rpType="read">funding_template_members_group</policy-group>
         <collection>
           <name>Interim report steps</name>
@@ -1328,15 +1443,18 @@
           <policy-group rpType="item_read">funding_template_members_group</policy-group>
           <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
           <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
           <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
           <item-template>
             <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
             <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
             <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
             <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
             <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+            <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
             <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	        <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
+            <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>
           </item-template>
           <item>
               <metadata name="dc.title">step_type_1</metadata>
@@ -1375,7 +1493,9 @@
           <policy-group rpType="item_read">funding_template_members_group</policy-group>
           <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
           <policy-group rpType="item_read">project_template_readers_group</policy-group>
+          <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
           <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+          <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
           <item-template>
             <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
             <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
@@ -1394,73 +1514,80 @@
           </item>
         </collection>
       </community>
-	  <collection>
-	    <name language="en">Project partners</name>
-	    <name language="de">Projektpartner</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>projectpartner</entity-type>
-	    <submission-type>projectpartners</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
-	    <policy-group rpType="read">funding_template_members_group</policy-group>
-	    <policy-group rpType="add">funding_template_members_group</policy-group>
-	    <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>         
-	      <metadata name="synsicris.type.easyimport">No</metadata>
-	    </item-template>
-	  </collection>
-	  <collection>
-	    <name language="en">Projects</name>
-	    <name language="de">Projekte</name>
-	    <description />
-	    <intro />
-	    <copyright />
-	    <sidebar />
-	    <license />
-	    <entity-type>Funding</entity-type>
-	    <submission-type>funding</submission-type>
-	    <policy-group rpType="admin">project_template_funders_group</policy-group>
-	    <policy-group rpType="read">funding_template_members_group</policy-group>
-	    <policy-group rpType="read">project_template_readers_group</policy-group>
-	    <policy-group rpType="item_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_members_group</policy-group>
-	    <policy-group rpType="item_read">project_template_readers_group</policy-group>
-	    <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
-	    <policy-group rpType="bitstream_read">project_template_members_group</policy-group>	    
-	    <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
-	    <item-template>
-	      <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
-	      <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
-	      <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
-	      <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
-	      <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
-	      <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
-	      <metadata name="oairecerif.amount.currency">Euro</metadata>
-	      <metadata name="oairecerif.project.status">In preparation</metadata>
-	    </item-template>
-	    <item>
-	      <item-reference>true</item-reference>
-	      <metadata name="dc.title">funding_item_name</metadata>
-	      <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
-	      <metadata name="synsicris.relation.interimreport" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
-	    </item>
-	  </collection>
-	</community>
+      <collection>
+        <name language="en">Project partners</name>
+        <name language="de">Projektpartner</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>projectpartner</entity-type>
+        <submission-type>projectpartners</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="admin">funding_template_coordinators_group</policy-group>
+        <policy-group rpType="read">funding_template_members_group</policy-group>
+        <policy-group rpType="add">funding_template_members_group</policy-group>
+        <policy-group rpType="item_read">funding_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group> 
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>         
+          <metadata name="synsicris.type.easyimport">No</metadata>
+        </item-template>
+      </collection>
+      <collection>
+        <name language="en">Projects</name>
+        <name language="de">Projekte</name>
+        <description />
+        <intro />
+        <copyright />
+        <sidebar />
+        <license />
+        <entity-type>Funding</entity-type>
+        <submission-type>funding</submission-type>
+        <policy-group rpType="admin">project_template_funders_group</policy-group>
+        <policy-group rpType="read">funding_template_members_group</policy-group>
+        <policy-group rpType="read">project_template_readers_group</policy-group>
+        <policy-group rpType="read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="item_read">funding_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_members_group</policy-group>
+        <policy-group rpType="item_read">project_template_readers_group</policy-group>
+        <policy-group rpType="item_read">project_template_externalreaders_group</policy-group>
+        <policy-group rpType="bitstream_read">funding_template_members_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_members_group</policy-group>     
+        <policy-group rpType="bitstream_read">project_template_readers_group</policy-group>
+        <policy-group rpType="bitstream_read">project_template_externalreaders_group</policy-group>
+        <item-template>
+          <metadata name="cris.policy.group">GROUP_POLICY_PLACEHOLDER</metadata>
+          <metadata name="synsicris.coordinator-policy.group">###CURRENTPROJECTGROUP.project.coordinators###</metadata>
+          <metadata name="synsicris.member-policy.group">###CURRENTPROJECTGROUP.project.members###</metadata>
+          <metadata name="synsicris.funder-policy.group">###CURRENTPROJECTGROUP.project.funders###</metadata>
+          <metadata name="synsicris.reader-policy.group">###CURRENTPROJECTGROUP.project.readers###</metadata>
+          <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
+          <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
+          <metadata name="oairecerif.amount.currency">Euro</metadata>
+          <metadata name="oairecerif.project.status">In preparation</metadata>
+        </item-template>
+        <item>
+          <item-reference>true</item-reference>
+          <metadata name="dc.title">funding_item_name</metadata>
+          <metadata name="synsicris.relation.exploitationplan" authority="will be referenced::SB-ID::exp_001">exploitation_plan</metadata>
+          <metadata name="synsicris.relation.interimreport" authority="will be referenced::SB-ID::int_001">interim_report</metadata>
+        </item>
+      </collection>
+    </community>
   </communities>
 </import_structure>

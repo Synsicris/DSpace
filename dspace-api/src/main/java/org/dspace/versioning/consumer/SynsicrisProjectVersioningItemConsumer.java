@@ -8,8 +8,10 @@
 package org.dspace.versioning.consumer;
 
 import static org.dspace.project.util.ProjectConstants.COORDINATORS_ROLE;
+import static org.dspace.project.util.ProjectConstants.EXTERNAL_READERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.MD_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_EXTERNAL_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_FUNDER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION;
 import static org.dspace.project.util.ProjectConstants.MD_LAST_VERSION_VISIBLE;
@@ -18,9 +20,9 @@ import static org.dspace.project.util.ProjectConstants.MD_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_READ_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_VERSION_VISIBLE;
 import static org.dspace.project.util.ProjectConstants.MD_V_COORDINATOR_POLICY_GROUP;
+import static org.dspace.project.util.ProjectConstants.MD_V_EXTERNAL_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_V_FUNDER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_V_MEMBER_POLICY_GROUP;
-import static org.dspace.project.util.ProjectConstants.MD_V_READER_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
@@ -165,6 +167,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         Community community = this.projectConsumerService.getProjectCommunity(ctx, projectItem);
         Group fundersGroup = getFundersGroup(ctx, community);
         Group readersGroup = getReadersGroup(ctx, community);
+        Group externalReadersGroup = getExternalReadersGroup(ctx, community);
         Group membersGroup = getMembersGroup(ctx, community);
         Group coordinatorsGroup = getCoordinatorsGroup(ctx, community);
         List<Version> versionsByHistory = getVersionsByHistory(ctx, projectItem);
@@ -180,7 +183,8 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         }
         consumeRelatedItems(
             ctx, isVersionVisible, community,
-            fundersGroup, readersGroup, membersGroup, coordinatorsGroup,
+            fundersGroup, readersGroup, externalReadersGroup,
+            membersGroup, coordinatorsGroup,
             isLastVisibleProjectVersion, projectItems,
             projectItem
         );
@@ -219,6 +223,15 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
             .orElseThrow(
                 () -> new RuntimeException(
                     "Cannot find the readers policy group for community: " + community.getID()
+                    )
+                );
+    }
+
+    private Group getExternalReadersGroup(Context ctx, Community community) {
+        return Optional.ofNullable(this.getExternalReaderPolicyGroup(ctx, community))
+            .orElseThrow(
+                () -> new RuntimeException(
+                    "Cannot find the externalreaders policy group for community: " + community.getID()
                 )
             );
     }
@@ -302,8 +315,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         return !isVersionVisible && isLastVisibleProjectVersion;
     }
 
-    private void consumeRelatedItems(Context ctx, Boolean isVersionVisible, Community community,
-        Group fundersGroup, Group readersGroup, Group membersGroup, Group coordinatorsGroup,
+    private void consumeRelatedItems(
+        Context ctx, Boolean isVersionVisible, Community community,
+        Group fundersGroup, Group readersGroup, Group externalReadersGroup,
+        Group membersGroup, Group coordinatorsGroup,
         boolean isLastVisibleProjectVersion, Iterator<Item> projectItems,
         Item projectItem
     ) throws SQLException, AuthorizeException {
@@ -327,8 +342,11 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                 clearMetadataPolicies(ctx, actual);
                 addReadPolicy(ctx, actual, fundersGroup);
                 addVersionPolicyGroups(ctx, actual, fundersGroup, readersGroup, membersGroup);
-                copyMetadataPolicyToVersionPolicy(ctx, actual,
-                        fundersGroup, readersGroup, membersGroup, coordinatorsGroup);
+                copyMetadataPolicyToVersionPolicy(
+                    ctx, actual,
+                    fundersGroup, externalReadersGroup,
+                    membersGroup, coordinatorsGroup
+                );
             // hides versioned project and all its items to the funder role of the project-community
             } else {
                 if (!actual.getID().equals(projectItem.getID())) {
@@ -419,7 +437,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
     private void addGroupPolicyMetadata(Context ctx, Item actual, Group group, MetadataFieldName mfn)
             throws SQLException {
         this.itemService.addMetadata(
-            ctx, actual, mfn.schema, mfn.element,mfn.qualifier, null,
+            ctx, actual, mfn.schema, mfn.element, mfn.qualifier, null,
             group.getName(), group.getID().toString(), Choices.CF_ACCEPTED
         );
     }
@@ -465,16 +483,20 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
         this.authorizeService.removeGroupPolicies(ctx, actual, fundersGroup, Constants.READ);
     }
 
-    private void copyMetadataPolicyToVersionPolicy(Context ctx, Item item, Group fundersGroup, Group readersGroup,
-                                                   Group membersGroup, Group coordinatorsGroup) throws SQLException {
+    private void copyMetadataPolicyToVersionPolicy(
+        Context ctx, Item item,
+        Group fundersGroup, Group externalReadersGroup,
+        Group membersGroup, Group coordinatorsGroup
+    ) throws SQLException {
         addGroupPolicyMetadata(ctx, item, fundersGroup, MD_V_FUNDER_POLICY_GROUP);
-        addGroupPolicyMetadata(ctx, item, readersGroup, MD_V_READER_POLICY_GROUP);
+        addGroupPolicyMetadata(ctx, item, externalReadersGroup, MD_V_EXTERNAL_READER_POLICY_GROUP);
         addGroupPolicyMetadata(ctx, item, membersGroup, MD_V_MEMBER_POLICY_GROUP);
         addGroupPolicyMetadata(ctx, item, coordinatorsGroup, MD_V_COORDINATOR_POLICY_GROUP);
     }
 
     private void clearMetadataPolicies(Context context, Item actual) throws SQLException {
         clearMetadata(context, actual, MD_FUNDER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_EXTERNAL_READER_POLICY_GROUP);
         clearMetadata(context, actual, MD_READER_POLICY_GROUP);
         clearMetadata(context, actual, MD_MEMBER_POLICY_GROUP);
         clearMetadata(context, actual, MD_COORDINATOR_POLICY_GROUP);
@@ -482,7 +504,7 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     private void clearMetadataVersionPolicies(Context context, Item actual) throws SQLException {
         clearMetadata(context, actual, MD_V_FUNDER_POLICY_GROUP);
-        clearMetadata(context, actual, MD_V_READER_POLICY_GROUP);
+        clearMetadata(context, actual, MD_V_EXTERNAL_READER_POLICY_GROUP);
         clearMetadata(context, actual, MD_V_MEMBER_POLICY_GROUP);
         clearMetadata(context, actual, MD_V_COORDINATOR_POLICY_GROUP);
     }
@@ -497,6 +519,16 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
                                                   MD_FUNDER_POLICY_GROUP.element,
                                                   MD_FUNDER_POLICY_GROUP.qualifier, null,
                                                   funders.getValue(), funders.getAuthority(), funders.getConfidence());
+
+        MetadataValueVO externalReaders =
+            this.projectGeneratorService.getProjectCommunityMetadata(ctx, community, EXTERNAL_READERS_ROLE);
+        this.itemService.addMetadata(
+            ctx, actual,
+            MD_EXTERNAL_READER_POLICY_GROUP.schema,
+            MD_EXTERNAL_READER_POLICY_GROUP.element,
+            MD_EXTERNAL_READER_POLICY_GROUP.qualifier,
+            null, externalReaders.getValue(), externalReaders.getAuthority(), externalReaders.getConfidence()
+        );
 
         MetadataValueVO readers = this.projectGeneratorService.getProjectCommunityMetadata(ctx, community,READERS_ROLE);
         this.itemService.addMetadata(ctx, actual, MD_READER_POLICY_GROUP.schema,
@@ -524,6 +556,10 @@ public class SynsicrisProjectVersioningItemConsumer implements Consumer {
 
     private Group getReaderPolicyGroup(Context ctx, Community projectCommunity) {
         return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, READERS_ROLE);
+    }
+
+    private Group getExternalReaderPolicyGroup(Context ctx, Community projectCommunity) {
+        return this.projectGeneratorService.getProjectCommunityGroup(ctx, projectCommunity, EXTERNAL_READERS_ROLE);
     }
 
     private Group getMembersPolicyGroup(Context ctx, Community projectCommunity) {

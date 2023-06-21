@@ -53,6 +53,9 @@ public class SimpleParametersItemUrlMapper implements ItemUrlMapper {
     protected String generateUrlWithParameters(
         String url, List<NameValuePair> parameters
     ) throws URISyntaxException {
+        if (url == null) {
+            return null;
+        }
         return new URIBuilder(url)
             .addParameters(parameters)
             .build()

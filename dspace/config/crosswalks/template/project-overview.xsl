@@ -75,6 +75,7 @@
 <xsl:param name="lang.month.singular" select="'Monat'"/>
 <xsl:param name="lang.month.plural" select="'Monate'"/>
 <xsl:param name="lang.year" select="'Jahr'"/>
+<xsl:param name="lang.frequency" select="'Häufigkeit'"/>
 <xsl:param name="lang.postcode-city-country" select="'PLZ / Ort / Land'"/>
 <xsl:param name="lang.postcode" select="'PLZ'"/>
 <xsl:param name="lang.city" select="'Ort'"/>
@@ -85,7 +86,6 @@
 <xsl:param name="lang.author" select="'Autor:in(nen)'"/>
 <xsl:param name="lang.unit" select="'Einheit'"/>
 <xsl:param name="lang.keyword" select="'Schlagworte'"/>
-
 
 <xsl:param name="lang.organisation.form" select="'Organisationsform'"/>
 <xsl:param name="lang.cooperation.type" select="'Art der Kooperation'"/>
@@ -127,6 +127,7 @@
 <xsl:param name="lang.process-event.purpose" select="'Veranstaltungszweck'"/>
 <xsl:param name="lang.process-event.involved-organisation" select="'Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner'"/>
 <xsl:param name="lang.process-event.target-group" select="'Beteiligte Akteursgruppe(n)'"/>
+<xsl:param name="lang.process-event.duration" select="'Dauer in Stunden'"/>
 
 <xsl:param name="lang.physical-object.function" select="'Verwendungsmöglichkeiten'"/>
 <xsl:param name="lang.physical-object.accessibility" select="'Öffentliche Zugänglichkeit'"/>
@@ -304,6 +305,7 @@
 <xsl:param name="margin.top.main" select="'2mm'"/>
 <xsl:param name="margin.top.section" select="'10mm'"/>
 <xsl:param name="margin.top.gap" select="'5mm'"/>
+<xsl:param name="margin.top.item" select="'3mm'"/> <!-- item gap for section 3.1.3 --> 
 <xsl:param name="margin.top.label-table" select="'-2mm'"/> <!-- general space above a label in a table context -->
 <xsl:param name="margin.top.label-table-start" select="'1mm'"/> <!-- space above the first label in a table context -->
 <xsl:param name="margin.top.label-below" select="'0mm'"/> <!-- space between label and value below in a box context-->
@@ -843,19 +845,19 @@
 			<xsl:with-param name="startDate" select="cerif:StartDate"/>
 			<xsl:with-param name="endDate" select="cerif:EndDate"/>
 			<xsl:with-param name="duration" select="cerif:Duration"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="label-value-single">
 			<xsl:with-param name="label" select="$lang.funding.call"/>
 			<xsl:with-param name="value" select="cerif:FundingCall"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="label-value-single">
 			<xsl:with-param name="label" select="$lang.funding.programme"/>
 			<xsl:with-param name="value" select="cerif:FundingProgramme"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>			
 	
 	</xsl:template>
@@ -892,31 +894,31 @@
 						<xsl:with-param name="value" select="cerif:Acronym"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="ruler"/>
 
 					<xsl:call-template name="value-single">
 						<xsl:with-param name="value" select="cerif:Import/cerif:ParentOrganisation"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>	
 
 					<xsl:call-template name="value-single"> 
 						<xsl:with-param name="value" select="cerif:Import/cerif:OrganisationName"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>					
 
 					<xsl:call-template name="value-postcode-city-country">
 						<xsl:with-param name="postCode" select="cerif:Import/cerif:PostCode"/>
 						<xsl:with-param name="city" select="cerif:Import/cerif:City"/>
 						<xsl:with-param name="country" select="cerif:Import/cerif:Country"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>	
 
 					<xsl:call-template name="value-comma-list"> 
 						<xsl:with-param name="value" select="cerif:Import/cerif:WebAddress"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>	
 
 	        <xsl:if test="cerif:ImportLead/cerif:Name">
@@ -927,17 +929,17 @@
 						<xsl:with-param name="name" select="cerif:ImportLead/cerif:Name"/>
 						<xsl:with-param name="degree" select="cerif:ImportLead/cerif:Degree"/>
 						<xsl:with-param name="gender" select="cerif:ImportLead/cerif:Gender"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>	
 
 					<xsl:call-template name="value-single">
 						<xsl:with-param name="value" select="cerif:ImportLead/cerif:Phone"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 				  </xsl:call-template>	
 
 					<xsl:call-template name="value-single">
 						<xsl:with-param name="value" select="cerif:ImportLead/cerif:EMail"/>
-						<xsl:with-param name="addRuler" select="'false'"/>						
+						<xsl:with-param name="addRulerAbove" select="'false'"/>						
 				  </xsl:call-template>	
 
           <xsl:if test="cerif:ImportLead/cerif:Name">
@@ -946,7 +948,7 @@
 						<xsl:call-template name="label-value-single">
 							<xsl:with-param name="label" select="$lang.project-partner.easy-online"/>
 							<xsl:with-param name="value" select="cerif:EasyOnlineImport"/>
-							<xsl:with-param name="addRuler" select="'false'"/>
+							<xsl:with-param name="addRulerAbove" select="'false'"/>
 						</xsl:call-template>						
 					</xsl:if>
 
@@ -1419,7 +1421,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-single-below">	
@@ -1476,24 +1478,28 @@
 							<xsl:with-param name="value" select="cerif:Title"/>
 							<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 							<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-							<xsl:with-param name="addRuler" select="'false'"/>
+							<xsl:with-param name="addRulerAbove" select="'false'"/>
 						</xsl:call-template>
 
 						<xsl:call-template name="ruler"/>
 
 						<!-- consider tasks -->
+						<!--
 						<xsl:if test="count(cerif:Task/cerif:Index) > 0">
               <xsl:call-template name="research-work-task">
                 <xsl:with-param name="entity" select="cerif:Task/cerif:Index"/>
 							</xsl:call-template>	
 						</xsl:if>
+						-->
 
 						<!-- consider events -->
+						<!--
 						<xsl:if test="count(cerif:Event/cerif:Index) > 0">
               <xsl:call-template name="research-work-event">
                 <xsl:with-param name="entity" select="cerif:Event/cerif:Index"/>
 							</xsl:call-template>							
 						</xsl:if>
+						-->
 
 						<!-- consider process events -->
 						<xsl:if test="count(cerif:ProcessEvent/cerif:Index) > 0">
@@ -1503,18 +1509,22 @@
 						</xsl:if>
 
 						<!-- consider planned publications -->
+						<!--
 						<xsl:if test="count(cerif:PlannedPublication/cerif:Index) > 0">
               <xsl:call-template name="research-work-planned-publication">
                 <xsl:with-param name="entity" select="cerif:PlannedPublication/cerif:Index"/>
 							</xsl:call-template>	
 						</xsl:if>
+						-->
 
 						<!-- consider physical objects -->
+						<!--
 						<xsl:if test="count(cerif:PhysicalObject/cerif:Index) > 0">
               <xsl:call-template name="research-work-physical-object">
                 <xsl:with-param name="entity" select="cerif:PhysicalObject/cerif:Index"/>
 							</xsl:call-template>	
 						</xsl:if>
+						-->
 
 					</fo:block> 		
 
@@ -1538,7 +1548,7 @@
 			<xsl:with-param name="value" select="$lang.research-work.task"/>
 			<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
 		<!-- loop -->
@@ -1546,12 +1556,19 @@
 
 			<xsl:call-template name="value-single"> 
 				<xsl:with-param name="value" select="cerif:Title"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+				<xsl:with-param name="addRulerBelow" select="'true'"/>
 			</xsl:call-template>	
 
-			<xsl:call-template name="value-single"> 
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.description"/>
 				<xsl:with-param name="value" select="cerif:Description"/>
-				<xsl:with-param name="addRuler" select="'false'"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
 			</xsl:call-template>	
+
+			<xsl:call-template name="vertical-gap">
+			  <xsl:with-param name="margin" select="$margin.top.item"/> 
+			</xsl:call-template>
 
 		</xsl:for-each> 
 
@@ -1569,124 +1586,79 @@
 			<xsl:with-param name="value" select="$lang.research-work.event"/>
 			<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
-		<!-- table-->
-		<fo:table table-layout="fixed" 
-							vertical-align="middle"
-							border-before-style="hidden" 
-							border-after-style="hidden"
-							border-start-style="hidden"
-							border-end-style="hidden">
+		<!-- loop -->
+		<xsl:for-each select="$entity">	
 
-			<!-- define the table columns -->
-			<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
-			<fo:table-column column-width="40.0%"/>
-			<fo:table-column column-width="60.0%"/>
-			<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Title"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+				<xsl:with-param name="addRulerBelow" select="'true'"/>
+			</xsl:call-template>	
 
-			<!-- table body (table header is omitted here) -->
- 		  <fo:table-body>	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.description"/>
+				<xsl:with-param name="value" select="cerif:Description"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-				<xsl:for-each select="$entity">	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.type"/>
+				<xsl:with-param name="value" select="cerif:Type"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-					<fo:table-row>
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.event.project-contribution"/>
+				<xsl:with-param name="value" select="cerif:ProjectContribution"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						<!-- left column -->
-						<fo:table-cell column-number="2"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-start-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.event.purpose"/>
+				<xsl:with-param name="value" select="cerif:Purpose"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Title"/>
-							</xsl:call-template>	
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.event.involved-organisation"/>
+				<xsl:with-param name="value" select="cerif:InvolvedOrganisation"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						</fo:table-cell>
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.event.target-group"/>
+				<xsl:with-param name="value" select="cerif:TargetGroup"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						<!-- right column -->
-						<fo:table-cell column-number="3"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-end-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+			<xsl:call-template name="label-period-below"> 
+				<xsl:with-param name="label" select="$lang.period"/>
+				<xsl:with-param name="startDate" select="cerif:Result/cerif:StartDate"/>
+				<xsl:with-param name="endDate" select="cerif:Result/cerif:EndDate"/>
+				<xsl:with-param name="duration" select="cerif:Result/cerif:Duration"/>
+			</xsl:call-template>
 
-              <!-- this approach is necessary to avoid problems with empty metadata --> 
-							<xsl:choose>
-                <xsl:when test="cerif:Description or cerif:Type or cerif:ProjectContribution or cerif:Purpose or cerif:InvolvedOrganisation or cerif:TargetGroup or cerif:Result/cerif:StartDate or cerif:Result/cerif:EndDate or cerif:Result/cerif:Duration or cerif:Result/cerif:ParticipantNumber or cerif:Result/cerif:City or cerif:Result/cerif:Country">
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.event.participant-number"/>
+				<xsl:with-param name="value" select="cerif:Result/cerif:ParticipantNumber"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-                  <!-- if the space above a label-value pair is reduced generally, there are problems for the first entry --> 
-									<xsl:call-template name="vertical-gap">
-									  <xsl:with-param name="label" select="$margin.top.label-table-start"/>
-									</xsl:call-template>
+			<xsl:call-template name="label-postcode-city-country-below"> 
+				<xsl:with-param name="label" select="$lang.postcode-city-country"/>
+				<xsl:with-param name="city" select="cerif:Result/cerif:City"/>
+				<xsl:with-param name="country" select="cerif:Result/cerif:Country"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>									
 
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.description"/>
-										<xsl:with-param name="value" select="cerif:Description"/>
-									</xsl:call-template>
+			<xsl:call-template name="vertical-gap">
+			  <xsl:with-param name="margin" select="$margin.top.item"/> 
+			</xsl:call-template>
 
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.type"/>
-										<xsl:with-param name="value" select="cerif:Type"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.project-contribution"/>
-										<xsl:with-param name="value" select="cerif:ProjectContribution"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.purpose"/>
-										<xsl:with-param name="value" select="cerif:Purpose"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.involved-organisation"/>
-										<xsl:with-param name="value" select="cerif:InvolvedOrganisation"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.target-group"/>
-										<xsl:with-param name="value" select="cerif:TargetGroup"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-period-below-table"> 
-										<xsl:with-param name="label" select="$lang.period"/>
-										<xsl:with-param name="startDate" select="cerif:Result/cerif:StartDate"/>
-										<xsl:with-param name="endDate" select="cerif:Result/cerif:EndDate"/>
-										<xsl:with-param name="duration" select="cerif:Result/cerif:Duration"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.participant-number"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:ParticipantNumber"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-postcode-city-country-below-table"> 
-										<xsl:with-param name="label" select="$lang.postcode-city-country"/>
-										<xsl:with-param name="city" select="cerif:Result/cerif:City"/>
-										<xsl:with-param name="country" select="cerif:Result/cerif:Country"/>
-									</xsl:call-template>									
-
-	 							</xsl:when>
-  						  <xsl:otherwise>
-									<xsl:call-template name="empty-table-cell-catcher"/>
-						    </xsl:otherwise>
-							</xsl:choose>
-
-						</fo:table-cell>
-
-					</fo:table-row>
-
-				</xsl:for-each> 
-
-			</fo:table-body>
-
-		</fo:table>
+		</xsl:for-each> 
 
   </xsl:template>
 
@@ -1702,120 +1674,173 @@
 			<xsl:with-param name="value" select="$lang.research-work.process-event"/>
 			<xsl:with-param name="fontSize" select="$font.size.standard"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
-		<!-- table-->
-		<fo:table table-layout="fixed" 
-							vertical-align="middle"
-							border-before-style="hidden" 
-							border-after-style="hidden"
-							border-start-style="hidden"
-							border-end-style="hidden">
+		<!-- loop -->
+		<xsl:for-each select="$entity">
 
-			<!-- define the table columns -->
-			<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
-			<fo:table-column column-width="40.0%"/>
-			<fo:table-column column-width="60.0%"/>
-			<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+			<!-- box items -->
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Title"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+				<xsl:with-param name="addRulerBelow" select="'true'"/>
+			</xsl:call-template>	
 
-			<!-- table body (table header is omitted here) -->
- 		  <fo:table-body>	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.description"/>
+				<xsl:with-param name="value" select="cerif:Description"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-				<xsl:for-each select="$entity">	
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.process-event.purpose"/>
+				<xsl:with-param name="value" select="cerif:Purpose"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-					<fo:table-row>
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.process-event.involved-organisation"/>
+				<xsl:with-param name="value" select="cerif:InvolvedOrganisation"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						<!-- left column -->
-						<fo:table-cell column-number="2"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-start-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.process-event.target-group"/>
+				<xsl:with-param name="value" select="cerif:TargetGroup"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
+
+			<!-- frequency table -->
+			<xsl:if test="count(cerif:Frequency/cerif:Index) > 0">
+
+				<fo:table table-layout="fixed" 
+									vertical-align="middle"
+									border-before-style="hidden" 
+									border-after-style="hidden"
+									border-start-style="hidden"
+									border-end-style="hidden">
+
+					<!-- define the table columns -->
+					<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
+					<fo:table-column column-width="25.0%"/>
+					<fo:table-column column-width="25.0%"/>				
+					<fo:table-column column-width="25.0%"/>
+					<fo:table-column column-width="25.0%"/>				
+					<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+
+					<!-- table header -->
+					<fo:table-header>
+
+						<!-- type -->
+						<fo:table-cell column-number="2"  					
+														border-width="{$width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}"
+														border-start-style="hidden"
+														margin-left="{$margin.left.table-cell}">
 
 							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Title"/>
-							</xsl:call-template>	
-
+								<xsl:with-param name="value" select="$lang.type"/>
+								<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+								<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+							</xsl:call-template>
+							
 						</fo:table-cell>
 
-						<!-- right column -->
-						<fo:table-cell column-number="3"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-end-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+						<!-- duration -->
+						<fo:table-cell column-number="3"  					
+														border-width="{$width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}"
+														border-start-style="hidden"
+														margin-left="{$margin.left.table-cell}">
 
-              <!-- this approach is necessary to avoid problems with empty metadata --> 
-							<xsl:choose>
-                <xsl:when test="cerif:Description or cerif:Purpose or cerif:InvolvedOrganisation or cerif:TargetGroup">  
-								
-								<!-- or cerif:Result/cerif:StartDate or cerif:Result/cerif:EndDate or cerif:Result/cerif:Duration or cerif:Result/cerif:ParticipantNumber or cerif:Result/cerif:City or cerif:Result/cerif:Country"-->
-
-                  <!-- if the space above a label-value pair is reduced generally, there are problems for the first entry --> 
-									<xsl:call-template name="vertical-gap">
-									  <xsl:with-param name="label" select="$margin.top.label-table-start"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.description"/>
-										<xsl:with-param name="value" select="cerif:Description"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.process-event.purpose"/>
-										<xsl:with-param name="value" select="cerif:Purpose"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.process-event.involved-organisation"/>
-										<xsl:with-param name="value" select="cerif:InvolvedOrganisation"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.process-event.target-group"/>
-										<xsl:with-param name="value" select="cerif:TargetGroup"/>
-									</xsl:call-template>
-
-
-<!--
-
-									<xsl:call-template name="label-period-below-table"> 
-										<xsl:with-param name="label" select="$lang.period"/>
-										<xsl:with-param name="startDate" select="cerif:Result/cerif:StartDate"/>
-										<xsl:with-param name="endDate" select="cerif:Result/cerif:EndDate"/>
-										<xsl:with-param name="duration" select="cerif:Result/cerif:Duration"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.event.participant-number"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:ParticipantNumber"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-postcode-city-country-below-table"> 
-										<xsl:with-param name="label" select="$lang.postcode-city-country"/>
-										<xsl:with-param name="city" select="cerif:Result/cerif:City"/>
-										<xsl:with-param name="country" select="cerif:Result/cerif:Country"/>
-									</xsl:call-template>									
--->
-
-	 							</xsl:when>
-  						  <xsl:otherwise>
-									<xsl:call-template name="empty-table-cell-catcher"/>
-						    </xsl:otherwise>
-							</xsl:choose>
-
+							<xsl:call-template name="value-single-table"> 
+								<xsl:with-param name="value" select="$lang.process-event.duration"/>
+								<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+								<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+							</xsl:call-template>
+							
 						</fo:table-cell>
 
-					</fo:table-row>
+						<!-- frequency -->
+						<fo:table-cell column-number="3"  					
+														border-width="{$width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}"
+														border-start-style="hidden"
+														margin-left="{$margin.left.table-cell}">
 
-				</xsl:for-each> 
+							<xsl:call-template name="value-single-table"> 
+								<xsl:with-param name="value" select="$lang.frequency"/>
+								<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+								<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+							</xsl:call-template>
+							
+						</fo:table-cell>
 
-			</fo:table-body>
+						<!-- period -->
+						<fo:table-cell column-number="3"  					
+														border-width="{$width.border}"
+														border-color="{$colour.border}"
+														border-style="{$style.border}"
+														border-start-style="hidden"
+														margin-left="{$margin.left.table-cell}">
 
-		</fo:table>
+							<xsl:call-template name="value-single-table"> 
+								<xsl:with-param name="value" select="$lang.period"/>
+								<xsl:with-param name="fontSize" select="$font.size.key-value"/>
+								<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
+							</xsl:call-template>
+							
+						</fo:table-cell>
+
+					</fo:table-header>
+
+					<!-- table body -->
+					<fo:table-body>	
+
+				    <xsl:for-each select="cerif:Frequency/cerif:Index">	
+
+							<fo:table-row>
+
+								<fo:table-cell column-number="2"
+															border-width="{$width.border}"
+															border-color="{$colour.border}"
+															border-style="{$style.border}"
+															border-start-style="hidden"
+															margin-left="{$margin.left.table-cell}">
+
+									<xsl:call-template name="value-single-table"> 
+										<xsl:with-param name="value" select="cerif:Type"/>
+									</xsl:call-template>	
+
+								</fo:table-cell>
+
+							</fo:table-row>
+
+						</xsl:for-each>	
+
+					</fo:table-body>
+
+				</fo:table>
+
+			</xsl:if>
+
+			<!-- date table -->
+			<xsl:if test="$entity">
+				<xsl:for-each select="$entity">	
+
+				</xsl:for-each>	
+			</xsl:if>
+
+
+			<xsl:call-template name="vertical-gap">
+			  <xsl:with-param name="margin" select="$margin.top.item"/> 
+			</xsl:call-template>
+
+		</xsl:for-each>
 
   </xsl:template>
 
@@ -1831,86 +1856,35 @@
 			<xsl:with-param name="value" select="$lang.research-work.planned-publication"/>
 			<xsl:with-param name="fontSize" select="$font.size.standard"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
-		<!-- table-->
-		<fo:table table-layout="fixed" 
-							vertical-align="middle"
-							border-before-style="hidden" 
-							border-after-style="hidden"
-							border-start-style="hidden"
-							border-end-style="hidden">
+		<!-- loop -->
+		<xsl:for-each select="$entity">	
 
-			<!-- define the table columns -->
-			<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
-			<fo:table-column column-width="40.0%"/>
-			<fo:table-column column-width="60.0%"/>
-			<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Title"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+				<xsl:with-param name="addRulerBelow" select="'true'"/>
+			</xsl:call-template>	
 
-			<!-- table body (table header is omitted here) -->
- 		  <fo:table-body>	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.description"/>
+				<xsl:with-param name="value" select="cerif:Description"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>				
+			</xsl:call-template>
 
-				<xsl:for-each select="$entity">	
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.planned-publication.target-audience"/>
+				<xsl:with-param name="value" select="cerif:TargetAudience"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-					<fo:table-row>
+			<xsl:call-template name="vertical-gap">
+			  <xsl:with-param name="margin" select="$margin.top.item"/> 
+			</xsl:call-template>
 
-						<!-- left column -->
-						<fo:table-cell column-number="2"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-start-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
-
-							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Title"/>
-							</xsl:call-template>	
-
-						</fo:table-cell>
-
-						<!-- right column -->
-						<fo:table-cell column-number="3"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-end-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
-
-							<!-- this approach is necessary to avoid problems with empty metadata --> 
-							<xsl:choose>
-                <xsl:when test="cerif:Description or cerif:TargetAudience">
-
-                  <!-- if the space above a label-value pair is reduced generally, there are problems for the first entry --> 
-									<xsl:call-template name="vertical-gap">
-									  <xsl:with-param name="label" select="$margin.top.label-table-start"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.description"/>
-										<xsl:with-param name="value" select="cerif:Description"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.planned-publication.target-audience"/>
-										<xsl:with-param name="value" select="cerif:TargetAudience"/>
-									</xsl:call-template>
-
-	 							</xsl:when>
-  						  <xsl:otherwise>
-									<xsl:call-template name="empty-table-cell-catcher"/>
-						    </xsl:otherwise>
-							</xsl:choose>
-
-						</fo:table-cell>
-
-					</fo:table-row>
-
-				</xsl:for-each> 
-
-			</fo:table-body>
-
-		</fo:table>
+		</xsl:for-each> 
 
   </xsl:template>
 
@@ -1926,106 +1900,59 @@
 			<xsl:with-param name="value" select="$lang.research-work.physical-object"/>
 			<xsl:with-param name="fontSize" select="$font.size.standard"/>
 			<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-			<xsl:with-param name="addRuler" select="'false'"/>
+			<xsl:with-param name="addRulerAbove" select="'false'"/>
 		</xsl:call-template>
 
-		<!-- table-->
-		<fo:table table-layout="fixed" 
-							vertical-align="middle"
-							border-before-style="hidden" 
-							border-after-style="hidden"
-							border-start-style="hidden"
-							border-end-style="hidden">
+		<!-- loop -->
+		<xsl:for-each select="$entity">	
 
-			<!-- define the table columns -->
-			<fo:table-column column-width="proportional-column-width(1)"/>	<!-- this construct is used to align the table in a centred way	-->						
-			<fo:table-column column-width="40.0%"/>
-			<fo:table-column column-width="60.0%"/>
-			<fo:table-column column-width="proportional-column-width(1)"/>  <!-- this is also part of central alignment approach --> 
+			<xsl:call-template name="value-single"> 
+				<xsl:with-param name="value" select="cerif:Title"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+				<xsl:with-param name="addRulerBelow" select="'true'"/>
+			</xsl:call-template>	
 
-			<!-- table body (table header is omitted here) -->
- 		  <fo:table-body>	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.description"/>
+				<xsl:with-param name="value" select="cerif:Description"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-				<xsl:for-each select="$entity">	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.type"/>
+				<xsl:with-param name="value" select="cerif:Type"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-					<fo:table-row>
+			<xsl:call-template name="label-value-comma-list-below"> 
+				<xsl:with-param name="label" select="$lang.physical-object.function"/>
+				<xsl:with-param name="value" select="cerif:Result/cerif:Function"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>				
+			</xsl:call-template>
 
-						<!-- left column -->
-						<fo:table-cell column-number="2"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-start-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.physical-object.accessibility"/>
+				<xsl:with-param name="value" select="cerif:Result/cerif:Accessibility"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-							<xsl:call-template name="value-single-table"> 
-								<xsl:with-param name="value" select="cerif:Title"/>
-							</xsl:call-template>	
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.physical-object.contact-information"/>
+				<xsl:with-param name="value" select="cerif:Result/cerif:ContactInformation"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						</fo:table-cell>
+			<xsl:call-template name="label-value-single-below"> 
+				<xsl:with-param name="label" select="$lang.web-address"/>
+				<xsl:with-param name="value" select="cerif:Result/cerif:WebAddress"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
+			</xsl:call-template>
 
-						<!-- right column -->
-						<fo:table-cell column-number="3"
-													 border-width="{$width.border}"
-													 border-color="{$colour.border}"
-													 border-style="{$style.border}"
-													 border-end-style="hidden"
-													 margin-left="{$margin.left.table-cell}">
+			<xsl:call-template name="vertical-gap">
+			  <xsl:with-param name="margin" select="$margin.top.item"/> 
+			</xsl:call-template>
 
-							<!-- this approach is necessary to avoid problems with empty metadata --> 
-							<xsl:choose>
-                <xsl:when test="cerif:Description or cerif:Type or cerif:Result/cerif:Function or cerif:Result/cerif:ContactInformation or cerif:Result/cerif:Accessibility or cerif:Result/cerif:WebAddress">
-
-                  <!-- if the space above a label-value pair is reduced generally, there are problems for the first entry --> 
-									<xsl:call-template name="vertical-gap">
-									  <xsl:with-param name="label" select="$margin.top.label-table-start"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.description"/>
-										<xsl:with-param name="value" select="cerif:Description"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.type"/>
-										<xsl:with-param name="value" select="cerif:Type"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-comma-list-below-table"> 
-										<xsl:with-param name="label" select="$lang.physical-object.function"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:Function"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.physical-object.accessibility"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:Accessibility"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.physical-object.contact-information"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:ContactInformation"/>
-									</xsl:call-template>
-
-									<xsl:call-template name="label-value-single-below-table"> 
-										<xsl:with-param name="label" select="$lang.web-address"/>
-										<xsl:with-param name="value" select="cerif:Result/cerif:WebAddress"/>
-									</xsl:call-template>
-
-	 							</xsl:when>
-  						  <xsl:otherwise>
-									<xsl:call-template name="empty-table-cell-catcher"/>
-						    </xsl:otherwise>
-							</xsl:choose>
-
-						</fo:table-cell>
-
-					</fo:table-row>
-
-				</xsl:for-each> 
-
-			</fo:table-body>
-
-		</fo:table>
+	  </xsl:for-each> 
 
   </xsl:template>
 
@@ -2054,7 +1981,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>	
 
           <!-- create table or not (simple check based on type and author, this makes sure that left and right some content exists) -->
@@ -2169,7 +2096,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>		
 
 				  <xsl:call-template name="label-author-affilation-comma-list-below">
@@ -2525,7 +2452,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-single-below">	
@@ -2641,7 +2568,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-line-list-below">	
@@ -2687,7 +2614,7 @@
 						<xsl:with-param name="value" select="cerif:ApplicationTitle"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-line-list-below">	
@@ -2883,7 +2810,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-single-below">
@@ -2934,7 +2861,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>									
 
 					<xsl:call-template name="label-value-single-below">
@@ -3048,7 +2975,7 @@
 					<xsl:with-param name="value" select="cerif:Title"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>	
 
 				<xsl:call-template name="label-value-single-below">
@@ -3441,7 +3368,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>
 
 					<xsl:call-template name="label-value-line-list-below">
@@ -3502,7 +3429,7 @@
 					<xsl:with-param name="value" select="cerif:Name"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>	
 
 				<xsl:call-template name="label-value-single-below">
@@ -3592,7 +3519,7 @@
 					<xsl:with-param name="value" select="cerif:Title"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>	
 
 				<xsl:call-template name="label-value-single-below">
@@ -3648,7 +3575,7 @@
 					<xsl:with-param name="value" select="cerif:Title"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>	
 
 				<xsl:call-template name="label-value-single-below">
@@ -3818,7 +3745,7 @@
 					<xsl:with-param name="value" select="cerif:Title"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>	
 
 				<xsl:call-template name="label-value-single-below">
@@ -3987,7 +3914,7 @@
 					<xsl:with-param name="value" select="cerif:KeyMessage"/>
 					<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 					<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-					<xsl:with-param name="addRuler" select="'false'"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
 				</xsl:call-template>
 
 			<xsl:call-template name="title">
@@ -4083,7 +4010,7 @@
 				<xsl:call-template name="label-value-single-below">
 				<xsl:with-param name="label" select="$lang.ethic.furtherdocuments"/>
 				<xsl:with-param name="value" select="cerif:FurtherDocuments"/>
-				<xsl:with-param name="addRuler" select="'false'"/>
+				<xsl:with-param name="addRulerAbove" select="'false'"/>
 			</xsl:call-template>
 
 	  </fo:block> 		
@@ -4119,7 +4046,7 @@
 						<xsl:with-param name="value" select="cerif:KeyMessage"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>	
 
 					<xsl:call-template name="label-value-single-below">
@@ -4560,7 +4487,7 @@
 						<xsl:with-param name="info" select="cerif:CooperationType"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>
 
 					<xsl:call-template name="label-value-single-below"> 
@@ -4619,7 +4546,7 @@
 						<xsl:with-param name="info" select="cerif:Classification/cerif:BusinessSize"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>
 
 					<xsl:call-template name="label-value-single-below"> 
@@ -4714,11 +4641,12 @@
 	  <xsl:param name="value"/>
 		<xsl:param name="fontSize" select="$font.size.standard"/>
 		<xsl:param name="fontWeight" select="$font.weight.value"/>
-    <xsl:param name="addRuler" select="'true'"/>
+    <xsl:param name="addRulerAbove" select="'true'"/>
+		<xsl:param name="addRulerBelow" select="'false'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -4732,6 +4660,10 @@
 				</fo:inline>
 
 			</fo:block>
+
+			<xsl:if test="$addRulerBelow = 'true'">
+				<xsl:call-template name="ruler"/>
+			</xsl:if>
 
 	  </xsl:if>
 
@@ -4747,20 +4679,31 @@
 		<xsl:param name="fontWeight" select="$font.weight.value"/>
     <xsl:param name="alignment" select="'left'"/>
 
-		<fo:block text-align="{$alignment}" 
-							font-size="{$fontSize}"
-							font-weight="{$fontWeight}"
-							margin-top="{$margin.top.main}"
-							padding-before="{$padding.before.border}"
-							padding-after="{$padding.after.border}"
-							padding-start="{$padding.start.border}"
-							padding-end="{$padding.end.border}"
-							margin-left="{$margin.left.border}"
-							margin-right="{$margin.right.border}">
+		<xsl:choose>
+			<xsl:when test="$value">
 
-			<xsl:value-of select="$value"/>
-			
-		</fo:block>
+				<fo:block text-align="{$alignment}" 
+									font-size="{$fontSize}"
+									font-weight="{$fontWeight}"
+									margin-top="{$margin.top.main}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}">
+
+					<xsl:value-of select="$value"/>
+					
+				</fo:block>
+
+			</xsl:when>
+			<xsl:otherwise>
+
+				<xsl:call-template name="empty-table-cell-catcher"/>
+
+			</xsl:otherwise>
+		</xsl:choose>
 
 	</xsl:template>
 
@@ -4773,11 +4716,11 @@
 		<xsl:param name="info"/>
 		<xsl:param name="fontSize" select="$font.size.standard"/>
 		<xsl:param name="fontWeight" select="$font.weight.value"/>
-    <xsl:param name="addRuler" select="'true'"/>
+    <xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -4846,23 +4789,34 @@
 		<xsl:param name="fontWeight" select="$font.weight.value"/>
 		<xsl:param name="alignment" select="'left'"/>
 
-		<fo:block text-align="{$alignment}" 
-							font-size="{$fontSize}"
-							font-weight="{$fontWeight}"
-							margin-top="{$margin.top.main}"
-							padding-before="{$padding.before.border}"
-							padding-after="{$padding.after.border}"
-							padding-start="{$padding.start.border}"
-							padding-end="{$padding.end.border}"
-							margin-left="{$margin.left.border}"
-							margin-right="{$margin.right.border}">
+		<xsl:choose>
+			<xsl:when test="$value">
 
-			<xsl:for-each select="$value">
-				<xsl:value-of select="current()"/>
-				<xsl:if test="position() != last()">, </xsl:if> 
-			</xsl:for-each>
+				<fo:block text-align="{$alignment}" 
+									font-size="{$fontSize}"
+									font-weight="{$fontWeight}"
+									margin-top="{$margin.top.main}"
+									padding-before="{$padding.before.border}"
+									padding-after="{$padding.after.border}"
+									padding-start="{$padding.start.border}"
+									padding-end="{$padding.end.border}"
+									margin-left="{$margin.left.border}"
+									margin-right="{$margin.right.border}">
 
-		</fo:block>
+					<xsl:for-each select="$value">
+						<xsl:value-of select="current()"/>
+						<xsl:if test="position() != last()">, </xsl:if> 
+					</xsl:for-each>
+
+				</fo:block>
+
+			</xsl:when>
+			<xsl:otherwise>
+
+				<xsl:call-template name="empty-table-cell-catcher"/>
+
+			</xsl:otherwise>
+		</xsl:choose>
 
 	</xsl:template>
 
@@ -5177,11 +5131,11 @@
 	<xsl:template name="label-value-single">
 	  <xsl:param name="label"/>
 	  <xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5214,14 +5168,14 @@
 		<xsl:param name="label"/>
 		<xsl:param name="value"/>
 		<xsl:param name="checkValue" select="'true'"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 		<xsl:choose>
 			<xsl:when test="$checkValue = 'true'">
 
 				<xsl:if test="$value">
 
-					<xsl:if test="$addRuler = 'true'">
+					<xsl:if test="$addRulerAbove = 'true'">
 						<xsl:call-template name="ruler"/>
 					</xsl:if>
 
@@ -5256,7 +5210,7 @@
 			<xsl:otherwise>
 
 			<!-- do not check if a value exists, simply print everything -->
-				<xsl:if test="$addRuler = 'true'">
+				<xsl:if test="$addRulerAbove = 'true'">
 					<xsl:call-template name="ruler"/>
 				</xsl:if>
 
@@ -5293,11 +5247,11 @@
 		<xsl:param name="label"/>
 		<xsl:param name="value"/>
     <xsl:param name="alignment" select="'left'"/>
-		<xsl:param name="addRuler" select="'false'"/>
+		<xsl:param name="addRulerAbove" select="'false'"/>
 
     <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5345,11 +5299,11 @@
 	  <xsl:param name="startDate"/>
 		<xsl:param name="endDate"/>
 		<xsl:param name="duration"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$startDate and $endDate">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5403,64 +5357,55 @@
 	</xsl:template>
 
 <!--==============================================================-->	
-<!-- label: period (below label) in a table cell (duration is assumed to be in hours) -->
+<!-- label: label: period (below label) (duration is assumed to be in hours) -->
 <!--==============================================================-->
 
-	<xsl:template name="label-period-below-table">
+  <xsl:template name="label-period-below">
 		<xsl:param name="label"/>
 	  <xsl:param name="startDate"/>
 		<xsl:param name="endDate"/>
 		<xsl:param name="duration"/>
-    <xsl:param name="alignment" select="'left'"/>
-		<xsl:param name="addRuler" select="'false'"/>
+		<xsl:param name="addRulerAbove" select="'false'"/>
 
-    <xsl:if test="$startDate and $endDate">
+		<xsl:if test="$startDate and $endDate">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
-			<fo:block text-align="{$alignment}" 
-								font-size="{$font.size.label-below}"
-								font-weight="{$font.weight.label}"
-								color="{$colour.label}"
-								margin-top="{$margin.top.label-table}"
-								padding-before="{$padding.before.border}"
-								padding-after="{$padding.after.border}"
-								padding-start="{$padding.start.border}"
-								padding-end="{$padding.end.border}"
-								margin-left="{$margin.left.border}"
-								margin-right="{$margin.right.border}">
+      <!-- label -->
+			<fo:block margin-left="{$margin.left.border}"
+								font-size="{$font.size.label-below}" 
+								margin-top="{$margin.top.main}">
 
-				<xsl:value-of select="$label"/>
+				<fo:inline font-weight="{$font.weight.label}" 
+										text-align="{$text.alignment.label}"
+										color="{$colour.label}">
+					<xsl:value-of select="$label"/>
+				</fo:inline>
 
-			</fo:block> 
+			</fo:block>
 
-			<fo:block text-align="{$alignment}" 
-								font-size="{$font.size.standard}"
-								font-weight="{$font.weight.value}" 
-								margin-top="{$margin.top.label-below-table}"
-								padding-before="{$padding.before.border}"
-								padding-after="{$padding.after.border}"
-								padding-start="{$padding.start.border}"
-								padding-end="{$padding.end.border}"
-								margin-left="{$margin.left.border}"
-								margin-right="{$margin.right.border}">
+      <!-- value below -->
+			<fo:block margin-left="{$margin.left.border}"
+								font-size="{$font.size.standard}" 
+								margin-top="{$margin.top.label-below}">
 
-				<xsl:choose>
-					<xsl:when test="$startDate = $endDate">
-						<xsl:value-of select="$startDate"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$startDate"/>
-						<xsl:text> - </xsl:text>	
-						<xsl:value-of select="$endDate"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<fo:inline font-weight="{$font.weight.value}" 
+									text-align="{$text.alignment.value}">
 
-	      <xsl:if test="$duration">
-					<fo:inline font-weight="{$font.weight.value}" 
-										 text-align="{$text.alignment.value}">
+					<xsl:choose>
+						<xsl:when test="$startDate = $endDate">
+							<xsl:value-of select="$startDate"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$startDate"/>
+							<xsl:text> - </xsl:text>	
+							<xsl:value-of select="$endDate"/>
+						</xsl:otherwise>
+					</xsl:choose>
+
+	      	<xsl:if test="$duration">
 
 						<xsl:text> (</xsl:text>										
 						<xsl:value-of select="$duration"/>
@@ -5476,15 +5421,16 @@
 							</xsl:choose>
 
 						<xsl:text>)</xsl:text>										 
-					</fo:inline>
 
-        </xsl:if>				
+          </xsl:if>				
+
+				</fo:inline>
 
 			</fo:block>
 
-    </xsl:if> 
-    
-	</xsl:template>
+		</xsl:if>	
+		 
+  </xsl:template>
 
 <!--==============================================================-->	
 <!-- label: amount and currency -->
@@ -5494,11 +5440,11 @@
 		<xsl:param name="label"/>
 	  <xsl:param name="amount"/>
 	  <xsl:param name="currency" select="'Euro'"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$amount"> <!--  use only amount for check, this seems the most probable input -->
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5543,11 +5489,11 @@
 	<xsl:template name="label-value-comma-list">
 		<xsl:param name="label"/>
 	  <xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5584,11 +5530,11 @@
 	<xsl:template name="label-value-comma-list-below">
 		<xsl:param name="label"/>
 	  <xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5633,11 +5579,11 @@
 		<xsl:param name="label"/>
 		<xsl:param name="value"/>
     <xsl:param name="alignment" select="'left'"/>
-		<xsl:param name="addRuler" select="'false'"/>
+		<xsl:param name="addRulerAbove" select="'false'"/>
 
 		<xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5686,11 +5632,11 @@
 	<xsl:template name="label-value-line-list-below">
 		<xsl:param name="label"/>
 	  <xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 		<xsl:if test="$value"> <!-- do only if there are values -->
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5745,11 +5691,11 @@
 	  <xsl:param name="postCode"/>
 	  <xsl:param name="city"/>
 		<xsl:param name="country"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5766,7 +5712,7 @@
 
 			</fo:block>
 
-        <!-- value below -->
+      <!-- value below -->
 			<fo:block margin-left="{$margin.left.border}"
 								font-size="{$font.size.standard}" 
 								margin-top="{$margin.top.label-below}">
@@ -5803,11 +5749,11 @@
 	  <xsl:param name="city"/>
 		<xsl:param name="country"/>
     <xsl:param name="alignment" select="'left'"/>
-		<xsl:param name="addRuler" select="'false'"/>
+		<xsl:param name="addRulerAbove" select="'false'"/>
 
     <xsl:if test="$city"> <!--  use only city for check, this seems the most probable input -->
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5863,11 +5809,11 @@
 	<xsl:template name="label-author-affilation-comma-list">
 		<xsl:param name="label"/>
 	  <xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 	  <xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5915,11 +5861,11 @@
 	<xsl:template name="label-author-affilation-comma-list-below">
 		<xsl:param name="label"/>
 		<xsl:param name="value"/>
-		<xsl:param name="addRuler" select="'true'"/>
+		<xsl:param name="addRulerAbove" select="'true'"/>
 
 		<xsl:if test="$value">
 
-			<xsl:if test="$addRuler = 'true'">
+			<xsl:if test="$addRulerAbove = 'true'">
 				<xsl:call-template name="ruler"/>
 			</xsl:if>
 
@@ -5995,7 +5941,7 @@
 						<xsl:with-param name="value" select="cerif:Title"/>
 						<xsl:with-param name="fontSize" select="$font.size.key-value"/>
 						<xsl:with-param name="fontWeight" select="$font.weight.key-value"/>
-						<xsl:with-param name="addRuler" select="'false'"/>
+						<xsl:with-param name="addRulerAbove" select="'false'"/>
 					</xsl:call-template>
  
         <!-- description -->

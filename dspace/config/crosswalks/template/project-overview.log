@@ -189,13 +189,47 @@ section 3.1.3
     - NOTE: While working on these new templates it became apparent that when no label-value pair is availabe there is trouble. The initial approach was to catch this with an if clause for the value in "label-value-single-below-table". However an error '"fo:table-cell" is missing child elements. Required content model: marker* (%block;)' appeared. Using a choose construct in "label-value-single-below-table" with an empty ruler in case when there was no label-value pair worked fine, but had the disadvantage of an empty line each time this situation occurred. Accordingly, a global test is made outside these new templates, using the general template "empty-table-cell-catcher".
   - add all parts except the two inline groups for process events
   
-  2023-06-15
-  section 4
+2023-06-15
+section 4
   - addapt ruler for headlines of all sectuions -> add "rule = false" to all value-single templates refering to a title
   - check .lang Expressions in complete chapter 4.
-  - Update shape Table 4.2.3 without outer boarders - add spaccing bevore table
-  - Update shape tables 4.2.6 without outer boarders - add spaccing bevore table
-  - Update shape table 4.3.2 without outer boarders - add spaccing bevore table
-  - Update shape table 4.3.3 without outer boarders - add spaccing bevore table
+  - Update shape Table 4.2.3 without outer borders - add spaccing bevore table
+  - Update shape tables 4.2.6 without outer borders - add spaccing bevore table
+  - Update shape table 4.3.2 without outer borders - add spaccing bevore table
+  - Update shape table 4.3.3 without outer borders - add spaccing bevore table
 
- 
+2023-06-20
+section 3.1.4
+  - adjust publication for Doris' comments as much as possible
+section 3.1.3
+  - start adjusting to Birge's comments, i.e. deconstruct the tables in favour of a block approach  
+
+2023-06-20
+general
+  - rename template input "addRuler" to "addRulerAbove"
+  - add option "addRulerBelow" (default false) to the template "value-single" to be used in section 3.1.3
+  - integrate the template "empty-table-cell-catcher" into the templates "value-single-table" and "value-comma-list-table" to make them more robust
+section 3.1.3
+  - handle tasks
+  - handle events 
+    - create new template "label-period-below"
+    - remove unused template "label-period-below-table" 
+  - handle planned publications
+  - handle physical objects
+  - start process events    
+
+NOTE: table formattings
+
+OUTSIDE A BLOCK (milestones, overview tables)
+<fo:table-cell column-number="1" 
+								border-width="{$width.border}"
+								border-color="{$colour.border}"
+								border-style="{$style.border}">
+
+INSIDE A BLOCK (e.g. applications, spinoff)
+<fo:table-cell column-number="1"  					
+                border-width="{$width.border}"
+                border-color="{$colour.border}"
+                border-style="{$style.border}"
+                border-start-style="hidden"
+                margin-left="{$margin.left.table-cell}">

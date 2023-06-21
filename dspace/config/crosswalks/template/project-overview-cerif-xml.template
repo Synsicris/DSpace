@@ -66,10 +66,12 @@
 				<!-- attributes from the reflection inline-group-->
 				<Reflection>
 					@group.dc-type.start@
-					<Index>
-						<AspectType>@dc.type@</AspectType>
-						<EthicDescription>@synsicris.description.aspect@</EthicDescription>
-					</Index>
+						<Index>
+
+							<AspectType>@dc.type@</AspectType>
+							<EthicDescription>@synsicris.description.aspect@</EthicDescription>
+
+						</Index>
 					@group.dc-type.end@
 				</Reflection>
 
@@ -256,23 +258,31 @@
 								<!-- attributes from the frequency inline-group-->
 								<Frequency>
 									@group.dc-type.start@
-										<Type>@virtual.vocabulary_i18n.dc-type@</Type>
-										<Duration>@synsicris.duration@</Duration>
-										<Frequency>@synsicris.type.frequency@</Frequency>
-										<Period>@synsicris.type.period@</Period>
+									  <Index> 
+
+											<Type>@virtual.vocabulary_i18n.dc-type@</Type>
+											<Duration>@synsicris.duration@</Duration>
+											<Frequency>@synsicris.type.frequency@</Frequency>
+											<Period>@synsicris.type.period@</Period>
+
+										</Index>
 									@group.dc-type.end@
 								</Frequency>
 
 								<!-- attributes from the date inline-group-->
 								<Date>
 									@group.synsicris-type.start@
-										<Title>@synsicris.title.event@</Title>
-										<StartDate>@oairecerif.event.startDate@</StartDate>
-										<EndDate>@oairecerif.event.endDate@</EndDate>
-										<Duration>@synsicris.duration@</Duration>
-										<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-										<City>@oairecerif.event.place@</City>
-										<Country>@oairecerif.event.country@</Country>
+									  <Index>
+
+											<Title>@synsicris.title.event@</Title>
+											<StartDate>@oairecerif.event.startDate@</StartDate>
+											<EndDate>@oairecerif.event.endDate@</EndDate>
+											<Duration>@synsicris.duration@</Duration>
+											<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+											<City>@oairecerif.event.place@</City>
+											<Country>@oairecerif.event.country@</Country>
+
+										</Index>
 									@group.synsicris-type.end@
 								</Date>
 
@@ -476,8 +486,10 @@
 				<Contributor>
 				  @group.dc-contributor-author.start@
 						<Index> 
+
 							<Author>@dc.contributor.author@</Author>
 							<Affiliation>@oairecerif.author.affiliation@</Affiliation>
+
 						</Index>
 					@group.dc-contributor-author.end@
 				</Contributor>
@@ -570,27 +582,31 @@
 				<!-- attributes from the frequency inline-group-->
 				<Frequency>
 					@group.dc-type.start@
+						<Index>
 
-						<Type>@virtual.vocabulary_i18n.dc-type@</Type>
-						<Duration>@synsicris.duration@</Duration>
-						<Frequency>@synsicris.type.frequency@</Frequency>
-						<Period>@synsicris.type.period@</Period>
+							<Type>@virtual.vocabulary_i18n.dc-type@</Type>
+							<Duration>@synsicris.duration@</Duration>
+							<Frequency>@synsicris.type.frequency@</Frequency>
+							<Period>@synsicris.type.period@</Period>
 
+						</Index>
 					@group.dc-type.end@
 				</Frequency>
 
 				<!-- attributes from the date inline-group-->
 				<Date>
 					@group.synsicris-type.start@
+						<Index>
 
-						<Title>@synsicris.title.event@</Title> 
-						<StartDate>@oairecerif.event.startDate@</StartDate>
-						<EndDate>@oairecerif.event.endDate@</EndDate>
-						<Duration>@synsicris.duration@</Duration>
-						<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-						<City>@oairecerif.event.place@</City>
-						<Country>@oairecerif.event.country@</Country>
+							<Title>@synsicris.title.event@</Title> 
+							<StartDate>@oairecerif.event.startDate@</StartDate>
+							<EndDate>@oairecerif.event.endDate@</EndDate>
+							<Duration>@synsicris.duration@</Duration>
+							<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+							<City>@oairecerif.event.place@</City>
+							<Country>@oairecerif.event.country@</Country>
 
+						</Index>
 					@group.synsicris-type.end@
 				</Date>
 
@@ -614,7 +630,7 @@
 				<Title>@dc.title@</Title>
 				<Author>@dc.contributor.author@</Author>
 				<Editor>@dc.contributor.editor@</Editor>
-				<Date>@virtual.vocabulary_i18n.dc-date-issued@</Date>
+				<Date>@dc.date.issued@</Date>
 				<Publisher>@dc.publisher@</Publisher>
 				<IsPartOf>@dc.relation.publications@</IsPartOf>
 				<Journal>@dc.relation.ispartof@</Journal>
@@ -665,10 +681,12 @@
 				<SuccessQuantification>
 					@group.synsicris-date-referenceyear.start@
 						<Index>
+
 							<ReferenceYear>@synsicris.date.referenceyear@</ReferenceYear>
 							<Quantity>@synsicris.quantity@</Quantity>
 							<RegionalOutreach>@synsicris.coverage.regional@</RegionalOutreach>
 							<SuccessDescription>@synsicris.description.description@</SuccessDescription>
+
 						</Index>
 					@group.synsicris-date-referenceyear.end@
 				</SuccessQuantification>
@@ -732,24 +750,28 @@
 				<!-- attributes from the inline-group synsicris.date.funding -->
 				<Funding>
 					@group.synsicris-date-funding.start@
-					<Index>
-						<Year>@synsicris.date.funding@</Year>
-						<Title>@synsicris.title.funding@</Title>
-						<Amount>@synsicris.amount.funding@</Amount>
-						<Currency>@synsicris.amount.currencyfunding@</Currency>
-						<Description>@synsicris.description.nonfinancalsupport@</Description>
-					</Index>
+						<Index>
+
+							<Year>@synsicris.date.funding@</Year>
+							<Title>@synsicris.title.funding@</Title>
+							<Amount>@synsicris.amount.funding@</Amount>
+							<Currency>@synsicris.amount.currencyfunding@</Currency>
+							<Description>@synsicris.description.nonfinancalsupport@</Description>
+
+						</Index>
 					@group.synsicris-date-funding.end@
 				</Funding>	
 
 				<!-- attributes from the inline-group synsicris.date.performance -->
 				<Performance>
 					@group.synsicris-date-performance.start@
-					<Index>
-						<Year>@synsicris.date.performance@</Year>
-						<Amount>@synsicris.amount.performance@</Amount>
-						<Currency>@synsicris.amount.currencyperformance@</Currency>
-					</Index>
+						<Index>
+
+							<Year>@synsicris.date.performance@</Year>
+							<Amount>@synsicris.amount.performance@</Amount>
+							<Currency>@synsicris.amount.currencyperformance@</Currency>
+
+						</Index>
 					@group.synsicris-date-performance.end@
 				</Performance> 
 
@@ -908,8 +930,10 @@
 				<Contributor>
 					@group.dc-contributor-author.start@
 					  <Index>
+
 							<Author>@dc.contributor.author@</Author>
 							<Affiliation>@oairecerif.author.affiliation@</Affiliation>
+
             </Index>
 					@group.dc-contributor-author.end@
 				</Contributor>
@@ -1135,27 +1159,31 @@
 							<!-- attributes from the frequency inline-group-->
 							<Frequency>
 								@group.dc-type.start@
+									<Index>
 
-									<Type>@virtual.vocabulary_i18n.dc-type@</Type>
-									<Duration>@synsicris.duration@</Duration>
-									<Frequency>@synsicris.type.frequency@</Frequency>
-									<Period>@synsicris.type.period@</Period>
+										<Type>@virtual.vocabulary_i18n.dc-type@</Type>
+										<Duration>@synsicris.duration@</Duration>
+										<Frequency>@synsicris.type.frequency@</Frequency>
+										<Period>@synsicris.type.period@</Period>
 
+									</Index>
 								@group.dc-type.end@
 							</Frequency>
 
 							<!-- attributes from the date inline-group-->
 							<Date>
 								@group.synsicris-type.start@
+									<Index>
 
-									<Title>@synsicris.title.event@</Title>
-									<StartDate>@oairecerif.event.startDate@</StartDate>
-									<EndDate>@oairecerif.event.endDate@</EndDate>
-									<Duration>@synsicris.duration@</Duration>
-									<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
-									<City>@oairecerif.event.place@</City>
-									<Country>@oairecerif.event.country@</Country>
+										<Title>@synsicris.title.event@</Title>
+										<StartDate>@oairecerif.event.startDate@</StartDate>
+										<EndDate>@oairecerif.event.endDate@</EndDate>
+										<Duration>@synsicris.duration@</Duration>
+										<ParticipantNumber>@synsicris.participantnumber@</ParticipantNumber>
+										<City>@oairecerif.event.place@</City>
+										<Country>@oairecerif.event.country@</Country>
 
+									</Index>
 								@group.synsicris-type.end@
 							</Date>
 							
@@ -1205,11 +1233,13 @@
 				<!-- attributes from dc.type inline group -->
 				<Type>
 					@group.dc-type.start@
-					<Index>
-						<CoreElement>@dc.type@</CoreElement>
-						<Intensity>@synsicris.type.intensity@</Intensity>
-						<Description>@synsicris.description.neg@</Description>
-					</Index>
+						<Index>
+
+							<CoreElement>@dc.type@</CoreElement>
+							<Intensity>@synsicris.type.intensity@</Intensity>
+							<Description>@synsicris.description.neg@</Description>
+							
+						</Index>
 					@group.dc-type.end@
 				</Type>
 

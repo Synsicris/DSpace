@@ -162,6 +162,9 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
         Map<String, Map<String, String>> params = getLoginParams();
         String entity = "grant_type=client_credentials";
         String json = liveImportClient.executeHttpPostRequest(this.authUrl, params, entity);
+        if (StringUtils.isBlank(json)) {
+            return json;
+        }
         ObjectMapper mapper = new ObjectMapper(new JsonFactory());
         JsonNode rootNode = mapper.readTree(json);
         JsonNode accessTokenNode = rootNode.get("access_token");
@@ -262,14 +265,12 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
     }
 
     @Override
-    public Collection<ImportRecord> findMatchingRecords(Item item)
-            throws MetadataSourceException {
+    public Collection<ImportRecord> findMatchingRecords(Item item) throws MetadataSourceException {
         return null;
     }
 
     @Override
-    public Collection<ImportRecord> findMatchingRecords(Query query)
-            throws MetadataSourceException {
+    public Collection<ImportRecord> findMatchingRecords(Query query) throws MetadataSourceException {
         return null;
     }
 
@@ -393,7 +394,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
 
     private Integer countDocument(String bearer, String query) {
         if (StringUtils.isBlank(bearer)) {
-            return null;
+            return 0;
         }
         try {
             Map<String, Map<String, String>> params = new HashMap<String, Map<String,String>>();
@@ -406,6 +407,9 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             uriBuilder.addParameter("q", query);
 
             String response = liveImportClient.executeHttpGetRequest(1000, uriBuilder.toString(), params);
+            if (StringUtils.isBlank(response)) {
+                return 0;
+            }
 
             SAXBuilder saxBuilder = new SAXBuilder();
             Document document = saxBuilder.build(new StringReader(response));
@@ -420,7 +424,7 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             return Integer.parseInt(totalRes);
         } catch (JDOMException | IOException | URISyntaxException | JaxenException e) {
             log.error(e.getMessage(), e);
-            return null;
+            return 0;
         }
     }
 
@@ -443,6 +447,9 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             uriBuilder.addParameter("q", query);
 
             String response = liveImportClient.executeHttpGetRequest(1000, uriBuilder.toString(), params);
+            if (StringUtils.isBlank(response)) {
+                return results;
+            }
 
             SAXBuilder saxBuilder = new SAXBuilder();
             Document document = saxBuilder.build(new StringReader(response));
@@ -483,6 +490,9 @@ public class EpoImportMetadataSourceServiceImpl extends AbstractImportMetadataSo
             String url = this.url.replace("$(doctype)", docType).replace("$(id)", id);
 
             String response = liveImportClient.executeHttpGetRequest(1000, url, params);
+            if (StringUtils.isBlank(response)) {
+                return results;
+            }
             List<Element> elements = splitToRecords(response);
             for (Element element : elements) {
                 results.add(transformSourceRecords(element));

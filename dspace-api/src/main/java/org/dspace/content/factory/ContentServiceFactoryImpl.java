@@ -29,7 +29,6 @@ import org.dspace.content.service.MetadataValueService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.SiteService;
-import org.dspace.content.service.SupervisedItemService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.eperson.service.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +68,6 @@ public class ContentServiceFactoryImpl extends ContentServiceFactory {
     private WorkspaceItemService workspaceItemService;
     @Autowired(required = true)
     private InstallItemService installItemService;
-    @Autowired(required = true)
-    private SupervisedItemService supervisedItemService;
     @Autowired(required = true)
     private SiteService siteService;
     @Autowired(required = true)
@@ -154,14 +151,10 @@ public class ContentServiceFactoryImpl extends ContentServiceFactory {
     }
 
     @Override
-    public SupervisedItemService getSupervisedItemService() {
-        return supervisedItemService;
-    }
-
-    @Override
     public SiteService getSiteService() {
         return siteService;
     }
+
     @Override
     public SubscribeService getSubscribeService() {
         return subscribeService ;

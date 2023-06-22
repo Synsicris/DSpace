@@ -182,7 +182,6 @@ public class Bundle extends DSpaceObject implements DSpaceObjectLegacySupport {
     /**
      * Set the item this bundle appears in
      *
-     * @return array of <code>Item</code> s this bundle appears in
      */
     void addItem(Item item) {
         getItems().add(item);

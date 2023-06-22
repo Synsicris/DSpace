@@ -147,52 +147,41 @@ public class CrisConsumer implements Consumer {
                 continue;
             }
 
+            String entityType = choiceAuthorityService.getLinkedEntityType(fieldKey);
+            if (entityType == null) {
+                log.debug(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+                continue;
+            }
+
             String crisSourceId = generateCrisSourceId(metadata);
 
-            String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
-            if (ArrayUtils.isEmpty(entityTypes)) {
-                log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+            Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
+            boolean relatedItemAlreadyPresent = relatedItem != null;
 
-                Item relatedItem = itemSearchService.search(context, crisSourceId, item);
-
-                if (relatedItem != null) {
-                    metadata.setAuthority(relatedItem.getID().toString());
-                    metadata.setConfidence(Choices.CF_ACCEPTED);
-                }
-
+            if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
+                log.debug(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
+                metadata.setConfidence(Choices.CF_UNSET);
                 continue;
 
             }
 
-            for (String entityType : entityTypes) {
-
-                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
-                boolean relatedItemAlreadyPresent = relatedItem != null;
-
-                if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
-                    log.warn(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
-                    metadata.setConfidence(Choices.CF_UNSET);
+            if (!relatedItemAlreadyPresent) {
+                Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
+                if (collection == null) {
+                    log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
                     continue;
                 }
+                collection = context.reloadEntity(collection);
 
-                if (!relatedItemAlreadyPresent) {
-                    Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
-                    if (collection == null) {
-                        log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
-                        continue;
-                    }
-                    collection = context.reloadEntity(collection);
+                log.debug(ITEM_CREATION_MSG, entityType, item.getID());
+                relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
 
-                    log.debug(ITEM_CREATION_MSG, entityType, item.getID());
-                    relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
-
-                }
-
-                fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
-
-                metadata.setAuthority(relatedItem.getID().toString());
-                metadata.setConfidence(Choices.CF_ACCEPTED);
             }
+
+            fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
+
+            choiceAuthorityService.setReferenceWithAuthority(metadata, relatedItem);
+
         }
 
     }
@@ -231,16 +220,22 @@ public class CrisConsumer implements Consumer {
 
     private boolean isMetadataWithEmptyAuthoritySkippable(MetadataValue metadata) {
 
-        if (configurationService.getBooleanProperty("cris-consumer.skip-empty-authority")) {
-            return true;
-        }
+        boolean skipEmptyAuthority = configurationService.getBooleanProperty("cris-consumer.skip-empty-authority");
 
-        String[] skippableMetadataFields = getSkippableMetadataFieldsWithEmptyAuthority();
-        return ArrayUtils.contains(skippableMetadataFields, metadata.getMetadataField().toString('.'));
+        if (isMetadataFieldConfiguredToReverseSkipEmptyAuthorityCondition(metadata)) {
+            return !skipEmptyAuthority;
+        } else {
+            return skipEmptyAuthority;
+        }
 
     }
 
-    private String[] getSkippableMetadataFieldsWithEmptyAuthority() {
+    public boolean isMetadataFieldConfiguredToReverseSkipEmptyAuthorityCondition(MetadataValue metadata) {
+        String metadataField = metadata.getMetadataField().toString('.');
+        return ArrayUtils.contains(getSkipEmptyAuthorityMetadataFields(), metadataField);
+    }
+
+    private String[] getSkipEmptyAuthorityMetadataFields() {
         return configurationService.getArrayProperty("cris-consumer.skip-empty-authority.metadata", new String[] {});
     }
 

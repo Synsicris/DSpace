@@ -15,7 +15,8 @@ public class AuthorityNameAuthorityFilter extends CustomAuthorityFilter {
 
     private List<String> supportedAuthorities;
 
-    public boolean appliesTo(LinkableEntityAuthority linkableEntityAuthority, String entityType) {
+    @Override
+    public boolean appliesTo(LinkableEntityAuthority linkableEntityAuthority) {
         return CollectionUtils.isEmpty(supportedAuthorities)
             || supportedAuthorities.contains(linkableEntityAuthority.getPluginInstanceName());
     }

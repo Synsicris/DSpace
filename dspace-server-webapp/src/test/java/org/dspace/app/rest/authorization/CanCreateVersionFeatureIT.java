@@ -28,6 +28,7 @@ import org.dspace.builder.ItemBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
+import org.dspace.discovery.SearchServiceException;
 import org.dspace.eperson.EPerson;
 import org.dspace.project.util.ProjectConstants;
 import org.dspace.services.ConfigurationService;
@@ -76,7 +77,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithoutItemRest() throws SQLException {
+    public void testWithoutItemRest() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", true);
 
@@ -95,7 +96,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithVersioningDisabled() throws SQLException {
+    public void testWithVersioningDisabled() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", false);
 
@@ -116,7 +117,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithoutParentProject() throws SQLException {
+    public void testWithoutParentProject() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", true);
 
@@ -137,7 +138,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithoutProjectAdminGroup() throws SQLException {
+    public void testWithoutProjectAdminGroup() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", true);
 
@@ -157,7 +158,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithNoProjectAdmin() throws SQLException {
+    public void testWithNoProjectAdmin() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", true);
 
@@ -178,7 +179,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testWithVersionItem() throws SQLException {
+    public void testWithVersionItem() throws SQLException, SearchServiceException {
 
         configurationService.setProperty("versioning.enabled", true);
 
@@ -202,7 +203,7 @@ public class CanCreateVersionFeatureIT extends AbstractControllerIntegrationTest
     }
 
     @Test
-    public void testIsAuthorized() throws SQLException {
+    public void testIsAuthorized() throws SQLException, SearchServiceException {
 
         String parentCommId =
             configurationService.getProperty("project.parent-community-id", null);

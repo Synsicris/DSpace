@@ -34,7 +34,7 @@ import org.dspace.util.UUIDUtils;
 import org.dspace.utils.DSpace;
 /**
  * Authority to aggregate "extra" value to single choice
- * 
+ *
  * @author Mykhaylo Boychuk (4Science.it)
  */
 public class ItemMultiAuthority implements LinkableEntityAuthority {
@@ -85,7 +85,7 @@ public class ItemMultiAuthority implements LinkableEntityAuthority {
             return new Choices(Choices.CF_UNSET);
         }
 
-        ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(field);
+        ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(authorityName);
         String luceneQuery = itemAuthorityService.getSolrQuery(text);
 
         SolrQuery solrQuery = new SolrQuery();
@@ -100,7 +100,7 @@ public class ItemMultiAuthority implements LinkableEntityAuthority {
         }
 
         customAuthorityFilters.stream()
-            .flatMap(caf -> caf.getFilterQueries(this, entityType).stream())
+            .flatMap(caf -> caf.getFilterQueries(this).stream())
             .forEach(solrQuery::addFilterQuery);
 
         try {
@@ -116,7 +116,7 @@ public class ItemMultiAuthority implements LinkableEntityAuthority {
             long numFound = queryResponse.getResults().getNumFound();
 
             return new Choices(results, start, (int) numFound, Choices.CF_AMBIGUOUS,
-                numFound > (start + limit), 0);
+                numFound > start + limit, 0);
 
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -163,8 +163,8 @@ public class ItemMultiAuthority implements LinkableEntityAuthority {
     }
 
     @Override
-    public String[] getLinkedEntityType() {
-        return configurationService.getArrayProperty("cris.ItemAuthority." + field + ".entityType");
+    public String getLinkedEntityType() {
+        return configurationService.getProperty("cris.ItemAuthority." + field + ".entityType");
     }
 
     @Override

@@ -19,10 +19,10 @@ public class EntityTypeAuthorityFilter extends CustomAuthorityFilter {
         this.supportedEntities = supportedEntities;
     }
 
-    public boolean appliesTo(LinkableEntityAuthority linkableEntityAuthority, String entityType) {
+    public boolean appliesTo(LinkableEntityAuthority linkableEntityAuthority) {
 
         return CollectionUtils.isEmpty(supportedEntities)
-            || supportedEntities.contains(entityType);
+            || supportedEntities.contains(linkableEntityAuthority.getLinkedEntityType());
     }
 
     public EntityTypeAuthorityFilter(List<String> customQueries) {

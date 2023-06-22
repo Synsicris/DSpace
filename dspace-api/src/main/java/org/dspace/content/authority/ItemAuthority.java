@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +32,7 @@ import org.dspace.content.authority.service.ItemAuthorityService;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.ItemService;
 import org.dspace.core.Context;
+import org.dspace.core.NameAwarePlugin;
 import org.dspace.discovery.SearchService;
 import org.dspace.external.factory.ExternalServiceFactory;
 import org.dspace.external.provider.ExternalDataProvider;
@@ -81,7 +81,16 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     // punt!  this is a poor implementation..
     @Override
     public Choices getBestMatch(String text, String locale) {
-        return getMatches(text, 0, 2, locale);
+        return getMatches(text, 0, 2, locale, true);
+    }
+
+    private boolean isForceInternalTitle() {
+        boolean defaultBehaviour = configurationService
+            .getBooleanProperty("cris.ItemAuthority.forceInternalName",
+                true);
+        return configurationService
+            .getBooleanProperty("cris.ItemAuthority." + authorityName + ".forceInternalName",
+                defaultBehaviour);
     }
 
     /**
@@ -90,8 +99,10 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
      */
     @Override
     public Choices getMatches(String text, int start, int limit, String locale) {
-        List<Choice> choices = new ArrayList<Choice>();
-        long totFound = 0;
+        return getMatches(text, start, limit, locale, false);
+    }
+
+    private Choices getMatches(String text, int start, int limit, String locale, boolean onlyExactMatches) {
         if (limit <= 0) {
             limit = 20;
         }
@@ -102,53 +113,63 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             return new Choices(Choices.CF_UNSET);
         }
 
-        String[] entityTypes = getLinkedEntityType();
-        if (Objects.nonNull(entityTypes) && entityTypes.length > 0) {
-            for (String entityType : entityTypes) {
-                ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(entityType);
-                String luceneQuery = itemAuthorityService.getSolrQuery(text);
+        String entityType = getLinkedEntityType();
+        ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(authorityName);
 
-                SolrQuery solrQuery = new SolrQuery();
-                solrQuery.setQuery(luceneQuery);
-                solrQuery.setStart(start);
-                solrQuery.setRows(limit);
-                solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
+        String query = "";
 
-                if (StringUtils.isNotBlank(entityType)) {
-                    solrQuery.addFilterQuery("dspace.entity.type:" + entityType);
-                }
-
-                customAuthorityFilters.stream()
-                    .flatMap(caf -> caf.getFilterQueries(this, entityType).stream())
-                    .forEach(solrQuery::addFilterQuery);
-
-                try {
-                    QueryResponse queryResponse = solr.query(solrQuery);
-                    List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults());
-                    choices.addAll(choiceList);
-                    totFound += queryResponse.getResults().getNumFound();
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
-                    return new Choices(Choices.CF_UNSET);
-                }
-            }
+        if (onlyExactMatches) {
+            query = itemAuthorityService.getSolrQueryExactMatch(text);
+        } else {
+            query = itemAuthorityService.getSolrQuery(text);
         }
-        if (CollectionUtils.isNotEmpty(choices) || totFound > 0) {
-            Choice[] results = new Choice[choices.size()];
-            results = choices.toArray(results);
-            return new Choices(results, start, (int) totFound, calculateConfidence(results),
-                               totFound > start + limit, 0);
+
+        SolrQuery solrQuery = new SolrQuery();
+        solrQuery.setQuery(query);
+        solrQuery.setStart(start);
+        solrQuery.setRows(limit);
+        solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
+
+        if (StringUtils.isNotBlank(entityType)) {
+            solrQuery.addFilterQuery("dspace.entity.type:" + entityType);
         }
-        return new Choices(Choices.CF_UNSET);
+
+        customAuthorityFilters.stream()
+            .flatMap(caf -> caf.getFilterQueries(this).stream())
+            .forEach(solrQuery::addFilterQuery);
+
+        try {
+            QueryResponse queryResponse = solr.query(solrQuery);
+            List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults(), text,
+                onlyExactMatches);
+            Choice[] results = new Choice[choiceList.size()];
+            results = choiceList.toArray(results);
+            long numFound = queryResponse.getResults().getNumFound();
+
+            int confidenceValue = itemAuthorityService.getConfidenceForChoices(results);
+
+            return new Choices(results, start, (int) numFound, confidenceValue,
+                               numFound > (start + limit), 0);
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Choices(Choices.CF_UNSET);
+        }
     }
 
-    private List<Choice> getChoiceListFromQueryResults(SolrDocumentList results) {
+    private List<Choice> getChoiceListFromQueryResults(SolrDocumentList results, String searchTitle,
+        boolean onlyExactMatches) {
         return results
         .stream()
         .map(doc ->  {
-            Object fieldValue = doc.getFieldValue("dc.title");
-            String title = fieldValue instanceof String ? (String) fieldValue :
-                ((ArrayList<String>) fieldValue).get(0);
+            String title;
+            if (onlyExactMatches && isForceInternalTitle() || !onlyExactMatches) {
+                Object fieldValue = doc.getFieldValue("dc.title");
+                title = fieldValue instanceof String ? (String) fieldValue
+                    : ((ArrayList<String>) fieldValue).get(0);
+            } else {
+                title = searchTitle;
+            }
             Map<String, String> extras = ItemAuthorityUtils.buildExtra(getPluginInstanceName(), doc);
             return new Choice((String) doc.getFieldValue("search.resourceid"),
                 title,
@@ -176,8 +197,8 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     }
 
     @Override
-    public String[] getLinkedEntityType() {
-        return configurationService.getArrayProperty("cris.ItemAuthority." + authorityName + ".entityType");
+    public String getLinkedEntityType() {
+        return configurationService.getProperty("cris.ItemAuthority." + authorityName + ".entityType");
     }
 
     @Override
@@ -234,30 +255,29 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             return new HashMap<String, String>();
         }
 
-        String[] entityTypes = getLinkedEntityType();
-        if (Objects.nonNull(entityTypes) && entityTypes.length == 1) {
-            SolrQuery solrQuery = new SolrQuery();
-            solrQuery.setQuery("*:*");
-            solrQuery.addFilterQuery("search.resourceid:" + key);
 
-            customAuthorityFilters.stream()
-                .flatMap(caf -> caf.getFilterQueries(this, entityTypes[0]).stream())
-                .forEach(solrQuery::addFilterQuery);
+        SolrQuery solrQuery = new SolrQuery();
+        solrQuery.setQuery("*:*");
+        solrQuery.addFilterQuery("search.resourceid:" + key);
 
-            try {
-                QueryResponse queryResponse = solr.query(solrQuery);
-                List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults());
-                if (choiceList.isEmpty()) {
-                    log.warn("No documents found for key=" + key);
-                    return new HashMap<String, String>();
-                }
+        customAuthorityFilters.stream()
+            .flatMap(caf -> caf.getFilterQueries(this).stream())
+            .forEach(solrQuery::addFilterQuery);
 
-                return choiceList.iterator().next().extras;
-
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
+        try {
+            QueryResponse queryResponse = solr.query(solrQuery);
+            List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults(), key, false);
+            if (choiceList.isEmpty()) {
+                log.warn("No documents found for key=" + key);
+                return new HashMap<String, String>();
             }
+
+            return choiceList.iterator().next().extras;
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
+
         return new HashMap<String, String>();
     }
 

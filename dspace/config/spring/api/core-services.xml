@@ -52,7 +52,6 @@
     <bean class="org.dspace.content.MetadataSchemaServiceImpl"/>
     <bean class="org.dspace.content.MetadataValueServiceImpl"/>
     <bean class="org.dspace.content.SiteServiceImpl"/>
-    <bean class="org.dspace.content.SupervisedItemServiceImpl"/>
     <bean class="org.dspace.content.WorkspaceItemServiceImpl"/>
     <bean class="org.dspace.content.RelationshipServiceImpl"/>
     <bean class="org.dspace.content.RelationshipPlacesIndexingServiceImpl"/>
@@ -64,6 +63,8 @@
 
     <bean class="org.dspace.scripts.ProcessServiceImpl"/>
     <bean class="org.dspace.scripts.ScriptServiceImpl"/>
+
+    <bean class="org.dspace.alerts.SystemWideAlertServiceImpl"/>
 
     <bean class="org.dspace.content.authority.ChoiceAuthorityServiceImpl"/>
     <bean class="org.dspace.content.authority.AuthorityServiceUtils"/>
@@ -118,8 +119,9 @@
     <bean class="org.dspace.eperson.GroupServiceImpl"/>
     <bean class="org.dspace.eperson.RegistrationDataServiceImpl"/>
     <bean class="org.dspace.eperson.SubscribeServiceImpl"/>
+    
     <bean class="org.dspace.eperson.SubscribeParameterServiceImpl"/>
-    <bean class="org.dspace.eperson.SupervisorServiceImpl"/>
+    
     <bean class="org.dspace.eperson.CaptchaServiceImpl"/>
     <bean class="org.dspace.event.EventServiceImpl"/>
 
@@ -189,6 +191,8 @@
 
     <bean class="org.dspace.layout.script.service.impl.CrisLayoutToolValidatorImpl"/>
     <bean class="org.dspace.layout.script.service.impl.CrisLayoutToolParserImpl"/>
+    <bean class="org.dspace.layout.script.service.impl.CrisLayoutToolConverterImpl"/>
+
 
     <bean id="org.dspace.app.customurl.CustomUrlService" class="org.dspace.app.customurl.service.CustomUrlServiceImpl"/>
 
@@ -203,6 +207,8 @@
     <bean class="org.dspace.authorize.ValidatePasswordServiceImpl"/>
     <bean class="org.dspace.authorize.RegexPasswordValidator" />
 
+    <bean class="org.dspace.supervision.SupervisionOrderServiceImpl"/>
+    
     <!-- Synsicris Services -->
     <bean class="org.dspace.submit.consumer.service.ProjectConsumerServiceImpl" />
     <bean class="org.dspace.synsicris.security.SecuritySynsicrisProjectEntityDeleteService" />

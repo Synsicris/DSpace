@@ -79,8 +79,6 @@ public class ItemCorrectionService {
      * 
      * @param context
      *            the dspace context
-     * @param request
-     *            the request containing the details about the workspace to create
      * @param itemUUID
      *            the item UUID to use for creating the workspaceitem
      * @return    the created workspaceitem
@@ -105,8 +103,6 @@ public class ItemCorrectionService {
      * 
      * @param context
      *            the dspace context
-     * @param request
-     *            the request containing the details about the workspace to create
      * @param itemUUID
      *            the item UUID to use for creating the workspaceitem
      * @return    the created workspaceitem

@@ -22,7 +22,7 @@ public interface LinkableEntityAuthority extends ChoiceAuthority {
      *
      * @return the linked entity types as an Array
      */
-    public String[] getLinkedEntityType();
+    public String getLinkedEntityType();
 
     /**
      * Get the eternal source configured for this authority by given metadata key

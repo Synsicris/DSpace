@@ -192,7 +192,7 @@ section 3.1.3
 2023-06-15
 section 4
   - addapt ruler for headlines of all sectuions -> add "rule = false" to all value-single templates refering to a title
-  - check .lang Expressions in complete chapter 4.
+  - check .lang Expressions in complete section 4.
   - Update shape Table 4.2.3 without outer borders - add spaccing bevore table
   - Update shape tables 4.2.6 without outer borders - add spaccing bevore table
   - Update shape table 4.3.2 without outer borders - add spaccing bevore table
@@ -204,7 +204,7 @@ section 3.1.4
 section 3.1.3
   - start adjusting to Birge's comments, i.e. deconstruct the tables in favour of a block approach  
 
-2023-06-20
+2023-06-21
 general
   - rename template input "addRuler" to "addRulerAbove"
   - add option "addRulerBelow" (default false) to the template "value-single" to be used in section 3.1.3
@@ -233,3 +233,44 @@ INSIDE A BLOCK (e.g. applications, spinoff)
                 border-style="{$style.border}"
                 border-start-style="hidden"
                 margin-left="{$margin.left.table-cell}">
+
+
+2023-06-22
+section 4.2.4
+  - change cerif to english expression  <StatusPublication>@virtual.vocabulary_i18n.dc-type@</StatusPublication>
+section 4.2.5  
+  - change cerif to english expression  <Type>@virtual.vocabulary_i18n.dc-type@</Type> and	<Use>@virtual.vocabulary_i18n.synsicris-type-patentuse@</Use>
+section 4.2.6 
+  - change cerif to english expressions registercourt,registertype, type, nace, country
+section 4.2.7 
+  - change cerif to english type -> did not work!
+
+2023-06-23
+general
+  - change template "label-amount-currency" to "label-amount-currency-below"
+  - change cerif to english for step entity <Type>
+  - change cerif to english for conditions entity <ConditionType> & <Influence>
+  - change cerif to english for ExpectedSocietalImpact entity <Evidence> <CoreElement> <Intensity>
+  - change cerif to english for NegativeSideEffect entity <TransitionArea> <Evidence> <CoreElement> <Intensity>
+  - change cerif to english for ethic entity <FurtherDocuments> <AspectType>
+  - sort section templates according to their occurrence
+  - remove obsolete templates
+    - "label-value-single-below-table"
+    - "label-value-comma-list"
+    - "label-value-comma-list-below-table"
+    - "label-postcode-city-country-below-table"
+    - "label-author-affilation-comma-list"  
+section 3.1.3
+  - add the two missing tables to the process events
+  - create template "value-postcode-city-country-table"
+  - create template "value-period-table"
+section 4.2.3
+  - implement count check to make the table more robust
+section 4.2.6
+  - implement count checks to make the two tables more robust
+section 4.3.2
+  - implement count check to make the table more robust
+section 4.3.3
+  - implement count check to make the table more robust  
+section 4.3.4
+  - implement count check to make the table more robust  

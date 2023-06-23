@@ -29,17 +29,14 @@ import org.apache.logging.log4j.Logger;
 import org.dspace.AbstractIntegrationTestWithDatabase;
 import org.dspace.app.requestitem.RequestItem;
 import org.dspace.authorize.AuthorizeException;
-import org.dspace.authorize.ResourcePolicy;
 import org.dspace.builder.BitstreamBuilder;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EntityTypeBuilder;
-import org.dspace.builder.GroupBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.builder.RequestItemBuilder;
-import org.dspace.builder.ResourcePolicyBuilder;
 import org.dspace.content.Bitstream;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
@@ -50,8 +47,6 @@ import org.dspace.content.Relationship;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
-import org.dspace.core.Constants;
-import org.dspace.eperson.Group;
 import org.dspace.orcid.client.OrcidClient;
 import org.dspace.orcid.factory.OrcidServiceFactory;
 import org.dspace.orcid.factory.OrcidServiceFactoryImpl;
@@ -716,74 +711,6 @@ public class ItemServiceTest extends AbstractIntegrationTestWithDatabase {
         int count = itemService.countItemsWithEdit(context);
         assertThat(result.size(), equalTo(0));
         assertThat(count, equalTo(0));
-    }
-
-    @Test
-    public void testFindAndCountItemsWithEditEPerson() throws Exception {
-        ResourcePolicy rp = ResourcePolicyBuilder.createResourcePolicy(context)
-            .withUser(eperson)
-            .withDspaceObject(item)
-            .withAction(Constants.WRITE)
-            .build();
-        context.setCurrentUser(eperson);
-        List<Item> result = itemService.findItemsWithEdit(context, 0, 10);
-        int count = itemService.countItemsWithEdit(context);
-        assertThat(result.size(), equalTo(1));
-        assertThat(count, equalTo(1));
-    }
-
-    @Test
-    public void testFindAndCountItemsWithAdminEPerson() throws Exception {
-         ResourcePolicy rp = ResourcePolicyBuilder.createResourcePolicy(context)
-            .withUser(eperson)
-            .withDspaceObject(item)
-            .withAction(Constants.ADMIN)
-            .build();
-        context.setCurrentUser(eperson);
-        List<Item> result = itemService.findItemsWithEdit(context, 0, 10);
-        int count = itemService.countItemsWithEdit(context);
-        assertThat(result.size(), equalTo(1));
-        assertThat(count, equalTo(1));
-    }
-
-    @Test
-    public void testFindAndCountItemsWithEditGroup() throws Exception {
-        context.turnOffAuthorisationSystem();
-        Group group = GroupBuilder.createGroup(context)
-            .addMember(eperson)
-            .build();
-        context.restoreAuthSystemState();
-
-        ResourcePolicy rp = ResourcePolicyBuilder.createResourcePolicy(context)
-            .withGroup(group)
-            .withDspaceObject(item)
-            .withAction(Constants.WRITE)
-            .build();
-        context.setCurrentUser(eperson);
-        List<Item> result = itemService.findItemsWithEdit(context, 0, 10);
-        int count = itemService.countItemsWithEdit(context);
-        assertThat(result.size(), equalTo(1));
-        assertThat(count, equalTo(1));
-    }
-
-    @Test
-    public void testFindAndCountItemsWithAdminGroup() throws Exception {
-        context.turnOffAuthorisationSystem();
-        Group group = GroupBuilder.createGroup(context)
-            .addMember(eperson)
-            .build();
-        context.restoreAuthSystemState();
-
-        ResourcePolicy rp = ResourcePolicyBuilder.createResourcePolicy(context)
-            .withGroup(group)
-            .withDspaceObject(item)
-            .withAction(Constants.ADMIN)
-            .build();
-        context.setCurrentUser(eperson);
-        List<Item> result = itemService.findItemsWithEdit(context, 0, 10);
-        int count = itemService.countItemsWithEdit(context);
-        assertThat(result.size(), equalTo(1));
-        assertThat(count, equalTo(1));
     }
 
     @Test

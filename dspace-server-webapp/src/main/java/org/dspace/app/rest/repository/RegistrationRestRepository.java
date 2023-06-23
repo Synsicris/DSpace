@@ -33,8 +33,8 @@ import org.dspace.app.rest.exception.RepositoryMethodNotImplementedException;
 import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.model.RegistrationRest;
 import org.dspace.app.util.AuthorizeUtil;
-import org.dspace.authenticate.service.AuthenticationService;
 import org.dspace.app.util.service.DSpaceObjectUtils;
+import org.dspace.authenticate.service.AuthenticationService;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.DSpaceObject;
@@ -143,8 +143,8 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
         if (Objects.nonNull(registrationRest.getGroups()) && registrationRest.getGroups().size() > 0) {
             try {
                 if (Objects.isNull(context.getCurrentUser())
-                    || (!authorizeService.isAdmin(context)
-                        && !hasPermission(context, registrationRest.getGroups()))) {
+                    || !authorizeService.isAdmin(context)
+                        && !hasPermission(context, registrationRest.getGroups())) {
                     throw new AccessDeniedException("Only admin users can invite new users to join groups");
                 }
             } catch (SQLException e) {
@@ -153,7 +153,7 @@ public class RegistrationRestRepository extends DSpaceRestRepository<Registratio
         }
         String accountType = request.getParameter(TYPE_QUERY_PARAM);
         if (StringUtils.isBlank(accountType) ||
-            (!accountType.equalsIgnoreCase(TYPE_FORGOT) && !accountType.equalsIgnoreCase(TYPE_REGISTER))) {
+            !accountType.equalsIgnoreCase(TYPE_FORGOT) && !accountType.equalsIgnoreCase(TYPE_REGISTER)) {
             throw new IllegalArgumentException(String.format("Needs query param '%s' with value %s or %s indicating " +
                 "what kind of registration request it is", TYPE_QUERY_PARAM, TYPE_FORGOT, TYPE_REGISTER));
         }

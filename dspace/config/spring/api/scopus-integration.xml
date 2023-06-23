@@ -207,8 +207,8 @@
     </bean>
 
     <bean id="typeContrib" class="org.dspace.importer.external.metadatamapping.contributor.MappedMetadataContributor">
-        <constructor-arg name="innerContributor" ref="innerTypeContrib"/>
-        <constructor-arg name="mapConverter" ref="mapConverterScopusToCoarPublicationTypes"/>
+        <constructor-arg ref="innerTypeContrib"/>
+        <constructor-arg ref="mapConverterScopusToCoarPublicationTypes"/>
     </bean>
 
     <bean id="scopus.mappedtype" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">

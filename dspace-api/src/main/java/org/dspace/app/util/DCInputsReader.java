@@ -10,6 +10,7 @@ package org.dspace.app.util;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +26,12 @@ import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dspace.content.Collection;
@@ -127,16 +134,9 @@ public class DCInputsReader {
         formDefns = new HashMap<String, List<List<Map<String, String>>>>();
         valuePairs = new HashMap<String, List<String>>();
 
-        String uri = "file:" + new File(fileName).getAbsolutePath();
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setValidating(false);
-            factory.setIgnoringComments(true);
-            factory.setIgnoringElementContentWhitespace(true);
-
-            DocumentBuilder db = factory.newDocumentBuilder();
-            Document doc = db.parse(uri);
+            Document doc = loadDocument(fileName);
             doNodes(doc);
             checkValues();
         } catch (FactoryConfigurationError fe) {
@@ -144,6 +144,19 @@ public class DCInputsReader {
         } catch (Exception e) {
             throw new DCInputsReaderException("Error creating submission forms: " + e);
         }
+    }
+
+
+    protected Document loadDocument(String fileName) throws ParserConfigurationException, SAXException, IOException {
+        String uri = "file:" + new File(fileName).getAbsolutePath();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(false);
+        factory.setIgnoringComments(true);
+        factory.setIgnoringElementContentWhitespace(true);
+
+        DocumentBuilder db = factory.newDocumentBuilder();
+        Document doc = db.parse(uri);
+        return doc;
     }
 
     public Iterator<String> getPairsNameIterator() {
@@ -270,12 +283,38 @@ public class DCInputsReader {
             return lastInputSet;
         }
         // cache miss - construct new DCInputSet
+        if (formDefns.get(formName) == null) {
+            updateFormDefns(formName, findTargetFormNamePages(formName));
+        }
         List<List<Map<String, String>>> pages = formDefns.get(formName);
         if (pages == null) {
             throw new DCInputsReaderException("Missing the " + formName + " form");
         }
         lastInputSet = new DCInputSet(this, formName, pages, valuePairs);
         return lastInputSet;
+    }
+
+    private void updateFormDefns(String formName, List<List<Map<String, String>>> pages) {
+        if (formName == null || pages == null || pages.isEmpty()) {
+            return;
+        }
+        this.formDefns.put(formName, pages);
+    }
+
+    private List<List<Map<String, String>>> findTargetFormNamePages(String formName) throws DCInputsReaderException {
+        String defsFile = DSpaceServicesFactory.getInstance().getConfigurationService().getProperty("dspace.dir")
+            + File.separator + "config" + File.separator + FORM_DEF_FILE;
+        try {
+            Document doc = loadDocument(defsFile);
+            XPathFactory xpathFactory = XPathFactory.newInstance();
+            XPath xpath = xpathFactory.newXPath();
+            XPathExpression xpathExpression =
+                xpath.compile(String.format("//form[@name = '%s']", formName));
+            Node node = (Node) xpathExpression.evaluate(doc, XPathConstants.NODE);
+            return processForm(node, formName);
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+            throw new DCInputsReaderException("Cannot read definition file: " + defsFile, e);
+        }
     }
 
     /**
@@ -397,7 +436,7 @@ public class DCInputsReader {
         boolean foundDefs = false;
         for (int i = 0; i < len; i++) {
             Node nd = nl.item(i);
-            if ((nd == null) || isEmptyTextNode(nd)) {
+            if (nd == null || isEmptyTextNode(nd)) {
                 continue;
             }
             String tagName = nd.getNodeName();
@@ -432,33 +471,41 @@ public class DCInputsReader {
             if (nd.getNodeName().equals("form")) {
                 numForms++;
                 String formName = getAttribute(nd, "name");
-                if (formName == null) {
-                    throw new SAXException("form element has no name attribute");
-                }
-                List<List<Map<String, String>>> rows = new ArrayList<List<Map<String, String>>>(); // the form
                 // contains rows of fields
-                formDefns.put(formName, rows);
-                NodeList pl = nd.getChildNodes();
-                int lenpg = pl.getLength();
-                for (int j = 0; j < lenpg; j++) {
-                    Node npg = pl.item(j);
-                    if (npg.getNodeName().equals("row")) {
-                        List<Map<String, String>> fields = new ArrayList<Map<String, String>>(); // the fields in the
-                        // row
-                        // process each row definition
-                        processRow(formName, j, npg, fields);
-                        rows.add(fields);
-                    }
-                }
-                // sanity check number of fields
-                if (rows.size() < 1) {
-                    throw new DCInputsReaderException("Form " + formName + " has no rows");
-                }
+                formDefns.put(formName, processForm(nd, formName));
             }
         }
         if (numForms == 0) {
             throw new DCInputsReaderException("No form definition found");
         }
+    }
+
+
+    protected List<List<Map<String, String>>> processForm(Node nd, String formName)
+        throws SAXException, DCInputsReaderException {
+        if (formName == null) {
+            throw new SAXException("form element has no name attribute");
+        } else if (nd == null) {
+            throw new SAXException("form element " + formName + " not found");
+        }
+        List<List<Map<String, String>>> rows = new ArrayList<List<Map<String, String>>>(); // the form
+        NodeList pl = nd.getChildNodes();
+        int lenpg = pl.getLength();
+        for (int j = 0; j < lenpg; j++) {
+            Node npg = pl.item(j);
+            if (npg.getNodeName().equals("row")) {
+                List<Map<String, String>> fields = new ArrayList<Map<String, String>>(); // the fields in the
+                // row
+                // process each row definition
+                processRow(formName, j, npg, fields);
+                rows.add(fields);
+            }
+        }
+        // sanity check number of fields
+        if (rows.size() < 1) {
+            throw new DCInputsReaderException("Form " + formName + " has no rows");
+        }
+        return rows;
     }
 
     /**
@@ -573,9 +620,9 @@ public class DCInputsReader {
         String type = field.get("input-type");
         if (StringUtils.isNotBlank(type) && (type.equals("twobox") || type.equals("qualdrop_value"))) {
             String rpt = field.get("repeatable");
-            if ((rpt == null) ||
-                ((!rpt.equalsIgnoreCase("yes")) &&
-                    (!rpt.equalsIgnoreCase("true")))) {
+            if (rpt == null ||
+                !rpt.equalsIgnoreCase("yes") &&
+                    !rpt.equalsIgnoreCase("true")) {
                 String msg = "The field \'" + field.get("label") + "\' must be repeatable";
                 throw new SAXException(msg);
             }
@@ -609,7 +656,7 @@ public class DCInputsReader {
         String schema = field.get("dc-schema");
         String elem = field.get("dc-element");
         String qual = field.get("dc-qualifier");
-        if ((schema == null) || (schema.equals(""))) {
+        if (schema == null || schema.equals("")) {
             schema = MetadataSchemaEnum.DC.getName();
         }
         String schemaTest;
@@ -618,19 +665,19 @@ public class DCInputsReader {
             List<Map<String, String>> pg = pages.get(i);
             for (int j = 0; j < pg.size(); j++) {
                 Map<String, String> fld = pg.get(j);
-                if ((fld.get("dc-schema") == null) ||
-                    ((fld.get("dc-schema")).equals(""))) {
+                if (fld.get("dc-schema") == null ||
+                    fld.get("dc-schema").equals("")) {
                     schemaTest = MetadataSchemaEnum.DC.getName();
                 } else {
                     schemaTest = fld.get("dc-schema");
                 }
 
                 // Are the schema and element the same? If so, check the qualifier
-                if (((fld.get("dc-element")).equals(elem)) &&
-                    (schemaTest.equals(schema))) {
+                if (fld.get("dc-element").equals(elem) &&
+                    schemaTest.equals(schema)) {
                     String ql = fld.get("dc-qualifier");
                     if (qual != null) {
-                        if ((ql != null) && ql.equals(qual)) {
+                        if (ql != null && ql.equals(qual)) {
                             matches++;
                         }
                     } else if (ql == null) {

@@ -6,6 +6,7 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.app.rest.model;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import org.dspace.app.rest.RestResourceController;
 
 /**
  * The EasyOnlineImport REST Resource
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 public class EasyOnlineImportRest extends BaseObjectRest<UUID> {

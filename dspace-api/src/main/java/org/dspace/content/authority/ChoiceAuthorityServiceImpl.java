@@ -651,12 +651,12 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
         init();
 
         if (StringUtils.isEmpty(entityType)) {
-            return List.copyOf((controller.keySet().stream().map(field -> {
+            return List.copyOf(controller.keySet().stream().map(field -> {
                 if (isOverrideMetadata(field)) {
                     return removeOverrideFieldDef(field);
                 }
                 return field;
-            }).collect(Collectors.toSet())));
+            }).collect(Collectors.toSet()));
         }
 
         return List.copyOf(controller.keySet().stream()

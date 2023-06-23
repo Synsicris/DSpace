@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.SQLException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.authority.service.AuthorityValueService;
 import org.dspace.builder.CollectionBuilder;
@@ -31,8 +32,13 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.eperson.EPerson;
+import org.dspace.event.factory.EventServiceFactory;
+import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,6 +50,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrationTest {
 
+    private static String[] consumers;
+
     private EPerson submitter;
 
     private Collection publicationCollection;
@@ -54,6 +62,16 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
     @Autowired
     private ConfigurationService configurationService;
+
+    @BeforeClass
+    public static void setupClass() {
+        consumers = activateCrisConsumer();
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        resetConsumers(consumers);
+    }
 
     @Before
     public void setup() throws Exception {
@@ -678,6 +696,28 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
     private String formatWillBeReferencedAuthority(String authorityPrefix, String value) {
         return AuthorityValueService.REFERENCE + authorityPrefix + "::" + value;
+    }
+
+    private static String[] activateCrisConsumer() {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        String[] consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
+        if (!ArrayUtils.contains(consumers, CrisConsumer.CONSUMER_NAME)) {
+            String newConsumers =
+                consumers.length > 0 ?
+                    String.join(",", consumers) + "," + CrisConsumer.CONSUMER_NAME :
+                    CrisConsumer.CONSUMER_NAME;
+            configService.setProperty("event.dispatcher.default.consumers", newConsumers);
+            EventService eventService = EventServiceFactory.getInstance().getEventService();
+            eventService.reloadConfiguration();
+        }
+        return consumers;
+    }
+
+    private static void resetConsumers(String[] consumers) {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        configService.setProperty("event.dispatcher.default.consumers", consumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
     }
 
 }

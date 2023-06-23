@@ -599,15 +599,18 @@
             </map>
         </constructor-arg>
     </bean>
-	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapConverter" id="virtualFieldMapConverter">
-		<constructor-arg name="itemService" ref="org.dspace.content.ItemServiceImpl"/>
-		<constructor-arg name="mapConverters" ref="org.dspace.util.MapConverters"/>
-	</bean>
-	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldDateFormatter" id="virtualFieldDateFormatter"/>
-	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabulary" id="virtualFieldVocabulary"/>
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMapConverter" id="virtualFieldMapConverter">
+        <constructor-arg name="itemService" ref="org.dspace.content.ItemServiceImpl"/>
+        <constructor-arg name="mapConverters" ref="org.dspace.util.MapConverters"/>
+    </bean>
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldDateFormatter" id="virtualFieldDateFormatter"/>
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabulary" id="virtualFieldVocabulary"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMetric" id="virtualFieldMetric"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldCitations" id="virtualFieldCitations"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabularyI18nValuePair" id="virtualFieldVocabularyI18n"/>
+    
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.FirstSelectedCitationsPostProcessor" />
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.GroupByTypeCitationsPostProcessor" />
 	
 	<!-- MapConverter configuration -->
 
@@ -693,6 +696,12 @@
 		<property name="defaultValue" value=""/>
 	</bean>
 
+    <bean name="mapConverterScopusToCoarPublicationTypes" class="org.dspace.util.SimpleMapConverter" init-method="init">
+        <property name="converterNameFile" value="mapConverter-scopusToCoarPublicationTypes.properties" />
+        <property name="configurationService" ref="org.dspace.services.ConfigurationService" />
+        <property name="defaultValue" value=""/>
+    </bean>
+
 	<!-- CONDITION EVALUATORS CONFIGURATION -->
 	
 	<bean class="org.dspace.content.integration.crosswalks.evaluators.ConditionEvaluatorMapper" id="conditionEvaluatorMapper">
@@ -712,11 +721,14 @@
     </bean>
 
 	<!-- Item export format SERVICE -->
-	<bean class="org.dspace.content.integration.crosswalks.service.ItemExportFormatServiceImpl"/>
-	<bean class="org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService"/>
+    <!-- Item export format SERVICE -->
+    <bean class="org.dspace.content.integration.crosswalks.service.ItemExportFormatServiceImpl"/>
+    <bean class="org.dspace.discovery.configuration.DiscoveryConfigurationUtilsService"/>
     
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLGeneratorFactory" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLNestedGenerator" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLWebServiceGenerator" />
-
+    
+    <bean class="org.dspace.content.converter.ItemToItemDTOConverter" />
+    <bean class="org.dspace.app.bulkimport.service.BulkImportWorkbookBuilderImpl" />
 </beans>

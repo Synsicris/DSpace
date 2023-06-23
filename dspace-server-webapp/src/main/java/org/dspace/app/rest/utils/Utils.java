@@ -59,7 +59,6 @@ import org.dspace.app.rest.exception.RepositoryNotFoundException;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.CommunityRest;
 import org.dspace.app.rest.model.CrisMetricsRest;
-import org.dspace.app.rest.model.EasyOnlineImportRest;
 import org.dspace.app.rest.model.LinkRest;
 import org.dspace.app.rest.model.LinksRest;
 import org.dspace.app.rest.model.OrcidHistoryRest;
@@ -402,7 +401,7 @@ public class Utils {
         // TODO after change item-submission into
         ConfigurationService configurationService
                 = DSpaceServicesFactory.getInstance().getConfigurationService();
-        String tempDir = (configurationService.hasProperty("upload.temp.dir"))
+        String tempDir = configurationService.hasProperty("upload.temp.dir")
                 ? configurationService.getProperty("upload.temp.dir")
                 : System.getProperty("java.io.tmpdir");
         File uploadDir = new File(tempDir);

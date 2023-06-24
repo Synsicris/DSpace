@@ -37,6 +37,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.dspace.app.rest.model.CollectionRest;
 import org.dspace.app.rest.model.ItemRest;
@@ -76,8 +77,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Test suite to verify the related entities creation via {@link CrisConsumer}.

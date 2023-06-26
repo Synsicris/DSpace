@@ -87,10 +87,9 @@
         <constructor-arg value="synsicris.subject.ipc"/>
     </bean>
     
-    <bean id="epoAbstractContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumAndAttributeAndSubNodeContributor">
+    <bean id="epoAbstractContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleXpathMetadatumContributor">
         <property name="field" ref="epo.dc.description.abstract"/>
-        <property name="query" value="(//ns:exchange-document)[last()]"/>
-        <property name="queryToSubNode" value=".//ns:abstract"/>
+        <property name="query" value="(//ns:exchange-document)[last()]//ns:abstract"/>
         <property name="prefixToNamespaceMapping" ref="nsEpoPrefixToNamespaceMapping"/>
     </bean>
     <bean id="epo.dc.description.abstract" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">

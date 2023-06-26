@@ -274,3 +274,15 @@ section 4.3.3
   - implement count check to make the table more robust  
 section 4.3.4
   - implement count check to make the table more robust  
+
+2023-06-26
+general
+  - make a templates for tables more robust, by implementing the template "empty-table-cell-catcher" in all cases, except template "value-icon-count-table"
+  - use XML formatter to be consistent
+    - XML Tools by Josh Johnson in Visual Studio Code
+    - drawbacks so far: "<xsl:text> </xsl:text>" is convert to "<xsl:text></xsl:text>", i.e. ommitting the blank that is there for a reason
+    - NOTE: not applied to CERIF template, because the formatter can not handle  @group setups 
+
+NOTE: input checks on templates
+  - "postcode-city-country" templates check only on the city input, if not given there is no output even when postcode or country should exist
+  - "amount-currency" templates check only only on the amount input, as currency Euro is assumed as default  

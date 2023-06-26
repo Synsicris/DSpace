@@ -1177,7 +1177,7 @@
 								@group.synsicris-type.start@
 									<Index>
 									
-										<Type>@virtual.vocabulary_i18n.synsicris.type@</Type>
+										<Type>@virtual.vocabulary_i18n.synsicris-type@</Type>
 										<Title>@synsicris.title.event@</Title>
 										<StartDate>@oairecerif.event.startDate@</StartDate>
 										<EndDate>@oairecerif.event.endDate@</EndDate>

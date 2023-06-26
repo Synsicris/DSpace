@@ -155,7 +155,8 @@
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE}"/>
 	</bean>
 	
-<!-- 	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectCerifXml">
+    <!--
+    <bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectCerifXml">
 		<property name="templateFileName" value="crosswalks/template/project-cerif-xml.template"/>
 		<property name="mimeType" value="application/xml; charset=UTF-8"/>
 		<property name="fileName" value="project.xml"/>
@@ -163,7 +164,8 @@
 		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-xml.template"/>
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
 		<property name="converter" ref="xmlValueConverter" />
-	</bean> -->
+	</bean>
+	-->
 
 	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectJson">
 		<property name="templateFileName" value="crosswalks/template/project-json.template"/>
@@ -570,7 +572,7 @@
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldAuthors" id="virtualFieldAuthors"/>
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldPageNumber" id="virtualFieldPageNumber"/>	
 	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldPersonName" id="virtualFieldPersonName"/>
-	   <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldBitstream" id="virtualFieldBitstream">
+	<bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldBitstream" id="virtualFieldBitstream">
         <constructor-arg name="bitstreamTypeMap">
             <map>
                 <entry key="picture" value="personal picture" />

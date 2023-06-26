@@ -14,9 +14,8 @@
 				<entry key-ref="CrisConsumer-SOURCE_INTERNAL">
 					<bean class="org.dspace.authority.filler.ItemMetadataImportFiller" parent="fullItemMetadataConfiguration" />
 				</entry>
-             <entry key="ORCID" value-ref="orcidImportFiller" />
-             <entry key="ISSN" value-ref="sherpaImportFiller" />
-             <entry key="OPENAIRE-PROJECT-ID" value-ref="openaireProjectImportFiller" />
+	            <entry key="ORCID" value-ref="orcidImportFiller" />
+	            <entry key="ISSN" value-ref="sherpaImportFiller" />
 			</map>
 		</property>
 	</bean>
@@ -112,12 +111,6 @@
        <constructor-arg name="authorityIdentifier" value="ISSN"/>
     </bean>
 
-
-    <bean class="org.dspace.authority.filler.ExternalDataProviderImportFiller" id="openaireProjectImportFiller" >
-       <constructor-arg name="externalDataProvider" ref="openaireLiveImportDataProvider"/>
-       <constructor-arg name="authorityIdentifier" value="OPENAIRE-PROJECT-ID"/>
-    </bean>
-
 	<bean class="org.dspace.authority.service.ItemSearcherMapper" name="org.dspace.authority.service.ItemSearcherMapper">
 		<constructor-arg index="0">
 			<map>
@@ -129,12 +122,12 @@
 				<entry key="ISNI" value-ref="itemSearcherByISNI"/>
 				<entry key="DOI" value-ref="itemSearcherByDOI"/>
 				<entry key="URL" value-ref="itemSearcherByURL"/>
-             <entry key="ISSN" value-ref="itemSearcherByISSN"/>
-             <entry key="OPENAIRE-PROJECT-ID" value-ref="itemSearcherByOpenaireProjectId"/>
+                <entry key="ISSN" value-ref="itemSearcherByISSN"/>
+                <entry key="OPENAIRE-PROJECT-ID" value-ref="itemSearcherByOpenaireProjectId"/>
 				<entry key="LEGACY-ID" value-ref="itemSearcherByLegacyId"/>
 				<entry key="SCOPUS-AUTHOR-ID" value-ref="itemSearcherByScopusAuthorId"/>
-             <entry key="UNIQUE-ID" value-ref="itemSearcherByUniqueId"/>
-             <entry key="SB-ID" value-ref="itemSearcherByStructBuilderId"/>
+                <entry key="UNIQUE-ID" value-ref="itemSearcherByUniqueId"/>
+                <entry key="SB-ID" value-ref="itemSearcherByStructBuilderId"/>
 			</map>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -190,6 +183,11 @@
     <bean class="org.dspace.authority.service.impl.ItemSearcherByMetadata" name="itemSearcherByStructBuilderId">
         <constructor-arg value="synsicris.struct-builder.identifier"></constructor-arg>
         <constructor-arg value="SB-ID"></constructor-arg>
+    </bean>
+
+	<bean class="org.dspace.authority.service.impl.ItemSearcherByMetadata" name="itemSearcherByScopusAuthorId">
+        <constructor-arg value="person.identifier.scopus-author-id"></constructor-arg>
+        <constructor-arg value="SCOPUS-AUTHOR-ID"></constructor-arg>
     </bean>
     
 	<bean class="org.dspace.authority.service.impl.ItemSearchServiceImpl" name="org.dspace.authority.service.ItemSearchService"/>

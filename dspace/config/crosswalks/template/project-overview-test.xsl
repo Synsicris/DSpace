@@ -352,7 +352,7 @@
 		<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 			<!--==========================================================-->
-			<!-- LAYOUT MASTER SET-->
+			<!-- LAYOUT MASTER SET -->
 			<!--==========================================================-->
 
 			<fo:layout-master-set>
@@ -403,7 +403,14 @@
 			<!-- PAGE SEQUENCE -->
 			<!--==========================================================-->
 
-			<fo:page-sequence master-reference="A4-portrait" initial-page-number="1">
+      <!-- INFO: in total there are 5 page sequence blocks --> 
+			<!-- 1: from the beginning to the impact pathway -->
+			<!-- 2: impact pathway itself (landscape) -->
+      <!-- 3: from the impact pathway to the working plan -->
+			<!-- 4: working plan itself (landscape) -->
+			<!-- 5: from the working plan to the end -->
+
+			<fo:page-sequence master-reference="A4-portrait">
 
 				<!-- integrate page numbers -->
 				<fo:static-content flow-name="xsl-region-after">
@@ -473,6 +480,50 @@
 					</xsl:call-template>
 
 					<xsl:call-template name="impact-pathway"/>
+
+				</fo:flow>
+
+			</fo:page-sequence>
+
+      <!-- impact pathway itself (landscape) -->
+			<fo:page-sequence master-reference="A4-landscape">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<xsl:call-template name="impactpathway-screenshots">
+						<xsl:with-param name="imageDir" select="$imageDir"/>
+					</xsl:call-template>
+
+				</fo:flow>
+
+			</fo:page-sequence>
+
+		  <!-- from the impact pathway to the working plan -->
+			<fo:page-sequence master-reference="A4-portrait">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<!-- SECTION #1 -->
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 					<!-- sub section title - scientific and techical aims of the project -->
 					<xsl:call-template name="title">
@@ -544,7 +595,47 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
+				</fo:flow>
+
+			</fo:page-sequence>
+
+			<!-- working plan itself (landscape) -->
+			<fo:page-sequence master-reference="A4-landscape">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
 					<xsl:call-template name="working-plan"/>
+
+				</fo:flow>
+
+			</fo:page-sequence>			
+
+			<!-- from the working plan to the end -->
+			<fo:page-sequence master-reference="A4-portrait">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<!-- SECTION #3 -->
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 					<!-- sub sub section title - work packages and tasks -->
 					<xsl:call-template name="title">
@@ -797,12 +888,13 @@
 						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
 					</xsl:call-template>
 
+
 				</fo:flow>
 
 			</fo:page-sequence>
 
 			<!--==========================================================-->
-			<!-- PDF EMBEDDING-->
+			<!-- PDF EMBEDDING -->
 			<!--==========================================================-->
 
 			<xsl:call-template name="embedded-pdf">
@@ -972,9 +1064,9 @@
 			</xsl:if>
 
 			<!-- INFO: in the current setup metadata and screenshots cannot be aligned since they are not tight to the same iterator -->
-			<xsl:call-template name="impactpathway-screenshots">
+			<!-- <xsl:call-template name="impactpathway-screenshots">
 				<xsl:with-param name="imageDir" select="$imageDir"/>
-			</xsl:call-template>
+			</xsl:call-template> -->
 
 		</xsl:if>
 

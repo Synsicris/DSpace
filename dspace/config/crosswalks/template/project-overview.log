@@ -286,3 +286,39 @@ general
 NOTE: input checks on templates
   - "postcode-city-country" templates check only on the city input, if not given there is no output even when postcode or country should exist
   - "amount-currency" templates check only only on the amount input, as currency Euro is assumed as default  
+
+2023-06-27
+section 3.1
+  - add screenshot for the working plan
+section 1.1.1
+  - add screenshot for the impact pathway
+    - in the current setup metadata and screenshots cannot be aligned since they are not tight to 
+      the same iterator
+
+new report project-overview-test
+  - this report is used to play around with the landscape mode for the screenshots of impact pathway
+    and working plan
+  - this is achieved by splitting the <fo:page-sequence> in 5 blocks    
+		1: from the beginning to the impact pathway
+		2: impact pathway itself (landscape)
+    3: from the impact pathway to the working plan
+		4: working plan itself (landscape)
+		5: from the working plan to the end
+
+NOTE: for tables the approach to have them centrally aligned is to start and end 
+      with "special" columns that have the width "proportional-column-width(1)", 
+      like 
+
+  <fo:table-column column-width="proportional-column-width(1)"/>
+  <fo:table-column column-width="12.0%"/>
+  <fo:table-column column-width="30.0%"/>
+  <fo:table-column column-width="55.0%"/>
+  <fo:table-column column-width="proportional-column-width(1)"/>
+
+  Since the special columns are counted the real data are first given in the second column, that can be specified as follows
+
+  <fo:table-cell column-number="2" ...>
+
+  Following columns must be addressed accordingly with the right numbers.
+
+

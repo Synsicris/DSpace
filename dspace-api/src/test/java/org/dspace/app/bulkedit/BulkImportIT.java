@@ -897,7 +897,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
 
         List<MetadataValue> metadata = createdItem.getMetadata();
         assertThat(metadata, hasItems(with("dc.contributor.author", "Walter White", null,
-            "will be referenced::ORCID::0000-0002-9079-593X", 0, 600)));
+            "will be referenced::ORCID::0000-0002-9079-593X", 0, -1)));
         assertThat(metadata, hasItems(with("dc.title", "Wonderful Publication")));
     }
 
@@ -1332,7 +1332,7 @@ public class BulkImportIT extends AbstractIntegrationTestWithDatabase {
         assertThat("Item expected to be created", publication, notNullValue());
 
         assertThat(publication.getMetadata(), hasItems(with("dc.contributor.author", "Walter White", null,
-            "will be referenced::ORCID::0000-0002-9079-593X", 0, 600)));
+            "will be referenced::ORCID::0000-0002-9079-593X", 0, -1)));
 
         String personsCollectionId = persons.getID().toString();
         fileLocation = getXlsFilePath("create-person.xls");

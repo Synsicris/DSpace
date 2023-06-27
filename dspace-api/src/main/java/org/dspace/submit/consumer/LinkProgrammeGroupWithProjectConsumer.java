@@ -7,12 +7,12 @@
  */
 package org.dspace.submit.consumer;
 
+import static org.dspace.project.util.ProjectConstants.EXTERNAL_READERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.MD_RELATION_CALLTOPROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MANAGERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROGRAMME_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_ENTITY;
-import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -100,7 +100,7 @@ public class LinkProgrammeGroupWithProjectConsumer implements Consumer {
             return;
         }
 
-        Group parentGroup = getProjectCommunityGroupByRole(context, item, READERS_ROLE);
+        Group parentGroup = getProjectCommunityGroupByRole(context, item, EXTERNAL_READERS_ROLE);
         if (!Objects.isNull(parentGroup)) {
             removeAllChildGroups(context, parentGroup);
             addChildGroups(context, parentGroup, programmeMemberGroup, programmeManagerGroup);

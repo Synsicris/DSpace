@@ -6,14 +6,19 @@
  * http://www.dspace.org/license/
  */
 package org.dspace.submit.consumer.service;
+import static org.dspace.project.util.ProjectConstants.EXTERNAL_READERS_ROLE;
+import static org.dspace.project.util.ProjectConstants.FUNDERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.FUNDING_COORDINATORS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.FUNDING_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.MD_POLICY_GROUP;
 import static org.dspace.project.util.ProjectConstants.MD_POLICY_SHARED;
+import static org.dspace.project.util.ProjectConstants.MEMBERS_ROLE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_COORDINATORS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.PROJECT_EXTERNALREADERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_FUNDERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_MEMBERS_GROUP_TEMPLATE;
 import static org.dspace.project.util.ProjectConstants.PROJECT_READERS_GROUP_TEMPLATE;
+import static org.dspace.project.util.ProjectConstants.READERS_ROLE;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -248,7 +253,7 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         String template;
         switch (role) {
-            case ProjectConstants.MEMBERS_ROLE:
+            case MEMBERS_ROLE:
                 template = FUNDING_MEMBERS_GROUP_TEMPLATE;
                 break;
             default:
@@ -275,13 +280,16 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
         }
         String template;
         switch (role) {
-            case ProjectConstants.MEMBERS_ROLE:
+            case MEMBERS_ROLE:
                 template = PROJECT_MEMBERS_GROUP_TEMPLATE;
                 break;
-            case ProjectConstants.FUNDERS_ROLE:
+            case FUNDERS_ROLE:
                 template = PROJECT_FUNDERS_GROUP_TEMPLATE;
                 break;
-            case ProjectConstants.READERS_ROLE:
+            case EXTERNAL_READERS_ROLE:
+                template = PROJECT_EXTERNALREADERS_GROUP_TEMPLATE;
+                break;
+            case READERS_ROLE:
                 template = PROJECT_READERS_GROUP_TEMPLATE;
                 break;
             default:
@@ -491,10 +499,10 @@ public class ProjectConsumerServiceImpl implements ProjectConsumerService {
             Group group;
             switch (policyValue) {
                 case ProjectConstants.PROJECT:
-                    group = getProjectCommunityGroupByRole(context, projectCommunity, ProjectConstants.MEMBERS_ROLE);
+                    group = getProjectCommunityGroupByRole(context, projectCommunity, MEMBERS_ROLE);
                     break;
                 case ProjectConstants.FUNDING:
-                    group = getFundingCommunityGroupByRole(context, fundingCommunity, ProjectConstants.MEMBERS_ROLE);
+                    group = getFundingCommunityGroupByRole(context, fundingCommunity, MEMBERS_ROLE);
                     break;
                 default:
                     throw new IllegalArgumentException("Unable to find policy named : " + policyValue);

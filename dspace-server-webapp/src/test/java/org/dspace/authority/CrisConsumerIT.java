@@ -7,7 +7,6 @@
  */
 package org.dspace.authority;
 
-import static java.lang.String.join;
 import static java.util.Arrays.asList;
 import static java.util.UUID.fromString;
 import static org.dspace.app.matcher.MetadataValueMatcher.with;
@@ -59,17 +58,12 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.ItemService;
 import org.dspace.eperson.EPerson;
-import org.dspace.event.factory.EventServiceFactory;
-import org.dspace.event.service.EventService;
 import org.dspace.external.OrcidRestConnector;
 import org.dspace.external.provider.impl.OrcidV3AuthorDataProvider;
 import org.dspace.services.ConfigurationService;
-import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.util.UUIDUtils;
 import org.dspace.xmlworkflow.storedcomponents.PoolTask;
 import org.dspace.xmlworkflow.storedcomponents.service.PoolTaskService;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,9 +82,6 @@ import org.springframework.test.web.servlet.MvcResult;
  *
  */
 public class CrisConsumerIT extends AbstractControllerIntegrationTest {
-
-    private static final String CRIS_CONSUMER = CrisConsumer.CONSUMER_NAME;
-    private static String[] consumers;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -118,31 +109,6 @@ public class CrisConsumerIT extends AbstractControllerIntegrationTest {
 
     @Autowired
     private OrcidV3AuthorDataProvider orcidV3AuthorDataProvider;
-
-    /**
-     * This method will be run before the first test as per @BeforeClass. It will
-     * configure the event.dispatcher.default.consumers property to add the
-     * CrisConsumer.
-     */
-    @BeforeClass
-    public static void initCrisConsumer() {
-        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
-        consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
-        String newConsumers = consumers.length > 0 ? join(",", consumers) + "," + CRIS_CONSUMER : CRIS_CONSUMER;
-        configService.setProperty("event.dispatcher.default.consumers", newConsumers);
-        EventService eventService = EventServiceFactory.getInstance().getEventService();
-        eventService.reloadConfiguration();
-    }
-    /**
-     * Reset the event.dispatcher.default.consumers property value.
-     */
-    @AfterClass
-    public static void resetDefaultConsumers() {
-        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
-        configService.setProperty("event.dispatcher.default.consumers", consumers);
-        EventService eventService = EventServiceFactory.getInstance().getEventService();
-        eventService.reloadConfiguration();
-    }
 
     @Override
     public void setUp() throws Exception {
@@ -1252,6 +1218,7 @@ public class CrisConsumerIT extends AbstractControllerIntegrationTest {
                 .build();
     }
 
+    @SuppressWarnings("deprecation")
     private Collection createCollectionWithWorkflowGroup(String name, String entityType, Community community)
             throws Exception {
         return CollectionBuilder.createCollection(context, community)

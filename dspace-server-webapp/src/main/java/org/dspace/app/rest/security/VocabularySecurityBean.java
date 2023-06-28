@@ -9,7 +9,6 @@ package org.dspace.app.rest.security;
 
 import org.dspace.content.authority.ChoiceAuthority;
 import org.dspace.content.authority.service.ChoiceAuthorityService;
-import org.dspace.services.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,9 +20,6 @@ import org.springframework.stereotype.Component;
  */
 @Component(value = "vocabularySecurity")
 public class VocabularySecurityBean {
-
-    @Autowired
-    private ConfigurationService configurationService;
 
     @Autowired
     private ChoiceAuthorityService choiceAuthorityService;

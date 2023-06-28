@@ -16,26 +16,23 @@ import org.apache.solr.client.solrj.util.ClientUtils;
 import org.dspace.discovery.SolrServiceBestMatchIndexingPlugin;
 
 /**
- * 
  * @author Stefano Maffei 4Science.com
- *
  */
-
 public class ItemAuthorityCustomSolrFilterImpl implements CustomAuthoritySolrFilter {
 
     @Override
     public String getSolrQuery(String searchTerm) {
+        if (StringUtils.isBlank(searchTerm)) {
+            return "*:*";
+        }
         String luceneQuery = ClientUtils.escapeQueryChars(searchTerm.toLowerCase()) + "*";
-        String solrQuery = null;
         luceneQuery = luceneQuery.replaceAll("\\\\ ", " ");
-        String subLuceneQuery = luceneQuery.substring(0,
-            luceneQuery.length() - 1);
-        solrQuery = "{!lucene q.op=AND df=itemauthoritylookup}("
+        String subLuceneQuery = luceneQuery.substring(0, luceneQuery.length() - 1);
+        String solrQuery = "{!lucene q.op=AND df=itemauthoritylookup}("
             + luceneQuery
             + ")^100 OR (\""
             + subLuceneQuery + "\")^100 OR "
             + "(" + generateSearchQueryCoarseBestMatch(searchTerm, true) + ")^10 ";
-
         return solrQuery;
     }
 
@@ -61,4 +58,5 @@ public class ItemAuthorityCustomSolrFilterImpl implements CustomAuthoritySolrFil
         }
         return Choices.CF_AMBIGUOUS;
     }
+
 }

@@ -512,6 +512,7 @@ public class RegistrationRestRepositoryIT extends AbstractControllerIntegrationT
 
         String token = getAuthToken(admin.getEmail(), password);
         getClient(token).perform(post("/api/eperson/registrations")
+                        .param(TYPE_QUERY_PARAM, TYPE_REGISTER)
                         .content(mapper.writeValueAsBytes(registrationRest))
                         .contentType(contentType))
                 .andExpect(status().isCreated());

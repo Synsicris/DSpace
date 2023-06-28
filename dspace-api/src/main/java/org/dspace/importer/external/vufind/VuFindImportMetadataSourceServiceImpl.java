@@ -144,6 +144,9 @@ public class VuFindImportMetadataSourceServiceImpl extends AbstractImportMetadat
             uriBuilder.addParameter("lookfor", query.getParameterAsClass("query", String.class));
             Map<String, Map<String, String>> params = new HashMap<String, Map<String,String>>();
             String responseString = liveImportClient.executeHttpGetRequest(1000, uriBuilder.toString(), params);
+            if (StringUtils.isBlank(responseString)) {
+                return 0;
+            }
             JsonNode node = convertStringJsonToJsonNode(responseString);
             JsonNode resultCountNode = node.get("resultCount");
             return resultCountNode.intValue();

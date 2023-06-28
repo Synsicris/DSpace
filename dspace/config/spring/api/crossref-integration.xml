@@ -23,7 +23,7 @@
         <entry key-ref="crossref.isbn" value-ref="crossrefISBNContrib"/>
         <entry key-ref="crossref.year" value-ref="crossrefYearContrib"/>
         <entry key-ref="crossref.editors" value-ref="crossrefEditorsContrib"/>
-        <entry key-ref="crossref.type" value-ref="crossrefDoiTypeContrib"/>
+        <entry key-ref="crossref.type" value-ref="crossTypeContrib"/>
         <entry key-ref="crossref.journal" value-ref="crossrefJournalContrib"/>
         <entry key-ref="crossref.id" value-ref="crossrefIDContrib"/>
         <entry key-ref="crossref.issn" value-ref="crossrefIdentifierISSN" />
@@ -48,10 +48,16 @@
         <constructor-arg value="dc.relation.ispartof"/>
     </bean>
 
-    <bean id="crossrefDoiTypeContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleJsonPathMetadataContributor">
+    <bean id="innerCrossTypeContrib" class="org.dspace.importer.external.metadatamapping.contributor.SimpleJsonPathMetadataContributor">
         <property name="field" ref="crossref.type"/>
         <property name="query" value="/type"/>
     </bean>
+
+    <bean id="crossTypeContrib" class="org.dspace.importer.external.metadatamapping.contributor.MappedMetadataContributor">
+        <constructor-arg name="innerContributor" ref="innerCrossTypeContrib"/>
+        <constructor-arg name="mapConverter" ref="mapConverterCrossRefToCoarPublicationTypes"/>
+    </bean>
+
     <bean id="crossref.type" class="org.dspace.importer.external.metadatamapping.MetadataFieldConfig">
         <constructor-arg value="dc.type"/>
     </bean>

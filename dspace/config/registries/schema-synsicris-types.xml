@@ -243,6 +243,13 @@
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>externalreader-policy</element>
+        <qualifier>group</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
     <dc-type>
         <schema>synsicris</schema>
@@ -504,7 +511,7 @@
 
     <dc-type>
         <schema>synsicris</schema>
-        <element>versioning-reader-policy</element>
+        <element>versioning-externalreader-policy</element>
         <qualifier>group</qualifier>
         <scope_note></scope_note>
     </dc-type>
@@ -548,6 +555,13 @@
         <schema>synsicris</schema>
         <element>subject</element>
         <qualifier>urbanrural</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>subject</element>
+        <qualifier>ipc</qualifier>
         <scope_note></scope_note>
     </dc-type>
 

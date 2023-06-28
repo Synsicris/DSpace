@@ -64,7 +64,11 @@ public class ProjectConstants {
 
     public static final String PROJECT_FUNDERS_GROUP_TEMPLATE = "project_%s_funders_group";
 
+    public static final String EXTERNAL_READERS_ROLE = "externalreaders";
+
     public static final String READERS_ROLE = "readers";
+
+    public static final String PROJECT_EXTERNALREADERS_GROUP_TEMPLATE = "project_%s_externalreaders_group";
 
     public static final String PROJECT_READERS_GROUP_TEMPLATE = "project_%s_readers_group";
 
@@ -78,7 +82,7 @@ public class ProjectConstants {
 
     public static final String[] SYNSICRIS_GROUPS_PREFIXES = { "funder", "funding", "project", "programme", "system"};
 
-    public static final String[] notAllowedEditGrants = { "Project", "Funding", "subcontractor" };
+    public static final String[] notAllowedEditGrants = { "Project", "subcontractor" };
 
     public static final MetadataFieldName MD_RELATION_ITEM_ENTITY =
         new MetadataFieldName("synsicris", "relation", "entity_item");
@@ -97,6 +101,8 @@ public class ProjectConstants {
     public static final MetadataFieldName MD_RELATION_CALL = new MetadataFieldName("synsicris", "relation", "call");
 
     public static final MetadataFieldName MD_POLICY_SHARED = new MetadataFieldName("cris", "project", "shared");
+
+    public static final MetadataFieldName MD_PATENTNO = new MetadataFieldName("dc", "identifier", "patentno");
 
     public static final MetadataFieldName MD_RELATION_FUNDINGOBJTOPROGRAMME =
         new MetadataFieldName(
@@ -117,6 +123,7 @@ public class ProjectConstants {
 
     public static final MetadataFieldName MD_PROJECT_STATUS = new MetadataFieldName("oairecerif", "project", "status");
     public static final String DEFAULT_STATUS = "In preparation";
+    public static final String RUNNING_STATUS = "In implementation";
 
     public static final MetadataFieldName MD_ENTITY_TYPE = new MetadataFieldName("dspace", "entity", "type");
     public static final MetadataFieldName MD_VERSION = new MetadataFieldName("synsicris", "version");
@@ -130,6 +137,8 @@ public class ProjectConstants {
     public static final MetadataFieldName MD_LAST_VERSION = new MetadataFieldName("synsicris", "isLastVersion");
     public static final MetadataFieldName MD_FUNDER_POLICY_GROUP =
         new MetadataFieldName("synsicris", "funder-policy", "group");
+    public static final MetadataFieldName MD_EXTERNAL_READER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "externalreader-policy", "group");
     public static final MetadataFieldName MD_READER_POLICY_GROUP =
         new MetadataFieldName("synsicris", "reader-policy", "group");
     public static final MetadataFieldName MD_MEMBER_POLICY_GROUP =
@@ -142,8 +151,8 @@ public class ProjectConstants {
         new MetadataFieldName("synsicris", "relation", "commentProject");
     public static final MetadataFieldName MD_V_FUNDER_POLICY_GROUP =
         new MetadataFieldName("synsicris", "versioning-funder-policy", "group");
-    public static final MetadataFieldName MD_V_READER_POLICY_GROUP =
-        new MetadataFieldName("synsicris", "versioning-reader-policy", "group");
+    public static final MetadataFieldName MD_V_EXTERNAL_READER_POLICY_GROUP =
+        new MetadataFieldName("synsicris", "versioning-externalreader-policy", "group");
     public static final MetadataFieldName MD_V_MEMBER_POLICY_GROUP =
         new MetadataFieldName("synsicris", "versioning-member-policy", "group");
     public static final MetadataFieldName MD_V_COORDINATOR_POLICY_GROUP =

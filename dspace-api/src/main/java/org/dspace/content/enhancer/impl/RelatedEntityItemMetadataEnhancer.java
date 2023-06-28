@@ -9,6 +9,7 @@ package org.dspace.content.enhancer.impl;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -129,7 +130,10 @@ public class RelatedEntityItemMetadataEnhancer implements ItemEnhancer {
 
     private boolean isSourceItemIdEqualToRelatedItemAuthority(Item relatedItem, String sourceItemUuid) {
         MetadataValue metadataValue = getFirstMetadataValue(relatedItem, relatedRelationItemMetadataField);
-        return metadataValue == null ? false : metadataValue.getAuthority().equals(sourceItemUuid);
+        return Optional.ofNullable(metadataValue)
+                .map(MetadataValue::getAuthority)
+                .map(authority -> sourceItemUuid.equals(authority))
+                .orElse(false);
     }
 
     private boolean isUpdateMetadataNeeded(Item item, Item relatedItem) {

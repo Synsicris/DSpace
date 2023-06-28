@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="dspaceRunnableThreadExecutor" class="org.springframework.core.task.SyncTaskExecutor"/>
 
@@ -160,5 +163,16 @@
         <property name="description" value="Perform the migrate of projects"/>
         <property name="dspaceRunnableClass" value="org.dspace.content.scripts.ProjectsMigrationScriptCli"/>
     </bean>
+
+    <bean id="update-patents" class="org.dspace.scripts.patents.UpdatePatentsWithExternalSourceCliScriptConfiguration">
+        <property name="description" value="Perform the Patents update"/>
+        <property name="dspaceRunnableClass" value="org.dspace.scripts.patents.UpdatePatentsWithExternalSourceCli"/>
+        <property name="nonRepeatableMetadata" ref="nonRepeatableMetadataMapBean"/>
+    </bean>
+
+    <util:map id="nonRepeatableMetadataMapBean" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.Boolean">
+        <entry key="dc.title" value="false"/>
+        <entry key="dc.description.abstract" value="false"/>
+    </util:map>
 
 </beans>

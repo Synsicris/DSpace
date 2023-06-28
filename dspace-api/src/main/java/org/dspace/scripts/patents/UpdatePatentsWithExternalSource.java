@@ -28,6 +28,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.exec.util.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -227,7 +228,7 @@ public class UpdatePatentsWithExternalSource
 
     private boolean updateCurrentPatentWithNewOne(Context context, Item localPatent,
             List<MetadataFieldConfig> supportedMetadataFields, ExternalDataObject externalPatent) {
-        Map<String, Boolean> nonRepeatableMetadata = getScriptConfiguration().getNonRepeatableMetadata();
+        Map<String, Boolean> nonRepeatableMetadata = MapUtils.copy(getScriptConfiguration().getNonRepeatableMetadata());
         try {
             localPatent = clearMetadataOfLocalPatent(context, localPatent, supportedMetadataFields);
             for (MetadataValueDTO mv : externalPatent.getMetadata()) {
@@ -237,8 +238,10 @@ public class UpdatePatentsWithExternalSource
         } catch (SQLException | AuthorizeException e) {
             log.error("The Patent with uuid " + localPatent.getID() + " was not updated by the fallowing cause:"
                                               + e.getCause(), e.getMessage());
+            nonRepeatableMetadata.clear();
             return false;
         }
+        nonRepeatableMetadata.clear();
         return true;
     }
 

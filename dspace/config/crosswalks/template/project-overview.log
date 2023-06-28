@@ -189,13 +189,136 @@ section 3.1.3
     - NOTE: While working on these new templates it became apparent that when no label-value pair is availabe there is trouble. The initial approach was to catch this with an if clause for the value in "label-value-single-below-table". However an error '"fo:table-cell" is missing child elements. Required content model: marker* (%block;)' appeared. Using a choose construct in "label-value-single-below-table" with an empty ruler in case when there was no label-value pair worked fine, but had the disadvantage of an empty line each time this situation occurred. Accordingly, a global test is made outside these new templates, using the general template "empty-table-cell-catcher".
   - add all parts except the two inline groups for process events
   
-  2023-06-15
-  section 4
+2023-06-15
+section 4
   - addapt ruler for headlines of all sectuions -> add "rule = false" to all value-single templates refering to a title
-  - check .lang Expressions in complete chapter 4.
-  - Update shape Table 4.2.3 without outer boarders - add spaccing bevore table
-  - Update shape tables 4.2.6 without outer boarders - add spaccing bevore table
-  - Update shape table 4.3.2 without outer boarders - add spaccing bevore table
-  - Update shape table 4.3.3 without outer boarders - add spaccing bevore table
+  - check .lang Expressions in complete section 4.
+  - Update shape Table 4.2.3 without outer borders - add spaccing bevore table
+  - Update shape tables 4.2.6 without outer borders - add spaccing bevore table
+  - Update shape table 4.3.2 without outer borders - add spaccing bevore table
+  - Update shape table 4.3.3 without outer borders - add spaccing bevore table
 
- 
+2023-06-20
+section 3.1.4
+  - adjust publication for Doris' comments as much as possible
+section 3.1.3
+  - start adjusting to Birge's comments, i.e. deconstruct the tables in favour of a block approach  
+
+2023-06-21
+general
+  - rename template input "addRuler" to "addRulerAbove"
+  - add option "addRulerBelow" (default false) to the template "value-single" to be used in section 3.1.3
+  - integrate the template "empty-table-cell-catcher" into the templates "value-single-table" and "value-comma-list-table" to make them more robust
+section 3.1.3
+  - handle tasks
+  - handle events 
+    - create new template "label-period-below"
+    - remove unused template "label-period-below-table" 
+  - handle planned publications
+  - handle physical objects
+  - start process events    
+
+NOTE: table formattings
+
+OUTSIDE A BLOCK (milestones, overview tables)
+<fo:table-cell column-number="1" 
+								border-width="{$width.border}"
+								border-color="{$colour.border}"
+								border-style="{$style.border}">
+
+INSIDE A BLOCK (e.g. applications, spinoff)
+<fo:table-cell column-number="1"  					
+                border-width="{$width.border}"
+                border-color="{$colour.border}"
+                border-style="{$style.border}"
+                border-start-style="hidden"
+                margin-left="{$margin.left.table-cell}">
+
+
+2023-06-22
+section 4.2.4
+  - change cerif to english expression  <StatusPublication>@virtual.vocabulary_i18n.dc-type@</StatusPublication>
+section 4.2.5  
+  - change cerif to english expression  <Type>@virtual.vocabulary_i18n.dc-type@</Type> and	<Use>@virtual.vocabulary_i18n.synsicris-type-patentuse@</Use>
+section 4.2.6 
+  - change cerif to english expressions registercourt,registertype, type, nace, country
+section 4.2.7 
+  - change cerif to english type -> did not work!
+
+2023-06-23
+general
+  - change template "label-amount-currency" to "label-amount-currency-below"
+  - change cerif to english for step entity <Type>
+  - change cerif to english for conditions entity <ConditionType> & <Influence>
+  - change cerif to english for ExpectedSocietalImpact entity <Evidence> <CoreElement> <Intensity>
+  - change cerif to english for NegativeSideEffect entity <TransitionArea> <Evidence> <CoreElement> <Intensity>
+  - change cerif to english for ethic entity <FurtherDocuments> <AspectType>
+  - sort section templates according to their occurrence
+  - remove obsolete templates
+    - "label-value-single-below-table"
+    - "label-value-comma-list"
+    - "label-value-comma-list-below-table"
+    - "label-postcode-city-country-below-table"
+    - "label-author-affilation-comma-list"  
+section 3.1.3
+  - add the two missing tables to the process events
+  - create template "value-postcode-city-country-table"
+  - create template "value-period-table"
+section 4.2.3
+  - implement count check to make the table more robust
+section 4.2.6
+  - implement count checks to make the two tables more robust
+section 4.3.2
+  - implement count check to make the table more robust
+section 4.3.3
+  - implement count check to make the table more robust  
+section 4.3.4
+  - implement count check to make the table more robust  
+
+2023-06-26
+general
+  - make a templates for tables more robust, by implementing the template "empty-table-cell-catcher" in all cases, except template "value-icon-count-table"
+  - use XML formatter to be consistent
+    - XML Tools by Josh Johnson in Visual Studio Code
+    - drawbacks so far: "<xsl:text> </xsl:text>" is convert to "<xsl:text></xsl:text>", i.e. ommitting the blank that is there for a reason
+    - NOTE: not applied to CERIF template, because the formatter can not handle  @group setups 
+
+NOTE: input checks on templates
+  - "postcode-city-country" templates check only on the city input, if not given there is no output even when postcode or country should exist
+  - "amount-currency" templates check only only on the amount input, as currency Euro is assumed as default  
+
+2023-06-27
+section 3.1
+  - add screenshot for the working plan
+section 1.1.1
+  - add screenshot for the impact pathway
+    - in the current setup metadata and screenshots cannot be aligned since they are not tight to 
+      the same iterator
+
+new report project-overview-test
+  - this report is used to play around with the landscape mode for the screenshots of impact pathway
+    and working plan
+  - this is achieved by splitting the <fo:page-sequence> in 5 blocks    
+		1: from the beginning to the impact pathway
+		2: impact pathway itself (landscape)
+    3: from the impact pathway to the working plan
+		4: working plan itself (landscape)
+		5: from the working plan to the end
+
+NOTE: for tables the approach to have them centrally aligned is to start and end 
+      with "special" columns that have the width "proportional-column-width(1)", 
+      like 
+
+  <fo:table-column column-width="proportional-column-width(1)"/>
+  <fo:table-column column-width="12.0%"/>
+  <fo:table-column column-width="30.0%"/>
+  <fo:table-column column-width="55.0%"/>
+  <fo:table-column column-width="proportional-column-width(1)"/>
+
+  Since the special columns are counted the real data are first given in the second column, that can be specified as follows
+
+  <fo:table-cell column-number="2" ...>
+
+  Following columns must be addressed accordingly with the right numbers.
+
+

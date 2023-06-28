@@ -200,6 +200,9 @@ public class ScopusImportMetadataSourceServiceImpl extends AbstractImportMetadat
                 Map<String, String> requestParams = getRequestParameters(query, null, null, null);
                 params.put(URI_PARAMETERS, requestParams);
                 String response = liveImportClient.executeHttpGetRequest(timeout, url, params);
+                if (StringUtils.isBlank(response)) {
+                    return 0;
+                }
 
                 SAXBuilder saxBuilder = new SAXBuilder();
                 Document document = saxBuilder.build(new StringReader(response));
@@ -214,10 +217,10 @@ public class ScopusImportMetadataSourceServiceImpl extends AbstractImportMetadat
                 try {
                     return Integer.parseInt(count.getText());
                 } catch (NumberFormatException e) {
-                    return null;
+                    return 0;
                 }
             }
-            return null;
+            return 0;
         }
     }
 
@@ -243,6 +246,9 @@ public class ScopusImportMetadataSourceServiceImpl extends AbstractImportMetadat
                 Map<String, String> requestParams = getRequestParameters(queryString, viewMode, null, null);
                 params.put(URI_PARAMETERS, requestParams);
                 String response = liveImportClient.executeHttpGetRequest(timeout, url, params);
+                if (StringUtils.isBlank(response)) {
+                    return results;
+                }
                 List<Element> elements = splitToRecords(response);
                 for (Element record : elements) {
                     results.add(transformSourceRecords(record));
@@ -302,6 +308,9 @@ public class ScopusImportMetadataSourceServiceImpl extends AbstractImportMetadat
                 Map<String, String> requestParams = getRequestParameters(queryString, viewMode, start, count);
                 params.put(URI_PARAMETERS, requestParams);
                 String response = liveImportClient.executeHttpGetRequest(timeout, url, params);
+                if (StringUtils.isBlank(response)) {
+                    return results;
+                }
                 List<Element> elements = splitToRecords(response);
                 for (Element record : elements) {
                     results.add(transformSourceRecords(record));
@@ -347,6 +356,9 @@ public class ScopusImportMetadataSourceServiceImpl extends AbstractImportMetadat
                 Map<String, String> requestParams = getRequestParameters(queryString, viewMode, start, count);
                 params.put(URI_PARAMETERS, requestParams);
                 String response = liveImportClient.executeHttpGetRequest(timeout, url, params);
+                if (StringUtils.isBlank(response)) {
+                    return results;
+                }
                 List<Element> elements = splitToRecords(response);
                 for (Element record : elements) {
                     results.add(transformSourceRecords(record));

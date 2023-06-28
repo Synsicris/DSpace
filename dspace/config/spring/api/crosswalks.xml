@@ -68,8 +68,7 @@
 
         		<entry key="1 - Project overview - PDF" value-ref="pdfCrosswalkProjectOverview"></entry>
 				<entry key="2 - Project overview - XML" value-ref="referCrosswalkProjectOverviewCerifXml"></entry>
-				<entry key="3 - Project overview (Screenshots) - PDF" value-ref="pdfCrosswalkProjectScreenshotsOverview"></entry>
-				<entry key="4 - Project overview (Screenshots) - XML" value-ref="referCrosswalkProjectOverviewCerifWithScreenshotsXml"></entry>				
+				<entry key="3 - Project overview - PDF (Test)" value-ref="pdfCrosswalkProjectOverviewTest"></entry>
 				<!--<entry key="parentproject-pdf" value-ref="pdfCrosswalkProject"></entry> -->
 
 			</map>
@@ -522,24 +521,23 @@
 		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewCerifXml"/>
 	</bean>
 
-	<!-- report template for project overview with screenshots -->
-
-	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectOverviewCerifWithScreenshotsXml">
-		<property name="templateFileName" value="crosswalks/template/project-overview-cerif-with-screenshots-xml.template"/>
+	<!-- report template for project overview (landscape test)-->
+	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectOverviewTestCerifXml">
+		<property name="templateFileName" value="crosswalks/template/project-overview-test-cerif-xml.template"/>
 		<property name="mimeType" value="application/xml; charset=UTF-8"/>
-		<property name="fileName" value="project-overview.xml"/>
+		<property name="fileName" value="project-overview-test.xml"/>
 		<property name="entityType" value="Project"/>
-		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-overview-xml.template"/>
+		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-overview-test-xml.template"/>
 		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
 		<property name="converter" ref="xmlValueConverter" />
 	</bean>
 
-	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProjectScreenshotsOverview">
-		<property name="templateFileName" value="crosswalks/template/project-overview-with-screenshots.xsl"/>
-		<property name="fileName" value="project-overview-with-screenshots.pdf"/>
+	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProjectOverviewTest">
+		<property name="templateFileName" value="crosswalks/template/project-overview-test.xsl"/>
+		<property name="fileName" value="project-overview-test.pdf"/>
 		<property name="mimeType" value="application/pdf"/>
 		<property name="entityType" value="Project"/>
-		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewCerifWithScreenshotsXml"/>
+		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewTestCerifXml"/>
 	</bean>
 
 	<!-- VIRTUAL FIELDS CONFIGURATION -->
@@ -699,6 +697,12 @@
 
 	<bean name="mapConverterScopusToCoarPublicationTypes" class="org.dspace.util.SimpleMapConverter" init-method="init">
 		<property name="converterNameFile" value="mapConverter-scopusToCoarPublicationTypes.properties" />
+		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
+		<property name="defaultValue" value=""/>
+	</bean>
+
+	<bean name="mapConverterCrossRefToCoarPublicationTypes" class="org.dspace.util.SimpleMapConverter" init-method="init">
+		<property name="converterNameFile" value="mapConverter-crossRefToCoarPublicationTypes.properties" />
 		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
 		<property name="defaultValue" value=""/>
 	</bean>

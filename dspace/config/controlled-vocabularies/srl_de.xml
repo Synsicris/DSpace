@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="SRL 2021-05-12">
+  <isComposedBy>
+    <node id="SRL1" label="SRL 1 - Wissenschaftliche Forschungsergebnisse zeigen die grundlegenden Funktionsprinzipien und Zusammenhänge. Zur Übertragbarkeit in ein Anwendungsfeld können kaum oder keine Aussagen getroffen werden." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL2" label="SRL 2 - Problem- und Anwendungsbezug der Ergebnisse wurden theoretisch hergestellt (wissenschaftsinterne Konzeptentwicklung)." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL3" label="SRL 3 - Problem- und Anwendungsrelevanz wurden in kleinen Experimenten oder Studien nachgewiesen und/oder wurden in partizipativen Prozessen mit relevanten Akteuren konzipiert." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL4" label="SRL 4 -Realitätsnahe Tests weisen die Anwendbarkeit und das Lösungspotenzial nach. Hindernisse/Defizite in der Anwendbarkeit können beschrieben werden.  Eine Weiterentwicklung erscheint erfolgversprechend." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL5" label="SRL 5 - Eine Weiterentwicklung konnte identifizierte Hindernisse/Defizite in der Anwendbarkeit beheben. Ggf. wurde dies bereits durch einen Re-test nachgewiesen." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL6" label="SRL 6 - Erstmalige, modellhafte Anwendung/Erprobung in einem spezifischen Anwendungsfeld innerhalb des Projektes oder durch projektexterne Akteure." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL7" label="SRL 7 - Vielfältige modellhafte Anwendung/Erprobung in verschiedenen Anwendungsfeldern." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL8" label="SRL 8 - Erste Anwendung oder Pilotbetrieb unter vollständig realistischen Bedingungen." selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="SRL9" label="SRL 9 - Bewährte Anwendungsfälle und passende Rahmenbedingungen zeigen die Eignung für die Breitenanwendung." selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

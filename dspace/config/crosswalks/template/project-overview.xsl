@@ -334,6 +334,7 @@
 	<xsl:param name="width.border" select="'0.3mm'"/>
 	<xsl:param name="width.table" select="'97%'"/>
 	<xsl:param name="width.ruler" select="'100%'"/>
+	<xsl:param name="width.ruler.research-work" select="'103%'"/>
 	<xsl:param name="width.icon.overview" select="'12mm'"/>
 
 	<!-- colours -->
@@ -424,6 +425,9 @@
 					<!-- <xsl:call-template name="graphs">
 						<xsl:with-param name="imageDir" select="$imageDir"/>                      
 					</xsl:call-template> -->
+
+
+					<xsl:call-template name="research-work"/>
 
 					<!-- new page, not shown if no valid element before -->
 					<fo:block break-after='page'/>
@@ -944,34 +948,10 @@
 
 		<xsl:if test="cerif:ImpactPathway">
 
-			<!-- handle case if just one impact pathway exists -->
-			<xsl:if test="count(cerif:ImpactPathway/cerif:Index) = 1">
+			<xsl:call-template name="title-description">
+				<xsl:with-param name="entity" select="cerif:ImpactPathway"/>
+			</xsl:call-template>
 
-				<xsl:call-template name="label-value-single">
-					<xsl:with-param name="label" select="$lang.description"/>
-					<xsl:with-param name="value" select="cerif:ImpactPathway/cerif:Index/cerif:Description"/>
-				</xsl:call-template>
-
-			</xsl:if>
-
-			<!-- handle case if more than one impact pathway exists -->
-			<xsl:if test="count(cerif:ImpactPathway/cerif:Index) > 1">
-				<xsl:for-each select="cerif:ImpactPathway/cerif:Index">
-
-					<xsl:call-template name="label-block">
-						<xsl:with-param name="label" select="cerif:Title"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="label-value-single">
-						<xsl:with-param name="label" select="$lang.description"/>
-						<xsl:with-param name="value" select="cerif:Description"/>
-					</xsl:call-template>
-
-				</xsl:for-each>
-
-			</xsl:if>
-
-			<!-- INFO: in the current setup metadata and screenshots cannot be aligned since they are not tight to the same iterator -->
 			<xsl:call-template name="impactpathway-screenshots">
 				<xsl:with-param name="imageDir" select="$imageDir"/>
 			</xsl:call-template>
@@ -988,7 +968,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ProjectObjective"/>
-			<xsl:with-param name="entityIndex" select="cerif:ProjectObjective/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1001,7 +980,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:InteractionObjective"/>
-			<xsl:with-param name="entityIndex" select="cerif:InteractionObjective/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1014,7 +992,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ContributionFundingProgramme"/>
-			<xsl:with-param name="entityIndex" select="cerif:ContributionFundingProgramme/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1027,7 +1004,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:StateOfArt"/>
-			<xsl:with-param name="entityIndex" select="cerif:StateOfArt/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1049,6 +1025,18 @@
 	<!--########################################################################-->
 
 	<xsl:template name="work-package">
+
+		<xsl:if test="cerif:WorkPackage">
+
+			<xsl:call-template name="value-line-list">
+				<xsl:with-param name="value" select="cerif:WorkPackage/cerif:Index/cerif:Title"/>
+			</xsl:call-template>
+
+		</xsl:if>
+
+	</xsl:template>
+
+	<xsl:template name="work-package-old">
 
 		<xsl:if test="cerif:WorkPackage">
 
@@ -1111,7 +1099,27 @@
 							<xsl:with-param name="addRulerAbove" select="'false'"/>
 						</xsl:call-template>
 
-						<xsl:call-template name="ruler"/>
+						<xsl:call-template name="label-value-single-below">
+							<xsl:with-param name="label" select="$lang.description"/>
+							<xsl:with-param name="value" select="cerif:Description"/>
+							<xsl:with-param name="checkValue" select="'false'"/>
+						</xsl:call-template>
+
+						<xsl:call-template name="label-value-single-below">
+							<xsl:with-param name="label" select="$lang.work-package.requirement"/>
+							<xsl:with-param name="value" select="cerif:Requirement"/>
+							<xsl:with-param name="checkValue" select="'false'"/>
+						</xsl:call-template>
+
+						<xsl:call-template name="label-value-single-below">
+							<xsl:with-param name="label" select="$lang.work-package.responsible-organisation"/>
+							<xsl:with-param name="value" select="cerif:ResponsibleOrganisation"/>
+							<xsl:with-param name="checkValue" select="'false'"/>
+						</xsl:call-template>
+
+						<xsl:call-template name="ruler">
+							<xsl:with-param name="width" select="$width.ruler.research-work"/>
+						</xsl:call-template>
 
 						<!-- consider tasks -->
 						<xsl:if test="count(cerif:Task/cerif:Index) > 0">
@@ -1121,32 +1129,32 @@
 						</xsl:if>
 
 						<!-- consider events -->
-						<xsl:if test="count(cerif:Event/cerif:Index) > 0">
+						<!-- <xsl:if test="count(cerif:Event/cerif:Index) > 0">
 							<xsl:call-template name="research-work-event">
 								<xsl:with-param name="entity" select="cerif:Event/cerif:Index"/>
 							</xsl:call-template>
-						</xsl:if>
+						</xsl:if> -->
 
 						<!-- consider process events -->
-						<xsl:if test="count(cerif:ProcessEvent/cerif:Index) > 0">
+						<!-- <xsl:if test="count(cerif:ProcessEvent/cerif:Index) > 0">
 							<xsl:call-template name="research-work-process-event">
 								<xsl:with-param name="entity" select="cerif:ProcessEvent/cerif:Index"/>
 							</xsl:call-template>
-						</xsl:if>
+						</xsl:if> -->
 
 						<!-- consider planned publications -->
-						<xsl:if test="count(cerif:PlannedPublication/cerif:Index) > 0">
+						<!-- <xsl:if test="count(cerif:PlannedPublication/cerif:Index) > 0">
 							<xsl:call-template name="research-work-planned-publication">
 								<xsl:with-param name="entity" select="cerif:PlannedPublication/cerif:Index"/>
 							</xsl:call-template>
-						</xsl:if>
+						</xsl:if> -->
 
 						<!-- consider physical objects -->
-						<xsl:if test="count(cerif:PhysicalObject/cerif:Index) > 0">
+						<!-- <xsl:if test="count(cerif:PhysicalObject/cerif:Index) > 0">
 							<xsl:call-template name="research-work-physical-object">
 								<xsl:with-param name="entity" select="cerif:PhysicalObject/cerif:Index"/>
 							</xsl:call-template>
-						</xsl:if>
+						</xsl:if> -->
 
 					</fo:block>
 
@@ -1165,7 +1173,7 @@
 	<xsl:template name="research-work-task">
 		<xsl:param name="entity"/>
 
-		<xsl:call-template name="vertical-gap"/>
+		<!-- <xsl:call-template name="vertical-gap"/> -->
 
 		<!-- entity name -->
 		<xsl:call-template name="value-single">
@@ -1178,23 +1186,28 @@
 		<!-- loop -->
 		<xsl:for-each select="$entity">
 
-			<xsl:call-template name="value-single">
-				<xsl:with-param name="value" select="cerif:Title"/>
-				<xsl:with-param name="addRulerAbove" select="'false'"/>
-				<xsl:with-param name="addRulerBelow" select="'true'"/>
-			</xsl:call-template>
+			<fo:block border-width="{$width.border}" border-color="{$colour.border}" border-style="{$style.border}" margin-top="{$margin.top.main}" margin-left="{$margin.left.border}" margin-right="{$margin.right.border}" padding-before="{$padding.before.border}" padding-after="{$padding.after.border}" padding-start="{$padding.start.border}" padding-end="{$padding.end.border}">
 
-			<xsl:call-template name="label-value-single-below">
-				<xsl:with-param name="label" select="$lang.description"/>
-				<xsl:with-param name="value" select="cerif:Description"/>
-				<xsl:with-param name="addRulerAbove" select="'false'"/>
-			</xsl:call-template>
-
-			<xsl:if test="position() != last()">
-				<xsl:call-template name="vertical-gap">
-					<xsl:with-param name="margin" select="$margin.top.item"/>
+				<xsl:call-template name="value-single">
+					<xsl:with-param name="value" select="cerif:Title"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
+					<xsl:with-param name="addRulerBelow" select="'true'"/>
 				</xsl:call-template>
-			</xsl:if>
+
+				<xsl:call-template name="label-value-single-below">
+					<xsl:with-param name="label" select="$lang.description"/>
+					<xsl:with-param name="value" select="cerif:Description"/>
+					<xsl:with-param name="addRulerAbove" select="'false'"/>
+				</xsl:call-template>
+
+				<!-- <xsl:if test="position() != last()">
+					<xsl:call-template name="vertical-gap">
+						<xsl:with-param name="margin" select="$margin.top.item"/>
+					</xsl:call-template>
+				</xsl:if> -->
+
+			</fo:block>
+
 
 		</xsl:for-each>
 
@@ -3278,7 +3291,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:OpenResearchQuestion"/>
-			<xsl:with-param name="entityIndex" select="cerif:OpenResearchQuestion/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -4189,9 +4201,10 @@
 	<!--==============================================================-->
 
 	<xsl:template name="ruler">
+		<xsl:param name="width" select="$width.ruler"/>
 
 		<fo:block text-align="center">
-			<fo:leader leader-pattern="rule" leader-length="{$width.ruler}" rule-style="{$style.ruler}" rule-thickness="{$width.border}" color="{$colour.border}"/>
+			<fo:leader leader-pattern="rule" leader-length="{$width}" rule-style="{$style.ruler}" rule-thickness="{$width.border}" color="{$colour.border}"/>
 		</fo:block>
 
 	</xsl:template>
@@ -4391,6 +4404,40 @@
 	</xsl:template>
 
 	<!--==============================================================-->
+	<!-- value list separated by commas -->
+	<!--==============================================================-->
+
+	<xsl:template name="value-line-list">
+		<xsl:param name="value"/>
+		<xsl:param name="fontSize" select="$font.size.standard"/>
+		<xsl:param name="fontWeight" select="$font.weight.value"/>
+
+		<xsl:if test="$value"> 
+
+			<fo:list-block margin-left="{$margin.left.border}" font-size="{$fontSize}" margin-top="{$margin.top.main}">
+
+				<xsl:for-each select="$value">
+					<fo:list-item>
+
+						<fo:list-item-label>      <!-- for whatever reason there is no space between label and body --> 
+							<fo:block></fo:block>   <!-- so the label is skipped here and moved to the body -->  
+						</fo:list-item-label>
+				
+						<fo:list-item-body font-weight="{$fontWeight}" text-align="{$text.alignment.value}">
+							<fo:block>- <xsl:value-of select="current()"/></fo:block>
+						</fo:list-item-body>
+
+					</fo:list-item>
+
+				</xsl:for-each>
+
+			</fo:list-block>
+
+	  </xsl:if>
+
+  </xsl:template>	
+
+	<!--==============================================================-->
 	<!-- single set with icon and count in a table cell -->
 	<!--==============================================================-->
 
@@ -4502,7 +4549,7 @@
 	</xsl:template>
 
 	<!--==============================================================-->
-	<!-- value set with issue date and author list in a table cell -->
+	<!-- value set with publication information in a table cell -->
 	<!--==============================================================-->
 
 	<xsl:template name="value-publication-information-table">
@@ -4927,7 +4974,7 @@
 	</xsl:template>
 
 	<!--==============================================================-->
-	<!-- label: label: period (below label) (duration is assumed to be in hours) -->
+	<!-- label: period (below label) (duration is assumed to be in hours) -->
 	<!--==============================================================-->
 
 	<xsl:template name="label-period-below">
@@ -5234,11 +5281,10 @@
 
 	<xsl:template name="title-description">
 		<xsl:param name="entity"/>
-		<xsl:param name="entityIndex"/>
 
 		<xsl:if test="$entity">
 
-			<xsl:for-each select="$entityIndex">
+			<xsl:for-each select="$entity/cerif:Index">
 
 				<fo:block border-width="{$width.border}" border-color="{$colour.border}" border-style="{$style.border}" margin-top="{$margin.top.main}" margin-left="{$margin.left.border}" margin-right="{$margin.right.border}" padding-before="{$padding.before.border}" padding-after="{$padding.after.border}" padding-start="{$padding.start.border}" padding-end="{$padding.end.border}">
 

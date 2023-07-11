@@ -321,4 +321,14 @@ NOTE: for tables the approach to have them centrally aligned is to start and end
 
   Following columns must be addressed accordingly with the right numbers.
 
+2023-06-27
+general
+  - remove "entityIndex" input from template "title-description"
+section 1.1.1 
+  - use template "title-description" both for standard and test report
 
+2023-07-11
+section 3.1.2
+  - create new "value-line-list" template to list all work packages
+section 3.1.3
+  - integrate description, requirement and responsible organisation for work packages

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="EVENT-TYPE 2021-05-31">
+  <isComposedBy>
+    <node id="EVTYPE010" label="Speech / presentation" selectable="true">
+    <hasNote>Not contributions to academic conferences! These are to be documented in publications.</hasNote>
+    </node>
+    <node id="EVTYPE020" label="Dialogical group format" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE021" label="Workshop" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE022" label="Excursion" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE023" label="Dialogue forum / Round table" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE024" label="Other dialogical group format" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE040" label="Conference or congress" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE041" label="Non-academic conference or congress" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE042" label="Academic conference and congress" selectable="true">
+        <hasNote>Not contributions to academic conferences! These are to be documented in publications.</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE050" label="Exhibition or demonstration" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE051" label="Exhibition stand" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE052" label="Exhibition or trade fair" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE053" label="Demo (demonstration, performance, show)" selectable="true">
+        <hasNote>e.g. of Machines, Devices, Equipment</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE060" label="Open door concept" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE061" label="Open day" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE062" label="Field day" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE063" label="Stable day" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE064" label="Girls-day/ Boys-day" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE070" label="Advisory board or expert panel" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE080" label="Consulting activity" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE090" label="Trial / Practical test" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE100" label="Interview / Survey" selectable="true">
+    <hasNote>Interviews given for publication in print, audio or film material are to be recorded under publications.</hasNote>
+    </node>
+    <node id="EVTYPE030" label="Educational course or seminar" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE031" label="Non-academic course" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE032" label="Academic course (e.g. for students or PhDs)" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE120" label="New form of presentation and interaction (e.g. flash mop, art-performance)" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE130" label="Other" selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

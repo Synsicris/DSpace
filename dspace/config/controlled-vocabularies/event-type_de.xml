@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="EVENT-TYPE 2021-05-31">
+  <isComposedBy>
+    <node id="EVTYPE010" label="Rede / Präsentation" selectable="true">
+    <hasNote>Keine Beiträge zu wissenschaftlichen Konferenzen! Diese sollen in Publikationen dokumentiert werden.</hasNote>
+    </node>
+    <node id="EVTYPE020" label="Dialogisches Gruppenformat" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE021" label="Workshop" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE022" label="Exkursion" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE023" label="Dialogforum / Runder Tisch" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE024" label="Anderes dialogisches Gruppenformat" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE040" label="Konferenz oder Kongress" selectable="false">
+    <hasNote>Keine Beiträge zu wissenschaftlichen Konferenzen! Diese sollen in Publikationen dokumentiert werden.</hasNote>
+      <isComposedBy>
+        <node id="EVTYPE041" label="Nicht-akademische Konferenz oderKongress" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE042" label="Wissenschaftliche Konferenz und Kongress" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE050" label="Messe, Ausstellung, Vorführung" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE051" label="Stand auf einer Messe oder Ausstellung" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE052" label="Ausstellung oder Messe" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE053" label="Demo (Vorführung, Performance, Show)" selectable="true">
+        <hasNote>z.B. von Maschinen, Geräten, Betriebsmitteln</hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE060" label="Konzept der offenen Tür" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE061" label="Besuchertage, Tag der offenen Tür" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE062" label="Feldtag" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE063" label="Stalltag" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE064" label="Girls-day/ Boys-day" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE070" label="Beirat oder Expertengremieum" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE080" label="Beratungsaktivität" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE090" label="Erprobung / Praxistest" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE100" label="Interview / Befragung" selectable="true">
+    <hasNote>Interviews, die für eine Veröffentlichung in print-, audio-, oder Filmmaterial gegeben werden, sind unter Publikationen zu erfassen.</hasNote>
+    </node>
+    <node id="EVTYPE030" label="Fortbildungskurs oder Seminar" selectable="false">
+    <hasNote></hasNote>
+      <isComposedBy>
+        <node id="EVTYPE031" label="Kurs für Teilnehmende außerhalb des akademischen Bereichs" selectable="true">
+        <hasNote></hasNote>
+        </node>
+        <node id="EVTYPE032" label="Kurs für Studierende oder Doktoranden" selectable="true">
+        <hasNote></hasNote>
+        </node>
+      </isComposedBy>
+    </node>
+    <node id="EVTYPE120" label="Neue Form der Präsentation und Interaktion (z.B. Flash Mops, Kunst-Performances)" selectable="true">
+    <hasNote></hasNote>
+    </node>
+    <node id="EVTYPE130" label="Sonstiges" selectable="true">
+    <hasNote></hasNote>
+    </node>
+  </isComposedBy>
+</node>

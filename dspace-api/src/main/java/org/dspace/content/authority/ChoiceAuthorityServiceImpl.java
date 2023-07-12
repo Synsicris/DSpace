@@ -21,6 +21,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -699,7 +700,7 @@ public final class ChoiceAuthorityServiceImpl implements ChoiceAuthorityService 
 
     private boolean isLinkableToAnEntityWithEntityType(ChoiceAuthority choiceAuthority, String entityType) {
 
-        return choiceAuthority instanceof LinkableEntityAuthority
-            && entityType.equals(((LinkableEntityAuthority) choiceAuthority).getLinkedEntityType());
+        return choiceAuthority instanceof LinkableEntityAuthority &&
+            ArrayUtils.contains(((LinkableEntityAuthority) choiceAuthority).getLinkedEntityType(), entityType);
     }
 }

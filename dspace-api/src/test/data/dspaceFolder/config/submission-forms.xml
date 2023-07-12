@@ -549,7 +549,7 @@ it, please enter the types and the actual numbers or codes.</hint>
           <required />
           <style>col-md-6</style>
           <hint />
-          <vocabulary closed="true">countries</vocabulary>
+          <vocabulary closed="true">common_iso_countries</vocabulary>
         </field>
      </row>
      <row>

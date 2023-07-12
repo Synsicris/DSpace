@@ -163,8 +163,8 @@ public class ItemMultiAuthority implements LinkableEntityAuthority {
     }
 
     @Override
-    public String getLinkedEntityType() {
-        return configurationService.getProperty("cris.ItemAuthority." + field + ".entityType");
+    public String[] getLinkedEntityType() {
+        return configurationService.getArrayProperty("cris.ItemAuthority." + field + ".entityType");
     }
 
     @Override

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,8 +53,11 @@ import org.dspace.utils.DSpace;
  * @version $Revision $
  */
 public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
+
     private static Logger log = LogManager.getLogger(ItemAuthority.class);
     final static String CHOICES_EXTERNALSOURCE_PREFIX = "choises.externalsource.";
+
+    protected static final String DSPACE_ENTITY_TYPE_FILTER = "dspace.entity.type:(%s)";
 
     /** the name assigned to the specific instance by the PluginService, @see {@link NameAwarePlugin} **/
     private String authorityName;
@@ -113,7 +117,7 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             return new Choices(Choices.CF_UNSET);
         }
 
-        String entityType = getLinkedEntityType();
+        String[] entityTypes = getLinkedEntityType();
         ItemAuthorityService itemAuthorityService = itemAuthorityServiceFactory.getInstance(authorityName);
 
         String query = "";
@@ -124,37 +128,49 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
             query = itemAuthorityService.getSolrQuery(text);
         }
 
-        SolrQuery solrQuery = new SolrQuery();
-        solrQuery.setQuery(query);
-        solrQuery.setStart(start);
-        solrQuery.setRows(limit);
-        solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
+        String filterValues =
+            Stream.of(entityTypes)
+                .filter(StringUtils::isNotBlank)
+                .collect(Collectors.joining(" OR "));
 
-        if (StringUtils.isNotBlank(entityType)) {
-            solrQuery.addFilterQuery("dspace.entity.type:" + entityType);
+        if (StringUtils.isNotBlank(filterValues)) {
+
+            SolrQuery solrQuery = new SolrQuery();
+            solrQuery.setQuery(query);
+            solrQuery.setStart(start);
+            solrQuery.setRows(limit);
+            solrQuery.addFilterQuery("search.resourcetype:" + Item.class.getSimpleName());
+            solrQuery.addFilterQuery(
+                String.format(
+                    DSPACE_ENTITY_TYPE_FILTER,
+                    filterValues
+                )
+            );
+
+            customAuthorityFilters
+                .stream()
+                .flatMap(caf -> caf.getFilterQueries(this).stream())
+                .forEach(solrQuery::addFilterQuery);
+
+            try {
+                QueryResponse queryResponse = solr.query(solrQuery);
+                List<Choice> choiceList =
+                    getChoiceListFromQueryResults(queryResponse.getResults(), text, onlyExactMatches);
+                Choice[] results = new Choice[choiceList.size()];
+                results = choiceList.toArray(results);
+                long numFound = queryResponse.getResults().getNumFound();
+
+                int confidenceValue = itemAuthorityService.getConfidenceForChoices(results);
+
+                return new Choices(results, start, (int) numFound, confidenceValue,
+                                   numFound > start + limit, 0);
+
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+                return new Choices(Choices.CF_UNSET);
+            }
         }
-
-        customAuthorityFilters.stream()
-            .flatMap(caf -> caf.getFilterQueries(this).stream())
-            .forEach(solrQuery::addFilterQuery);
-
-        try {
-            QueryResponse queryResponse = solr.query(solrQuery);
-            List<Choice> choiceList = getChoiceListFromQueryResults(queryResponse.getResults(), text,
-                onlyExactMatches);
-            Choice[] results = new Choice[choiceList.size()];
-            results = choiceList.toArray(results);
-            long numFound = queryResponse.getResults().getNumFound();
-
-            int confidenceValue = itemAuthorityService.getConfidenceForChoices(results);
-
-            return new Choices(results, start, (int) numFound, confidenceValue,
-                               numFound > (start + limit), 0);
-
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return new Choices(Choices.CF_UNSET);
-        }
+        return new Choices(Choices.CF_UNSET);
     }
 
     private List<Choice> getChoiceListFromQueryResults(SolrDocumentList results, String searchTitle,
@@ -197,8 +213,8 @@ public class ItemAuthority implements ChoiceAuthority, LinkableEntityAuthority {
     }
 
     @Override
-    public String getLinkedEntityType() {
-        return configurationService.getProperty("cris.ItemAuthority." + authorityName + ".entityType");
+    public String[] getLinkedEntityType() {
+        return configurationService.getArrayProperty("cris.ItemAuthority." + authorityName + ".entityType");
     }
 
     @Override

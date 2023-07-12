@@ -7,9 +7,11 @@
  */
 package org.dspace.content.authority;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class EntityTypeAuthorityFilter extends CustomAuthorityFilter {
 
@@ -19,10 +21,21 @@ public class EntityTypeAuthorityFilter extends CustomAuthorityFilter {
         this.supportedEntities = supportedEntities;
     }
 
+    @Override
     public boolean appliesTo(LinkableEntityAuthority linkableEntityAuthority) {
+        if (CollectionUtils.isEmpty(supportedEntities)) {
+            return true;
+        }
 
-        return CollectionUtils.isEmpty(supportedEntities)
-            || supportedEntities.contains(linkableEntityAuthority.getLinkedEntityType());
+        String[] linkedEntityTypeArray = linkableEntityAuthority.getLinkedEntityType();
+        List<String> linkedEntityTypes = List.of();
+        if (ArrayUtils.isNotEmpty(linkedEntityTypeArray)) {
+            linkedEntityTypes = Arrays.asList(linkedEntityTypeArray);
+        }
+        return CollectionUtils.containsAny(
+                supportedEntities,
+                linkedEntityTypes
+            );
     }
 
     public EntityTypeAuthorityFilter(List<String> customQueries) {

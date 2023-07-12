@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.validator.routines.ISSNValidator;
 import org.dspace.app.sherpa.SHERPAService;
 import org.dspace.app.sherpa.v2.SHERPAJournal;
@@ -28,7 +29,7 @@ import org.dspace.utils.DSpace;
 /**
  * Implementation of {@link ChoiceAuthority} that search Journals using the
  * SHERPA API.
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.com)
  * @author Luca Giamminonni (luca.giamminonni at 4science.com)
  */
@@ -72,7 +73,7 @@ public class SherpaAuthority extends ItemAuthority {
 
         Choice[] choices = addAll(itemChoices.values, choicesFromSherpa.values);
 
-        return new Choices(choices, start, total, calculateConfidence(choices), total > (start + limit), 0);
+        return new Choices(choices, start, total, calculateConfidence(choices), total > start + limit, 0);
 
     }
 
@@ -103,7 +104,7 @@ public class SherpaAuthority extends ItemAuthority {
             total = results.length;
         }
 
-        return new Choices(results, start, total, calculateConfidence(results), total > (start + limit), 0);
+        return new Choices(results, start, total, calculateConfidence(results), total > start + limit, 0);
 
     }
 
@@ -165,8 +166,12 @@ public class SherpaAuthority extends ItemAuthority {
     }
 
     @Override
-    public String getLinkedEntityType() {
-        return configurationService.getProperty("cris." + this.authorityName + ".entityType", "Journal");
+    public String[] getLinkedEntityType() {
+        String[] linkedEntities = configurationService.getArrayProperty("cris." + this.authorityName + ".entityType");
+        if (ArrayUtils.isEmpty(linkedEntities)) {
+            return new String[] { "Journal" };
+        }
+        return linkedEntities;
     }
 
     private boolean isLocalItemChoicesEnabled() {

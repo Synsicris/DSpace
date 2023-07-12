@@ -147,43 +147,39 @@ public class CrisConsumer implements Consumer {
                 continue;
             }
 
-            String entityType = choiceAuthorityService.getLinkedEntityType(fieldKey);
-            if (entityType == null) {
-                log.debug(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+            String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
+            if (ArrayUtils.isEmpty(entityTypes)) {
+                log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
                 continue;
             }
+            for (String entityType : entityTypes) {
+                String crisSourceId = generateCrisSourceId(metadata);
 
-            String crisSourceId = generateCrisSourceId(metadata);
+                Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
+                boolean relatedItemAlreadyPresent = relatedItem != null;
 
-            Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
-            boolean relatedItemAlreadyPresent = relatedItem != null;
-
-            if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
-                log.debug(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
-                metadata.setConfidence(Choices.CF_UNSET);
-                continue;
-
-            }
-
-            if (!relatedItemAlreadyPresent) {
-                Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
-                if (collection == null) {
-                    log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
+                if (!relatedItemAlreadyPresent && isNotBlank(authority) && isReferenceAuthority(authority)) {
+                    log.warn(NO_ITEM_FOUND_BY_AUTHORITY_MSG, metadata.getAuthority());
+                    metadata.setConfidence(Choices.CF_UNSET);
                     continue;
                 }
-                collection = context.reloadEntity(collection);
 
-                log.debug(ITEM_CREATION_MSG, entityType, item.getID());
-                relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
+                if (!relatedItemAlreadyPresent) {
+                    Collection collection = collectionService.retrieveCollectionByEntityType(context, item, entityType);
+                    if (collection == null) {
+                        log.warn(NO_COLLECTION_FOUND_MSG, entityType, item.getID());
+                        continue;
+                    }
+                    collection = context.reloadEntity(collection);
 
+                    log.debug(ITEM_CREATION_MSG, entityType, item.getID());
+                    relatedItem = buildRelatedItem(context, item, collection, metadata, entityType, crisSourceId);
+                }
+
+                fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
+                choiceAuthorityService.setReferenceWithAuthority(metadata, relatedItem);
             }
-
-            fillRelatedItem(context, metadata, relatedItem, relatedItemAlreadyPresent);
-
-            choiceAuthorityService.setReferenceWithAuthority(metadata, relatedItem);
-
         }
-
     }
 
     private boolean isMetadataSkippable(MetadataValue metadata) {

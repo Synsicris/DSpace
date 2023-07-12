@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -920,73 +921,91 @@ public class ItemAuthorityIT extends AbstractControllerIntegrationTest {
 
     @Test
     public void itemAuthorityWithMultipleEntityTypeTest() throws Exception {
-       context.turnOffAuthorisationSystem();
-       configurationService.setProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority",
-                                        "org.dspace.content.authority.ItemAuthority = TestMultiAuthority");
-       configurationService.setProperty("cris.ItemAuthority.TestMultiAuthority.entityType", "Project, Funding");
+        String[] choiceAuthorityProp =
+            configurationService.getArrayProperty("plugin.named.org.dspace.content.authority.ChoiceAuthority");
+        try {
+            context.turnOffAuthorisationSystem();
 
-       pluginService.clearNamedPluginClasses();
-       choiceAuthorityService.clearCache();
+            configurationService.setProperty(
+                "plugin.named.org.dspace.content.authority.ChoiceAuthority",
+                Arrays
+                    .asList("org.dspace.content.authority.ItemAuthority = TestMultiAuthority", choiceAuthorityProp)
+                    .toArray()
+            );
+            configurationService.setProperty("cris.ItemAuthority.TestMultiAuthority.entityType", "Project, Funding");
 
-       parentCommunity = CommunityBuilder.createCommunity(context).build();
+            pluginService.clearNamedPluginClasses();
+            choiceAuthorityService.clearCache();
 
-       Collection col1 = CollectionBuilder.createCollection(context, parentCommunity).build();
+            parentCommunity = CommunityBuilder.createCommunity(context).build();
 
-       Item item1 = ItemBuilder.createItem(context, col1)
-                               .withTitle("Title Project Item")
-                               .withEntityType("Project").build();
+            Collection col1 = CollectionBuilder.createCollection(context, parentCommunity).build();
 
-       Item item2 = ItemBuilder.createItem(context, col1)
-                               .withTitle("Title Funding Item")
-                               .withEntityType("Funding").build();
+            Item item1 = ItemBuilder.createItem(context, col1)
+                .withTitle("Title Project Item")
+                .withEntityType("Project").build();
 
-       ItemBuilder.createItem(context, col1)
-                  .withTitle("Title Publication Item")
-                  .withEntityType("Publication").build();
+            Item item2 = ItemBuilder.createItem(context, col1)
+                .withTitle("Title Funding Item")
+                .withEntityType("Funding").build();
 
-       context.restoreAuthSystemState();
+            ItemBuilder.createItem(context, col1)
+            .withTitle("Title Publication Item")
+            .withEntityType("Publication").build();
 
-       String token = getAuthToken(eperson.getEmail(), password);
+            context.restoreAuthSystemState();
 
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries"))
-                       .andExpect(status().isOk())
-                       .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                           ItemAuthorityMatcher.matchItemAuthorityProperties(
-                                  item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry"),
-                           ItemAuthorityMatcher.matchItemAuthorityProperties(
-                                  item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
-           )))
-       .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
+            String token = getAuthToken(eperson.getEmail(), password);
 
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries").param("filter", "Title"))
-                       .andExpect(status().isOk())
-                       .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                           ItemAuthorityMatcher.matchItemAuthorityProperties(
-                                  item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry"),
-                           ItemAuthorityMatcher.matchItemAuthorityProperties(
-                                  item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
-                           )))
-                       .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
+            getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                ItemAuthorityMatcher.matchItemAuthorityProperties(
+                       item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry"),
+                ItemAuthorityMatcher.matchItemAuthorityProperties(
+                       item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
+            )))
+            .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
 
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
-               .param("filter", "Project")
-               .param("exact", "false"))
-               .andExpect(status().isOk())
-               .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                   ItemAuthorityMatcher.matchItemAuthorityProperties(
-                          item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry")
-                   )))
-               .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
+            getClient(token)
+                .perform(get("/api/submission/vocabularies/TestMultiAuthority/entries").param("filter", "Title"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                    ItemAuthorityMatcher.matchItemAuthorityProperties(
+                        item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry"),
+                    ItemAuthorityMatcher.matchItemAuthorityProperties(
+                        item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
+                    )))
+                .andExpect(jsonPath("$.page.totalElements", Matchers.is(2)));
 
-       getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
-               .param("filter", "Funding")
-               .param("exact", "false"))
-               .andExpect(status().isOk())
-               .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
-                   ItemAuthorityMatcher.matchItemAuthorityProperties(
-                           item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
-                   )))
-               .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
+            getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
+                .param("filter", "Project")
+                .param("exact", "false"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                ItemAuthorityMatcher.matchItemAuthorityProperties(
+                    item1.getID().toString(), item1.getName(), item1.getName(), "vocabularyEntry")
+                )))
+            .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
+
+            getClient(token).perform(get("/api/submission/vocabularies/TestMultiAuthority/entries")
+                .param("filter", "Funding")
+                .param("exact", "false"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
+                ItemAuthorityMatcher.matchItemAuthorityProperties(
+                    item2.getID().toString(), item2.getName(), item2.getName(), "vocabularyEntry")
+                )))
+            .andExpect(jsonPath("$.page.totalElements", Matchers.is(1)));
+        } finally {
+            configurationService.setProperty(
+                "plugin.named.org.dspace.content.authority.ChoiceAuthority",
+                choiceAuthorityProp
+            );
+            configurationService.setProperty("cris.ItemAuthority.TestMultiAuthority.entityType", null);
+            pluginService.clearNamedPluginClasses();
+            choiceAuthorityService.clearCache();
+        }
     }
 
     @Override

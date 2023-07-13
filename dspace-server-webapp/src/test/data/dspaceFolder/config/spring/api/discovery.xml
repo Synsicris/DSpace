@@ -28,9 +28,10 @@
     <bean id="solrServicePrivateItemPlugin" class="org.dspace.discovery.SolrServicePrivateItemPlugin" scope="prototype"/>
     <bean id="SolrServiceParentObjectIndexingPlugin" class="org.dspace.discovery.SolrServiceParentObjectIndexingPlugin" scope="prototype"/>
     <bean id="SolrServiceIndexCollectionSubmittersPlugin" class="org.dspace.discovery.SolrServiceIndexCollectionSubmittersPlugin" scope="prototype"/>
-	<bean id="solrServiceIndexCollectionAdministratorsPlugin" class="org.dspace.discovery.SolrServiceIndexCollectionAdministratorsPlugin"/>
-	<bean id="solrServiceIndexRelationshipsPlugin" class="org.dspace.discovery.SolrServiceIndexRelationshipsPlugin"/>
+    <bean id="solrServiceIndexCollectionAdministratorsPlugin" class="org.dspace.discovery.SolrServiceIndexCollectionAdministratorsPlugin"/>
+    <bean id="solrServiceIndexRelationshipsPlugin" class="org.dspace.discovery.SolrServiceIndexRelationshipsPlugin"/>
     <bean id="solrServiceHiddenRelationsRestrictionPlugin" class="org.dspace.discovery.SolrServiceHiddenRelationsRestrictionPlugin"/>
+    <bean id="SolrServiceIndexItemEditorsPlugin" class="org.dspace.discovery.SolrServiceIndexItemEditorsPlugin" scope="prototype"/>
     <bean id="solrServiceMetricsIndexPlugin" class="org.dspace.discovery.SolrServiceMetricsIndexPlugin"/>
     <bean id="solrServiceCrisValuePairsIndexPlugin" class="org.dspace.discovery.SolrServiceValuePairsIndexPlugin"/>
     <bean id="solrServiceCustomUrlIndexPlugin" class="org.dspace.discovery.SolrServiceCustomUrlIndexPlugin"/>
@@ -57,7 +58,9 @@
         <value>dc.contributor.author</value>
         <value>dc.contributor.editor</value>
     </util:list>
-
+    
+    <!-- Additional indexing plugin enables searching by supervised (true,false) -->
+    <bean id="solrServiceSupervisionOrderIndexingPlugin" class="org.dspace.discovery.SolrServiceSupervisionOrderIndexingPlugin"/>
 
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
 

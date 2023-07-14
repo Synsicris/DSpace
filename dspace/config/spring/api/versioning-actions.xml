@@ -149,7 +149,7 @@
     </bean>
     
     <bean id="workingplan-capturable" class="org.dspace.app.capture.model.CapturableScreenConfiguration">
-        <constructor-arg name="element" value=".sidenav-container"/>
+        <constructor-arg name="element" value="ds-working-plan-chart-container"/>
         <constructor-arg name="removeElements"><null/></constructor-arg>
         <constructor-arg name="style"><null/></constructor-arg>
         <constructor-arg name="type" value="jpeg"/>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node id="ResourceTypeGenres" label="TRL 2021-05-12">
+  <isComposedBy>
+    <node id="TRL1" label="TRL 1- Beobachtung und Beschreibung des Funktionsprinzips" selectable="true">
+    <hasNote>Grundlegende Prinzipien wurden qualitativ festgestellt und die wissenschaftliche Forschung ist abgeschlossen, experimentelle Belege für den Prozess fehlen noch.</hasNote>
+    </node>
+    <node id="TRL2" label="TRL 2 - Technologisches Konzept, Anwendung und Durchführungskriterien sind beschrieben" selectable="true">
+    <hasNote>Kleine Experimente und Studien belegen den „Proof of concept“ des technischen Entwurfs.</hasNote>
+    </node>
+    <node id="TRL3" label="TRL 3 - Nachweis der Funktionstüchtigkeit einer Technologie" selectable="true">
+    <hasNote>Erste Laborversuche belegen Konzept und Durchführung der Technologie.</hasNote>
+    </node>
+    <node id="TRL4" label="TRL 4 - Versuchsaufbau im Labor" selectable="true">
+    <hasNote>Demonstrationsprojekt in laboratorisch kontrollierter Umgebung, Messungen haben die analytischen Vorhersagen nicht widerlegt.</hasNote>
+    </node>
+    <node id="TRL5" label="TRL 5 - Technologie hat sich in der relevanten Umgebung bewiesen (im Fall von „Key Enabling Technologies (KET)“: in der entsprechenden industriellen Umgebung)" selectable="true">
+    <hasNote>Technisches Konzept ist ausreichend auf Qualität und Beständigkeit getestet.</hasNote>
+    </node>
+    <node id="TRL6" label="TRL 6 - Prototyp in Einsatzumgebung" selectable="true">
+    <hasNote>Beweis für Integrierbarkeit in die Produktionskette wurde erbracht, Probleme vorheriger Phasen sind weitgehend behoben, Risikoeinstufung und ökonomische Beurteilungen sind angepasst.</hasNote>
+    </node>
+    <node id="TRL7" label="TRL 7 - Prototyp im Einsatz" selectable="true">
+    <hasNote>Erfolgreiche Prototypdemonstration auf vor-kommerzieller Stufe, finale Herstellungs- und Realisierbarkeitshürden sind identifiziert.</hasNote>
+    </node>
+    <node id="TRL8" label="TRL 8 - Qualifiziertes System mit Nachweis der Funktionstüchtigkeit im Einsatzbereich" selectable="true">
+    <hasNote>Einwandfrei auf kommerzieller Ebene anwendbar.</hasNote>
+    </node>
+    <node id="TRL9" label="TRL 9 - Qualifiziertes System mit Nachweis des erfolgreichen Einsatzes (bei „Key Enabling Technologies (KET)“: ist wettbewerbsfähig)" selectable="true">
+    <hasNote>Technologie ist komplett entwickelt, hat sich in der entsprechenden Umgebung bewiesen und ist kommerziell zugänglich.</hasNote>
+    </node>
+  </isComposedBy>
+</node>

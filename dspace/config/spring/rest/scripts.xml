@@ -121,4 +121,11 @@
         <property name="description" value="Creates a screenshot of a target dspace page"/>
         <property name="dspaceRunnableClass" value="org.dspace.app.capture.CaptureWebsiteScript"/>
     </bean>
+    
+    <bean id="item-export-synsicris" class="org.dspace.content.integration.crosswalks.script.synsicris.ItemExportSynsicrisScriptConfiguration" primary="true">
+        <property name="description" value="Perform the item export in the given format with or without screenshots"/>
+        <property name="dspaceRunnableClass" value="org.dspace.content.integration.crosswalks.script.synsicris.ItemExportSynsicris"/>
+        <property name="actions" ref="versioning-actions"/>
+    </bean>
+    
 </beans>

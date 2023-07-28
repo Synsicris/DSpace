@@ -609,7 +609,7 @@
 
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.FirstSelectedCitationsPostProcessor" />
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.GroupByTypeCitationsPostProcessor" />
-	
+
 	<!-- MapConverter configuration -->
 
 	<bean id="org.dspace.util.MapConverters"  class="org.dspace.util.MapConverters"> 
@@ -732,7 +732,7 @@
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLGeneratorFactory" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLNestedGenerator" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLWebServiceGenerator" />
-    
+
     <bean class="org.dspace.content.converter.ItemToItemDTOConverter" />
     <bean class="org.dspace.app.bulkimport.service.BulkImportWorkbookBuilderImpl" />
 

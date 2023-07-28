@@ -38,6 +38,7 @@ public class ItemExport extends DSpaceRunnable<ItemExportScriptConfiguration<Ite
 
     private ItemService itemService;
 
+    protected Item item;
 
     private UUID itemUuid;
 
@@ -66,27 +67,20 @@ public class ItemExport extends DSpaceRunnable<ItemExportScriptConfiguration<Ite
     @Override
     public void internalRun() throws Exception {
 
-        context = new Context(Context.Mode.READ_ONLY);
-        assignCurrentUserInContext();
-        assignHandlerLocaleInContext();
-        assignSpecialGroupsInContext();
+        initContext();
 
-        if (exportFormat == null) {
-            throw new IllegalArgumentException("The export format must be provided");
-        }
+        validate();
 
+        loadItem(context);
+
+        run(context);
+
+    }
+
+    protected void run(Context context) throws Exception {
         StreamDisseminationCrosswalk streamDisseminationCrosswalk = getCrosswalkByType(exportFormat);
         if (streamDisseminationCrosswalk == null) {
             throw new IllegalArgumentException("No dissemination configured for format " + exportFormat);
-        }
-
-        if (itemUuid == null) {
-            throw new IllegalArgumentException("A valid item uuid should be provided");
-        }
-
-        Item item = itemService.find(context, itemUuid);
-        if (item == null) {
-            throw new IllegalArgumentException("No item found by id " + itemUuid);
         }
 
         boolean canDisseminate = streamDisseminationCrosswalk.canDisseminate(context, item);
@@ -101,7 +95,30 @@ public class ItemExport extends DSpaceRunnable<ItemExportScriptConfiguration<Ite
             handler.handleException(e);
             context.abort();
         }
+    }
 
+    protected void loadItem(Context context) throws SQLException {
+        item = itemService.find(context, itemUuid);
+        if (item == null) {
+            throw new IllegalArgumentException("No item found by id " + itemUuid);
+        }
+    }
+
+    protected void validate() {
+        if (exportFormat == null) {
+            throw new IllegalArgumentException("The export format must be provided");
+        }
+
+        if (itemUuid == null) {
+            throw new IllegalArgumentException("A valid item uuid should be provided");
+        }
+    }
+
+    protected void initContext() throws SQLException {
+        context = new Context();
+        assignCurrentUserInContext();
+        assignHandlerLocaleInContext();
+        assignSpecialGroupsInContext();
     }
 
     private void performExport(Item item, StreamDisseminationCrosswalk streamDisseminationCrosswalk) throws Exception {

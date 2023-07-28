@@ -1034,41 +1034,9 @@
 
 	<xsl:template name="impact-pathway">
 
-		<xsl:if test="cerif:ImpactPathway">
-
-			<!-- handle case if just one impact pathway exists -->
-			<xsl:if test="count(cerif:ImpactPathway/cerif:Index) = 1">
-
-				<xsl:call-template name="label-value-single">
-					<xsl:with-param name="label" select="$lang.description"/>
-					<xsl:with-param name="value" select="cerif:ImpactPathway/cerif:Index/cerif:Description"/>
-				</xsl:call-template>
-
-			</xsl:if>
-
-			<!-- handle case if more than one impact pathway exists -->
-			<xsl:if test="count(cerif:ImpactPathway/cerif:Index) > 1">
-				<xsl:for-each select="cerif:ImpactPathway/cerif:Index">
-
-					<xsl:call-template name="label-block">
-						<xsl:with-param name="label" select="cerif:Title"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="label-value-single">
-						<xsl:with-param name="label" select="$lang.description"/>
-						<xsl:with-param name="value" select="cerif:Description"/>
-					</xsl:call-template>
-
-				</xsl:for-each>
-
-			</xsl:if>
-
-			<!-- INFO: in the current setup metadata and screenshots cannot be aligned since they are not tight to the same iterator -->
-			<!-- <xsl:call-template name="impactpathway-screenshots">
-				<xsl:with-param name="imageDir" select="$imageDir"/>
-			</xsl:call-template> -->
-
-		</xsl:if>
+		<xsl:call-template name="title-description">
+			<xsl:with-param name="entity" select="cerif:ImpactPathway"/>
+		</xsl:call-template>
 
 	</xsl:template>
 
@@ -1080,7 +1048,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ProjectObjective"/>
-			<xsl:with-param name="entityIndex" select="cerif:ProjectObjective/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1093,7 +1060,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:InteractionObjective"/>
-			<xsl:with-param name="entityIndex" select="cerif:InteractionObjective/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1106,7 +1072,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:ContributionFundingProgramme"/>
-			<xsl:with-param name="entityIndex" select="cerif:ContributionFundingProgramme/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -1119,7 +1084,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:StateOfArt"/>
-			<xsl:with-param name="entityIndex" select="cerif:StateOfArt/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -3370,7 +3334,6 @@
 
 		<xsl:call-template name="title-description">
 			<xsl:with-param name="entity" select="cerif:OpenResearchQuestion"/>
-			<xsl:with-param name="entityIndex" select="cerif:OpenResearchQuestion/cerif:Index"/>
 		</xsl:call-template>
 
 	</xsl:template>
@@ -5326,11 +5289,10 @@
 
 	<xsl:template name="title-description">
 		<xsl:param name="entity"/>
-		<xsl:param name="entityIndex"/>
 
 		<xsl:if test="$entity">
 
-			<xsl:for-each select="$entityIndex">
+			<xsl:for-each select="$entity/cerif:Index">
 
 				<fo:block border-width="{$width.border}" border-color="{$colour.border}" border-style="{$style.border}" margin-top="{$margin.top.main}" margin-left="{$margin.left.border}" margin-right="{$margin.right.border}" padding-before="{$padding.before.border}" padding-after="{$padding.after.border}" padding-start="{$padding.start.border}" padding-end="{$padding.end.border}">
 
@@ -5458,7 +5420,7 @@
 		<xsl:param name="nodeValue"/>
 		<xsl:variable name="imagePath" select="concat('file:',$imageDir,'/',$nodeValue)"/>
 
-		<fo:external-graphic content-height="scale-to-fit" content-width="16cm" scaling="uniform">
+		<fo:external-graphic content-height="scale-to-fit" content-width="24cm" scaling="uniform">
 			<xsl:attribute name="src">
 				<xsl:value-of select="$imagePath"/>
 			</xsl:attribute>

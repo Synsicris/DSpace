@@ -39,8 +39,8 @@ public class EndnoteImportMetadataSourceServiceImpl extends AbstractPlainMetadat
     /**
      * This method map the data present in the inputStream, then return a list PlainMetadataSourceDto.
      * Any PlainMetadataSourceDto will be used to create a single {@link org.dspace.importer.external.datamodel.ImportRecord}
-     * 
-     * @param inputStream the inputStream of the Endnote file
+     *
+     * @param fileInpuStream the inputStream of the Endnote file
      * @return List of {@link org.dspace.importer.external.service.components.dto.PlainMetadataSourceDto}
      * @throws FileSourceException
      * @see org.dspace.importer.external.service.components.AbstractPlainMetadataSource
@@ -91,7 +91,7 @@ public class EndnoteImportMetadataSourceServiceImpl extends AbstractPlainMetadat
      * This method iterate over file rows, split content in a list of key/value items through RexExp
      * and save the content sequentially.
      * Key "FN" and "VR", which is a preamble in Endnote, will be checked but not saved.
-     * 
+     *
      * @param fileInpuStream the inputStream of the Endnote file
      * @return A list of key/value items which map the file's row sequentially
      * @throws IOException

@@ -8,31 +8,49 @@
 
 package org.dspace.content.authority;
 
-import org.apache.solr.client.solrj.util.ClientUtils;
 import org.dspace.content.authority.service.ItemAuthorityService;
-
+import org.dspace.services.ConfigurationService;
+import org.springframework.beans.factory.annotation.Autowired;
+/**
+ * 
+ * @author Stefano Maffei 4Science.com
+ *
+ */
 public class ItemAuthorityServiceImpl implements ItemAuthorityService {
+
+    protected CustomAuthoritySolrFilter customAuthorityFilter;
+
+    @Autowired
+    protected ConfigurationService configurationService;
+
+    /**
+     * Get the solr query to be executed Priority is given to the
+     * itemauthoritylookup field which contains exact names The best match term is
+     * lower priority since it generates permutations of the names
+     * @param  searchTerm the term to be searched
+     * @return            solr query to be executed
+     */
+    @Override
+    public String getSolrQueryExactMatch(String searchTerm) {
+        return getSolrQuery(searchTerm);
+    }
 
     @Override
     public String getSolrQuery(String searchTerm) {
-        String solrQuery = "{!lucene q.op=AND df=itemauthoritylookup}";
-        if (searchTerm != null) {
-            String luceneQuery = ClientUtils.escapeQueryChars(searchTerm.toLowerCase()) + "*";
+        return customAuthorityFilter.getSolrQuery(searchTerm);
+    }
 
-            luceneQuery = luceneQuery.replaceAll("\\\\ "," ");
-            String subLuceneQuery = luceneQuery.substring(0,
-                    luceneQuery.length() - 1);
-            solrQuery = solrQuery + "("
-                            + luceneQuery
-                            + ") OR (\""
-                            + subLuceneQuery + "\")^2 OR "
-                            + "(itemauthoritylookupexactmatch:\"" + subLuceneQuery + "\")^10 ";
-        } else {
-            // if searchTerm is null search for all the authority entries
-            solrQuery = solrQuery + "*";
-        }
+    @Override
+    public int getConfidenceForChoices(Choice... choices) {
+        return customAuthorityFilter.getConfidenceForChoices(choices);
+    }
 
-        return solrQuery;
+    public CustomAuthoritySolrFilter getCustomAuthorityFilter() {
+        return customAuthorityFilter;
+    }
+
+    public void setCustomAuthorityFilter(CustomAuthoritySolrFilter customAuthorityFilter) {
+        this.customAuthorityFilter = customAuthorityFilter;
     }
 
 }

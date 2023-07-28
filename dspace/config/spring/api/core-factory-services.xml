@@ -62,6 +62,9 @@
     <bean id="orcidServiceFactory" class="org.dspace.orcid.factory.OrcidServiceFactoryImpl"/>
 
     <bean id="crisMetricsServiceFactory" class="org.dspace.externalservices.scopus.factory.CrisMetricsServiceFactoryImpl"/>
+    
+    <bean id="supervisionOrderServiceFactory" class="org.dspace.supervision.factory.SupervisionOrderServiceFactoryImpl"/>
+    
 
     <bean id="captureWebsiteFactory" class="org.dspace.app.capture.service.factory.CaptureWebsiteServiceFactoryImpl"/>
 

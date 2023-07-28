@@ -68,9 +68,7 @@ public class VirtualFieldVocabularyI18nValuePair implements VirtualField {
             .toArray(String[]::new);
     }
 
-    protected Optional<String> getLabelForVocabulary(
-        String vocabularyName, MetadataValue metadataValue, Locale locale
-    ) {
+    protected Optional<String> getLabelForVocabulary(String vocabularyName, MetadataValue metadataValue,Locale locale) {
         return Optional.ofNullable(vocabularyName)
             .map(vocabulary -> (ChoiceAuthority) pluginService.getNamedPlugin(ChoiceAuthority.class, vocabulary))
             .filter(Objects::nonNull)

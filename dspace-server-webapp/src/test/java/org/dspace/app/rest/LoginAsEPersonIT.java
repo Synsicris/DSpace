@@ -219,6 +219,7 @@ public class LoginAsEPersonIT extends AbstractControllerIntegrationTest {
                         .andExpect(status().isBadRequest());
     }
 
+
     /**
      * This test will try to create an empty Workspace item whilst using the LoginOnBehalfOf feature
      * It'll then check that the submitter of that workspace item is indeed the eperson that was being

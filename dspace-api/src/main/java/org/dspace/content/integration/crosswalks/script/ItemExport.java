@@ -126,6 +126,7 @@ public class ItemExport extends DSpaceRunnable<ItemExportScriptConfiguration<Ite
         streamDisseminationCrosswalk.disseminate(context, item, out);
         ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
         String name = getFileName(streamDisseminationCrosswalk);
+        context.setMode(Context.Mode.READ_WRITE);
         handler.writeFilestream(context, name, in, streamDisseminationCrosswalk.getMIMEType(),
                 streamDisseminationCrosswalk.isPubliclyReadable());
         handler.logInfo("Item exported successfully into file named " + name);

@@ -66,7 +66,7 @@
 				
 				<entry key="collection-xls" value-ref="xlsCrosswalkCollection"></entry>
 
-                <entry key="1 - Project overview - PDF" value-ref="pdfCrosswalkProjectOverview"></entry>
+        		<entry key="1 - Project overview - PDF" value-ref="pdfCrosswalkProjectOverview"></entry>
 				<entry key="2 - Project overview - XML" value-ref="referCrosswalkProjectOverviewCerifXml"></entry>
 				<entry key="3 - Project overview - PDF (Test)" value-ref="pdfCrosswalkProjectOverviewTest"></entry>
 				<!--<entry key="parentproject-pdf" value-ref="pdfCrosswalkProject"></entry> -->
@@ -606,7 +606,10 @@
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldMetric" id="virtualFieldMetric"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldCitations" id="virtualFieldCitations"/>
     <bean class="org.dspace.content.integration.crosswalks.virtualfields.VirtualFieldVocabularyI18nValuePair" id="virtualFieldVocabularyI18n"/>
-	
+
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.FirstSelectedCitationsPostProcessor" />
+    <bean class="org.dspace.content.integration.crosswalks.virtualfields.postprocessors.GroupByTypeCitationsPostProcessor" />
+
 	<!-- MapConverter configuration -->
 
 	<bean id="org.dspace.util.MapConverters"  class="org.dspace.util.MapConverters"> 
@@ -618,6 +621,7 @@
 				<entry key="orgUnitTypes" value-ref="mapConverterOrgUnitTypes" />
 				<entry key="accessRight" value-ref="mapConverterAccessRight" />
 				<entry key="coarToPublicationTypes" value-ref="mapConverterCoarToPublicationTypes" />
+				<entry key="scopusToCoarPublicationTypes" value-ref="mapConverterScopusToCoarPublicationTypes" />
 				<entry key="pubmedToCoarPublicationTypes" value-ref="mapConverterPubmedToCoarPublicationTypes" />
 				<entry key="cerifToOrgUnitTypes" value-ref="mapConverterCerifToOrgUnitTypes" />
 				<entry key="cerifToFundingTypes" value-ref="mapConverterCerifToFundingTypes" />
@@ -691,6 +695,12 @@
 		<property name="defaultValue" value=""/>
 	</bean>
 
+	<bean name="mapConverterScopusToCoarPublicationTypes" class="org.dspace.util.SimpleMapConverter" init-method="init">
+		<property name="converterNameFile" value="mapConverter-scopusToCoarPublicationTypes.properties" />
+		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
+		<property name="defaultValue" value=""/>
+	</bean>
+
 	<bean name="mapConverterCrossRefToCoarPublicationTypes" class="org.dspace.util.SimpleMapConverter" init-method="init">
 		<property name="converterNameFile" value="mapConverter-crossRefToCoarPublicationTypes.properties" />
 		<property name="configurationService" ref="org.dspace.services.ConfigurationService" />
@@ -722,5 +732,8 @@
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLGeneratorFactory" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLNestedGenerator" />
     <bean class="org.dspace.content.integration.crosswalks.csl.CSLWebServiceGenerator" />
+
+    <bean class="org.dspace.content.converter.ItemToItemDTOConverter" />
+    <bean class="org.dspace.app.bulkimport.service.BulkImportWorkbookBuilderImpl" />
 
 </beans>

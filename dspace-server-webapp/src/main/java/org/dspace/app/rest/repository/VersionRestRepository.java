@@ -34,6 +34,7 @@ import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Context;
+import org.dspace.discovery.SearchServiceException;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.VersionHistory;
 import org.dspace.versioning.service.VersionHistoryService;
@@ -49,7 +50,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * This is the Repository that takes care of the operations on the {@link VersionRest} objects
- * 
+ *
  * @author Mykhaylo Boychuk (mykhaylo.boychuk at 4science.it)
  */
 @Component(VersionRest.CATEGORY + "." + VersionRest.NAME)
@@ -112,8 +113,12 @@ public class VersionRestRepository extends DSpaceRestRepository<VersionRest, Int
         }
 
         AuthorizationFeature authorizationFeature = authorizationFeatureService.find(CanCreateVersionFeature.NAME);
-        if (!authorizationFeature.isAuthorized(context, findItemRestById(context, item.getID().toString()))) {
-            throw new RESTAuthorizationException("Versioning not allowed");
+        try {
+            if (!authorizationFeature.isAuthorized(context, findItemRestById(context, item.getID().toString()))) {
+                throw new RESTAuthorizationException("Versioning not allowed");
+            }
+        } catch (SearchServiceException e) {
+            throw new RuntimeException("Cannot check authorization for the versioning feature!", e);
         }
 
         WorkflowItem workflowItem = null;

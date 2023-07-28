@@ -11,12 +11,15 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.List;
@@ -24,13 +27,17 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.Logger;
 import org.dspace.AbstractIntegrationTestWithDatabase;
+import org.dspace.app.requestitem.RequestItem;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.builder.BitstreamBuilder;
 import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EntityTypeBuilder;
 import org.dspace.builder.ItemBuilder;
 import org.dspace.builder.RelationshipBuilder;
 import org.dspace.builder.RelationshipTypeBuilder;
+import org.dspace.builder.RequestItemBuilder;
+import org.dspace.content.Bitstream;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.content.EntityType;
@@ -697,6 +704,33 @@ public class ItemServiceTest extends AbstractIntegrationTestWithDatabase {
         context.restoreAuthSystemState();
     }
 
+    @Test
+    public void testFindItemsWithEditNoRights() throws Exception {
+        context.setCurrentUser(eperson);
+        List<Item> result = itemService.findItemsWithEdit(context, 0, 10);
+        int count = itemService.countItemsWithEdit(context);
+        assertThat(result.size(), equalTo(0));
+        assertThat(count, equalTo(0));
+    }
+
+    @Test
+    public void testRemoveItemThatHasRequests() throws Exception {
+        context.turnOffAuthorisationSystem();
+        Item item = ItemBuilder.createItem(context, collection1)
+            .withTitle("Test")
+            .build();
+        InputStream is = new ByteArrayInputStream(new byte[0]);
+        Bitstream bitstream = BitstreamBuilder.createBitstream(context, item, is)
+                                              .build();
+        RequestItem requestItem = RequestItemBuilder.createRequestItem(context, item, bitstream)
+                                                    .build();
+
+        itemService.delete(context, item);
+        context.dispatchEvents();
+        context.restoreAuthSystemState();
+
+        assertNull(itemService.find(context, item.getID()));
+    }
     private void assertMetadataValue(String authorQualifier, String contributorElement, String dcSchema, String value,
                                      String authority, int place, MetadataValue metadataValue) {
         assertThat(metadataValue.getValue(), equalTo(value));

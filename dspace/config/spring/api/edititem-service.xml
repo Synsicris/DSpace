@@ -5,6 +5,7 @@
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <bean class="org.dspace.content.edit.service.impl.EditItemServiceImpl"/>
+    <bean class="org.dspace.content.edit.service.impl.EditItemModeValidatorImpl"/>
 
     <bean class="org.dspace.content.edit.service.impl.EditItemModeServiceImpl">
         <property name="editModesMap">
@@ -53,7 +54,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -80,7 +81,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -107,7 +108,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="EXPLOITATIONPLAN" />
+                            <property name="name" value="ADMIN_EXPLOITATIONPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -134,7 +135,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="EXPLOITATIONPLAN" />
+                            <property name="name" value="ADMIN_EXPLOITATIONPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -161,7 +162,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="INTERIMREPORT" />
+                            <property name="name" value="ADMIN_INTERIMREPORT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -188,7 +189,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="INTERIMREPORT" />
+                            <property name="name" value="ADMIN_INTERIMREPORT" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -252,7 +253,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -411,7 +412,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -475,7 +476,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -539,7 +540,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -562,7 +563,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -626,7 +627,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -690,7 +691,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -754,7 +755,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -818,7 +819,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -841,7 +842,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -905,7 +906,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -969,7 +970,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1033,7 +1034,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1138,7 +1139,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1202,7 +1203,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1225,7 +1226,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1289,7 +1290,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1312,7 +1313,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1376,7 +1377,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1399,7 +1400,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1504,7 +1505,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1568,7 +1569,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1632,7 +1633,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1696,7 +1697,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1760,7 +1761,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1824,7 +1825,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1847,7 +1848,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1911,7 +1912,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1934,7 +1935,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -1998,7 +1999,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2062,7 +2063,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2126,7 +2127,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2190,7 +2191,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2254,7 +2255,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2277,7 +2278,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2304,7 +2305,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="WORKINGPLAN" />
+                            <property name="name" value="ADMIN_WORKINGPLAN" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN
@@ -2408,7 +2409,7 @@
                             </property>
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
-                            <property name="name" value="IMPACTPATHWAY_LINK" />
+                            <property name="name" value="ADMIN_IMPACTPATHWAY_LINK" />
                             <property name="security">
                                 <value type="org.dspace.content.security.CrisSecurity">
                                     ADMIN

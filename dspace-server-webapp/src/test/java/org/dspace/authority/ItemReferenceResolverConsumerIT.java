@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.SQLException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.authority.service.AuthorityValueService;
 import org.dspace.builder.CollectionBuilder;
@@ -31,8 +32,13 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.eperson.EPerson;
+import org.dspace.event.factory.EventServiceFactory;
+import org.dspace.event.service.EventService;
 import org.dspace.services.ConfigurationService;
+import org.dspace.services.factory.DSpaceServicesFactory;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,6 +50,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrationTest {
 
+    private static String[] consumers;
+
     private EPerson submitter;
 
     private Collection publicationCollection;
@@ -54,6 +62,16 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
     @Autowired
     private ConfigurationService configurationService;
+
+    @BeforeClass
+    public static void setupClass() {
+        consumers = activateCrisConsumer();
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        resetConsumers(consumers);
+    }
 
     @Before
     public void setup() throws Exception {
@@ -100,11 +118,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -148,11 +166,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Stephen K.", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Stephen K.", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -199,11 +217,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "H. P. Lovecraft", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "H. P. Lovecraft", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -249,11 +267,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            ridAuthority, 0, 600)));
+            ridAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            ridAuthority, 0, 600)));
+            ridAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -296,11 +314,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            ridAuthority, 0, 600)));
+            ridAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            ridAuthority, 0, 600)));
+            ridAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -344,11 +362,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            ridAuthority, 0, 600)));
+            ridAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            orcidAuthority, 0, 600)));
+            orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -393,11 +411,11 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstItem = context.reloadEntity(firstItem);
         assertThat(firstItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            firstRidAuthority, 0, 600)));
+            firstRidAuthority, 0, -1)));
 
         secondItem = context.reloadEntity(secondItem);
         assertThat(secondItem.getMetadata(), hasItem(with("dc.contributor.author", "Author", null,
-            secondRidAuthority, 0, 600)));
+            secondRidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -434,7 +452,7 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
         context.restoreAuthSystemState();
 
         item = context.reloadEntity(item);
-        assertThat(item.getMetadata(), hasItem(with("dc.contributor.author", "Author", null, orcidAuthority, 0, 600)));
+        assertThat(item.getMetadata(), hasItem(with("dc.contributor.author", "Author", null, orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -449,7 +467,7 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
         context.restoreAuthSystemState();
 
         item = context.reloadEntity(item);
-        assertThat(item.getMetadata(), hasItem(with("dc.contributor.author", "Author", null, orcidAuthority, 0, 600)));
+        assertThat(item.getMetadata(), hasItem(with("dc.contributor.author", "Author", null, orcidAuthority, 0, -1)));
 
         context.turnOffAuthorisationSystem();
         installItemService.installItem(context, author);
@@ -524,23 +542,23 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         firstPublication = context.reloadEntity(firstPublication);
         assertThat(firstPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author A", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0001"), 0, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0001"), 0, -1)));
         assertThat(firstPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author B", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0002"), 1, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0002"), 1, -1)));
         assertThat(firstPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author C", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0003"), 2, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0003"), 2, -1)));
 
         secondPublication = context.reloadEntity(secondPublication);
         assertThat(secondPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author B", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0002"), 0, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0002"), 0, -1)));
         assertThat(secondPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author D", null,
-            formatWillBeReferencedAuthority("RID", "RID-01"), 1, 600)));
+            formatWillBeReferencedAuthority("RID", "RID-01"), 1, -1)));
 
         thirdPublication = context.reloadEntity(thirdPublication);
         assertThat(thirdPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author E", null,
-            formatWillBeReferencedAuthority("RID", "RID-02"), 0, 600)));
+            formatWillBeReferencedAuthority("RID", "RID-02"), 0, -1)));
         assertThat(thirdPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author F", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0004"), 1, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0004"), 1, -1)));
 
         context.turnOffAuthorisationSystem();
 
@@ -571,7 +589,7 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
         assertThat(firstPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author B", null,
             authorB.getID().toString(), 1, 600)));
         assertThat(firstPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author C", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0003"), 2, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0003"), 2, -1)));
 
         secondPublication = context.reloadEntity(secondPublication);
         assertThat(secondPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author B", null,
@@ -581,9 +599,9 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
         thirdPublication = context.reloadEntity(thirdPublication);
         assertThat(thirdPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author E", null,
-            formatWillBeReferencedAuthority("RID", "RID-02"), 0, 600)));
+            formatWillBeReferencedAuthority("RID", "RID-02"), 0, -1)));
         assertThat(thirdPublication.getMetadata(), hasItem(with("dc.contributor.author", "Author F", null,
-            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0004"), 1, 600)));
+            formatWillBeReferencedAuthority("ORCID", "0000-0000-0000-0004"), 1, -1)));
 
     }
 
@@ -678,6 +696,28 @@ public class ItemReferenceResolverConsumerIT extends AbstractControllerIntegrati
 
     private String formatWillBeReferencedAuthority(String authorityPrefix, String value) {
         return AuthorityValueService.REFERENCE + authorityPrefix + "::" + value;
+    }
+
+    private static String[] activateCrisConsumer() {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        String[] consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
+        if (!ArrayUtils.contains(consumers, CrisConsumer.CONSUMER_NAME)) {
+            String newConsumers =
+                consumers.length > 0 ?
+                    String.join(",", consumers) + "," + CrisConsumer.CONSUMER_NAME :
+                    CrisConsumer.CONSUMER_NAME;
+            configService.setProperty("event.dispatcher.default.consumers", newConsumers);
+            EventService eventService = EventServiceFactory.getInstance().getEventService();
+            eventService.reloadConfiguration();
+        }
+        return consumers;
+    }
+
+    private static void resetConsumers(String[] consumers) {
+        ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
+        configService.setProperty("event.dispatcher.default.consumers", consumers);
+        EventService eventService = EventServiceFactory.getInstance().getEventService();
+        eventService.reloadConfiguration();
     }
 
 }

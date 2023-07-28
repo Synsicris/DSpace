@@ -302,6 +302,25 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
     }
 
     @Test
+    public void findAllScriptsSortedAlphabeticallyTest() throws Exception {
+        String token = getAuthToken(admin.getEmail(), password);
+
+        getClient(token).perform(get("/api/system/scripts")
+                        .param("size", String.valueOf(scriptConfigurations.size())))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$._embedded.scripts", contains(
+                            scriptConfigurations
+                                .stream()
+                                .sorted(Comparator.comparing(ScriptConfiguration::getName))
+                                .map(scriptConfiguration -> ScriptMatcher.matchScript(
+                                    scriptConfiguration.getName(),
+                                    scriptConfiguration.getDescription()
+                                ))
+                                .collect(Collectors.toList())
+                        )));
+    }
+
+    @Test
     public void findAllScriptsWithNoAdminTest() throws Exception {
         String token = getAuthToken(eperson.getEmail(), password);
         getClient(token).perform(get("/api/system/scripts"))
@@ -313,7 +332,7 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
     public void findAllScriptsPaginationTest() throws Exception {
         List<ScriptConfiguration> alphabeticScripts =
             scriptConfigurations.stream()
-                                .sorted(Comparator.comparing(s -> s.getClass().getName()))
+                                .sorted(Comparator.comparing(ScriptConfiguration::getName))
                                 .collect(Collectors.toList());
 
         int totalPages = scriptConfigurations.size();
@@ -329,8 +348,8 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                     scriptConfigurations.get(10).getDescription())
                         ))))
                         .andExpect(jsonPath("$._embedded.scripts", hasItem(
-                                ScriptMatcher.matchScript(scriptConfigurations.get(21).getName(),
-                                                          scriptConfigurations.get(21).getDescription())
+                                ScriptMatcher.matchScript(alphabeticScripts.get(0).getName(),
+                                                          alphabeticScripts.get(0).getDescription())
                         )))
                         .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
                             Matchers.containsString("/api/system/scripts?"),
@@ -343,11 +362,11 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                             Matchers.containsString("page=1"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
                                 Matchers.containsString("/api/system/scripts?"),
-                                Matchers.containsString("page=31"), Matchers.containsString("size=1"))))
+                                Matchers.containsString("page=" + lastPage), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$.page.size", is(1)))
                         .andExpect(jsonPath("$.page.number", is(0)))
-                        .andExpect(jsonPath("$.page.totalPages", is(32)))
-                        .andExpect(jsonPath("$.page.totalElements", is(32)));
+                        .andExpect(jsonPath("$.page.totalPages", is(totalPages)))
+                        .andExpect(jsonPath("$.page.totalElements", is(totalPages)));
 
 
         getClient(token).perform(get("/api/system/scripts").param("size", "1").param("page", "1"))
@@ -357,8 +376,8 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                     scriptConfigurations.get(10).getDescription())
                         )))
                         .andExpect(jsonPath("$._embedded.scripts", Matchers.not(hasItem(
-                                ScriptMatcher.matchScript(scriptConfigurations.get(21).getName(),
-                                                          scriptConfigurations.get(21).getDescription())
+                                ScriptMatcher.matchScript(alphabeticScripts.get(0).getName(),
+                                                          alphabeticScripts.get(0).getDescription())
                         ))))
                         .andExpect(jsonPath("$._links.first.href", Matchers.allOf(
                             Matchers.containsString("/api/system/scripts?"),
@@ -374,11 +393,11 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
                             Matchers.containsString("page=2"), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$._links.last.href", Matchers.allOf(
                                 Matchers.containsString("/api/system/scripts?"),
-                                Matchers.containsString("page=31"), Matchers.containsString("size=1"))))
+                                Matchers.containsString("page=" + lastPage), Matchers.containsString("size=1"))))
                         .andExpect(jsonPath("$.page.size", is(1)))
                         .andExpect(jsonPath("$.page.number", is(1)))
-                        .andExpect(jsonPath("$.page.totalPages", is(32)))
-                        .andExpect(jsonPath("$.page.totalElements", is(32)));
+                        .andExpect(jsonPath("$.page.totalPages", is(totalPages)))
+                        .andExpect(jsonPath("$.page.totalElements", is(totalPages)));
     }
 
     @Test

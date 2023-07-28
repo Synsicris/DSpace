@@ -48,6 +48,14 @@ public class LiveImportDataProvider extends AbstractExternalDataProvider {
         return sourceIdentifier;
     }
 
+    public QuerySource getQuerySource() {
+        return querySource;
+    }
+
+    public void setQuerySource(QuerySource querySource) {
+        this.querySource = querySource;
+    }
+
     /**
      * This method set the SourceIdentifier for the ExternalDataProvider
      * @param sourceIdentifier   The UNIQUE sourceIdentifier to be set on any LiveImport data provider
@@ -132,8 +140,9 @@ public class LiveImportDataProvider extends AbstractExternalDataProvider {
      * @return
      */
     private ExternalDataObject getExternalDataObject(ImportRecord record) {
-        if (record == null || getFirstValue(record, recordIdMetadata) == null) {
-            return null;
+        //return 400 if no record were found
+        if (record == null) {
+            throw new IllegalArgumentException("No record found for query or id");
         }
         ExternalDataObject externalDataObject = new ExternalDataObject(sourceIdentifier);
         String id = getFirstValue(record, recordIdMetadata);
@@ -163,7 +172,4 @@ public class LiveImportDataProvider extends AbstractExternalDataProvider {
         return id;
     }
 
-    public QuerySource getQuerySource() {
-        return querySource;
-    }
 }

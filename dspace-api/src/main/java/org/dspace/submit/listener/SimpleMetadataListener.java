@@ -20,10 +20,10 @@ import org.dspace.external.provider.ExternalDataProvider;
 
 /**
  * This is the basic implementation for the MetadataListener interface.
- * 
+ *
  * It got the a map of metadata and related External Data Provider that can be
  * used to retrieve further information using the updated metadata in the item
- * 
+ *
  * @author Andrea Bollini (andrea.bollini at 4science.it)
  *
  */
@@ -72,9 +72,9 @@ public class SimpleMetadataListener implements MetadataListener {
      * listened by the DataProvider can be used directly as identifier. Subclass may
      * extend it to add support for identifier normalization or combine multiple
      * information to build the identifier
-     * 
+     *
      * @param context         the DSpace Context Object
-     * @param prov            the ExternalDataProvider that need to received an Id
+     * @param provider            the ExternalDataProvider that need to received an Id
      * @param item            the item
      * @param metadata        the changed metadata that lead to the selected
      *                        ExternalDataProvider

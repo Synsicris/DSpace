@@ -154,14 +154,16 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
                      VocabularyMatcher.matchProperties("patent_types", "patent_types", true, false),
                      VocabularyMatcher.matchProperties("types", "types", false , true),
                      VocabularyMatcher.matchProperties("gender", "gender", true , false),
+                     VocabularyMatcher.matchProperties("common_iso_countries", "common_iso_countries", true , false),
                      VocabularyMatcher.matchProperties("SolrAuthorAuthority", "SolrAuthorAuthority", false , false),
                      VocabularyMatcher.matchProperties("SRJournalTitle", "SRJournalTitle", false , false),
                      VocabularyMatcher.matchProperties("common_types", "common_types", true , false),
                      VocabularyMatcher.matchProperties("srsc", "srsc", false , true),
-                     VocabularyMatcher.matchProperties("countries", "countries", false , true),
                      VocabularyMatcher.matchProperties("common_iso_languages", "common_iso_languages", true , false),
-                     VocabularyMatcher.matchProperties("SRPublisher", "SRPublisher", false , false),
-                     VocabularyMatcher.matchProperties("publication-coar-types", "publication-coar-types", false , true)
+                     VocabularyMatcher.matchProperties(
+                         "publication-coar-types", "publication-coar-types", false , true
+                     ),
+                     VocabularyMatcher.matchProperties("SRPublisher", "SRPublisher", false , false)
                      )))
         .andExpect(jsonPath("$._links.self.href", Matchers.containsString("api/submission/vocabularies")))
         .andExpect(jsonPath("$.page.totalElements", is(11)));
@@ -169,8 +171,7 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
 
     @Test
     public void findOneSRSC_Test() throws Exception {
-        String token = getAuthToken(admin.getEmail(), password);
-        getClient(token).perform(get("/api/submission/vocabularies/srsc"))
+        getClient().perform(get("/api/submission/vocabularies/srsc"))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$", is(
                             VocabularyMatcher.matchProperties("srsc", "srsc", false, true)
@@ -179,8 +180,7 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
 
     @Test
     public void findOneCommonTypesTest() throws Exception {
-        String token = getAuthToken(admin.getEmail(), password);
-        getClient(token).perform(get("/api/submission/vocabularies/common_types"))
+        getClient().perform(get("/api/submission/vocabularies/common_types"))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$", is(
                             VocabularyMatcher.matchProperties("common_types", "common_types", true, false)
@@ -197,9 +197,9 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.entries", Matchers.containsInAnyOrder(
                         VocabularyMatcher.matchVocabularyEntry("Research Subject Categories",
-                          "Research Subject Categories", "vocabularyEntry"),
+                          "", "vocabularyEntry"),
                         VocabularyMatcher.matchVocabularyEntry("Family research",
-                          "Research Subject Categories::SOCIAL SCIENCES::Social sciences::Social work::Family research",
+                          "SOCIAL SCIENCES::Social sciences::Social work::Family research",
                           "vocabularyEntry"))))
                 .andExpect(jsonPath("$.page.totalElements", Matchers.is(26)))
                 .andExpect(jsonPath("$.page.totalPages", Matchers.is(13)))
@@ -508,7 +508,6 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
     @Test
     public void controlledVocabularyWithHierarchyStoreSetTrueTest() throws Exception {
         context.turnOffAuthorisationSystem();
-        configurationService.setProperty("vocabulary.plugin.authority.store", "true");
         String vocabularyName = "publication-coar-types";
         parentCommunity = CommunityBuilder.createCommunity(context)
                                           .withName("Root Community")
@@ -569,7 +568,7 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
                              .andExpect(status().isOk())
                              .andExpect(jsonPath("$.metadata", Matchers.allOf(
                                    hasJsonPath("$['dc.title'][0].value", is("Test Item A")),
-                                   hasJsonPath("$['dc.type'][0].value", is("Resource Types::text::journal::editorial")),
+                                   hasJsonPath("$['dc.type'][0].value", is("text::journal::editorial")),
                                    hasJsonPath("$['dc.type'][0].authority", is(vocabularyName + ":c_b239")),
                                    hasJsonPath("$['dc.type'][0].confidence", is(600))
                                    )));
@@ -578,7 +577,6 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
     @Test
     public void controlledVocabularyWithHierarchyStoreSetFalseTest() throws Exception {
         context.turnOffAuthorisationSystem();
-        configurationService.setProperty("vocabulary.plugin.authority.store", "true");
         String vocabularyName = "publication-coar-types";
         configurationService.setProperty("vocabulary.plugin." + vocabularyName + ".hierarchy.store", false);
         parentCommunity = CommunityBuilder.createCommunity(context)
@@ -648,7 +646,6 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
 
     @Test
     public void controlledVocabularyWithHierarchySuggestSetTrueTest() throws Exception {
-        configurationService.setProperty("vocabulary.plugin.authority.store", "true");
         String vocabularyName = "publication-coar-types";
 
         String tokenAdmin = getAuthToken(admin.getEmail(), password);
@@ -661,7 +658,7 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
                                      hasJsonPath("$.authority", is(vocabularyName + ":c_b239")),
                                      // the display value without suggestions
                                      hasJsonPath("$.display", is("editorial")),
-                                     hasJsonPath("$.value", is("Resource Types::text::journal::editorial"))
+                                     hasJsonPath("$.value", is("text::journal::editorial"))
                                      )));
 
         configurationService.setProperty("vocabulary.plugin." + vocabularyName + ".hierarchy.suggest", true);
@@ -673,8 +670,8 @@ public class VocabularyRestRepositoryIT extends AbstractControllerIntegrationTes
                 .andExpect(jsonPath("$._embedded.entries[0]", Matchers.allOf(
                         hasJsonPath("$.authority", is(vocabularyName + ":c_b239")),
                         // now the display value with suggestions
-                        hasJsonPath("$.display", is("Resource Types::text::journal::editorial")),
-                        hasJsonPath("$.value", is("Resource Types::text::journal::editorial"))
+                        hasJsonPath("$.display", is("text::journal::editorial")),
+                        hasJsonPath("$.value", is("text::journal::editorial"))
                         )));
     }
 

@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.authorize.ResourcePolicy;
 import org.dspace.builder.CollectionBuilder;
@@ -140,7 +141,13 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
 
         ConfigurationService configService = DSpaceServicesFactory.getInstance().getConfigurationService();
         consumers = configService.getArrayProperty("event.dispatcher.default.consumers");
-        String newConsumers = consumers.length > 0 ? join(",", consumers) + "," + CRIS_CONSUMER : CRIS_CONSUMER;
+        String newConsumers = CRIS_CONSUMER;
+        if (consumers.length > 0) {
+            newConsumers = join(",", consumers);
+            if (!ArrayUtils.contains(consumers, CRIS_CONSUMER)) {
+                newConsumers += "," + CRIS_CONSUMER;
+            }
+        }
         configService.setProperty("event.dispatcher.default.consumers", newConsumers);
         EventService eventService = EventServiceFactory.getInstance().getEventService();
         eventService.reloadConfiguration();
@@ -165,7 +172,6 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         context.turnOffAuthorisationSystem();
 
         Community joinProjects = createCommunity("Joint projects");
-        configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
 
         shared = createCommunity("Shared");
         sharedPersons = createCollection("Shared Persons", "Person", shared);
@@ -193,7 +199,7 @@ public class ProjectVersionProviderIT extends AbstractControllerIntegrationTest 
         parentProjectIsVersionOf = createIsVersionRelationshipType(PROJECT_ENTITY);
 
         context.restoreAuthSystemState();
-
+        configurationService.setProperty("project.parent-community-id", joinProjects.getID().toString());
     }
 
     @After

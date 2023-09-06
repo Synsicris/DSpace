@@ -225,6 +225,11 @@
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
       <type>submission-form</type>
     </step-definition>
+    <step-definition id="common_license" mandatory="true" opened="false">
+      <heading>submit.progressbar.describe.common_license</heading>
+      <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
+      <type>submission-form</type>
+    </step-definition>
     <step-definition id="awards" mandatory="true">
       <heading>submit.progressbar.describe.awards</heading>
       <processing-class>org.dspace.app.rest.submit.step.DescribeStep</processing-class>
@@ -633,12 +638,11 @@
     <submission-process name="publications">
       <step id="extractionstep" />
       <step id="publications" />
-      <step id="detect-duplicate" />
       <step id="publications_references" />
       <step id="agrovoc_keywords_others" />
       <step id="sherpaPolicies" />
       <step id="upload" />
-      <step id="cclicense" />
+      <step id="common_license" />
       <step id="license" />
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
@@ -652,7 +656,7 @@
       <step id="agrovoc_keywords_others" />
       <step id="sherpaPolicies" />
       <step id="upload" />
-      <step id="cclicense" />
+      <step id="common_license" />
       <step id="license" />
       <step id="internalacc" />
     </submission-process>
@@ -848,7 +852,7 @@
     </submission-process>
     <submission-process name="exp_societalimpact">
       <step id="exp_societalimpact" />
-      <step id="statusacc3" />
+      <step id="statusacc4" />
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
@@ -856,12 +860,12 @@
     </submission-process>
     <submission-process name="exp_societalimpact-edit">
       <step id="exp_societalimpact" />
-      <step id="statusacc3" />
+      <step id="statusacc4" />
       <step id="internalacc" />
     </submission-process>
     <submission-process name="neg_sideeffect">
       <step id="neg_sideeffect" />
-      <step id="statusacc3" />
+      <step id="statusacc4" />
       <step id="internalacc" />
       <step id="impact_pathway_task_form" />
       <step id="exploitation_plan_task_form" />
@@ -869,7 +873,7 @@
     </submission-process>
     <submission-process name="neg_sideeffect-edit">
       <step id="neg_sideeffect" />
-      <step id="statusacc3" />
+      <step id="statusacc4" />
       <step id="internalacc" />
     </submission-process>
     <submission-process name="conditions">

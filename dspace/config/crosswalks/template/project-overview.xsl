@@ -28,7 +28,7 @@
 	<xsl:param name="lang.title.section3.1.3" select="'3.1.3 Arbeitspakete und Arbeiten'"/>
 	<xsl:param name="lang.title.section3.1.4" select="'3.1.4 Veröffentlichungen'"/>
 	<xsl:param name="lang.title.section3.1.5" select="'3.1.5 Forschungdaten'"/>
-	<xsl:param name="lang.title.section3.1.6" select="'3.1.6 Arbeiten zur Interaktion und Transfer'"/>
+	<xsl:param name="lang.title.section3.1.6" select="'3.1.6 Übersicht zu den Arbeiten zu Interaktion und Transfer'"/>
 	<xsl:param name="lang.title.section3.2" select="'3.2 Meilensteinplan'"/>
 	<xsl:param name="lang.title.section3.3" select="'3.3 Vertiefung Material und Methoden'"/>
 
@@ -55,8 +55,6 @@
 	<xsl:param name="lang.title.section5.1" select="'5.1 Überblick'"/>
 	<xsl:param name="lang.title.section5.2" select="'5.2 Kooperationspartner (zusätzliche Informationen)'"/>
 	<xsl:param name="lang.title.section5.3" select="'5.3 Relevante Akteursgruppen des Projektes (zusätzliche Informationen)'"/>
-
-	<xsl:param name="lang.title.section6" select="'6 Notwendigkeit der Zuwendung'"/>
 
 	<!-- individual fields -->
 	<xsl:param name="lang.title" select="'Titel'"/>
@@ -127,8 +125,8 @@
 	<xsl:param name="lang.process-event.involved-organisation" select="'Beteiligte Projektpartner oder Unterauftragnehmer/ Kooperationspartner'"/>
 	<xsl:param name="lang.process-event.target-group" select="'Beteiligte Akteursgruppe(n)'"/>
 	<xsl:param name="lang.process-event.duration" select="'Dauer in Stunden'"/>
-	<xsl:param name="lang.process-event.title-frequency-table" select="'Wichtige durchgeführte Treffen/Veranstaltungen'"/>
-	<xsl:param name="lang.process-event.title-date-table" select="'Daten zum Treffen/Veranstaltung'"/>
+	<xsl:param name="lang.process-event.title-frequency-table" select="'Häufigkeit der Treffen/Veranstaltungen'"/>
+	<xsl:param name="lang.process-event.title-date-table" select="'Wichtige durchgeführte Treffen/Veranstaltungen'"/>
 	<xsl:param name="lang.process-event.title" select="'Bezeichnung/Titel'"/>
 
 	<xsl:param name="lang.physical-object.function" select="'Verwendungsmöglichkeiten'"/>
@@ -214,13 +212,11 @@
 	<xsl:param name="lang.condition.influence" select="'Einfluss auf die Wirkung des Projektes'"/>
 	<xsl:param name="lang.condition.startframework" select="'Startzeitpunkt der Wirksamkeit'"/>
 
-	<xsl:param name="lang.expected-societal-impact.transitionarea" select="'Transformationsbereich'"/>
 	<xsl:param name="lang.expected-societal-impact.evidence" select="'Einfluss auf die Wirkung des Projektes'"/>
 	<xsl:param name="lang.expected-societal-impact.type-coreelement" select="'Kernelement'"/>
 	<xsl:param name="lang.expected-societal-impact.type-intensity" select="'Wirkungsintensität'"/>
 	<xsl:param name="lang.expected-societal-impact.type-description" select="'Umfang der erwarteten Wirkung'"/>
 
-	<xsl:param name="lang.negative-side-effect.transitionArea" select="'Adressierter Transformationsbereich'"/>
 	<xsl:param name="lang.negative-side-effect.evidence" select="'Fachliche Grundlage'"/>
 	<xsl:param name="lang.negative-side-effect.type-coreelement" select="'Kernelement der Nachhaltigkeit'"/>
 	<xsl:param name="lang.negative-side-effect.type-intensity" select="'Intensität der negativen Nebenwirkung'"/>
@@ -399,7 +395,14 @@
 			<!-- PAGE SEQUENCE -->
 			<!--==========================================================-->
 
-			<fo:page-sequence master-reference="A4-portrait" initial-page-number="1">
+      <!-- INFO: in total there are 5 page sequence blocks --> 
+			<!-- 1: from the beginning to the impact pathway -->
+			<!-- 2: impact pathway itself (landscape) -->
+      <!-- 3: from the impact pathway to the working plan -->
+			<!-- 4: working plan itself (landscape) -->
+			<!-- 5: from the working plan to the end -->
+
+			<fo:page-sequence master-reference="A4-portrait">
 
 				<!-- integrate page numbers -->
 				<fo:static-content flow-name="xsl-region-after">
@@ -469,6 +472,50 @@
 					</xsl:call-template>
 
 					<xsl:call-template name="impact-pathway"/>
+
+				</fo:flow>
+
+			</fo:page-sequence>
+
+      <!-- impact pathway itself (landscape) -->
+			<fo:page-sequence master-reference="A4-landscape">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<xsl:call-template name="impactpathway-screenshots">
+						<xsl:with-param name="imageDir" select="$imageDir"/>
+					</xsl:call-template>
+
+				</fo:flow>
+
+			</fo:page-sequence>
+
+		  <!-- from the impact pathway to the working plan -->
+			<fo:page-sequence master-reference="A4-portrait">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<!-- SECTION #1 -->
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 					<!-- sub section title - scientific and techical aims of the project -->
 					<xsl:call-template name="title">
@@ -540,7 +587,47 @@
 						<xsl:with-param name="fontSize" select="$font.size.sub-sub-section-title"/>
 					</xsl:call-template>
 
+				</fo:flow>
+
+			</fo:page-sequence>
+
+			<!-- working plan itself (landscape) -->
+			<fo:page-sequence master-reference="A4-landscape">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
 					<xsl:call-template name="working-plan"/>
+
+				</fo:flow>
+
+			</fo:page-sequence>			
+
+			<!-- from the working plan to the end -->
+			<fo:page-sequence master-reference="A4-portrait">
+
+				<!-- integrate page numbers -->
+				<fo:static-content flow-name="xsl-region-after">
+					<fo:block text-align="center">
+						<xsl:value-of select="$lang.page"/>
+						<fo:page-number/>
+					</fo:block>
+				</fo:static-content>
+
+				<!-- start page flow -->
+				<fo:flow flow-name="xsl-region-body">
+
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<!-- SECTION #3 -->
+					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 					<!-- sub sub section title - work packages and tasks -->
 					<xsl:call-template name="title">
@@ -780,19 +867,6 @@
 
 					<xsl:call-template name="target-group"/>
 
-					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-					<!-- SECTION #6 -->
-					<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-					<!-- new page -->
-					<fo:block break-after='page'/>
-
-					<!-- section title - necessity of the grant -->
-					<xsl:call-template name="title">
-						<xsl:with-param name="title" select="$lang.title.section6"/>
-						<xsl:with-param name="fontSize" select="$font.size.section-title"/>
-					</xsl:call-template>
-
 				</fo:flow>
 
 			</fo:page-sequence>
@@ -937,17 +1011,9 @@
 
 	<xsl:template name="impact-pathway">
 
-		<xsl:if test="cerif:ImpactPathway">
-
-			<xsl:call-template name="title-description">
-				<xsl:with-param name="entity" select="cerif:ImpactPathway"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="impactpathway-screenshots">
-				<xsl:with-param name="imageDir" select="$imageDir"/>
-			</xsl:call-template>
-
-		</xsl:if>
+		<xsl:call-template name="title-description">
+			<xsl:with-param name="entity" select="cerif:ImpactPathway"/>
+		</xsl:call-template>
 
 	</xsl:template>
 
@@ -1296,13 +1362,12 @@
 				<!-- frequency table -->
 				<xsl:if test="count(cerif:Frequency/cerif:Index) > 0">
 
-					<!-- table information (only if there are multiple tables) -->
-					<xsl:if test="count(cerif:Date/cerif:Index) > 0">
-						<xsl:call-template name="title">
-							<xsl:with-param name="title" select="$lang.process-event.title-frequency-table"/>
-							<xsl:with-param name="fontSize" select="$font.size.standard"/>
-						</xsl:call-template>
-					</xsl:if>
+					<!-- title -->
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="$lang.process-event.title-frequency-table"/>
+						<xsl:with-param name="fontSize" select="$font.size.standard"/>
+					</xsl:call-template>
+
 
 					<!-- table -->
 					<fo:table table-layout="fixed" vertical-align="middle" border-before-style="hidden" border-after-style="hidden" border-start-style="hidden" border-end-style="hidden">
@@ -1420,13 +1485,11 @@
 				<!-- date table -->
 				<xsl:if test="count(cerif:Date/cerif:Index) > 0">
 
-					<!-- table information (only if there are multiple tables) -->
-					<xsl:if test="count(cerif:Frequency/cerif:Index) > 0">
-						<xsl:call-template name="title">
-							<xsl:with-param name="title" select="$lang.process-event.title-date-table"/>
-							<xsl:with-param name="fontSize" select="$font.size.standard"/>
-						</xsl:call-template>
-					</xsl:if>
+					<!-- title -->
+					<xsl:call-template name="title">
+						<xsl:with-param name="title" select="$lang.process-event.title-date-table"/>
+						<xsl:with-param name="fontSize" select="$font.size.standard"/>
+					</xsl:call-template>
 
 					<!-- table -->
 					<fo:table table-layout="fixed" vertical-align="middle" border-before-style="hidden" border-after-style="hidden" border-start-style="hidden" border-end-style="hidden">
@@ -3294,11 +3357,6 @@
 					</xsl:call-template>
 
 					<xsl:call-template name="label-value-single-below">
-						<xsl:with-param name="label" select="$lang.expected-societal-impact.transitionarea"/>
-						<xsl:with-param name="value" select="cerif:TransitionArea"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="label-value-single-below">
 						<xsl:with-param name="label" select="$lang.expected-societal-impact.evidence"/>
 						<xsl:with-param name="value" select="cerif:Evidence"/>
 					</xsl:call-template>
@@ -3422,11 +3480,6 @@
 					<xsl:call-template name="label-value-single-below">
 						<xsl:with-param name="label" select="$lang.description"/>
 						<xsl:with-param name="value" select="cerif:Description"/>
-					</xsl:call-template>
-
-					<xsl:call-template name="label-value-single-below">
-						<xsl:with-param name="label" select="$lang.negative-side-effect.transitionArea"/>
-						<xsl:with-param name="value" select="cerif:TransitionArea"/>
 					</xsl:call-template>
 
 					<xsl:call-template name="label-value-single-below">
@@ -5339,7 +5392,7 @@
 		<xsl:param name="nodeValue"/>
 		<xsl:variable name="imagePath" select="concat('file:',$imageDir,'/',$nodeValue)"/>
 
-		<fo:external-graphic content-height="scale-to-fit" content-width="16cm" scaling="uniform">
+		<fo:external-graphic content-height="scale-to-fit" content-width="24cm" scaling="uniform">
 			<xsl:attribute name="src">
 				<xsl:value-of select="$imagePath"/>
 			</xsl:attribute>

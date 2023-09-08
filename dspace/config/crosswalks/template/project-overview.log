@@ -237,22 +237,22 @@ INSIDE A BLOCK (e.g. applications, spinoff)
 
 2023-06-22
 section 4.2.4
-  - change cerif to english expression  <StatusPublication>@virtual.vocabulary_i18n.dc-type@</StatusPublication>
+  - change CERIF to english expression  <StatusPublication>@virtual.vocabulary_i18n.dc-type@</StatusPublication>
 section 4.2.5  
-  - change cerif to english expression  <Type>@virtual.vocabulary_i18n.dc-type@</Type> and	<Use>@virtual.vocabulary_i18n.synsicris-type-patentuse@</Use>
+  - change CERIF to english expression  <Type>@virtual.vocabulary_i18n.dc-type@</Type> and	<Use>@virtual.vocabulary_i18n.synsicris-type-patentuse@</Use>
 section 4.2.6 
-  - change cerif to english expressions registercourt,registertype, type, nace, country
+  - change CERIF to english expressions registercourt,registertype, type, nace, country
 section 4.2.7 
-  - change cerif to english type -> did not work!
+  - change CERIF to english type -> did not work!
 
 2023-06-23
 general
   - change template "label-amount-currency" to "label-amount-currency-below"
-  - change cerif to english for step entity <Type>
-  - change cerif to english for conditions entity <ConditionType> & <Influence>
-  - change cerif to english for ExpectedSocietalImpact entity <Evidence> <CoreElement> <Intensity>
-  - change cerif to english for NegativeSideEffect entity <TransitionArea> <Evidence> <CoreElement> <Intensity>
-  - change cerif to english for ethic entity <FurtherDocuments> <AspectType>
+  - change CERIF to english for step entity <Type>
+  - change CERIF to english for conditions entity <ConditionType> & <Influence>
+  - change CERIF to english for ExpectedSocietalImpact entity <Evidence> <CoreElement> <Intensity>
+  - change CERIF to english for NegativeSideEffect entity <TransitionArea> <Evidence> <CoreElement> <Intensity>
+  - change CERIF to english for ethic entity <FurtherDocuments> <AspectType>
   - sort section templates according to their occurrence
   - remove obsolete templates
     - "label-value-single-below-table"
@@ -341,3 +341,9 @@ section 3.1.3
   - rework planned publication
   - rework physical objects
      
+2023-09-08
+general
+  - replace main report with the test version that includes the screenshots in landscape mode
+  - adjust CERIF template to the data model changes
+
+      

@@ -29,12 +29,12 @@
                         <ref bean="crossRefLiveImportDataProvider"/>
                     </list>
                 </entry>
+                <!--
                 <entry key="dc.identifier.adsbibcode">
                     <list>
                         <ref bean="adsLiveImportDataProvider" />
                     </list>
                 </entry>
-                <!--
                 <entry key="dc.identifier.isi">
                     <list>
                         <ref bean="wosLiveImportDataProvider" />

@@ -66,9 +66,8 @@
 				
 				<entry key="collection-xls" value-ref="xlsCrosswalkCollection"></entry>
 
-        		<entry key="1 - Project overview - PDF" value-ref="pdfCrosswalkProjectOverview"></entry>
-				<entry key="2 - Project overview - XML" value-ref="referCrosswalkProjectOverviewCerifXml"></entry>
-				<entry key="3 - Project overview - PDF (Test)" value-ref="pdfCrosswalkProjectOverviewTest"></entry>
+        <entry key="Project overview (PDF)" value-ref="pdfCrosswalkProjectOverview"></entry>
+				<entry key="Project overview (XML)" value-ref="referCrosswalkProjectOverviewCerifXml"></entry>
 				<!--<entry key="parentproject-pdf" value-ref="pdfCrosswalkProject"></entry> -->
 
 			</map>
@@ -519,25 +518,6 @@
 		<property name="mimeType" value="application/pdf"/>
 		<property name="entityType" value="Project"/>
 		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewCerifXml"/>
-	</bean>
-
-	<!-- report template for project overview (landscape test)-->
-	<bean class="org.dspace.content.integration.crosswalks.ReferCrosswalk" id="referCrosswalkProjectOverviewTestCerifXml">
-		<property name="templateFileName" value="crosswalks/template/project-overview-test-cerif-xml.template"/>
-		<property name="mimeType" value="application/xml; charset=UTF-8"/>
-		<property name="fileName" value="project-overview-test.xml"/>
-		<property name="entityType" value="Project"/>
-		<property name="multipleItemsTemplateFileName" value="crosswalks/template/projects-overview-test-xml.template"/>
-		<property name="crosswalkMode" value="#{T(org.dspace.content.crosswalk.CrosswalkMode).SINGLE_AND_MULTIPLE}"/>
-		<property name="converter" ref="xmlValueConverter" />
-	</bean>
-
-	<bean class="org.dspace.content.integration.crosswalks.DocumentCrosswalk" id="pdfCrosswalkProjectOverviewTest">
-		<property name="templateFileName" value="crosswalks/template/project-overview-test.xsl"/>
-		<property name="fileName" value="project-overview-test.pdf"/>
-		<property name="mimeType" value="application/pdf"/>
-		<property name="entityType" value="Project"/>
-		<property name="referCrosswalk" ref="referCrosswalkProjectOverviewTestCerifXml"/>
 	</bean>
 
 	<!-- VIRTUAL FIELDS CONFIGURATION -->

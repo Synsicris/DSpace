@@ -564,5 +564,12 @@
         <qualifier>ipc</qualifier>
         <scope_note></scope_note>
     </dc-type>
+    
+    <dc-type>
+        <schema>synsicris</schema>
+        <element>type</element>
+        <qualifier>proposal</qualifier>
+        <scope_note></scope_note>
+    </dc-type>
 
 </dspace-dc-types>

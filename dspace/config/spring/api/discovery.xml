@@ -1496,7 +1496,6 @@
 				<ref bean="graphEventByTypeTargetGroup" />
 				<ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
-                <ref bean="graphExpSocImpByType" />
                 <ref bean="graphProjectByDcSubject" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
@@ -1644,7 +1643,6 @@
 				<ref bean="graphEventByTypeTargetGroup" />
 				<ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
-                <ref bean="graphExpSocImpByType" />
                 <ref bean="graphProjectByDcSubject" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />

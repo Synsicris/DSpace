@@ -1229,7 +1229,6 @@
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
-				<TransitionArea>@virtual.vocabulary_i18n.synsicris-type-transform@</TransitionArea>
 				<Evidence>@virtual.vocabulary_i18n.synsicris-type-evidence@</Evidence>
 
 				<!-- attributes from dc.type inline group -->
@@ -1280,7 +1279,6 @@
 				<!-- direct attributes (basic accordion) -->
 				<Title>@dc.title@</Title>
 				<Description>@dc.description@</Description>
-				<TransitionArea>@synsicris.type.transform@</TransitionArea>
 				<Evidence>@virtual.vocabulary_i18n.synsicris-type-evidence@</Evidence>
 
 				<!-- attributes from dc.type inline group -->

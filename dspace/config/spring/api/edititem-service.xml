@@ -331,10 +331,11 @@
                         </bean>
                         <bean class="org.dspace.content.edit.EditItemMode">
                             <property name="name" value="VERSIONING" />
-                            <property name="security">
-                                <value type="org.dspace.content.security.CrisSecurity">
-                                    CUSTOM
-                                </value>
+                            <property name="securities">
+                                <list>
+                                    <value type="org.dspace.content.security.CrisSecurity">CUSTOM</value>
+                                    <value type="org.dspace.content.security.CrisSecurity">ADMIN</value>
+                                </list>
                             </property>
                             <property name="submissionDefinition" value="projects_versioning-edit" />
                             <property name="groups">

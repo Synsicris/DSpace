@@ -17,6 +17,7 @@ import org.dspace.app.rest.authorization.AuthorizationFeature;
 import org.dspace.app.rest.authorization.AuthorizationFeatureDocumentation;
 import org.dspace.app.rest.model.BaseObjectRest;
 import org.dspace.app.rest.model.ItemRest;
+import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
@@ -54,6 +55,9 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
     @Autowired
     private ProjectConsumerService projectConsumerService;
 
+    @Autowired
+    private AuthorizeService authorizeService;
+
     @Override
     @SuppressWarnings("rawtypes")
     public boolean isAuthorized(Context context, BaseObjectRest object) throws SQLException {
@@ -75,6 +79,10 @@ public class CanCreateVersionFeature implements AuthorizationFeature {
         EPerson currentUser = context.getCurrentUser();
         if (Objects.isNull(currentUser)) {
             return false;
+        }
+
+        if (this.authorizeService.isAdmin(context, currentUser)) {
+            return true;
         }
 
         return isMemberOfProjectAdminGroup(context, item, currentUser);

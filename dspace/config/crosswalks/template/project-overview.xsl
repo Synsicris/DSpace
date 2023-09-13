@@ -478,26 +478,32 @@
 			</fo:page-sequence>
 
       <!-- impact pathway itself (landscape) -->
-			<fo:page-sequence master-reference="A4-landscape">
+			<xsl:if test="cerif:ImpactPathway">
+				<xsl:if test="count(cerif:ImpactPathway/cerif:Screenshots/cerif:Screenshot) > 0">
 
-				<!-- integrate page numbers -->
-				<fo:static-content flow-name="xsl-region-after">
-					<fo:block text-align="center">
-						<xsl:value-of select="$lang.page"/>
-						<fo:page-number/>
-					</fo:block>
-				</fo:static-content>
+					<fo:page-sequence master-reference="A4-landscape">
 
-				<!-- start page flow -->
-				<fo:flow flow-name="xsl-region-body">
+						<!-- integrate page numbers -->
+						<fo:static-content flow-name="xsl-region-after">
+							<fo:block text-align="center">
+								<xsl:value-of select="$lang.page"/>
+								<fo:page-number/>
+							</fo:block>
+						</fo:static-content>
 
-					<xsl:call-template name="impactpathway-screenshots">
-						<xsl:with-param name="imageDir" select="$imageDir"/>
-					</xsl:call-template>
+						<!-- start page flow -->
+						<fo:flow flow-name="xsl-region-body">
 
-				</fo:flow>
+							<xsl:call-template name="impactpathway-screenshots">
+								<xsl:with-param name="imageDir" select="$imageDir"/>
+							</xsl:call-template>
 
-			</fo:page-sequence>
+						</fo:flow>
+
+					</fo:page-sequence>
+
+				</xsl:if>
+			</xsl:if>
 
 		  <!-- from the impact pathway to the working plan -->
 			<fo:page-sequence master-reference="A4-portrait">
@@ -592,24 +598,30 @@
 			</fo:page-sequence>
 
 			<!-- working plan itself (landscape) -->
-			<fo:page-sequence master-reference="A4-landscape">
+			<xsl:if test="cerif:WorkPackage">
+				<xsl:if test="count(cerif:WorkPackage/cerif:Screenshots/cerif:Screenshot) > 0">
 
-				<!-- integrate page numbers -->
-				<fo:static-content flow-name="xsl-region-after">
-					<fo:block text-align="center">
-						<xsl:value-of select="$lang.page"/>
-						<fo:page-number/>
-					</fo:block>
-				</fo:static-content>
+					<fo:page-sequence master-reference="A4-landscape">
 
-				<!-- start page flow -->
-				<fo:flow flow-name="xsl-region-body">
+						<!-- integrate page numbers -->
+						<fo:static-content flow-name="xsl-region-after">
+							<fo:block text-align="center">
+								<xsl:value-of select="$lang.page"/>
+								<fo:page-number/>
+							</fo:block>
+						</fo:static-content>
 
-					<xsl:call-template name="working-plan"/>
+						<!-- start page flow -->
+						<fo:flow flow-name="xsl-region-body">
 
-				</fo:flow>
+							<xsl:call-template name="working-plan"/>
 
-			</fo:page-sequence>			
+						</fo:flow>
+
+					</fo:page-sequence>	
+
+				</xsl:if>
+			</xsl:if>
 
 			<!-- from the working plan to the end -->
 			<fo:page-sequence master-reference="A4-portrait">

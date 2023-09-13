@@ -346,4 +346,6 @@ general
   - replace main report with the test version that includes the screenshots in landscape mode
   - adjust CERIF template to the data model changes
 
-      
+2023-09-12
+general
+  - include checks if any impact pathway or working plan screenshots come back, if not do not use the landscape mode

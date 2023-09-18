@@ -1434,8 +1434,6 @@
                 <ref bean="graphSynsicrisTypeProject" />
                 <ref bean="graphSynsicrisDuration" />
                 <ref bean="graphOairecerifProjectStatus" />
-                <ref bean="graphOairecerifProjectStartDate" />
-                <ref bean="graphOairecerifProjectEndDate" />
                 <ref bean="graphSynsicrisSubjectTextLP" />
 				<ref bean="graphSynsicrisSubjectSort" />
 				<ref bean="graphSynsicrisSubjectSortprimary" />
@@ -1580,8 +1578,6 @@
                 <ref bean="graphSynsicrisTypeProject" />
                 <ref bean="graphSynsicrisDuration" />
                 <ref bean="graphOairecerifProjectStatus" />
-                <ref bean="graphOairecerifProjectStartDate" />
-                <ref bean="graphOairecerifProjectEndDate" />
                 <ref bean="graphSynsicrisSubjectTextLP" />
 				<ref bean="graphSynsicrisSubjectSort" />
 				<ref bean="graphSynsicrisSubjectSortprimary" />

@@ -147,13 +147,23 @@ public class CrisConsumer implements Consumer {
                 continue;
             }
 
+            String crisSourceId = generateCrisSourceId(metadata);
+
             String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
             if (ArrayUtils.isEmpty(entityTypes)) {
-                log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+                
+                // This is due to NoEntityAuthority that has no entity type configured
+                Item relatedItem = itemSearchService.search(context, crisSourceId, item);
+
+                if (relatedItem != null) {
+                    choiceAuthorityService.setReferenceWithAuthority(metadata, relatedItem);
+                } else {
+                    log.warn(NO_ENTITY_TYPE_FOUND_MSG, fieldKey);
+                }
+
                 continue;
             }
             for (String entityType : entityTypes) {
-                String crisSourceId = generateCrisSourceId(metadata);
 
                 Item relatedItem = itemSearchService.search(context, crisSourceId, entityType, item);
                 boolean relatedItemAlreadyPresent = relatedItem != null;

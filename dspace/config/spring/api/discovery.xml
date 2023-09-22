@@ -1434,8 +1434,6 @@
                 <ref bean="graphSynsicrisTypeProject" />
                 <ref bean="graphSynsicrisDuration" />
                 <ref bean="graphOairecerifProjectStatus" />
-                <ref bean="graphOairecerifProjectStartDate" />
-                <ref bean="graphOairecerifProjectEndDate" />
                 <ref bean="graphSynsicrisSubjectTextLP" />
 				<ref bean="graphSynsicrisSubjectSort" />
 				<ref bean="graphSynsicrisSubjectSortprimary" />
@@ -1480,7 +1478,6 @@
 				<ref bean="graphPhyObjByTypeAccess" />
 				<ref bean="graphTargetGroupByEnterprise" />
 				<ref bean="graphTargetGroupByUrbanrural" />
-				<ref bean="graphExpSocImpByTransform" />
 				<ref bean="graphExpSocImpByIntensity" />
 				<ref bean="graphSynsicrisTypeResearchquestion" />
 				<ref bean="graphGenderByStateofart" />
@@ -1494,9 +1491,9 @@
 				<ref bean="graphSynsicrisTypeStatus" />
 				<ref bean="graphSynsicrisAddressAddressCountry" />
 				<ref bean="graphEventByTypeTargetGroup" />
-				<ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="graphProjectByDcSubject" />
+                <ref bean="graphPublicationDcRightsUri" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterType" />
@@ -1541,7 +1538,6 @@
                 <ref bean="searchFilterSynsicrisSubjectEnterprise" />
                 <ref bean="searchFilterSynsicrisSubjectPolitical" />
                 <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeIntensity" />
                 <ref bean="searchFilterSynsicrisTypeInfluence" />
                 <ref bean="searchFilterSynsicrisAcronymFundingParent" />
@@ -1566,6 +1562,7 @@
                 <ref bean="searchFilterSynsicrisTypeStatus" />
                 <ref bean="searchFilterTargetGroupsTypes" />
                 <ref bean="searchFilterDcSubject" />
+                <ref bean="searchFilterDcRightsUri" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
@@ -1581,8 +1578,6 @@
                 <ref bean="graphSynsicrisTypeProject" />
                 <ref bean="graphSynsicrisDuration" />
                 <ref bean="graphOairecerifProjectStatus" />
-                <ref bean="graphOairecerifProjectStartDate" />
-                <ref bean="graphOairecerifProjectEndDate" />
                 <ref bean="graphSynsicrisSubjectTextLP" />
 				<ref bean="graphSynsicrisSubjectSort" />
 				<ref bean="graphSynsicrisSubjectSortprimary" />
@@ -1627,7 +1622,6 @@
 				<ref bean="graphPhyObjByTypeAccess" />
 				<ref bean="graphTargetGroupByEnterprise" />
 				<ref bean="graphTargetGroupByUrbanrural" />
-				<ref bean="graphExpSocImpByTransform" />
 				<ref bean="graphExpSocImpByIntensity" />
 				<ref bean="graphSynsicrisTypeResearchquestion" />
 				<ref bean="graphGenderByStateofart" />
@@ -1641,9 +1635,9 @@
 				<ref bean="graphSynsicrisTypeStatus" />
 				<ref bean="graphSynsicrisAddressAddressCountry" />
 				<ref bean="graphEventByTypeTargetGroup" />
-				<ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="graphProjectByDcSubject" />
+                <ref bean="graphPublicationDcRightsUri" />
                 <!-- search filters  -->
                 <ref bean="searchFilterEntityType" />
                 <ref bean="searchFilterTitle" />
@@ -1689,7 +1683,6 @@
                 <ref bean="searchFilterSynsicrisSubjectEnterprise" />
                 <ref bean="searchFilterSynsicrisSubjectPolitical" />
                 <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeIntensity" />
                 <ref bean="searchFilterSynsicrisTypeInfluence" />
                 <ref bean="searchFilterSynsicrisAcronymFundingParent" />
@@ -1715,6 +1708,7 @@
                 <ref bean="searchFilterSynsicrisTypeStatus" />
                 <ref bean="searchFilterTargetGroupsTypes" />
                 <ref bean="searchFilterDcSubject" />
+                <ref bean="searchFilterDcRightsUri" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1814,7 +1808,6 @@
                 <ref bean="searchFilterSynsicrisSubjectEnterprise" />
                 <ref bean="searchFilterSynsicrisSubjectPolitical" />
                 <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeInfluence" />
                 <ref bean="searchFilterSynsicrisSubjectSortprimary" />
                 <ref bean="searchFilterSynsicrisAcronymFundingParent" />
@@ -1822,6 +1815,9 @@
                 <ref bean="searchFilterSynsicrisTypeEasyimport" />
                 <ref bean="searchFilterSynsicrisInternalidPersonleader" />
                 <ref bean="searchFilterSynsicrisAddressAddresscountry" />
+                <ref bean="searchFilterSynsicrisTypeTransform" />
+                <ref bean="searchFilterSynsicrisTypeSdg" />
+                <ref bean="searchFilterSynsicrisSubjectFunderLabel1" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page -->
@@ -1849,7 +1845,6 @@
                 <ref bean="searchFilterSynsicrisSubjectEnterprise" />
                 <ref bean="searchFilterSynsicrisSubjectPolitical" />
                 <ref bean="searchFilterSynsicrisSubjectUrbanrural" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeInfluence" />
                 <ref bean="searchFilterSynsicrisSubjectSortprimary" />
                 <ref bean="searchFilterSynsicrisAcronymFundingParent" />
@@ -1858,6 +1853,9 @@
                 <ref bean="searchFilterSynsicrisInternalidPersonleader" />
                 <ref bean="searchFilterSynsicrisAddressAddresscountry" />
                 <ref bean="searchFilterSynsicrisDescriptionTargetgroup" />
+                <ref bean="searchFilterSynsicrisTypeTransform" />
+                <ref bean="searchFilterSynsicrisTypeSdg" />
+                <ref bean="searchFilterSynsicrisSubjectFunderLabel1" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2473,6 +2471,7 @@
                 <ref bean="graphCoopPartByNace" />
                 <ref bean="graphCoopPartByDestatis" />
                 <ref bean="graphCoopPartByAddressCountry" />
+                <ref bean="graphCoopPartByPolitical" />
                 <!-- filters -->
                 <ref bean="searchFilterSynsicrisSubjectNace" />
                 <ref bean="searchFilterSynsicrisSubjectDestatis" />
@@ -2649,19 +2648,15 @@
         <!--Which sidebar facets are to be displayed-->
         <property name="sidebarFacets">
             <list>
-                <ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="searchFilterType" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
-                <ref bean="graphNegSideEffectByTransform" />
                 <ref bean="graphNegSideEffectByIntensity" />
                 <ref bean="searchFilterType" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2693,22 +2688,18 @@
         <property name="sidebarFacets">
             <list>
                 <ref bean="graphExpSocImpByType" />
-                <ref bean="graphExpSocImpByTransform" />
                 <ref bean="graphExpSocImpByIntensity" />
                 <ref bean="graphExpSocImpByEvidence" />
                 <ref bean="searchFilterType" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
                 <ref bean="graphExpSocImpByType" />
-                <ref bean="graphExpSocImpByTransform" />
                 <ref bean="graphExpSocImpByIntensity" />
                 <ref bean="graphExpSocImpByEvidence" />
                 <ref bean="searchFilterType" />
-                <ref bean="searchFilterSynsicrisTypeTransform" />
                 <ref bean="searchFilterSynsicrisTypeEvidence" />
             </list>
         </property>
@@ -3219,6 +3210,7 @@
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
                 <ref bean="graphDcAudience" />
+                <ref bean="graphPublicationDcRightsUri" />
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOairecerifAuthorAffiliation" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -3231,6 +3223,7 @@
                 <ref bean="graphPublicationByType" />
                 <ref bean="graphPublicationByDate" />
                 <ref bean="graphDcAudience" />
+                <ref bean="graphPublicationDcRightsUri" />
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterOairecerifAuthorAffiliation" />
                 <ref bean="searchFilterSynsicrisSubjectAgrovoc" />
@@ -6125,6 +6118,15 @@
             </list>
         </property>
     </bean>
+    
+    <bean id="searchFilterDcRightsUri" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="item-filter_dc-rights-uri" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.rights.uri</value>
+            </list>
+        </property>
+    </bean>
 
     <bean id="searchFilterLanguage" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
         <property name="indexFieldName" value="language" />
@@ -6632,6 +6634,25 @@
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
+            </list>
+        </property>
+        <property name="graphType" value="pie" />
+        <property name="exposeMissing" value="true" />
+        <property name="exposeMore" value="true" />
+        <property name="exposeTotalElements" value="true" />
+    </bean>
+
+    <bean id="graphPublicationDcRightsUri" class="org.dspace.discovery.configuration.MultiLanguageGraphDiscoverSearchFilterFacet">
+        <property name="facetLimit" value="10"/>
+        <property name="indexFieldName" value="graphitem_dc-rights-uri" />
+        <!-- the splitter needs to be a not empty string -->
+        <property name="splitter" value="::" />
+        <property name="onlyLastNodeRelevant" value="true" />
+        <!-- isDate cannot be true if the splitter is set -->
+        <property name="isDate" value="false" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.rights.uri</value>
             </list>
         </property>
         <property name="graphType" value="pie" />
@@ -8321,7 +8342,7 @@
         <property name="isDate" value="false" />
         <property name="metadataFields">
             <list>
-                <value>synsicris.subject.political</value>
+                <value>political</value>
             </list>
         </property>
         <property name="graphType" value="pie" />
@@ -8868,6 +8889,16 @@
         <property name="metadataFields">
             <list>
                 <value>synsicris.subject.destatis</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="searchFilterSynsicrisSubjectFunderLabel1" class="org.dspace.discovery.configuration.MultiLanguageDiscoverSearchFilterFacet">
+        <property name="indexFieldName" value="filter_synsicris-subject-funderlabel1" />
+        <property name="type" value="authority"/>
+        <property name="metadataFields">
+            <list>
+                <value>synsicris.subject.funderlabel1</value>
             </list>
         </property>
     </bean>

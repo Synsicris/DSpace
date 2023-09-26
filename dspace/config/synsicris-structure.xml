@@ -1546,7 +1546,7 @@
           <metadata name="synsicris.externalreader-policy.group">###CURRENTPROJECTGROUP.project.externalreaders###</metadata>
           <metadata name="synsicris.relation.project">###CURRENTPROJECT.project###</metadata>
           <metadata name="synsicris.relation.funding">###CURRENTPROJECT.funding###</metadata>         
-          <metadata name="synsicris.type.easyimport">No</metadata>
+          <metadata name="synsicris.type.easyimport">additional orgunit</metadata>
         </item-template>
       </collection>
       <collection>

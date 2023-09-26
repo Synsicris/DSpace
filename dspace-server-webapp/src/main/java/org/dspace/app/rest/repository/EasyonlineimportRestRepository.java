@@ -134,7 +134,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 easyOnlineImportService.importFile(context, newItem, document, ProjectConstants.PROJECTPARTNER_ENTITY);
                 collectionService.addItem(context, projectPartnerCollection, newItem);
                 itemService.replaceMetadata(context, newItem, ProjectConstants.MD_EASYIMPORT.schema,
-                        ProjectConstants.MD_EASYIMPORT.element, ProjectConstants.MD_EASYIMPORT.qualifier, null, "Yes",
+                        ProjectConstants.MD_EASYIMPORT.element, ProjectConstants.MD_EASYIMPORT.qualifier, null, "executing orgunit",
                         null, Choices.CF_UNSET, 0);
                 itemService.replaceMetadata(context, newItem, ProjectConstants.MD_FUNDING_RELATION.schema,
                         ProjectConstants.MD_FUNDING_RELATION.element, ProjectConstants.MD_FUNDING_RELATION.qualifier,
@@ -163,7 +163,7 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
         DiscoverQuery discoverQuery = new DiscoverQuery();
         discoverQuery.setDSpaceObjectFilter(IndexableItem.TYPE);
         discoverQuery.addFilterQueries("dspace.entity.type:" + ProjectConstants.PROJECTPARTNER_ENTITY);
-        discoverQuery.addFilterQueries(ProjectConstants.MD_EASYIMPORT.toString() + ":Yes");
+        discoverQuery.addFilterQueries(ProjectConstants.MD_EASYIMPORT.toString() + ":executing orgunit");
         discoverQuery.addFilterQueries("location.coll:" + collection.getID().toString());
         discoverQuery.addFilterQueries(
             ProjectConstants.MD_FUNDING_RELATION.toString() + "_authority:" +

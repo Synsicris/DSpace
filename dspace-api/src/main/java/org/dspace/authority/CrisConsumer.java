@@ -151,7 +151,7 @@ public class CrisConsumer implements Consumer {
 
             String[] entityTypes = choiceAuthorityService.getLinkedEntityType(fieldKey);
             if (ArrayUtils.isEmpty(entityTypes)) {
-                
+
                 // This is due to NoEntityAuthority that has no entity type configured
                 Item relatedItem = itemSearchService.search(context, crisSourceId, item);
 

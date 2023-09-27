@@ -134,8 +134,8 @@ public class EasyonlineimportRestRepository extends DSpaceRestRepository<EasyOnl
                 easyOnlineImportService.importFile(context, newItem, document, ProjectConstants.PROJECTPARTNER_ENTITY);
                 collectionService.addItem(context, projectPartnerCollection, newItem);
                 itemService.replaceMetadata(context, newItem, ProjectConstants.MD_EASYIMPORT.schema,
-                        ProjectConstants.MD_EASYIMPORT.element, ProjectConstants.MD_EASYIMPORT.qualifier, null, "executing orgunit",
-                        null, Choices.CF_UNSET, 0);
+                        ProjectConstants.MD_EASYIMPORT.element, ProjectConstants.MD_EASYIMPORT.qualifier, null,
+                        "executing orgunit", null, Choices.CF_UNSET, 0);
                 itemService.replaceMetadata(context, newItem, ProjectConstants.MD_FUNDING_RELATION.schema,
                         ProjectConstants.MD_FUNDING_RELATION.element, ProjectConstants.MD_FUNDING_RELATION.qualifier,
                         null, item.getName(), item.getID().toString(), Choices.CF_ACCEPTED, 0);
